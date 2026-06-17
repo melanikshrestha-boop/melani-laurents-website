@@ -1,0 +1,45 @@
+---
+title: "Reproducible Research Infrastructure: A Minimal Protocol"
+date: "2026-04-02"
+summary: "Design principles for git-native research workflows — experiment logs, literature synthesis, and the tooling gap between Jupyter notebooks and production systems."
+tags: ["research", "infrastructure", "tools"]
+status: published
+---
+
+## Why notebooks aren't enough
+
+Jupyter notebooks are excellent for exploration. They're terrible for reproducibility, collaboration, and the long arc of a research program. The cell execution order problem alone should disqualify them as the canonical artifact for anything you intend to build on.
+
+What I want is simpler than a full ELN (electronic lab notebook) and more structured than a folder of markdown files:
+
+- **Git-native** — every experiment, note, and synthesis is versioned
+- **Markdown-first** — no proprietary formats, no vendor lock-in
+- **Provenance-aware** — inputs, parameters, and outputs linked explicitly
+
+## The minimal stack
+
+```
+research/
+├── literature/       # annotated papers, synthesis notes
+├── experiments/      # one dir per experiment, README + params.yaml
+├── memos/            # field notes like this one
+└── tools/            # scripts that actually run
+```
+
+Each experiment directory contains:
+
+- `README.md` — hypothesis, method, conclusion
+- `params.yaml` — frozen parameters, no magic numbers in prose
+- `outputs/` — gitignored artifacts with checksums in README
+
+## The build vs buy calculation
+
+Commercial ELNs solve compliance and audit trails. If you're pre-seed or operating in a research-collaboration mode, you're optimizing for **speed of iteration** and **low cognitive overhead**.
+
+The failure mode isn't missing features. It's adopting a system so heavy that you stop logging experiments because logging feels like paperwork.
+
+> The best research infrastructure is the one you actually use at 11pm when you're tired and the experiment just failed.
+
+## Next steps
+
+I'm packaging this into an open-source toolkit — Research OS — with CLI scaffolding for experiment init, param validation, and literature note templates. Early days, but the shape is clear.

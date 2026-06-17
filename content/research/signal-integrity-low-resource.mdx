@@ -1,0 +1,50 @@
+---
+title: "Signal Integrity in Low-Resource Clinical Environments"
+date: "2026-05-15"
+summary: "A structured analysis of noise sources, sampling constraints, and validation protocols when deploying physiological signal capture outside traditional hospital infrastructure."
+tags: ["signals", "med-tech", "validation"]
+status: published
+---
+
+## Problem framing
+
+Most signal-processing literature assumes hospital-grade acquisition: stable power, shielded cables, trained operators, and predictable patient stillness. Deploying the same pipelines in ambulatory, home, or low-resource clinical settings introduces failure modes that aren't captured by standard SNR metrics alone.
+
+The question isn't whether you can detect a QRS complex. It's whether you can **trust** the detection across 10,000 hours of heterogeneous real-world data.
+
+## Noise taxonomy
+
+I categorize noise sources into four layers:
+
+1. **Acquisition noise** — electrode impedance drift, motion artifact, cable microphonics
+2. **Environmental noise** — EM interference, temperature swings, power line harmonics
+3. **Physiological noise** — non-stationary baseline, patient movement, concurrent modalities
+4. **Pipeline noise** — filter ringing, resampling artifacts, compression loss
+
+Each layer requires a different validation strategy. Treating them as a single "noise floor" is how teams ship pipelines that work in the lab and fail in the field.
+
+## Validation protocol sketch
+
+```python
+class SignalValidator:
+    def __init__(self, snr_threshold_db: float = 20.0):
+        self.snr_threshold = snr_threshold_db
+
+    def validate_segment(self, signal, fs) -> ValidationResult:
+        snr = estimate_snr(signal, fs)
+        motion = detect_motion_artifact(signal, fs)
+        return ValidationResult(
+            passed=snr > self.snr_threshold and motion < 0.15,
+            metrics={"snr_db": snr, "motion_index": motion},
+        )
+```
+
+The validator runs **before** downstream inference — not after. Rejecting bad segments early is cheaper than explaining bad clinical decisions later.
+
+## Open questions
+
+- How do we define ground truth when the reference device itself has known limitations?
+- What's the minimum viable validation set size for regulatory-adjacent workflows?
+- Can we structure provenance so that every inference traceable to its input segment quality?
+
+These are the questions I'm actively working through. More field notes to follow.
