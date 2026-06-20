@@ -1,0 +1,27 @@
+import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
+import { SiteBackground } from "@/components/SiteBackground";
+import { OpeningIntro } from "@/components/OpeningIntro";
+import { SmoothScroll } from "@/components/SmoothScroll";
+import { CinemaProvider } from "@/components/cinema/CinemaProvider";
+import { SoundtrackPrompt } from "@/components/cinema/SoundtrackToggle";
+import { MainShell } from "@/components/MainShell";
+
+export default function SiteLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <CinemaProvider>
+      <OpeningIntro />
+      <SiteBackground />
+      <SmoothScroll>
+        <Navigation />
+        <MainShell>{children}</MainShell>
+        <Footer />
+      </SmoothScroll>
+      <SoundtrackPrompt />
+    </CinemaProvider>
+  );
+}

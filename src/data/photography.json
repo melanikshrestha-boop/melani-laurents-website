@@ -1,0 +1,341 @@
+{
+  "collections": [
+    {
+      "id": "portraits",
+      "title": "Portraits",
+      "tagline": "the real you, softly lit",
+      "slug": "portraits",
+      "cover": "/photography/portraits/DC343A05-5E01-4E95-AB42-BE27D42F7B16.JPG",
+      "photos": [
+        {
+          "id": "portraits-0",
+          "src": "/photography/portraits/DC343A05-5E01-4E95-AB42-BE27D42F7B16.JPG",
+          "alt": "Portraits 1"
+        },
+        {
+          "id": "portraits-1",
+          "src": "/photography/portraits/9C871A31-0289-4FF2-9463-98A169E3C29C.JPG",
+          "alt": "Portraits 2"
+        },
+        {
+          "id": "portraits-2",
+          "src": "/photography/portraits/0771CCC9-2D18-4F34-82EB-D03B461E3A8F.JPG",
+          "alt": "Portraits 3"
+        },
+        {
+          "id": "portraits-3",
+          "src": "/photography/portraits/4268805B-2B09-4CFF-9A5A-B90C3C57CD10.JPG",
+          "alt": "Portraits 4"
+        },
+        {
+          "id": "portraits-4",
+          "src": "/photography/portraits/132933EC-32C5-4E6B-98F7-BAA0AA6A7741.JPG",
+          "alt": "Portraits 5"
+        },
+        {
+          "id": "portraits-5",
+          "src": "/photography/portraits/A28449D9-BAED-4FB1-A26B-FA6C55DFD538.JPG",
+          "alt": "Portraits 6"
+        },
+        {
+          "id": "portraits-6",
+          "src": "/photography/portraits/_DSC2664.jpeg",
+          "alt": "Portraits 7"
+        },
+        {
+          "id": "portraits-7",
+          "src": "/photography/portraits/_DSC2689.JPG",
+          "alt": "Portraits 8"
+        },
+        {
+          "id": "portraits-8",
+          "src": "/photography/portraits/_DSC2728.jpeg",
+          "alt": "Portraits 9"
+        },
+        {
+          "id": "portraits-9",
+          "src": "/photography/portraits/_DSC2478.jpeg",
+          "alt": "Portraits 10"
+        },
+        {
+          "id": "portraits-10",
+          "src": "/photography/portraits/_DSC2512.jpeg",
+          "alt": "Portraits 11"
+        },
+        {
+          "id": "portraits-11",
+          "src": "/photography/portraits/_DSC2292.jpeg",
+          "alt": "Portraits 12"
+        },
+        {
+          "id": "portraits-12",
+          "src": "/photography/portraits/_DSC2329.jpeg",
+          "alt": "Portraits 13"
+        },
+        {
+          "id": "portraits-13",
+          "src": "/photography/portraits/_DSC2266.jpeg",
+          "alt": "Portraits 14"
+        },
+        {
+          "id": "portraits-14",
+          "src": "/photography/portraits/_DSC1089.jpeg",
+          "alt": "Portraits 15"
+        },
+        {
+          "id": "portraits-15",
+          "src": "/photography/portraits/DSC02047.jpeg",
+          "alt": "Portraits 16"
+        },
+        {
+          "id": "portraits-16",
+          "src": "/photography/portraits/_DSC1090.jpeg",
+          "alt": "Portraits 17"
+        },
+        {
+          "id": "portraits-17",
+          "src": "/photography/portraits/71688946-DC60-4796-B6E9-36CB2C20B2BA.jpeg",
+          "alt": "Portraits 18"
+        },
+        {
+          "id": "portraits-18",
+          "src": "/photography/portraits/_DSC6420.jpeg",
+          "alt": "Portraits 19"
+        },
+        {
+          "id": "portraits-19",
+          "src": "/photography/portraits/FF2AE199-E800-41C0-8D69-6FDC9443F68A.jpeg",
+          "alt": "Portraits 20"
+        },
+        {
+          "id": "portraits-20",
+          "src": "/photography/portraits/_DSC4961.jpeg",
+          "alt": "Portraits 21"
+        },
+        {
+          "id": "portraits-21",
+          "src": "/photography/portraits/_DSC5327.jpeg",
+          "alt": "Portraits 22"
+        },
+        {
+          "id": "portraits-22",
+          "src": "/photography/portraits/_DSC5338.jpeg",
+          "alt": "Portraits 23"
+        },
+        {
+          "id": "portraits-23",
+          "src": "/photography/portraits/_DSC5501.jpeg",
+          "alt": "Portraits 24"
+        },
+        {
+          "id": "portraits-24",
+          "src": "/photography/portraits/_DSC5489.jpeg",
+          "alt": "Portraits 25"
+        },
+        {
+          "id": "portraits-25",
+          "src": "/photography/portraits/_DSC1696.jpeg",
+          "alt": "Portraits 26"
+        },
+        {
+          "id": "portraits-26",
+          "src": "/photography/portraits/_DSC1684.jpeg",
+          "alt": "Portraits 27"
+        },
+        {
+          "id": "portraits-27",
+          "src": "/photography/portraits/_DSC1687.JPG",
+          "alt": "Portraits 28"
+        },
+        {
+          "id": "portraits-28",
+          "src": "/photography/portraits/_DSC2417.JPG",
+          "alt": "Portraits 29"
+        },
+        {
+          "id": "portraits-29",
+          "src": "/photography/portraits/_DSC2683.JPG",
+          "alt": "Portraits 30"
+        },
+        {
+          "id": "portraits-30",
+          "src": "/photography/portraits/_DSC2684.JPG",
+          "alt": "Portraits 31"
+        },
+        {
+          "id": "portraits-31",
+          "src": "/photography/portraits/_DSC2685.JPG",
+          "alt": "Portraits 32"
+        },
+        {
+          "id": "portraits-32",
+          "src": "/photography/portraits/_DSC4946.jpeg",
+          "alt": "Portraits 33"
+        },
+        {
+          "id": "portraits-33",
+          "src": "/photography/portraits/_DSC2220.jpeg",
+          "alt": "Portraits 34"
+        },
+        {
+          "id": "portraits-34",
+          "src": "/photography/portraits/_DSC2228.jpeg",
+          "alt": "Portraits 35"
+        },
+        {
+          "id": "portraits-35",
+          "src": "/photography/portraits/_DSC1799.jpeg",
+          "alt": "Portraits 36"
+        },
+        {
+          "id": "portraits-36",
+          "src": "/photography/portraits/_DSC1808.jpeg",
+          "alt": "Portraits 37"
+        },
+        {
+          "id": "portraits-37",
+          "src": "/photography/portraits/DSC01903.jpeg",
+          "alt": "Portraits 38"
+        },
+        {
+          "id": "portraits-38",
+          "src": "/photography/portraits/_DSC2417.JPG",
+          "alt": "Portraits 39"
+        },
+        {
+          "id": "portraits-39",
+          "src": "/photography/portraits/_DSC2497.JPG",
+          "alt": "Portraits 40"
+        },
+        {
+          "id": "portraits-40",
+          "src": "/photography/portraits/_DSC2683.JPG",
+          "alt": "Portraits 41"
+        },
+        {
+          "id": "portraits-41",
+          "src": "/photography/portraits/_DSC2684.JPG",
+          "alt": "Portraits 42"
+        },
+        {
+          "id": "portraits-42",
+          "src": "/photography/portraits/_DSC2685.JPG",
+          "alt": "Portraits 43"
+        }
+      ]
+    },
+    {
+      "id": "vision",
+      "title": "Vision",
+      "tagline": "editorial + experimental",
+      "slug": "vision",
+      "cover": "/photography/vision/image00008.jpeg",
+      "photos": [
+        {
+          "id": "vision-0",
+          "src": "/photography/vision/image00008.jpeg",
+          "alt": "Vision 1"
+        },
+        {
+          "id": "vision-1",
+          "src": "/photography/vision/image00002.jpeg",
+          "alt": "Vision 2"
+        },
+        {
+          "id": "vision-2",
+          "src": "/photography/vision/image00010.jpeg",
+          "alt": "Vision 3"
+        },
+        {
+          "id": "vision-3",
+          "src": "/photography/vision/image00001.jpeg",
+          "alt": "Vision 4"
+        },
+        {
+          "id": "vision-4",
+          "src": "/photography/vision/image00009.jpeg",
+          "alt": "Vision 5"
+        },
+        {
+          "id": "vision-5",
+          "src": "/photography/vision/image00004.jpeg",
+          "alt": "Vision 6"
+        },
+        {
+          "id": "vision-6",
+          "src": "/photography/vision/image00003.jpeg",
+          "alt": "Vision 7"
+        },
+        {
+          "id": "vision-7",
+          "src": "/photography/vision/image00005.jpeg",
+          "alt": "Vision 8"
+        },
+        {
+          "id": "vision-8",
+          "src": "/photography/vision/image00006.jpeg",
+          "alt": "Vision 9"
+        },
+        {
+          "id": "vision-9",
+          "src": "/photography/vision/image00007.jpeg",
+          "alt": "Vision 10"
+        }
+      ]
+    },
+    {
+      "id": "scenery",
+      "title": "Scenery",
+      "tagline": "world as canvas",
+      "slug": "scenery",
+      "cover": "/photography/scenery/_DSC1768.jpeg",
+      "photos": [
+        {
+          "id": "scenery-0",
+          "src": "/photography/scenery/_DSC1768.jpeg",
+          "alt": "Scenery 1"
+        },
+        {
+          "id": "scenery-1",
+          "src": "/photography/scenery/DSC01775.jpeg",
+          "alt": "Scenery 2"
+        },
+        {
+          "id": "scenery-2",
+          "src": "/photography/scenery/_DSC2205.jpeg",
+          "alt": "Scenery 3"
+        },
+        {
+          "id": "scenery-3",
+          "src": "/photography/scenery/_DSC2206.jpeg",
+          "alt": "Scenery 4"
+        },
+        {
+          "id": "scenery-4",
+          "src": "/photography/scenery/_DSC7309.jpeg",
+          "alt": "Scenery 5"
+        },
+        {
+          "id": "scenery-5",
+          "src": "/photography/scenery/DSC01801.jpeg",
+          "alt": "Scenery 6"
+        },
+        {
+          "id": "scenery-6",
+          "src": "/photography/scenery/IMG_0708.jpeg",
+          "alt": "Scenery 7"
+        },
+        {
+          "id": "scenery-7",
+          "src": "/photography/scenery/DSC01805.jpeg",
+          "alt": "Scenery 8"
+        },
+        {
+          "id": "scenery-8",
+          "src": "/photography/scenery/_DSC7265.jpeg",
+          "alt": "Scenery 9"
+        }
+      ]
+    }
+  ]
+}

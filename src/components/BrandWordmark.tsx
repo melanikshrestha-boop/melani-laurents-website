@@ -1,25 +1,29 @@
 interface BrandWordmarkProps {
   className?: string;
   size?: "sm" | "md" | "lg";
+  /** Optional leading text rendered in the same scale (e.g. "Hi, "). */
+  prefix?: string;
 }
 
 const sizeClasses = {
   sm: "text-sm",
   md: "text-lg",
-  lg: "text-4xl md:text-5xl",
+  lg: "text-4xl md:text-6xl",
 };
 
-/** Melani in Geist (Cursor-adjacent); Kirstein slightly lighter — no serif on the suffix */
 export function BrandWordmark({
   className = "",
   size = "md",
+  prefix,
 }: BrandWordmarkProps) {
   return (
     <span
-      className={`font-sans tracking-tight ${sizeClasses[size]} ${className}`}
+      className={`font-display font-normal tracking-tight ${sizeClasses[size]} ${className}`}
     >
-      <span className="font-semibold text-foreground">Melani</span>
-      <span className="font-normal text-foreground/75">Kirstein</span>
+      {prefix ? <span className="text-foreground">{prefix}</span> : null}
+      <span className="text-foreground">Melani</span>
+      <span className="text-foreground"> Laurent</span>
+      <span className="text-accent"> S.</span>
     </span>
   );
 }

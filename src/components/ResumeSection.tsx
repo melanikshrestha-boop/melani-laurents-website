@@ -33,7 +33,7 @@ export function ResumeSection({ data }: ResumeSectionProps) {
 
   return (
     <div className="space-y-12">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+      <div className="flex flex-col gap-6">
         <div className="max-w-xl space-y-2">
           <p className="font-mono-label text-[10px] text-muted-foreground">
             scholar.profile
@@ -79,7 +79,7 @@ export function ResumeSection({ data }: ResumeSectionProps) {
         </ol>
       </div>
 
-      <div className="grid gap-10 md:grid-cols-2 lg:gap-12">
+      <div className="flex flex-col gap-10">
         <div>
           <h3 className="font-sans text-lg font-medium text-foreground">
             Experience
@@ -141,7 +141,7 @@ export function ResumeSection({ data }: ResumeSectionProps) {
         <h3 className="font-sans text-lg font-medium text-foreground">
           Skills
         </h3>
-        <dl className="mt-5 grid gap-4 sm:grid-cols-2">
+        <dl className="mt-5 flex flex-col gap-4">
           {skills.map((group) => (
             <div
               key={group.label}

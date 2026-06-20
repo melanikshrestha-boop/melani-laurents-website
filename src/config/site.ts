@@ -1,27 +1,37 @@
 export const siteConfig = {
-  name: "MelaniKirstein",
+  name: "Melani Laurent S.",
   url: "https://melanikirstein.com",
-  title: "Melani Kirstein",
+  title: "Melani Laurent S.",
   description:
-    "Technical builder, content creator, and researcher at the intersection of med-tech and entrepreneurship.",
+    "BCI researcher and neurotech builder — in-ear EEG, neural interfaces, clinical cinema, and art.",
   email: "hello@melanikirstein.com",
-  location: "United States",
-  // Update hrefs when you have final profile URLs
+  location: "LA / SF / NYC",
+  /** Pull quote on the dark hub hero — neuroscience ethos. */
+  heroQuote:
+    "Neuroscience remains such an exciting field because of the wealth of unanswered questions.",
+  /** Daily letter — home archive + /daily page. */
+  dailyDescription:
+    "The consolidation of memory is the art of writing about what you listen to, read about, or conversed with other people on a consistent basis. Read these if you want incremental daily learning on a variety of topics (always backed by neuroscience) as I do, or just watch my neuroplasticity grow.",
+  artPath: "/art",
+  photographyPath: "/photography",
+  /** Weekly interview show — Melani Shrestha Laurent Show (YouTube + audio feeds). */
+  podcastTitle: "Melani Shrestha Laurent Show",
+  podcastTagline: "Neuroscience & neurotechnology — from lab to bedside",
+  podcastCadence: "1x/week",
+  podcastDescription:
+    "Melani interviews neurosurgeons, neuroscientists, and BCI builders on the frontier of brain-computer interfaces — in-ear EEG, neural implants, and what it takes to bring neurotech to clinic.",
+  podcastUrl: "https://www.youtube.com/@ResetYourMind.-fb5nn",
+  linkedinUrl: "https://www.linkedin.com/in/melanilaurents/",
   socialLinks: [
     {
       id: "linkedin",
       label: "LinkedIn",
-      href: "https://www.linkedin.com/in/melanishresthaa/",
-    },
-    {
-      id: "x",
-      label: "X",
-      href: "https://x.com/melanikirstein",
+      href: "https://www.linkedin.com/in/melanilaurents/",
     },
     {
       id: "instagram",
       label: "Instagram",
-      href: "https://www.instagram.com/melanikirstein/",
+      href: "https://www.instagram.com/melanilaurents/",
     },
     {
       id: "tiktok",
@@ -31,20 +41,33 @@ export const siteConfig = {
     {
       id: "youtube",
       label: "YouTube",
-      href: "https://youtube.com/@melanikirstein",
+      href: "https://www.youtube.com/@ResetYourMind.-fb5nn",
     },
     {
-      id: "github",
-      label: "GitHub",
-      href: "https://github.com/melanikshrestha-boop",
+      id: "x",
+      label: "X",
+      href: "https://x.com/MelaniShrestha",
     },
   ],
+  /** Three sections + contact. */
+  hubPortals: [
+    { label: "Art", href: "/art", tagline: "Visual signal · cinema" },
+    { label: "Daily", href: "/daily", tagline: "Neural log · daily", comingSoon: true },
+    { label: "Research", href: "/research", tagline: "BCI · neurotech · med-tech" },
+  ],
   nav: [
-    { label: "Projects", href: "/projects" },
+    { label: "Art", href: "/art" },
+    { label: "Daily", href: "/daily" },
     { label: "Research", href: "/research" },
-    { label: "M.K.", href: "/about" },
     { label: "Contact", href: "/contact" },
   ],
 } as const;
 
 export type SocialId = (typeof siteConfig.socialLinks)[number]["id"];
+
+export type NavItem = (typeof siteConfig.nav)[number];
+
+export type HubPortal = (typeof siteConfig.hubPortals)[number];
+
+export const deadPoetsQuote =
+  "We don't read and write poetry because it's cute. We read and write poetry because we are members of the human race, and the human race is filled with passion.";

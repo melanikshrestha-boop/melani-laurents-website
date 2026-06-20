@@ -29,7 +29,7 @@ export function ResearchList({ posts }: ResearchListProps) {
               onClick={() => setActiveTag(activeTag === tag ? null : tag)}
               className={`rounded-md px-3 py-1 font-mono-label text-[10px] transition-colors ${
                 activeTag === tag
-                  ? "bg-accent text-background"
+                  ? "bg-accent text-accent-foreground"
                   : "bg-surface text-muted hover:text-foreground"
               }`}
             >
@@ -50,14 +50,14 @@ export function ResearchList({ posts }: ResearchListProps) {
           >
             <Link
               href={`/research/${post.slug}`}
-              className="group grid gap-4 border-b border-border/40 py-7 transition-colors hover:bg-surface/30 md:grid-cols-[7rem_1fr]"
+              className="group block border-b border-border/40 py-7 transition-colors hover:bg-surface/30"
             >
-              <div className="font-mono-label text-[11px] text-muted-foreground leading-relaxed">
+              <div className="font-mono-label text-[11px] text-muted-foreground mb-3">
                 {new Date(post.date).toLocaleDateString("en-US", {
                   month: "short",
                   year: "numeric",
                 })}
-                <br />
+                <span className="mx-2 text-border">·</span>
                 {post.readingTime}
               </div>
               <div>

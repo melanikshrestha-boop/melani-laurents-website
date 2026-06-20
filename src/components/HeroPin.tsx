@@ -4,8 +4,11 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { BinaryDecodeGreeting } from "./BinaryDecodeGreeting";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const HERO_BEATS = ["SIGNAL", "STORY", "FRONTIER"] as const;
 
 export function HeroPin() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -21,48 +24,55 @@ export function HeroPin() {
 
     const words = wordsRef.current.filter(Boolean) as HTMLSpanElement[];
     const ctx = gsap.context(() => {
-      gsap.set(words, { opacity: 0, y: 60, filter: "blur(8px)" });
+      gsap.set(words, { opacity: 0, y: -56, filter: "blur(10px)" });
+      gsap.set(".hero-resolve", { opacity: 0, y: -28, filter: "blur(8px)" });
+      gsap.set(".hero-mission-line", { opacity: 0, letterSpacing: "0.5em" });
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=200%",
+          end: "+=220%",
           pin: pinRef.current,
           scrub: 1,
         },
       });
 
-      tl.to(words[0], {
+      tl.to(".hero-mission-line", {
         opacity: 1,
-        y: 0,
-        filter: "blur(0px)",
-        duration: 0.3,
+        letterSpacing: "0.35em",
+        duration: 0.25,
       })
+        .to(words[0], {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          duration: 0.28,
+        })
         .to(
           words[1],
-          { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.3 },
-          0.15,
+          { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.28 },
+          0.18,
         )
         .to(
           words[2],
-          { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.3 },
-          0.3,
+          { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.28 },
+          0.36,
         )
         .to(
           words,
           {
-            opacity: 0.3,
-            scale: 0.95,
-            filter: "blur(4px)",
-            duration: 0.4,
+            opacity: 0.18,
+            scale: 0.96,
+            filter: "blur(6px)",
+            duration: 0.35,
           },
-          0.6,
+          0.62,
         )
         .to(
           ".hero-resolve",
           { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.4 },
-          0.75,
+          0.78,
         );
     }, containerRef);
 
@@ -70,47 +80,57 @@ export function HeroPin() {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative h-[300vh]">
+    <section ref={containerRef} className="relative h-[320vh]">
       <div
         ref={pinRef}
         className="flex h-screen flex-col items-center justify-center px-6 text-center"
       >
-        <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:gap-4">
-          {(["research", "build", "create"] as const).map((word, i) => (
+        <p className="hero-mission-line font-mono-label mb-6 text-[10px] text-amber/60">
+          ENDURANCE · MISSION BRIEF
+        </p>
+
+        <div className="mb-10 min-h-[3rem]">
+          <BinaryDecodeGreeting />
+        </div>
+
+        <div className="mb-8 flex flex-col gap-2">
+          {HERO_BEATS.map((word, i) => (
             <span
               key={word}
               ref={(el) => {
                 wordsRef.current[i] = el;
               }}
-              className="font-sans text-5xl font-semibold text-foreground/30 sm:text-7xl md:text-8xl"
+              className="hero-cinema-beat text-5xl font-bold text-white/20 sm:text-7xl md:text-8xl"
             >
               {word}
             </span>
           ))}
         </div>
 
-        <div className="hero-resolve max-w-2xl opacity-0 translate-y-8 blur-sm">
-          <h1 className="font-sans text-3xl font-semibold leading-tight text-foreground sm:text-4xl md:text-5xl">
-            Med-tech builder.
+        <div className="hero-resolve max-w-2xl opacity-0 -translate-y-6 blur-sm">
+          <h1 className="font-serif text-3xl leading-tight text-foreground sm:text-4xl md:text-[2.75rem]">
+            I read the brain like a screenplay —
             <br />
-            <span className="text-accent">Researcher.</span> Creator.
+            <span className="text-hologram">every spike a cut,</span>
+            <br />
+            every pattern a scene.
           </h1>
           <p className="mx-auto mt-6 max-w-lg text-base text-muted sm:text-lg">
-            I build systems, write field notes, and make content — elegant on
-            the surface, rigorous underneath.
+            Neurotech builder, photographer, cinema obsessive. Lab coat in the
+            morning, golden hour at dusk, wormhole curiosity always on.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/about"
-              className="rounded-full bg-accent px-6 py-2.5 text-sm font-medium text-background transition-transform hover:scale-[1.02]"
+              className="font-mono-label rounded-sm border border-amber/35 bg-amber/10 px-6 py-2.5 text-[10px] tracking-[0.28em] text-amber uppercase transition-colors hover:bg-amber/20"
             >
-              Who I am
+              Enter the archive
             </Link>
             <Link
-              href="/research"
-              className="rounded-full border border-border px-6 py-2.5 text-sm text-muted transition-colors hover:border-accent hover:text-foreground"
+              href="/photography"
+              className="font-mono-label rounded-sm border border-white/15 px-6 py-2.5 text-[10px] tracking-[0.28em] text-white/50 uppercase transition-colors hover:border-white/30 hover:text-white/80"
             >
-              Read research
+              Frame gallery →
             </Link>
           </div>
         </div>
@@ -122,27 +142,35 @@ export function HeroPin() {
 export function HeroStatic() {
   return (
     <section className="flex min-h-screen flex-col items-center justify-center px-6 text-center">
-      <h1 className="font-sans max-w-3xl text-4xl font-semibold leading-tight text-foreground sm:text-5xl md:text-6xl">
-        Med-tech builder.
+      <p className="font-mono-label mb-6 text-[10px] tracking-[0.35em] text-amber/60">
+        ENDURANCE · MISSION BRIEF
+      </p>
+      <div className="mb-8 min-h-[3rem]">
+        <BinaryDecodeGreeting />
+      </div>
+      <h1 className="font-serif max-w-3xl text-4xl leading-tight text-foreground sm:text-5xl md:text-6xl">
+        I read the brain like a screenplay —
         <br />
-        <span className="text-accent">Researcher.</span> Creator.
+        <span className="text-hologram">every spike a cut,</span>
+        <br />
+        every pattern a scene.
       </h1>
       <p className="mx-auto mt-6 max-w-lg text-base text-muted sm:text-lg">
-        I build systems, write field notes, and make content at the intersection
-        of med-tech and entrepreneurship.
+        Neurotech builder, photographer, cinema obsessive. Lab coat in the
+        morning, golden hour at dusk, wormhole curiosity always on.
       </p>
       <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
         <Link
           href="/about"
-          className="rounded-full bg-accent px-6 py-2.5 text-sm font-medium text-background transition-transform hover:scale-[1.02]"
+          className="font-mono-label rounded-sm border border-amber/35 bg-amber/10 px-6 py-2.5 text-[10px] tracking-[0.28em] text-amber uppercase"
         >
-          Who I am
+          Enter the archive
         </Link>
         <Link
-          href="/research"
-          className="rounded-full border border-border px-6 py-2.5 text-sm text-muted transition-colors hover:border-accent hover:text-foreground"
+          href="/photography"
+          className="font-mono-label rounded-sm border border-white/15 px-6 py-2.5 text-[10px] tracking-[0.28em] text-white/50 uppercase"
         >
-          Read research
+          Frame gallery →
         </Link>
       </div>
     </section>

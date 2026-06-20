@@ -8,7 +8,7 @@ export function NerdSheet({ facts }: NerdSheetProps) {
   return (
     <div className="rounded-xl border border-border bg-surface/80 p-4 font-mono text-sm md:p-6">
       <p className="font-mono-label mb-4 text-accent">~/nerd_sheet.json</p>
-      <dl className="grid gap-3 sm:grid-cols-2">
+      <dl className="flex flex-col gap-3">
         {facts.map((fact) => (
           <div
             key={fact.key}

@@ -5,12 +5,10 @@ export interface MkSection {
 }
 
 export const mkSections: MkSection[] = [
-  { id: "mk", label: "M.K.", href: "#mk" },
+  { id: "mk", label: "About", href: "#mk" },
   { id: "chapters", label: "Chapters", href: "#chapters" },
-  { id: "resume", label: "Resume", href: "#resume" },
   { id: "nerd", label: "Nerd sheet", href: "#nerd" },
   { id: "operate", label: "Operate", href: "#operate" },
-  { id: "spec", label: "Spec", href: "#spec" },
 ];
 
 export const googleScholarUrl =
@@ -60,7 +58,7 @@ export interface ResumeData {
 /** Patents & profile from Google Scholar; experience/skills are editable placeholders. */
 export const resumeData: ResumeData = {
   scholar: {
-    name: "Melani Shrestha",
+    name: "Melani Laurent S.",
     affiliation:
       "The Bronx High School of Science / Neuroscience Dept, Columbia University / NIURA",
     url: googleScholarUrl,
@@ -142,13 +140,13 @@ export const resumeData: ResumeData = {
 };
 
 export const mkIntro = {
-  headline: "Melani Kirstein",
+  headline: "Melani Laurent S.",
   paragraphs: [
-    "I build at the intersection of med-tech, research, and content — less portfolio, more field notes from someone who reads signal traces for fun.",
-    "This page is M.K.: my story, the nerdy metadata, and how I actually operate. Jump below if you only have thirty seconds.",
+    "I'm the kind of person who patents EEG earbuds and still chases golden hour like it's a full-time job. Med-tech builder, photographer, creator — I like my rigor with a side of sparkle.",
+    "This page is the real me: story, nerdy metadata, and how I actually operate. No corporate speak, I promise.",
   ],
   draftVoice:
-    "I think in systems, prototype in code, and explain in public — med-tech because the stakes are real, content because teaching is how I learn, research because rigor is the only moat that compounds.",
+    "I think in systems, feel in light, and explain everything in public — med-tech because the stakes are real, photography because beauty matters, content because teaching is how I learn.",
 };
 
 export interface NerdFact {
@@ -162,17 +160,16 @@ export const nerdFacts: NerdFact[] = [
   { key: "domain", value: "med-tech · signals · validation" },
   {
     key: "scholar",
-    value: "Google Scholar · patents",
-    note: "in-ear EEG portfolio",
+    value: "Publications",
+    note: "patents · Google Scholar",
   },
   { key: "signal_interest", value: "ECG · SNR · motion artifact rejection" },
   { key: "editor", value: "Cursor (Geist enjoyer)" },
-  { key: "content", value: "Instagram · TikTok · long-form research memos" },
-  { key: "github", value: "melanikshrestha-boop" },
+  { key: "content", value: "Instagram · TikTok · photography" },
   { key: "reading", value: "systems papers · founder postmortems · FDA-adjacent docs" },
   { key: "currently", value: "clinical signal infra + RBCivosocial research thread" },
   { key: "hot_take", value: "a wrong abstraction costs more than a delayed launch" },
-  { key: "easter_egg", value: "click anywhere — a soft glow follows", note: "subtle" },
+  { key: "easter_egg", value: "click anywhere — soft glow follows", note: "subtle" },
 ];
 
 export const principles = [
@@ -192,7 +189,7 @@ export const principles = [
 
 export const specReadout: Record<string, string> = {
   status: "online",
-  mode: "luxe",
+  mode: "editorial",
   cursor_tracking: "enabled",
   scroll_chapters: "6",
   last_build: "local",

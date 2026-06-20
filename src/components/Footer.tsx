@@ -1,24 +1,36 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { BrandWordmark } from "./BrandWordmark";
 
 export function Footer() {
+  const pathname = usePathname();
+  if (pathname === "/") return null;
+
   return (
-    <footer className="border-t border-border bg-surface/50">
-      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-10 sm:flex-row sm:items-center sm:justify-between">
+    <footer className="border-t border-white/8 bg-black/40 backdrop-blur-sm">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-6 py-12 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <BrandWordmark size="sm" />
-          <p className="mt-1 font-mono-label text-muted-foreground">
-            research · build · med-tech
+          <p className="mt-2 font-mono-label text-[10px] tracking-[0.28em] text-amber/50 uppercase">
+            always creating · art · med-tech
           </p>
         </div>
-        <p className="font-mono-label text-muted-foreground">
-          <kbd className="rounded border border-border bg-surface-elevated px-1.5 py-0.5 text-[10px]">
-            ~
-          </kbd>{" "}
-          <Link href="/research" className="hover:text-accent transition-colors">
-            /research
+        <div className="flex flex-col gap-2 sm:items-end">
+          <Link
+            href="/art"
+            className="font-mono-label text-[10px] tracking-[0.22em] text-white/40 uppercase transition-colors hover:text-amber/80"
+          >
+            Art →
           </Link>
-        </p>
+          <Link
+            href="/"
+            className="font-mono-label text-[10px] tracking-[0.2em] text-white/25 uppercase hover:text-white/50"
+          >
+            ← Home
+          </Link>
+        </div>
       </div>
     </footer>
   );

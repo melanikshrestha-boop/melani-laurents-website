@@ -11,9 +11,8 @@ export function SectionJumpNav({ sections }: SectionJumpNavProps) {
   const [activeId, setActiveId] = useState(sections[0]?.id ?? "");
 
   useEffect(() => {
-    const ids = sections.map((s) => s.id);
-    const elements = ids
-      .map((id) => document.getElementById(id))
+    const elements = sections
+      .map((s) => document.getElementById(s.id))
       .filter(Boolean) as HTMLElement[];
 
     if (elements.length === 0) return;
@@ -27,7 +26,7 @@ export function SectionJumpNav({ sections }: SectionJumpNavProps) {
           setActiveId(visible[0].target.id);
         }
       },
-      { rootMargin: "-20% 0px -55% 0px", threshold: [0, 0.25, 0.5] },
+      { rootMargin: "-25% 0px -50% 0px", threshold: [0, 0.25, 0.5] },
     );
 
     elements.forEach((el) => observer.observe(el));
@@ -58,27 +57,21 @@ export function SectionJumpNav({ sections }: SectionJumpNavProps) {
   return (
     <nav
       aria-label="Jump to section"
-      className="mt-6 flex flex-wrap items-center gap-x-1 gap-y-2"
+      className="mt-8 flex flex-col gap-3 border-l border-border pl-4"
     >
-      {sections.map((section, i) => (
-        <span key={section.id} className="inline-flex items-center gap-1">
-          {i > 0 && (
-            <span className="font-mono-label text-muted-foreground/50 select-none">
-              ·
-            </span>
-          )}
-          <a
-            href={section.href}
-            onClick={(e) => handleClick(e, section.href)}
-            className={`font-mono-label text-[11px] transition-colors ${
-              activeId === section.id
-                ? "text-accent"
-                : "text-muted-foreground hover:text-foreground"
-            }`}
-          >
-            {section.label}
-          </a>
-        </span>
+      {sections.map((section) => (
+        <a
+          key={section.id}
+          href={section.href}
+          onClick={(e) => handleClick(e, section.href)}
+          className={`font-mono-label text-[11px] transition-colors ${
+            activeId === section.id
+              ? "text-accent"
+              : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          {section.label}
+        </a>
       ))}
     </nav>
   );

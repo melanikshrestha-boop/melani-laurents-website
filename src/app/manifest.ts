@@ -2,13 +2,13 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Melani Kirstein",
-    short_name: "MK",
+    name: "Melani Laurent S.",
+    short_name: "Melani",
     description:
-      "Technical builder at the intersection of med-tech, research, and entrepreneurship.",
+      "Med-tech builder, photographer, and creator at the intersection of research and craft.",
     start_url: "/",
     display: "standalone",
-    background_color: "#121110",
-    theme_color: "#c99585",
+    background_color: "#0a0908",
+    theme_color: "#ddb896",
   };
 }

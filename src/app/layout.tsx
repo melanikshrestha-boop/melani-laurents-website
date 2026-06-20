@@ -3,11 +3,12 @@ import {
   Geist,
   Instrument_Serif,
   IBM_Plex_Mono,
+  Share_Tech_Mono,
+  Syne,
+  Oswald,
+  Archivo_Narrow,
+  JetBrains_Mono,
 } from "next/font/google";
-import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
-import { InteractiveBackground } from "@/components/InteractiveBackground";
-import { SmoothScroll } from "@/components/SmoothScroll";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
@@ -24,6 +25,36 @@ const instrumentSerif = Instrument_Serif({
 
 const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-ibm-plex-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+});
+
+const syne = Syne({
+  variable: "--font-syne",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+});
+
+const shareTechMono = Share_Tech_Mono({
+  variable: "--font-share-tech-mono",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const oswald = Oswald({
+  variable: "--font-oswald",
+  subsets: ["latin"],
+  weight: ["700"],
+});
+
+const archivoNarrow = Archivo_Narrow({
+  variable: "--font-archivo-narrow",
+  subsets: ["latin"],
+  weight: ["700"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   weight: ["400", "500"],
 });
@@ -61,15 +92,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${instrumentSerif.variable} ${ibmPlexMono.variable} h-full`}
+      className={`${geistSans.variable} ${instrumentSerif.variable} ${ibmPlexMono.variable} ${shareTechMono.variable} ${syne.variable} ${oswald.variable} ${archivoNarrow.variable} ${jetbrainsMono.variable} h-full`}
     >
-      <body className="relative min-h-full flex flex-col font-sans antialiased">
-        <InteractiveBackground />
-        <SmoothScroll>
-          <Navigation />
-          <main className="relative z-10 flex-1 pt-14">{children}</main>
-          <Footer />
-        </SmoothScroll>
+      <body className="relative flex min-h-full flex-col bg-black font-sans antialiased">
+        {children}
       </body>
     </html>
   );

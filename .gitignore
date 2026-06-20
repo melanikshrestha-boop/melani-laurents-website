@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# newsletter subscribers (local store)
+data/newsletter-subscribers.json
+
+# newsletter subscribers (local MVP storage)
+/data/newsletter-subscribers.json
