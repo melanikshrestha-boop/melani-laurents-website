@@ -48,7 +48,12 @@ export function HomeRecentArchive() {
                 all daily →
               </Link>
             </header>
-            <p className="daily-callout daily-callout--archive">{siteConfig.dailyDescription}</p>
+            <Link href="/daily" className="hub-archive__callout-card">
+              <p className="hub-archive__callout-body">{siteConfig.dailyDescription}</p>
+              <span className="hub-archive__callout-arrow" aria-hidden>
+                →
+              </span>
+            </Link>
             {daily.length > 0 ? (
               <ul className="hub-archive__list">
                 {daily.map((post) => (
@@ -109,18 +114,22 @@ export function HomeRecentArchive() {
 
           <div className="hub-archive__section hub-archive__section--podcast">
             <header className="hub-archive__header">
-              <h2 className="hub-archive__title">Podcast: {siteConfig.podcastTitle}</h2>
+              <h2 className="hub-archive__title">
+                Podcast: {siteConfig.podcastTitle}
+              </h2>
               <span className="hub-archive__cadence">{siteConfig.podcastCadence}</span>
             </header>
-            <p className="daily-callout daily-callout--archive">{siteConfig.podcastDescription}</p>
             <a
               href={siteConfig.podcastUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hub-archive__podcast-card"
+              className="hub-archive__callout-card"
             >
-              <p className="hub-archive__podcast-tagline">{siteConfig.podcastTagline}</p>
-              <span className="hub-archive__podcast-listen">Listen →</span>
+              <p className="hub-archive__callout-title">{siteConfig.podcastTagline}</p>
+              <p className="hub-archive__callout-body">{siteConfig.podcastDescription}</p>
+              <span className="hub-archive__callout-arrow" aria-hidden>
+                →
+              </span>
             </a>
           </div>
 

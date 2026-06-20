@@ -2228,9 +2228,10 @@ body {
   color: var(--archive-muted-faint);
 }
 
-.hub-archive__podcast-card {
+/* Archive callout card — boxed monospace (podcast, daily) */
+.hub-archive__callout-card {
   display: block;
-  margin-top: 0.25rem;
+  margin: 0 0 1.1rem;
   padding: 1rem 1.25rem;
   border: 1px solid var(--archive-border);
   background: color-mix(in srgb, var(--archive-cream, #f0ede5) 68%, white);
@@ -2240,88 +2241,73 @@ body {
     background 200ms ease;
 }
 
-.hub-archive__podcast-card:hover {
+.hub-archive__callout-card:hover {
   border-color: rgba(184, 134, 11, 0.28);
   background: color-mix(in srgb, var(--archive-cream, #f0ede5) 52%, white);
 }
 
-.hub-archive__podcast-tagline {
-  margin: 0 0 0.5rem;
+.hub-archive__callout-title {
+  margin: 0 0 0.65rem;
   max-width: 36rem;
   font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
   font-size: 0.54rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.5;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--archive-gold);
+  color: var(--hub-gold, #c9a962);
 }
 
-/* Notion-style call-out — daily description (left bar, monospace) */
+.hub-archive__callout-body {
+  margin: 0;
+  max-width: 36rem;
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-size: 0.6rem;
+  font-weight: 500;
+  line-height: 1.65;
+  letter-spacing: 0.03em;
+  color: var(--archive-muted);
+  transition: color 200ms ease;
+}
+
+.hub-archive__callout-card:hover .hub-archive__callout-body {
+  color: var(--archive-ink);
+}
+
+.hub-archive__callout-arrow {
+  display: inline-block;
+  margin-top: 0.85rem;
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--hub-gold, #c9a962);
+  transition: color 200ms ease, transform 200ms ease;
+}
+
+.hub-archive__callout-card:hover .hub-archive__callout-arrow {
+  color: var(--archive-gold-hover);
+  transform: translateX(2px);
+}
+
+.hub-archive__section--podcast .hub-archive__title {
+  color: var(--archive-ink);
+  font-weight: 700;
+}
+
+/* Notion-style call-out — /daily page (left bar, monospace) */
 .daily-callout {
   margin: 1rem 0 0;
   max-width: 36rem;
   padding: 0.65rem 0 0.65rem 0.85rem;
-  border-left: 2px solid var(--hub-gold);
+  border-left: 2px solid rgba(201, 169, 98, 0.38);
   font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
   font-size: 0.68rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.65;
   letter-spacing: 0.03em;
   text-align: left;
-  color: var(--hub-gold);
-}
-
-.daily-callout--archive {
-  margin: 0 0 1.1rem;
-  padding-left: 0.75rem;
-  border-left-color: var(--hub-gold);
-  font-size: 0.6rem;
-  font-weight: 600;
-  color: var(--hub-gold);
-}
-
-.hub-scroll-exp .daily-callout--archive {
-  color: var(--hub-gold);
-  border-left-color: var(--hub-gold);
-}
-
-/* Daily archive section — bold gold accents on cream */
-.hub-archive__section--daily .hub-archive__title a {
-  color: var(--archive-gold);
-}
-
-.hub-archive__section--daily .hub-archive__title a:hover {
-  color: var(--archive-gold-hover);
-}
-
-.hub-archive__section--daily .hub-archive__more {
-  color: rgba(var(--hub-gold-rgb), 0.72);
-}
-
-.hub-archive__section--daily .hub-archive__more:hover {
-  color: var(--archive-gold);
-}
-
-.hub-archive__section--daily .hub-archive__link:hover {
-  color: var(--archive-gold-hover);
-}
-
-.hub-archive__podcast-listen {
-  display: inline-block;
-  margin-top: 0.85rem;
-  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
-  font-size: 0.54rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--archive-gold);
-  transition: color 200ms ease, transform 200ms ease;
-}
-
-.hub-archive__podcast-card:hover .hub-archive__podcast-listen {
-  color: var(--archive-gold-hover);
-  transform: translateX(2px);
+  color: #2a2824;
 }
 
 /* Art section — photography brand link */
