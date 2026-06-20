@@ -101,13 +101,13 @@ export function drawBrainGlow(
   lightMode = false,
 ): void {
   const form = Math.min(1, Math.max(0, brainForm));
-  const rx = w * (0.28 - form * 0.04) * breathe;
-  const ry = h * (0.26 - form * 0.08) * breathe;
-  const grad = ctx.createRadialGradient(cx, cy - h * 0.02 * form, 0, cx, cy, Math.max(rx, ry));
+  const rx = w * (0.22 - form * 0.02) * breathe;
+  const ry = h * (0.2 - form * 0.04) * breathe;
+  const grad = ctx.createRadialGradient(cx, cy - h * 0.04 * form, 0, cx, cy - h * 0.02, Math.max(rx, ry));
   if (lightMode) {
-    grad.addColorStop(0, `rgba(${NEURO.accentRgb}, ${0.04 * intensity})`);
-    grad.addColorStop(0.45, `rgba(${NEURO.navyRgb}, ${0.03 * intensity})`);
-    grad.addColorStop(0.75, `rgba(${NEURO.grayRgb}, ${0.015 * intensity})`);
+    grad.addColorStop(0, `rgba(${NEURO.navyRgb}, ${0.025 * intensity})`);
+    grad.addColorStop(0.5, `rgba(${NEURO.grayRgb}, ${0.012 * intensity})`);
+    grad.addColorStop(0.85, `rgba(${NEURO.grayRgb}, ${0.004 * intensity})`);
   } else {
     grad.addColorStop(0, `rgba(${NEURO.amberRgb}, ${0.06 * intensity})`);
     grad.addColorStop(0.4, `rgba(${NEURO.iceRgb}, ${0.05 * intensity})`);
@@ -460,6 +460,7 @@ function drawSynapticWire(
   alpha: number,
   lineWidth: number,
   drawCleft = true,
+  embedded = false,
 ): void {
   if (alpha < 0.02) return;
 
@@ -469,8 +470,16 @@ function drawSynapticWire(
   const cleftB = { x: ax + (bx - ax) * SYNAPSE.cleftEnd, y: ay + (by - ay) * SYNAPSE.cleftEnd };
 
   ctx.strokeStyle = `rgba(${lineRgb}, ${alpha})`;
-  ctx.lineWidth = lineWidth;
+  ctx.lineWidth = embedded ? lineWidth * 0.85 : lineWidth;
   ctx.lineCap = "round";
+
+  if (embedded) {
+    ctx.beginPath();
+    ctx.moveTo(ax, ay);
+    ctx.lineTo(bx, by);
+    ctx.stroke();
+    return;
+  }
 
   ctx.beginPath();
   ctx.moveTo(ax, ay);
@@ -570,7 +579,7 @@ export function drawConnectedSynapseNetwork(
     const bx = b.x * w;
     const by = b.y * h;
     const alpha = connectionAlpha(ax, ay, bx, by, fade, w, h, alphaMul);
-    drawSynapticWire(ctx, ax, ay, bx, by, lineRgb, alpha, lineWidth);
+    drawSynapticWire(ctx, ax, ay, bx, by, lineRgb, alpha, lineWidth, true, embedded);
 
     if (showPotentials && alpha >= 0.04 && !embedded) {
       const p = (t * edge.speed + edge.offset) % 1;
@@ -578,11 +587,11 @@ export function drawConnectedSynapseNetwork(
       drawPotentialPacket(ctx, ax, ay, bx, by, p, alpha, pr, lightMode);
       drawPotentialPacket(ctx, ax, ay, bx, by, (1 - p + 0.5) % 1, alpha * 0.72, pr * 0.82, lightMode);
     } else if (showPotentials && alpha >= 0.04 && embedded) {
-      const p = (t * edge.speed + edge.offset) % 1;
-      const pr = (1.8 / (opts.scale ?? 1)) * (0.4 + Math.sin(p * Math.PI) * 0.35);
-      drawPotentialPacket(ctx, ax, ay, bx, by, p, alpha * 0.55, pr, lightMode);
+      /* Embedded tissue — wires only, no glowing packets. */
     }
   }
+
+  if (embedded) return;
 
   for (const node of nodes) {
     const nx = node.x * w;
@@ -984,15 +993,17 @@ export function traceBrainSilhouettePath(
   H: number,
 ): void {
   ctx.beginPath();
-  // Frontal pole (left) → superior convexity → occipital (right) → temporal base → cerebellum.
-  ctx.moveTo(-W * 0.92, -H * 0.08);
-  ctx.bezierCurveTo(-W * 0.98, -H * 0.42, -W * 0.82, -H * 0.88, -W * 0.48, -H * 1.0);
-  ctx.bezierCurveTo(-W * 0.18, -H * 1.08, W * 0.22, -H * 1.02, W * 0.56, -H * 0.82);
-  ctx.bezierCurveTo(W * 0.82, -H * 0.66, W * 0.96, -H * 0.28, W * 0.9, H * 0.02);
-  ctx.bezierCurveTo(W * 0.86, H * 0.22, W * 0.68, H * 0.42, W * 0.46, H * 0.52);
-  ctx.bezierCurveTo(W * 0.28, H * 0.6, W * 0.08, H * 0.58, -W * 0.08, H * 0.48);
-  ctx.bezierCurveTo(-W * 0.28, H * 0.36, -W * 0.52, H * 0.22, -W * 0.72, H * 0.08);
-  ctx.bezierCurveTo(-W * 0.84, H * 0.02, -W * 0.9, -H * 0.02, -W * 0.92, -H * 0.08);
+  // Frontal pole (left) → precentral gyrus → parietal dome → occipital (right) → temporal → cerebellum.
+  ctx.moveTo(-W * 0.94, H * 0.06);
+  ctx.bezierCurveTo(-W * 0.98, -H * 0.08, -W * 0.96, -H * 0.52, -W * 0.78, -H * 0.86);
+  ctx.bezierCurveTo(-W * 0.62, -H * 1.02, -W * 0.34, -H * 1.1, -W * 0.06, -H * 1.06);
+  ctx.bezierCurveTo(W * 0.18, -H * 1.02, W * 0.42, -H * 0.92, W * 0.62, -H * 0.76);
+  ctx.bezierCurveTo(W * 0.82, -H * 0.58, W * 0.96, -H * 0.32, W * 0.94, -H * 0.04);
+  ctx.bezierCurveTo(W * 0.92, H * 0.14, W * 0.78, H * 0.32, W * 0.58, H * 0.44);
+  ctx.bezierCurveTo(W * 0.42, H * 0.52, W * 0.24, H * 0.54, W * 0.06, H * 0.48);
+  ctx.bezierCurveTo(-W * 0.1, H * 0.42, -W * 0.22, H * 0.34, -W * 0.38, H * 0.26);
+  ctx.bezierCurveTo(-W * 0.56, H * 0.16, -W * 0.74, H * 0.1, -W * 0.88, H * 0.08);
+  ctx.bezierCurveTo(-W * 0.92, H * 0.07, -W * 0.94, H * 0.06, -W * 0.94, H * 0.06);
   ctx.closePath();
 }
 
@@ -1026,52 +1037,55 @@ function drawBrainSulciAndGyri(
   const gyriRgb = lightMode ? NEURO.grayRgb : NEURO.amberRgb;
 
   // Longitudinal fissure — divides hemispheres along superior surface.
-  ctx.strokeStyle = `rgba(${foldRgb}, ${(lightMode ? 0.22 : 0.34) * reveal})`;
-  ctx.lineWidth = 1.5;
+  ctx.strokeStyle = `rgba(${foldRgb}, ${(lightMode ? 0.32 : 0.42) * reveal})`;
+  ctx.lineWidth = 1.65;
   ctx.beginPath();
-  ctx.moveTo(-W * 0.04, -H * 0.96);
-  ctx.bezierCurveTo(-W * 0.06, -H * 0.5, -W * 0.1, -H * 0.08, -W * 0.18, H * 0.38);
+  ctx.moveTo(-W * 0.02, -H * 0.98);
+  ctx.bezierCurveTo(-W * 0.04, -H * 0.62, -W * 0.08, -H * 0.18, -W * 0.2, H * 0.32);
   ctx.stroke();
 
-  // Interhemispheric shadow — subtle depth cue on medial face.
-  ctx.strokeStyle = `rgba(${sulcusRgb}, ${(lightMode ? 0.12 : 0.18) * reveal})`;
-  ctx.lineWidth = 2.4;
+  // Interhemispheric shadow — medial depth on superior face.
+  ctx.strokeStyle = `rgba(${sulcusRgb}, ${(lightMode ? 0.18 : 0.24) * reveal})`;
+  ctx.lineWidth = 2.8;
   ctx.beginPath();
-  ctx.moveTo(-W * 0.02, -H * 0.88);
-  ctx.bezierCurveTo(-W * 0.04, -H * 0.38, -W * 0.08, H * 0.08, -W * 0.16, H * 0.42);
+  ctx.moveTo(W * 0.02, -H * 0.92);
+  ctx.bezierCurveTo(W * 0.04, -H * 0.48, W * 0.06, -H * 0.04, W * 0.1, H * 0.28);
   ctx.stroke();
 
   // Central sulcus (rolandic) — frontal/parietal boundary.
-  ctx.strokeStyle = `rgba(${gyriRgb}, ${(lightMode ? 0.2 : 0.32) * reveal})`;
-  ctx.lineWidth = 1.25;
+  ctx.strokeStyle = `rgba(${sulcusRgb}, ${(lightMode ? 0.28 : 0.38) * reveal})`;
+  ctx.lineWidth = 1.35;
   ctx.beginPath();
-  ctx.moveTo(-W * 0.12, -H * 0.68);
-  ctx.bezierCurveTo(W * 0.04, -H * 0.54, W * 0.22, -H * 0.34, W * 0.28, -H * 0.06);
+  ctx.moveTo(-W * 0.16, -H * 0.72);
+  ctx.bezierCurveTo(W * 0.02, -H * 0.58, W * 0.2, -H * 0.38, W * 0.32, -H * 0.1);
   ctx.stroke();
 
   // Lateral (Sylvian) fissure — temporal lobe separation.
-  ctx.strokeStyle = `rgba(${sulcusRgb}, ${(lightMode ? 0.24 : 0.4) * reveal})`;
-  ctx.lineWidth = 1.15;
+  ctx.strokeStyle = `rgba(${sulcusRgb}, ${(lightMode ? 0.32 : 0.48) * reveal})`;
+  ctx.lineWidth = 1.25;
   ctx.beginPath();
-  ctx.moveTo(-W * 0.28, -H * 0.18);
-  ctx.bezierCurveTo(-W * 0.04, H * 0.02, W * 0.18, H * 0.12, W * 0.48, H * 0.16);
-  ctx.bezierCurveTo(W * 0.62, H * 0.18, W * 0.76, H * 0.24, W * 0.72, H * 0.34);
+  ctx.moveTo(-W * 0.32, -H * 0.12);
+  ctx.bezierCurveTo(-W * 0.06, H * 0.06, W * 0.22, H * 0.16, W * 0.52, H * 0.2);
+  ctx.bezierCurveTo(W * 0.66, H * 0.22, W * 0.78, H * 0.28, W * 0.74, H * 0.38);
   ctx.stroke();
 
   // Parietal + frontal gyri — short curved ridges.
-  ctx.strokeStyle = `rgba(${gyriRgb}, ${(lightMode ? 0.14 : 0.2) * reveal})`;
-  ctx.lineWidth = 0.9;
+  ctx.strokeStyle = `rgba(${gyriRgb}, ${(lightMode ? 0.2 : 0.28) * reveal})`;
+  ctx.lineWidth = 0.95;
   const gyri: [number, number, number, number, number, number][] = [
-    [-W * 0.64, -H * 0.6, -W * 0.4, -H * 0.44, -W * 0.24, -H * 0.54],
-    [-W * 0.5, -H * 0.3, -W * 0.2, -H * 0.16, -W * 0.04, -H * 0.26],
-    [-W * 0.72, -H * 0.36, -W * 0.58, -H * 0.2, -W * 0.48, -H * 0.28],
-    [W * 0.14, -H * 0.7, W * 0.34, -H * 0.56, W * 0.5, -H * 0.64],
-    [W * 0.3, -H * 0.4, W * 0.54, -H * 0.24, W * 0.64, -H * 0.36],
-    [W * 0.42, -H * 0.14, W * 0.58, -H * 0.02, W * 0.66, -H * 0.1],
-    [-W * 0.74, -H * 0.1, -W * 0.54, H * 0.04, -W * 0.4, -H * 0.04],
-    [W * 0.2, H * 0.1, W * 0.44, H * 0.24, W * 0.6, H * 0.16],
-    [-W * 0.34, -H * 0.72, -W * 0.22, -H * 0.58, -W * 0.12, -H * 0.66],
-    [W * 0.56, -H * 0.48, W * 0.68, -H * 0.36, W * 0.74, -H * 0.44],
+    [-W * 0.68, -H * 0.64, -W * 0.44, -H * 0.48, -W * 0.28, -H * 0.58],
+    [-W * 0.54, -H * 0.34, -W * 0.24, -H * 0.18, -W * 0.08, -H * 0.28],
+    [-W * 0.76, -H * 0.4, -W * 0.62, -H * 0.22, -W * 0.52, -H * 0.32],
+    [W * 0.1, -H * 0.74, W * 0.3, -H * 0.6, W * 0.46, -H * 0.68],
+    [W * 0.26, -H * 0.44, W * 0.5, -H * 0.28, W * 0.6, -H * 0.4],
+    [W * 0.38, -H * 0.16, W * 0.54, -H * 0.04, W * 0.62, -H * 0.12],
+    [-W * 0.78, -H * 0.12, -W * 0.58, H * 0.06, -W * 0.44, -H * 0.02],
+    [W * 0.16, H * 0.12, W * 0.4, H * 0.26, W * 0.56, H * 0.18],
+    [-W * 0.36, -H * 0.76, -W * 0.24, -H * 0.62, -W * 0.14, -H * 0.7],
+    [W * 0.58, -H * 0.52, W * 0.7, -H * 0.38, W * 0.76, -H * 0.48],
+    [-W * 0.48, -H * 0.52, -W * 0.32, -H * 0.4, -W * 0.22, -H * 0.48],
+    [W * 0.48, -H * 0.24, W * 0.64, -H * 0.12, W * 0.7, -H * 0.2],
+    [-W * 0.62, -H * 0.24, -W * 0.48, -H * 0.1, -W * 0.38, -H * 0.18],
   ];
   for (const [x0, y0, x1, y1, x2, y2] of gyri) {
     ctx.beginPath();
@@ -1133,61 +1147,67 @@ export function drawDetailedBrain(
   const breathe = 0.985 + Math.sin(t * 0.75) * 0.015;
   const W = w * 0.36 * breathe;
   const H = h * 0.32 * breathe;
-  const reveal = Math.min(1, form * 1.15);
-  const radialReveal = Math.min(1, form ** 0.82);
-  const revealRadius = Math.hypot(W, H) * radialReveal;
+  const reveal = Math.min(1, form * 1.12);
+  const tissueReveal = Math.min(1, Math.max(0, (form - 0.04) / 0.88));
 
   ctx.save();
   ctx.translate(cx, cy);
+  ctx.lineJoin = "round";
+  ctx.lineCap = "round";
 
-  // Center-outward tissue formation — cortical mass builds before outline finishes.
+  // Silhouette clip immediately — tissue forms inside anatomical shell, not a circle.
   ctx.save();
+  traceBrainSilhouettePath(ctx, W, H);
+  ctx.clip();
+
+  // Top-down sweep reveal within brain shape.
+  const sweepTop = -H * 1.15;
+  const sweepBottom = sweepTop + H * 2.4 * tissueReveal;
   ctx.beginPath();
-  ctx.arc(0, 0, revealRadius, 0, Math.PI * 2);
+  ctx.rect(-W * 1.2, sweepTop, W * 2.4, sweepBottom - sweepTop);
   ctx.clip();
 
   if (!lightMode) {
     ctx.globalCompositeOperation = "lighter";
   }
-  ctx.lineJoin = "round";
-  ctx.lineCap = "round";
 
-  // Semi-opaque cortical mass — reads as brain tissue, not empty circle.
-  ctx.save();
+  // Cortical tissue mass — reads as folded gray matter on cream.
   traceBrainSilhouettePath(ctx, W, H);
-  const fillGrad = ctx.createRadialGradient(-W * 0.08, -H * 0.12, 0, 0, 0, W * 0.95);
+  const fillGrad = ctx.createLinearGradient(-W * 0.5, -H * 0.9, W * 0.4, H * 0.5);
   if (lightMode) {
-    fillGrad.addColorStop(0, `rgba(${NEURO.navyRgb}, ${0.08 * reveal})`);
-    fillGrad.addColorStop(0.45, `rgba(${NEURO.grayRgb}, ${0.05 * reveal})`);
-    fillGrad.addColorStop(0.78, `rgba(${NEURO.grayRgb}, ${0.025 * reveal})`);
-    fillGrad.addColorStop(1, `rgba(${NEURO.accentRgb}, ${0.02 * reveal})`);
+    fillGrad.addColorStop(0, `rgba(${NEURO.navyRgb}, ${0.14 * reveal})`);
+    fillGrad.addColorStop(0.35, `rgba(${NEURO.inkRgb}, ${0.1 * reveal})`);
+    fillGrad.addColorStop(0.68, `rgba(${NEURO.grayRgb}, ${0.07 * reveal})`);
+    fillGrad.addColorStop(1, `rgba(${NEURO.grayRgb}, ${0.04 * reveal})`);
   } else {
-    fillGrad.addColorStop(0, `rgba(${NEURO.amberRgb}, ${0.12 * reveal})`);
-    fillGrad.addColorStop(0.45, `rgba(${NEURO.goldRgb}, ${0.07 * reveal})`);
-    fillGrad.addColorStop(0.78, `rgba(${NEURO.goldRgb}, ${0.035 * reveal})`);
-    fillGrad.addColorStop(1, `rgba(${NEURO.iceRgb}, ${0.025 * reveal})`);
+    fillGrad.addColorStop(0, `rgba(${NEURO.amberRgb}, ${0.14 * reveal})`);
+    fillGrad.addColorStop(0.35, `rgba(${NEURO.goldRgb}, ${0.09 * reveal})`);
+    fillGrad.addColorStop(0.68, `rgba(${NEURO.goldRgb}, ${0.05 * reveal})`);
+    fillGrad.addColorStop(1, `rgba(${NEURO.iceRgb}, ${0.03 * reveal})`);
   }
   ctx.fillStyle = fillGrad;
   ctx.fill();
-  ctx.restore();
 
-  // Sulci/gyri draw in as radial reveal expands — staggered by fold distance from center.
-  const sulciReveal = Math.min(1, Math.max(0, (radialReveal - 0.18) / 0.72));
+  const sulciReveal = Math.min(1, Math.max(0, (tissueReveal - 0.12) / 0.72));
   drawBrainSulciAndGyri(ctx, W, H, sulciReveal * reveal, lightMode);
   ctx.restore();
 
-  // Outer cortical shell — appears once mass is ~60% formed.
-  const rimProgress = Math.min(1, Math.max(0, (form - 0.35) / 0.55));
+  // Cortical rim — stroke-dash draws outline as tissue finishes forming.
+  const rimProgress = Math.min(1, Math.max(0, (form - 0.28) / 0.62));
   if (rimProgress > 0.02) {
     const rimRgb = lightMode ? NEURO.inkRgb : NEURO.goldRgb;
-    ctx.shadowColor = lightMode
-      ? `rgba(${NEURO.inkRgb}, ${0.08 * rimProgress})`
-      : `rgba(${NEURO.goldRgb}, ${0.22 * rimProgress})`;
-    ctx.shadowBlur = lightMode ? 4 : 12;
-    ctx.strokeStyle = `rgba(${rimRgb}, ${(lightMode ? 0.32 : 0.62) * rimProgress * reveal})`;
-    ctx.lineWidth = lightMode ? 1.35 : 2.1;
     traceBrainSilhouettePath(ctx, W, H);
+    const pathLen = W * 5.8;
+    ctx.setLineDash([pathLen, pathLen]);
+    ctx.lineDashOffset = pathLen * (1 - rimProgress);
+    ctx.shadowColor = lightMode
+      ? `rgba(${NEURO.inkRgb}, ${0.06 * rimProgress})`
+      : `rgba(${NEURO.goldRgb}, ${0.18 * rimProgress})`;
+    ctx.shadowBlur = lightMode ? 3 : 10;
+    ctx.strokeStyle = `rgba(${rimRgb}, ${(lightMode ? 0.48 : 0.72) * rimProgress * reveal})`;
+    ctx.lineWidth = lightMode ? 1.5 : 2.05;
     ctx.stroke();
+    ctx.setLineDash([]);
     ctx.shadowBlur = 0;
   }
 

@@ -31,7 +31,6 @@ export const INTRO_TIMELINE = {
 } as const;
 
 const FIRST_NAME = "MELANI";
-const SECOND_LINE = "LAURENT S.";
 
 type IntroQuoteVariant = "teaser";
 
@@ -68,6 +67,7 @@ export function NeuralCinemaIntro() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [visible, setVisible] = useState(false);
   const [handoff, setHandoff] = useState(false);
+  const [handoffProgress, setHandoffProgress] = useState(0);
   const [visibleLetters, setVisibleLetters] = useState(0);
   const [secondLineVisible, setSecondLineVisible] = useState(false);
   const [activeQuoteIndex, setActiveQuoteIndex] = useState(-1);
@@ -82,11 +82,20 @@ export function NeuralCinemaIntro() {
     finishedRef.current = true;
     setHandoff(true);
     window.dispatchEvent(new Event(INTRO_HANDOFF_START_EVENT));
-    window.setTimeout(() => {
-      setVisible(false);
-      sessionStorage.setItem(INTRO_KEY, "1");
-      window.dispatchEvent(new Event(INTRO_COMPLETE_EVENT));
-    }, INTRO_TIMELINE.handoffFadeMs);
+
+    const handoffStart = performance.now();
+    const tickHandoff = (now: number) => {
+      const p = Math.min(1, (now - handoffStart) / INTRO_TIMELINE.handoffFadeMs);
+      setHandoffProgress(p);
+      if (p < 1) {
+        requestAnimationFrame(tickHandoff);
+      } else {
+        setVisible(false);
+        sessionStorage.setItem(INTRO_KEY, "1");
+        window.dispatchEvent(new Event(INTRO_COMPLETE_EVENT));
+      }
+    };
+    requestAnimationFrame(tickHandoff);
   }, []);
 
   useEffect(() => {
@@ -153,8 +162,8 @@ export function NeuralCinemaIntro() {
       );
       const synapseAlpha =
         Math.min(1, Math.max(0, (brainForm - 0.22) / 0.55)) *
-        (0.42 + holdPhase * 0.38 + Math.sin(t * 1.4) * 0.06);
-      const intensity = 0.72 + Math.sin(t * 1.5) * 0.06;
+        (0.38 + holdPhase * 0.32 + Math.sin(t * 1.4) * 0.04);
+      const intensity = 0.68 + Math.sin(t * 1.5) * 0.04;
 
       const letters = lettersFromBrainForm(brainForm);
       const showSecond = secondLineFromBrainForm(brainForm);
@@ -173,7 +182,7 @@ export function NeuralCinemaIntro() {
       const breathe = 0.96 + Math.sin(t * 0.85) * 0.03;
 
       drawCreamBackground(ctx, w, h);
-      drawBrainGlow(ctx, cx, cy, w, h, breathe, 0.08 + brainForm * 0.28, brainForm, true);
+      drawBrainGlow(ctx, cx, cy, w, h, breathe, 0.06 + brainForm * 0.18, brainForm, true);
       drawDetailedBrain(ctx, cx, cy, w, h, t, brainForm, true);
 
       if (synapseAlpha > 0.04) {
@@ -181,9 +190,9 @@ export function NeuralCinemaIntro() {
         clipBrainSilhouette(ctx, cx, cy, w, h, breathe);
         drawConnectedSynapseNetwork(ctx, nodes, edges, w, h, {
           alpha: synapseAlpha,
-          lineWidth: 0.65,
+          lineWidth: 0.48,
           t,
-          showPotentials: brainForm > 0.48,
+          showPotentials: false,
           lightMode: true,
           embedded: true,
         });
@@ -213,18 +222,22 @@ export function NeuralCinemaIntro() {
       className={`intro-shell${handoff ? " intro-shell--handoff" : ""}${
         handoff ? " pointer-events-none" : ""
       }`}
+      style={{ "--intro-handoff-p": handoffProgress } as CSSProperties}
       aria-hidden={handoff}
     >
       <canvas
         ref={canvasRef}
-        className={`intro-shell__canvas absolute inset-0 z-0 h-full w-full${
-          handoff ? " intro-shell__canvas--handoff" : ""
-        }`}
+        className="intro-shell__canvas absolute inset-0 z-0 h-full w-full"
+        style={
+          handoff
+            ? ({ opacity: 1 - handoffProgress } as CSSProperties)
+            : undefined
+        }
         aria-hidden
       />
 
       <div
-        className={`intro-shell__vignette pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[rgba(3,5,8,0.35)] via-transparent to-[rgba(126,184,218,0.08)] ${
+        className={`intro-shell__vignette pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[rgba(240,237,229,0.5)] via-transparent to-[rgba(26,43,60,0.04)] ${
           showQuote && !handoff ? "opacity-100" : "opacity-0"
         }`}
         aria-hidden
@@ -272,7 +285,8 @@ export function NeuralCinemaIntro() {
               }`}
               aria-hidden={!secondLineVisible}
             >
-              {SECOND_LINE}
+              <span className="intro-name__lastname-text">LAURENT </span>
+              <span className="intro-name__gold">S.</span>
             </span>
           </h1>
 
@@ -322,11 +336,9 @@ export function NeuralCinemaIntro() {
       <button
         type="button"
         onClick={finish}
-        className={`intro-shell__skip absolute right-6 top-6 z-10 rounded-sm border border-white/16 bg-white/10 px-4 py-1.5 font-mono-label text-[10px] tracking-[0.25em] text-white/55 uppercase backdrop-blur-sm transition-colors hover:border-[rgba(239,68,35,0.35)] hover:text-[var(--hub-accent)]${
-          handoff ? " opacity-0" : ""
-        }`}
+        className="intro-shell__skip absolute right-6 top-6 z-10 rounded-sm border px-4 py-1.5 font-mono-label text-[10px] tracking-[0.25em] uppercase backdrop-blur-sm transition-colors"
       >
-        Skip →
+        Skip
       </button>
     </div>
   );

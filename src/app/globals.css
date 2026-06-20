@@ -250,12 +250,19 @@ body {
   inset: 0;
   z-index: 100;
   overflow: hidden;
-  background: #030508;
+  --intro-handoff-p: 0;
+  --intro-cream: #f0ede5;
+  --intro-title-ink: #000000;
+  --intro-title-paper: #e8e6e3;
+  background: var(--intro-cream);
 }
 
 .intro-shell--handoff {
-  background: transparent;
-  transition: background 700ms cubic-bezier(0.4, 0, 0.2, 1);
+  background: color-mix(
+    in srgb,
+    var(--intro-cream) calc((1 - var(--intro-handoff-p)) * 100%),
+    transparent
+  );
 }
 
 .intro-shell__stage {
@@ -307,12 +314,33 @@ body {
   transition: opacity 700ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.intro-shell__canvas--handoff {
-  opacity: 0;
+.intro-shell__skip {
+  border-color: color-mix(
+    in srgb,
+    var(--intro-title-ink) calc((1 - var(--intro-handoff-p)) * 16% + var(--intro-handoff-p) * 16%),
+    transparent
+  );
+  background: color-mix(
+    in srgb,
+    var(--intro-title-ink) calc((1 - var(--intro-handoff-p)) * 5%),
+    rgba(255, 255, 255, calc(var(--intro-handoff-p) * 0.1))
+  );
+  color: color-mix(
+    in srgb,
+    var(--intro-title-ink) calc((1 - var(--intro-handoff-p)) * 100%),
+    rgba(232, 230, 227, calc(var(--intro-handoff-p) * 0.55 + 0.45))
+  );
+  opacity: calc(1 - var(--intro-handoff-p) * 0.85);
+  transition:
+    opacity 280ms ease,
+    color 700ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 700ms cubic-bezier(0.4, 0, 0.2, 1),
+    background 700ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.intro-shell__skip {
-  transition: opacity 280ms ease;
+.intro-shell__skip:hover {
+  border-color: rgba(239, 68, 35, 0.35);
+  color: var(--hub-accent);
 }
 
 .intro-shell__quote-slot {
@@ -351,7 +379,11 @@ body {
   font-weight: 400;
   line-height: 1.65;
   letter-spacing: 0.01em;
-  color: rgba(232, 230, 227, 0.58);
+  color: color-mix(
+    in srgb,
+    var(--intro-title-ink) calc((1 - var(--intro-handoff-p)) * 72%),
+    rgba(232, 230, 227, calc(var(--intro-handoff-p) * 0.58 + 0.42))
+  );
 }
 
 .intro-shell__quote-attr {
@@ -361,7 +393,11 @@ body {
   font-size: 0.52rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(232, 230, 227, 0.38);
+  color: color-mix(
+    in srgb,
+    var(--intro-title-ink) calc((1 - var(--intro-handoff-p)) * 52%),
+    rgba(232, 230, 227, calc(var(--intro-handoff-p) * 0.38 + 0.62))
+  );
 }
 
 /* Intro name reveal — kinetic letters, mirrors hub title */
@@ -427,14 +463,27 @@ body {
   }
 }
 
-/* Intro title on dark void — handoff to black hub hero */
+/* Intro title — black on cream, morphs to white hub hero during handoff */
 .intro-shell .hub-page__title-line {
-  color: #e8e6e3;
+  color: color-mix(
+    in srgb,
+    var(--intro-title-ink) calc((1 - var(--intro-handoff-p)) * 100%),
+    var(--intro-title-paper)
+  );
+  transition: color 700ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .intro-shell .intro-name__char--in,
 .intro-shell .intro-name__lastname--in {
-  color: #e8e6e3;
+  color: color-mix(
+    in srgb,
+    var(--intro-title-ink) calc((1 - var(--intro-handoff-p)) * 100%),
+    var(--intro-title-paper)
+  );
+}
+
+.intro-shell .intro-name__gold {
+  color: var(--hub-champagne);
 }
 
 /* Carlo-style boot → Interstellar mission HUD */
@@ -1084,11 +1133,17 @@ body {
 
 .hub-page--intro-handoff .hub-page__brain-field {
   opacity: calc(0.22 * (1 - var(--scroll-p, 0) * 0.88));
+  transition: opacity 700ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.hub-page--intro-playing .hub-page__title,
-.hub-page--intro-handoff .hub-page__title {
+.hub-page--intro-playing .hub-page__title {
   visibility: hidden;
+}
+
+.hub-page--intro-handoff .hub-page__title {
+  visibility: visible;
+  opacity: 0;
+  animation: hub-handoff-reveal 480ms cubic-bezier(0.4, 0, 0.2, 1) 520ms forwards;
 }
 
 .hub-page--intro-playing .hub-page__quote {
