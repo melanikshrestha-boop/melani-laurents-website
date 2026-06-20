@@ -15,19 +15,19 @@ export const INTRO_KEY = "mls-intro-seen";
 export const INTRO_HANDOFF_START_EVENT = "mls-intro-handoff-start";
 export const INTRO_COMPLETE_EVENT = "mls-intro-complete";
 
-/** Interstellar cinema intro — 5s brain formation → hold → dissolve → hub. */
+/** Interstellar cinema intro — brain formation → brief hold → dissolve → hub. */
 export const INTRO_TIMELINE = {
-  /** Cortical mass + sulci formation (0→3s). */
-  brainFormMs: 3000,
-  /** Hold complete brain + name (3→5s). */
-  holdMs: 2000,
-  /** Total intro before handoff begins. */
-  durationMs: 5000,
-  /** Canvas + overlay crossfade into static hub underneath. */
-  handoffFadeMs: 700,
-  /** Brief quote flash — hub quote takes over after fade. */
-  quoteFlashMs: 4200,
-  quoteFadeMs: 380,
+  /** Cortical mass + sulci formation (0→2.8s). */
+  brainFormMs: 2800,
+  /** Hold complete brain + name — kept short to avoid dead pause. */
+  holdMs: 1100,
+  /** Handoff begins while quote is still settling — overlap, not a hard cut. */
+  durationMs: 4100,
+  /** Long crossfade into static hub underneath. */
+  handoffFadeMs: 1200,
+  /** Quote enters during hold tail, not after a long freeze. */
+  quoteFlashMs: 3300,
+  quoteFadeMs: 520,
 } as const;
 
 const FIRST_NAME = "MELANI";
@@ -51,6 +51,9 @@ export const INTRO_QUOTES: IntroQuote[] = [
 ];
 
 const easeOutCubic = (x: number) => 1 - (1 - x) ** 3;
+
+const easeInOutCubic = (x: number) =>
+  x < 0.5 ? 4 * x * x * x : 1 - (-2 * x + 2) ** 3 / 2;
 
 /** Map brainForm 0→1 to visible letter count — name pops as tissue forms. */
 function lettersFromBrainForm(brainForm: number): number {
@@ -85,9 +88,9 @@ export function NeuralCinemaIntro() {
 
     const handoffStart = performance.now();
     const tickHandoff = (now: number) => {
-      const p = Math.min(1, (now - handoffStart) / INTRO_TIMELINE.handoffFadeMs);
-      setHandoffProgress(p);
-      if (p < 1) {
+      const raw = Math.min(1, (now - handoffStart) / INTRO_TIMELINE.handoffFadeMs);
+      setHandoffProgress(easeInOutCubic(raw));
+      if (raw < 1) {
         requestAnimationFrame(tickHandoff);
       } else {
         setVisible(false);

@@ -39,7 +39,7 @@ export function HomeRecentArchive() {
         <div className="hub-archive__inner">
           <p className="hub-archive__eyebrow">Most recent</p>
 
-          <div className="hub-archive__section">
+          <div className="hub-archive__section hub-archive__section--daily">
             <header className="hub-archive__header">
               <h2 className="hub-archive__title">
                 <Link href="/daily">Daily</Link>
