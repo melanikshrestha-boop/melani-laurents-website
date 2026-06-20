@@ -108,6 +108,11 @@
 }
 
 /* ——— Portfolio index (hover backgrounds) ——— */
+.portfolio-index-field,
+.portfolio-index-field-sticky {
+  width: 100%;
+}
+
 .portfolio-hover {
   position: relative;
   width: 100%;
@@ -125,17 +130,43 @@
 .portfolio-hover-bg {
   position: absolute;
   inset: 0;
+  overflow: hidden;
   opacity: 0;
-  transition: opacity 0.45s ease;
+  transition: opacity 0.85s ease;
+}
+
+.portfolio-hover-bg > span {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .portfolio-hover-bg.is-active {
   opacity: 1;
 }
 
+.portfolio-hover-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.24)
+  );
+  pointer-events: none;
+}
+
 .portfolio-hover-bg-image {
   object-fit: cover;
   object-position: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-hover-bg {
+    transition: none;
+  }
 }
 
 .portfolio-hover-items-list {
@@ -371,6 +402,12 @@
   min-height: 24rem;
 }
 
+@media (min-width: 900px) {
+  .photography-about-photo {
+    min-height: auto;
+  }
+}
+
 .photography-about-photo-image {
   object-fit: cover;
   object-position: center top;
@@ -394,6 +431,83 @@
   max-width: 42rem;
   font-size: 1rem;
   line-height: 1.5;
+}
+
+.photography-booking-steps {
+  margin: 0 0 2rem;
+  padding: 0;
+  list-style: none;
+  max-width: 42rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.photography-booking-steps li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.85rem;
+  align-items: start;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.photography-booking-step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  background: var(--photo-ink-muted);
+  color: #fff;
+  font-family: var(--font-epilogue), sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.photography-booking-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.photography-booking-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem 2rem;
+  border-radius: 300px;
+  font-family: var(--font-epilogue), sans-serif;
+  font-size: 1rem;
+  line-height: 1;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.photography-booking-cta--primary {
+  background: var(--photo-ink-muted);
+  color: #fff;
+}
+
+.photography-booking-cta--secondary {
+  border: 1px solid var(--photo-ink);
+  color: var(--photo-ink);
+}
+
+.photography-booking-cta:hover {
+  opacity: 0.88;
+}
+
+.photography-form-row {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .photography-form-row {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .photography-form {
@@ -451,8 +565,30 @@
   cursor: pointer;
 }
 
-.photography-form button:hover {
+.photography-form button:hover:not(:disabled) {
   opacity: 0.9;
+}
+
+.photography-form button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.photography-form-success {
+  margin: 0;
+  max-width: 42rem;
+  font-family: var(--font-epilogue), sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: var(--photo-ink-muted);
+}
+
+.photography-form-error {
+  margin: 0;
+  font-family: var(--font-epilogue), sans-serif;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: #8b1e1e;
 }
 
 /* ——— Lightbox ——— */

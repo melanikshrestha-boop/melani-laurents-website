@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { photographyBooking } from "@/data/photography-meta";
+import { PhotographyBookingForm } from "@/components/photography/PhotographyBookingForm";
 import { ShotByMelaniFooter } from "@/components/photography/ShotByMelaniFooter";
 import { ShotByMelaniHeader } from "@/components/photography/ShotByMelaniHeader";
-import { ABOUT_PORTRAIT } from "@/lib/photography";
+import {
+  ABOUT_PORTRAIT,
+  getPhotographyInstagramHandle,
+  getPhotographyInstagramHref,
+} from "@/lib/photography";
 
 export const metadata: Metadata = {
   title: "About — shotbymelani",
@@ -35,16 +41,22 @@ export default function PhotographyAboutPage() {
               Photoshop to ensure high-quality results across different settings.
             </p>
             <p>
-              For bookings or collaborations, feel free to DM me on instagram or
-              email me directly.
+              For bookings or collaborations, use the form below or reach out on
+              Instagram.
             </p>
             <p>
               Instagram:{" "}
-              <a href="https://www.instagram.com/shotbymelanis/">@shotbymelanis</a>
+              <a
+                href={getPhotographyInstagramHref()}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                @{getPhotographyInstagramHandle()}
+              </a>
               <br />
               Email:{" "}
-              <a href="mailto:melanikshrestha@gmail.com">
-                melanikshrestha@gmail.com
+              <a href={`mailto:${photographyBooking.email}`}>
+                {photographyBooking.email}
               </a>
             </p>
           </div>
@@ -61,45 +73,20 @@ export default function PhotographyAboutPage() {
           </div>
         </div>
 
-        <section id="contact" className="photography-contact">
-          <h2>Contact us</h2>
-          <p>
-            Interested in working together? Fill out some info and we will be in
-            touch shortly. We can&apos;t wait to hear from you!
-          </p>
-          <form
-            className="photography-form"
-            action="mailto:shotbymelani@gmail.com"
-            method="post"
-            encType="text/plain"
-          >
-            <div>
-              <label htmlFor="firstName">First Name (required)</label>
-              <input id="firstName" name="firstName" required />
-            </div>
-            <div>
-              <label htmlFor="lastName">Last Name (required)</label>
-              <input id="lastName" name="lastName" required />
-            </div>
-            <div>
-              <label htmlFor="email">Email (required)</label>
-              <input id="email" name="email" type="email" required />
-            </div>
-            <div className="photography-form-checkbox">
-              <input
-                id="newsletter"
-                name="newsletter"
-                type="checkbox"
-                value="Sign up for news and updates"
-              />
-              <label htmlFor="newsletter">Sign up for news and updates</label>
-            </div>
-            <div>
-              <label htmlFor="message">Message (required)</label>
-              <textarea id="message" name="message" required />
-            </div>
-            <button type="submit">Submit</button>
-          </form>
+        <section id="book" className="photography-contact">
+          <h2>Book a shoot</h2>
+          <p>{photographyBooking.contactLead}</p>
+
+          <ol className="photography-booking-steps">
+            {photographyBooking.steps.map((step, index) => (
+              <li key={step}>
+                <span className="photography-booking-step-number">{index + 1}</span>
+                <span>{step}</span>
+              </li>
+            ))}
+          </ol>
+
+          <PhotographyBookingForm />
         </section>
       </article>
       <ShotByMelaniFooter />

@@ -1,7 +1,5 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { NewsletterSignup } from "@/components/NewsletterSignup";
-import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Daily",
@@ -10,18 +8,21 @@ export const metadata: Metadata = {
 
 export default function DailyPage() {
   return (
-    <div className="daily-page">
-      <div className="daily-page__inner">
-        <p className="daily-page__eyebrow">Daily</p>
-        <h1 className="daily-page__title">Posting daily soon</h1>
-        <p className="daily-callout">{siteConfig.dailyDescription}</p>
-        <div className="daily-page__signup">
-          <NewsletterSignup />
-        </div>
-        <Link href="/" className="daily-page__back">
-          ← Back home
-        </Link>
-      </div>
+    <div className="flex min-h-[calc(100vh-3.5rem)] flex-col items-center justify-center px-6 text-center">
+      <p className="font-mono-label text-[10px] tracking-[0.35em] text-amber/70 uppercase">
+        Daily
+      </p>
+      <h1 className="mt-4 font-display text-3xl text-foreground">Posting daily soon</h1>
+      <p className="mt-4 max-w-md text-sm text-muted">
+        Visual notes, writing, and whatever I&apos;m making that day — one stream,
+        updated as I go.
+      </p>
+      <Link
+        href="/"
+        className="mt-10 font-mono-label text-[10px] tracking-[0.2em] text-amber/80 uppercase hover:text-amber"
+      >
+        ← Back home
+      </Link>
     </div>
   );
 }

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://melanilaurents.com/sitemap.xml
+Sitemap: https://melanikirstein.com/sitemap.xml

@@ -1,9 +1,21 @@
+import {
+  getPhotographyInstagramHandle,
+  getPhotographyInstagramHref,
+} from "@/lib/photography";
+
 export function ShotByMelaniFooter() {
+  const instagramHref = getPhotographyInstagramHref();
+  const instagramHandle = getPhotographyInstagramHandle();
+
   return (
     <footer className="photography-footer">
       <div className="photography-footer-grid">
         <div>
-          <h2 className="photography-footer-title">@Shotbymelani</h2>
+          <h2 className="photography-footer-title">
+            <a href={instagramHref} target="_blank" rel="noopener noreferrer">
+              @{instagramHandle}
+            </a>
+          </h2>
         </div>
         <div>
           <h4 className="photography-footer-label">Location</h4>

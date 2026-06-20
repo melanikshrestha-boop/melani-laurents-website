@@ -31,7 +31,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
     >
       <Wrapper
         {...wrapperProps}
-        className="relative block overflow-hidden border-l-2 border-accent/50 py-6 pl-6 pr-4 transition-all hover:border-accent hover:bg-accent-muted/30 hover:pl-8"
+        className="relative block overflow-hidden border-l-2 border-accent/40 py-6 pl-6 pr-4 transition-all hover:border-accent hover:bg-surface/40 hover:pl-8"
       >
         <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
           <span className="font-mono-label text-[10px] text-muted-foreground">

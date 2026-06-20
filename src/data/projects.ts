@@ -46,7 +46,7 @@ export const projects: Project[] = [
     description:
       "A minimal toolkit for reproducible research notes, experiment logs, and literature synthesis — git-native, markdown-first.",
     tags: ["tools", "open-source"],
-    href: "https://github.com/melanikshrestha-boop",
+    href: "https://github.com/melanikirstein",
     featured: true,
     readout: "commits: 312",
     createdAt: "2025-08-20",

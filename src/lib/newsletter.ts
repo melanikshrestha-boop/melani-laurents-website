@@ -2,6 +2,14 @@ import { promises as fs } from "fs";
 import path from "path";
 import type { NewsletterSubscriber, NewsletterTopic } from "./newsletter-shared";
 
+export {
+  isNewsletterTopic,
+  isValidEmail,
+  NEWSLETTER_TOPICS,
+  type NewsletterSubscriber,
+  type NewsletterTopic,
+} from "./newsletter-shared";
+
 const DATA_DIR = path.join(process.cwd(), "data");
 const SUBSCRIBERS_FILE = path.join(DATA_DIR, "newsletter-subscribers.json");
 

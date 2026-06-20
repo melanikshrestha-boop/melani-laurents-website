@@ -5,12 +5,17 @@
       "title": "Portraits",
       "tagline": "the real you, softly lit",
       "slug": "portraits",
-      "cover": "/photography/portraits/DC343A05-5E01-4E95-AB42-BE27D42F7B16.JPG",
+      "cover": "/photography/portraits/_DSC2664.jpeg",
       "photos": [
         {
           "id": "portraits-0",
-          "src": "/photography/portraits/DC343A05-5E01-4E95-AB42-BE27D42F7B16.JPG",
+          "src": "/photography/portraits/_DSC2664.jpeg",
           "alt": "Portraits 1"
+        },
+        {
+          "id": "portraits-43",
+          "src": "/photography/portraits/DC343A05-5E01-4E95-AB42-BE27D42F7B16.JPG",
+          "alt": "Portraits 2"
         },
         {
           "id": "portraits-1",
@@ -36,11 +41,6 @@
           "id": "portraits-5",
           "src": "/photography/portraits/A28449D9-BAED-4FB1-A26B-FA6C55DFD538.JPG",
           "alt": "Portraits 6"
-        },
-        {
-          "id": "portraits-6",
-          "src": "/photography/portraits/_DSC2664.jpeg",
-          "alt": "Portraits 7"
         },
         {
           "id": "portraits-7",

@@ -1,6 +1,6 @@
 import { ShotByMelaniFooter } from "@/components/photography/ShotByMelaniFooter";
 import { ShotByMelaniHeader } from "@/components/photography/ShotByMelaniHeader";
-import { PortfolioIndex } from "@/components/photography/PortfolioIndex";
+import { PortfolioIndexField } from "@/components/photography/PortfolioIndexField";
 import { getIndexCollections } from "@/lib/photography";
 
 export default function PhotographyPage() {
@@ -9,7 +9,7 @@ export default function PhotographyPage() {
   return (
     <>
       <ShotByMelaniHeader theme="overlay" />
-      <PortfolioIndex collections={collections} />
+      <PortfolioIndexField collections={collections} />
       <ShotByMelaniFooter />
     </>
   );

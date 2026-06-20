@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
-import { isNewsletterTopic, isValidEmail, type NewsletterTopic } from "@/lib/newsletter-shared";
-import { subscribeToNewsletter } from "@/lib/newsletter";
+import {
+  isNewsletterTopic,
+  isValidEmail,
+  subscribeToNewsletter,
+  type NewsletterTopic,
+} from "@/lib/newsletter";
 
 export async function POST(request: Request) {
   let body: unknown;

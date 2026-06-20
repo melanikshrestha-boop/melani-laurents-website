@@ -1,4 +1,8 @@
 import Link from "next/link";
+import {
+  getPhotographyInstagramHref,
+  PHOTOGRAPHY_BOOKING_PATH,
+} from "@/lib/photography";
 
 type HeaderTheme = "overlay" | "light";
 
@@ -36,7 +40,7 @@ export function ShotByMelaniHeader({ theme = "light" }: { theme?: HeaderTheme })
           ))}
 
           <a
-            href="https://www.instagram.com/shotbymelanis/"
+            href={getPhotographyInstagramHref()}
             target="_blank"
             rel="noopener noreferrer"
             className="photography-nav-icon"
@@ -45,8 +49,11 @@ export function ShotByMelaniHeader({ theme = "light" }: { theme?: HeaderTheme })
             <InstagramIcon />
           </a>
 
-          <Link href="/photography/about#contact" className="photography-nav-cta">
-            Book now
+          <Link
+            href={PHOTOGRAPHY_BOOKING_PATH}
+            className="photography-nav-cta"
+          >
+            Book a shoot
           </Link>
         </nav>
       </div>

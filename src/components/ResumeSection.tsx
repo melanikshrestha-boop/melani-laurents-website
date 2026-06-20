@@ -1,4 +1,35 @@
-import type { ResumeData } from "@/data/mk-page";
+interface ResumePublication {
+  title: string;
+  authors: string;
+  kind: string;
+  venue: string;
+  year: number;
+  citations?: number;
+}
+
+interface ResumeEntry {
+  organization: string;
+  role?: string;
+  period?: string;
+  detail?: string;
+}
+
+interface ResumeSkillGroup {
+  label: string;
+  items: string[];
+  placeholder?: boolean;
+}
+
+interface ResumeData {
+  scholar: {
+    affiliation: string;
+    url: string;
+  };
+  publications: ResumePublication[];
+  experience: ResumeEntry[];
+  education: ResumeEntry[];
+  skills: ResumeSkillGroup[];
+}
 
 interface ResumeSectionProps {
   data: ResumeData;

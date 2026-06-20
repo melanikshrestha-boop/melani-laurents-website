@@ -101,24 +101,25 @@ export function NewsletterSignup({
       className={`newsletter-signup newsletter-signup--${variant} ${className}`}
       noValidate
     >
-      {isFooter ? (
-        <div className="newsletter-signup__intro">
-          <p className="newsletter-signup__eyebrow">Newsletter</p>
-          <p className="newsletter-signup__lede newsletter-signup__lede--footer">
-            Get updates on what you care about.
-          </p>
-        </div>
-      ) : !isCompact ? (
-        <div className="newsletter-signup__intro">
-          <p className="newsletter-signup__eyebrow">Newsletter</p>
-          <p className="newsletter-signup__lede">
-            Get updates on what you care about.
-          </p>
-        </div>
-      ) : (
+      {isCompact ? (
         <p className="newsletter-signup__compact-lede">
           Get updates on what you care about.
         </p>
+      ) : (
+        <div className="newsletter-signup__intro">
+          <p className="newsletter-signup__eyebrow">Newsletter</p>
+          <p
+            className={
+              isFooter
+                ? "newsletter-signup__lede newsletter-signup__lede--footer"
+                : "newsletter-signup__lede"
+            }
+          >
+            {isFooter
+              ? "Pick the topics you want — I only write when it fits."
+              : "A small letter from me — daily posts on podcasts I'm listening to, things I'm learning, conversations with experts. Pick what you want; I'll only write when it fits."}
+          </p>
+        </div>
       )}
 
       <fieldset className="newsletter-signup__topics">
@@ -137,7 +138,7 @@ export function NewsletterSignup({
               <span className="newsletter-signup__topic-label">
                 {TOPIC_COPY[topic].label}
               </span>
-              {!isCompact || isFooter ? (
+              {!isCompact ? (
                 <span className="newsletter-signup__topic-desc">
                   {TOPIC_COPY[topic].description}
                 </span>
