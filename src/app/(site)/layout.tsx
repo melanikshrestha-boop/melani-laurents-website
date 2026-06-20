@@ -4,7 +4,6 @@ import { SiteBackground } from "@/components/SiteBackground";
 import { OpeningIntro } from "@/components/OpeningIntro";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { CinemaProvider } from "@/components/cinema/CinemaProvider";
-import { SoundtrackPrompt } from "@/components/cinema/SoundtrackToggle";
 import { MainShell } from "@/components/MainShell";
 
 export default function SiteLayout({
@@ -21,7 +20,6 @@ export default function SiteLayout({
         <MainShell>{children}</MainShell>
         <Footer />
       </SmoothScroll>
-      <SoundtrackPrompt />
     </CinemaProvider>
   );
 }

@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { siteConfig } from "@/config/site";
-import { FocusTechnoPanel } from "./FocusTechnoPanel";
+import { HubHeroQuote } from "./HubHeroQuote";
+import { InteractiveTitleLetters } from "./InteractiveTitleLetters";
 import { MelaniSignature } from "./MelaniSignature";
 import { MotionScrollToggle } from "./MotionScrollToggle";
 import { NeurotechBrainField } from "./NeurotechBrainField";
@@ -42,7 +43,6 @@ export function HomeHub() {
       <NeurotechBrainField variant="hub" active />
       <div className="hub-page__rail hub-page__rail--left" aria-hidden />
       <div className="hub-page__rail hub-page__rail--right" aria-hidden />
-      <span className="hub-page__dot" aria-hidden />
 
       {hintVisible ? (
         <p className="hub-page__hint" aria-live="polite">
@@ -73,10 +73,12 @@ export function HomeHub() {
       </header>
 
       <div className="hub-page__center">
-        <h1 className="hub-page__title" aria-label="Melani Laurent S.">
-          <span className="hub-page__title-line">MELANI</span>
-          <span className="hub-page__title-line">LAURENT S.</span>
-        </h1>
+        <InteractiveTitleLetters
+          variant="hub"
+          className="hub-page__title"
+          lineClassName="hub-page__title-line"
+        />
+        <HubHeroQuote />
       </div>
 
       <footer className="hub-page__footer">
@@ -103,7 +105,6 @@ export function HomeHub() {
         </nav>
       </footer>
 
-      <FocusTechnoPanel />
       <MotionScrollToggle />
     </section>
   );

@@ -993,19 +993,19 @@ body {
 }
 
 .hub-page__brain-field {
-  opacity: calc(0.78 * (1 - var(--scroll-p, 0) * 0.88));
+  opacity: calc(0.22 * (1 - var(--scroll-p, 0) * 0.88));
   transition: opacity 120ms linear;
   -webkit-mask-image: radial-gradient(
-    ellipse 50% 38% at 50% 46%,
+    ellipse 58% 48% at 50% 46%,
     transparent 0%,
-    rgba(0, 0, 0, 0.28) 40%,
-    black 74%
+    rgba(0, 0, 0, 0.12) 52%,
+    black 88%
   );
   mask-image: radial-gradient(
-    ellipse 50% 38% at 50% 46%,
+    ellipse 58% 48% at 50% 46%,
     transparent 0%,
-    rgba(0, 0, 0, 0.28) 40%,
-    black 74%
+    rgba(0, 0, 0, 0.12) 52%,
+    black 88%
   );
 }
 
@@ -1245,6 +1245,7 @@ body {
   z-index: 3;
   flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 1.5rem 0;
@@ -1258,8 +1259,8 @@ body {
   z-index: -1;
   background: radial-gradient(
     ellipse 52% 44% at 50% 50%,
-    rgba(237, 232, 220, 0.92) 0%,
-    rgba(237, 232, 220, 0.55) 48%,
+    rgba(237, 232, 220, 0.72) 0%,
+    rgba(237, 232, 220, 0.35) 48%,
     transparent 78%
   );
 }
@@ -1280,17 +1281,67 @@ body {
   font-size: clamp(3.25rem, 11.5vw, 9.25rem);
   line-height: 0.88;
   letter-spacing: -0.02em;
-  color: var(--hub-ink);
   text-transform: uppercase;
 }
 
 .hub-page__title-line + .hub-page__title-line {
-  color: var(--hub-ink);
   letter-spacing: -0.01em;
 }
 
+/* Interactive title letters — white name, gold S. */
+.title-char {
+  display: inline-block;
+  cursor: default;
+  transition:
+    color 220ms ease,
+    filter 280ms ease;
+}
+
+.title-char--hub {
+  color: #e8e6e3;
+}
+
+.title-char--hub.title-char--gold {
+  color: var(--hub-champagne);
+}
+
+.title-char--cream {
+  color: #000000;
+}
+
+.title-char--cream.title-char--gold {
+  color: var(--hub-champagne);
+}
+
+.title-char--hub:hover,
+.title-char--hub.title-char--active {
+  background: radial-gradient(
+    circle at var(--title-mx, 50%) var(--title-my, 50%),
+    #ffffff 0%,
+    var(--hub-champagne-bright) 34%,
+    #e8e6e3 72%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: brightness(1.06);
+}
+
+.title-char--cream:hover,
+.title-char--cream.title-char--active {
+  background: radial-gradient(
+    circle at var(--title-mx, 50%) var(--title-my, 50%),
+    #1a1a1a 0%,
+    var(--hub-champagne) 36%,
+    #000000 74%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 .hub-page__title-s {
-  color: var(--hub-ink);
+  color: var(--hub-champagne);
   font-weight: 700;
 }
 
@@ -1313,20 +1364,21 @@ body {
 }
 
 .hub-page__quote {
-  max-width: 28rem;
-  margin: 0;
-  padding-left: 0.85rem;
-  border-left: 1px solid rgba(126, 184, 218, 0.28);
+  max-width: 32rem;
+  margin: clamp(1.25rem, 3vh, 2rem) auto 0;
+  padding: 0;
+  border-left: none;
+  text-align: center;
 }
 
 .hub-page__quote p {
-  font-family: var(--font-share-tech-mono), var(--font-jetbrains-mono), ui-monospace,
-    monospace;
-  font-size: 0.64rem;
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+  font-size: clamp(0.95rem, 2.2vw, 1.15rem);
   font-style: italic;
-  line-height: 1.7;
-  letter-spacing: 0.02em;
-  color: rgba(126, 184, 218, 0.72);
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  color: rgba(232, 230, 227, 0.58);
 }
 
 .hub-page__nav {
@@ -1715,14 +1767,28 @@ body {
 }
 
 .home-sections .hub-page__brand-loc,
-.home-sections .hub-page__title-line,
-.home-sections .hub-page__title-line + .hub-page__title-line,
-.home-sections .hub-page__title-s {
+.home-sections .hub-page__title-line {
+  color: inherit;
+}
+
+.home-sections .title-char--hub {
   color: var(--hub-title-morph);
 }
 
-.home-sections .hub-page__title-line:first-child {
+.home-sections .title-char--hub.title-char--gold {
   color: var(--hub-gold-morph);
+}
+
+.home-sections .hub-page__title-s {
+  color: var(--hub-gold-morph);
+}
+
+.home-sections .hub-page__quote p {
+  color: color-mix(
+    in srgb,
+    rgba(232, 230, 227, 0.58) calc((1 - var(--scroll-p)) * 100%),
+    rgba(0, 0, 0, 0.52) calc(var(--scroll-p) * 100%)
+  );
 }
 
 .home-sections .hub-page__social-icons .social-icons__link {

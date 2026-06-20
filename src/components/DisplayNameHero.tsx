@@ -2,24 +2,10 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { InteractiveTitleLetters } from "./InteractiveTitleLetters";
 
 /** Carlo Doroff–style stacked display name — black on cream. */
 export function DisplayNameHero() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 20,
-        y: (e.clientY / window.innerHeight - 0.5) * 20,
-      });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -57,22 +43,6 @@ export function DisplayNameHero() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, delay: 0.5 }}
       />
-      <motion.span
-        className="display-name-hero__dot"
-        aria-hidden
-        animate={{
-          boxShadow: [
-            "0 0 8px rgba(239, 68, 35, 0.45)",
-            "0 0 20px rgba(239, 68, 35, 0.65)",
-            "0 0 8px rgba(239, 68, 35, 0.45)",
-          ],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
 
       <motion.header
         className="display-name-hero__meta display-name-hero__meta--top"
@@ -103,34 +73,20 @@ export function DisplayNameHero() {
         </motion.span>
       </motion.header>
 
-      <div className="display-name-hero__center">
-        <motion.h1
-          className="display-name-hero__title"
-          aria-label="Melani Laurent S."
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.span
-            className="display-name-hero__line"
-            variants={itemVariants}
-            style={{
-              transform: `perspective(1000px) rotateX(${mousePosition.y * 0.5}deg) rotateY(${-mousePosition.x * 0.5}deg)`,
-            }}
-          >
-            MELANI
-          </motion.span>
-          <motion.span
-            className="display-name-hero__line"
-            variants={itemVariants}
-            style={{
-              transform: `perspective(1000px) rotateX(${mousePosition.y * 0.5}deg) rotateY(${-mousePosition.x * 0.5}deg)`,
-            }}
-          >
-            LAURENT S.
-          </motion.span>
-        </motion.h1>
-      </div>
+      <motion.div
+        className="display-name-hero__center"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.div variants={itemVariants}>
+          <InteractiveTitleLetters
+            variant="cream"
+            className="display-name-hero__title"
+            lineClassName="display-name-hero__line"
+          />
+        </motion.div>
+      </motion.div>
 
       <motion.footer
         className="display-name-hero__meta display-name-hero__meta--bottom"
@@ -142,10 +98,7 @@ export function DisplayNameHero() {
           Med-tech, photography, cinema — all under art. Always creating from
           LA, SF, and NYC.
         </motion.p>
-        <motion.div
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           <Link href="/about" className="display-name-hero__link display-name-hero__link--animated">
             enter the archive →
           </Link>

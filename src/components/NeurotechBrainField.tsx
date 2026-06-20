@@ -8,15 +8,11 @@ import {
   drawEEGTraces,
   drawElectrodeGrid,
   drawPeripheralElectrodeGrids,
-  drawSparkBursts,
   drawSynapseNetwork,
   drawSynapseNodes,
   drawVoidBackground,
-  maybeSpawnSparkBurst,
   NEURO,
-  tickSparkBursts,
   updateBrainNodes,
-  type SparkBurst,
 } from "@/lib/neurotech-brain";
 
 interface NeurotechBrainFieldProps {
@@ -35,13 +31,12 @@ export function NeurotechBrainField({
   const mouseRef = useRef({ x: 0.5, y: 0.5, down: false });
   const scrollVelRef = useRef(0);
   const pulsesRef = useRef<{ x: number; y: number; t: number }[]>([]);
-  const sparksRef = useRef<SparkBurst[]>([]);
 
   activeRef.current = active;
   const isHub = variant === "hub";
   const isAmbient = variant === "ambient";
   const isArchive = variant === "archive";
-  const intensity = isAmbient ? 0.35 : isHub ? 0.52 : 0.85;
+  const intensity = isAmbient ? 0.35 : isHub ? 0.14 : 0.85;
   const hubCenterFade = isHub
     ? { cx: 0.5, cy: 0.46, rx: 0.22, ry: 0.15 }
     : undefined;
@@ -61,7 +56,7 @@ export function NeurotechBrainField({
     };
     const onDown = (e: MouseEvent) => {
       mouseRef.current.down = true;
-      if ((isArchive || isHub) && canvas) {
+      if ((isArchive) && canvas) {
         const rect = canvas.getBoundingClientRect();
         pulsesRef.current.push({
           x: e.clientX - rect.left,
@@ -104,7 +99,7 @@ export function NeurotechBrainField({
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
-    const nodeCount = reduced ? 40 : isAmbient ? 48 : isHub ? 44 : 72;
+    const nodeCount = reduced ? 40 : isAmbient ? 48 : isHub ? 18 : 72;
     const nodes = createBrainNodes(nodeCount);
 
     let raf = 0;
@@ -186,56 +181,58 @@ export function NeurotechBrainField({
       }
 
       if (isHub && !reduced) {
-        drawPeripheralElectrodeGrids(ctx, w, h, t, intensity * 0.55, hubLightMode);
+        drawPeripheralElectrodeGrids(ctx, w, h, t, intensity * 0.2, hubLightMode);
       }
 
-      updateBrainNodes(
-        nodes,
-        w,
-        h,
-        cx,
-        cy,
-        mouseRef.current,
-        scrollVelRef.current,
-        isHub,
-      );
-      drawSynapseNetwork(ctx, nodes, w, h, {
-        alpha: intensity,
-        maxDist: isHub ? 96 : 110,
-        lineWidth: isHub ? 0.78 : 0.8,
-        lineRgb: isHub
-          ? hubLightMode
-            ? NEURO.synapseRgb
-            : NEURO.iceRgb
-          : NEURO.iceRgb,
-        t,
-        centerFade: hubCenterFade,
-        lightMode: isHub ? hubLightMode : false,
-      });
-      drawSynapseNodes(ctx, nodes, w, h, isHub ? intensity * 0.82 : intensity, {
-        centerFade: hubCenterFade,
-      });
-
-      if (isHub && !reduced) {
-        drawEEGTraces(ctx, w, h, t, intensity * 0.12, 2, 0.93, hubLightMode);
-        maybeSpawnSparkBurst(sparksRef.current, nodes, 0.0022);
-        sparksRef.current = tickSparkBursts(sparksRef.current);
-        drawSparkBursts(
-          ctx,
-          sparksRef.current,
+      if (!isHub) {
+        updateBrainNodes(
+          nodes,
           w,
           h,
-          intensity * 0.85,
-          hubCenterFade,
-          hubLightMode,
+          cx,
+          cy,
+          mouseRef.current,
+          scrollVelRef.current,
+          isHub,
         );
+        drawSynapseNetwork(ctx, nodes, w, h, {
+          alpha: intensity,
+          maxDist: 110,
+          lineWidth: 0.8,
+          lineRgb: NEURO.iceRgb,
+          t,
+          lightMode: false,
+        });
+        drawSynapseNodes(ctx, nodes, w, h, intensity, {});
+      }
+
+      if (isHub && !reduced) {
+        updateBrainNodes(
+          nodes,
+          w,
+          h,
+          cx,
+          cy,
+          mouseRef.current,
+          scrollVelRef.current,
+          isHub,
+        );
+        drawSynapseNetwork(ctx, nodes, w, h, {
+          alpha: intensity * 0.35,
+          maxDist: 72,
+          lineWidth: 0.5,
+          lineRgb: hubLightMode ? NEURO.synapseRgb : NEURO.iceRgb,
+          t,
+          centerFade: hubCenterFade,
+          lightMode: hubLightMode,
+        });
       }
 
       if (isArchive && !reduced) {
         drawEEGTraces(ctx, w, h, t, intensity * 0.28, 2, 0.14);
       }
 
-      if (isArchive || isHub) {
+      if (isArchive) {
         pulsesRef.current = pulsesRef.current
           .map((pulse) => ({ ...pulse, t: pulse.t + 1 }))
           .filter((pulse) => pulse.t < 48);

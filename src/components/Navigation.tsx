@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { siteConfig, type NavItem } from "@/config/site";
 import { MelaniSignature } from "./MelaniSignature";
 import { SocialIcons } from "./SocialIcons";
-import { SoundtrackToggle } from "./cinema/SoundtrackToggle";
 
 function NavLink({ item }: { item: NavItem }) {
   const className =
@@ -55,7 +54,6 @@ export function Navigation() {
 
           <div className="hidden h-4 w-px bg-white/10 md:block" />
 
-          <SoundtrackToggle className="hidden sm:flex" />
           <SocialIcons className="hidden sm:flex" size="sm" />
 
           <details className="relative md:hidden">
@@ -69,10 +67,7 @@ export function Navigation() {
                 </div>
               ))}
               <div className="mt-2 border-t border-white/10 px-4 pt-3">
-                <SoundtrackToggle />
-                <div className="mt-3">
-                  <SocialIcons size="sm" />
-                </div>
+                <SocialIcons size="sm" />
               </div>
             </div>
           </details>
