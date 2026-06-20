@@ -8,7 +8,6 @@ import {
   INTRO_HANDOFF_START_EVENT,
   INTRO_KEY,
 } from "@/components/cinema/NeuralCinemaIntro";
-import { HubHeroQuote } from "./HubHeroQuote";
 import { InteractiveTitleLetters } from "./InteractiveTitleLetters";
 import { MelaniSignature } from "./MelaniSignature";
 import { MotionScrollToggle } from "./MotionScrollToggle";
@@ -116,7 +115,6 @@ export function HomeHub() {
           className="hub-page__title"
           lineClassName="hub-page__title-line"
         />
-        <HubHeroQuote />
       </div>
 
       <footer className="hub-page__footer">

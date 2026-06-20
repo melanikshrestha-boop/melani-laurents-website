@@ -7,9 +7,6 @@ export const siteConfig = {
     "BCI researcher and neurotech builder — in-ear EEG, neural interfaces, clinical cinema, and art.",
   email: "hello@melanilaurents.com",
   location: "LA / SF / NYC",
-  /** Pull quote on the dark hub hero — neuroscience ethos. */
-  heroQuote:
-    "Neuroscience remains such an exciting field because of the wealth of unanswered questions.",
   /** Daily letter — home archive + /daily page. */
   dailyDescription:
     "The consolidation of memory is the art of writing about what you listen to, read about, or conversed with other people on a consistent basis. Read these if you want incremental daily learning on a variety of topics (always backed by neuroscience) as I do, or just watch my neuroplasticity grow.",

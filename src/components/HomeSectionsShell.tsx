@@ -6,6 +6,11 @@ function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
 }
 
+/** Smoothstep — avoids muddy mid-tones during void → cream morph. */
+function smoothstep(t: number) {
+  return t * t * (3 - 2 * t);
+}
+
 /** Scroll-driven void → cream backdrop for the home hub + archive stack. */
 export function HomeSectionsShell({ children }: { children: ReactNode }) {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -27,7 +32,8 @@ export function HomeSectionsShell({ children }: { children: ReactNode }) {
       const transitionStart = hubBottom - vh * 0.58;
       const transitionEnd = hubBottom + vh * 0.14;
       const span = Math.max(transitionEnd - transitionStart, 1);
-      const p = clamp((window.scrollY - transitionStart) / span, 0, 1);
+      const raw = clamp((window.scrollY - transitionStart) / span, 0, 1);
+      const p = smoothstep(raw);
 
       const value = p.toFixed(4);
       root.style.setProperty("--scroll-p", value);

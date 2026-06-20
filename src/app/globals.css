@@ -1429,10 +1429,11 @@ body {
   z-index: -1;
   background: radial-gradient(
     ellipse 52% 44% at 50% 50%,
-    rgba(237, 232, 220, 0.72) 0%,
-    rgba(237, 232, 220, 0.35) 48%,
+    rgba(255, 255, 255, 0.045) 0%,
+    rgba(255, 255, 255, 0.015) 48%,
     transparent 78%
   );
+  opacity: 0.55;
 }
 
 .hub-page__title {
@@ -1858,27 +1859,28 @@ body {
 .home-sections {
   --hub-void: #030508;
   --archive-cream: #f0ede5;
+  --archive-ink: #2a2824;
   --scroll-p: 0;
   /* Light gold on void (p=0) → Carlo ink (p=1) */
   --hub-title-morph: color-mix(
     in srgb,
     #e8e6e3 calc((1 - var(--scroll-p)) * 100%),
-    var(--hub-ink)
+    var(--archive-ink)
   );
   --hub-gold-morph: color-mix(
     in srgb,
     #c9a962 calc((1 - var(--scroll-p)) * 100%),
-    var(--hub-ink)
+    var(--archive-ink)
   );
   --hub-ink-morph: color-mix(
     in srgb,
     #e8e6e3 calc((1 - var(--scroll-p)) * 100%),
-    var(--hub-ink)
+    var(--archive-ink)
   );
   --hub-muted-morph: color-mix(
     in srgb,
-    rgba(200, 195, 188, 0.82) calc((1 - var(--scroll-p)) * 100%),
-    var(--hub-muted)
+    rgba(232, 230, 227, 0.58) calc((1 - var(--scroll-p)) * 100%),
+    #6b6358
   );
   --hub-navy-morph: color-mix(
     in srgb,
@@ -1888,7 +1890,17 @@ body {
   --hub-contact-morph: color-mix(
     in srgb,
     var(--hub-champagne-bright) calc((1 - var(--scroll-p)) * 100%),
-    #8a7340
+    #9a8448
+  );
+  --callout-ink-morph: color-mix(
+    in srgb,
+    rgba(232, 230, 227, 0.72) calc((1 - var(--scroll-p)) * 100%),
+    var(--archive-ink)
+  );
+  --callout-border-morph: color-mix(
+    in srgb,
+    rgba(212, 188, 130, 0.38) calc((1 - var(--scroll-p)) * 100%),
+    rgba(201, 169, 98, 0.42)
   );
   --hub-panel-fill: color-mix(
     in srgb,
@@ -1911,7 +1923,7 @@ body {
   z-index: 0;
   pointer-events: none;
   background: color-mix(
-    in srgb,
+    in oklch,
     var(--hub-void) calc((1 - var(--scroll-p)) * 100%),
     var(--archive-cream)
   );
@@ -1960,14 +1972,6 @@ body {
   color: var(--hub-gold-morph);
 }
 
-.home-sections .hub-page__quote p {
-  color: color-mix(
-    in srgb,
-    rgba(232, 230, 227, 0.58) calc((1 - var(--scroll-p)) * 100%),
-    rgba(0, 0, 0, 0.52) calc(var(--scroll-p) * 100%)
-  );
-}
-
 .home-sections .hub-page__social-icons .social-icons__link {
   color: color-mix(in srgb, var(--hub-ink-morph) 55%, transparent);
 }
@@ -2011,7 +2015,7 @@ body {
 }
 
 .home-sections .hub-page__center::before {
-  opacity: var(--scroll-p);
+  opacity: calc(0.55 * (1 - var(--scroll-p)));
 }
 
 .home-sections .focus-techno__label {
@@ -2249,22 +2253,27 @@ body {
   margin: 1rem 0 0;
   max-width: 36rem;
   padding: 0.65rem 0 0.65rem 0.85rem;
-  border-left: 2px solid rgba(184, 134, 11, 0.32);
+  border-left: 2px solid rgba(201, 169, 98, 0.38);
   font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
   font-size: 0.68rem;
   font-weight: 500;
   line-height: 1.65;
   letter-spacing: 0.03em;
   text-align: left;
-  color: rgba(61, 56, 48, 0.85);
+  color: #2a2824;
 }
 
 .daily-callout--archive {
   margin: 0 0 1.1rem;
   padding-left: 0.75rem;
-  border-left-color: rgba(184, 134, 11, 0.28);
+  border-left-color: rgba(201, 169, 98, 0.36);
   font-size: 0.6rem;
-  color: var(--archive-muted);
+  color: #2a2824;
+}
+
+.home-sections .daily-callout--archive {
+  color: var(--callout-ink-morph);
+  border-left-color: var(--callout-border-morph);
 }
 
 .hub-archive__podcast-listen {
