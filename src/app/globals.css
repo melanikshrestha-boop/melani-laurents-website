@@ -1858,7 +1858,7 @@ body {
 
 .home-sections {
   --hub-void: #030508;
-  --archive-cream: #f0ede5;
+  --archive-cream: var(--hub-cream);
   --archive-ink: #2a2824;
   --scroll-p: 0;
   /* Light gold on void (p=0) → Carlo ink (p=1) */
@@ -1923,9 +1923,9 @@ body {
   z-index: 0;
   pointer-events: none;
   background: color-mix(
-    in oklch,
-    var(--hub-void) calc((1 - var(--scroll-p)) * 100%),
-    var(--archive-cream)
+    in srgb,
+    #030508 calc((1 - var(--scroll-p)) * 100%),
+    #f0ede5
   );
 }
 
@@ -2048,6 +2048,7 @@ body {
 
 /* Home scroll experience — cream archive zone, morphing backdrop above */
 .hub-scroll-exp {
+  --archive-cream: var(--hub-cream);
   --archive-ink: #141210;
   --archive-muted: #6b6358;
   --archive-muted-faint: rgba(107, 99, 88, 0.72);
@@ -2058,7 +2059,7 @@ body {
   position: relative;
   z-index: 15;
   min-height: 100svh;
-  background: transparent;
+  background: var(--archive-cream);
   color: var(--archive-ink);
   font-family: var(--font-share-tech-mono), var(--font-jetbrains-mono), ui-monospace,
     monospace;
@@ -2069,6 +2070,7 @@ body {
 .hub-archive {
   position: relative;
   z-index: 1;
+  background: var(--archive-cream, var(--hub-cream));
 }
 
 .hub-archive__inner {
@@ -2076,6 +2078,7 @@ body {
   margin: 0 auto;
   padding: clamp(2rem, 5vw, 3rem) clamp(1.25rem, 3vw, 2.25rem)
     clamp(4rem, 10vw, 6rem);
+  background: transparent;
 }
 
 .hub-archive__eyebrow {
@@ -2224,7 +2227,7 @@ body {
   margin-top: 0.25rem;
   padding: 1rem 1.25rem;
   border: 1px solid var(--archive-border);
-  background: rgba(255, 255, 255, 0.35);
+  background: color-mix(in srgb, var(--archive-cream, #f0ede5) 68%, white);
   text-decoration: none;
   transition:
     border-color 200ms ease,
@@ -2233,7 +2236,7 @@ body {
 
 .hub-archive__podcast-card:hover {
   border-color: rgba(184, 134, 11, 0.28);
-  background: rgba(255, 255, 255, 0.55);
+  background: color-mix(in srgb, var(--archive-cream, #f0ede5) 52%, white);
 }
 
 .hub-archive__podcast-tagline {
@@ -2271,9 +2274,9 @@ body {
   color: #2a2824;
 }
 
-.home-sections .daily-callout--archive {
-  color: var(--callout-ink-morph);
-  border-left-color: var(--callout-border-morph);
+.hub-scroll-exp .daily-callout--archive {
+  color: #2a2824;
+  border-left-color: rgba(201, 169, 98, 0.36);
 }
 
 .hub-archive__podcast-listen {
@@ -2302,7 +2305,7 @@ body {
   margin-top: 0.25rem;
   padding: 1rem 1.25rem;
   border: 1px solid var(--archive-border);
-  background: rgba(255, 255, 255, 0.35);
+  background: color-mix(in srgb, var(--archive-cream, #f0ede5) 68%, white);
   text-decoration: none;
   transition:
     border-color 200ms ease,
@@ -2312,7 +2315,7 @@ body {
 
 .hub-archive__art-brand:hover {
   border-color: rgba(184, 134, 11, 0.28);
-  background: rgba(255, 255, 255, 0.55);
+  background: color-mix(in srgb, var(--archive-cream, #f0ede5) 52%, white);
 }
 
 .hub-archive__art-brand-label,
@@ -2401,7 +2404,7 @@ body {
 
 .hub-archive__newsletter .newsletter-signup__input {
   border-color: rgba(107, 99, 88, 0.25);
-  background: rgba(255, 255, 255, 0.45);
+  background: color-mix(in srgb, var(--archive-cream, #f0ede5) 58%, white);
   color: var(--archive-ink);
 }
 
