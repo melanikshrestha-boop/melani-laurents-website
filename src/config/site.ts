@@ -34,7 +34,7 @@ export const siteConfig = {
     {
       id: "github",
       label: "GitHub",
-      href: "https://github.com/melanikirstein",
+      href: "https://github.com/melanikshrestha-boop/melani-laurents-website",
     },
     {
       id: "instagram",

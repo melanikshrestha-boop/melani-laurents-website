@@ -16,18 +16,20 @@ export const INTRO_KEY = "mls-intro-seen";
 export const INTRO_HANDOFF_START_EVENT = "mls-intro-handoff-start";
 export const INTRO_COMPLETE_EVENT = "mls-intro-complete";
 
-/** Interstellar cinema intro — brain formation → brief hold → dissolve → hub. */
+/** Cinematic neuron zoom → brain emergence → name drop → static hero fade. */
 export const INTRO_TIMELINE = {
-  /** Cortical mass + sulci formation (0→2.8s). */
-  brainFormMs: 2800,
-  /** Hold complete brain + name — kept short to avoid dead pause. */
-  holdMs: 1100,
-  /** Handoff begins while quote is still settling — overlap, not a hard cut. */
-  durationMs: 4100,
+  /** Deep neuron zoom with electrical synapses (0→2s). */
+  neuronZoomMs: 2000,
+  /** Zoom out + brain tissue formation (2s→3.8s). */
+  brainEmergenceMs: 1800,
+  /** Hold complete brain + name visible — brief pause before fade. */
+  holdMs: 200,
+  /** Total intro animation duration. */
+  durationMs: 4000,
   /** Long crossfade into static hub underneath. */
   handoffFadeMs: 1200,
-  /** Quote enters during hold tail, not after a long freeze. */
-  quoteFlashMs: 3300,
+  /** Quote disabled during neuron intro */
+  quoteFlashMs: 99999,
   quoteFadeMs: 520,
 } as const;
 
@@ -56,14 +58,18 @@ const easeOutCubic = (x: number) => 1 - (1 - x) ** 3;
 const easeInOutCubic = (x: number) =>
   x < 0.5 ? 4 * x * x * x : 1 - (-2 * x + 2) ** 3 / 2;
 
-/** Map brainForm 0→1 to visible letter count — name pops as tissue forms. */
-function lettersFromBrainForm(brainForm: number): number {
-  const p = Math.min(1, Math.max(0, (brainForm - 0.06) / 0.78));
+/** Map elapsed time to visible letter count — MELANI drops during zoom-out phase. */
+function lettersFromElapsed(elapsed: number): number {
+  // Letters start appearing at 2s (neuron zoom ends) and finish by 3.2s
+  const letterStartMs = INTRO_TIMELINE.neuronZoomMs;
+  const letterEndMs = letterStartMs + 1200;
+  const p = Math.min(1, Math.max(0, (elapsed - letterStartMs) / (letterEndMs - letterStartMs)));
   return Math.min(FIRST_NAME.length, Math.floor(p * (FIRST_NAME.length + 0.5)));
 }
 
-function secondLineFromBrainForm(brainForm: number): boolean {
-  return brainForm >= 0.74;
+function secondLineFromElapsed(elapsed: number): boolean {
+  // LAURENT S. appears all at once at 3.2s
+  return elapsed >= INTRO_TIMELINE.neuronZoomMs + 1200;
 }
 
 /** Anatomical brain forms center-outward; name syncs to brainForm; synapses clip inside tissue. */
@@ -136,10 +142,11 @@ export function NeuralCinemaIntro() {
 
     let raf = 0;
     const start = performance.now();
-    const nodes = createBrainNodes(180);
+    // Increased node count for richer neural complexity
+    const nodes = createBrainNodes(320);
     let edges = buildNeuralMesh(nodes, window.innerWidth, window.innerHeight, {
-      maxDistNorm: 0.11,
-      extraNeighbors: 2,
+      maxDistNorm: 0.14, // Slightly increased connection distance for denser mesh
+      extraNeighbors: 4, // More neighbors per node for realistic complexity
     });
 
     const resize = () => {
@@ -162,20 +169,33 @@ export function NeuralCinemaIntro() {
       const h = window.innerHeight;
       const t = elapsed * 0.001;
 
-      const brainForm = easeOutCubic(
-        Math.min(1, elapsed / INTRO_TIMELINE.brainFormMs),
-      );
+      // Phase 1 (0-2s): Deep zoom into neurons with electrical synapses
+      const neuronPhase = Math.min(1, elapsed / INTRO_TIMELINE.neuronZoomMs);
+
+      // Phase 2 (2-3.8s): Zoom out + brain formation
+      const emergencePhase = Math.max(0, (elapsed - INTRO_TIMELINE.neuronZoomMs) / INTRO_TIMELINE.brainEmergenceMs);
+      const brainForm = easeOutCubic(Math.min(1, emergencePhase));
+
+      // Zoom level: starts at ~10x magnification, smoothly zooms out to 1x over 4s
+      const normalizedElapsed = Math.min(1, elapsed / INTRO_TIMELINE.durationMs);
+      const zoomLevel = 10 * (1 - easeInOutCubic(normalizedElapsed));
+      const zoomMax = Math.max(1, zoomLevel);
+
       const holdPhase = Math.min(
         1,
-        Math.max(0, (elapsed - INTRO_TIMELINE.brainFormMs) / INTRO_TIMELINE.holdMs),
+        Math.max(0, (elapsed - INTRO_TIMELINE.neuronZoomMs - INTRO_TIMELINE.brainEmergenceMs) / INTRO_TIMELINE.holdMs),
       );
-      const synapseAlpha =
-        Math.min(1, Math.max(0, (brainForm - 0.22) / 0.55)) *
-        (0.38 + holdPhase * 0.32 + Math.sin(t * 1.4) * 0.04);
-      const intensity = 0.68 + Math.sin(t * 1.5) * 0.04;
 
-      const letters = lettersFromBrainForm(brainForm);
-      const showSecond = secondLineFromBrainForm(brainForm);
+      // Synapse visibility: very prominent at start with strong electrical activity
+      // During zoom phase (0-2s), synapses are the main visual
+      const baseAlpha = Math.max(0.3, 1 - brainForm * 0.65); // Strong until brain fully forms
+      const electricalVariation = 0.7 + Math.sin(t * 2.6) * 0.3; // Strong pulsing variation
+      const synapseAlpha = baseAlpha * electricalVariation;
+
+      const intensity = 0.72 + Math.sin(t * 1.4) * 0.08;
+
+      const letters = lettersFromElapsed(elapsed);
+      const showSecond = secondLineFromElapsed(elapsed);
       if (letters !== lastLettersRef.current) {
         lastLettersRef.current = letters;
         setVisibleLetters(letters);
@@ -185,30 +205,62 @@ export function NeuralCinemaIntro() {
         setSecondLineVisible(showSecond);
       }
 
-      const drift = (1 - brainForm) * w * 0.012;
-      const cx = w * 0.5 + Math.sin(t * 0.28) * drift;
-      const cy = h * 0.46 + Math.cos(t * 0.24) * drift * 0.4;
-      const breathe = 0.96 + Math.sin(t * 0.85) * 0.03;
+      // Minimal drift to keep brain centered for seamless transition
+      // Text is centered at (0.5, 0.5), brain should match exactly
+      const drift = (1 - brainForm) * w * 0.006;
+      const cx = w * 0.5 + Math.sin(t * 0.15) * drift * 0.3;
+      const cy = h * 0.5 + Math.cos(t * 0.12) * drift * 0.2; // Centered vertically
+      const breathe = 0.98 + Math.sin(t * 0.55) * 0.015; // Subtle breathing
 
       drawCreamBackground(ctx, w, h);
-      drawBrainGlow(ctx, cx, cy, w, h, breathe, 0.06 + brainForm * 0.18, brainForm, true);
+
+      // Apply zoom transformation for deep neuron view
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.scale(zoomMax, zoomMax);
+      ctx.translate(-cx, -cy);
+
+      // Enhanced brain glow for visual impact
+      const glowIntensity = 0.12 + brainForm * 0.22; // Stronger glow as brain forms
+      drawBrainGlow(ctx, cx, cy, w, h, breathe, intensity * glowIntensity, brainForm, true);
+      // Draw detailed anatomical brain structure
       drawDetailedBrain(ctx, cx, cy, w, h, t, brainForm, true);
 
-      if (synapseAlpha > 0.04) {
+      // Draw synapses with detailed electrical activity
+      if (synapseAlpha > 0.01) {
         ctx.save();
-        clipBrainSilhouette(ctx, cx, cy, w, h, breathe);
+        // Clip only once tissue becomes visible (let synapses shine early)
+        if (brainForm > 0.2) {
+          clipBrainSilhouette(ctx, cx, cy, w, h, breathe);
+        }
+
+        // Two-pass synapse rendering for depth
+        // First pass: subtle background synapses
         drawConnectedSynapseNetwork(ctx, nodes, edges, w, h, {
-          alpha: synapseAlpha,
-          lineWidth: 0.48,
-          t,
+          alpha: synapseAlpha * 0.35,
+          lineWidth: 0.95,
+          t: t * 1.8,
           showPotentials: false,
           lightMode: true,
-          embedded: true,
+          embedded: false,
         });
+
+        // Second pass: prominent action potentials with fast travel
+        drawConnectedSynapseNetwork(ctx, nodes, edges, w, h, {
+          alpha: synapseAlpha * 0.85, // Much brighter potentials
+          lineWidth: 1.2 - brainForm * 0.4,
+          t: t * 3.2, // Very fast pulse animation
+          showPotentials: true,
+          lightMode: true,
+          embedded: brainForm > 0.6,
+        });
+
         ctx.restore();
       }
 
       drawDetailedBrain(ctx, cx, cy, w, h, t, brainForm, true);
+
+      ctx.restore();
 
       if (elapsed < INTRO_TIMELINE.durationMs + INTRO_TIMELINE.handoffFadeMs + 120) {
         raf = requestAnimationFrame(frame);

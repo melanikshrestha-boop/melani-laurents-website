@@ -252,8 +252,9 @@ body {
   overflow: hidden;
   --intro-handoff-p: 0;
   --intro-cream: #f0ede5;
+  --intro-void: #030508;
   --intro-title-ink: #000000;
-  --intro-title-paper: #e8e6e3;
+  --intro-title-paper: #ffffff;
   background: var(--intro-cream);
 }
 
@@ -261,7 +262,7 @@ body {
   background: color-mix(
     in srgb,
     var(--intro-cream) calc((1 - var(--intro-handoff-p)) * 100%),
-    transparent
+    var(--intro-void) calc(var(--intro-handoff-p) * 100%)
   );
 }
 
@@ -382,7 +383,7 @@ body {
   color: color-mix(
     in srgb,
     var(--intro-title-ink) calc((1 - var(--intro-handoff-p)) * 72%),
-    rgba(232, 230, 227, calc(var(--intro-handoff-p) * 0.58 + 0.42))
+    rgba(255, 255, 255, calc(var(--intro-handoff-p) * 0.72))
   );
 }
 
@@ -407,6 +408,23 @@ body {
 
 .intro-shell--handoff .intro-shell__title-wrap {
   opacity: calc(1 - var(--intro-handoff-p));
+}
+
+/* Title color transition during handoff: cream black → void white */
+.intro-shell--handoff .title-char--cream {
+  color: color-mix(
+    in srgb,
+    #000000 calc((1 - var(--intro-handoff-p)) * 100%),
+    #ffffff calc(var(--intro-handoff-p) * 100%)
+  );
+}
+
+.intro-shell--handoff .title-char--cream.title-char--gold {
+  color: color-mix(
+    in srgb,
+    var(--hub-champagne) calc((1 - var(--intro-handoff-p)) * 100%),
+    #ffffff calc(var(--intro-handoff-p) * 100%)
+  );
 }
 
 .title-char--intro-pending {
