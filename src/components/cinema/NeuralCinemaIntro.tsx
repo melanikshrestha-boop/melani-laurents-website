@@ -305,7 +305,15 @@ export function NeuralCinemaIntro() {
             </span>
             <span className="hub-page__nav-item">
               <span className="hub-page__sep"> · </span>
-              contact
+              daily
+            </span>
+            <span className="hub-page__nav-item">
+              <span className="hub-page__sep"> · </span>
+              art
+            </span>
+            <span className="hub-page__nav-item hub-page__nav-item--contact">
+              <span className="hub-page__sep"> · </span>
+              <span className="hub-page__nav-contact">contact</span>
             </span>
           </nav>
         </footer>

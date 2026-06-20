@@ -50,16 +50,23 @@ export const siteConfig = {
       href: "https://x.com/MelaniShrestha",
     },
   ],
-  /** Three sections + contact. */
+  /** Hub hero portals — podcast first, contact rendered separately in HomeHub. */
   hubPortals: [
-    { label: "Art", href: "/art", tagline: "Visual signal · cinema" },
-    { label: "Daily", href: "/daily", tagline: "Neural log · daily", comingSoon: true },
+    {
+      label: "Podcast",
+      href: "https://www.youtube.com/@ResetYourMind.-fb5nn",
+      external: true,
+      tagline: "Melani Shrestha Laurent Show",
+    },
     { label: "Research", href: "/research", tagline: "BCI · neurotech · med-tech" },
+    { label: "Daily", href: "/daily", tagline: "Neural log · daily", comingSoon: true },
+    { label: "Art", href: "/photography", tagline: "Visual signal · cinema" },
   ],
   nav: [
-    { label: "Art", href: "/art" },
-    { label: "Daily", href: "/daily" },
+    { label: "Podcast", href: "https://www.youtube.com/@ResetYourMind.-fb5nn" },
     { label: "Research", href: "/research" },
+    { label: "Daily", href: "/daily" },
+    { label: "Art", href: "/photography" },
     { label: "Contact", href: "/contact" },
   ],
 } as const;

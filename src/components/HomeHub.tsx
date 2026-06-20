@@ -128,7 +128,17 @@ export function HomeHub() {
               style={{ animationDelay: `${1.15 + i * 0.18}s` }}
             >
               {i > 0 ? <span className="hub-page__sep"> · </span> : null}
-              <Link href={portal.href}>{portal.label}</Link>
+              {"external" in portal && portal.external ? (
+                <a
+                  href={portal.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {portal.label}
+                </a>
+              ) : (
+                <Link href={portal.href}>{portal.label}</Link>
+              )}
             </span>
           ))}
           <span
