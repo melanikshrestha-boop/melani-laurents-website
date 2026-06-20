@@ -14,10 +14,10 @@ export const siteConfig = {
   photographyPath: "/photography",
   /** Weekly interview show — Melani (YouTube + audio feeds). */
   podcastTitle: "Melani",
-  podcastTagline: "Neuroscience & neurotechnology — from lab to bedside",
   podcastCadence: "1x/week",
   podcastDescription:
-    "Melani interviews neurosurgeons, neuroscientists, and BCI builders on the frontier of brain-computer interfaces — in-ear EEG, neural implants, and what it takes to bring neurotech to clinic.",
+    "A conversational show about where neuroscience is going: neurotech, brain interfaces, consciousness, AI, robotics, human-made art, medicine, history, psychology, philosophy, and what all of it says about being human.",
+  podcastSlogan: "everything backed by neuroscience",
   podcastUrl: "https://www.youtube.com/@ResetYourMind.-fb5nn",
   linkedinUrl: "https://www.linkedin.com/in/melanilaurents/",
   socialLinks: [

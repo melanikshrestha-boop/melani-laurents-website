@@ -2246,6 +2246,10 @@ body {
   background: color-mix(in srgb, var(--archive-cream, #f0ede5) 52%, white);
 }
 
+.hub-archive__callout-body + .hub-archive__callout-title {
+  margin: 0.85rem 0 0;
+}
+
 .hub-archive__callout-title {
   margin: 0 0 0.65rem;
   max-width: 36rem;

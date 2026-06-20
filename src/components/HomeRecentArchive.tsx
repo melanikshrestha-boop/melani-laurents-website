@@ -125,8 +125,8 @@ export function HomeRecentArchive() {
               rel="noopener noreferrer"
               className="hub-archive__callout-card"
             >
-              <p className="hub-archive__callout-title">{siteConfig.podcastTagline}</p>
               <p className="hub-archive__callout-body">{siteConfig.podcastDescription}</p>
+              <p className="hub-archive__callout-title">{siteConfig.podcastSlogan}</p>
               <span className="hub-archive__callout-arrow" aria-hidden>
                 →
               </span>
