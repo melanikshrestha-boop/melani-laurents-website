@@ -28,5 +28,5 @@ export const photographyVibes = [
   { label: "mood", value: "ethereal meets editorial" },
   { label: "light", value: "golden hour obsessed" },
   { label: "gear", value: "whatever catches the moment" },
-  { label: "booking", value: "DM on IG @melanikirstein" },
+  { label: "booking", value: "DM on IG @melanilaurents" },
 ];

@@ -1,6 +1,6 @@
 # Melani Laurent S — Personal Website
 
-Personal site for [melanikirstein.com](https://melanikirstein.com) — BCI research, neurotech, art, photography, and daily writing.
+Personal site for [MelaniLaurentS.com](https://melanilaurents.com) — BCI research, neurotech, art, photography, and daily writing.
 
 Built with [Next.js](https://nextjs.org).
 

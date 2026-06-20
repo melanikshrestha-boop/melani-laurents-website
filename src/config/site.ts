@@ -1,10 +1,11 @@
 export const siteConfig = {
   name: "Melani Laurent S.",
-  url: "https://melanikirstein.com",
+  domain: "melanilaurents.com",
+  url: "https://melanilaurents.com",
   title: "Melani Laurent S.",
   description:
     "BCI researcher and neurotech builder — in-ear EEG, neural interfaces, clinical cinema, and art.",
-  email: "hello@melanikirstein.com",
+  email: "hello@melanilaurents.com",
   location: "LA / SF / NYC",
   /** Pull quote on the dark hub hero — neuroscience ethos. */
   heroQuote:
@@ -36,7 +37,7 @@ export const siteConfig = {
     {
       id: "tiktok",
       label: "TikTok",
-      href: "https://www.tiktok.com/@melanikirstein",
+      href: "https://www.tiktok.com/@melanilaurents",
     },
     {
       id: "youtube",

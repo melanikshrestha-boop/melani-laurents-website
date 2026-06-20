@@ -95,7 +95,7 @@ export function ContactExperience() {
     const body = encodeURIComponent(
       `Name: ${fields.name}\nBuilding: ${fields.build}\nWhy now: ${fields.why}`,
     );
-    window.location.href = `mailto:${siteConfig.email}?subject=${encodeURIComponent("Signal from melanikirstein.com")}&body=${body}`;
+    window.location.href = `mailto:${siteConfig.email}?subject=${encodeURIComponent(`Signal from ${siteConfig.domain}`)}&body=${body}`;
     setPhase("sent");
   }
 
