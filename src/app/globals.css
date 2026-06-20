@@ -400,37 +400,33 @@ body {
   );
 }
 
-/* Intro name reveal — kinetic letters, mirrors hub title */
-.intro-name {
-  margin: 0;
-  text-align: center;
+/* Intro name reveal — kinetic letters, same per-char structure as hub title */
+.intro-shell__title-wrap {
   width: 100%;
 }
 
-.intro-name__line {
-  overflow: visible;
+.intro-shell--handoff .intro-shell__title-wrap {
+  opacity: calc(1 - var(--intro-handoff-p));
 }
 
-.intro-name__char {
-  display: inline-block;
+.title-char--intro-pending {
   opacity: 0;
   transform: translateY(0.45em) scale(0.82);
   filter: blur(4px);
-  transition: none;
 }
 
-.intro-name__char--in {
+.title-char--intro-in {
   animation: intro-letter-in 520ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: calc(var(--char-i, 0) * 35ms);
 }
 
-.intro-name__lastname {
+.title-char--intro-line2-pending {
   opacity: 0;
   transform: translateY(0.35em);
   filter: blur(3px);
 }
 
-.intro-name__lastname--in {
+.title-char--intro-line2-in {
   animation: intro-lastname-in 780ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -461,29 +457,6 @@ body {
     transform: translateY(0);
     filter: blur(0);
   }
-}
-
-/* Intro title — black on cream, morphs to white hub hero during handoff */
-.intro-shell .hub-page__title-line {
-  color: color-mix(
-    in srgb,
-    var(--intro-title-ink) calc((1 - var(--intro-handoff-p)) * 100%),
-    var(--intro-title-paper)
-  );
-  transition: color 1200ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.intro-shell .intro-name__char--in,
-.intro-shell .intro-name__lastname--in {
-  color: color-mix(
-    in srgb,
-    var(--intro-title-ink) calc((1 - var(--intro-handoff-p)) * 100%),
-    var(--intro-title-paper)
-  );
-}
-
-.intro-shell .intro-name__gold {
-  color: var(--hub-champagne);
 }
 
 /* Carlo-style boot → Interstellar mission HUD */
@@ -1142,8 +1115,8 @@ body {
 
 .hub-page--intro-handoff .hub-page__title {
   visibility: visible;
-  opacity: 0;
-  animation: hub-handoff-reveal 900ms cubic-bezier(0.22, 1, 0.36, 1) 60ms forwards;
+  opacity: var(--intro-handoff-p, 0);
+  animation: none;
 }
 
 .hub-page--intro-playing .hub-page__quote {

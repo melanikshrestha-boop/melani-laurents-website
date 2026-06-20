@@ -1,6 +1,12 @@
 "use client";
 
-import { useCallback, useRef, useState, type PointerEvent } from "react";
+import {
+  useCallback,
+  useRef,
+  useState,
+  type CSSProperties,
+  type PointerEvent,
+} from "react";
 
 type TitleVariant = "hub" | "cream";
 
@@ -17,6 +23,34 @@ interface InteractiveTitleLettersProps {
   lineClassName?: string;
   charClassName?: string;
   ariaLabel?: string;
+  /** Cinema intro — reveal line 1 letter-by-letter (0–6). Omit for fully visible. */
+  firstLineVisibleCount?: number;
+  /** Cinema intro — reveal line 2 as a block. Omit for fully visible. */
+  secondLineVisible?: boolean;
+  /** Disable hover/touch shimmer (intro overlay). */
+  interactive?: boolean;
+}
+
+function introCharClass(
+  lineIndex: number,
+  charIndexInLine: number,
+  firstLineVisibleCount: number | undefined,
+  secondLineVisible: boolean | undefined,
+): string {
+  if (firstLineVisibleCount === undefined && secondLineVisible === undefined) {
+    return "";
+  }
+
+  if (lineIndex === 0) {
+    const count = firstLineVisibleCount ?? TITLE_LINES[0][0].text.length;
+    return charIndexInLine < count
+      ? "title-char--intro-in"
+      : "title-char--intro-pending";
+  }
+
+  return secondLineVisible
+    ? "title-char--intro-line2-in"
+    : "title-char--intro-line2-pending";
 }
 
 /** Per-letter shimmer on hover/touch — gold→white gradient follows pointer. */
@@ -26,6 +60,9 @@ export function InteractiveTitleLetters({
   lineClassName = "",
   charClassName = "",
   ariaLabel = "Melani Laurent S.",
+  firstLineVisibleCount,
+  secondLineVisible,
+  interactive = true,
 }: InteractiveTitleLettersProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [pointer, setPointer] = useState({ x: 50, y: 50 });
@@ -87,26 +124,49 @@ export function InteractiveTitleLetters({
         <span key={lineIndex} className={lineClassName}>
           {chars
             .filter((c) => c.lineIndex === lineIndex)
-            .map(({ char, globalIndex, isGold }) => (
-              <span
-                key={globalIndex}
-                className={[
-                  "title-char",
-                  `title-char--${variant}`,
-                  isGold ? "title-char--gold" : "",
-                  activeIndex === globalIndex ? "title-char--active" : "",
-                  charClassName,
-                ]
-                  .filter(Boolean)
-                  .join(" ")}
-                onPointerMove={(e) => handlePointerMove(e, globalIndex)}
-                onPointerLeave={handlePointerLeave}
-                onPointerDown={(e) => handlePointerDown(e, globalIndex)}
-                aria-hidden={char === " "}
-              >
-                {char === " " ? "\u00A0" : char}
-              </span>
-            ))}
+            .map(({ char, globalIndex, isGold }, charIndexInLine) => {
+              const introClass = introCharClass(
+                lineIndex,
+                charIndexInLine,
+                firstLineVisibleCount,
+                secondLineVisible,
+              );
+              const isIntroPending = introClass.includes("pending");
+              const pointerProps = interactive
+                ? {
+                    onPointerMove: (e: PointerEvent<HTMLSpanElement>) =>
+                      handlePointerMove(e, globalIndex),
+                    onPointerLeave: handlePointerLeave,
+                    onPointerDown: (e: PointerEvent<HTMLSpanElement>) =>
+                      handlePointerDown(e, globalIndex),
+                  }
+                : {};
+
+              return (
+                <span
+                  key={globalIndex}
+                  className={[
+                    "title-char",
+                    `title-char--${variant}`,
+                    isGold ? "title-char--gold" : "",
+                    activeIndex === globalIndex ? "title-char--active" : "",
+                    introClass,
+                    charClassName,
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
+                  style={
+                    lineIndex === 0 && introClass === "title-char--intro-in"
+                      ? ({ "--char-i": charIndexInLine } as CSSProperties)
+                      : undefined
+                  }
+                  {...pointerProps}
+                  aria-hidden={char === " " || isIntroPending}
+                >
+                  {char === " " ? "\u00A0" : char}
+                </span>
+              );
+            })}
         </span>
       ))}
     </h1>

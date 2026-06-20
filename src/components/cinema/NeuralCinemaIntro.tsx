@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
+import { InteractiveTitleLetters } from "@/components/InteractiveTitleLetters";
 import {
   buildNeuralMesh,
   clipBrainSilhouette,
@@ -87,13 +88,18 @@ export function NeuralCinemaIntro() {
     window.dispatchEvent(new Event(INTRO_HANDOFF_START_EVENT));
 
     const handoffStart = performance.now();
+    document.documentElement.style.setProperty("--intro-handoff-p", "0");
+
     const tickHandoff = (now: number) => {
       const raw = Math.min(1, (now - handoffStart) / INTRO_TIMELINE.handoffFadeMs);
-      setHandoffProgress(easeInOutCubic(raw));
+      const p = easeInOutCubic(raw);
+      setHandoffProgress(p);
+      document.documentElement.style.setProperty("--intro-handoff-p", String(p));
       if (raw < 1) {
         requestAnimationFrame(tickHandoff);
       } else {
         setVisible(false);
+        document.documentElement.style.removeProperty("--intro-handoff-p");
         sessionStorage.setItem(INTRO_KEY, "1");
         window.dispatchEvent(new Event(INTRO_COMPLETE_EVENT));
       }
@@ -264,34 +270,16 @@ export function NeuralCinemaIntro() {
         </header>
 
         <div className="intro-shell__center hub-page__center">
-          <h1
-            className="hub-page__title intro-name"
-            aria-label="Melani Laurent S."
-          >
-            <span className="hub-page__title-line intro-name__line">
-              {FIRST_NAME.split("").map((char, i) => (
-                <span
-                  key={`${char}-${i}`}
-                  className={`intro-name__char${
-                    i < visibleLetters ? " intro-name__char--in" : ""
-                  }`}
-                  style={{ "--char-i": i } as CSSProperties}
-                  aria-hidden={i >= visibleLetters}
-                >
-                  {char}
-                </span>
-              ))}
-            </span>
-            <span
-              className={`hub-page__title-line intro-name__line intro-name__lastname${
-                secondLineVisible ? " intro-name__lastname--in" : ""
-              }`}
-              aria-hidden={!secondLineVisible}
-            >
-              <span className="intro-name__lastname-text">LAURENT </span>
-              <span className="intro-name__gold">S.</span>
-            </span>
-          </h1>
+          <div className="intro-shell__title-wrap">
+            <InteractiveTitleLetters
+              variant="cream"
+              className="hub-page__title"
+              lineClassName="hub-page__title-line"
+              firstLineVisibleCount={visibleLetters}
+              secondLineVisible={secondLineVisible}
+              interactive={false}
+            />
+          </div>
 
           <div className="intro-shell__quote-slot hub-page__quote">
             {INTRO_QUOTES.map((quote, index) => {
