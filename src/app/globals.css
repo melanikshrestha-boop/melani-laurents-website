@@ -1914,6 +1914,12 @@ body {
   );
   position: relative;
   isolation: isolate;
+  /* Document-wide void → cream — matches fixed backdrop at every scroll depth */
+  background: color-mix(
+    in srgb,
+    #030508 calc((1 - var(--scroll-p)) * 100%),
+    #f0ede5
+  );
 }
 
 .home-sections::before {
@@ -2059,18 +2065,18 @@ body {
   position: relative;
   z-index: 15;
   min-height: 100svh;
-  background: var(--archive-cream);
+  /* Void → cream morph is painted by .home-sections::before only — no local fill */
+  background: transparent;
   color: var(--archive-ink);
   font-family: var(--font-share-tech-mono), var(--font-jetbrains-mono), ui-monospace,
     monospace;
-  isolation: isolate;
 }
 
 /* Home archive — scroll below hub hero */
 .hub-archive {
   position: relative;
   z-index: 1;
-  background: var(--archive-cream, var(--hub-cream));
+  background: transparent;
 }
 
 .hub-archive__inner {
