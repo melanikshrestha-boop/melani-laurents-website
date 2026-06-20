@@ -2267,22 +2267,6 @@ body {
   color: var(--archive-muted);
 }
 
-.hub-archive__podcast-lede {
-  margin: 0;
-  max-width: 36rem;
-  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
-  font-size: 0.6rem;
-  font-weight: 500;
-  line-height: 1.65;
-  letter-spacing: 0.03em;
-  color: var(--archive-muted);
-  transition: color 200ms ease;
-}
-
-.hub-archive__podcast-card:hover .hub-archive__podcast-lede {
-  color: var(--archive-ink);
-}
-
 .hub-archive__podcast-listen {
   display: inline-block;
   margin-top: 0.85rem;

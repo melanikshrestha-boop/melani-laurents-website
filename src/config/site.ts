@@ -15,8 +15,8 @@ export const siteConfig = {
     "The consolidation of memory is the art of writing about what you listen to, read about, or conversed with other people on a consistent basis. Read these if you want incremental daily learning on a variety of topics (always backed by neuroscience) as I do, or just watch my neuroplasticity grow.",
   artPath: "/art",
   photographyPath: "/photography",
-  /** Weekly interview show — Melani Shrestha Laurent Show (YouTube + audio feeds). */
-  podcastTitle: "Melani Shrestha Laurent Show",
+  /** Weekly interview show — Melani (YouTube + audio feeds). */
+  podcastTitle: "Melani",
   podcastTagline: "Neuroscience & neurotechnology — from lab to bedside",
   podcastCadence: "1x/week",
   podcastDescription:
@@ -56,7 +56,7 @@ export const siteConfig = {
       label: "Podcast",
       href: "https://www.youtube.com/@ResetYourMind.-fb5nn",
       external: true,
-      tagline: "Melani Shrestha Laurent Show",
+      tagline: "Melani",
     },
     { label: "Research", href: "/research", tagline: "BCI · neurotech · med-tech" },
     { label: "Daily", href: "/daily", tagline: "Neural log · daily", comingSoon: true },

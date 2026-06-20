@@ -112,6 +112,7 @@ export function HomeRecentArchive() {
               <h2 className="hub-archive__title">Podcast: {siteConfig.podcastTitle}</h2>
               <span className="hub-archive__cadence">{siteConfig.podcastCadence}</span>
             </header>
+            <p className="daily-callout daily-callout--archive">{siteConfig.podcastDescription}</p>
             <a
               href={siteConfig.podcastUrl}
               target="_blank"
@@ -119,7 +120,6 @@ export function HomeRecentArchive() {
               className="hub-archive__podcast-card"
             >
               <p className="hub-archive__podcast-tagline">{siteConfig.podcastTagline}</p>
-              <p className="hub-archive__podcast-lede">{siteConfig.podcastDescription}</p>
               <span className="hub-archive__podcast-listen">Listen →</span>
             </a>
           </div>
