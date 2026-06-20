@@ -6,12 +6,12 @@
   --hub-ink: #000000;
   --hub-accent: #ef4423;
   --hub-navy: #1a2b3c;
-  --hub-contact: #7eb8da;
+  --hub-contact: var(--hub-champagne);
   --hub-muted: #6b6358;
   --hub-ink-rgb: 0, 0, 0;
   --hub-accent-rgb: 239, 68, 35;
   --hub-navy-rgb: 26, 43, 60;
-  --hub-contact-rgb: 126, 184, 218;
+  --hub-contact-rgb: 201, 169, 98;
   --hub-muted-rgb: 107, 99, 88;
   --hub-glow: rgba(239, 68, 35, 0.08);
   --hub-glow-strong: rgba(239, 68, 35, 0.14);
@@ -1542,13 +1542,13 @@ body {
 }
 
 .hub-page__quote p {
-  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
-  font-size: clamp(0.95rem, 2.2vw, 1.15rem);
-  font-style: italic;
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-size: clamp(0.88rem, 2vw, 1.05rem);
+  font-style: normal;
   font-weight: 400;
-  line-height: 1.65;
-  letter-spacing: 0.01em;
-  color: rgba(232, 230, 227, 0.58);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  color: rgba(232, 230, 227, 0.62);
 }
 
 .hub-page__nav {
@@ -1607,10 +1607,11 @@ body {
 .hub-page__nav-contact {
   color: var(--hub-contact) !important;
   font-weight: 500;
+  transition: color 320ms ease;
 }
 
 .hub-page__nav-contact:hover {
-  color: color-mix(in srgb, var(--hub-contact) 72%, white) !important;
+  color: var(--hub-champagne-bright) !important;
 }
 
 .hub-page__nav-item {
@@ -1886,8 +1887,8 @@ body {
   );
   --hub-contact-morph: color-mix(
     in srgb,
-    #7eb8da calc((1 - var(--scroll-p)) * 100%),
-    #3d7fa8
+    var(--hub-champagne-bright) calc((1 - var(--scroll-p)) * 100%),
+    #8a7340
   );
   --hub-panel-fill: color-mix(
     in srgb,
@@ -1998,10 +1999,15 @@ body {
 
 .home-sections .hub-page__nav-contact {
   color: var(--hub-contact-morph) !important;
+  transition: color 320ms ease;
 }
 
 .home-sections .hub-page__nav-contact:hover {
-  color: color-mix(in srgb, var(--hub-contact-morph) 72%, white) !important;
+  color: color-mix(
+    in srgb,
+    var(--hub-contact-morph) 75%,
+    var(--hub-champagne-bright)
+  ) !important;
 }
 
 .home-sections .hub-page__center::before {

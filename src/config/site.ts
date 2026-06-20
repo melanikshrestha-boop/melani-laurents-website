@@ -25,9 +25,19 @@ export const siteConfig = {
   linkedinUrl: "https://www.linkedin.com/in/melanilaurents/",
   socialLinks: [
     {
+      id: "x",
+      label: "X",
+      href: "https://x.com/MelaniShrestha",
+    },
+    {
       id: "linkedin",
       label: "LinkedIn",
       href: "https://www.linkedin.com/in/melanilaurents/",
+    },
+    {
+      id: "github",
+      label: "GitHub",
+      href: "https://github.com/melanikirstein",
     },
     {
       id: "instagram",
@@ -35,19 +45,9 @@ export const siteConfig = {
       href: "https://www.instagram.com/melanilaurents/",
     },
     {
-      id: "tiktok",
-      label: "TikTok",
-      href: "https://www.tiktok.com/@melanilaurents",
-    },
-    {
       id: "youtube",
       label: "YouTube",
       href: "https://www.youtube.com/@ResetYourMind.-fb5nn",
-    },
-    {
-      id: "x",
-      label: "X",
-      href: "https://x.com/MelaniShrestha",
     },
   ],
   /** Hub hero portals — podcast first, contact rendered separately in HomeHub. */
