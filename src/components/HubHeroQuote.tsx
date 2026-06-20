@@ -2,27 +2,41 @@
 
 import { useEffect, useState } from "react";
 import { siteConfig } from "@/config/site";
-import { INTRO_KEY } from "@/components/cinema/NeuralCinemaIntro";
+import {
+  INTRO_COMPLETE_EVENT,
+  INTRO_HANDOFF_START_EVENT,
+  INTRO_KEY,
+} from "@/components/cinema/NeuralCinemaIntro";
 
-/** Pull quote on hub — hidden while intro plays, shown after first visit. */
+type QuotePhase = "hidden" | "handoff" | "visible";
+
+/** Pull quote on hub — crossfades in as intro quote dissolves. */
 export function HubHeroQuote() {
-  const [visible, setVisible] = useState(false);
+  const [phase, setPhase] = useState<QuotePhase>("hidden");
 
   useEffect(() => {
     const reduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
-    const check = () => {
-      setVisible(reduced || sessionStorage.getItem(INTRO_KEY) === "1");
-    };
+    if (reduced || sessionStorage.getItem(INTRO_KEY) === "1") {
+      setPhase("visible");
+      return;
+    }
 
-    check();
-    window.addEventListener("mls-intro-complete", check);
-    return () => window.removeEventListener("mls-intro-complete", check);
+    const onHandoff = () => setPhase("handoff");
+    const onComplete = () => setPhase("visible");
+
+    window.addEventListener(INTRO_HANDOFF_START_EVENT, onHandoff);
+    window.addEventListener(INTRO_COMPLETE_EVENT, onComplete);
+
+    return () => {
+      window.removeEventListener(INTRO_HANDOFF_START_EVENT, onHandoff);
+      window.removeEventListener(INTRO_COMPLETE_EVENT, onComplete);
+    };
   }, []);
 
-  if (!visible) return null;
+  if (phase === "hidden") return null;
 
   return (
     <blockquote className="hub-page__quote">

@@ -251,6 +251,11 @@ body {
   background: #030508;
 }
 
+.intro-shell--handoff {
+  background: transparent;
+  transition: background 700ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .intro-shell__stage {
   pointer-events: none;
   position: absolute;
@@ -262,38 +267,99 @@ body {
   padding: clamp(1rem, 2.5vw, 1.75rem) clamp(1.25rem, 3vw, 2.25rem);
 }
 
+.intro-shell__mirror {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.intro-shell__mirror-mark {
+  height: clamp(1.35rem, 3.2vw, 1.65rem);
+  width: clamp(3.5rem, 9vw, 4.5rem);
+}
+
+.intro-shell__mirror-socials {
+  height: 1.25rem;
+  width: clamp(5rem, 14vw, 7rem);
+}
+
 .intro-shell__center {
   position: relative;
   z-index: 3;
   flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 1.5rem 0;
-  transition:
-    opacity 580ms cubic-bezier(0.4, 0, 0.2, 1),
-    transform 580ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.intro-shell--fizzle {
-  opacity: 0;
-  filter: blur(6px) brightness(1.08);
-  transition:
-    opacity 580ms cubic-bezier(0.4, 0, 0.2, 1),
-    filter 580ms cubic-bezier(0.4, 0, 0.2, 1);
+.intro-shell .hub-page__center::before {
+  content: none;
 }
 
-.intro-shell__canvas--fizzle {
-  opacity: 0;
-  transform: scale(1.025);
-  transition:
-    opacity 580ms cubic-bezier(0.4, 0, 0.2, 1),
-    transform 580ms cubic-bezier(0.4, 0, 0.2, 1);
+.intro-shell__vignette {
+  transition: opacity 420ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.intro-shell__center--handoff {
+.intro-shell__canvas {
+  transition: opacity 700ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.intro-shell__canvas--handoff {
   opacity: 0;
-  transform: scale(1.008);
+}
+
+.intro-shell__skip {
+  transition: opacity 280ms ease;
+}
+
+.intro-shell__quote-slot {
+  position: relative;
+  min-height: 0;
+  margin-top: clamp(1.25rem, 3vh, 2rem);
+}
+
+.intro-shell__quote {
+  margin: 0;
+  padding: 0;
+  border-left: none;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(0.35rem);
+  transition:
+    opacity 520ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 520ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.intro-shell__quote--active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.intro-shell__quote--handoff {
+  opacity: 0;
+  transform: translateY(-0.25rem);
+  transition-duration: 380ms;
+}
+
+.intro-shell__quote p {
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+  font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  color: rgba(232, 230, 227, 0.58);
+}
+
+.intro-shell__quote-attr {
+  margin: 0.75rem 0 0;
+  font-family: var(--font-share-tech-mono), var(--font-jetbrains-mono), ui-monospace,
+    monospace;
+  font-size: 0.52rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(232, 230, 227, 0.38);
 }
 
 /* Intro name reveal — kinetic letters, mirrors hub title */
@@ -994,7 +1060,7 @@ body {
 
 .hub-page__brain-field {
   opacity: calc(0.22 * (1 - var(--scroll-p, 0) * 0.88));
-  transition: opacity 120ms linear;
+  transition: opacity 780ms cubic-bezier(0.4, 0, 0.2, 1);
   -webkit-mask-image: radial-gradient(
     ellipse 58% 48% at 50% 46%,
     transparent 0%,
@@ -1007,6 +1073,53 @@ body {
     rgba(0, 0, 0, 0.12) 52%,
     black 88%
   );
+}
+
+/* Intro → hub handoff — hub lives underneath, reveals in sync with intro dissolve */
+.hub-page--intro-playing .hub-page__brain-field {
+  opacity: 0;
+}
+
+.hub-page--intro-handoff .hub-page__brain-field {
+  opacity: calc(0.22 * (1 - var(--scroll-p, 0) * 0.88));
+}
+
+.hub-page--intro-playing .hub-page__title,
+.hub-page--intro-handoff .hub-page__title {
+  visibility: hidden;
+}
+
+.hub-page--intro-playing .hub-page__quote {
+  visibility: hidden;
+}
+
+.hub-page--intro-handoff .hub-page__quote {
+  visibility: visible;
+  opacity: 0;
+  animation: hub-handoff-reveal 480ms cubic-bezier(0.4, 0, 0.2, 1) 280ms forwards;
+}
+
+.hub-page--intro-handoff .hub-page__header,
+.hub-page--intro-handoff .hub-page__footer,
+.hub-page--intro-handoff .hub-page__rail {
+  opacity: 0;
+  animation: hub-handoff-reveal 520ms cubic-bezier(0.4, 0, 0.2, 1) 420ms forwards;
+}
+
+.hub-page--intro-playing .hub-page__header,
+.hub-page--intro-playing .hub-page__footer,
+.hub-page--intro-playing .hub-page__rail,
+.hub-page--intro-playing .hub-page__hint {
+  opacity: 0;
+}
+
+@keyframes hub-handoff-reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .hub-page__hint {

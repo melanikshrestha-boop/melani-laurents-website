@@ -3,6 +3,11 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { siteConfig } from "@/config/site";
+import {
+  INTRO_COMPLETE_EVENT,
+  INTRO_HANDOFF_START_EVENT,
+  INTRO_KEY,
+} from "@/components/cinema/NeuralCinemaIntro";
 import { HubHeroQuote } from "./HubHeroQuote";
 import { InteractiveTitleLetters } from "./InteractiveTitleLetters";
 import { MelaniSignature } from "./MelaniSignature";
@@ -12,11 +17,37 @@ import { SocialIcons } from "./SocialIcons";
 
 const HUB_HINT_KEY = "hub-interacted";
 
+type IntroPhase = "playing" | "handoff" | "done";
+
 /** Carlo Doroff–style editorial hub — dark void hero morphs to cream on scroll. */
 export function HomeHub() {
   const [hintVisible, setHintVisible] = useState(false);
+  const [introPhase, setIntroPhase] = useState<IntroPhase>("playing");
 
   useEffect(() => {
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (reduced || sessionStorage.getItem(INTRO_KEY) === "1") {
+      setIntroPhase("done");
+      return;
+    }
+
+    const onHandoff = () => setIntroPhase("handoff");
+    const onComplete = () => setIntroPhase("done");
+
+    window.addEventListener(INTRO_HANDOFF_START_EVENT, onHandoff);
+    window.addEventListener(INTRO_COMPLETE_EVENT, onComplete);
+
+    return () => {
+      window.removeEventListener(INTRO_HANDOFF_START_EVENT, onHandoff);
+      window.removeEventListener(INTRO_COMPLETE_EVENT, onComplete);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (introPhase !== "done") return;
     if (sessionStorage.getItem(HUB_HINT_KEY)) return;
     setHintVisible(true);
 
@@ -36,10 +67,17 @@ export function HomeHub() {
       window.removeEventListener("touchstart", dismiss);
       window.removeEventListener("keydown", dismiss);
     };
-  }, []);
+  }, [introPhase]);
+
+  const introClass =
+    introPhase === "playing"
+      ? " hub-page--intro-playing"
+      : introPhase === "handoff"
+        ? " hub-page--intro-handoff"
+        : "";
 
   return (
-    <section className="hub-page">
+    <section className={`hub-page${introClass}`}>
       <NeurotechBrainField variant="hub" active />
       <div className="hub-page__rail hub-page__rail--left" aria-hidden />
       <div className="hub-page__rail hub-page__rail--right" aria-hidden />

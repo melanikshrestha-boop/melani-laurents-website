@@ -549,6 +549,8 @@ export function drawConnectedSynapseNetwork(
     centerFade?: { cx: number; cy: number; rx: number; ry: number };
     scale?: number;
     lightMode?: boolean;
+    /** Tissue-embedded synapses — thin wires, tiny junctions, no glowing orbs. */
+    embedded?: boolean;
   } = {},
 ): void {
   const alphaMul = opts.alpha ?? 1;
@@ -558,6 +560,7 @@ export function drawConnectedSynapseNetwork(
   const t = opts.t ?? 0;
   const showPotentials = opts.showPotentials ?? true;
   const lightMode = opts.lightMode ?? false;
+  const embedded = opts.embedded ?? false;
 
   for (const edge of edges) {
     const a = nodes[edge.a];
@@ -569,11 +572,15 @@ export function drawConnectedSynapseNetwork(
     const alpha = connectionAlpha(ax, ay, bx, by, fade, w, h, alphaMul);
     drawSynapticWire(ctx, ax, ay, bx, by, lineRgb, alpha, lineWidth);
 
-    if (showPotentials && alpha >= 0.04) {
+    if (showPotentials && alpha >= 0.04 && !embedded) {
       const p = (t * edge.speed + edge.offset) % 1;
       const pr = (3.2 / (opts.scale ?? 1)) * (0.55 + Math.sin(p * Math.PI) * 0.45);
       drawPotentialPacket(ctx, ax, ay, bx, by, p, alpha, pr, lightMode);
       drawPotentialPacket(ctx, ax, ay, bx, by, (1 - p + 0.5) % 1, alpha * 0.72, pr * 0.82, lightMode);
+    } else if (showPotentials && alpha >= 0.04 && embedded) {
+      const p = (t * edge.speed + edge.offset) % 1;
+      const pr = (1.8 / (opts.scale ?? 1)) * (0.4 + Math.sin(p * Math.PI) * 0.35);
+      drawPotentialPacket(ctx, ax, ay, bx, by, p, alpha * 0.55, pr, lightMode);
     }
   }
 
@@ -585,16 +592,20 @@ export function drawConnectedSynapseNetwork(
       nodeAlpha *= hubCenterFade(node.x, node.y, fade.cx, fade.cy, fade.rx, fade.ry);
     }
     if (nodeAlpha < 0.03) continue;
-    const core = (1.6 / (opts.scale ?? 1)) * (0.85 + Math.sin(node.pulse) * 0.15);
+    const core = embedded
+      ? (0.75 / (opts.scale ?? 1)) * (0.8 + Math.sin(node.pulse) * 0.1)
+      : (1.6 / (opts.scale ?? 1)) * (0.85 + Math.sin(node.pulse) * 0.15);
     if (lightMode) {
-      ctx.fillStyle = `rgba(${NEURO.inkRgb}, ${nodeAlpha * 0.55})`;
+      ctx.fillStyle = `rgba(${NEURO.inkRgb}, ${nodeAlpha * (embedded ? 0.38 : 0.55)})`;
       ctx.beginPath();
       ctx.arc(nx, ny, core, 0, Math.PI * 2);
       ctx.fill();
-      ctx.fillStyle = `rgba(${NEURO.accentRgb}, ${nodeAlpha * 0.18})`;
-      ctx.beginPath();
-      ctx.arc(nx, ny, core * 2.2, 0, Math.PI * 2);
-      ctx.fill();
+      if (!embedded) {
+        ctx.fillStyle = `rgba(${NEURO.accentRgb}, ${nodeAlpha * 0.18})`;
+        ctx.beginPath();
+        ctx.arc(nx, ny, core * 2.2, 0, Math.PI * 2);
+        ctx.fill();
+      }
     } else {
       ctx.fillStyle = `rgba(255, 241, 214, ${nodeAlpha * 0.9})`;
       ctx.beginPath();
@@ -825,14 +836,9 @@ export function drawCinemaNeurons(
 
   ctx.save();
 
-  if (brainForm > 0.12) {
+  if (brainForm > 0.05) {
     const breathe = 0.985 + Math.sin(t * 0.75) * 0.015;
-    const clipW = w * 0.36 * breathe;
-    const clipH = h * 0.32 * breathe;
-    ctx.translate(cx, cy);
-    traceBrainSilhouettePath(ctx, clipW, clipH);
-    ctx.clip();
-    ctx.translate(-cx, -cy);
+    clipBrainSilhouette(ctx, cx, cy, w, h, breathe);
   }
 
   ctx.translate(cx, cy);
@@ -935,34 +941,35 @@ export function drawCinemaNeurons(
     }
   }
 
-  // Neuron cell bodies — bioluminescent halo + bright core.
-  const massDamp = brainForm > 0.45 ? 0.55 + (1 - brainForm) * 0.45 : 1;
+  // Neuron cell bodies — tiny junctions when embedded in formed tissue.
+  const massDamp = brainForm > 0.25 ? 0.35 + (1 - brainForm) * 0.4 : 1;
+  const nodeScale = closeUp ? 0.55 : 0.38;
   for (const node of nodes) {
     const nx = node.x * w;
     const ny = node.y * h;
-    const glow = 0.45 + Math.sin(node.pulse + t * 2) * 0.55;
-    const halo = ((closeUp ? 14 : 9) / scale) * (0.55 + glow * 0.55) * massDamp;
-    const haloGrad = ctx.createRadialGradient(nx, ny, 0, nx, ny, halo);
-    if (lightMode) {
-      haloGrad.addColorStop(0, `rgba(${NEURO.inkRgb}, ${0.12 * intensity * glow * massDamp})`);
-      haloGrad.addColorStop(0.28, `rgba(${NEURO.navyRgb}, ${0.08 * intensity * glow * massDamp})`);
-      haloGrad.addColorStop(0.58, `rgba(${NEURO.accentRgb}, ${0.06 * intensity * glow * massDamp})`);
-    } else {
-      haloGrad.addColorStop(0, `rgba(255, 255, 255, ${0.38 * intensity * glow * massDamp})`);
-      haloGrad.addColorStop(0.28, `rgba(206, 236, 255, ${0.2 * intensity * glow * massDamp})`);
-      haloGrad.addColorStop(0.58, `rgba(${NEURO.iceRgb}, ${0.12 * intensity * glow * massDamp})`);
+    const glow = 0.35 + Math.sin(node.pulse + t * 2) * 0.35;
+    const halo = ((closeUp ? 6 : 4) / scale) * (0.35 + glow * 0.35) * massDamp;
+    if (halo > 1.2 && !closeUp) {
+      const haloGrad = ctx.createRadialGradient(nx, ny, 0, nx, ny, halo);
+      if (lightMode) {
+        haloGrad.addColorStop(0, `rgba(${NEURO.inkRgb}, ${0.06 * intensity * glow * massDamp})`);
+        haloGrad.addColorStop(0.5, `rgba(${NEURO.navyRgb}, ${0.03 * intensity * glow * massDamp})`);
+      } else {
+        haloGrad.addColorStop(0, `rgba(255, 255, 255, ${0.18 * intensity * glow * massDamp})`);
+        haloGrad.addColorStop(0.5, `rgba(${NEURO.iceRgb}, ${0.06 * intensity * glow * massDamp})`);
+      }
+      haloGrad.addColorStop(1, "transparent");
+      ctx.fillStyle = haloGrad;
+      ctx.beginPath();
+      ctx.arc(nx, ny, halo, 0, Math.PI * 2);
+      ctx.fill();
     }
-    haloGrad.addColorStop(1, "transparent");
-    ctx.fillStyle = haloGrad;
-    ctx.beginPath();
-    ctx.arc(nx, ny, halo, 0, Math.PI * 2);
-    ctx.fill();
 
     ctx.fillStyle = lightMode
-      ? `rgba(${NEURO.inkRgb}, ${0.45 * intensity * (0.5 + glow * 0.5) * massDamp})`
-      : `rgba(255, 241, 214, ${0.78 * intensity * (0.5 + glow * 0.5) * massDamp})`;
+      ? `rgba(${NEURO.inkRgb}, ${0.32 * intensity * (0.55 + glow * 0.35) * massDamp})`
+      : `rgba(255, 241, 214, ${0.55 * intensity * (0.55 + glow * 0.35) * massDamp})`;
     ctx.beginPath();
-    ctx.arc(nx, ny, ((closeUp ? 2 : 1.35) / scale) * (0.75 + glow * 0.45), 0, Math.PI * 2);
+    ctx.arc(nx, ny, ((closeUp ? 1.4 : 0.95) / scale) * nodeScale * (0.8 + glow * 0.25), 0, Math.PI * 2);
     ctx.fill();
   }
 
@@ -971,7 +978,7 @@ export function drawCinemaNeurons(
 }
 
 /** Shared anatomical brain outline — left lateral profile, occipital right, frontal left. */
-function traceBrainSilhouettePath(
+export function traceBrainSilhouettePath(
   ctx: CanvasRenderingContext2D,
   W: number,
   H: number,
@@ -987,6 +994,23 @@ function traceBrainSilhouettePath(
   ctx.bezierCurveTo(-W * 0.28, H * 0.36, -W * 0.52, H * 0.22, -W * 0.72, H * 0.08);
   ctx.bezierCurveTo(-W * 0.84, H * 0.02, -W * 0.9, -H * 0.02, -W * 0.92, -H * 0.08);
   ctx.closePath();
+}
+
+/** Clip drawing to anatomical brain silhouette at (cx, cy). Caller must wrap in save/restore. */
+export function clipBrainSilhouette(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  w: number,
+  h: number,
+  breathe = 1,
+): void {
+  const W = w * 0.36 * breathe;
+  const H = h * 0.32 * breathe;
+  ctx.translate(cx, cy);
+  traceBrainSilhouettePath(ctx, W, H);
+  ctx.clip();
+  ctx.translate(-cx, -cy);
 }
 
 /** Cortical fold paths — sulci and gyri drawn inside the brain shell. */
@@ -1109,10 +1133,19 @@ export function drawDetailedBrain(
   const breathe = 0.985 + Math.sin(t * 0.75) * 0.015;
   const W = w * 0.36 * breathe;
   const H = h * 0.32 * breathe;
-  const reveal = Math.min(1, form * 1.2);
+  const reveal = Math.min(1, form * 1.15);
+  const radialReveal = Math.min(1, form ** 0.82);
+  const revealRadius = Math.hypot(W, H) * radialReveal;
 
   ctx.save();
   ctx.translate(cx, cy);
+
+  // Center-outward tissue formation — cortical mass builds before outline finishes.
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(0, 0, revealRadius, 0, Math.PI * 2);
+  ctx.clip();
+
   if (!lightMode) {
     ctx.globalCompositeOperation = "lighter";
   }
@@ -1124,10 +1157,10 @@ export function drawDetailedBrain(
   traceBrainSilhouettePath(ctx, W, H);
   const fillGrad = ctx.createRadialGradient(-W * 0.08, -H * 0.12, 0, 0, 0, W * 0.95);
   if (lightMode) {
-    fillGrad.addColorStop(0, `rgba(${NEURO.navyRgb}, ${0.06 * reveal})`);
-    fillGrad.addColorStop(0.45, `rgba(${NEURO.grayRgb}, ${0.04 * reveal})`);
-    fillGrad.addColorStop(0.78, `rgba(${NEURO.grayRgb}, ${0.02 * reveal})`);
-    fillGrad.addColorStop(1, `rgba(${NEURO.accentRgb}, ${0.015 * reveal})`);
+    fillGrad.addColorStop(0, `rgba(${NEURO.navyRgb}, ${0.08 * reveal})`);
+    fillGrad.addColorStop(0.45, `rgba(${NEURO.grayRgb}, ${0.05 * reveal})`);
+    fillGrad.addColorStop(0.78, `rgba(${NEURO.grayRgb}, ${0.025 * reveal})`);
+    fillGrad.addColorStop(1, `rgba(${NEURO.accentRgb}, ${0.02 * reveal})`);
   } else {
     fillGrad.addColorStop(0, `rgba(${NEURO.amberRgb}, ${0.12 * reveal})`);
     fillGrad.addColorStop(0.45, `rgba(${NEURO.goldRgb}, ${0.07 * reveal})`);
@@ -1138,19 +1171,25 @@ export function drawDetailedBrain(
   ctx.fill();
   ctx.restore();
 
-  // Outer cortical shell.
-  const rimRgb = lightMode ? NEURO.inkRgb : NEURO.goldRgb;
-  ctx.shadowColor = lightMode
-    ? `rgba(${NEURO.inkRgb}, ${0.08 * reveal})`
-    : `rgba(${NEURO.goldRgb}, ${0.22 * reveal})`;
-  ctx.shadowBlur = lightMode ? 4 : 12;
-  ctx.strokeStyle = `rgba(${rimRgb}, ${(lightMode ? 0.28 : 0.58) * reveal})`;
-  ctx.lineWidth = lightMode ? 1.25 : 2;
-  traceBrainSilhouettePath(ctx, W, H);
-  ctx.stroke();
+  // Sulci/gyri draw in as radial reveal expands — staggered by fold distance from center.
+  const sulciReveal = Math.min(1, Math.max(0, (radialReveal - 0.18) / 0.72));
+  drawBrainSulciAndGyri(ctx, W, H, sulciReveal * reveal, lightMode);
+  ctx.restore();
 
-  ctx.shadowBlur = 0;
-  drawBrainSulciAndGyri(ctx, W, H, reveal, lightMode);
+  // Outer cortical shell — appears once mass is ~60% formed.
+  const rimProgress = Math.min(1, Math.max(0, (form - 0.35) / 0.55));
+  if (rimProgress > 0.02) {
+    const rimRgb = lightMode ? NEURO.inkRgb : NEURO.goldRgb;
+    ctx.shadowColor = lightMode
+      ? `rgba(${NEURO.inkRgb}, ${0.08 * rimProgress})`
+      : `rgba(${NEURO.goldRgb}, ${0.22 * rimProgress})`;
+    ctx.shadowBlur = lightMode ? 4 : 12;
+    ctx.strokeStyle = `rgba(${rimRgb}, ${(lightMode ? 0.32 : 0.62) * rimProgress * reveal})`;
+    ctx.lineWidth = lightMode ? 1.35 : 2.1;
+    traceBrainSilhouettePath(ctx, W, H);
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+  }
 
   ctx.restore();
   ctx.globalCompositeOperation = "source-over";

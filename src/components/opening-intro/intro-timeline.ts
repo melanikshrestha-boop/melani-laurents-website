@@ -1,8 +1,12 @@
-export const INTRO_DURATION_MS = 4800;
+export const INTRO_DURATION_MS = 5000;
 export const INTRO_KEY = "mls-intro-seen";
 
 /** Re-export cinematic intro timing — see NeuralCinemaIntro.tsx */
-export { INTRO_TIMELINE } from "@/components/cinema/NeuralCinemaIntro";
+export {
+  INTRO_TIMELINE,
+  INTRO_HANDOFF_START_EVENT,
+  INTRO_COMPLETE_EVENT,
+} from "@/components/cinema/NeuralCinemaIntro";
 
 export function clamp(value: number, min: number, max: number) {
   return Math.min(max, Math.max(min, value));
