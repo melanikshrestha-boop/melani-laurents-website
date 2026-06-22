@@ -1,4 +1,4 @@
-export const NEWSLETTER_TOPICS = ["daily", "research", "art"] as const;
+export const NEWSLETTER_TOPICS = ["podcast", "daily", "research", "art"] as const;
 export type NewsletterTopic = (typeof NEWSLETTER_TOPICS)[number];
 
 export interface NewsletterSubscriber {

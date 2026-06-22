@@ -12,7 +12,7 @@ import {
   drawDetailedBrain,
 } from "@/lib/neurotech-brain";
 
-export const INTRO_KEY = "mls-intro-seen";
+export const INTRO_KEY = "mls-title-intro-seen-v2";
 export const INTRO_HANDOFF_START_EVENT = "mls-intro-handoff-start";
 export const INTRO_COMPLETE_EVENT = "mls-intro-complete";
 
@@ -60,16 +60,13 @@ const easeInOutCubic = (x: number) =>
 
 /** Map elapsed time to visible letter count — MELANI drops during zoom-out phase. */
 function lettersFromElapsed(elapsed: number): number {
-  // Letters start appearing at 2s (neuron zoom ends) and finish by 3.2s
-  const letterStartMs = INTRO_TIMELINE.neuronZoomMs;
-  const letterEndMs = letterStartMs + 1200;
-  const p = Math.min(1, Math.max(0, (elapsed - letterStartMs) / (letterEndMs - letterStartMs)));
-  return Math.min(FIRST_NAME.length, Math.floor(p * (FIRST_NAME.length + 0.5)));
+  void elapsed;
+  return FIRST_NAME.length;
 }
 
 function secondLineFromElapsed(elapsed: number): boolean {
-  // LAURENT S. appears all at once at 3.2s
-  return elapsed >= INTRO_TIMELINE.neuronZoomMs + 1200;
+  void elapsed;
+  return true;
 }
 
 /** Anatomical brain forms center-outward; name syncs to brainForm; synapses clip inside tissue. */
@@ -78,8 +75,8 @@ export function NeuralCinemaIntro() {
   const [visible, setVisible] = useState(false);
   const [handoff, setHandoff] = useState(false);
   const [handoffProgress, setHandoffProgress] = useState(0);
-  const [visibleLetters, setVisibleLetters] = useState(0);
-  const [secondLineVisible, setSecondLineVisible] = useState(false);
+  const [visibleLetters, setVisibleLetters] = useState(FIRST_NAME.length);
+  const [secondLineVisible, setSecondLineVisible] = useState(true);
   const [activeQuoteIndex, setActiveQuoteIndex] = useState(-1);
   const finishedRef = useRef(false);
   const lastLettersRef = useRef(0);
@@ -205,12 +202,11 @@ export function NeuralCinemaIntro() {
         setSecondLineVisible(showSecond);
       }
 
-      // Minimal drift to keep brain centered for seamless transition
-      // Text is centered at (0.5, 0.5), brain should match exactly
-      const drift = (1 - brainForm) * w * 0.006;
-      const cx = w * 0.5 + Math.sin(t * 0.15) * drift * 0.3;
-      const cy = h * 0.5 + Math.cos(t * 0.12) * drift * 0.2; // Centered vertically
-      const breathe = 0.98 + Math.sin(t * 0.55) * 0.015; // Subtle breathing
+      // CRITICAL: Brain center must match text center exactly for seamless fade
+      // No drift - perfectly centered so brain dissolves into text positioning
+      const cx = w * 0.5;
+      const cy = h * 0.5;
+      const breathe = 0.98 + Math.sin(t * 0.5) * 0.012; // Minimal breathing
 
       drawCreamBackground(ctx, w, h);
 
@@ -226,33 +222,22 @@ export function NeuralCinemaIntro() {
       // Draw detailed anatomical brain structure
       drawDetailedBrain(ctx, cx, cy, w, h, t, brainForm, true);
 
-      // Draw synapses with detailed electrical activity
+      // Draw red/orange synaptic network - neural activity visualization
       if (synapseAlpha > 0.01) {
         ctx.save();
-        // Clip only once tissue becomes visible (let synapses shine early)
-        if (brainForm > 0.2) {
+        if (brainForm > 0.15) {
           clipBrainSilhouette(ctx, cx, cy, w, h, breathe);
         }
 
-        // Two-pass synapse rendering for depth
-        // First pass: subtle background synapses
+        // Red/orange synapse network (like fMRI activation)
         drawConnectedSynapseNetwork(ctx, nodes, edges, w, h, {
-          alpha: synapseAlpha * 0.35,
-          lineWidth: 0.95,
-          t: t * 1.8,
-          showPotentials: false,
-          lightMode: true,
-          embedded: false,
-        });
-
-        // Second pass: prominent action potentials with fast travel
-        drawConnectedSynapseNetwork(ctx, nodes, edges, w, h, {
-          alpha: synapseAlpha * 0.85, // Much brighter potentials
-          lineWidth: 1.2 - brainForm * 0.4,
-          t: t * 3.2, // Very fast pulse animation
+          alpha: synapseAlpha * 0.8,
+          lineWidth: 1.1,
+          lineRgb: "220, 80, 40", // RED/ORANGE instead of ice blue
+          t: t * 2.6,
           showPotentials: true,
           lightMode: true,
-          embedded: brainForm > 0.6,
+          embedded: brainForm > 0.5,
         });
 
         ctx.restore();

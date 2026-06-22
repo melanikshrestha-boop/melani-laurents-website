@@ -1,5 +1,5 @@
 export const INTRO_DURATION_MS = 5000;
-export const INTRO_KEY = "mls-intro-seen";
+export const INTRO_KEY = "mls-title-intro-seen-v2";
 
 /** Re-export cinematic intro timing — see NeuralCinemaIntro.tsx */
 export {

@@ -3,6 +3,10 @@ export interface DailyPost {
   title: string;
   date: string;
   excerpt?: string;
+  /** Short notes open on X; journals open as full site entries. */
+  source?: "x" | "journal";
+  /** Required for X notes; journals default to /daily/[slug]. */
+  href?: string;
 }
 
 /** Placeholder daily archive — wire to CMS when ready. */

@@ -2,6 +2,7 @@ import {
   getPhotographyInstagramHandle,
   getPhotographyInstagramHref,
 } from "@/lib/photography";
+import { ListeningNote } from "@/components/ListeningNote";
 
 export function ShotByMelaniFooter() {
   const instagramHref = getPhotographyInstagramHref();
@@ -9,6 +10,7 @@ export function ShotByMelaniFooter() {
 
   return (
     <footer className="photography-footer">
+      <ListeningNote context="art" />
       <div className="photography-footer-grid">
         <div>
           <h2 className="photography-footer-title">

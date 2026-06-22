@@ -16,9 +16,9 @@ export const INDEX_HERO_IMAGES: Record<string, string> = {
   scenery: "/photography/index/scenery-hero.jpg",
 };
 
-/** Auto-rotating index hero — vision (beach) ↔ scenery (Fendi NYC). Portraits on hover only. */
-export const INDEX_HERO_AUTO_CYCLE_SLUGS = ["vision", "scenery"] as const;
-export const INDEX_HERO_DEFAULT_SLUG = "vision";
+/** Auto-rotating index hero, beginning with portraits. */
+export const INDEX_HERO_AUTO_CYCLE_SLUGS = ["portraits", "vision", "scenery"] as const;
+export const INDEX_HERO_DEFAULT_SLUG = "portraits";
 export const INDEX_HERO_AUTO_CYCLE_MS = 4500;
 
 export const PHOTOGRAPHY_BOOKING_PATH = "/photography/about#book";

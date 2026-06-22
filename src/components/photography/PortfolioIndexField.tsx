@@ -119,6 +119,7 @@ export function PortfolioIndexField({ collections }: PortfolioIndexFieldProps) {
                   key={collection.slug}
                   className={[
                     "portfolio-hover-bg",
+                    `portfolio-hover-bg--${collection.slug}`,
                     isActive ? "is-active" : "",
                   ]
                     .filter(Boolean)

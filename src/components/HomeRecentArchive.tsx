@@ -19,9 +19,11 @@ function formatDate(date: string): string {
 function EmptySlots({ label }: { label: string }) {
   return (
     <ul className="hub-archive__list">
-      {Array.from({ length: SLOT_COUNT }, (_, i) => (
-        <li key={i} className="hub-archive__item hub-archive__item--empty">
-          <span className="hub-archive__empty-label">{label} slot {i + 1}</span>
+      {Array.from({ length: SLOT_COUNT }, (_, index) => (
+        <li key={index} className="hub-archive__item hub-archive__item--empty">
+          <span className="hub-archive__empty-label">
+            {label} slot {index + 1}
+          </span>
           <span className="hub-archive__empty-note">coming soon</span>
         </li>
       ))}
@@ -39,40 +41,40 @@ export function HomeRecentArchive() {
         <div className="hub-archive__inner">
           <p className="hub-archive__eyebrow">Most recent</p>
 
-          <div className="hub-archive__section hub-archive__section--daily">
+          <div className="hub-archive__section hub-archive__section--podcast">
             <header className="hub-archive__header">
-              <h2 className="hub-archive__title">
-                <Link href="/daily">Daily</Link>
+              <h2 className="hub-archive__title hub-archive__podcast-heading">
+                <span className="hub-archive__podcast-label">Podcast:</span>
+                <span className="hub-archive__podcast-name">
+                  {siteConfig.podcastTitle}
+                </span>
               </h2>
-              <Link href="/daily" className="hub-archive__more">
-                all daily →
-              </Link>
-            </header>
-            <Link href="/daily" className="hub-archive__callout-card">
-              <p className="hub-archive__callout-body">{siteConfig.dailyDescription}</p>
-              <span className="hub-archive__callout-arrow" aria-hidden>
-                →
+              <span className="hub-archive__cadence">
+                {siteConfig.podcastCadence}
               </span>
+            </header>
+            <Link
+              href={siteConfig.podcastUrl}
+              className="hub-archive__callout-card"
+            >
+              <p className="hub-archive__callout-body">
+                {siteConfig.podcastDescription}
+              </p>
+              <p className="hub-archive__callout-audience">
+                {siteConfig.podcastAudience}
+              </p>
+              <div className="hub-archive__callout-action">
+                <p className="hub-archive__callout-title">
+                  {siteConfig.podcastSlogan}
+                </p>
+                <span className="hub-archive__callout-arrow" aria-hidden>
+                  →
+                </span>
+              </div>
             </Link>
-            {daily.length > 0 ? (
-              <ul className="hub-archive__list">
-                {daily.map((post) => (
-                  <li key={post.slug} className="hub-archive__item">
-                    <time className="hub-archive__date" dateTime={post.date}>
-                      {formatDate(post.date)}
-                    </time>
-                    <Link href={`/daily/${post.slug}`} className="hub-archive__link">
-                      {post.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <EmptySlots label="Daily" />
-            )}
           </div>
 
-          <div className="hub-archive__section">
+          <div className="hub-archive__section hub-archive__section--research">
             <header className="hub-archive__header">
               <h2 className="hub-archive__title">
                 <Link href="/research">Research</Link>
@@ -112,25 +114,44 @@ export function HomeRecentArchive() {
             )}
           </div>
 
-          <div className="hub-archive__section hub-archive__section--podcast">
+          <div className="hub-archive__section hub-archive__section--daily">
             <header className="hub-archive__header">
               <h2 className="hub-archive__title">
-                Podcast: {siteConfig.podcastTitle}
+                <Link href="/daily">Daily</Link>
               </h2>
-              <span className="hub-archive__cadence">{siteConfig.podcastCadence}</span>
+              <Link href="/daily" className="hub-archive__more">
+                all daily →
+              </Link>
             </header>
-            <a
-              href={siteConfig.podcastUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hub-archive__callout-card"
-            >
-              <p className="hub-archive__callout-body">{siteConfig.podcastDescription}</p>
-              <p className="hub-archive__callout-title">{siteConfig.podcastSlogan}</p>
-              <span className="hub-archive__callout-arrow" aria-hidden>
-                →
-              </span>
-            </a>
+            <Link href="/daily" className="hub-archive__callout-card">
+              <p className="hub-archive__callout-body">
+                {siteConfig.dailyDescription}
+              </p>
+              <div className="hub-archive__callout-action">
+                <p className="hub-archive__callout-title">
+                  {siteConfig.dailySlogan}
+                </p>
+                <span className="hub-archive__callout-arrow" aria-hidden>
+                  →
+                </span>
+              </div>
+            </Link>
+            {daily.length > 0 ? (
+              <ul className="hub-archive__list">
+                {daily.map((post) => (
+                  <li key={post.slug} className="hub-archive__item">
+                    <time className="hub-archive__date" dateTime={post.date}>
+                      {formatDate(post.date)}
+                    </time>
+                    <Link href={`/daily/${post.slug}`} className="hub-archive__link">
+                      {post.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <EmptySlots label="Daily" />
+            )}
           </div>
 
           <div className="hub-archive__section hub-archive__section--art">

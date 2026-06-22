@@ -9,17 +9,21 @@ export const siteConfig = {
   location: "LA / SF / NYC",
   /** Daily letter — home archive + /daily page. */
   dailyDescription:
-    "The consolidation of memory is the art of writing about what you listen to, read about, or conversed with other people on a consistent basis. Read these if you want incremental daily learning on a variety of topics (always backed by neuroscience) as I do, or just watch my neuroplasticity grow.",
+    "The consolidation of memory is the art of writing what you listen to, read about, or converse with other people while adding your own n+1 aspect on a consistent basis. Follow along if you want to grow your neuroplasticity by incremental daily learning on a variety of topics.",
+  dailySlogan: "everything backed by neuroscience",
   artPath: "/art",
   photographyPath: "/photography",
-  /** Weekly interview show — Melani (YouTube + audio feeds). */
-  podcastTitle: "Melani",
+  /** Weekly interview show — internal listening page. */
+  podcastTitle: "MELANI LAURENT S(HOW)",
   podcastCadence: "1x/week",
   podcastDescription:
-    "A conversational show about where neuroscience is going: neurotech, brain interfaces, consciousness, AI, robotics, human-made art, medicine, history, psychology, philosophy, and what all of it says about being human.",
+    "Unfiltered, deep-end conversations about where neuroscience is going: neural interfaces, neurotech startups, AI, robotics, human-made art, philosophy, self-improvement, psychology, medicine, business, space exploration, history, sports, and the cool things that make up a human experience.",
+  podcastAudience: "Made for curious people from all walks of life.",
   podcastSlogan: "everything backed by neuroscience",
-  podcastUrl: "https://www.youtube.com/@ResetYourMind.-fb5nn",
+  podcastUrl: "/podcast",
   linkedinUrl: "https://www.linkedin.com/in/melanilaurents/",
+  spotifyUrl:
+    "https://open.spotify.com/user/21etydsnbqyqe7ekagfnqbhoq?si=c3c26ede4c8a46a5",
   socialLinks: [
     {
       id: "x",
@@ -42,6 +46,11 @@ export const siteConfig = {
       href: "https://www.instagram.com/melanilaurents/",
     },
     {
+      id: "tiktok",
+      label: "TikTok",
+      href: "https://www.tiktok.com/@melanilaurents",
+    },
+    {
       id: "youtube",
       label: "YouTube",
       href: "https://www.youtube.com/@ResetYourMind.-fb5nn",
@@ -51,8 +60,7 @@ export const siteConfig = {
   hubPortals: [
     {
       label: "Podcast",
-      href: "https://www.youtube.com/@ResetYourMind.-fb5nn",
-      external: true,
+      href: "/podcast",
       tagline: "Melani",
     },
     { label: "Research", href: "/research", tagline: "BCI · neurotech · med-tech" },
@@ -60,7 +68,7 @@ export const siteConfig = {
     { label: "Art", href: "/photography", tagline: "Visual signal · cinema" },
   ],
   nav: [
-    { label: "Podcast", href: "https://www.youtube.com/@ResetYourMind.-fb5nn" },
+    { label: "Podcast", href: "/podcast" },
     { label: "Research", href: "/research" },
     { label: "Daily", href: "/daily" },
     { label: "Art", href: "/photography" },

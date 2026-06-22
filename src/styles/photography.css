@@ -163,6 +163,10 @@
   object-position: center;
 }
 
+.portfolio-hover-bg--scenery .portfolio-hover-bg-image {
+  object-position: center 67%;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .portfolio-hover-bg {
     transition: none;

@@ -45,7 +45,7 @@ export default async function ResearchPostPage({ params }: PageProps) {
   return (
     <>
       <ReadingProgress />
-      <article className="px-6 py-20">
+      <article className="research-article px-6 py-20">
         <div className="mx-auto max-w-2xl">
           <Link
             href="/research"

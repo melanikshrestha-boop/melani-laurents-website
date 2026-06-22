@@ -7,17 +7,21 @@ const TOPIC_COPY: Record<
   NewsletterTopic,
   { label: string; description: string }
 > = {
+  podcast: {
+    label: "Podcast",
+    description: "Weekly interesting conversations.",
+  },
   daily: {
     label: "Daily",
-    description: "Podcasts, things learned, memory solidification.",
+    description: "Library of myself.",
   },
   research: {
     label: "Research",
-    description: "Papers, experiments, med-tech notes.",
+    description: "Trial and error.",
   },
   art: {
     label: "Art",
-    description: "Photography, visual work, creative drops.",
+    description: "How I keep my sanity. Check it out!",
   },
 };
 
@@ -86,7 +90,7 @@ export function NewsletterSignup({
       >
         <p className="newsletter-signup__success-title">You&apos;re in.</p>
         <p className="newsletter-signup__success-note">
-          Only the topics you chose — no noise.
+          Only the topics you chose. No noise.
         </p>
       </div>
     );
@@ -116,8 +120,8 @@ export function NewsletterSignup({
             }
           >
             {isFooter
-              ? "Pick the topics you want — I only write when it fits."
-              : "A small letter from me — daily posts on podcasts I'm listening to, things I'm learning, conversations with experts. Pick what you want; I'll only write when it fits."}
+              ? "Feed your curiosity without flooding your inbox."
+              : "A small letter from me. Choose updates on podcasts, daily notes, research, and art. I only write when it fits."}
           </p>
         </div>
       )}
@@ -168,7 +172,7 @@ export function NewsletterSignup({
           disabled={status === "loading"}
           className="newsletter-signup__submit"
         >
-          {status === "loading" ? "…" : "Subscribe"}
+          {status === "loading" ? "…" : "Get my picks"}
         </button>
       </div>
 

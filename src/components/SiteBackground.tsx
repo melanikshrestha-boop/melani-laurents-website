@@ -5,6 +5,14 @@ import { InterstellarField } from "@/components/cinema/InterstellarField";
 
 export function SiteBackground() {
   const pathname = usePathname();
-  if (pathname === "/") return null;
+  const paper =
+    pathname === "/" ||
+    pathname === "/daily" ||
+    pathname.startsWith("/daily/") ||
+    pathname === "/research" ||
+    pathname.startsWith("/research/") ||
+    pathname === "/podcast" ||
+    pathname.startsWith("/podcast/");
+  if (paper) return null;
   return <InterstellarField enabled />;
 }

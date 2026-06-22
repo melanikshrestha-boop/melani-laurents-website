@@ -316,6 +316,134 @@ const SYNAPSE = {
   cleftEnd: 0.86,
 } as const;
 
+/** Hyper-realistic synapse with bouton, cleft, vesicles, and postsynaptic density. */
+function drawDetailedRealisticSynapse(
+  ctx: CanvasRenderingContext2D,
+  ax: number,
+  ay: number,
+  bx: number,
+  by: number,
+  alpha: number,
+  t: number,
+  lightMode = true,
+): void {
+  if (alpha < 0.02) return;
+
+  const dx = bx - ax;
+  const dy = by - ay;
+  const len = Math.hypot(dx, dy);
+  if (len < 1) return;
+  const nx = dx / len;
+  const ny = dy / len;
+
+  // Axon main line
+  ctx.strokeStyle = `rgba(${NEURO.synapseRgb}, ${alpha * 0.45})`;
+  ctx.lineWidth = 2.2;
+  ctx.lineCap = "round";
+  ctx.beginPath();
+  ctx.moveTo(ax, ay);
+  ctx.lineTo(ax + nx * len * 0.75, ay + ny * len * 0.75);
+  ctx.stroke();
+
+  // Presynaptic bouton (knob) - detailed structure
+  const boutonX = ax + nx * len * 0.76;
+  const boutonY = ay + ny * len * 0.76;
+  const boutonRadius = 4.5;
+
+  // Bouton shading for depth
+  const boutonGrad = ctx.createRadialGradient(
+    boutonX - 1.2,
+    boutonY - 1.2,
+    0,
+    boutonX,
+    boutonY,
+    boutonRadius * 1.3
+  );
+  boutonGrad.addColorStop(0, `rgba(110, 100, 90, ${alpha * 0.7})`);
+  boutonGrad.addColorStop(0.6, `rgba(70, 60, 50, ${alpha * 0.5})`);
+  boutonGrad.addColorStop(1, "transparent");
+  ctx.fillStyle = boutonGrad;
+  ctx.beginPath();
+  ctx.arc(boutonX, boutonY, boutonRadius, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Synaptic vesicles in bouton - pulsing release
+  const vesicleCount = 4;
+  for (let i = 0; i < vesicleCount; i++) {
+    const angle = (i / vesicleCount) * Math.PI * 2;
+    const dist = 2.2 + Math.sin(t * 3.2 + i) * 0.8;
+    const vx = boutonX + Math.cos(angle) * dist;
+    const vy = boutonY + Math.sin(angle) * dist;
+
+    // Vesicle with glow
+    ctx.fillStyle = `rgba(255, 240, 200, ${alpha * (0.6 + Math.sin(t * 2.8 + i) * 0.4)})`;
+    ctx.beginPath();
+    ctx.arc(vx, vy, 1.2, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Vesicle glow
+    ctx.strokeStyle = `rgba(255, 200, 100, ${alpha * 0.35})`;
+    ctx.lineWidth = 0.8;
+    ctx.beginPath();
+    ctx.arc(vx, vy, 2.1, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+
+  // Synaptic cleft - gap between neurons
+  const cleftStart = 0.78;
+  const cleftEnd = 0.88;
+  const cleftStartX = ax + nx * len * cleftStart;
+  const cleftStartY = ay + ny * len * cleftStart;
+  const cleftEndX = ax + nx * len * cleftEnd;
+  const cleftEndY = ay + ny * len * cleftEnd;
+
+  // Cleft shading (darker area between synapses)
+  ctx.strokeStyle = `rgba(30, 25, 20, ${alpha * 0.5})`;
+  ctx.lineWidth = 3.8;
+  ctx.lineCap = "round";
+  ctx.beginPath();
+  ctx.moveTo(cleftStartX, cleftStartY);
+  ctx.lineTo(cleftEndX, cleftEndY);
+  ctx.stroke();
+
+  // Postsynaptic density (receptor area)
+  const postX = bx - nx * len * 0.15;
+  const postY = by - ny * len * 0.15;
+
+  // Dendrite receiving side
+  ctx.strokeStyle = `rgba(${NEURO.synapseRgb}, ${alpha * 0.4})`;
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(cleftEndX, cleftEndY);
+  ctx.lineTo(bx, by);
+  ctx.stroke();
+
+  // Postsynaptic receptors - small bumps on dendrite
+  for (let i = 0; i < 3; i++) {
+    const offset = (i - 1) * 2.5;
+    const recX = postX + ny * offset;
+    const recY = postY - nx * offset;
+
+    ctx.fillStyle = `rgba(180, 160, 140, ${alpha * 0.6})`;
+    ctx.beginPath();
+    ctx.arc(recX, recY, 0.9, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // Neurotransmitter activity in cleft
+  const cleftPhase = (t * 2.5) % 1;
+  const ntX = cleftStartX + nx * len * (cleftEnd - cleftStart) * cleftPhase;
+  const ntY = cleftStartY + ny * len * (cleftEnd - cleftStart) * cleftPhase;
+
+  const ntGrad = ctx.createRadialGradient(ntX, ntY, 0, ntX, ntY, 2.8);
+  ntGrad.addColorStop(0, `rgba(255, 220, 150, ${alpha * 0.8})`);
+  ntGrad.addColorStop(1, "transparent");
+  ctx.fillStyle = ntGrad;
+  ctx.beginPath();
+  ctx.arc(ntX, ntY, 2.8, 0, Math.PI * 2);
+  ctx.fill();
+}
+
 function edgeDist(
   nodes: BrainNode[],
   i: number,
@@ -543,6 +671,8 @@ function drawPotentialPacket(
 }
 
 /** Connected synapse web — wires, clefts, somas, and path-bound action potentials. */
+export { drawDetailedRealisticSynapse };
+
 export function drawConnectedSynapseNetwork(
   ctx: CanvasRenderingContext2D,
   nodes: BrainNode[],
