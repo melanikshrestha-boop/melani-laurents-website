@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getDailyPosts } from "@/data/daily-posts";
 import { siteConfig } from "@/config/site";
 import { ListeningNote } from "@/components/ListeningNote";
+import { XRecentPosts } from "@/components/XRecentPosts";
 
 export const metadata: Metadata = {
   title: "Daily",
@@ -53,6 +54,8 @@ export default function DailyPage() {
           </a>
         </div>
       </header>
+
+      <XRecentPosts />
 
       <section className="daily-index__journal-map" aria-labelledby="guides-title">
         <div className="daily-index__journal-intro">
