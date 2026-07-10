@@ -20,34 +20,34 @@ export default function SiteLayout({
           <span className="promo-text">{lunara.offer}</span>
         </div>
 
-        <div className="section flex items-center justify-between gap-4 py-4">
-          <Link href="/" className="flex items-center gap-3">
-            <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(143,77,93,0.18)] bg-white/80 font-display text-2xl italic text-[var(--accent-dark)]">
+        <div className="flex w-full items-center justify-between gap-4 px-3 py-4 sm:px-5 lg:px-6 xl:px-8">
+          <Link href="/" className="flex shrink-0 items-center gap-3 lg:gap-4">
+            <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(143,77,93,0.18)] bg-white/80 font-display text-2xl text-[var(--accent-dark)]">
               L
             </span>
             <div className="leading-tight">
-              <p className="font-display text-lg text-[var(--text)] sm:text-xl">
+              <p className="font-display text-lg text-[var(--text)] sm:text-[1.35rem]">
                 {lunara.name}
               </p>
-              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[var(--muted)]">
+              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[var(--muted)] sm:text-[0.72rem]">
                 {lunara.experience}
               </p>
             </div>
           </Link>
 
-          <nav className="hidden items-center gap-8 lg:flex" aria-label="Main">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-[0.74rem] font-semibold uppercase tracking-[0.22em] text-[var(--text)] transition hover:text-[var(--accent-dark)]"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+          <div className="ml-auto flex items-center gap-4 lg:gap-6 xl:gap-8">
+            <nav className="hidden items-center gap-6 xl:flex" aria-label="Main">
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[var(--text)] transition hover:text-[var(--accent-dark)]"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
 
-          <div className="flex items-center gap-3">
             <Link href="/book" className="button-primary px-5 py-3 text-sm">
               Book now
             </Link>

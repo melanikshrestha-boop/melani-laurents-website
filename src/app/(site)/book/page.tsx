@@ -78,48 +78,64 @@ const categories: Array<{
         duration: "30 min",
         price: "$75",
         summary: "Quick refresh with a soft finish.",
+        description:
+          "A light cleanse, gentle exfoliation, hydrating toner, soothing mask, moisturizer, and SPF. Product details vary by facial line, but this is the quick reset when you want a clean, healthy glow without a long appointment.",
       },
       {
         title: "Classic Facial",
         duration: "60 min",
         price: "$145",
         summary: "Deeper cleansing and a longer reset.",
+        description:
+          "A full facial with cleanser, steam, exfoliation, optional extractions, massage, treatment mask, serum, moisturizer, and SPF. Product choices vary, but this is the balanced all-around option for regular maintenance.",
       },
       {
         title: "Hydra Dew",
         duration: "50 min",
         price: "$80",
         summary: "Hydration-focused glow treatment.",
+        description:
+          "Built around hydration: creamy cleanser, water-based exfoliation, hydrating serum, moisture support like hyaluronic acid, glycerin, or aloe, plus a plumping mask and lightweight moisturizer for a dewy finish.",
       },
       {
         title: "Hydra Medic",
         duration: "50 min",
         price: "$95",
         summary: "Targeted treatment for balance and clarity.",
+        description:
+          "A clarifying facial with gentle cleanser, enzyme or salicylic-style exfoliation, balancing serum such as niacinamide or zinc, calming mask, and a light barrier moisturizer to help keep skin clear without feeling stripped.",
       },
       {
         title: "Gold / Deep Clean",
         duration: "45 min",
         price: "$65",
         summary: "Deep clean with a brighter finish.",
+        description:
+          "A deeper cleanse with cleanser, steam, exfoliation, extraction if needed, brightening serum, and a rich mask. This is the reset facial for buildup, congestion, and dull skin.",
       },
       {
         title: "Seaweed",
         duration: "50 min",
         price: "$80",
         summary: "Purifying facial with calming minerals.",
+        description:
+          "An algae-and-mineral focused treatment with cleanser, seaweed or algae mask, soothing toner, calming serum, and moisturizer. Great when skin feels stressed and needs a softer, more balanced finish.",
       },
       {
         title: "Herbal Facial",
         duration: "30 min",
         price: "$45",
         summary: "Botanical cleanse with a relaxing touch.",
+        description:
+          "A botanical facial with plant-based cleansing, chamomile or aloe-style calming care, herbal mask, and a light moisturizer. Gentle, fresh, and easy on sensitive-feeling skin.",
       },
       {
         title: "Eye Optimum",
         duration: "30 min",
         price: "$35",
         summary: "Gentle eye-area treatment.",
+        description:
+          "Focused eye-area care with a soft cleanse, caffeine or peptide-style eye serum, cooling mask, and light moisturizer around the eyes. Best for tired-looking eyes that need a quick refresh.",
       },
       {
         title: "Four Layer",
@@ -127,13 +143,15 @@ const categories: Array<{
         price: "$80",
         summary: "Layered cleanse, massage, mask, and hydration.",
         description:
-          "Click here to know more: a classic layered facial with deep cleansing, exfoliation, massage, mask, and hydration. Good when skin feels dull, dry, or tired.",
+          "Click here to know more: a layered facial built from cleanse, exfoliation, massage, mask, hydration, and finishing care. This is the full reset for skin that feels dull, dry, or tired.",
       },
       {
         title: "Biolight Anti-Aging",
         duration: "50 min",
         price: "$100",
         summary: "Firming treatment for smoother-looking skin.",
+        description:
+          "A brightening and smoothing facial with cleanser, gentle exfoliation, vitamin C or peptide-style serum, hydrating mask, and a firming moisturizer. Designed to support a more even, refreshed look.",
       },
     ],
   },
@@ -203,7 +221,7 @@ export default function BookPage() {
                   >
                     <div className="flex items-start justify-between gap-4">
                       <div>
-                        <p className="font-display text-3xl text-[var(--text)]">
+                        <p className="font-display text-3xl font-medium tracking-tight text-[var(--text)]">
                           {choice.title}
                         </p>
                         <p className="mt-2 text-sm text-[var(--text-soft)]">
@@ -220,9 +238,14 @@ export default function BookPage() {
                   </summary>
 
                   {choice.description ? (
-                    <p className="mt-4 rounded-[1.25rem] border border-[rgba(124,72,86,0.1)] bg-white/70 px-4 py-4 text-sm leading-7 text-[var(--text-soft)]">
-                      {choice.description}
-                    </p>
+                    <div className="mt-4 rounded-[1.25rem] border border-[rgba(124,72,86,0.1)] bg-white/70 px-4 py-4">
+                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[var(--accent-dark)] underline decoration-[rgba(143,77,93,0.34)] underline-offset-4">
+                        Click here to know more
+                      </p>
+                      <p className="mt-3 text-sm leading-7 text-[var(--text-soft)]">
+                        {choice.description}
+                      </p>
+                    </div>
                   ) : null}
                 </details>
               );
@@ -236,12 +259,17 @@ export default function BookPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--accent-dark)]">
               Selected service
             </p>
-            <p className="mt-2 font-display text-3xl text-[var(--text)]">
+            <p className="mt-2 font-display text-3xl font-medium tracking-tight text-[var(--text)]">
               {selectedService.title}
             </p>
             <p className="mt-2 text-sm text-[var(--text-soft)]">
               {selectedService.duration} · {selectedService.price}
             </p>
+            {selectedService.description ? (
+              <p className="mt-4 rounded-[1.25rem] border border-[rgba(124,72,86,0.1)] bg-[rgba(255,255,255,0.72)] px-4 py-4 text-sm leading-7 text-[var(--text-soft)]">
+                {selectedService.description}
+              </p>
+            ) : null}
           </div>
 
           <div className="mt-5">

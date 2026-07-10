@@ -1,7 +1,7 @@
 export const lunara = {
   name: "Lunara Glow Beauty Salon",
   shortName: "Lunara Glow",
-  slogan: "Elegance, made for your glow.",
+  slogan: "Elegance, made for your Glow.",
   bookingSlogan: "Book at the speed of light.",
   experience: "20+ years of experience",
   intro: "Clear prices. Simple booking.",
@@ -64,16 +64,76 @@ export const lunara = {
       id: "facials",
       eyebrow: "Glass-skin glow, gentle care, honest results.",
       items: [
-        { name: "Express Facial", price: "$75", time: "30 min" },
-        { name: "Classic Facial", price: "$145", time: "60 min" },
-        { name: "Hydra Dew", price: "$80", time: "50 min" },
-        { name: "Hydra Medic", price: "$95", time: "50 min" },
-        { name: "Gold / Deep Clean", price: "$65", time: "45 min" },
-        { name: "Seaweed", price: "$80", time: "50 min" },
-        { name: "Herbal Facial", price: "$45", time: "30 min" },
-        { name: "Eye Optimum", price: "$35", time: "30 min" },
-        { name: "Four Layer", price: "$80", time: "50 min" },
-        { name: "Biolight Anti-Aging", price: "$100", time: "50 min" },
+        {
+          name: "Express Facial",
+          price: "$75",
+          time: "30 min",
+          description:
+            "A quick reset with gentle cleanser, light exfoliation, hydrating toner, soothing mask, moisturizer, and SPF. Best when you want a clean, fresh finish without a long appointment.",
+        },
+        {
+          name: "Classic Facial",
+          price: "$145",
+          time: "60 min",
+          description:
+            "A full facial with cleanser, steam, exfoliation, optional extractions, massage, treatment mask, serum, moisturizer, and SPF. The balanced all-around option for regular maintenance.",
+        },
+        {
+          name: "Hydra Dew",
+          price: "$80",
+          time: "50 min",
+          description:
+            "Built around hydration: creamy cleanser, water-based exfoliation, hyaluronic-acid style moisture, glycerin or aloe support, plumping mask, and a lightweight moisturizer for a dewy finish.",
+        },
+        {
+          name: "Hydra Medic",
+          price: "$95",
+          time: "50 min",
+          description:
+            "A clarifying facial with gentle cleanser, enzyme or salicylic-style exfoliation, balancing serum such as niacinamide or zinc, calming mask, and a light barrier moisturizer to keep skin clear without feeling stripped.",
+        },
+        {
+          name: "Gold / Deep Clean",
+          price: "$65",
+          time: "45 min",
+          description:
+            "A deeper cleanse with cleanser, steam, exfoliation, extraction if needed, brightening serum, and a rich mask. This is the reset facial for buildup, congestion, and dull skin.",
+        },
+        {
+          name: "Seaweed",
+          price: "$80",
+          time: "50 min",
+          description:
+            "An algae-and-mineral focused treatment with cleanser, seaweed or algae mask, soothing toner, calming serum, and moisturizer. Great when skin feels stressed and needs a softer, more balanced finish.",
+        },
+        {
+          name: "Herbal Facial",
+          price: "$45",
+          time: "30 min",
+          description:
+            "A botanical facial with plant-based cleansing, chamomile or aloe-style calming care, herbal mask, and a light moisturizer. Gentle, fresh, and easy on sensitive-feeling skin.",
+        },
+        {
+          name: "Eye Optimum",
+          price: "$35",
+          time: "30 min",
+          description:
+            "Focused eye-area care with a soft cleanse, caffeine or peptide-style eye serum, cooling mask, and light moisturizer around the eyes. Best for tired-looking eyes that need a quick refresh.",
+        },
+        {
+          name: "Four Layer",
+          price: "$80",
+          time: "50 min",
+          description:
+            "Click here to know more: a layered facial built from cleanse, exfoliation, massage, mask, hydration, and finishing care. This is the full reset for skin that feels dull, dry, or tired.",
+        },
+        {
+          name: "Biolight Anti-Aging",
+          price: "$100",
+          time: "50 min",
+          description:
+            "A brightening and smoothing facial with cleanser, gentle exfoliation, vitamin C or peptide-style serum, hydrating mask, and a firming moisturizer. Designed to support a more even, refreshed look.",
+        },
       ],
     },
   ],

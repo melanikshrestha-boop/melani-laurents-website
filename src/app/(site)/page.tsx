@@ -8,7 +8,7 @@ export default function HomePage() {
         <div className="max-w-2xl">
           <p className="eyebrow">{lunara.experience}</p>
           <h1 className="heading mt-6 text-5xl sm:text-6xl lg:text-7xl xl:text-[6.5rem]">
-            {lunara.slogan}
+            Elegance, made for your <span className="italic">Glow</span>.
           </h1>
           <p className="mt-6 max-w-xl lead">{lunara.intro}</p>
 

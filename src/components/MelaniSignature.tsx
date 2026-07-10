@@ -1,10 +1,4 @@
-import { Allura } from "next/font/google";
 import Link from "next/link";
-
-const allura = Allura({
-  subsets: ["latin"],
-  weight: "400",
-});
 
 interface MelaniSignatureProps {
   className?: string;
@@ -46,8 +40,7 @@ export function MelaniSignature({
         <text
           x="18"
           y="94"
-          className={allura.className}
-          fontFamily={allura.style.fontFamily}
+          style={{ fontFamily: "\"Brush Script MT\", cursive" }}
           fontSize="104"
           fill="currentColor"
         >

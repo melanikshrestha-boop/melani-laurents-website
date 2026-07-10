@@ -18,8 +18,8 @@
   --shadow: 0 24px 70px rgba(68, 34, 42, 0.08);
   --radius-xl: 2rem;
   --radius-2xl: 2.5rem;
-  --font-display: var(--font-serif);
-  --font-body: var(--font-sans);
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Manrope", Inter, system-ui, sans-serif;
 }
 
 @theme inline {
