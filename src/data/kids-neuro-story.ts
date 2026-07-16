@@ -1,163 +1,289 @@
 /**
- * Story pages for the interactive kids neuroscience book.
- * Each page is one "turn" of the book when a key is pressed or the screen is tapped.
+ * Full story for the interactive kids neuroscience book.
+ * Every keyboard press (or tap) turns one page of Luna’s adventure.
  */
 
 export type KidsStoryPage = {
-  id: string; // unique name for this page
-  chapter: string; // short chapter label kids can read
-  title: string; // big headline on the page
-  story: string; // main story paragraph (plain English)
-  fact: string; // tiny real brain fact, still kid-friendly
-  emoji: string; // big visual on the page
-  bg: string; // soft background color
-  accent: string; // accent color for decorations
+  id: string; // machine name for art + night mode
+  chapter: string; // “Chapter 3” style label
+  title: string; // big title on the right page
+  lines: string[]; // story lines that fade in one by one
+  fact: string; // true brain fact in kid words
+  factTitle: string; // short label on the fact sticker
+  bgFrom: string; // gradient start color behind the book
+  bgTo: string; // gradient end color
+  accent: string; // gold / pink / purple accents
+  ink: string; // main text color
+  night?: boolean; // dark sky chapter
+  scene: // which custom drawing to show
+    | "cover"
+    | "shrink"
+    | "neurons"
+    | "spark"
+    | "synapse"
+    | "senses"
+    | "feelings"
+    | "memory"
+    | "pathways"
+    | "sleep"
+    | "kindness"
+    | "hero"
+    | "again";
 };
 
-/** Full story: Luna discovers how her brain works, one page at a time. */
+/** Luna’s whole adventure — longer, warmer, more “story” than a list of facts. */
 export const kidsNeuroStory: KidsStoryPage[] = [
   {
     id: "cover",
-    chapter: "The beginning",
+    chapter: "Open me",
     title: "Luna and the Tiny Spark",
-    story:
-      "Once upon a time, there was a curious kid named Luna. She loved asking questions about everything — especially the squishy, amazing thing inside her head. Press any key (or tap the page) to turn the book…",
-    fact: "Your brain is the boss of your body — and it never stops learning.",
-    emoji: "📖✨",
-    bg: "#fff4e0",
-    accent: "#f4a261",
+    lines: [
+      "This is a magic brain book.",
+      "Every time you press a key — any key at all — the page turns.",
+      "Ready? Press something on the keyboard… or tap the book.",
+    ],
+    fact: "Your brain is learning right now, just by reading this.",
+    factTitle: "Secret start",
+    bgFrom: "#2a1f4d",
+    bgTo: "#ff8fab",
+    accent: "#ffd166",
+    ink: "#fff8f0",
+    scene: "cover",
   },
   {
     id: "wonder",
     chapter: "Chapter 1",
-    title: "A soft little world",
-    story:
-      "Luna closed her eyes and imagined she could shrink, shrink, shrink — until she was small enough to step inside her own brain. It was not dark and scary. It was warm, sparkly, and full of little roads of light.",
-    fact: "Your brain sits safely inside your skull, like a treasure in a hard box.",
-    emoji: "🧠💫",
-    bg: "#e8f4ff",
-    accent: "#4cc9f0",
+    title: "The girl who asked why",
+    lines: [
+      "Luna asked a thousand whys a day.",
+      "Why is the sky blue? Why do hugs feel warm? Why do dreams feel so real?",
+      "One night she asked the biggest why of all: “Why do I have a brain?”",
+      "The air shimmered… and a tiny golden spark answered.",
+    ],
+    fact: "Kids ask more questions than almost anyone — and that grows the brain.",
+    factTitle: "Curious minds",
+    bgFrom: "#1d3557",
+    bgTo: "#a8dadc",
+    accent: "#f4a261",
+    ink: "#f8f4ef",
+    scene: "shrink",
+  },
+  {
+    id: "enter",
+    chapter: "Chapter 2",
+    title: "Smaller than a whisper",
+    lines: [
+      "“Hold on,” giggled the spark. Luna shrank… and shrank… and shrank.",
+      "She landed on a soft glowing path inside her own head.",
+      "It wasn’t scary. It was a city of light — warm, buzzing, alive.",
+      "“Welcome,” said the spark, “to the place where all your thoughts are born.”",
+    ],
+    fact: "Your brain is protected by your skull, like treasure in a strong box.",
+    factTitle: "Safe home",
+    bgFrom: "#3d348b",
+    bgTo: "#7678ed",
+    accent: "#f7b801",
+    ink: "#fff8ff",
+    scene: "shrink",
   },
   {
     id: "neurons",
-    chapter: "Chapter 2",
-    title: "Meet the brain cells",
-    story:
-      "Everywhere Luna looked, she saw friendly star-shaped creatures waving. “We are neurons!” they cheered. “We are the brain’s messengers. There are billions of us — more than stars you can count on a clear night!”",
-    fact: "Neurons are special cells that send messages so you can think, move, and feel.",
-    emoji: "⭐🧬",
-    bg: "#f3e8ff",
-    accent: "#9b5de5",
+    chapter: "Chapter 3",
+    title: "The star people",
+    lines: [
+      "Everywhere Luna looked, star-shaped friends waved from their posts.",
+      "“We are neurons!” they sang. “Brain cells! Messengers! Team Think!”",
+      "There were billions of them — more than stars Luna could count outside.",
+      "Each one waited for a job: a word, a step, a laugh, a memory.",
+    ],
+    fact: "Neurons talk so you can move, feel, remember, and invent ideas.",
+    factTitle: "Brain cells",
+    bgFrom: "#5a189a",
+    bgTo: "#c77dff",
+    accent: "#ffe66d",
+    ink: "#fff7ff",
+    scene: "neurons",
   },
   {
     id: "spark",
-    chapter: "Chapter 3",
-    title: "The tiny spark",
-    story:
-      "One neuron winked. “Watch this!” A tiny golden spark zipped down a long arm like a lightning race. “That’s an electric signal,” said the neuron. “Every thought begins with a spark just like me.”",
+    chapter: "Chapter 4",
+    title: "Zip! goes the spark",
+    lines: [
+      "One neuron winked. “Want to see a thought start?”",
+      "A golden spark raced down a long arm like a tiny lightning race.",
+      "Whoosh — past branches, past bridges, faster than a blink.",
+      "“That’s electricity,” whispered the spark. “Your ideas are electric.”",
+    ],
     fact: "Brain messages travel as tiny bursts of electricity — super fast!",
-    emoji: "⚡💛",
-    bg: "#fff8e1",
-    accent: "#ffd166",
+    factTitle: "Electric ideas",
+    bgFrom: "#3a0ca3",
+    bgTo: "#f72585",
+    accent: "#ffd60a",
+    ink: "#fff8e7",
+    scene: "spark",
   },
   {
     id: "synapse",
-    chapter: "Chapter 4",
-    title: "The jump across the gap",
-    story:
-      "The spark reached a tiny gap between two neurons. It didn’t stop. It jumped! Little chemical messengers floated across like fireflies, waking up the next neuron. “That gap is a synapse,” whispered Luna. “What a clever bridge!”",
-    fact: "A synapse is the tiny space where one neuron talks to the next.",
-    emoji: "🌉🔮",
-    bg: "#e8fff3",
+    chapter: "Chapter 5",
+    title: "The brave little jump",
+    lines: [
+      "The spark reached a tiny gap between two neurons.",
+      "It didn’t fall. It jumped — like a firefly leaping a river.",
+      "Soft chemical messengers floated across and woke the next neuron.",
+      "“That gap is a synapse,” said Luna. “A tiny bridge for talking.”",
+    ],
+    fact: "A synapse is the space where one brain cell talks to the next.",
+    factTitle: "Tiny bridges",
+    bgFrom: "#0077b6",
+    bgTo: "#90e0ef",
     accent: "#06d6a0",
+    ink: "#06283d",
+    scene: "synapse",
   },
   {
     id: "senses",
-    chapter: "Chapter 5",
-    title: "How the world comes in",
-    story:
-      "Suddenly Luna heard music, smelled cookies, and felt a soft blanket. “Your eyes, ears, nose, tongue, and skin send signals to your brain,” said a neuron guide. “Then your brain turns those signals into the world you know.”",
-    fact: "Your senses collect clues; your brain builds the full picture.",
-    emoji: "👀👂",
-    bg: "#ffe8f0",
-    accent: "#ef476f",
+    chapter: "Chapter 6",
+    title: "Five doors to the world",
+    lines: [
+      "Suddenly: cookie smell. Soft music. A warm blanket. Bright color.",
+      "“Your eyes, ears, nose, tongue, and skin are doors,” said a guide neuron.",
+      "“They send clues. Your brain builds the whole picture — the whole world.”",
+      "Luna spun around. “So I’m not just looking… my brain is painting!”",
+    ],
+    fact: "Your senses collect clues; your brain builds what you experience.",
+    factTitle: "Senses",
+    bgFrom: "#ff6b6b",
+    bgTo: "#ffe66d",
+    accent: "#4ecdc4",
+    ink: "#2b2118",
+    scene: "senses",
   },
   {
     id: "feelings",
-    chapter: "Chapter 6",
-    title: "Feelings have a home too",
-    story:
-      "Luna found a cozy room glowing pink and blue. Happy, brave, shy, and excited feelings danced like weather inside her. “Feelings are real brain messages,” said her guide. “They help keep you safe and help you care about others.”",
-    fact: "Emotions are part of how your brain understands what matters.",
-    emoji: "💗🌈",
-    bg: "#ffeaf4",
-    accent: "#ff6b9d",
+    chapter: "Chapter 7",
+    title: "The weather inside",
+    lines: [
+      "They entered a room of pink storms and blue calm skies.",
+      "Happy, brave, shy, and excited danced like weather.",
+      "“Feelings are real brain messages,” said the guide gently.",
+      "“They keep you safe. They help you care. They are part of being you.”",
+    ],
+    fact: "Emotions help your brain know what matters and what to do next.",
+    factTitle: "Feelings",
+    bgFrom: "#ff85a1",
+    bgTo: "#ffc2d1",
+    accent: "#c9184a",
+    ink: "#4a1942",
+    scene: "feelings",
   },
   {
     id: "memory",
-    chapter: "Chapter 7",
-    title: "The memory library",
-    story:
-      "Next came a huge library with glowing books. One book said “First bike ride.” Another said “Grandma’s soup.” “When you practice or care about something,” explained a librarian neuron, “we store it carefully so you can find it later.”",
+    chapter: "Chapter 8",
+    title: "The glowing library",
+    lines: [
+      "Next: a library with books that glowed when Luna touched them.",
+      "One said First Bike Ride. Another said Grandma’s Soup.",
+      "“When you care, practice, or play,” said the librarian neuron,",
+      "“we file the memory carefully — so you can find it tomorrow.”",
+    ],
     fact: "Memories get stronger when you sleep, play, and practice.",
-    emoji: "📚🔑",
-    bg: "#eef2ff",
-    accent: "#4361ee",
+    factTitle: "Memory",
+    bgFrom: "#14213d",
+    bgTo: "#4361ee",
+    accent: "#fca311",
+    ink: "#edf2f4",
+    scene: "memory",
   },
   {
     id: "pathways",
-    chapter: "Chapter 8",
-    title: "Practice builds roads",
-    story:
-      "Luna saw thin paths grow thicker every time someone practiced piano, reading, or kindness. “The more you use a pathway,” said the neurons, “the easier it gets. That is how you learn anything new!”",
-    fact: "This is called neuroplasticity — your brain can change and grow with practice.",
-    emoji: "🛤️🌱",
-    bg: "#e8ffe8",
-    accent: "#2a9d8f",
+    chapter: "Chapter 9",
+    title: "Roads that grow",
+    lines: [
+      "Luna watched thin silver paths thicken into bright highways.",
+      "Piano practice. Reading. Kind words. Each one built a stronger road.",
+      "“The more you use a path,” cheered the neurons, “the easier it gets!”",
+      "Luna grinned. “So my brain can change? Forever?” “Yes,” they said. “Always.”",
+    ],
+    fact: "Neuroplasticity means your brain can grow new skills with practice.",
+    factTitle: "Practice power",
+    bgFrom: "#1b4332",
+    bgTo: "#95d5b2",
+    accent: "#d8f3dc",
+    ink: "#081c15",
+    scene: "pathways",
   },
   {
     id: "sleep",
-    chapter: "Chapter 9",
-    title: "Nighttime brain magic",
-    story:
-      "The lights dimmed. Soft cleaners floated through, sweeping away the day’s leftover mess. “While you sleep,” they hummed, “we sort memories and rest your busy mind. Sleep is brain superpower fuel.”",
+    chapter: "Chapter 10",
+    title: "Nighttime helpers",
+    lines: [
+      "The lights dimmed. Soft cleaners floated like sleepy clouds.",
+      "They swept leftover day-mess and sorted the day’s best memories.",
+      "“Sleep is not nothing,” they hummed. “Sleep is brain superpower fuel.”",
+      "Luna yawned… and the spark tucked a star-blanket around her thoughts.",
+    ],
     fact: "Sleep helps your brain remember and feel ready for tomorrow.",
-    emoji: "😴🌙",
-    bg: "#1b1f3b",
-    accent: "#cddafd",
+    factTitle: "Sleep magic",
+    bgFrom: "#0b1026",
+    bgTo: "#312e81",
+    accent: "#c7d2fe",
+    ink: "#eef2ff",
+    night: true,
+    scene: "sleep",
   },
   {
     id: "kindness",
-    chapter: "Chapter 10",
-    title: "Brains love kindness",
-    story:
-      "Luna watched sparks leap faster when someone shared, helped, or said something kind. “Being kind is not only good for friends,” smiled her guide. “It helps your brain feel calm and strong too.”",
-    fact: "Kindness and connection help brains feel safer and happier.",
-    emoji: "🤝💛",
-    bg: "#fff0e6",
-    accent: "#e76f51",
+    chapter: "Chapter 11",
+    title: "Sparks of kindness",
+    lines: [
+      "When someone shared a toy, sparks leapt farther and brighter.",
+      "When someone said “You can do it,” whole neighborhoods of neurons lit up.",
+      "“Kindness is brain medicine,” smiled the guide.",
+      "“It helps friends — and it helps your own mind feel safe and strong.”",
+    ],
+    fact: "Connection and kindness help brains feel safer and happier.",
+    factTitle: "Kind brains",
+    bgFrom: "#9d0208",
+    bgTo: "#faa307",
+    accent: "#ffba08",
+    ink: "#fff3e0",
+    scene: "kindness",
   },
   {
     id: "you",
-    chapter: "The end… or is it?",
-    title: "Your brain is amazing",
-    story:
-      "Luna grew back to kid-size, eyes wide with wonder. “I carry a whole universe in my head,” she whispered. And so do you. Every key you press, every question you ask, every dream you chase — your brain is learning with you.",
-    fact: "Scientists still have so much to discover about the brain — maybe you will help!",
-    emoji: "🌟👧",
-    bg: "#fdf6e3",
-    accent: "#e9c46a",
+    chapter: "Chapter 12",
+    title: "A universe in your head",
+    lines: [
+      "Luna grew back to kid-size, eyes full of stars.",
+      "“I carry a whole universe in my head,” she whispered.",
+      "And so do you — every question, dream, and brave try.",
+      "Your brain is still writing its story. You hold the pen.",
+    ],
+    fact: "Scientists still have so much to learn — maybe you will help someday.",
+    factTitle: "You",
+    bgFrom: "#240046",
+    bgTo: "#ff9e00",
+    accent: "#ffd60a",
+    ink: "#fff8e7",
+    scene: "hero",
   },
   {
     id: "again",
-    chapter: "Play again",
-    title: "Ready for another adventure?",
-    story:
-      "Press any key (or tap the page) to start Luna’s story from the beginning. Or close this book and tell a friend one new thing you learned about the brain today!",
-    fact: "Teaching someone else is one of the best ways to remember.",
-    emoji: "🔁🧠",
-    bg: "#e0f7fa",
-    accent: "#00b4d8",
+    chapter: "The end · again",
+    title: "Turn the key once more",
+    lines: [
+      "Press any key to begin Luna’s adventure from the first page.",
+      "Or tell a friend one new brain thing you learned today.",
+      "Teaching someone else is a superpower too.",
+      "The spark is waiting… whenever you’re ready.",
+    ],
+    fact: "Sharing what you learn helps your memory grow even stronger.",
+    factTitle: "Play again",
+    bgFrom: "#023e8a",
+    bgTo: "#48cae4",
+    accent: "#90e0ef",
+    ink: "#caf0f8",
+    scene: "again",
   },
 ];
 
