@@ -53,16 +53,17 @@ export function HomeRecentArchive() {
                 {siteConfig.podcastCadence}
               </span>
             </header>
+            {/* Whole card opens the podcast; bold audience line underlines on hover */}
             <Link
               href={siteConfig.podcastUrl}
-              className="hub-archive__callout-card"
+              className="hub-archive__callout-card hub-archive__callout-card--podcast"
             >
               <p className="hub-archive__callout-body">
                 {siteConfig.podcastDescription}
               </p>
-              <p className="hub-archive__callout-audience">
+              <span className="hub-archive__callout-audience">
                 {siteConfig.podcastAudience}
-              </p>
+              </span>
               <div className="hub-archive__callout-action">
                 <p className="hub-archive__callout-title">
                   {siteConfig.podcastSlogan}

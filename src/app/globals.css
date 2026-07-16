@@ -2281,14 +2281,30 @@ body {
   margin: 0.85rem 0 0;
 }
 
+/* Bold audience line = podcast button cue; underline draws under text on hover */
 .hub-archive__callout-audience {
+  display: inline-block;
   margin: 0.7rem 0 0;
+  max-width: 36rem;
   font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
-  font-size: 0.6rem;
-  font-weight: 500;
+  font-size: 0.68rem;
+  font-weight: 700; /* bold */
   line-height: 1.6;
   letter-spacing: 0.03em;
   color: #000;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1.5px; /* no line until hover */
+  transition:
+    background-size 220ms ease,
+    color 200ms ease;
+}
+
+.hub-archive__callout-card:hover .hub-archive__callout-audience,
+.hub-archive__callout-card--podcast:hover .hub-archive__callout-audience {
+  background-size: 100% 1.5px; /* underline lines up under the full phrase */
+  color: var(--archive-gold-hover, #8a6508);
 }
 
 .hub-archive__callout-action {

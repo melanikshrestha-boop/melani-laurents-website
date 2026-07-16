@@ -5,8 +5,8 @@ export const siteConfig = {
   title: "Melani Laurent S.",
   description:
     "BCI researcher and neurotech builder — in-ear EEG, neural interfaces, clinical cinema, and art.",
-  email: "hello@melanilaurents.com",
-  location: "LA / SF / NYC",
+  email: "itsmelanilaurents@gmail.com",
+  location: "Mostly LA — sometimes SF or NYC",
   /** Daily letter — home archive + /daily page. */
   dailyDescription:
     "The consolidation of memory is the art of writing what you listen to, read about, or converse with other people while adding your own n+1 aspect on a consistent basis. Follow along if you want to grow your neuroplasticity by incremental daily learning on a variety of topics.",
@@ -17,7 +17,8 @@ export const siteConfig = {
   podcastTitle: "MELANI LAURENT S(HOW)",
   podcastCadence: "1x/week",
   podcastDescription:
-    "Unfiltered, deep-end conversations about where neuroscience is going: neural interfaces, neurotech startups, AI, robotics, human-made art, philosophy, self-improvement, psychology, medicine, business, space exploration, history, sports, and the cool things that make up a human experience.",
+    "Unfiltered, deep-end conversations. Topics that are favored: technology, human-made art, philosophy, history, psychology, robotics, business, space exploration, films, music, sports, mathematics, physics, economics, engineering, and the cool things that make up a human experience.",
+  /** Bold line on the home card — also the main “button” feel on hover */
   podcastAudience: "Made for curious people from all walks of life.",
   podcastSlogan: "everything backed by neuroscience",
   podcastUrl: "/podcast",
@@ -63,15 +64,15 @@ export const siteConfig = {
       href: "/podcast",
       tagline: "Melani",
     },
+    { label: "Art", href: "/photography", tagline: "Visual signal · cinema" },
     { label: "Research", href: "/research", tagline: "BCI · neurotech · med-tech" },
     { label: "Daily", href: "/daily", tagline: "Neural log · daily", comingSoon: true },
-    { label: "Art", href: "/photography", tagline: "Visual signal · cinema" },
   ],
   nav: [
     { label: "Podcast", href: "/podcast" },
+    { label: "Art", href: "/photography" },
     { label: "Research", href: "/research" },
     { label: "Daily", href: "/daily" },
-    { label: "Art", href: "/photography" },
     { label: "Contact", href: "/contact" },
   ],
 } as const;
