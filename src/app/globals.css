@@ -1653,81 +1653,268 @@ textarea {
   border: 0;
 }
 
-/* ── Luna: floating corner bubble + chat panel ─────────────────────── */
+/* ── Luna: free-roam bot (drag · fling · sparkles · chat) ──────────── */
 
 .luna-dock {
   position: fixed;
-  right: 0.9rem;
-  bottom: 0.9rem;
+  /* left/top set inline as bottom-right anchor */
   z-index: 80;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 0.55rem;
   pointer-events: none; /* only children clickable */
+  touch-action: none; /* smoother drag on phones */
+  will-change: left, top;
 }
 
 .luna-dock > * {
   pointer-events: auto;
 }
 
-/* Closed: moon emoji button — compact */
+.luna-dock.is-dragging {
+  z-index: 130; /* above drawers while flying */
+}
+
+.luna-dock.is-dragging .luna-fab {
+  cursor: grabbing;
+  transform: scale(1.12) rotate(-8deg);
+  box-shadow:
+    0 18px 40px rgba(143, 77, 93, 0.45),
+    0 0 0 4px rgba(255, 252, 248, 0.95),
+    0 0 28px rgba(213, 154, 170, 0.55);
+}
+
+/* Soft land bounce after fling or drop */
+.luna-dock.is-tossing .luna-fab,
+.luna-dock.is-tossing .luna-panel {
+  animation: luna-land 0.45s cubic-bezier(0.22, 1.4, 0.36, 1);
+}
+
+@keyframes luna-land {
+  0% {
+    transform: scale(1.08);
+  }
+  55% {
+    transform: scale(0.94);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Double-tap magic spin */
+.luna-dock.is-spinning .luna-fab {
+  animation: luna-spin-magic 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes luna-spin-magic {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  40% {
+    transform: scale(1.25) rotate(200deg);
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+  }
+}
+
+/* Sparkle trail — fixed to the real viewport */
+.luna-sparkle-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 125;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.luna-sparkle {
+  position: fixed;
+  font-size: 0.85rem;
+  transform: translate(-50%, -50%) scale(1);
+  animation: luna-sparkle-pop 0.7s ease-out forwards;
+  filter: drop-shadow(0 0 6px rgba(255, 220, 230, 0.8));
+}
+
+@keyframes luna-sparkle-pop {
+  0% {
+    transform: translate(-50%, -50%) scale(0.4);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -70%) scale(1.15);
+    opacity: 0;
+  }
+}
+
+/* Closed: moon emoji button — compact + alive */
 .luna-fab {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 3rem;
-  height: 3rem;
+  width: 3.35rem;
+  height: 3.35rem;
   border: 0;
-  border-radius: 999px;
-  background: linear-gradient(145deg, #d59aaa, #b87385);
+  border-radius: 999px !important; /* beat later square overrides */
+  background: linear-gradient(145deg, #e0a8b6, #b87385) !important;
   color: #fff;
   box-shadow:
-    0 10px 24px rgba(143, 77, 93, 0.32),
-    0 0 0 3px rgba(255, 252, 248, 0.9);
-  cursor: pointer;
+    0 12px 28px rgba(143, 77, 93, 0.36),
+    0 0 0 3px rgba(255, 252, 248, 0.92) !important;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
   transition:
     transform 160ms ease,
     box-shadow 160ms ease;
+  animation: luna-idle-float 3.6s ease-in-out infinite;
+}
+
+/* Soft pulse ring — “I’m interactive” signal */
+.luna-fab-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 999px;
+  border: 2px solid rgba(213, 154, 170, 0.55);
+  animation: luna-ring-pulse 2.4s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes luna-ring-pulse {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.75;
+  }
+  70% {
+    transform: scale(1.22);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.22);
+    opacity: 0;
+  }
+}
+
+@keyframes luna-idle-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 .luna-fab:hover {
-  transform: translateY(-2px) scale(1.04);
+  transform: translateY(-3px) scale(1.06);
   box-shadow:
-    0 12px 28px rgba(143, 77, 93, 0.38),
-    0 0 0 3px rgba(255, 252, 248, 0.95);
+    0 16px 34px rgba(143, 77, 93, 0.42),
+    0 0 0 3px rgba(255, 252, 248, 0.98),
+    0 0 22px rgba(213, 154, 170, 0.45) !important;
+  animation: none; /* pause float on hover so it feels responsive */
+}
+
+.luna-fab:active {
+  cursor: grabbing;
 }
 
 .luna-fab-emoji {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   line-height: 1;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 2px 4px rgba(80, 30, 40, 0.25));
 }
 
 .luna-fab-tip {
   position: absolute;
-  right: calc(100% + 0.5rem);
+  right: calc(100% + 0.55rem);
   top: 50%;
   transform: translateY(-50%);
   white-space: nowrap;
   border-radius: 999px;
   border: 1px solid rgba(124, 72, 86, 0.12);
-  background: rgba(255, 252, 248, 0.97);
-  padding: 0.35rem 0.7rem;
-  font-size: 0.68rem;
+  background: rgba(255, 252, 248, 0.98);
+  padding: 0.38rem 0.75rem;
+  font-size: 0.7rem;
   font-weight: 600;
   color: var(--accent-dark);
-  box-shadow: 0 8px 20px rgba(64, 32, 34, 0.1);
+  box-shadow: 0 8px 20px rgba(64, 32, 34, 0.12);
   pointer-events: none;
+  max-width: 11rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  animation: luna-tip-in 0.35s ease;
+}
+
+@keyframes luna-tip-in {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+.luna-drag-grip {
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.luna-dock.is-dragging .luna-drag-grip {
+  cursor: grabbing;
+}
+
+.luna-drag-hint {
+  margin-left: 0.35rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0.75;
+}
+
+.luna-avatar-bounce {
+  animation: luna-bounce 1.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .luna-fab,
+  .luna-fab-ring,
+  .luna-avatar-bounce,
+  .luna-dock.is-spinning .luna-fab,
+  .luna-dock.is-tossing .luna-fab,
+  .luna-dock.is-tossing .luna-panel {
+    animation: none !important;
+  }
+  .luna-sparkle-layer {
+    display: none;
+  }
 }
 
 /* Open chat panel — size set inline; drag top-left to stretch */
 .luna-panel {
+  /* CSS variables scale type + spacing with panel width */
+  --luna-pad-x: 0.75rem;
+  --luna-pad-y: 0.65rem;
+  --luna-name: 0.95rem;
+  --luna-tag: 0.72rem;
+  --luna-msg: 0.8rem;
+  --luna-chip: 0.7rem;
+  --luna-step: 0.58rem;
+  --luna-input: 0.78rem;
+
   position: relative;
   display: flex;
   flex-direction: column;
-  min-width: 260px;
-  min-height: 300px;
+  min-width: 280px; /* never so thin that header dies */
+  min-height: 320px;
   max-width: min(560px, calc(100vw - 1.5rem));
   max-height: min(720px, calc(100vh - 6rem));
   border-radius: 1.15rem;
@@ -1735,6 +1922,31 @@ textarea {
   background: rgba(255, 252, 248, 0.98);
   box-shadow: 0 18px 44px rgba(68, 34, 42, 0.14);
   overflow: hidden;
+  container-type: inline-size; /* for @container queries */
+  container-name: luna;
+}
+
+/* When user shrinks the panel, drop type size (perfect lining still) */
+.luna-panel[data-w="sm"] {
+  --luna-pad-x: 0.6rem;
+  --luna-pad-y: 0.55rem;
+  --luna-name: 0.88rem;
+  --luna-tag: 0.65rem;
+  --luna-msg: 0.76rem;
+  --luna-chip: 0.66rem;
+  --luna-step: 0.54rem;
+  --luna-input: 0.74rem;
+}
+
+.luna-panel[data-w="xs"] {
+  --luna-pad-x: 0.5rem;
+  --luna-pad-y: 0.5rem;
+  --luna-name: 0.84rem;
+  --luna-tag: 0.6rem;
+  --luna-msg: 0.74rem;
+  --luna-chip: 0.64rem;
+  --luna-step: 0.5rem;
+  --luna-input: 0.72rem;
 }
 
 /* Invisible resize edges — no ugly corner icon; still stretchable */
@@ -1781,16 +1993,141 @@ textarea {
   border-radius: 0 0 2px 2px;
 }
 
+/* ═══ Header — perfect two-column grid (never vertical letter soup) ═══ */
 .luna-chat-header {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto; /* left can shrink; right never */
   align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  padding: 0.7rem 0.8rem;
+  column-gap: 0.5rem;
+  row-gap: 0;
+  padding: var(--luna-pad-y) var(--luna-pad-x);
   border-bottom: 1px solid rgba(124, 72, 86, 0.1);
   background: linear-gradient(180deg, #fffaf4, #f8efe8);
+  min-height: 3.4rem;
+  flex-shrink: 0;
 }
 
+/* Left: avatar + name — one row, ellipsis if tight */
+.luna-head-id {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 0; /* required for ellipsis in grid child */
+  overflow: hidden;
+}
+
+.luna-head-copy {
+  min-width: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.luna-head-name {
+  margin: 0;
+  font-size: var(--luna-name);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.luna-head-tag {
+  margin: 0;
+  font-size: var(--luna-tag);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--accent-dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Right: actions always stay in one clean horizontal row */
+.luna-head-actions {
+  display: flex;
+  flex-wrap: nowrap; /* NEVER wrap buttons under the title */
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.3rem;
+  flex-shrink: 0;
+}
+
+.luna-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.85rem;
+  min-height: 1.85rem;
+  padding: 0.28rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(124, 72, 86, 0.14);
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  cursor: pointer;
+  line-height: 1;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.luna-icon-btn:hover {
+  border-color: rgba(183, 115, 133, 0.4);
+  color: var(--accent-dark);
+  background: #fff;
+}
+
+.luna-icon-btn-close {
+  min-width: 1.85rem;
+  padding: 0;
+  font-size: 0.85rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Full word labels when roomy; icon glyphs when narrow */
+.luna-icon-btn-short {
+  display: none;
+  font-size: 0.85rem;
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 600;
+}
+
+.luna-icon-btn-full {
+  display: inline;
+}
+
+/* Narrow panel: icon-only buttons, shorter tag, still perfect alignment */
+.luna-panel[data-w="sm"] .luna-icon-btn-full,
+.luna-panel[data-w="xs"] .luna-icon-btn-full {
+  display: none;
+}
+
+.luna-panel[data-w="sm"] .luna-icon-btn-short,
+.luna-panel[data-w="xs"] .luna-icon-btn-short {
+  display: inline;
+}
+
+.luna-panel[data-w="sm"] .luna-icon-btn,
+.luna-panel[data-w="xs"] .luna-icon-btn {
+  min-width: 1.75rem;
+  min-height: 1.75rem;
+  padding: 0 0.15rem;
+}
+
+.luna-panel[data-w="xs"] .luna-head-tag {
+  /* keep one short line — never stack letters */
+  max-width: 7.5rem;
+}
+
+/* Legacy class still used elsewhere (book page etc.) */
 .luna-reset-btn {
   flex-shrink: 0;
   border-radius: 999px;
@@ -1803,6 +2140,7 @@ textarea {
   text-transform: uppercase;
   color: var(--text-soft);
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .luna-reset-btn:hover {
@@ -1821,9 +2159,15 @@ textarea {
   color: #fff;
   font-size: 0.95rem;
   font-weight: 600;
-  flex-shrink: 0;
+  flex-shrink: 0; /* never crush the moon */
   box-shadow: 0 6px 14px rgba(143, 77, 93, 0.2);
   line-height: 1;
+}
+
+.luna-panel[data-w="xs"] .luna-avatar {
+  width: 1.75rem;
+  height: 1.75rem;
+  font-size: 0.85rem;
 }
 
 .luna-avatar-sm {
@@ -1835,17 +2179,20 @@ textarea {
 
 .luna-progress {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 0.25rem;
-  padding: 0.4rem 0.8rem;
+  padding: 0.4rem var(--luna-pad-x, 0.8rem);
   border-bottom: 1px solid rgba(124, 72, 86, 0.08);
   background: rgba(183, 115, 133, 0.06);
-  font-size: 0.58rem;
+  font-size: var(--luna-step, 0.58rem);
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
+  flex-shrink: 0;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .luna-progress .on {
@@ -1859,8 +2206,10 @@ textarea {
 
 .luna-chat-thread {
   flex: 1;
+  min-height: 0; /* critical: lets thread scroll inside flex column */
   overflow-y: auto;
-  padding: 0.7rem 0.7rem 0.55rem;
+  overflow-x: hidden;
+  padding: 0.7rem var(--luna-pad-x, 0.7rem) 0.55rem;
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
@@ -1871,9 +2220,11 @@ textarea {
 
 .luna-msg {
   padding: 0.55rem 0.75rem;
-  font-size: 0.8rem;
+  font-size: var(--luna-msg, 0.8rem);
   line-height: 1.45;
   white-space: pre-wrap;
+  overflow-wrap: anywhere; /* wrap whole words, never one-letter columns */
+  word-break: normal;
 }
 
 .luna-msg-bot {
@@ -1918,16 +2269,18 @@ textarea {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex: 0 0 auto;
+  flex: 0 1 auto;
+  max-width: 100%;
   border-radius: 999px;
   border: 1px solid rgba(124, 72, 86, 0.16);
   background: #fff;
   padding: 0.35rem 0.65rem;
-  font-size: 0.7rem;
+  font-size: var(--luna-chip, 0.7rem);
   font-weight: 600;
   color: var(--text);
   line-height: 1.2;
-  white-space: nowrap;
+  white-space: normal; /* long chips wrap as phrases, not letters */
+  text-align: left;
   cursor: pointer;
   transition:
     background 140ms ease,
@@ -2005,23 +2358,24 @@ textarea {
 }
 
 .luna-composer-bar {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto; /* input | send — always lined up */
   align-items: center;
   gap: 0.4rem;
-  padding: 0.55rem 0.6rem 0.65rem;
+  padding: 0.55rem var(--luna-pad-x, 0.6rem) 0.65rem;
   border-top: 1px solid rgba(124, 72, 86, 0.1);
   background: #fffaf4;
+  flex-shrink: 0;
 }
 
 .luna-composer-input {
-  flex: 1 1 auto;
   min-width: 0;
   width: 100%;
   border-radius: 0.95rem;
   border: 1px solid rgba(124, 72, 86, 0.14);
   background: #fff;
   padding: 0.55rem 0.7rem;
-  font-size: 0.78rem;
+  font-size: var(--luna-input, 0.78rem);
   color: var(--text);
   outline: none;
 }
@@ -3075,17 +3429,11 @@ h3 {
   border-bottom: 0;
 }
 
-/* Tone down floating Luna — still works, less candy */
-.luna-fab {
-  border-radius: 0 !important;
-  background: var(--text) !important;
-  box-shadow: none !important;
-}
-
+/* Luna stays playful (free-roam bot) — panel stays sharp, fab stays fun */
 .luna-panel {
-  border-radius: 0 !important;
-  border-color: var(--border) !important;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12) !important;
+  border-radius: 1.15rem !important;
+  border-color: rgba(124, 72, 86, 0.12) !important;
+  box-shadow: 0 18px 44px rgba(68, 34, 42, 0.16) !important;
 }
 
 .promo-strip::after {
