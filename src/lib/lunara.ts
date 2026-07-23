@@ -1,12 +1,14 @@
 export const lunara = {
   name: "Lunara Glow Beauty Salon",
   shortName: "Lunara Glow",
-  slogan: "Elegance, made for your Glow.",
-  bookingSlogan: "Book at the speed of light.",
-  experience: "20+ years of experience",
+  slogan: "Brows, lashes, waxing, facials.",
+  bookingSlogan: "Book online or walk in.",
+  experience: "20+ years",
   intro: "Clear prices. Simple booking.",
-  offer: "First-time customers · 20% off",
-  loyalty: "Ten visits earn one reward.",
+  offer: "First visit · 20% off",
+  // Points 1→10; hit 10 = free brow threading, then back to 1
+  loyalty:
+    "Each visit +1 point (1→10). At 10: free brow threading, then reset.",
   address: "38-02 Broadway, Astoria, NY 11103",
   phone: "(347) 242-2127",
   phoneDial: "3472422127",
@@ -19,6 +21,8 @@ export const lunara = {
       title: "Waxing",
       id: "waxing",
       eyebrow: "Face, body, bikini — all clean and simple.",
+      // Visual card until real salon photos (no stock/AI pics)
+      visual: { icon: "✦", tone: "rose" as const, label: "Smooth & clean" },
       items: [
         { name: "Brow Wax", price: "$40", time: "15 min" },
         { name: "Brow Tweeze", price: "$50", time: "20 min" },
@@ -37,6 +41,7 @@ export const lunara = {
       title: "Brows",
       id: "brows",
       eyebrow: "Soft shape, clean finish, no guesswork.",
+      visual: { icon: "◡", tone: "blush" as const, label: "Shape & tint" },
       items: [
         { name: "Brow Tint", price: "$30", time: "15 min" },
         { name: "Brow Lamination + Shaping", price: "$100", time: "45 min" },
@@ -52,6 +57,7 @@ export const lunara = {
       title: "Lashes",
       id: "lashes",
       eyebrow: "Natural or fuller — we’ll keep it polished.",
+      visual: { icon: "☽", tone: "mauve" as const, label: "Lift & extensions" },
       items: [
         { name: "Lash Lift + Tint", price: "$70", time: "60 min" },
         { name: "Lash Tint", price: "$45", time: "20 min" },
@@ -62,7 +68,8 @@ export const lunara = {
     {
       title: "Facials",
       id: "facials",
-      eyebrow: "Glass-skin glow, gentle care, honest results.",
+      eyebrow: "Express to full resets. Clear options.",
+      visual: { icon: "◎", tone: "cream" as const, label: "Facials" },
       items: [
         {
           name: "Express Facial",
@@ -137,6 +144,7 @@ export const lunara = {
       ],
     },
   ],
+  // Yelp reviews shown in the sliding strip (add more anytime)
   reviews: [
     {
       quote: "Bima did an amazing job and very kind.",
