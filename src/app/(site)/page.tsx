@@ -1,80 +1,138 @@
+"use client";
+
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { AddToBagButton } from "@/components/ServiceCart";
+import {
+  CategoryMarquee,
+  HeroParallaxLayers,
+  HeroTitle,
+  MagneticButton,
+  MotionMenuRow,
+  Reveal,
+  Stagger,
+  StaggerItem,
+  StickyBookBar,
+} from "@/components/LunaraMotion";
 import { lunara } from "@/lib/lunara";
 
 /**
- * Home — inspired by Striiike service menus + Shani Darden studio calm.
- * Dark studio hero, light menu board, clean price rows.
+ * Lunara home — ambitious motion system.
+ * Striiike menus + Shani studio, with Lenis / Framer scroll cinema.
  */
 export default function HomePage() {
+  const categories = lunara.services.map((s) => s.title);
+
   return (
     <div className="lg-home">
-      {/* Dark studio band — Shani-like */}
+      {/* ── Hero ── */}
       <section className="lg-hero">
+        <HeroParallaxLayers />
         <div className="lg-wrap lg-hero-inner">
-          <p className="lg-eyebrow">Astoria · {lunara.experience}</p>
-          <h1 className="lg-hero-title">
-            {lunara.shortName}
-            <em>Studio</em>
-          </h1>
-          <p className="lg-hero-lead">
-            Expertly done brows, lashes, waxing, and facials — with a menu you
-            can actually read.
-          </p>
-          <div className="lg-hero-cta">
-            <Link href="/book" className="lg-btn lg-btn-light">
+          <motion.p
+            className="lg-eyebrow"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.05 }}
+          >
+            Astoria · {lunara.experience}
+          </motion.p>
+
+          <HeroTitle line1={lunara.shortName} line2="Studio" />
+
+          <motion.p
+            className="lg-hero-lead"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.55 }}
+          >
+            Expertly done brows, lashes, waxing, and facials — a menu you can
+            read, a room you can feel.
+          </motion.p>
+
+          <motion.div
+            className="lg-hero-cta"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.7 }}
+          >
+            <MagneticButton href="/book" className="lg-btn lg-btn-light">
               Book now
-            </Link>
-            <Link href="/#services" className="lg-btn lg-btn-ghost">
+            </MagneticButton>
+            <MagneticButton href="/#services" className="lg-btn lg-btn-ghost">
               View menu
-            </Link>
-          </div>
-          <dl className="lg-hero-meta">
-            <div>
-              <dt>Address</dt>
-              <dd>{lunara.address}</dd>
-            </div>
-            <div>
-              <dt>Hours</dt>
-              <dd>{lunara.hours}</dd>
-            </div>
-            <div>
-              <dt>Offer</dt>
-              <dd>{lunara.offer}</dd>
-            </div>
-          </dl>
+            </MagneticButton>
+          </motion.div>
+
+          <Stagger className="lg-hero-meta lg-hero-meta-stagger" delay={0.85} stagger={0.1}>
+            <StaggerItem>
+              <div className="lg-hero-meta-item">
+                <p className="lg-hero-meta-k">Address</p>
+                <p className="lg-hero-meta-v">{lunara.address}</p>
+              </div>
+            </StaggerItem>
+            <StaggerItem>
+              <div className="lg-hero-meta-item">
+                <p className="lg-hero-meta-k">Hours</p>
+                <p className="lg-hero-meta-v">{lunara.hours}</p>
+              </div>
+            </StaggerItem>
+            <StaggerItem>
+              <div className="lg-hero-meta-item">
+                <p className="lg-hero-meta-k">Offer</p>
+                <p className="lg-hero-meta-v">{lunara.offer}</p>
+              </div>
+            </StaggerItem>
+          </Stagger>
+        </div>
+
+        <div className="lg-hero-scroll" aria-hidden>
+          <span>Scroll</span>
+          <i />
         </div>
       </section>
 
-      {/* Service menu — Striiike-style boards */}
+      {/* Moving category ribbon */}
+      <CategoryMarquee labels={categories} />
+
+      {/* ── Services ── */}
       <section id="services" className="lg-services">
         <div className="lg-wrap">
-          <header className="lg-services-head">
+          <Reveal className="lg-services-head">
             <p className="lg-eyebrow dark">Menu</p>
             <h2 className="lg-display">Services</h2>
             <p className="lg-sub">
               Name · price · time. Add with + then book, or walk in.
             </p>
-          </header>
+          </Reveal>
 
-          <nav className="lg-jump" aria-label="Jump to category">
-            {lunara.services.map((group) => (
-              <a key={group.id} href={`#${group.id}`}>
-                {group.title}
-              </a>
-            ))}
-          </nav>
+          <Reveal delay={0.1}>
+            <nav className="lg-jump" aria-label="Jump to category">
+              {lunara.services.map((group) => (
+                <a key={group.id} href={`#${group.id}`}>
+                  {group.title}
+                </a>
+              ))}
+            </nav>
+          </Reveal>
 
-          {lunara.services.map((group) => (
+          {lunara.services.map((group, gi) => (
             <article key={group.id} id={group.id} className="lg-menu-board">
-              <header className="lg-menu-board-head">
-                <h3>{group.title}</h3>
-                <p>{group.eyebrow}</p>
-              </header>
+              <Reveal>
+                <header className="lg-menu-board-head">
+                  <div className="lg-menu-board-index">
+                    {String(gi + 1).padStart(2, "0")}
+                  </div>
+                  <div>
+                    <h3>{group.title}</h3>
+                    <p>{group.eyebrow}</p>
+                  </div>
+                </header>
+              </Reveal>
 
               <ul className="lg-menu-list">
-                {group.items.map((item) => (
-                  <li key={`${group.id}-${item.name}`}>
+                {group.items.map((item, ii) => (
+                  <MotionMenuRow key={`${group.id}-${item.name}`} index={ii}>
                     <div className="lg-menu-main">
                       <span className="lg-menu-name">{item.name}</span>
                       {"description" in item && item.description ? (
@@ -95,7 +153,7 @@ export default function HomePage() {
                         time={item.time}
                       />
                     </div>
-                  </li>
+                  </MotionMenuRow>
                 ))}
               </ul>
             </article>
@@ -103,54 +161,58 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Loyalty strip */}
+      {/* Loyalty */}
       <section className="lg-strip">
-        <div className="lg-wrap lg-strip-inner">
+        <Reveal className="lg-wrap lg-strip-inner">
           <p className="lg-strip-label">Loyalty</p>
           <p className="lg-strip-text">{lunara.loyalty}</p>
           <Link href="/new-clients" className="lg-text-link">
             New client notes
           </Link>
-        </div>
+        </Reveal>
       </section>
 
-      {/* Reviews — static cards, not marquee */}
+      {/* Reviews */}
       <section className="lg-reviews">
         <div className="lg-wrap">
-          <header className="lg-services-head">
+          <Reveal className="lg-services-head">
             <p className="lg-eyebrow dark">Yelp</p>
             <h2 className="lg-display">Clients</h2>
-          </header>
-          <div className="lg-review-grid">
+          </Reveal>
+          <Stagger className="lg-review-grid" stagger={0.12}>
             {lunara.reviews.map((r) => (
-              <figure key={r.author} className="lg-review">
-                <blockquote>“{r.quote}”</blockquote>
-                <figcaption>{r.author}</figcaption>
-              </figure>
+              <StaggerItem key={r.author}>
+                <figure className="lg-review">
+                  <blockquote>“{r.quote}”</blockquote>
+                  <figcaption>{r.author}</figcaption>
+                </figure>
+              </StaggerItem>
             ))}
-          </div>
-          <a
-            href={lunara.yelp}
-            className="lg-text-link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            See all on Yelp
-          </a>
+          </Stagger>
+          <Reveal delay={0.15}>
+            <a
+              href={lunara.yelp}
+              className="lg-text-link"
+              target="_blank"
+              rel="noreferrer"
+            >
+              See all on Yelp
+            </a>
+          </Reveal>
         </div>
       </section>
 
-      {/* Visit / book — dark close like Shani studio */}
+      {/* Visit */}
       <section id="contact" className="lg-visit">
         <div className="lg-wrap lg-visit-grid">
-          <div>
+          <Reveal>
             <p className="lg-eyebrow">Visit</p>
             <h2 className="lg-display light">Book or walk in</h2>
             <p className="lg-visit-copy">{lunara.hours}</p>
             <div className="lg-hero-cta">
-              <Link href="/book" className="lg-btn lg-btn-light">
+              <MagneticButton href="/book" className="lg-btn lg-btn-light">
                 Book online
-              </Link>
+              </MagneticButton>
               <a
                 href={`tel:${lunara.phoneDial}`}
                 className="lg-btn lg-btn-ghost"
@@ -165,51 +227,60 @@ export default function HomePage() {
               <br />
               {lunara.instagram}
             </address>
-          </div>
-          <div className="lg-map">
+          </Reveal>
+          <Reveal delay={0.12} className="lg-map">
             <iframe
               title="Lunara Glow location"
               src="https://www.google.com/maps?q=38-02+Broadway+Astoria+NY+11103&z=15&output=embed"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="lg-faq">
+        <div className="lg-wrap">
+          <Reveal className="lg-services-head">
+            <p className="lg-eyebrow dark">FAQ</p>
+            <h2 className="lg-display">Before you come</h2>
+          </Reveal>
+          <div className="lg-faq-list">
+            {[
+              {
+                q: "How long is an appointment?",
+                a: "Each service lists time on the menu. Combos take longer — we confirm when you book.",
+              },
+              {
+                q: "Do I need to book ahead?",
+                a: `Booking online is best. Walk-ins welcome when the chair is free — call ${lunara.phone} same day if you can.`,
+              },
+              {
+                q: "First visit discount?",
+                a: `${lunara.offer}. Mention it when you check in.`,
+              },
+              {
+                q: "Loyalty points?",
+                a: lunara.loyalty,
+              },
+            ].map((item, i) => (
+              <Reveal key={item.q} delay={i * 0.05}>
+                <details>
+                  <summary>{item.q}</summary>
+                  <p>{item.a}</p>
+                </details>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ — Striiike pattern */}
-      <section className="lg-faq">
-        <div className="lg-wrap">
-          <header className="lg-services-head">
-            <p className="lg-eyebrow dark">FAQ</p>
-            <h2 className="lg-display">Before you come</h2>
-          </header>
-          <div className="lg-faq-list">
-            <details>
-              <summary>How long is an appointment?</summary>
-              <p>
-                Each service lists time on the menu. Combos take longer — we’ll
-                confirm when you book.
-              </p>
-            </details>
-            <details>
-              <summary>Do I need to book ahead?</summary>
-              <p>
-                Booking online is best. Walk-ins welcome when the chair is free
-                — call {lunara.phone} same day if you can.
-              </p>
-            </details>
-            <details>
-              <summary>First visit discount?</summary>
-              <p>{lunara.offer}. Mention it when you check in.</p>
-            </details>
-            <details>
-              <summary>Loyalty points?</summary>
-              <p>{lunara.loyalty}</p>
-            </details>
-          </div>
-        </div>
-      </section>
+      <StickyBookBar
+        href="/book"
+        phone={lunara.phone}
+        phoneDial={lunara.phoneDial}
+      />
     </div>
   );
 }

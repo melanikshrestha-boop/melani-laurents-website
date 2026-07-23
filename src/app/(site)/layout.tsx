@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AskLuna } from "@/components/AskLuna";
+import { LunaraMotionRoot } from "@/components/LunaraMotion";
 import { CartProvider } from "@/components/ServiceCart";
 import { SiteHeader } from "@/components/SiteHeader";
 import { lunara } from "@/lib/lunara";
@@ -18,6 +19,7 @@ export default function SiteLayout({
 }) {
   return (
     <CartProvider>
+      <LunaraMotionRoot>
       <div className="lg-shell">
         <SiteHeader />
         <main>{children}</main>
@@ -57,6 +59,7 @@ export default function SiteLayout({
           </div>
         </footer>
       </div>
+      </LunaraMotionRoot>
     </CartProvider>
   );
 }

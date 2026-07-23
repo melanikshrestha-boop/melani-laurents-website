@@ -337,14 +337,13 @@ body {
 }
 
 .lg-hero-meta {
-  display: grid;
-  gap: 1rem;
   margin: 0;
   padding-top: 1.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
+  width: 100%;
 }
 
-.lg-hero-meta dt {
+.lg-hero-meta-k {
   margin: 0 0 0.2rem;
   font-size: 0.68rem;
   letter-spacing: 0.14em;
@@ -353,18 +352,11 @@ body {
   font-weight: 600;
 }
 
-.lg-hero-meta dd {
+.lg-hero-meta-v {
   margin: 0;
   font-size: 0.92rem;
   color: rgba(255, 255, 255, 0.82);
   line-height: 1.4;
-}
-
-@media (min-width: 720px) {
-  .lg-hero-meta {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-  }
 }
 
 /* Services light board — Striiike */
@@ -832,6 +824,394 @@ body {
   font-size: 1.35rem;
   color: var(--ink);
   text-decoration: none;
+}
+
+/* ═══════════════ Motion system ═══════════════ */
+
+.lg-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 90;
+  height: 2px;
+  transform-origin: 0% 50%;
+  background: linear-gradient(90deg, #c9a0a0, #fff 50%, #a46565);
+  pointer-events: none;
+}
+
+/* Hero cinema layers — film, not candy orbs */
+.lg-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.lg-hero-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.lg-hero-fx {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.lg-hero-fx-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.45;
+}
+
+/* Cool studio light — charcoal/slate, not pink slop */
+.lg-hero-fx-orb-a {
+  width: min(70vw, 520px);
+  height: min(70vw, 520px);
+  top: -18%;
+  right: -12%;
+  background: radial-gradient(
+    circle,
+    rgba(164, 101, 101, 0.35) 0%,
+    rgba(39, 45, 69, 0.25) 40%,
+    transparent 70%
+  );
+}
+
+.lg-hero-fx-orb-b {
+  width: min(55vw, 400px);
+  height: min(55vw, 400px);
+  bottom: -20%;
+  left: -10%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.08) 0%,
+    transparent 65%
+  );
+}
+
+.lg-hero-fx-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse at 40% 30%, #000 0%, transparent 72%);
+  opacity: 0.7;
+}
+
+.lg-hero-fx-wash {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(120deg, transparent 40%, rgba(164, 101, 101, 0.08) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.15), transparent 40%, rgba(0, 0, 0, 0.55));
+}
+
+.lg-hero-fx-grain {
+  position: absolute;
+  inset: -20%;
+  opacity: 0.12;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: lg-grain 8s steps(8) infinite;
+  mix-blend-mode: overlay;
+}
+
+.lg-hero-fx-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+@keyframes lg-grain {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-2%, 1%);
+  }
+  50% {
+    transform: translate(1%, -2%);
+  }
+  75% {
+    transform: translate(2%, 2%);
+  }
+}
+
+.lg-hero-title--motion .lg-hero-line {
+  display: block;
+  overflow: hidden;
+}
+
+.lg-hero-word {
+  display: inline-block;
+}
+
+.lg-hero-title em {
+  display: block;
+  overflow: hidden;
+}
+
+.lg-hero-scroll {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  z-index: 2;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.lg-hero-scroll i {
+  display: block;
+  width: 1px;
+  height: 2.2rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), transparent);
+  animation: lg-scroll-line 1.8s ease-in-out infinite;
+}
+
+@keyframes lg-scroll-line {
+  0% {
+    transform: scaleY(0.3);
+    transform-origin: top;
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(1);
+    transform-origin: top;
+    opacity: 0;
+  }
+}
+
+.lg-hero-meta-stagger {
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+}
+
+@media (min-width: 720px) {
+  .lg-hero-meta-stagger {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+/* Marquee ribbon */
+.lg-marquee {
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid var(--line);
+  background: #0c0c0c;
+  color: rgba(255, 255, 255, 0.55);
+  padding: 0.85rem 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.4vw, 1.55rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.lg-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: lg-marquee 42s linear infinite;
+}
+
+.lg-marquee-track span {
+  padding-right: 2rem;
+}
+
+.lg-marquee--static {
+  white-space: normal;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+}
+
+@keyframes lg-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.lg-menu-board-index {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 500;
+  line-height: 1;
+  color: rgba(18, 18, 18, 0.12);
+  margin-bottom: 0.35rem;
+}
+
+.lg-menu-board-head {
+  display: block;
+}
+
+.lg-menu-list li {
+  transition: background 0.25s ease, padding 0.25s ease;
+  border-radius: 0;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+.lg-menu-list li:hover .lg-menu-name {
+  color: var(--accent-dark);
+}
+
+.lg-menu-name {
+  transition: color 0.2s ease;
+}
+
+/* Magnetic CTA */
+.lg-magnetic {
+  display: inline-flex;
+  text-decoration: none;
+}
+
+.lg-magnetic-inner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Sticky book bar */
+.lg-sticky-book {
+  position: fixed;
+  z-index: 70;
+  right: 1rem;
+  bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.55rem 0.65rem 0.55rem 0.55rem;
+  background: rgba(255, 252, 249, 0.94);
+  border: 1px solid var(--line);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  pointer-events: auto;
+}
+
+.lg-sticky-book--static {
+  opacity: 1;
+}
+
+.lg-btn-dark {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+  min-height: 2.4rem;
+  padding: 0 1rem;
+  font-size: 0.72rem;
+}
+
+.lg-btn-dark:hover {
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+  color: #fff;
+}
+
+.lg-sticky-phone {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-soft);
+  text-decoration: none;
+  padding-right: 0.35rem;
+}
+
+.lg-sticky-phone:hover {
+  color: var(--ink);
+}
+
+@media (max-width: 640px) {
+  .lg-sticky-phone {
+    display: none;
+  }
+}
+
+/* FAQ open animation */
+.lg-faq-list details[open] p {
+  animation: lg-faq-in 0.35s ease;
+}
+
+@keyframes lg-faq-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Jump chips pulse on hover */
+.lg-jump a {
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.lg-jump a:hover {
+  transform: translateY(-2px);
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+
+/* Review lift */
+.lg-review {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+}
+
+.lg-review:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Map subtle zoom on hover */
+.lg-map {
+  overflow: hidden;
+  transition: transform 0.5s ease;
+}
+
+.lg-map iframe {
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lg-map:hover iframe {
+  transform: scale(1.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lg-hero-fx-grain,
+  .lg-hero-scroll i,
+  .lg-marquee-track {
+    animation: none !important;
+  }
+  .lg-jump a:hover,
+  .lg-review:hover,
+  .lg-map:hover iframe {
+    transform: none;
+  }
 }
 
 a {
