@@ -77,23 +77,72 @@ body {
   border-bottom: 1px solid var(--border);
 }
 
+/* Promo bar — dark strip that SHINES left → right (original sheen) */
 .lg-promo {
+  position: relative;
+  overflow: hidden; /* sheen stays inside the bar */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   gap: 0.35rem 0.55rem;
-  padding: 0.45rem 1rem;
-  border-bottom: 1px solid var(--border);
-  background: var(--ink);
-  color: rgba(255, 252, 249, 0.88);
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
+  padding: 0.55rem 1.1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(90deg, #0a0a0a 0%, #161012 50%, #0a0a0a 100%);
+  color: rgba(255, 252, 249, 0.95);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* The shine beam — glows across text left → right forever */
+.lg-promo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 32%,
+    rgba(255, 255, 255, 0.08) 42%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0.08) 58%,
+    transparent 68%
+  );
+  transform: translateX(-130%);
+  animation: lg-promo-sheen 4.8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes lg-promo-sheen {
+  0%,
+  18% {
+    transform: translateX(-130%);
+  }
+  55% {
+    transform: translateX(130%);
+  }
+  100% {
+    transform: translateX(130%);
+  }
+}
+
+.lg-promo-text {
+  position: relative;
+  z-index: 2; /* text sits above the shine */
+  text-shadow: 0 0 18px rgba(255, 220, 230, 0.25);
 }
 
 .lg-promo-dot {
   opacity: 0.45;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lg-promo::after {
+    animation: none;
+  }
 }
 
 .lg-header-bar {
@@ -103,8 +152,51 @@ body {
   gap: 0.75rem;
   width: min(var(--max), calc(100% - 2rem));
   margin: 0 auto;
-  min-height: 3.6rem;
-  padding: 0.35rem 0;
+  min-height: 3.4rem;
+  padding: 0.3rem 0;
+}
+
+/* Language switcher EN / ES / HI */
+.lg-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 0.15rem;
+}
+
+.lg-lang-btn {
+  min-width: 2rem;
+  min-height: 1.7rem;
+  padding: 0 0.4rem;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.lg-lang-btn:hover {
+  color: var(--ink);
+}
+
+.lg-lang-btn.is-active {
+  background: var(--ink);
+  color: #fff;
+}
+
+.lg-lang-menu {
+  margin-top: 0.35rem;
+  width: 100%;
+  justify-content: stretch;
+}
+
+.lg-lang-menu .lg-lang-btn {
+  flex: 1;
 }
 
 .lg-logo {
@@ -284,7 +376,7 @@ body {
 .lg-hero {
   background: var(--ink);
   color: #f7f4f0;
-  padding: 4.5rem 0 3.75rem;
+  padding: 3.75rem 0 3.25rem; /* tighter, less empty air */
 }
 
 .lg-hero-inner {
@@ -362,12 +454,12 @@ body {
 /* Services light board — Striiike */
 .lg-services {
   background: var(--bg);
-  padding: 4rem 0 3.5rem;
+  padding: 3.5rem 0 3rem; /* tighter vertical rhythm */
 }
 
 .lg-services-head {
-  margin-bottom: 1.75rem;
-  max-width: 32rem;
+  margin-bottom: 1.5rem;
+  max-width: 34rem;
 }
 
 .lg-display {
@@ -466,12 +558,36 @@ body {
   }
 }
 
+/* Clickable service name → opens process drawer */
+.lg-menu-main-btn {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+}
+
+.lg-menu-main-btn:hover .lg-menu-name {
+  color: var(--accent-dark);
+}
+
+.lg-menu-main-btn:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
 .lg-menu-name {
   display: block;
   font-size: 1rem;
   font-weight: 600;
   color: var(--ink);
   letter-spacing: 0.01em;
+  transition: color 0.15s ease;
 }
 
 .lg-menu-desc {
@@ -481,6 +597,35 @@ body {
   font-size: 0.85rem;
   line-height: 1.45;
   color: var(--muted);
+}
+
+.lg-menu-hint {
+  display: block;
+  margin-top: 0.28rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.lg-more-info {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  padding: 0.28rem 0.55rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.lg-more-info:hover {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: #fff;
 }
 
 .lg-menu-meta {
@@ -541,7 +686,7 @@ body {
 
 /* Reviews */
 .lg-reviews {
-  padding: 3.5rem 0;
+  padding: 3rem 0 2.75rem;
   background: var(--surface);
 }
 
@@ -582,7 +727,7 @@ body {
 .lg-visit {
   background: var(--ink-soft);
   color: #f4f1ec;
-  padding: 3.75rem 0;
+  padding: 3.25rem 0;
 }
 
 .lg-visit-grid {
@@ -631,9 +776,260 @@ body {
   filter: grayscale(0.35) contrast(1.05);
 }
 
+/* Expectation photo grid — what people should expect */
+.lg-expect {
+  padding: 3.25rem 0 3rem;
+  background: var(--bg-alt);
+  border-top: 1px solid var(--line);
+}
+
+.lg-expect-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem 0.7rem;
+}
+
+@media (min-width: 800px) {
+  .lg-expect-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem 0.9rem;
+  }
+}
+
+.lg-expect-card {
+  margin: 0;
+}
+
+.lg-expect-frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.lg-expect-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.55s ease;
+}
+
+.lg-expect-card:hover .lg-expect-img {
+  transform: scale(1.04);
+}
+
+.lg-expect-label {
+  margin: 0.45rem 0 0;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* End-of-page studio video */
+.lg-film {
+  background: var(--ink);
+  color: #f7f4f0;
+  padding: 3.5rem 0 4.25rem;
+}
+
+.lg-film-head .lg-eyebrow {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.lg-film-sub {
+  margin: 0;
+  max-width: 28rem;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.lg-film-frame {
+  position: relative;
+  margin-top: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #000;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.lg-film-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
+}
+
+/* Service process drawer (slide from right) */
+.lg-drawer-root {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.lg-drawer-root.is-open {
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.lg-drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: rgba(8, 6, 8, 0.52);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.lg-drawer-root.is-open .lg-drawer-backdrop {
+  opacity: 1;
+}
+
+.lg-drawer-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  width: min(26.5rem, 100%);
+  height: 100%;
+  background: var(--surface);
+  border-left: 1px solid var(--line);
+  box-shadow: -18px 0 48px rgba(0, 0, 0, 0.14);
+  transform: translateX(104%);
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lg-drawer-root.is-open .lg-drawer-panel {
+  transform: translateX(0);
+}
+
+.lg-drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.15rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.lg-drawer-kicker {
+  margin: 0;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.lg-drawer-x {
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.lg-drawer-x:hover {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+
+.lg-drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.25rem 1.15rem 1.5rem;
+}
+
+.lg-drawer-cat {
+  margin: 0 0 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+}
+
+.lg-drawer-title {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.65rem, 3vw, 2rem);
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.lg-drawer-meta {
+  margin: 0 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.lg-drawer-summary {
+  margin: 0 0 1.25rem;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: var(--text);
+}
+
+.lg-drawer-block {
+  margin: 0 0 1.1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--line);
+}
+
+.lg-drawer-block h3 {
+  margin: 0 0 0.4rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.lg-drawer-block p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--text-soft);
+}
+
+.lg-drawer-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  padding: 0.9rem 1.15rem 1.15rem;
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+}
+
+.lg-drawer-foot .button-primary {
+  flex: 1 1 auto;
+}
+
 /* FAQ */
 .lg-faq {
-  padding: 3.5rem 0 4rem;
+  padding: 3rem 0 3.25rem;
   background: var(--bg);
 }
 

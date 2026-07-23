@@ -15,7 +15,8 @@ export const lunara = {
   email: "lunaraglow@gmail.com",
   instagram: "@lunaraglow_astoria",
   yelp: "https://www.yelp.com/biz/queens-beauty-parlor-astoria",
-  hours: "Monday to Sunday · 8 a.m. to 9 p.m.",
+  // User-set hours: open 9 a.m. → 9 p.m. every day
+  hours: "Monday to Sunday · 9 a.m. to 9 p.m.",
   services: [
     {
       title: "Waxing",
@@ -159,8 +160,9 @@ export const lunara = {
       author: "Client review · Yelp",
     },
   ],
-  bookingTimes: Array.from({ length: 27 }, (_, index) => {
-    const totalMinutes = 8 * 60 + index * 30;
+  // Slots every 30 min from 9 a.m. → 9 p.m.
+  bookingTimes: Array.from({ length: 25 }, (_, index) => {
+    const totalMinutes = 9 * 60 + index * 30;
     const hour24 = Math.floor(totalMinutes / 60);
     const minute = totalMinutes % 60;
     const hour12 = ((hour24 + 11) % 12) + 1;
