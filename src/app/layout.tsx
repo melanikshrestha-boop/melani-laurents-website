@@ -1,8 +1,17 @@
 import type { Metadata } from "next";
-import { Libre_Franklin } from "next/font/google";
+import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
 
-const franklin = Libre_Franklin({
+/* Display: editorial like spa menus · Body: clean UI type */
+const display = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const body = DM_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-body",
@@ -28,8 +37,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={franklin.variable}>
-      <body className={franklin.className}>{children}</body>
+    <html lang="en" className={`${display.variable} ${body.variable}`}>
+      <body className={body.className}>{children}</body>
     </html>
   );
 }

@@ -7,7 +7,7 @@ import { lunara } from "@/lib/lunara";
 const navItems = [
   { label: "Services", href: "/#services" },
   { label: "New clients", href: "/new-clients" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Visit", href: "/#contact" },
   { label: "Book", href: "/book" },
 ] as const;
 
@@ -18,21 +18,21 @@ export default function SiteLayout({
 }) {
   return (
     <CartProvider>
-      <div className="page-shell">
+      <div className="lg-shell">
         <SiteHeader />
         <main>{children}</main>
         <AskLuna />
 
-        <footer className="site-footer">
-          <div className="section footer-grid">
+        <footer className="lg-footer">
+          <div className="lg-wrap lg-footer-grid">
             <div>
-              <p className="footer-brand">{lunara.shortName}</p>
-              <p className="footer-note">
-                Astoria salon for brows, lashes, waxing, and facials.
+              <p className="lg-footer-brand">{lunara.shortName}</p>
+              <p className="lg-footer-note">
+                Facial studio energy. Clear menu. Astoria.
               </p>
             </div>
-            <div className="footer-col">
-              <p className="footer-label">Visit</p>
+            <div className="lg-footer-col">
+              <p className="lg-footer-label">Visit</p>
               <p>{lunara.address}</p>
               <p>{lunara.hours}</p>
               <p>
@@ -43,20 +43,15 @@ export default function SiteLayout({
               </p>
               <p>{lunara.instagram}</p>
             </div>
-            <div className="footer-col">
-              <p className="footer-label">Links</p>
+            <div className="lg-footer-col">
+              <p className="lg-footer-label">Navigate</p>
               {navItems.map((item) => (
-                <Link key={item.href} href={item.href} className="footer-link">
+                <Link key={item.href} href={item.href}>
                   {item.label}
                 </Link>
               ))}
-              <a
-                href={lunara.yelp}
-                target="_blank"
-                rel="noreferrer"
-                className="footer-link"
-              >
-                Yelp
+              <a href={lunara.yelp} target="_blank" rel="noreferrer">
+                Yelp reviews
               </a>
             </div>
           </div>

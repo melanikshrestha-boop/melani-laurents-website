@@ -7,43 +7,50 @@ import { lunara } from "@/lib/lunara";
 const navItems = [
   { label: "Services", href: "/#services" },
   { label: "New clients", href: "/new-clients" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Visit", href: "/#contact" },
   { label: "Book", href: "/book" },
 ] as const;
 
 export function SiteHeader() {
   return (
-    <header className="site-header">
-      <div className="promo-strip">
+    <header className="lg-header">
+      <div className="lg-promo">
         <span>{lunara.offer}</span>
-        <span className="promo-sep" aria-hidden>
+        <span className="lg-promo-dot" aria-hidden>
           ·
         </span>
         <span>{lunara.hours}</span>
       </div>
 
-      <div className="header-bar section">
-        <Link href="/" className="brand-wordmark">
-          {lunara.shortName}
-        </Link>
-
-        <nav className="header-nav" aria-label="Main">
-          {navItems.map((item) => (
+      <div className="lg-header-bar">
+        <nav className="lg-nav lg-nav-left" aria-label="Main">
+          {navItems.slice(0, 2).map((item) => (
             <Link key={item.href} href={item.href}>
               {item.label}
             </Link>
           ))}
         </nav>
 
-        <div className="header-actions">
-          <a className="header-phone" href={`tel:${lunara.phoneDial}`}>
+        <Link href="/" className="lg-logo">
+          {lunara.shortName}
+        </Link>
+
+        <div className="lg-header-right">
+          <nav className="lg-nav lg-nav-right" aria-label="More">
+            {navItems.slice(2).map((item) => (
+              <Link key={item.href} href={item.href}>
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+          <a className="lg-phone" href={`tel:${lunara.phoneDial}`}>
             {lunara.phone}
           </a>
           <BookNowWithBag />
 
-          <details className="header-menu">
+          <details className="lg-menu">
             <summary>Menu</summary>
-            <div className="header-menu-panel">
+            <div className="lg-menu-panel">
               {navItems.map((item) => (
                 <Link key={item.href} href={item.href}>
                   {item.label}
