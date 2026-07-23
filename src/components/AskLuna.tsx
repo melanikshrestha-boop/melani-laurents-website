@@ -106,9 +106,9 @@ const CATEGORY_CHIPS: Chip[] = [
 
 // Default EN starters (live open uses language-aware starterChips)
 const OPENING_CHIPS: Chip[] = [
-  { label: "🆘 Help me choose", value: "help me choose" },
+  { label: "Help me choose", value: "help me choose" },
   {
-    label: "🎁 How free points work",
+    label: "How free points work",
     value: "Explain the loyalty program",
   },
 ];
@@ -156,13 +156,11 @@ function relatedChips(ctx: {
     case "open":
       return two(OPENING_CHIPS);
     case "loyalty":
-      // After rules: check card OR start booking (not three random things)
       return two([
         { label: "Check my points", value: "__check_points__" },
         { label: "Book brow threading", value: "pick:Brow Threading" },
       ]);
     case "loyalty-status":
-      // After they already saw their number — never “check my points” again
       return two([
         { label: "Book brow threading", value: "pick:Brow Threading" },
         {
@@ -195,13 +193,13 @@ function relatedChips(ctx: {
       ]);
     case "brows":
       return two([
-        { label: "Brow wax · $8", value: "pick:Brow Wax" },
-        { label: "Threading · $6", value: "pick:Brow Threading" },
+        { label: "Brow wax · $40", value: "pick:Brow Wax" },
+        { label: "Threading · $25", value: "pick:Brow Threading" },
       ]);
     case "lashes":
       return two([
         { label: "Lift + tint · $70", value: "pick:Lash Lift + Tint" },
-        { label: "Extensions · $40", value: "pick:Classic Lash Extensions" },
+        { label: "Extensions · $150", value: "pick:Classic Lash Extensions" },
       ]);
     case "facials":
       return two([
@@ -211,7 +209,6 @@ function relatedChips(ctx: {
     case "expert-service": {
       const name = ctx.serviceName || "Brow Wax";
       const cat = ctx.categoryId || "waxing";
-      // Sibling service in same category
       const sibling =
         SERVICE_EXPERTS.find(
           (e) => e.categoryId === cat && e.name !== name,
@@ -266,6 +263,39 @@ function relatedChips(ctx: {
         { label: "Explain loyalty", value: "Explain the loyalty program" },
       ]);
   }
+}
+
+/** Translate chip labels for the active language (values stay English for the engine) */
+function localizeChips(chips: Chip[] | undefined, lang: Lang): Chip[] | undefined {
+  if (!chips?.length) return chips;
+  const c = lunaCopy(lang);
+  const map: Record<string, string> = {
+    "Check my points": c.chipCheckPoints,
+    "Book brow threading": c.chipBookThreading,
+    "Book chocolate wax": c.chipBookWax,
+    "Add another booking": c.chipAddAnother,
+    "Book something": c.chipBookSomething,
+    "Explain loyalty": c.chipExplainLoyalty,
+    "Explain the loyalty program": c.chipLoyalty,
+    Brows: c.chipBrows,
+    Waxing: c.chipWaxing,
+    Body: c.chipBody,
+    Face: c.chipFace,
+    Legs: c.chipLegs,
+    Arms: c.chipArms,
+    Lip: c.chipLip,
+    "Body wax": c.chipBody,
+    "Face wax": c.chipFace,
+    "help me choose": c.chipHelp,
+    "Help me choose": c.chipHelp,
+    "How free points work": c.chipLoyalty,
+    "I want brows": c.chipBrows,
+    "I want a chocolate wax, schedule it.": c.chipWax,
+  };
+  return chips.map((chip) => ({
+    ...chip,
+    label: map[chip.label] || map[chip.value] || chip.label,
+  }));
 }
 
 function uid() {
@@ -885,12 +915,11 @@ type Sparkle = {
 
 const SPARKLE_EMOJIS = ["✨", "⭐", "💫", "🌙", "✦", "·"];
 const IDLE_TIPS = [
-  "Drag me anywhere ✨",
-  "Fling me across the page!",
-  "Double-tap for magic 💫",
+  "Drag me anywhere",
+  "Fling me across the page",
+  "Double-tap for magic",
   "Ask me anything",
-  "I book at light speed ⚡",
-  "Woah energy only",
+  "I book at light speed",
   "Move me. I dare you.",
 ];
 
@@ -1368,7 +1397,7 @@ export function AskLuna() {
         throwRaf.current = null;
         savePos(next);
         setTossing(false);
-        setTip("That was fun ✨");
+        setTip("That was fun");
       }
     };
 
@@ -1381,7 +1410,7 @@ export function AskLuna() {
     e.stopPropagation();
     setSpin(true);
     burstSparkles(e.clientX, e.clientY, 18);
-    setTip("NO WAY 🌙⚡");
+    setTip("No way");
     window.setTimeout(() => setSpin(false), 900);
   }
 
@@ -1426,7 +1455,7 @@ export function AskLuna() {
     setTossing(true);
     burstSparkles(next.x - 28, next.y - 28, 10);
     window.setTimeout(() => setTossing(false), 500);
-    setTip("Home base ✨");
+    setTip("Home base");
   }
 
   function setTopic(topic: ChatTopic, serviceName?: string) {
@@ -1436,7 +1465,10 @@ export function AskLuna() {
 
   function addLuna(partial: Omit<ChatMessage, "id" | "role">) {
     // Hard cap: never more than 2 suggestion chips (Grok-style)
-    const chips = partial.chips ? two(partial.chips) : partial.chips;
+    // Labels follow active language; values stay English for the engine
+    const chips = partial.chips
+      ? localizeChips(two(partial.chips), langRef.current)
+      : partial.chips;
     setMessages((prev) => [
       ...prev,
       { id: uid(), role: "luna", ...partial, chips },
@@ -1458,11 +1490,20 @@ export function AskLuna() {
     const no = /^(no|nah|nope)[\s!.]*$/.test(n);
 
     if (thanks) {
+      const L = langRef.current;
       addLuna({
         text:
-          topic === "loyalty"
-            ? "Anytime 💫 Want to start stacking points?"
-            : "Anytime 💫 What else can I help with?",
+          L === "es"
+            ? topic === "loyalty"
+              ? "Cuando quieras. ¿Empezamos a sumar puntos?"
+              : "Cuando quieras. ¿En qué más te ayudo?"
+            : L === "hi"
+              ? topic === "loyalty"
+                ? "जब चाहो। पॉइंट्स शुरू करें?"
+                : "जब चाहो। और क्या मदद चाहिए?"
+              : topic === "loyalty"
+                ? "Anytime. Want to start stacking points?"
+                : "Anytime. What else can I help with?",
         chips:
           topic === "loyalty"
             ? relatedChips({ topic: "loyalty" })
@@ -1483,7 +1524,12 @@ export function AskLuna() {
     if (topic === "loyalty") {
       if (positive || agree) {
         addLuna({
-          text: "Right? Easy wins ✨ Want to book?",
+          text:
+            langRef.current === "es"
+              ? "¿Verdad? Fácil. ¿Reservamos?"
+              : langRef.current === "hi"
+                ? "सही? आसान। बुक करें?"
+                : "Right? Easy wins. Want to book?",
           chips: relatedChips({ topic: "loyalty-status" }),
         });
         return current;
@@ -2308,23 +2354,25 @@ export function AskLuna() {
     setMessages([openMsg(langRef.current)]);
   }
 
-  /** Switch language from inside Luna — fun + easy for everyone */
+  /**
+   * Switch language — wipe chat and open fully in that language.
+   * No leftover English messages. No emoji spam.
+   */
   function switchLunaLang(next: Lang) {
     if (next === lang) return;
     setLang(next);
-    const c = lunaCopy(next);
-    // Fresh friendly welcome in the new language
-    setMessages((prev) => [
-      ...prev,
-      {
-        id: uid(),
-        role: "luna",
-        text: c.switched,
-        chips: starterChips(next),
-        showEg: true,
-      },
-    ]);
-    setTip(c.funWave[Math.floor(Math.random() * c.funWave.length)]);
+    // Full reset so the whole thread matches ES / HI / EN
+    markDone(false);
+    setDraft({ service: null, slot: null, phone: "" });
+    setPhoneInput("");
+    setThinking(false);
+    setQuery("");
+    setAwaitingLoyalty(false);
+    pendingBookingRef.current = null;
+    lastTopicRef.current = "open";
+    lastServiceRef.current = "";
+    setMessages([openMsg(next)]);
+    setTip(lunaCopy(next).funWave[0]);
   }
 
   function runTurn(userVisible: string, engineText: string) {
@@ -2489,7 +2537,10 @@ export function AskLuna() {
               </div>
               <div className="luna-head-copy">
                 <p className="luna-head-name">
-                  Luna <span className="luna-online" aria-hidden>● online</span>
+                  Luna{" "}
+                  <span className="luna-online" aria-hidden>
+                    · {copy.online}
+                  </span>
                 </p>
                 {/* Tag + EN/ES/HI right next to it — easy language switch */}
                 <div className="luna-head-tag-row">
