@@ -7,6 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { LANG_OPTIONS, useI18n, type Lang } from "@/lib/i18n";
 import { lunara } from "@/lib/lunara";
 import {
   formatCategoryExpert,
@@ -14,6 +15,7 @@ import {
   getExpertByName,
   SERVICE_EXPERTS,
 } from "@/lib/lunara-expertise";
+import { lunaCopy, openMessage, starterChips } from "@/lib/luna-copy";
 
 /* ═══════════════════════════════════════════════════════════════════
    Luna — smart in-chat booking (service → time → phone → done)
@@ -102,15 +104,12 @@ const CATEGORY_CHIPS: Chip[] = [
   { label: "Facial", value: "facial" },
 ];
 
-// Opening: exactly two starters
+// Default EN starters (live open uses language-aware starterChips)
 const OPENING_CHIPS: Chip[] = [
+  { label: "🆘 Help me choose", value: "help me choose" },
   {
-    label: "Explain the loyalty program",
+    label: "🎁 How free points work",
     value: "Explain the loyalty program",
-  },
-  {
-    label: "I want a chocolate wax, schedule it.",
-    value: "I want a chocolate wax, schedule it.",
   },
 ];
 
@@ -855,16 +854,10 @@ function wantsBook(n: string): boolean {
   );
 }
 
-/* ── Opening ─────────────────────────────────────────────────────── */
+/* ── Opening (language-aware, beginner-first) ────────────────────── */
 
-function openMsg(): ChatMessage {
-  return {
-    id: "open",
-    role: "luna",
-    text: "Hi, I’m your friend Luna. I help you book at the speed of light or have a fun chat — and I’m an expert on every service (ingredients, what we do, aftercare). What’s on your mind?",
-    chips: OPENING_CHIPS,
-    showEg: true, // “e.g.” label next to the example buttons
-  };
+function openMsg(lang: Lang = "en"): ChatMessage {
+  return openMessage(lang);
 }
 
 /* ── Size limits for stretchable chat ────────────────────────────── */
@@ -993,10 +986,15 @@ function saveKnownPhone(phone: string) {
 }
 
 export function AskLuna() {
+  const { lang, setLang } = useI18n();
+  const copy = lunaCopy(lang);
   const [open, setOpen] = useState(false);
-  const [messages, setMessages] = useState<ChatMessage[]>([openMsg()]);
+  // Start with English open; re-sync when lang loads / changes
+  const [messages, setMessages] = useState<ChatMessage[]>(() => [openMsg("en")]);
   const [query, setQuery] = useState("");
   const [thinking, setThinking] = useState(false);
+  const langRef = useRef(lang);
+  langRef.current = lang;
   const { draft, setDraft, draftRef } = useDraft();
   const [phoneInput, setPhoneInput] = useState("");
   const [done, setDone] = useState(false);
@@ -1079,6 +1077,16 @@ export function AskLuna() {
     const t = window.setTimeout(() => inputRef.current?.focus(), 80);
     return () => window.clearTimeout(t);
   }, [open]);
+
+  // If chat only has the open message, refresh it when language changes
+  useEffect(() => {
+    setMessages((prev) => {
+      if (prev.length === 1 && prev[0]?.id === "open") {
+        return [openMsg(lang)];
+      }
+      return prev;
+    });
+  }, [lang]);
 
   // Drag to stretch — panel size handles
   useEffect(() => {
@@ -1665,20 +1673,9 @@ export function AskLuna() {
 
     // Full rules only — no phone required
     if (mode === "rules" && !phoneHint) {
+      // Beginner-friendly loyalty card in the active language
       addLuna({
-        text: [
-          "Loyalty card 💳",
-          "",
-          "• 1 → 10 points",
-          "",
-          "• Every completed visit = +1 ✨",
-          "",
-          "• Hit 10 = free eyebrow threading 🧵",
-          "",
-          "• Resets to 1 after that 🔄",
-          "",
-          "Start booking to earn your first point →",
-        ].join("\n"),
+        text: lunaCopy(langRef.current).loyaltyRules,
         chips: relatedChips({ topic: "loyalty" }),
       });
       return;
@@ -2011,7 +2008,8 @@ export function AskLuna() {
       case "unsure":
         setTopic("open");
         addLuna({
-          text: "What’s the vibe today?",
+          // Super beginner path — no jargon
+          text: lunaCopy(langRef.current).helpChoose,
           chips: relatedChips({ topic: "unsure" }),
         });
         return current;
@@ -2307,7 +2305,26 @@ export function AskLuna() {
     pendingBookingRef.current = null;
     lastTopicRef.current = "open";
     lastServiceRef.current = "";
-    setMessages([openMsg()]);
+    setMessages([openMsg(langRef.current)]);
+  }
+
+  /** Switch language from inside Luna — fun + easy for everyone */
+  function switchLunaLang(next: Lang) {
+    if (next === lang) return;
+    setLang(next);
+    const c = lunaCopy(next);
+    // Fresh friendly welcome in the new language
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: uid(),
+        role: "luna",
+        text: c.switched,
+        chips: starterChips(next),
+        showEg: true,
+      },
+    ]);
+    setTip(c.funWave[Math.floor(Math.random() * c.funWave.length)]);
   }
 
   function runTurn(userVisible: string, engineText: string) {
@@ -2458,7 +2475,7 @@ export function AskLuna() {
             onPointerDown={(e) => startResize(e, "height")}
           />
 
-          {/* Header: rock-solid 2-column grid — never stacks letter-by-letter */}
+          {/* Header: identity + language next to tagline + actions */}
           <header
             className="luna-chat-header luna-drag-grip"
             onPointerDown={startMove}
@@ -2471,19 +2488,46 @@ export function AskLuna() {
                 🌙
               </div>
               <div className="luna-head-copy">
-                <p className="luna-head-name">Luna</p>
-                <p className="luna-head-tag">Speed of light ⚡</p>
+                <p className="luna-head-name">
+                  Luna <span className="luna-online" aria-hidden>● online</span>
+                </p>
+                {/* Tag + EN/ES/HI right next to it — easy language switch */}
+                <div className="luna-head-tag-row">
+                  <p className="luna-head-tag">{copy.tag}</p>
+                  <div
+                    className="luna-lang-mini"
+                    role="group"
+                    aria-label={copy.langLabel}
+                    onPointerDown={(e) => e.stopPropagation()}
+                  >
+                    {LANG_OPTIONS.map((opt) => (
+                      <button
+                        key={opt.id}
+                        type="button"
+                        className={`luna-lang-pill${lang === opt.id ? " is-active" : ""}`}
+                        onClick={() => switchLunaLang(opt.id)}
+                        aria-pressed={lang === opt.id}
+                        title={opt.label}
+                      >
+                        {opt.native}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="luna-head-actions">
+            <div
+              className="luna-head-actions"
+              onPointerDown={(e) => e.stopPropagation()}
+            >
               <button
                 type="button"
                 onClick={resetPlace}
                 className="luna-icon-btn"
                 title="Snap back to corner"
-                aria-label="Snap place"
+                aria-label={copy.place}
               >
-                <span className="luna-icon-btn-full">Place</span>
+                <span className="luna-icon-btn-full">{copy.place}</span>
                 <span className="luna-icon-btn-short" aria-hidden>
                   ⌂
                 </span>
@@ -2493,9 +2537,9 @@ export function AskLuna() {
                 onClick={resetSize}
                 className="luna-icon-btn"
                 title="Default size"
-                aria-label="Default size"
+                aria-label={copy.size}
               >
-                <span className="luna-icon-btn-full">Size</span>
+                <span className="luna-icon-btn-full">{copy.size}</span>
                 <span className="luna-icon-btn-short" aria-hidden>
                   ⛶
                 </span>
@@ -2505,9 +2549,9 @@ export function AskLuna() {
                 onClick={resetChat}
                 className="luna-icon-btn"
                 title="Reset chat"
-                aria-label="Reset chat"
+                aria-label={copy.reset}
               >
-                <span className="luna-icon-btn-full">Reset</span>
+                <span className="luna-icon-btn-full">{copy.reset}</span>
                 <span className="luna-icon-btn-short" aria-hidden>
                   ↺
                 </span>
@@ -2516,8 +2560,8 @@ export function AskLuna() {
                 type="button"
                 onClick={() => setOpen(false)}
                 className="luna-icon-btn luna-icon-btn-close"
-                aria-label="Close chat"
-                title="Close"
+                aria-label={copy.close}
+                title={copy.close}
               >
                 ✕
               </button>
@@ -2525,13 +2569,15 @@ export function AskLuna() {
           </header>
 
           <div className="luna-progress" aria-label="Booking progress">
-            <span className={stepService ? "on" : ""}>Service</span>
+            <span className={stepService ? "on" : ""}>{copy.stepService}</span>
             <span className="dot">→</span>
-            <span className={stepTime ? "on" : ""}>Time</span>
+            <span className={stepTime ? "on" : ""}>{copy.stepTime}</span>
             <span className="dot">→</span>
-            <span className={stepPhone || stepDone ? "on" : ""}>Phone</span>
+            <span className={stepPhone || stepDone ? "on" : ""}>
+              {copy.stepPhone}
+            </span>
             <span className="dot">→</span>
-            <span className={stepDone ? "on" : ""}>Done</span>
+            <span className={stepDone ? "on" : ""}>{copy.stepDone}</span>
           </div>
 
           <div
@@ -2579,7 +2625,7 @@ export function AskLuna() {
                   {msg.summary ? (
                     <div className="luna-summary">
                       <p className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-[var(--accent-dark)]">
-                        Request locked
+                        {copy.locked}
                       </p>
                       <p className="mt-2 font-display text-xl text-[var(--text)]">
                         {msg.summary.service}
@@ -2588,7 +2634,7 @@ export function AskLuna() {
                         {msg.summary.slot} · {msg.summary.price}
                       </p>
                       <p className="mt-1 text-sm text-[var(--text-soft)]">
-                        Confirm on {msg.summary.phone}
+                        {copy.confirmOn} {msg.summary.phone}
                       </p>
                     </div>
                   ) : null}
@@ -2636,17 +2682,17 @@ export function AskLuna() {
                   {msg.chips?.length && msg.id === last?.id && !thinking ? (
                     <div className="luna-chip-block">
                       {msg.showEg ? (
-                        <p className="luna-eg-label">e.g.</p>
+                        <p className="luna-eg-label">{copy.eg}</p>
                       ) : null}
                       <div className="luna-chip-row">
-                        {msg.chips.map((c) => (
+                        {msg.chips.map((chip) => (
                           <button
-                            key={`${c.label}-${c.value}`}
+                            key={`${chip.label}-${chip.value}`}
                             type="button"
-                            onClick={() => pushMessage(c.value)}
-                            className="luna-chip-btn"
+                            onClick={() => pushMessage(chip.value)}
+                            className="luna-chip-btn luna-chip-fun"
                           >
-                            {c.label}
+                            {chip.label}
                           </button>
                         ))}
                       </div>
@@ -2683,10 +2729,11 @@ export function AskLuna() {
                 <div className="luna-avatar luna-avatar-sm" aria-hidden>
                   🌙
                 </div>
-                <div className="luna-msg luna-msg-bot flex items-center gap-1.5 py-3">
+                <div className="luna-msg luna-msg-bot luna-thinking">
                   <span className="luna-dot" />
                   <span className="luna-dot" />
                   <span className="luna-dot" />
+                  <span className="luna-thinking-label">{copy.thinking}</span>
                 </div>
               </div>
             ) : null}
@@ -2697,7 +2744,7 @@ export function AskLuna() {
               ref={inputRef}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder='e.g. "eyebrows at 3pm"'
+              placeholder={copy.placeholder}
               className="luna-composer-input"
               autoComplete="off"
               disabled={thinking || done}
@@ -2707,7 +2754,7 @@ export function AskLuna() {
               className="luna-composer-send"
               disabled={thinking || done || !query.trim()}
             >
-              Send
+              {copy.send}
             </button>
           </form>
         </div>

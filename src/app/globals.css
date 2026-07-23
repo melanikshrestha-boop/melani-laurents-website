@@ -2033,6 +2033,39 @@ textarea {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Tiny green “online” pulse — feels alive */
+.luna-online {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+  color: #2f9e6a;
+  animation: luna-online-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes luna-online-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* Tagline + language pills side by side (easy to find) */
+.luna-head-tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.45rem;
+  min-width: 0;
+  margin-top: 0.12rem;
 }
 
 .luna-head-tag {
@@ -2044,6 +2077,53 @@ textarea {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Mini EN / ES / HI next to “Speed of light” */
+.luna-lang-mini {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.12rem;
+  border-radius: 999px;
+  background: rgba(183, 115, 133, 0.12);
+  border: 1px solid rgba(183, 115, 133, 0.18);
+  flex-shrink: 0;
+}
+
+.luna-lang-pill {
+  min-width: 1.55rem;
+  min-height: 1.35rem;
+  padding: 0 0.35rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  line-height: 1;
+  transition:
+    background 0.14s ease,
+    color 0.14s ease,
+    transform 0.14s ease;
+}
+
+.luna-lang-pill:hover {
+  color: var(--accent-dark);
+  transform: scale(1.06);
+}
+
+.luna-lang-pill.is-active {
+  background: linear-gradient(145deg, #e0a8b6, #b87385);
+  color: #fff;
+  box-shadow: 0 3px 8px rgba(143, 77, 93, 0.28);
+}
+
+.luna-panel[data-w="xs"] .luna-head-tag {
+  max-width: 5.5rem;
 }
 
 /* Right: actions always stay in one clean horizontal row */
@@ -2229,16 +2309,45 @@ textarea {
 
 .luna-msg-bot {
   border-radius: 1.15rem 1.15rem 1.15rem 0.35rem;
-  background: #fff;
-  border: 1px solid rgba(124, 72, 86, 0.1);
+  background: linear-gradient(165deg, #ffffff 0%, #fff7f9 100%);
+  border: 1px solid rgba(183, 115, 133, 0.16);
   color: var(--text);
-  box-shadow: 0 6px 16px rgba(64, 32, 34, 0.04);
+  box-shadow:
+    0 6px 16px rgba(64, 32, 34, 0.05),
+    0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+  animation: luna-msg-pop 0.35s cubic-bezier(0.22, 1.2, 0.36, 1);
+}
+
+@keyframes luna-msg-pop {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .luna-msg-user {
   border-radius: 1.15rem 1.15rem 0.35rem 1.15rem;
-  background: linear-gradient(180deg, #2a201d, #1d1614);
+  background: linear-gradient(145deg, #3a2a28, #1d1614);
   color: #fff9fb;
+  animation: luna-msg-pop 0.28s ease-out;
+}
+
+.luna-thinking {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.55rem 0.85rem;
+}
+
+.luna-thinking-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--accent-dark);
+  letter-spacing: 0.04em;
 }
 
 .luna-chip-block {
@@ -2252,10 +2361,10 @@ textarea {
 .luna-eg-label {
   margin: 0;
   font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: none;
+  color: var(--accent-dark);
 }
 
 .luna-chip-row {
@@ -2292,6 +2401,21 @@ textarea {
   border-color: rgba(183, 115, 133, 0.45);
   background: rgba(183, 115, 133, 0.1);
   color: var(--accent-dark);
+  transform: translateY(-1px);
+}
+
+/* Playful starter chips — pink candy, hard to miss for beginners */
+.luna-chip-fun {
+  border-color: rgba(183, 115, 133, 0.28);
+  background: linear-gradient(180deg, #fff, #fff0f4);
+  box-shadow: 0 4px 12px rgba(183, 115, 133, 0.1);
+  font-weight: 700;
+}
+
+.luna-chip-fun:hover {
+  background: linear-gradient(180deg, #ffe8ef, #ffd6e2);
+  border-color: rgba(183, 115, 133, 0.5);
+  box-shadow: 0 6px 16px rgba(183, 115, 133, 0.18);
 }
 
 .luna-chip-btn-strong {
