@@ -21,9 +21,8 @@ export function BrandWordmark({
       className={`font-display font-normal tracking-tight ${sizeClasses[size]} ${className}`}
     >
       {prefix ? <span className="text-foreground">{prefix}</span> : null}
-      <span className="text-foreground">Melani</span>
-      <span className="text-foreground"> Laurent</span>
-      <span className="text-accent"> S.</span>
+      <span className="text-foreground">Celine</span>
+      <span className="text-foreground"> Nova</span>
     </span>
   );
 }

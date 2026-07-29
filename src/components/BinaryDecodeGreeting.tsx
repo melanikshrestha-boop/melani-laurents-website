@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useReducedMotionPreference } from "@/hooks/useReducedMotionPreference";
 
-const TARGET = "I'm Melani Laurent";
+const TARGET = "I'm Celine Nova.";
 
 const WORDMARK_CLASSES =
   "font-display text-lg font-normal tracking-tight";

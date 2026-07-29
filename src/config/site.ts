@@ -1,10 +1,10 @@
 export const siteConfig = {
-  name: "Melani Laurent S.",
+  name: "Celine Nova",
   domain: "melanilaurents.com",
   url: "https://melanilaurents.com",
-  title: "Melani Laurent S.",
+  title: "Celine Nova",
   description:
-    "BCI researcher and neurotech builder — in-ear EEG, neural interfaces, clinical cinema, and art.",
+    "Open sourcing my mind through essays, books, daily inputs, and the things I build.",
   email: "itsmelanilaurents@gmail.com",
   location: "Mostly LA — sometimes SF or NYC",
   /** Daily letter — home archive + /daily page. */
@@ -13,14 +13,21 @@ export const siteConfig = {
   dailySlogan: "everything backed by neuroscience",
   artPath: "/art",
   photographyPath: "/photography",
-  /** Weekly interview show — internal listening page. */
-  podcastTitle: "MELANI LAURENT S(HOW)",
+  /** Occasional long-form channel — an extension of the public archive. */
+  youtubeTitle: "CELINE NOVA ON YOUTUBE",
+  youtubeCadence: "about 1x/month",
+  youtubeDescription:
+    "Long-form videos for ideas that need more room: what I am learning, reading, building, and changing my mind about.",
+  youtubeAudience: "An occasional extension of the archive.",
+  youtubeSlogan: "watch on youtube",
+  youtubePath: "/youtube",
+  /** Original interview-show archive retained on the restored homepage. */
+  podcastTitle: "CELINE NOVA S(HOW)",
   podcastCadence: "1x/week",
   podcastDescription:
     "Unfiltered, deep-end conversations. Topics that are favored: technology, human-made art, philosophy, history, psychology, robotics, business, space exploration, films, music, sports, mathematics, physics, economics, engineering, and the cool things that make up a human experience.",
-  /** Bold line on the home card — also the main “button” feel on hover */
   podcastAudience: "Made for curious people from all walks of life.",
-  podcastSlogan: "everything backed by neuroscience",
+  podcastSlogan: "thinking from first principles",
   podcastUrl: "/podcast",
   linkedinUrl: "https://www.linkedin.com/in/melanilaurents/",
   spotifyUrl:
@@ -39,7 +46,7 @@ export const siteConfig = {
     {
       id: "github",
       label: "GitHub",
-      href: "https://github.com/melanikshrestha-boop/melani-laurents-website",
+      href: "https://github.com/melanikshrestha-boop",
     },
     {
       id: "instagram",
@@ -57,22 +64,20 @@ export const siteConfig = {
       href: "https://www.youtube.com/@ResetYourMind.-fb5nn",
     },
   ],
-  /** Hub hero portals — podcast first, contact rendered separately in HomeHub. */
+  /** The single public index shown at the bottom of the home hero. */
   hubPortals: [
-    {
-      label: "Podcast",
-      href: "/podcast",
-      tagline: "Melani",
-    },
     { label: "Art", href: "/photography", tagline: "Visual signal · cinema" },
-    { label: "Research", href: "/research", tagline: "BCI · neurotech · med-tech" },
-    { label: "Daily", href: "/daily", tagline: "Neural log · daily", comingSoon: true },
+    { label: "Essays", href: "/daily#journals", tagline: "Long-form thinking" },
+    { label: "Bookshelf", href: "/daily#bookshelf", tagline: "Notes · highlights" },
+    { label: "Builds", href: "/projects", tagline: "Things I make" },
+    { label: "Daily", href: "/daily#inputs", tagline: "Public input log" },
   ],
   nav: [
-    { label: "Podcast", href: "/podcast" },
     { label: "Art", href: "/photography" },
-    { label: "Research", href: "/research" },
-    { label: "Daily", href: "/daily" },
+    { label: "Essays", href: "/daily#journals" },
+    { label: "Bookshelf", href: "/daily#bookshelf" },
+    { label: "Builds", href: "/projects" },
+    { label: "Daily", href: "/daily#inputs" },
     { label: "Contact", href: "/contact" },
   ],
 } as const;

@@ -11,7 +11,7 @@ import {
 } from "@/lib/photography";
 
 export const metadata: Metadata = {
-  title: "About — shotbymelani",
+  title: "About — shotbyceline",
 };
 
 export default function PhotographyAboutPage() {
@@ -21,9 +21,9 @@ export default function PhotographyAboutPage() {
       <article className="photography-about">
         <div className="photography-about-hero">
           <div className="photography-about-copy">
-            <h1>MELANI Shrestha</h1>
+            <h1>CELINE NOVA</h1>
             <p>
-              I&apos;m Melani Shrestha, a photographer based in Los Angeles,
+              I&apos;m Celine Nova, a photographer based in Los Angeles,
               California with roots in New York City.
             </p>
             <p>
@@ -64,7 +64,7 @@ export default function PhotographyAboutPage() {
           <div className="photography-about-photo">
             <Image
               src={ABOUT_PORTRAIT}
-              alt="Melani Shrestha"
+              alt="Celine Nova"
               fill
               priority
               sizes="(max-width: 900px) 100vw, 45vw"

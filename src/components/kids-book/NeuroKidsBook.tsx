@@ -153,7 +153,7 @@ export function NeuroKidsBook() {
 
       <header className="kids-book__chrome">
         <div className="kids-book__brand-block">
-          <p className="kids-book__brand">Melani’s Brain Book</p>
+          <p className="kids-book__brand">Celine’s Brain Book</p>
           <p className="kids-book__subtitle">Neuroscience for curious kids</p>
         </div>
         <div className="kids-book__chrome-right">

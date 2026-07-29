@@ -39,7 +39,9 @@ export function Navigation() {
     pathname === "/research" ||
     pathname.startsWith("/research/") ||
     pathname === "/podcast" ||
-    pathname.startsWith("/podcast/");
+    pathname.startsWith("/podcast/") ||
+    pathname === "/youtube" ||
+    pathname.startsWith("/youtube/");
 
   if (pathname === "/") return null;
 
@@ -62,10 +64,6 @@ export function Navigation() {
             ))}
           </ul>
 
-          <div
-            className={`hidden h-4 w-px md:block${paper ? " bg-black/10" : " bg-white/10"}`}
-          />
-
           <SocialIcons className="hidden sm:flex" size="sm" />
 
           <details className="relative md:hidden">
@@ -82,7 +80,7 @@ export function Navigation() {
                     <NavLink item={item} paper={paper} />
                 </div>
               ))}
-              <div className="mt-2 border-t border-white/10 px-4 pt-3">
+              <div className="mt-2 px-4 pt-3">
                 <SocialIcons size="sm" />
               </div>
             </div>

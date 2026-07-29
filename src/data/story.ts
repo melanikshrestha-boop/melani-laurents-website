@@ -30,7 +30,7 @@ export const storyChapters: StoryChapter[] = [
     subtitle: "Operator mode",
     body: [
       "Entrepreneurship, for me, is not about startups as identity. It's about seeing a process that's painful when it doesn't have to be, and choosing to fix it.",
-      "I've worked across stealth builds, open-source tools, and research collaborations — always with the same filter: does this make the next person’s work easier or harder?",
+      "I've worked across stealth builds, open-source tools, and collaborations — always with the same filter: does this make the next person’s work easier or harder?",
     ],
   },
   {
@@ -47,7 +47,7 @@ export const storyChapters: StoryChapter[] = [
     title: "05 — Now",
     subtitle: "What I'm building toward",
     body: [
-      "Today I'm focused on research-grade tooling, clinical signal infrastructure, and the connective tissue between lab bench and real-world deployment.",
+      "Today I'm focused on build-grade tooling, clinical signal infrastructure, and the connective tissue between lab bench and real-world deployment.",
       "This site is where I document that work — not as a personal diary, but as field notes for anyone building in the same direction.",
     ],
   },

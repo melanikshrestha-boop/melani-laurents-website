@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Art",
-  description: "Photography, cinema, and visual work by Melani Laurent S.",
+  description: "Photography, cinema, and visual work by Celine Nova.",
 };
 
 export default function ArtPage() {

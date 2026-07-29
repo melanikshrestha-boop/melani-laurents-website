@@ -51,12 +51,12 @@ export default async function ResearchPostPage({ params }: PageProps) {
             href="/research"
             className="font-mono-label text-muted-foreground hover:text-accent transition-colors"
           >
-            ← Research
+            ← Builds
           </Link>
 
           <header className="mt-8 mb-12">
             <div className="flex flex-wrap items-center gap-3 mb-4">
-              <span className="font-mono-label text-accent">Research</span>
+              <span className="font-mono-label text-accent">Build note</span>
               <span className="font-mono-label text-muted-foreground">
                 {new Date(post.date).toLocaleDateString("en-US", {
                   month: "long",

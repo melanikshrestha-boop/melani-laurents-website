@@ -3,9 +3,9 @@ import { NeuroplasticityRemodel } from "@/components/NeuroplasticityRemodel";
 import { ResearchTimeline } from "@/components/ResearchTimeline";
 
 export const metadata: Metadata = {
-  title: "Research",
+  title: "Builds",
   description:
-    "Research notes on biomedical engineering, neural interfaces, brain-computer interfaces, biotechnology, and neurotechnology.",
+    "Build notes on biomedical engineering, neural interfaces, brain-computer interfaces, biotechnology, and neurotechnology.",
 };
 
 export default function ResearchPage() {
@@ -13,7 +13,7 @@ export default function ResearchPage() {
     <div className="research-index">
       <header className="research-index__masthead">
         <div className="research-index__kicker-row">
-          <p className="research-index__kicker">Research</p>
+          <p className="research-index__kicker">Builds</p>
           <p className="research-index__edition">USC · Caltech</p>
         </div>
 
@@ -23,8 +23,8 @@ export default function ResearchPage() {
           <div className="research-index__about">
             <p className="research-index__kicker">About me</p>
             <p>
-              I&apos;m Melani Laurent, a Biomedical Engineering student at USC
-              researching neural interfaces and brain-computer interfaces at
+              I&apos;m Celine Nova, a Biomedical Engineering student at USC
+              building neural interfaces and brain-computer interfaces at
               Caltech.
             </p>
             <p>
@@ -38,7 +38,7 @@ export default function ResearchPage() {
 
       <section className="research-index__experience" aria-labelledby="experience-title">
         <div className="research-index__section-intro">
-          <p className="research-index__kicker">Research experience</p>
+          <p className="research-index__kicker">Build history</p>
           <h2 id="experience-title">From wet lab to neural interfaces.</h2>
         </div>
 

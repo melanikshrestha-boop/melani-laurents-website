@@ -29,9 +29,13 @@ export function HomeSectionsShell({ children }: { children: ReactNode }) {
       const hubBottom = window.scrollY + hubRect.bottom;
       const vh = window.innerHeight;
 
-      /* Morph begins before archive enters viewport; finishes as hero clears */
-      const transitionStart = hubBottom - vh * 0.92;
-      const transitionEnd = hubBottom - vh * 0.08;
+      /*
+       * Keep the landing frame truly black, then let one continuous backdrop
+       * move toward paper across the hero/archive handoff. The same math runs
+       * in reverse when the user scrolls back up.
+       */
+      const transitionStart = hubBottom - vh * 0.72;
+      const transitionEnd = hubBottom + vh * 0.32;
       const span = Math.max(transitionEnd - transitionStart, 1);
       const raw = clamp((window.scrollY - transitionStart) / span, 0, 1);
       const p = smoothstep(raw);

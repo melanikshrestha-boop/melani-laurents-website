@@ -50,7 +50,7 @@ export function CinemaBoot({ onComplete }: CinemaBootProps) {
 
       <header className="cinema-boot__header">
         <span className="font-mono-label text-[10px] tracking-[0.35em] text-white/50">
-          MELANI LAURENT S.
+          CELINE NOVA
         </span>
         <span className="font-mono-label text-[10px] tracking-[0.2em] text-white/35">
           {String(lineIndex + 1).padStart(2, "0")} / {String(BOOT_LINES.length).padStart(2, "0")}

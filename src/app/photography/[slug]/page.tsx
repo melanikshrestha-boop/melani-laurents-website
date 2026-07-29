@@ -21,9 +21,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const collection = getPhotoCollection(slug);
-  if (!collection) return { title: "shotbymelani" };
+  if (!collection) return { title: "shotbyceline" };
   return {
-    title: `${collection.title} — shotbymelani`,
+    title: `${collection.title} — shotbyceline`,
   };
 }
 

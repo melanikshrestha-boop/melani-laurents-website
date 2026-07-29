@@ -1,65 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { siteConfig } from "@/config/site";
+import { HomeDesignTuner } from "./HomeDesignTuner";
 import { InteractiveTitleLetters } from "./InteractiveTitleLetters";
 import { MelaniSignature } from "./MelaniSignature";
 import { MotionScrollToggle } from "./MotionScrollToggle";
-import { NeurotechBrainField } from "./NeurotechBrainField";
 import { SocialIcons } from "./SocialIcons";
-
-const HUB_HINT_KEY = "hub-interacted";
 
 /** Carlo Doroff–style editorial hub — dark void hero morphs to cream on scroll. */
 export function HomeHub() {
-  const [hintVisible, setHintVisible] = useState(false);
-
-  useEffect(() => {
-    if (sessionStorage.getItem(HUB_HINT_KEY)) return;
-    const showTimer = window.setTimeout(() => setHintVisible(true), 0);
-
-    const dismiss = () => {
-      sessionStorage.setItem(HUB_HINT_KEY, "1");
-      setHintVisible(false);
-    };
-
-    window.addEventListener("mousemove", dismiss, { once: true, passive: true });
-    window.addEventListener("scroll", dismiss, { once: true, passive: true });
-    window.addEventListener("touchstart", dismiss, { once: true, passive: true });
-    window.addEventListener("keydown", dismiss, { once: true });
-
-    return () => {
-      window.clearTimeout(showTimer);
-      window.removeEventListener("mousemove", dismiss);
-      window.removeEventListener("scroll", dismiss);
-      window.removeEventListener("touchstart", dismiss);
-      window.removeEventListener("keydown", dismiss);
-    };
-  }, []);
-
   return (
     <section className="hub-page">
-      <NeurotechBrainField variant="hub" active />
-      <div className="hub-page__rail hub-page__rail--left" aria-hidden />
-      <div className="hub-page__rail hub-page__rail--right" aria-hidden />
-
-      {hintVisible ? (
-        <p className="hub-page__hint" aria-live="polite">
-          <span className="hub-page__hint-move">move to interact</span>
-          <span className="hub-page__hint-sep" aria-hidden>
-            {" "}
-            ·{" "}
-          </span>
-          <span className="hub-page__hint-scroll">scroll to explore</span>
-        </p>
-      ) : null}
-
       <header className="hub-page__header">
         <div className="hub-page__brand">
           <MelaniSignature variant="ink" />
           <div className="hub-page__brand-meta">
-            <p className="hub-page__brand-tag">podcast · research · daily · art</p>
             <p className="hub-page__brand-loc">
               <span className="hub-page__dot-inline" aria-hidden />
               LA / SF / NYC
@@ -78,6 +34,9 @@ export function HomeHub() {
           className="hub-page__title"
           lineClassName="hub-page__title-line"
         />
+        <div className="hub-page__thesis">
+          <p className="hub-page__tagline">open sourcing my mind.</p>
+        </div>
       </div>
 
       <footer className="hub-page__footer">
@@ -115,6 +74,7 @@ export function HomeHub() {
       </footer>
 
       <MotionScrollToggle />
+      <HomeDesignTuner />
     </section>
   );
 }

@@ -10,7 +10,7 @@ export interface Publication {
 }
 
 export const publicationProfile = {
-  name: "Melani Laurent S.",
+  name: "Celine Nova",
   affiliation:
     "The Bronx High School of Science · Columbia University Neuroscience · NIURA",
   scholarUrl: googleScholarUrl,

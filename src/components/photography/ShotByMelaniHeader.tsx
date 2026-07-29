@@ -29,7 +29,7 @@ export function ShotByMelaniHeader({ theme = "light" }: { theme?: HeaderTheme })
     >
       <div className="photography-header-inner">
         <Link href="/photography" className="photography-logo">
-          shotbymelani
+          shotbyceline
         </Link>
 
         <nav className="photography-nav" aria-label="Photography">

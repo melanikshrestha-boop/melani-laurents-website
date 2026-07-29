@@ -7,21 +7,21 @@ const TOPIC_COPY: Record<
   NewsletterTopic,
   { label: string; description: string }
 > = {
-  podcast: {
-    label: "Podcast",
-    description: "Weekly interesting conversations.",
+  essays: {
+    label: "Essays",
+    description: "Reflections, arguments, and ideas worth timestamping.",
+  },
+  books: {
+    label: "Books",
+    description: "Highlights and notes that changed how I think.",
   },
   daily: {
     label: "Daily",
-    description: "Library of myself.",
+    description: "The inputs shaping my mind right now.",
   },
-  research: {
-    label: "Research",
-    description: "Trial and error.",
-  },
-  art: {
-    label: "Art",
-    description: "How I keep my sanity. Check it out!",
+  builds: {
+    label: "Builds",
+    description: "What I am experimenting with and shipping.",
   },
 };
 
@@ -121,7 +121,7 @@ export function NewsletterSignup({
           >
             {isFooter
               ? "Feed your curiosity without flooding your inbox."
-              : "A small letter from me. Choose updates on podcasts, daily notes, research, and art. I only write when it fits."}
+              : "A small letter from me. Choose essays, books, daily inputs, or builds. I only write when it fits."}
           </p>
         </div>
       )}

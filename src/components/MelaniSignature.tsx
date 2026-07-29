@@ -20,7 +20,7 @@ const variantClass: Record<NonNullable<MelaniSignatureProps["variant"]>, string>
   gold: "melani-signature--gold",
 };
 
-/** Readable Melani-only autograph. */
+/** Readable Celine Nova autograph. */
 export function MelaniSignature({
   className = "",
   linked = true,
@@ -31,27 +31,27 @@ export function MelaniSignature({
       className={`melani-signature ${variantClass[variant]}${className ? ` ${className}` : ""}`}
       aria-hidden={linked}
       role={linked ? undefined : "img"}
-      aria-label={linked ? undefined : "Melani"}
+      aria-label={linked ? undefined : "Celine Nova"}
     >
-      {!linked ? <span className="sr-only">Melani</span> : null}
+      {!linked ? <span className="sr-only">Celine Nova</span> : null}
       <svg
         className="melani-signature__mark"
-        viewBox="0 0 320 130"
+        viewBox="0 0 460 130"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden
         role="img"
       >
-        <title>Melani</title>
+        <title>Celine Nova</title>
         <text
           x="18"
           y="94"
           className={allura.className}
           fontFamily={allura.style.fontFamily}
-          fontSize="104"
+          fontSize="92"
           fill="currentColor"
         >
-          Melani
+          Celine Nova
         </text>
       </svg>
     </span>
@@ -62,7 +62,7 @@ export function MelaniSignature({
       <Link
         href="/"
         className="melani-signature-link"
-        aria-label="Melani — home"
+        aria-label="Celine Nova — home"
       >
         {signature}
       </Link>

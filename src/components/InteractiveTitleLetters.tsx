@@ -13,8 +13,7 @@ type TitleVariant = "hub" | "cream";
 type Segment = { text: string; gold?: boolean };
 
 const TITLE_LINES: Segment[][] = [
-  [{ text: "MELANI" }],
-  [{ text: "LAURENT ", gold: false }, { text: "S.", gold: true }],
+  [{ text: "CELINE NOVA" }],
 ];
 
 interface InteractiveTitleLettersProps {
@@ -59,7 +58,7 @@ export function InteractiveTitleLetters({
   className = "",
   lineClassName = "",
   charClassName = "",
-  ariaLabel = "Melani Laurent S.",
+  ariaLabel = "Celine Nova",
   firstLineVisibleCount,
   secondLineVisible,
   interactive = true,

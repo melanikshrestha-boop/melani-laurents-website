@@ -12,7 +12,9 @@ export function SiteBackground() {
     pathname === "/research" ||
     pathname.startsWith("/research/") ||
     pathname === "/podcast" ||
-    pathname.startsWith("/podcast/");
+    pathname.startsWith("/podcast/") ||
+    pathname === "/youtube" ||
+    pathname.startsWith("/youtube/");
   if (paper) return null;
   return <InterstellarField enabled />;
 }

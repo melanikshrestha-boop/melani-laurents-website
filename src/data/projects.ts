@@ -39,12 +39,12 @@ export const projects: Project[] = [
     createdAt: "2025-11-02",
   },
   {
-    id: "research-os",
-    title: "Research OS",
+    id: "build-os",
+    title: "Build OS",
     role: "Open Source Maintainer",
     status: "Open Source",
     description:
-      "A minimal toolkit for reproducible research notes, experiment logs, and literature synthesis — git-native, markdown-first.",
+      "A minimal toolkit for reproducible build notes, experiment logs, and literature synthesis — git-native, markdown-first.",
     tags: ["tools", "open-source"],
     href: "https://github.com/melanikshrestha-boop/melani-laurents-website",
     featured: true,

@@ -35,7 +35,7 @@ export async function sendBookingInquiry(inquiry: BookingInquiry): Promise<void>
   ].join("\n");
 
   await transporter.sendMail({
-    from: `"shotbymelani bookings" <${user}>`,
+    from: `"shotbyceline bookings" <${user}>`,
     to: photographyBooking.email,
     replyTo: inquiry.email,
     subject: `${photographyBooking.mailtoSubject} — ${fullName}`,

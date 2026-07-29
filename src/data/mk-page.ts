@@ -5,7 +5,7 @@ export interface MkSection {
 }
 
 export const mkSections: MkSection[] = [
-  { id: "mk", label: "M.K.", href: "#mk" },
+  { id: "mk", label: "S.S.", href: "#mk" },
   { id: "chapters", label: "Chapters", href: "#chapters" },
   { id: "nerd", label: "Nerd sheet", href: "#nerd" },
   { id: "operate", label: "Operate", href: "#operate" },
@@ -13,13 +13,13 @@ export const mkSections: MkSection[] = [
 ];
 
 export const mkIntro = {
-  headline: "Melani Kirstein",
+  headline: "Celine Nova",
   paragraphs: [
-    "I build at the intersection of med-tech, research, and content — less portfolio, more field notes from someone who reads signal traces for fun.",
-    "This page is M.K.: my story, the nerdy metadata, and how I actually operate. Jump below if you only have thirty seconds.",
+    "I build at the intersection of med-tech, systems, and content — less portfolio, more field notes from someone who reads signal traces for fun.",
+    "This page is S.S.: my story, the nerdy metadata, and how I actually operate. Jump below if you only have thirty seconds.",
   ],
   draftVoice:
-    "I think in systems, prototype in code, and explain in public — med-tech because the stakes are real, content because teaching is how I learn, research because rigor is the only moat that compounds.",
+    "I think in systems, prototype in code, and explain in public — med-tech because the stakes are real, content because teaching is how I learn, and rigor because it is the only moat that compounds.",
 };
 
 export interface NerdFact {
@@ -33,10 +33,10 @@ export const nerdFacts: NerdFact[] = [
   { key: "domain", value: "med-tech · signals · validation" },
   { key: "signal_interest", value: "ECG · SNR · motion artifact rejection" },
   { key: "editor", value: "Cursor (Geist enjoyer)" },
-  { key: "content", value: "Instagram · TikTok · long-form research memos" },
+  { key: "content", value: "Instagram · TikTok · long-form build notes" },
   { key: "github", value: "melanikshrestha-boop" },
   { key: "reading", value: "systems papers · founder postmortems · FDA-adjacent docs" },
-  { key: "currently", value: "clinical signal infra + RBCivosocial research thread" },
+  { key: "currently", value: "clinical signal infra + public build thread" },
   { key: "hot_take", value: "a wrong abstraction costs more than a delayed launch" },
   { key: "easter_egg", value: "this site background listens to your cursor", note: "try it" },
 ];

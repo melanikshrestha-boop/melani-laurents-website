@@ -8,8 +8,8 @@ import {
   createBrainNodes,
   drawBrainGlow,
   drawConnectedSynapseNetwork,
-  drawCreamBackground,
   drawDetailedBrain,
+  drawVoidBackground,
 } from "@/lib/neurotech-brain";
 
 export const INTRO_KEY = "mls-title-intro-seen-v2";
@@ -33,7 +33,7 @@ export const INTRO_TIMELINE = {
   quoteFadeMs: 520,
 } as const;
 
-const FIRST_NAME = "MELANI";
+const FIRST_NAME = "CELINE";
 
 type IntroQuoteVariant = "teaser";
 
@@ -58,7 +58,7 @@ const easeOutCubic = (x: number) => 1 - (1 - x) ** 3;
 const easeInOutCubic = (x: number) =>
   x < 0.5 ? 4 * x * x * x : 1 - (-2 * x + 2) ** 3 / 2;
 
-/** Map elapsed time to visible letter count — MELANI drops during zoom-out phase. */
+/** Map elapsed time to visible letter count — CELINE drops during zoom-out phase. */
 function lettersFromElapsed(elapsed: number): number {
   void elapsed;
   return FIRST_NAME.length;
@@ -208,7 +208,7 @@ export function NeuralCinemaIntro() {
       const cy = h * 0.5;
       const breathe = 0.98 + Math.sin(t * 0.5) * 0.012; // Minimal breathing
 
-      drawCreamBackground(ctx, w, h);
+      drawVoidBackground(ctx, w, h);
 
       // Apply zoom transformation for deep neuron view
       ctx.save();
@@ -283,7 +283,7 @@ export function NeuralCinemaIntro() {
       />
 
       <div
-        className={`intro-shell__vignette pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[rgba(240,237,229,0.5)] via-transparent to-[rgba(26,43,60,0.04)] ${
+        className={`intro-shell__vignette pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-[rgba(0,0,0,0.7)] via-transparent to-[rgba(0,0,0,0.12)] ${
           showQuote && !handoff ? "opacity-100" : "opacity-0"
         }`}
         aria-hidden
@@ -294,7 +294,7 @@ export function NeuralCinemaIntro() {
           <div className="hub-page__brand">
             <div className="intro-shell__mirror-mark" />
             <div className="hub-page__brand-meta">
-              <p className="hub-page__brand-tag">podcast · research · daily · art</p>
+              <p className="hub-page__brand-tag">essays · books · daily · builds</p>
               <p className="hub-page__brand-loc">
                 <span className="hub-page__dot-inline" aria-hidden />
                 LA / SF / NYC
@@ -340,10 +340,10 @@ export function NeuralCinemaIntro() {
 
         <footer className="intro-shell__mirror hub-page__footer" aria-hidden>
           <nav className="hub-page__nav">
-            <span className="hub-page__nav-item">podcast</span>
+            <span className="hub-page__nav-item">essays</span>
             <span className="hub-page__nav-item">
               <span className="hub-page__sep"> · </span>
-              research
+              books
             </span>
             <span className="hub-page__nav-item">
               <span className="hub-page__sep"> · </span>
@@ -351,7 +351,7 @@ export function NeuralCinemaIntro() {
             </span>
             <span className="hub-page__nav-item">
               <span className="hub-page__sep"> · </span>
-              art
+              builds
             </span>
             <span className="hub-page__nav-item hub-page__nav-item--contact">
               <span className="hub-page__sep"> · </span>

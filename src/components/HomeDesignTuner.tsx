@@ -1,0 +1,273 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+const STORAGE_KEY = "celine-home-design-v1";
+
+type TitleFont = "oswald" | "archivo" | "syne" | "serif" | "mono";
+
+interface DesignSettings {
+  pageScale: number;
+  titleSize: number;
+  titleTracking: number;
+  titleFont: TitleFont;
+  taglineSize: number;
+  signatureSize: number;
+  socialSize: number;
+  navSize: number;
+  heroX: number;
+  heroY: number;
+}
+
+const DEFAULTS: DesignSettings = {
+  pageScale: 100,
+  titleSize: 11.5,
+  titleTracking: -0.052,
+  titleFont: "oswald",
+  taglineSize: 4.35,
+  signatureSize: 3.4,
+  socialSize: 1.25,
+  navSize: 0.58,
+  heroX: 0,
+  heroY: 0,
+};
+
+const FONT_VALUES: Record<TitleFont, string> = {
+  oswald: "var(--font-oswald), sans-serif",
+  archivo: "var(--font-archivo-narrow), sans-serif",
+  syne: "var(--font-syne), sans-serif",
+  serif: "var(--font-instrument-serif), Georgia, serif",
+  mono: "var(--font-jetbrains-mono), monospace",
+};
+
+function RangeControl({
+  label,
+  value,
+  min,
+  max,
+  step,
+  unit,
+  onChange,
+}: {
+  label: string;
+  value: number;
+  min: number;
+  max: number;
+  step: number;
+  unit: string;
+  onChange: (value: number) => void;
+}) {
+  return (
+    <label className="home-tuner__control">
+      <span>
+        {label}
+        <output>
+          {value}
+          {unit}
+        </output>
+      </span>
+      <input
+        type="range"
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        onChange={(event) => onChange(Number(event.target.value))}
+      />
+    </label>
+  );
+}
+
+/** Local, persistent live controls for composing the home landing frame. */
+export function HomeDesignTuner() {
+  const [open, setOpen] = useState(false);
+  const [settings, setSettings] = useState<DesignSettings>(DEFAULTS);
+
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        setSettings({ ...DEFAULTS, ...JSON.parse(saved) });
+      }
+    } catch {
+      // A blocked localStorage should never prevent the homepage from rendering.
+    }
+  }, []);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    root.style.fontSize = `${settings.pageScale}%`;
+    root.style.setProperty("--tune-title-size", `${settings.titleSize}vw`);
+    root.style.setProperty("--tune-title-tracking", `${settings.titleTracking}em`);
+    root.style.setProperty("--tune-title-font", FONT_VALUES[settings.titleFont]);
+    root.style.setProperty("--tune-tagline-size", `${settings.taglineSize}vw`);
+    root.style.setProperty("--tune-signature-size", `${settings.signatureSize}rem`);
+    root.style.setProperty("--tune-social-size", `${settings.socialSize}rem`);
+    root.style.setProperty("--tune-nav-size", `${settings.navSize}rem`);
+    root.style.setProperty("--tune-hero-x", `${settings.heroX}vw`);
+    root.style.setProperty("--tune-hero-y", `${settings.heroY}vh`);
+
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
+    } catch {
+      // Keep the controls live even when persistence is unavailable.
+    }
+  }, [settings]);
+
+  useEffect(
+    () => () => {
+      const root = document.documentElement;
+      [
+        "--tune-title-size",
+        "--tune-title-tracking",
+        "--tune-title-font",
+        "--tune-tagline-size",
+        "--tune-signature-size",
+        "--tune-social-size",
+        "--tune-nav-size",
+        "--tune-hero-x",
+        "--tune-hero-y",
+      ].forEach((property) => root.style.removeProperty(property));
+      root.style.removeProperty("font-size");
+    },
+    [],
+  );
+
+  const update = <Key extends keyof DesignSettings>(
+    key: Key,
+    value: DesignSettings[Key],
+  ) => setSettings((current) => ({ ...current, [key]: value }));
+
+  const reset = () => {
+    setSettings(DEFAULTS);
+    window.localStorage.removeItem(STORAGE_KEY);
+  };
+
+  return (
+    <aside className={`home-tuner${open ? " home-tuner--open" : ""}`}>
+      <button
+        type="button"
+        className="home-tuner__toggle"
+        onClick={() => setOpen((current) => !current)}
+        aria-expanded={open}
+        aria-controls="home-design-controls"
+      >
+        {open ? "Close" : "Tune"}
+      </button>
+
+      {open ? (
+        <div id="home-design-controls" className="home-tuner__panel">
+          <header>
+            <div>
+              <span>Live design controls</span>
+              <strong>Compose the page.</strong>
+            </div>
+            <button type="button" onClick={reset}>
+              Reset
+            </button>
+          </header>
+
+          <label className="home-tuner__select">
+            <span>Name typeface</span>
+            <select
+              value={settings.titleFont}
+              onChange={(event) =>
+                update("titleFont", event.target.value as TitleFont)
+              }
+            >
+              <option value="oswald">Oswald</option>
+              <option value="archivo">Archivo Narrow</option>
+              <option value="syne">Syne</option>
+              <option value="serif">Instrument Serif</option>
+              <option value="mono">JetBrains Mono</option>
+            </select>
+          </label>
+
+          <RangeControl
+            label="Name size"
+            value={settings.titleSize}
+            min={5}
+            max={18}
+            step={0.1}
+            unit="vw"
+            onChange={(value) => update("titleSize", value)}
+          />
+          <RangeControl
+            label="Name spacing"
+            value={settings.titleTracking}
+            min={-0.12}
+            max={0.18}
+            step={0.002}
+            unit="em"
+            onChange={(value) => update("titleTracking", value)}
+          />
+          <RangeControl
+            label="Tagline size"
+            value={settings.taglineSize}
+            min={1}
+            max={7}
+            step={0.05}
+            unit="vw"
+            onChange={(value) => update("taglineSize", value)}
+          />
+          <RangeControl
+            label="Signature size"
+            value={settings.signatureSize}
+            min={1.4}
+            max={6}
+            step={0.1}
+            unit="rem"
+            onChange={(value) => update("signatureSize", value)}
+          />
+          <RangeControl
+            label="Social icon size"
+            value={settings.socialSize}
+            min={0.7}
+            max={2.5}
+            step={0.05}
+            unit="rem"
+            onChange={(value) => update("socialSize", value)}
+          />
+          <RangeControl
+            label="Bottom nav size"
+            value={settings.navSize}
+            min={0.4}
+            max={1.25}
+            step={0.01}
+            unit="rem"
+            onChange={(value) => update("navSize", value)}
+          />
+          <RangeControl
+            label="Whole-page type"
+            value={settings.pageScale}
+            min={75}
+            max={140}
+            step={1}
+            unit="%"
+            onChange={(value) => update("pageScale", value)}
+          />
+          <RangeControl
+            label="Move hero left / right"
+            value={settings.heroX}
+            min={-25}
+            max={25}
+            step={0.5}
+            unit="vw"
+            onChange={(value) => update("heroX", value)}
+          />
+          <RangeControl
+            label="Move hero up / down"
+            value={settings.heroY}
+            min={-30}
+            max={30}
+            step={0.5}
+            unit="vh"
+            onChange={(value) => update("heroY", value)}
+          />
+
+          <p>Changes save automatically in this browser.</p>
+        </div>
+      ) : null}
+    </aside>
+  );
+}

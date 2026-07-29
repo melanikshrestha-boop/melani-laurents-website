@@ -19,7 +19,7 @@ const experiences = [
     years: "2024 → 2025",
     organization: "Mount Sinai Charles Mobbs Neuroscience Lab",
     href: "https://labs.neuroscience.mssm.edu/project/mobbs-lab/",
-    role: "Research Intern",
+    role: "Bioinformatics Intern",
     location: "New York City, NY",
     details: [
       "Developed an AI model to identify molecules that reverse harmful SORL1 gene expression linked to Alzheimer’s disease.",
@@ -30,12 +30,12 @@ const experiences = [
     years: "2023 → 2025",
     organization: "Columbia University Irving Medical Center, Sher Lab",
     href: "https://sherlab.org/",
-    role: "Research Intern",
+    role: "Computational Biology Intern",
     location: "New York City, NY",
     details: [
       "Investigated LINE1 retrotransposons and PLCG2 gene variants using CRISPR-Cas9, RNA sequencing, and lipidomics to study neurodegeneration.",
       "Applied AI-based drug-repurposing models to identify five FDA-approved therapeutics targeting PLCG2.",
-      "Authored a 20-page manuscript combining wet-lab and computational results and presented the findings at research conferences.",
+      "Authored a 20-page manuscript combining wet-lab and computational results and presented the findings at conferences.",
     ],
   },
 ];

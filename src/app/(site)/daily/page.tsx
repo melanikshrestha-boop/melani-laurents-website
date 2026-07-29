@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { getDailyPosts } from "@/data/daily-posts";
 import { siteConfig } from "@/config/site";
 import { ListeningNote } from "@/components/ListeningNote";
-import { XRecentPosts } from "@/components/XRecentPosts";
+import { UnifiedSocialFeed } from "@/components/social-feed";
 
 export const metadata: Metadata = {
   title: "Daily",
@@ -55,7 +55,79 @@ export default function DailyPage() {
         </div>
       </header>
 
-      <XRecentPosts />
+      <div id="inputs">
+        <UnifiedSocialFeed
+          className="daily-index__social-feed"
+          eyebrow="Recent posts"
+          title="The short-form record."
+          limit={9}
+        />
+      </div>
+
+      <section
+        id="bookshelf"
+        className="daily-index__journal-map"
+        aria-labelledby="bookshelf-title"
+      >
+        <div className="daily-index__journal-intro">
+          <p className="daily-index__kicker">Bookshelf</p>
+          <h2 id="bookshelf-title">What I read, highlighted, and kept.</h2>
+          <p>
+            The books behind the ideas: what I am reading now, the passages I
+            underlined, and the notes that changed how I think.
+          </p>
+        </div>
+
+        <div className="daily-index__shelves">
+          <article className="daily-shelf">
+            <span>01 · CURRENT</span>
+            <h3>Reading now</h3>
+            <p>The books currently open on my desk.</p>
+          </article>
+          <article className="daily-shelf">
+            <span>02 · MARGINS</span>
+            <h3>Notes &amp; highlights</h3>
+            <p>The lines worth keeping, with my own thoughts beside them.</p>
+          </article>
+          <article className="daily-shelf">
+            <span>03 · IMPACT</span>
+            <h3>Changed my mind</h3>
+            <p>The books I can trace directly to a new belief or decision.</p>
+          </article>
+        </div>
+      </section>
+
+      <section
+        className="daily-index__journal-map"
+        aria-labelledby="consumption-title"
+      >
+        <div className="daily-index__journal-intro">
+          <p className="daily-index__kicker">Daily inputs</p>
+          <h2 id="consumption-title">What went into my brain today.</h2>
+          <p>
+            A public accountability log of what I read, watched, listened to,
+            and learned before it becomes an idea of my own.
+          </p>
+        </div>
+
+        <div className="daily-index__shelves">
+          <article className="daily-shelf">
+            <span>01 · READ</span>
+            <h3>Build notes</h3>
+            <p>Notes, essays, reporting, and whatever sent me down a rabbit hole.</p>
+          </article>
+          <article className="daily-shelf">
+            <span>02 · WATCH</span>
+            <h3>Films &amp; videos</h3>
+            <p>Visual ideas, explanations, and stories I spent attention on.</p>
+          </article>
+          <article className="daily-shelf">
+            <span>03 · LISTEN</span>
+            <h3>Music &amp; audio</h3>
+            <p>The soundtrack and conversations surrounding the work.</p>
+          </article>
+        </div>
+      </section>
 
       <section className="daily-index__journal-map" aria-labelledby="guides-title">
         <div className="daily-index__journal-intro">
@@ -78,9 +150,9 @@ export default function DailyPage() {
           </article>
           <article className="daily-shelf">
             <span>02 · PAID</span>
-            <h3>Research</h3>
+            <h3>What I build</h3>
             <p>
-              How to read papers, design experiments, and think past the jargon.
+              How I turn ideas into products, systems, and tools people can actually use.
             </p>
           </article>
           <article className="daily-shelf">

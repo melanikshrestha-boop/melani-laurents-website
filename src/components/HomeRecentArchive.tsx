@@ -1,182 +1,104 @@
 import Link from "next/link";
-import { getRecentDailyPosts } from "@/data/daily-posts";
-import { googleScholarUrl } from "@/data/publications";
-import { getResearchPosts } from "@/lib/research";
-import { siteConfig } from "@/config/site";
 import { HomeScrollExperience } from "@/components/HomeScrollExperience";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
+import { projects } from "@/data/projects";
 
-const SLOT_COUNT = 3;
-
-function formatDate(date: string): string {
-  return new Date(date).toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
-}
-
-function EmptySlots({ label }: { label: string }) {
-  return (
-    <ul className="hub-archive__list">
-      {Array.from({ length: SLOT_COUNT }, (_, index) => (
-        <li key={index} className="hub-archive__item hub-archive__item--empty">
-          <span className="hub-archive__empty-label">
-            {label} slot {index + 1}
-          </span>
-          <span className="hub-archive__empty-note">coming soon</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
+const SHELVES = [
+  {
+    number: "01",
+    label: "Art",
+    kind: "Visual work",
+    href: "/photography",
+    description: "Photography, cinema, and the visual worlds I make.",
+  },
+  {
+    number: "02",
+    label: "Essays",
+    kind: "Writing",
+    href: "/daily#journals",
+    description: "Reflections, arguments, and predictions worth timestamping.",
+  },
+  {
+    number: "03",
+    label: "Bookshelf",
+    kind: "Reading",
+    href: "/daily#bookshelf",
+    description: "Highlights and notes from books that changed how I think.",
+  },
+  {
+    number: "04",
+    label: "Builds",
+    kind: "Making",
+    href: "/projects",
+    description: "Products, experiments, systems, and open-source work.",
+  },
+  {
+    number: "05",
+    label: "Daily",
+    kind: "Inputs",
+    href: "/daily#inputs",
+    description: "What I read, watch, hear, and learn while it is still fresh.",
+  },
+] as const;
 
 export function HomeRecentArchive() {
-  const daily = getRecentDailyPosts(SLOT_COUNT);
-  const research = getResearchPosts().slice(0, SLOT_COUNT);
-
   return (
     <HomeScrollExperience>
-      <section className="hub-archive" aria-label="Most recent">
+      <section className="hub-archive" aria-label="Celine Nova open source index">
         <div className="hub-archive__inner">
-          <p className="hub-archive__eyebrow">Most recent</p>
-
-          <div className="hub-archive__section hub-archive__section--podcast">
-            <header className="hub-archive__header">
-              <h2 className="hub-archive__title hub-archive__podcast-heading">
-                <span className="hub-archive__podcast-label">Podcast:</span>
-                <span className="hub-archive__podcast-name">
-                  {siteConfig.podcastTitle}
-                </span>
-              </h2>
-              <span className="hub-archive__cadence">
-                {siteConfig.podcastCadence}
-              </span>
-            </header>
-            {/* Whole card opens the podcast; bold audience line underlines on hover */}
-            <Link
-              href={siteConfig.podcastUrl}
-              className="hub-archive__callout-card hub-archive__callout-card--podcast"
-            >
-              <p className="hub-archive__callout-body">
-                {siteConfig.podcastDescription}
-              </p>
-              <span className="hub-archive__callout-audience">
-                {siteConfig.podcastAudience}
-              </span>
-              <div className="hub-archive__callout-action">
-                <p className="hub-archive__callout-title">
-                  {siteConfig.podcastSlogan}
-                </p>
-                <span className="hub-archive__callout-arrow" aria-hidden>
-                  →
-                </span>
-              </div>
-            </Link>
+          <div className="hub-archive__intro">
+            <p className="hub-archive__eyebrow">Open source index</p>
+            <p className="hub-archive__intro-note">
+              What I make, notice, and keep.
+            </p>
           </div>
 
-          <div className="hub-archive__section hub-archive__section--research">
-            <header className="hub-archive__header">
-              <h2 className="hub-archive__title">
-                <Link href="/research">Research</Link>
-              </h2>
-              <div className="hub-archive__header-links">
-                <a
-                  href={googleScholarUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hub-archive__scholar"
-                >
-                  Google Scholar ↗
-                </a>
-                <Link href="/research" className="hub-archive__more">
-                  all research →
-                </Link>
-              </div>
-            </header>
-            {research.length > 0 ? (
-              <ul className="hub-archive__list">
-                {research.map((post) => (
-                  <li key={post.slug} className="hub-archive__item">
-                    <time className="hub-archive__date" dateTime={post.date}>
-                      {formatDate(post.date)}
-                    </time>
-                    <Link
-                      href={`/research/${post.slug}`}
-                      className="hub-archive__link"
-                    >
-                      {post.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <EmptySlots label="Research" />
-            )}
-          </div>
-
-          <div className="hub-archive__section hub-archive__section--daily">
-            <header className="hub-archive__header">
-              <h2 className="hub-archive__title">
-                <Link href="/daily">Daily</Link>
-              </h2>
-              <Link href="/daily" className="hub-archive__more">
-                all daily →
+          <section className="hub-open-index" aria-label="Explore the archive">
+            {SHELVES.map((shelf) => (
+              <Link
+                key={shelf.label}
+                href={shelf.href}
+                className="hub-open-index__item"
+              >
+                <span>
+                  {shelf.number} · {shelf.kind}
+                </span>
+                <strong>{shelf.label}</strong>
+                <p>{shelf.description}</p>
               </Link>
-            </header>
-            <Link href="/daily" className="hub-archive__callout-card">
-              <p className="hub-archive__callout-body">
-                {siteConfig.dailyDescription}
-              </p>
-              <div className="hub-archive__callout-action">
-                <p className="hub-archive__callout-title">
-                  {siteConfig.dailySlogan}
-                </p>
-                <span className="hub-archive__callout-arrow" aria-hidden>
-                  →
-                </span>
+            ))}
+          </section>
+
+          <section className="hub-builds-preview" aria-labelledby="home-builds-title">
+            <header className="hub-builds-preview__header">
+              <div>
+                <p className="hub-archive__eyebrow">Currently building</p>
+                <h2 id="home-builds-title">Things becoming real.</h2>
               </div>
-            </Link>
-            {daily.length > 0 ? (
-              <ul className="hub-archive__list">
-                {daily.map((post) => (
-                  <li key={post.slug} className="hub-archive__item">
-                    <time className="hub-archive__date" dateTime={post.date}>
-                      {formatDate(post.date)}
-                    </time>
-                    <Link href={`/daily/${post.slug}`} className="hub-archive__link">
-                      {post.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <EmptySlots label="Daily" />
-            )}
-          </div>
-
-          <div className="hub-archive__section hub-archive__section--art">
-            <header className="hub-archive__header">
-              <h2 className="hub-archive__title">Art</h2>
+              <Link href="/projects">All builds →</Link>
             </header>
-            <Link
-              href={siteConfig.photographyPath}
-              className="hub-archive__art-brand"
-            >
-              <span className="hub-archive__art-brand-label">Photography</span>
-              <span className="hub-archive__art-brand-sep" aria-hidden>
-                ·
-              </span>
-              <span className="hub-archive__art-brand-name">shot by Melani</span>
-              <span className="hub-archive__art-brand-arrow" aria-hidden>
-                →
-              </span>
-            </Link>
-          </div>
 
-          <div className="hub-archive__section hub-archive__section--newsletter">
-            <NewsletterSignup variant="footer" className="hub-archive__newsletter" />
-          </div>
+            <div className="hub-builds-preview__grid">
+              {projects.slice(0, 3).map((project) => (
+                <article key={project.id} className="hub-builds-preview__item">
+                  <span>{project.status}</span>
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                  {project.href ? (
+                    <a href={project.href} target="_blank" rel="noopener noreferrer">
+                      Open on GitHub ↗
+                    </a>
+                  ) : (
+                    <Link href="/projects">View build →</Link>
+                  )}
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section className="hub-archive__newsletter">
+            <NewsletterSignup variant="footer" />
+          </section>
         </div>
       </section>
     </HomeScrollExperience>

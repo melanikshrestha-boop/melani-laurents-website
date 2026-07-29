@@ -8,7 +8,7 @@ import {
 export const metadata: Metadata = {
   title: "Publications",
   description:
-    "Patents and publications by Melani Laurent S. — in-ear EEG and neurotech research.",
+    "Patents and publications by Celine Nova — in-ear EEG and neurotech work.",
 };
 
 export default function PublicationsPage() {

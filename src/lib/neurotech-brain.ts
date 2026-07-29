@@ -9,7 +9,7 @@ export const NEURO = {
   accentRgb: "239, 68, 35",
   navy: "#1A2B3C",
   navyRgb: "26, 43, 60",
-  void: "#030508",
+  void: "#000000",
   ice: "#7eb8da",
   amber: "#d4bc82",
   gold: "#c9a962",

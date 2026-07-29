@@ -1,4 +1,4 @@
-# Melani Laurent S — Personal Website
+# Celine Nova — Open Sourcing My Mind
 
 Personal site for [MelaniLaurentS.com](https://melanilaurents.com) — BCI research, neurotech, art, photography, and daily writing.
 

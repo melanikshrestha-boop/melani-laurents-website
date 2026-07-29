@@ -4,7 +4,7 @@ import "@/styles/photography.css";
 
 export const metadata = {
   title: {
-    default: "shotbymelani",
+    default: "shotbyceline",
     template: "%s",
   },
 };

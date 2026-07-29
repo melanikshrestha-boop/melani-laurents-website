@@ -2,7 +2,7 @@
   "name": "melanilaurents.com",
   "version": "0.1.0",
   "private": true,
-  "description": "Personal site for MelaniLaurentS.com",
+  "description": "Celine Nova — open sourcing my mind.",
   "scripts": {
     "dev": "next dev -H 127.0.0.1",
     "build": "next build",
