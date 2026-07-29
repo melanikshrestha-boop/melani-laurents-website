@@ -90,9 +90,11 @@ function RangeControl({
   );
 }
 
-/** Local, persistent live controls for composing the home landing frame. */
+/** Local, persistent live controls for composing the home landing frame.
+ *  Temporary “Figma keys” panel — remove HomeDesignTuner from HomeHub when done. */
 export function HomeDesignTuner() {
-  const [open, setOpen] = useState(false);
+  // Open by default so you can drag spacing/size like Figma without hunting for it
+  const [open, setOpen] = useState(true);
   const [settings, setSettings] = useState<DesignSettings>(DEFAULTS);
 
   useEffect(() => {
@@ -174,15 +176,15 @@ export function HomeDesignTuner() {
         aria-expanded={open}
         aria-controls="home-design-controls"
       >
-        {open ? "Close" : "Tune"}
+        {open ? "Hide controls" : "Design · Tune"}
       </button>
 
       {open ? (
         <div id="home-design-controls" className="home-tuner__panel">
           <header>
             <div>
-              <span>Live design controls</span>
-              <strong>Compose the page.</strong>
+              <span>Temporary design keys</span>
+              <strong>Drag like Figma. We bake values into CSS later.</strong>
             </div>
             <button type="button" onClick={reset}>
               Reset
@@ -333,8 +335,9 @@ export function HomeDesignTuner() {
           />
 
           <p>
-            Figma-style: drag sliders to compose the landing frame. Saved in this
-            browser only. Reset clears local overrides.
+            Drag any slider — the page updates live. Saved only in this browser.
+            When it looks right, tell me and I’ll lock the values into CSS and
+            remove this panel.
           </p>
         </div>
       ) : null}
