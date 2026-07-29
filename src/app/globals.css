@@ -4662,13 +4662,206 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   border-color: transparent !important;
 }
 
-/* On-page composition controls. Kept visually separate from the site itself. */
+/* ── Google-Slides-style free drag editor (temporary) ── */
+.hub-page--slide-edit {
+  /* Full canvas for free placement */
+  padding: 0 !important;
+}
+
+.hub-slide-stage {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.hub-slide-stage.is-edit {
+  cursor: default;
+  /* faint grid like a slide canvas */
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center center;
+}
+
+.hub-slide-stage.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.hub-slide-piece {
+  position: absolute;
+  z-index: 4;
+  max-width: min(96vw, 100%);
+  touch-action: none;
+}
+
+.hub-slide-piece.is-editable {
+  cursor: grab;
+}
+
+.hub-slide-piece.is-editable:active,
+.hub-slide-stage.is-dragging .hub-slide-piece.is-selected {
+  cursor: grabbing;
+}
+
+.hub-slide-piece.is-selected {
+  outline: 2px solid #8ab4f8;
+  outline-offset: 10px;
+  z-index: 8;
+}
+
+.hub-slide-piece__label {
+  position: absolute;
+  left: 0;
+  top: -1.35rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  background: #8ab4f8;
+  color: #0b1220;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hub-slide-piece__content {
+  pointer-events: none; /* drag always hits the piece chrome while editing */
+}
+
+.hub-slide-stage:not(.is-edit) .hub-slide-piece__content {
+  pointer-events: auto;
+}
+
+.hub-page__brand--slide {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.85rem;
+  flex: 0 0 auto;
+}
+
+.hub-page__socials--slide {
+  display: flex;
+  margin: 0;
+  max-width: none;
+}
+
+.hub-page__nav--slide {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0;
+  width: max-content;
+  max-width: 96vw;
+}
+
+.hub-slide-toolbar {
+  position: fixed;
+  z-index: 130;
+  left: 50%;
+  bottom: 1.1rem;
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem 0.75rem;
+  max-width: min(96vw, 52rem);
+  padding: 0.55rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(18, 18, 20, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(18px);
+  color: #f1eee8;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 11px;
+}
+
+.hub-slide-toolbar__btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.55rem 0.9rem;
+  background: #8ab4f8;
+  color: #0b1220;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.hub-slide-toolbar__btn.is-on {
+  background: #fdd663;
+}
+
+.hub-slide-toolbar__btn.is-quiet {
+  background: transparent;
+  color: rgba(241, 238, 232, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.hub-slide-toolbar__btn:hover {
+  filter: brightness(1.06);
+}
+
+.hub-slide-toolbar__hint {
+  color: rgba(241, 238, 232, 0.55);
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  max-width: 18rem;
+  line-height: 1.25;
+}
+
+.hub-slide-toolbar__scale {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: rgba(241, 238, 232, 0.7);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hub-slide-toolbar__scale input[type="range"] {
+  width: 7rem;
+  accent-color: #8ab4f8;
+}
+
+.hub-slide-toolbar__scale output {
+  min-width: 2.5rem;
+  color: #f1eee8;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 640px) {
+  .hub-slide-toolbar {
+    bottom: 0.65rem;
+    border-radius: 1rem;
+    padding: 0.5rem 0.6rem;
+  }
+
+  .hub-slide-toolbar__hint {
+    display: none;
+  }
+}
+
+/* On-page composition controls (legacy slider panel — unused while slide editor is live). */
 .home-tuner {
   position: fixed;
   z-index: 120;
   top: 50%;
   right: clamp(0.75rem, 1.5vw, 1.25rem);
-  display: flex;
+  display: none; /* replaced by hub-slide-toolbar */
   align-items: flex-start;
   gap: 0.55rem;
   transform: translateY(-50%);

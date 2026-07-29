@@ -2,78 +2,123 @@
 
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { HomeDesignTuner } from "./HomeDesignTuner";
+import {
+  HomeSlideStage,
+  HomeSlideToolbar,
+  SlidePiece,
+  useHomeSlideLayout,
+} from "./HomeSlideEditor";
 import { InteractiveTitleLetters } from "./InteractiveTitleLetters";
 import { MelaniSignature } from "./MelaniSignature";
 import { MotionScrollToggle } from "./MotionScrollToggle";
 import { SocialIcons } from "./SocialIcons";
 
-/** Carlo Doroff–style editorial hub — dark void hero morphs to cream on scroll. */
+/** Carlo Doroff–style editorial hub — free drag layout like Google Slides while editing. */
 export function HomeHub() {
+  const {
+    layout,
+    setLayout,
+    reset,
+    editMode,
+    setEditMode,
+    selected,
+    setSelected,
+    setScale,
+  } = useHomeSlideLayout();
+
+  const selectedScale = selected ? layout[selected].scale : 1;
+
   return (
-    <section className="hub-page">
-      <header className="hub-page__header">
-        {/* Signature + cities sit tight on one baseline; socials pin top-right */}
-        <div className="hub-page__brand">
-          <MelaniSignature variant="light" />
-          <p className="hub-page__brand-loc">
-            <span className="hub-page__dot-inline" aria-hidden />
-            LA / SF / NYC
-          </p>
-        </div>
+    <section className={`hub-page${editMode ? " hub-page--slide-edit" : ""}`}>
+      <HomeSlideStage
+        editMode={editMode}
+        selected={selected}
+        layout={layout}
+        onSelect={setSelected}
+        onLayoutChange={setLayout}
+      >
+        <SlidePiece id="brand">
+          <div className="hub-page__brand hub-page__brand--slide">
+            <MelaniSignature variant="light" linked={!editMode} />
+            <p className="hub-page__brand-loc">
+              <span className="hub-page__dot-inline" aria-hidden />
+              LA / SF / NYC
+            </p>
+          </div>
+        </SlidePiece>
 
-        <nav className="hub-page__socials" aria-label="Social links">
-          <SocialIcons size="hub" className="hub-page__social-icons" />
-        </nav>
-      </header>
+        <SlidePiece id="socials">
+          <nav className="hub-page__socials hub-page__socials--slide" aria-label="Social links">
+            <SocialIcons size="hub" className="hub-page__social-icons" />
+          </nav>
+        </SlidePiece>
 
-      <div className="hub-page__center">
-        <InteractiveTitleLetters
-          variant="hub"
-          className="hub-page__title"
-          lineClassName="hub-page__title-line"
-        />
-        <div className="hub-page__thesis">
+        <SlidePiece id="title">
+          <InteractiveTitleLetters
+            variant="hub"
+            className="hub-page__title"
+            lineClassName="hub-page__title-line"
+            interactive={!editMode}
+          />
+        </SlidePiece>
+
+        <SlidePiece id="tagline">
           <p className="hub-page__tagline">open sourcing my mind.</p>
-        </div>
-      </div>
+        </SlidePiece>
 
-      <footer className="hub-page__footer">
-        <nav className="hub-page__nav" aria-label="Sections">
-          {siteConfig.hubPortals.map((portal, i) => (
-            <span
-              key={portal.href}
-              className="hub-page__nav-item"
-              style={{ animationDelay: `${1.15 + i * 0.18}s` }}
-            >
-              {i > 0 ? <span className="hub-page__sep"> · </span> : null}
-              {"external" in portal && portal.external ? (
-                <a
-                  href={portal.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {portal.label}
-                </a>
-              ) : (
-                <Link href={portal.href}>{portal.label}</Link>
-              )}
+        <SlidePiece id="nav">
+          <nav className="hub-page__nav hub-page__nav--slide" aria-label="Sections">
+            {siteConfig.hubPortals.map((portal, i) => (
+              <span key={portal.href} className="hub-page__nav-item">
+                {i > 0 ? <span className="hub-page__sep"> · </span> : null}
+                {"external" in portal && portal.external ? (
+                  <a
+                    href={portal.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(event) => {
+                      if (editMode) event.preventDefault();
+                    }}
+                  >
+                    {portal.label}
+                  </a>
+                ) : (
+                  <Link
+                    href={portal.href}
+                    onClick={(event) => {
+                      if (editMode) event.preventDefault();
+                    }}
+                  >
+                    {portal.label}
+                  </Link>
+                )}
+              </span>
+            ))}
+            <span className="hub-page__nav-item hub-page__nav-item--contact">
+              <span className="hub-page__sep"> · </span>
+              <Link
+                href="/contact"
+                className="hub-page__nav-contact"
+                onClick={(event) => {
+                  if (editMode) event.preventDefault();
+                }}
+              >
+                Contact
+              </Link>
             </span>
-          ))}
-          <span
-            className="hub-page__nav-item hub-page__nav-item--contact"
-            style={{ animationDelay: `${1.15 + siteConfig.hubPortals.length * 0.18}s` }}
-          >
-            <span className="hub-page__sep"> · </span>
-            <Link href="/contact" className="hub-page__nav-contact">
-              Contact
-            </Link>
-          </span>
-        </nav>
-      </footer>
+          </nav>
+        </SlidePiece>
+      </HomeSlideStage>
 
       <MotionScrollToggle />
-      <HomeDesignTuner />
+      <HomeSlideToolbar
+        editMode={editMode}
+        onToggleEdit={() => setEditMode((v) => !v)}
+        onReset={reset}
+        selected={selected}
+        scale={selectedScale}
+        onScale={setScale}
+      />
     </section>
   );
 }
