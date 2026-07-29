@@ -93,8 +93,14 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${instrumentSerif.variable} ${ibmPlexMono.variable} ${shareTechMono.variable} ${syne.variable} ${oswald.variable} ${archivoNarrow.variable} ${jetbrainsMono.variable} h-full`}
+      /* Browser extensions (Grammarly, etc.) inject attrs on <html>/<body>
+         and trigger false hydration mismatches without this. */
+      suppressHydrationWarning
     >
-      <body className="relative flex min-h-full flex-col bg-black font-sans antialiased">
+      <body
+        className="relative flex min-h-full flex-col bg-black font-sans antialiased"
+        suppressHydrationWarning
+      >
         {children}
       </body>
     </html>
