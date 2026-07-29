@@ -4729,35 +4729,46 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .hub-slide-stage .hub-page__title-line {
   font-size: 168px !important; /* ~11.7% of 1440 — not browser vw */
   line-height: 0.86 !important;
-  letter-spacing: -0.045em !important;
+  letter-spacing: var(--slide-piece-tracking, -0.045em) !important;
   white-space: nowrap;
 }
 
 .hub-slide-stage .hub-page__tagline {
   font-size: 52px !important;
   line-height: 0.95 !important;
+  letter-spacing: var(--slide-piece-tracking, 0em) !important;
   margin: 0;
   white-space: nowrap;
 }
 
-.hub-slide-stage .hub-page__brand .melani-signature__mark {
+.hub-slide-stage .hub-page__signature--slide .melani-signature__mark {
   height: 48px !important;
   width: auto;
 }
 
 .hub-slide-stage .hub-page__brand-loc {
   font-size: 15px !important;
-  letter-spacing: 0.14em !important;
+  letter-spacing: var(--slide-piece-tracking, 0.14em) !important;
 }
 
-.hub-slide-stage .hub-page__brand--slide {
-  gap: 1rem;
+.hub-page__signature--slide {
+  display: flex;
+  align-items: center;
+}
+
+.hub-page__brand-loc--slide {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+  white-space: nowrap;
 }
 
 /* Socials scale with the canvas + piece scale (em), never sticky rem on phone */
 .hub-slide-stage .hub-page__social-icons {
   font-size: 24px !important;
   gap: 0.7em !important;
+  letter-spacing: var(--slide-piece-tracking, 0em) !important;
 }
 
 .hub-slide-stage .hub-page__social-icons .social-icons__icon {
@@ -4772,7 +4783,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .hub-slide-stage .hub-page__nav--slide,
 .hub-slide-stage .hub-page__nav {
   font-size: 12px !important;
-  letter-spacing: 0.16em !important;
+  letter-spacing: var(--slide-piece-tracking, 0.16em) !important;
   max-width: none !important;
 }
 
@@ -4854,14 +4865,6 @@ html.is-slide-editing .site-footer,
 html.is-slide-editing [data-site-footer] {
   pointer-events: none !important;
   opacity: 0.25;
-}
-
-.hub-page__brand--slide {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0.85rem;
-  flex: 0 0 auto;
 }
 
 .hub-page__socials--slide {

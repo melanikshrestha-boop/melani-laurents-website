@@ -24,9 +24,11 @@ export function HomeHub() {
     selected,
     setSelected,
     setScale,
+    setTracking,
   } = useHomeSlideLayout();
 
   const selectedScale = selected ? layout[selected].scale : 1;
+  const selectedTracking = selected ? layout[selected].tracking : 0;
 
   return (
     <section className={`hub-page${editMode ? " hub-page--slide-edit" : ""}`}>
@@ -37,14 +39,17 @@ export function HomeHub() {
         onSelect={setSelected}
         onLayoutChange={setLayout}
       >
-        <SlidePiece id="brand">
-          <div className="hub-page__brand hub-page__brand--slide">
+        <SlidePiece id="signature">
+          <div className="hub-page__signature--slide">
             <MelaniSignature variant="light" linked={!editMode} />
-            <p className="hub-page__brand-loc">
-              <span className="hub-page__dot-inline" aria-hidden />
-              LA / SF / NYC
-            </p>
           </div>
+        </SlidePiece>
+
+        <SlidePiece id="location">
+          <p className="hub-page__brand-loc hub-page__brand-loc--slide">
+            <span className="hub-page__dot-inline" aria-hidden />
+            LA / SF / NYC
+          </p>
         </SlidePiece>
 
         <SlidePiece id="socials">
@@ -118,6 +123,8 @@ export function HomeHub() {
         selected={selected}
         scale={selectedScale}
         onScale={setScale}
+        tracking={selectedTracking}
+        onTracking={setTracking}
       />
     </section>
   );

@@ -18,10 +18,11 @@ import {
  * Drag pieces. Scroll or size slider to scale. Temporary — remove when locked.
  */
 
-const STORAGE_KEY = "celine-home-slide-layout-v1";
+const STORAGE_KEY = "celine-home-slide-layout-v2";
 
 export type SlidePieceId =
-  | "brand"
+  | "signature"
+  | "location"
   | "socials"
   | "title"
   | "tagline"
@@ -36,16 +37,18 @@ export type SlidePieceState = {
   ax: AnchorX;
   ay: AnchorY;
   scale: number;
+  tracking: number;
 };
 
 export type Layout = Record<SlidePieceId, SlidePieceState>;
 
 const DEFAULT_LAYOUT: Layout = {
-  brand: { x: 3.5, y: 4, ax: "left", ay: "top", scale: 1 },
-  socials: { x: 96.5, y: 4, ax: "right", ay: "top", scale: 1 },
-  title: { x: 50, y: 46, ax: "center", ay: "center", scale: 1 },
-  tagline: { x: 50, y: 62, ax: "center", ay: "center", scale: 1 },
-  nav: { x: 50, y: 93, ax: "center", ay: "bottom", scale: 1 },
+  signature: { x: 3.5, y: 4, ax: "left", ay: "top", scale: 1, tracking: 0 },
+  location: { x: 14.5, y: 5.2, ax: "left", ay: "top", scale: 1, tracking: 0.14 },
+  socials: { x: 96.5, y: 4, ax: "right", ay: "top", scale: 1, tracking: 0 },
+  title: { x: 50, y: 46, ax: "center", ay: "center", scale: 1, tracking: -0.045 },
+  tagline: { x: 50, y: 62, ax: "center", ay: "center", scale: 1, tracking: 0 },
+  nav: { x: 50, y: 93, ax: "center", ay: "bottom", scale: 1, tracking: 0.16 },
 };
 
 function loadLayout(): Layout {
@@ -54,8 +57,16 @@ function loadLayout(): Layout {
     const raw = window.localStorage.getItem(STORAGE_KEY);
     if (!raw) return DEFAULT_LAYOUT;
     const parsed = JSON.parse(raw) as Partial<Layout>;
+    const legacyBrand = (parsed as Partial<Layout> & { brand?: SlidePieceState }).brand;
     return {
-      brand: { ...DEFAULT_LAYOUT.brand, ...parsed.brand },
+      signature: {
+        ...DEFAULT_LAYOUT.signature,
+        ...(parsed.signature ?? legacyBrand),
+      },
+      location: {
+        ...DEFAULT_LAYOUT.location,
+        ...parsed.location,
+      },
       socials: { ...DEFAULT_LAYOUT.socials, ...parsed.socials },
       title: { ...DEFAULT_LAYOUT.title, ...parsed.title },
       tagline: { ...DEFAULT_LAYOUT.tagline, ...parsed.tagline },
@@ -92,7 +103,8 @@ function pieceStyle(piece: SlidePieceState): CSSProperties {
     top: `${piece.y}%`,
     transform: `translate(${tx}, ${ty}) scale(${piece.scale})`,
     transformOrigin: `${originX} ${originY}`,
-  };
+    "--slide-piece-tracking": `${piece.tracking}em`,
+  } as CSSProperties;
 }
 
 type SlideCtx = {
@@ -158,6 +170,17 @@ export function useHomeSlideLayout() {
     }));
   };
 
+  const setTracking = (tracking: number) => {
+    if (!selected) return;
+    setLayout((prev) => ({
+      ...prev,
+      [selected]: {
+        ...prev[selected],
+        tracking: Math.min(0.6, Math.max(-0.15, tracking)),
+      },
+    }));
+  };
+
   return {
     layout,
     setLayout,
@@ -168,6 +191,7 @@ export function useHomeSlideLayout() {
     selected,
     setSelected,
     setScale,
+    setTracking,
   };
 }
 
@@ -407,6 +431,8 @@ export function HomeSlideToolbar({
   selected,
   scale,
   onScale,
+  tracking,
+  onTracking,
 }: {
   editMode: boolean;
   onToggleEdit: () => void;
@@ -414,6 +440,8 @@ export function HomeSlideToolbar({
   selected: SlidePieceId | null;
   scale: number;
   onScale: (scale: number) => void;
+  tracking: number;
+  onTracking: (tracking: number) => void;
 }) {
   return (
     <div className="hub-slide-toolbar" role="toolbar" aria-label="Page editor">
@@ -430,18 +458,32 @@ export function HomeSlideToolbar({
             Click a blue box → drag. Scroll or slider = size.
           </span>
           {selected ? (
-            <label className="hub-slide-toolbar__scale">
-              Size
-              <input
-                type="range"
-                min={0.45}
-                max={2.4}
-                step={0.02}
-                value={scale}
-                onChange={(event) => onScale(Number(event.target.value))}
-              />
-              <output>{Math.round(scale * 100)}%</output>
-            </label>
+            <>
+              <label className="hub-slide-toolbar__scale">
+                Size
+                <input
+                  type="range"
+                  min={0.45}
+                  max={2.4}
+                  step={0.02}
+                  value={scale}
+                  onChange={(event) => onScale(Number(event.target.value))}
+                />
+                <output>{Math.round(scale * 100)}%</output>
+              </label>
+              <label className="hub-slide-toolbar__scale">
+                Character spacing
+                <input
+                  type="range"
+                  min={-0.15}
+                  max={0.6}
+                  step={0.005}
+                  value={tracking}
+                  onChange={(event) => onTracking(Number(event.target.value))}
+                />
+                <output>{tracking.toFixed(3)}em</output>
+              </label>
+            </>
           ) : (
             <span className="hub-slide-toolbar__hint is-warn">
               Click CELINE NOVA or any text to select it
