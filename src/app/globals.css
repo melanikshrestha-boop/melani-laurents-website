@@ -4662,29 +4662,56 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   border-color: transparent !important;
 }
 
-/* ── Google-Slides-style free drag editor (temporary) ── */
-.hub-page--slide-edit {
+/* ── Google-Slides-style free drag editor (temporary) ──
+   Fixed 1440×900 design canvas → uniform scale to fit any viewport.
+   Socials, title, nav all shrink/grow together (same proportions). */
+.hub-page--slide-edit,
+.hub-page:has(.hub-slide-viewport) {
   padding: 0 !important;
-  overflow: visible !important;
-}
-
-.hub-slide-stage {
-  position: relative;
-  width: 100%;
+  overflow: hidden !important;
   min-height: 100svh;
   height: 100svh;
+}
+
+.hub-slide-viewport {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 100svh;
   overflow: hidden;
-  /* Must sit above decorative layers */
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hub-slide-viewport.is-edit {
+  background: #050505;
+}
+
+/* Design frame — not the browser. Everything inside is design-space px/rem. */
+.hub-slide-stage {
+  position: relative;
+  flex: 0 0 auto;
+  width: 1440px;
+  height: 900px;
+  overflow: hidden;
+  /* One scale for the whole composition — the “illusion” */
+  transform: scale(var(--slide-fit, 1));
+  transform-origin: center center;
+  /* Design-space type root so rem tracks the canvas, not the phone */
+  font-size: 16px;
   z-index: 30;
 }
 
 .hub-slide-stage.is-edit {
   cursor: default;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
-  background-position: center center;
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: 0 0;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
 .hub-slide-stage.is-dragging,
@@ -4693,16 +4720,71 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   user-select: none !important;
 }
 
+/* ── Design-space type (all pieces share this world; piece scale multiplies) ── */
+.hub-slide-stage .hub-page__title {
+  width: max-content;
+  max-width: none;
+}
+
+.hub-slide-stage .hub-page__title-line {
+  font-size: 168px !important; /* ~11.7% of 1440 — not browser vw */
+  line-height: 0.86 !important;
+  letter-spacing: -0.045em !important;
+  white-space: nowrap;
+}
+
+.hub-slide-stage .hub-page__tagline {
+  font-size: 52px !important;
+  line-height: 0.95 !important;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.hub-slide-stage .hub-page__brand .melani-signature__mark {
+  height: 48px !important;
+  width: auto;
+}
+
+.hub-slide-stage .hub-page__brand-loc {
+  font-size: 15px !important;
+  letter-spacing: 0.14em !important;
+}
+
+.hub-slide-stage .hub-page__brand--slide {
+  gap: 1rem;
+}
+
+/* Socials scale with the canvas + piece scale (em), never sticky rem on phone */
+.hub-slide-stage .hub-page__social-icons {
+  font-size: 24px !important;
+  gap: 0.7em !important;
+}
+
+.hub-slide-stage .hub-page__social-icons .social-icons__icon {
+  width: 1em !important;
+  height: 1em !important;
+}
+
+.hub-slide-stage .hub-page__social-icons .social-icons__link {
+  color: rgba(232, 230, 227, 0.82) !important;
+}
+
+.hub-slide-stage .hub-page__nav--slide,
+.hub-slide-stage .hub-page__nav {
+  font-size: 12px !important;
+  letter-spacing: 0.16em !important;
+  max-width: none !important;
+}
+
 .hub-slide-piece {
   position: absolute;
   z-index: 40;
-  max-width: min(96vw, 100%);
+  max-width: none;
   touch-action: none;
-  /* Real hit target — never pointer-events:none on this tree while editing */
   pointer-events: auto;
-  /* Extra padding so small text is easy to grab */
-  padding: 0.35rem 0.5rem;
-  margin: -0.35rem -0.5rem;
+  /* Hit padding in design px */
+  padding: 8px 10px;
+  margin: -8px -10px;
   box-sizing: content-box;
 }
 
@@ -4790,11 +4872,29 @@ html.is-slide-editing [data-site-footer] {
 
 .hub-page__nav--slide {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   gap: 0;
   width: max-content;
-  max-width: 96vw;
+  max-width: none;
+}
+
+/* Kill browser-vw overrides that break the uniform slide scale */
+.hub-slide-stage .hub-page__title-line,
+.hub-slide-stage .hub-page__tagline,
+.hub-slide-stage .hub-page__brand-loc {
+  /* ensure later media queries cannot reintroduce vw sizing inside the canvas */
+  max-width: none !important;
+}
+
+@media (max-width: 640px) {
+  .hub-slide-stage .hub-page__title-line {
+    font-size: 168px !important;
+  }
+
+  .hub-slide-stage .hub-page__tagline {
+    font-size: 52px !important;
+  }
 }
 
 .hub-slide-toolbar {

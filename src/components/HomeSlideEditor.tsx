@@ -171,6 +171,10 @@ export function useHomeSlideLayout() {
   };
 }
 
+/** Design canvas — entire composition scales as one unit to fit the viewport */
+export const SLIDE_DESIGN_W = 1440;
+export const SLIDE_DESIGN_H = 900;
+
 export function HomeSlideStage({
   editMode,
   selected,
@@ -186,9 +190,33 @@ export function HomeSlideStage({
   onLayoutChange: (layout: Layout) => void;
   children: ReactNode;
 }) {
+  const viewportRef = useRef<HTMLDivElement | null>(null);
   const stageRef = useRef<HTMLDivElement | null>(null);
   const layoutRef = useRef(layout);
   layoutRef.current = layout;
+  const [fit, setFit] = useState(1);
+
+  // Uniform scale so phone/desktop look like the same “slide” (illusion of one layout)
+  useEffect(() => {
+    const el = viewportRef.current;
+    if (!el) return;
+
+    const measure = () => {
+      const w = el.clientWidth || window.innerWidth;
+      const h = el.clientHeight || window.innerHeight;
+      const next = Math.min(w / SLIDE_DESIGN_W, h / SLIDE_DESIGN_H);
+      setFit(Number.isFinite(next) && next > 0 ? next : 1);
+    };
+
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    window.addEventListener("resize", measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
 
   const dragRef = useRef<{
     id: SlidePieceId;
@@ -302,15 +330,27 @@ export function HomeSlideStage({
   return (
     <SlideContext.Provider value={value as SlideCtx}>
       <div
-        ref={stageRef}
-        className={`hub-slide-stage${editMode ? " is-edit" : ""}`}
-        onPointerDown={(event) => {
-          if (!editMode) return;
-          // Click empty canvas → deselect
-          if (event.target === event.currentTarget) onSelect(null);
-        }}
+        ref={viewportRef}
+        className={`hub-slide-viewport${editMode ? " is-edit" : ""}`}
       >
-        {children}
+        <div
+          ref={stageRef}
+          className={`hub-slide-stage${editMode ? " is-edit" : ""}`}
+          style={
+            {
+              "--slide-fit": fit,
+              width: SLIDE_DESIGN_W,
+              height: SLIDE_DESIGN_H,
+            } as CSSProperties
+          }
+          onPointerDown={(event) => {
+            if (!editMode) return;
+            // Click empty canvas → deselect
+            if (event.target === event.currentTarget) onSelect(null);
+          }}
+        >
+          {children}
+        </div>
       </div>
     </SlideContext.Provider>
   );

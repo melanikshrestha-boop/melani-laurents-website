@@ -37,6 +37,7 @@ export function SocialIcons({
   className = "",
   size = "md",
 }: SocialIconsProps) {
+  /* hub: em-based so piece scale + canvas scale both apply (no fixed rem) */
   const iconSize =
     size === "hub"
       ? "h-[1em] w-[1em]"
@@ -44,7 +45,7 @@ export function SocialIcons({
         ? "h-3.5 w-3.5"
         : "h-4 w-4";
   const gap =
-    size === "hub" ? "gap-[var(--tune-social-gap,0.85rem)]" : size === "sm" ? "gap-2.5" : "gap-3";
+    size === "hub" ? "gap-[0.7em]" : size === "sm" ? "gap-2.5" : "gap-3";
 
   return (
     <div
