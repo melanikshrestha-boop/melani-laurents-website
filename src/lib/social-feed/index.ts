@@ -44,6 +44,10 @@ function siteProfile(platform: SocialPlatform) {
   if (platform === "facebook") {
     return safeProfileUrl(process.env.FACEBOOK_PROFILE_URL);
   }
+  // LinkedIn lives on contact/profile URLs, not the header icon row
+  if (platform === "linkedin") {
+    return safeProfileUrl(siteConfig.linkedinUrl);
+  }
 
   return safeProfileUrl(
     siteConfig.socialLinks.find((link) => link.id === platform)?.href,
