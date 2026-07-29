@@ -4664,8 +4664,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 
 /* ── Google-Slides-style free drag editor (temporary) ── */
 .hub-page--slide-edit {
-  /* Full canvas for free placement */
   padding: 0 !important;
+  overflow: visible !important;
 }
 
 .hub-slide-stage {
@@ -4674,69 +4674,104 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   min-height: 100svh;
   height: 100svh;
   overflow: hidden;
+  /* Must sit above decorative layers */
+  z-index: 30;
 }
 
 .hub-slide-stage.is-edit {
   cursor: default;
-  /* faint grid like a slide canvas */
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 40px 40px;
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
   background-position: center center;
 }
 
-.hub-slide-stage.is-dragging {
-  cursor: grabbing;
-  user-select: none;
+.hub-slide-stage.is-dragging,
+.hub-slide-stage.is-dragging * {
+  cursor: grabbing !important;
+  user-select: none !important;
 }
 
 .hub-slide-piece {
   position: absolute;
-  z-index: 4;
+  z-index: 40;
   max-width: min(96vw, 100%);
   touch-action: none;
+  /* Real hit target — never pointer-events:none on this tree while editing */
+  pointer-events: auto;
+  /* Extra padding so small text is easy to grab */
+  padding: 0.35rem 0.5rem;
+  margin: -0.35rem -0.5rem;
+  box-sizing: content-box;
 }
 
 .hub-slide-piece.is-editable {
   cursor: grab;
 }
 
-.hub-slide-piece.is-editable:active,
-.hub-slide-stage.is-dragging .hub-slide-piece.is-selected {
-  cursor: grabbing;
+.hub-slide-piece.is-editable:hover {
+  outline: 1px dashed rgba(138, 180, 248, 0.55);
+  outline-offset: 8px;
 }
 
 .hub-slide-piece.is-selected {
-  outline: 2px solid #8ab4f8;
+  outline: 2px solid #8ab4f8 !important;
   outline-offset: 10px;
-  z-index: 8;
+  z-index: 50;
+  background: rgba(138, 180, 248, 0.06);
 }
 
 .hub-slide-piece__label {
   position: absolute;
-  left: 0;
-  top: -1.35rem;
-  padding: 0.15rem 0.4rem;
+  left: 0.5rem;
+  top: -1.5rem;
+  padding: 0.2rem 0.45rem;
   border-radius: 4px;
   background: #8ab4f8;
   color: #0b1220;
   font-family: var(--font-jetbrains-mono), monospace;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   white-space: nowrap;
   pointer-events: none;
   z-index: 2;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
 }
 
 .hub-slide-piece__content {
-  pointer-events: none; /* drag always hits the piece chrome while editing */
+  /* CRITICAL: content must stay hittable. pointer-events:none passes clicks
+     straight through the piece to the canvas (breaks drag entirely). */
+  pointer-events: auto;
 }
 
-.hub-slide-stage:not(.is-edit) .hub-slide-piece__content {
-  pointer-events: auto;
+/* While editing, kill link navigation / letter shimmer so drag wins */
+.hub-slide-stage.is-edit .hub-slide-piece a,
+.hub-slide-stage.is-edit .hub-slide-piece button {
+  pointer-events: none !important;
+  cursor: inherit !important;
+}
+
+.hub-slide-stage.is-edit .title-char {
+  pointer-events: none !important;
+  cursor: inherit !important;
+}
+
+html.is-slide-editing,
+html.is-slide-editing body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+/* Hide site chrome that steals clicks while composing */
+html.is-slide-editing .motion-scroll,
+html.is-slide-editing footer.site-footer,
+html.is-slide-editing .site-footer,
+html.is-slide-editing [data-site-footer] {
+  pointer-events: none !important;
+  opacity: 0.25;
 }
 
 .hub-page__brand--slide {
@@ -4764,7 +4799,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 
 .hub-slide-toolbar {
   position: fixed;
-  z-index: 130;
+  z-index: 9999;
   left: 50%;
   bottom: 1.1rem;
   transform: translateX(-50%);
@@ -4774,15 +4809,20 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   justify-content: center;
   gap: 0.55rem 0.75rem;
   max-width: min(96vw, 52rem);
-  padding: 0.55rem 0.75rem;
+  padding: 0.65rem 0.9rem;
   border-radius: 999px;
-  background: rgba(18, 18, 20, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+  background: rgba(18, 18, 20, 0.96);
+  border: 1px solid rgba(138, 180, 248, 0.35);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(18px);
   color: #f1eee8;
   font-family: var(--font-jetbrains-mono), monospace;
   font-size: 11px;
+  pointer-events: auto;
+}
+
+.hub-slide-toolbar__hint.is-warn {
+  color: #fdd663;
 }
 
 .hub-slide-toolbar__btn {

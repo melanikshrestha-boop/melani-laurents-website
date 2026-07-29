@@ -14,8 +14,8 @@ import {
 } from "react";
 
 /**
- * Temporary Google-Slides-style free move editor for the home landing frame.
- * Drag pieces. Scroll or use the size slider to scale. Remove when locked.
+ * Google-Slides-style free move editor for the home landing frame.
+ * Drag pieces. Scroll or size slider to scale. Temporary — remove when locked.
  */
 
 const STORAGE_KEY = "celine-home-slide-layout-v1";
@@ -31,13 +31,10 @@ type AnchorX = "left" | "center" | "right";
 type AnchorY = "top" | "center" | "bottom";
 
 export type SlidePieceState = {
-  /** 0–100 % of stage width */
   x: number;
-  /** 0–100 % of stage height */
   y: number;
   ax: AnchorX;
   ay: AnchorY;
-  /** Scale of the piece (text / icons) */
   scale: number;
 };
 
@@ -102,9 +99,7 @@ type SlideCtx = {
   editMode: boolean;
   selected: SlidePieceId | null;
   layout: Layout;
-  select: (id: SlidePieceId | null) => void;
-  beginDrag: (id: SlidePieceId, event: ReactPointerEvent) => void;
-  stageRef: React.RefObject<HTMLDivElement | null>;
+  beginDrag: (id: SlidePieceId, event: ReactPointerEvent<HTMLElement>) => void;
 };
 
 const SlideContext = createContext<SlideCtx | null>(null);
@@ -118,6 +113,7 @@ function useSlide() {
 export function useHomeSlideLayout() {
   const [layout, setLayout] = useState<Layout>(DEFAULT_LAYOUT);
   const [ready, setReady] = useState(false);
+  // Start in edit mode so you can drag immediately
   const [editMode, setEditMode] = useState(true);
   const [selected, setSelected] = useState<SlidePieceId | null>(null);
 
@@ -130,6 +126,16 @@ export function useHomeSlideLayout() {
     if (!ready) return;
     saveLayout(layout);
   }, [layout, ready]);
+
+  // Mark body so we can disable competing UI while editing
+  useEffect(() => {
+    document.documentElement.classList.toggle("is-slide-editing", editMode);
+    document.body.classList.toggle("is-slide-editing", editMode);
+    return () => {
+      document.documentElement.classList.remove("is-slide-editing");
+      document.body.classList.remove("is-slide-editing");
+    };
+  }, [editMode]);
 
   const reset = () => {
     setLayout(DEFAULT_LAYOUT);
@@ -181,27 +187,64 @@ export function HomeSlideStage({
   children: ReactNode;
 }) {
   const stageRef = useRef<HTMLDivElement | null>(null);
+  const layoutRef = useRef(layout);
+  layoutRef.current = layout;
+
   const dragRef = useRef<{
     id: SlidePieceId;
+    pointerId: number;
     startX: number;
     startY: number;
     originX: number;
     originY: number;
   } | null>(null);
-  const layoutRef = useRef(layout);
-  layoutRef.current = layout;
 
-  const onPointerMove = useCallback(
-    (event: PointerEvent) => {
+  const beginDrag = useCallback(
+    (id: SlidePieceId, event: ReactPointerEvent<HTMLElement>) => {
+      if (!editMode) return;
+      // Only primary button / touch
+      if (event.button !== 0 && event.pointerType === "mouse") return;
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      onSelect(id);
+      const piece = layoutRef.current[id];
+      const el = event.currentTarget;
+      dragRef.current = {
+        id,
+        pointerId: event.pointerId,
+        startX: event.clientX,
+        startY: event.clientY,
+        originX: piece.x,
+        originY: piece.y,
+      };
+
+      try {
+        el.setPointerCapture(event.pointerId);
+      } catch {
+        /* some browsers throw if already released */
+      }
+
+      stageRef.current?.classList.add("is-dragging");
+    },
+    [editMode, onSelect],
+  );
+
+  const onPiecePointerMove = useCallback(
+    (event: ReactPointerEvent<HTMLElement>) => {
       const drag = dragRef.current;
       const stage = stageRef.current;
-      if (!drag || !stage) return;
+      if (!drag || drag.pointerId !== event.pointerId || !stage) return;
+
       const rect = stage.getBoundingClientRect();
       if (rect.width <= 0 || rect.height <= 0) return;
+
       const dx = ((event.clientX - drag.startX) / rect.width) * 100;
       const dy = ((event.clientY - drag.startY) / rect.height) * 100;
-      const nextX = Math.min(102, Math.max(-2, drag.originX + dx));
-      const nextY = Math.min(102, Math.max(-2, drag.originY + dy));
+      const nextX = Math.min(100, Math.max(0, drag.originX + dx));
+      const nextY = Math.min(100, Math.max(0, drag.originY + dy));
+
       const current = layoutRef.current;
       onLayoutChange({
         ...current,
@@ -211,42 +254,17 @@ export function HomeSlideStage({
     [onLayoutChange],
   );
 
-  const endDrag = useCallback(() => {
-    if (!dragRef.current) return;
+  const endDrag = useCallback((event: ReactPointerEvent<HTMLElement>) => {
+    const drag = dragRef.current;
+    if (!drag || drag.pointerId !== event.pointerId) return;
     dragRef.current = null;
     stageRef.current?.classList.remove("is-dragging");
-    window.removeEventListener("pointermove", onPointerMove);
-    window.removeEventListener("pointerup", endDrag);
-  }, [onPointerMove]);
-
-  const beginDrag = useCallback(
-    (id: SlidePieceId, event: ReactPointerEvent) => {
-      if (!editMode) return;
-      event.preventDefault();
-      event.stopPropagation();
-      onSelect(id);
-      const piece = layoutRef.current[id];
-      dragRef.current = {
-        id,
-        startX: event.clientX,
-        startY: event.clientY,
-        originX: piece.x,
-        originY: piece.y,
-      };
-      stageRef.current?.classList.add("is-dragging");
-      window.addEventListener("pointermove", onPointerMove);
-      window.addEventListener("pointerup", endDrag);
-    },
-    [editMode, onSelect, onPointerMove, endDrag],
-  );
-
-  useEffect(
-    () => () => {
-      window.removeEventListener("pointermove", onPointerMove);
-      window.removeEventListener("pointerup", endDrag);
-    },
-    [onPointerMove, endDrag],
-  );
+    try {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    } catch {
+      /* ignore */
+    }
+  }, []);
 
   // Scroll on selected piece to resize
   useEffect(() => {
@@ -255,10 +273,10 @@ export function HomeSlideStage({
       const target = event.target as HTMLElement | null;
       if (!target?.closest?.(`[data-slide-id="${selected}"]`)) return;
       event.preventDefault();
-      const delta = event.deltaY > 0 ? -0.04 : 0.04;
+      const delta = event.deltaY > 0 ? -0.05 : 0.05;
       const current = layoutRef.current;
       const piece = current[selected];
-      const scale = Math.min(2.4, Math.max(0.45, piece.scale + delta));
+      const scale = Math.min(2.4, Math.max(0.45, +(piece.scale + delta).toFixed(3)));
       onLayoutChange({
         ...current,
         [selected]: { ...piece, scale },
@@ -273,20 +291,23 @@ export function HomeSlideStage({
       editMode,
       selected,
       layout,
-      select: onSelect,
       beginDrag,
-      stageRef,
+      onPiecePointerMove,
+      endDrag,
     }),
-    [editMode, selected, layout, onSelect, beginDrag],
+    [editMode, selected, layout, beginDrag, onPiecePointerMove, endDrag],
   );
 
+  // Extend context type inline via cast for move/end handlers on pieces
   return (
-    <SlideContext.Provider value={value}>
+    <SlideContext.Provider value={value as SlideCtx}>
       <div
         ref={stageRef}
         className={`hub-slide-stage${editMode ? " is-edit" : ""}`}
-        onPointerDown={() => {
-          if (editMode) onSelect(null);
+        onPointerDown={(event) => {
+          if (!editMode) return;
+          // Click empty canvas → deselect
+          if (event.target === event.currentTarget) onSelect(null);
         }}
       >
         {children}
@@ -294,6 +315,12 @@ export function HomeSlideStage({
     </SlideContext.Provider>
   );
 }
+
+// Internal extended context for move/end (keeps public SlideCtx small)
+type SlideCtxFull = SlideCtx & {
+  onPiecePointerMove: (event: ReactPointerEvent<HTMLElement>) => void;
+  endDrag: (event: ReactPointerEvent<HTMLElement>) => void;
+};
 
 export function SlidePiece({
   id,
@@ -304,7 +331,10 @@ export function SlidePiece({
   children: ReactNode;
   className?: string;
 }) {
-  const { editMode, selected, layout, beginDrag } = useSlide();
+  const ctx = useContext(SlideContext) as SlideCtxFull | null;
+  if (!ctx) throw new Error("SlidePiece must be inside HomeSlideStage");
+  const { editMode, selected, layout, beginDrag, onPiecePointerMove, endDrag } =
+    ctx;
   const piece = layout[id];
   const isSelected = selected === id;
 
@@ -314,6 +344,9 @@ export function SlidePiece({
       className={`hub-slide-piece hub-slide-piece--${id}${editMode ? " is-editable" : ""}${isSelected ? " is-selected" : ""}${className ? ` ${className}` : ""}`}
       style={pieceStyle(piece)}
       onPointerDown={(event) => beginDrag(id, event)}
+      onPointerMove={onPiecePointerMove}
+      onPointerUp={endDrag}
+      onPointerCancel={endDrag}
     >
       {editMode ? (
         <span className="hub-slide-piece__label" aria-hidden>
@@ -321,6 +354,7 @@ export function SlidePiece({
           {isSelected ? ` · ${Math.round(piece.scale * 100)}%` : ""}
         </span>
       ) : null}
+      {/* Content MUST receive hits so the piece has a real target (not pass-through) */}
       <div className="hub-slide-piece__content">{children}</div>
     </div>
   );
@@ -353,7 +387,7 @@ export function HomeSlideToolbar({
       {editMode ? (
         <>
           <span className="hub-slide-toolbar__hint">
-            Drag anything · scroll on it to resize · empty space deselects
+            Click a blue box → drag. Scroll or slider = size.
           </span>
           {selected ? (
             <label className="hub-slide-toolbar__scale">
@@ -368,7 +402,11 @@ export function HomeSlideToolbar({
               />
               <output>{Math.round(scale * 100)}%</output>
             </label>
-          ) : null}
+          ) : (
+            <span className="hub-slide-toolbar__hint is-warn">
+              Click CELINE NOVA or any text to select it
+            </span>
+          )}
           <button
             type="button"
             className="hub-slide-toolbar__btn is-quiet"
