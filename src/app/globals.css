@@ -1055,7 +1055,11 @@ body {
   flex-direction: column;
   background: transparent;
   color: var(--muted);
-  padding: clamp(1rem, 2.5vw, 1.75rem) clamp(1.25rem, 3vw, 2.25rem);
+  /* Side pad is tunable — default is tighter so the name can own the frame */
+  padding:
+    var(--tune-header-pad, clamp(1.1rem, 2.2vw, 1.6rem))
+    var(--tune-side-pad, clamp(1rem, 2.5vw, 2rem))
+    clamp(1rem, 2.5vw, 1.75rem);
   overflow: hidden;
   isolation: isolate;
 }
@@ -1263,7 +1267,9 @@ body {
 }
 
 .hub-page__brand .melani-signature__mark {
-  height: clamp(1.5rem, 3.6vw, 1.9rem);
+  /* Tunable signature size — default reads at logo scale, not micro-caption */
+  height: var(--tune-signature-size, clamp(2.1rem, 3.8vw, 2.85rem));
+  width: auto;
 }
 
 .melani-signature--ink {
@@ -1286,19 +1292,26 @@ body {
 
 .hub-page__header {
   position: relative;
-  z-index: 3;
+  z-index: 5;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 1.25rem;
+  width: 100%;
+  flex-shrink: 0;
 }
 
 .hub-page__brand {
   display: flex;
-  align-items: center;
-  gap: clamp(0.65rem, 1.8vw, 1.1rem);
+  flex-direction: row;
+  align-items: center; /* cities sit on the optical middle of the signature */
+  gap: var(--tune-brand-gap, 1rem);
   min-width: 0;
-  flex: 1;
+  flex: 0 1 auto;
+}
+
+.hub-page__brand .melani-signature-link {
+  flex-shrink: 0;
 }
 
 .hub-page__brand-meta {
@@ -1335,41 +1348,61 @@ body {
 .hub-page__brand-loc {
   display: inline-flex;
   align-items: center;
-  gap: 0.35em;
-  margin: 0.1rem 0 0;
+  gap: 0.4em;
+  margin: 0;
+  padding: 0;
   font-family: var(--font-share-tech-mono), var(--font-jetbrains-mono), ui-monospace,
     monospace;
-  font-size: clamp(0.52rem, 1.2vw, 0.6rem);
+  font-size: var(--tune-loc-size, clamp(0.72rem, 1.35vw, 0.95rem));
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--hub-ink);
-  line-height: 1.5;
+  color: var(--hub-ink-morph, #e8e6e3);
+  line-height: 1;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .hub-page__socials {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: flex-end;
-  max-width: min(100%, 22rem);
+  flex: 0 0 auto;
+  margin-left: auto;
+  max-width: none;
+  /* Never collapse — icons stay pinned top-right */
+  min-width: max-content;
+  z-index: 6;
 }
 
 .hub-page__social-icons {
   justify-content: flex-end;
+  flex-wrap: nowrap !important;
+  font-size: var(--tune-social-size, 1.35rem);
 }
 
 .hub-page__social-icons .social-icons__link {
-  color: rgba(var(--hub-ink-rgb), 0.55);
-  transition: color 180ms ease;
+  /* Hard cream on void so icons never disappear into black */
+  color: rgba(232, 230, 227, 0.78);
+  transition: color 180ms ease, opacity 180ms ease, transform 160ms ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  opacity: 1;
 }
 
 .hub-page__social-icons .social-icons__link:hover {
-  color: var(--hub-ink);
+  color: #fff;
+  transform: translateY(-1px);
 }
 
 .hub-page__social-icons .social-icons__icon {
   opacity: 1;
+  display: block;
+  width: 1em;
+  height: 1em;
 }
 
 .hub-page__sep {
@@ -1432,7 +1465,10 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem 0;
+  /* Less vertical padding so the name can sit larger in the frame */
+  padding: clamp(0.5rem, 2vh, 1.25rem) 0;
+  width: 100%;
+  min-width: 0;
 }
 
 .hub-page__center::before {
@@ -1449,7 +1485,7 @@ body {
   margin: 0;
   text-align: center;
   width: 100%;
-  max-width: 100%;
+  max-width: none;
   line-height: 1;
 }
 
@@ -1458,11 +1494,14 @@ body {
   font-family: var(--font-oswald), var(--font-archivo-narrow), "Archivo Narrow",
     "Oswald", system-ui, sans-serif;
   font-weight: 700;
-  font-size: clamp(3.1rem, 8vw, 7.4rem);
-  line-height: 0.88;
-  letter-spacing: -0.045em;
+  /* Own the viewport width — side void is intentional margin, not a tiny island */
+  font-size: clamp(2.75rem, var(--tune-title-size, 14.5vw), 17rem);
+  line-height: 0.86;
+  letter-spacing: var(--tune-title-tracking, -0.045em);
   text-transform: uppercase;
   white-space: nowrap;
+  width: 100%;
+  text-align: center;
 }
 
 .hub-page__title-line + .hub-page__title-line {
@@ -1866,32 +1905,40 @@ body {
 
 @media (max-width: 640px) {
   .hub-page__header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.65rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
   }
 
   .hub-page__brand {
-    flex-direction: column;
-    gap: 0.45rem;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--tune-brand-gap, 0.55rem);
+    min-width: 0;
   }
 
   .hub-page__brand-meta {
     padding-top: 0;
   }
 
+  .hub-page__brand-loc {
+    font-size: var(--tune-loc-size, 0.62rem);
+    letter-spacing: 0.1em;
+  }
+
   .hub-page__socials {
-    max-width: 100%;
-    justify-content: flex-start;
+    max-width: none;
+    justify-content: flex-end;
+    margin-left: auto;
   }
 
   .hub-page__social-icons {
-    justify-content: flex-start;
+    justify-content: flex-end;
   }
 
   .hub-page__title-line {
-    font-size: clamp(2.25rem, 10.5vw, 4.5rem);
-    line-height: 0.92;
+    font-size: clamp(2.4rem, var(--tune-title-size, 13vw), 5.5rem);
+    line-height: 0.9;
     white-space: nowrap;
   }
 
@@ -2024,11 +2071,37 @@ body {
 }
 
 .home-sections .hub-page__social-icons .social-icons__link {
-  color: color-mix(in srgb, var(--hub-ink-morph) 55%, transparent);
+  /* Stay readable on void (p≈0) and on cream (p→1) */
+  color: color-mix(
+    in srgb,
+    #e8e6e3 calc((1 - var(--scroll-p, 0)) * 82%),
+    rgba(42, 40, 36, 0.72)
+  );
 }
 
 .home-sections .hub-page__social-icons .social-icons__link:hover {
-  color: var(--hub-ink-morph);
+  color: color-mix(
+    in srgb,
+    #ffffff calc((1 - var(--scroll-p, 0)) * 100%),
+    #1a1814
+  );
+}
+
+.home-sections .hub-page__brand-loc {
+  color: color-mix(
+    in srgb,
+    #e8e6e3 calc((1 - var(--scroll-p, 0)) * 100%),
+    var(--archive-ink)
+  );
+}
+
+.home-sections .hub-page__brand .melani-signature--light,
+.home-sections .melani-signature--light {
+  color: color-mix(
+    in srgb,
+    rgba(255, 255, 255, 0.92) calc((1 - var(--scroll-p, 0)) * 100%),
+    #1a1814
+  );
 }
 
 .home-sections .hub-page__sep {
@@ -4402,7 +4475,7 @@ body.photography-mode {
 }
 
 .hub-page__center {
-  padding-block: clamp(2rem, 6vh, 5rem);
+  padding-block: clamp(0.75rem, 3vh, 2.5rem);
   transform: translate(
     var(--tune-hero-x, 0),
     var(--tune-hero-y, 0)
@@ -4414,23 +4487,23 @@ body.photography-mode {
     --tune-title-font,
     var(--font-oswald), var(--font-archivo-narrow), sans-serif
   );
-  font-size: clamp(3.2rem, var(--tune-title-size, 11.5vw), 18rem);
+  font-size: clamp(2.75rem, var(--tune-title-size, 14.5vw), 17rem);
   line-height: 0.86;
-  letter-spacing: var(--tune-title-tracking, -0.052em);
+  letter-spacing: var(--tune-title-tracking, -0.045em);
 }
 
 .hub-page__thesis {
-  margin-top: clamp(1rem, 2.4vh, 1.7rem);
+  margin-top: clamp(0.85rem, 2vh, 1.4rem);
 }
 
 .hub-page__tagline {
-  font-size: clamp(1.25rem, var(--tune-tagline-size, 4.35vw), 7rem);
+  font-size: clamp(1.15rem, var(--tune-tagline-size, 3.6vw), 5.5rem);
   line-height: 0.95;
 }
 
 .hub-page__social-icons .social-icons__icon {
-  width: var(--tune-social-size, 1.25rem);
-  height: var(--tune-social-size, 1.25rem);
+  width: 1em;
+  height: 1em;
 }
 
 .hub-page__nav {
@@ -4746,13 +4819,13 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 
   .hub-page__header {
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .hub-page__brand {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.3rem;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--tune-brand-gap, 0.55rem);
   }
 
   .hub-page__brand .melani-signature__mark {
@@ -4760,20 +4833,20 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   }
 
   .hub-page__social-icons {
-    gap: 0.55rem;
+    gap: var(--tune-social-gap, 0.55rem);
   }
 
   .hub-page__social-icons .social-icons__icon {
-    width: var(--tune-social-size, 1rem);
-    height: var(--tune-social-size, 1rem);
+    width: 1em;
+    height: 1em;
   }
 
   .hub-page__title-line {
-    font-size: clamp(2.8rem, var(--tune-title-size, 15.4vw), 8rem);
+    font-size: clamp(2.5rem, var(--tune-title-size, 13.5vw), 8rem);
   }
 
   .hub-page__tagline {
-    font-size: clamp(1.2rem, var(--tune-tagline-size, 7vw), 4rem);
+    font-size: clamp(1.15rem, var(--tune-tagline-size, 5.5vw), 3.5rem);
   }
 
   .hub-open-index {

@@ -32,21 +32,25 @@ export const siteConfig = {
   linkedinUrl: "https://www.linkedin.com/in/melanilaurents/",
   spotifyUrl:
     "https://open.spotify.com/user/21etydsnbqyqe7ekagfnqbhoq?si=c3c26ede4c8a46a5",
+  /**
+   * Header social row (home top-right). Order is left → right.
+   * GitHub · X · YouTube · Instagram · TikTok
+   */
   socialLinks: [
+    {
+      id: "github",
+      label: "GitHub",
+      href: "https://github.com/melanikshrestha-boop",
+    },
     {
       id: "x",
       label: "X",
       href: "https://x.com/MelaniShrestha",
     },
     {
-      id: "linkedin",
-      label: "LinkedIn",
-      href: "https://www.linkedin.com/in/melanilaurents/",
-    },
-    {
-      id: "github",
-      label: "GitHub",
-      href: "https://github.com/melanikshrestha-boop",
+      id: "youtube",
+      label: "YouTube",
+      href: "https://www.youtube.com/@ResetYourMind.-fb5nn",
     },
     {
       id: "instagram",
@@ -57,11 +61,6 @@ export const siteConfig = {
       id: "tiktok",
       label: "TikTok",
       href: "https://www.tiktok.com/@melanilaurents",
-    },
-    {
-      id: "youtube",
-      label: "YouTube",
-      href: "https://www.youtube.com/@ResetYourMind.-fb5nn",
     },
   ],
   /** The single public index shown at the bottom of the home hero. */

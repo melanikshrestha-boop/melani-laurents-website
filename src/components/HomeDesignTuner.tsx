@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-const STORAGE_KEY = "celine-home-design-v1";
+/* Bump when defaults change so old local compositions don't stick forever */
+const STORAGE_KEY = "celine-home-design-v2";
 
 type TitleFont = "oswald" | "archivo" | "syne" | "serif" | "mono";
 
@@ -13,7 +14,12 @@ interface DesignSettings {
   titleFont: TitleFont;
   taglineSize: number;
   signatureSize: number;
+  locSize: number;
+  brandGap: number;
+  headerPad: number;
+  sidePad: number;
   socialSize: number;
+  socialGap: number;
   navSize: number;
   heroX: number;
   heroY: number;
@@ -21,12 +27,18 @@ interface DesignSettings {
 
 const DEFAULTS: DesignSettings = {
   pageScale: 100,
-  titleSize: 11.5,
-  titleTracking: -0.052,
+  /* Fill the frame — less dead space left/right of CELINE NOVA */
+  titleSize: 14.5,
+  titleTracking: -0.045,
   titleFont: "oswald",
-  taglineSize: 4.35,
-  signatureSize: 3.4,
-  socialSize: 1.25,
+  taglineSize: 3.6,
+  signatureSize: 2.75,
+  locSize: 0.95,
+  brandGap: 1.1,
+  headerPad: 1.35,
+  sidePad: 2.5,
+  socialSize: 1.35,
+  socialGap: 0.95,
   navSize: 0.58,
   heroX: 0,
   heroY: 0,
@@ -102,7 +114,12 @@ export function HomeDesignTuner() {
     root.style.setProperty("--tune-title-font", FONT_VALUES[settings.titleFont]);
     root.style.setProperty("--tune-tagline-size", `${settings.taglineSize}vw`);
     root.style.setProperty("--tune-signature-size", `${settings.signatureSize}rem`);
+    root.style.setProperty("--tune-loc-size", `${settings.locSize}rem`);
+    root.style.setProperty("--tune-brand-gap", `${settings.brandGap}rem`);
+    root.style.setProperty("--tune-header-pad", `${settings.headerPad}rem`);
+    root.style.setProperty("--tune-side-pad", `${settings.sidePad}vw`);
     root.style.setProperty("--tune-social-size", `${settings.socialSize}rem`);
+    root.style.setProperty("--tune-social-gap", `${settings.socialGap}rem`);
     root.style.setProperty("--tune-nav-size", `${settings.navSize}rem`);
     root.style.setProperty("--tune-hero-x", `${settings.heroX}vw`);
     root.style.setProperty("--tune-hero-y", `${settings.heroY}vh`);
@@ -123,7 +140,12 @@ export function HomeDesignTuner() {
         "--tune-title-font",
         "--tune-tagline-size",
         "--tune-signature-size",
+        "--tune-loc-size",
+        "--tune-brand-gap",
+        "--tune-header-pad",
+        "--tune-side-pad",
         "--tune-social-size",
+        "--tune-social-gap",
         "--tune-nav-size",
         "--tune-hero-x",
         "--tune-hero-y",
@@ -211,22 +233,67 @@ export function HomeDesignTuner() {
             onChange={(value) => update("taglineSize", value)}
           />
           <RangeControl
-            label="Signature size"
+            label="Signature size (Celine Nova)"
             value={settings.signatureSize}
             min={1.4}
-            max={6}
-            step={0.1}
+            max={5}
+            step={0.05}
             unit="rem"
             onChange={(value) => update("signatureSize", value)}
           />
           <RangeControl
+            label="Cities size (LA / SF / NYC)"
+            value={settings.locSize}
+            min={0.5}
+            max={1.6}
+            step={0.02}
+            unit="rem"
+            onChange={(value) => update("locSize", value)}
+          />
+          <RangeControl
+            label="Gap · signature ↔ cities"
+            value={settings.brandGap}
+            min={0.2}
+            max={3}
+            step={0.05}
+            unit="rem"
+            onChange={(value) => update("brandGap", value)}
+          />
+          <RangeControl
+            label="Header top padding"
+            value={settings.headerPad}
+            min={0.4}
+            max={3}
+            step={0.05}
+            unit="rem"
+            onChange={(value) => update("headerPad", value)}
+          />
+          <RangeControl
+            label="Page side padding"
+            value={settings.sidePad}
+            min={0.5}
+            max={8}
+            step={0.1}
+            unit="vw"
+            onChange={(value) => update("sidePad", value)}
+          />
+          <RangeControl
             label="Social icon size"
             value={settings.socialSize}
-            min={0.7}
-            max={2.5}
+            min={0.85}
+            max={2.4}
             step={0.05}
             unit="rem"
             onChange={(value) => update("socialSize", value)}
+          />
+          <RangeControl
+            label="Gap between social icons"
+            value={settings.socialGap}
+            min={0.35}
+            max={2}
+            step={0.05}
+            unit="rem"
+            onChange={(value) => update("socialGap", value)}
           />
           <RangeControl
             label="Bottom nav size"
@@ -265,7 +332,10 @@ export function HomeDesignTuner() {
             onChange={(value) => update("heroY", value)}
           />
 
-          <p>Changes save automatically in this browser.</p>
+          <p>
+            Figma-style: drag sliders to compose the landing frame. Saved in this
+            browser only. Reset clears local overrides.
+          </p>
         </div>
       ) : null}
     </aside>

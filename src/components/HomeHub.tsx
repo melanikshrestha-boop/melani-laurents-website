@@ -13,14 +13,13 @@ export function HomeHub() {
   return (
     <section className="hub-page">
       <header className="hub-page__header">
+        {/* Signature + cities sit tight on one baseline; socials pin top-right */}
         <div className="hub-page__brand">
-          <MelaniSignature variant="ink" />
-          <div className="hub-page__brand-meta">
-            <p className="hub-page__brand-loc">
-              <span className="hub-page__dot-inline" aria-hidden />
-              LA / SF / NYC
-            </p>
-          </div>
+          <MelaniSignature variant="light" />
+          <p className="hub-page__brand-loc">
+            <span className="hub-page__dot-inline" aria-hidden />
+            LA / SF / NYC
+          </p>
         </div>
 
         <nav className="hub-page__socials" aria-label="Social links">
