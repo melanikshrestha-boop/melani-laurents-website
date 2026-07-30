@@ -7,6 +7,7 @@ const statusMod: Record<Project["status"], string> = {
   Active: "builds-list__status--active",
   Stealth: "builds-list__status--stealth",
   "Open Source": "builds-list__status--open",
+  Research: "builds-list__status--research",
 };
 
 function ProjectRow({ project, index }: { project: Project; index: number }) {
@@ -67,9 +68,13 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
 }
 
 export function ProjectGrid({ projects }: { projects: Project[] }) {
-  const sorted = [...projects].sort(
-    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-  );
+  // priority first (Scholar = 1), then newer dates
+  const sorted = [...projects].sort((a, b) => {
+    const pa = a.priority ?? 999;
+    const pb = b.priority ?? 999;
+    if (pa !== pb) return pa - pb;
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+  });
 
   return (
     <ol className="builds-list">

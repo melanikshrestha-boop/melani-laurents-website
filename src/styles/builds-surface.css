@@ -167,6 +167,9 @@ a.builds-list__card:hover {
   background: rgba(107, 83, 68, 0.12);
 }
 
+.builds-list__status--research {
+  color: #5b9fd4;
+}
 .builds-list__status--open {
   color: #3d5a80;
   background: rgba(61, 90, 128, 0.12);
