@@ -449,10 +449,8 @@ export function PublicBookshelf() {
                   />
                   <span className="bl-folder-copy">
                     <strong>{group.label}</strong>
-                    <small>
-                      {group.items.length}{" "}
-                      {group.items.length === 1 ? "book" : "books"}
-                    </small>
+                    {/* Quirky shelf math — not “9 books” corporate-speak */}
+                    <small>n = {group.items.length}</small>
                   </span>
                 </button>
               </div>

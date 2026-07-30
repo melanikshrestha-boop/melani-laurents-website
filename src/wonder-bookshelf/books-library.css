@@ -4498,8 +4498,30 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   color: #1a1612 !important;
 }
 
-.pb-root .bl-shelf {
-  margin-bottom: 10px;
+/* Public shelf: no dividing lines; folders stacked with room to breathe */
+.pb-root .bl-shelf,
+.pb-root .bl-shelf:last-of-type {
+  margin: 0;
+  border: 0 !important;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+  box-shadow: none;
+  outline: none;
+}
+.pb-root .bl-shelf + .bl-shelf {
+  margin-top: 1.5rem; /* stack folders with 1.5 spacing between */
+}
+.pb-root .bl-shelf::before,
+.pb-root .bl-shelf:hover::before,
+.pb-root .bl-shelf.is-open::before {
+  display: none !important;
+  content: none !important;
+}
+/* Greats section: no hairline divider above */
+.pb-root .bl-greats,
+.pb-root .bl-greats-after-books {
+  border-top: 0 !important;
+  margin-top: 1.5rem;
 }
 
 .pb-root .bl-folder-caret {

@@ -1,77 +1,5 @@
 [
   {
-    "id": "book-b1c7853cbf24",
-    "kind": "book",
-    "title": "The Hard Thing About Hard Things",
-    "source": "Ben Horowitz",
-    "loggedAt": "2026-07-30",
-    "href": "https://www.amazon.com/dp/0062273205",
-    "asin": "0062273205"
-  },
-  {
-    "id": "book-6d7a4c381c475d37",
-    "kind": "book",
-    "title": "Surely You're Joking, Mr. Feynman!",
-    "source": "Richard P Feynman",
-    "loggedAt": "2026-07-26",
-    "href": "https://www.amazon.com/dp/0393316041",
-    "asin": "0393316041"
-  },
-  {
-    "id": "book-b257408ae8a5ff4e",
-    "kind": "book",
-    "title": "The Wright Brothers",
-    "source": "David McCullough",
-    "loggedAt": "2026-07-26",
-    "href": "https://www.amazon.com/dp/1476728755",
-    "asin": "1476728755"
-  },
-  {
-    "id": "book-e7f9c6441fe1172d",
-    "kind": "book",
-    "title": "YouTube Secrets",
-    "source": "Benji Travis",
-    "loggedAt": "2026-07-23",
-    "href": "https://www.amazon.com/dp/1599329013",
-    "asin": "1599329013"
-  },
-  {
-    "id": "book-2627d126db3f96c6",
-    "kind": "book",
-    "title": "Automate the Boring Stuff with Python",
-    "source": "Al Sweigart",
-    "loggedAt": "2026-07-09",
-    "href": "https://www.amazon.com/dp/1593279922",
-    "asin": "1593279922"
-  },
-  {
-    "id": "book-4e9ff96473e1851b",
-    "kind": "book",
-    "title": "The Feynman Lectures on Physics",
-    "source": "Richard P. Feynman, Robert B. Leighton, Matthew Sands",
-    "loggedAt": "2026-07-04",
-    "href": "https://www.amazon.com/dp/0465023827",
-    "asin": "0465023827"
-  },
-  {
-    "id": "book-0a6fe23bc5ab6261",
-    "kind": "book",
-    "title": "The Innovators",
-    "source": "Walter Isaacson",
-    "loggedAt": "2026-07-02",
-    "href": "https://www.amazon.com/dp/1476708703",
-    "asin": "1476708703"
-  },
-  {
-    "id": "book-29afba0bcfdb06e3",
-    "kind": "book",
-    "title": "The Nvidia Way",
-    "source": "Tae Kim",
-    "loggedAt": "2026-06-29",
-    "href": "https://www.amazon.com/dp/1324086718",
-    "asin": "1324086718"
-  },
-  {
     "id": "book-a1611b66632c3b11",
     "kind": "book",
     "title": "Titan: The Life of John D. Rockefeller, Sr.",
@@ -99,15 +27,6 @@
     "asin": "1501139150"
   },
   {
-    "id": "book-20b6aab997b43c52",
-    "kind": "book",
-    "title": "The Innovator's Dilemma",
-    "source": "Clayton M Christensen",
-    "loggedAt": "2026-06-07",
-    "href": "https://www.amazon.com/dp/1633691780",
-    "asin": "1633691780"
-  },
-  {
     "id": "book-42e0b3b2b24131fe",
     "kind": "book",
     "title": "Elon Musk",
@@ -126,167 +45,30 @@
     "asin": "074325807X"
   },
   {
-    "id": "book-f9d60c7daa0d8a2f",
+    "id": "book-0a6fe23bc5ab6261",
     "kind": "book",
-    "title": "Michael Jackson Inc",
-    "source": "Zack O'Malley Greenburg",
-    "loggedAt": "2026-06-04",
-    "href": "https://www.amazon.com/dp/1477809660",
-    "asin": "1477809660"
+    "title": "The Innovators",
+    "source": "Walter Isaacson",
+    "loggedAt": "2026-07-02",
+    "href": "https://www.amazon.com/dp/1476708703",
+    "asin": "1476708703"
   },
   {
-    "id": "book-ccc87d6ca1a8c997",
+    "id": "book-b257408ae8a5ff4e",
     "kind": "book",
-    "title": "Man in the Music",
-    "source": "Joseph Vogel",
-    "loggedAt": "2026-06-04",
-    "href": "https://www.amazon.com/dp/1457432552",
-    "asin": "1457432552"
+    "title": "The Wright Brothers",
+    "source": "David McCullough",
+    "loggedAt": "2026-07-26",
+    "href": "https://www.amazon.com/dp/1476728755",
+    "asin": "1476728755"
   },
   {
-    "id": "book-aeb4a7f1c8211302",
+    "id": "book-6d7a4c381c475d37",
     "kind": "book",
-    "title": "Moonwalk",
-    "source": "Michael Jackson",
-    "loggedAt": "2026-06-03",
-    "href": "https://www.amazon.com/dp/0385314642",
-    "asin": "0385314642"
-  },
-  {
-    "id": "book-fe08f07f76ff9be9",
-    "kind": "book",
-    "title": "100M Offers",
-    "source": "Alex Hormozi",
-    "loggedAt": "2026-03-29",
-    "href": "https://www.amazon.com/dp/1737475731",
-    "asin": "1737475731"
-  },
-  {
-    "id": "book-04ab6be86966f247",
-    "kind": "book",
-    "title": "The Stranger",
-    "source": "Albert Camus",
-    "loggedAt": "2026-03-21",
-    "href": "https://www.amazon.com/dp/0679720200",
-    "asin": "0679720200"
-  },
-  {
-    "id": "book-c1e4800144be8ed4",
-    "kind": "book",
-    "title": "Fahrenheit 451",
-    "source": "Ray Bradbury",
-    "loggedAt": "2026-03-21",
-    "href": "https://www.amazon.com/dp/1451673310",
-    "asin": "1451673310"
-  },
-  {
-    "id": "book-1492f3c3d8b92a43",
-    "kind": "book",
-    "title": "Zero to One",
-    "source": "Peter Thiel",
-    "loggedAt": "2026-03-21",
-    "href": "https://www.amazon.com/dp/0804139296",
-    "asin": "0804139296",
-    "favorite": true,
-    "favoriteWhy": "Contrarian questions for what I ship."
-  },
-  {
-    "id": "book-301ccfb4ff510d83",
-    "kind": "book",
-    "title": "1984",
-    "source": "George Orwell",
-    "loggedAt": "2026-03-21",
-    "href": "https://www.amazon.com/dp/0451524934",
-    "asin": "0451524934"
-  },
-  {
-    "id": "book-0df09c9d265ac04a",
-    "kind": "book",
-    "title": "Deep Work",
-    "source": "Cal Newport",
-    "loggedAt": "2026-03-17",
-    "href": "https://www.amazon.com/dp/1455586692",
-    "asin": "1455586692"
-  },
-  {
-    "id": "book-3727bd322ea6dc75",
-    "kind": "book",
-    "title": "Influence",
-    "source": "Robert B Cialdini",
-    "loggedAt": "2026-03-17",
-    "href": "https://www.amazon.com/dp/006124189X",
-    "asin": "006124189X"
-  },
-  {
-    "id": "book-fa595a4a2d3bff12",
-    "kind": "book",
-    "title": "Atomic Habits",
-    "source": "James Clear",
-    "loggedAt": "2026-03-17",
-    "href": "https://www.amazon.com/dp/0735211299",
-    "asin": "0735211299"
-  },
-  {
-    "id": "book-6b917f8361b02708",
-    "kind": "book",
-    "title": "Talk Like Ted",
-    "source": "Carmine Gallo",
-    "loggedAt": "2026-03-17",
-    "href": "https://www.amazon.com/dp/1250061539",
-    "asin": "1250061539"
-  },
-  {
-    "id": "book-2b7e66ba09b8ab01",
-    "kind": "book",
-    "title": "I Will Teach You to Be Rich",
-    "source": "Ramit Sethi",
-    "loggedAt": "2026-03-16",
-    "href": "https://www.amazon.com/dp/1523505745",
-    "asin": "1523505745"
-  },
-  {
-    "id": "book-a8610f910c8c1a79",
-    "kind": "book",
-    "title": "Man's Search for Meaning",
-    "source": "Viktor Frankl",
-    "loggedAt": "2026-03-16",
-    "href": "https://www.amazon.com/dp/0807014273",
-    "asin": "0807014273"
-  },
-  {
-    "id": "book-de7b7544706eadbc",
-    "kind": "book",
-    "title": "Five People You Meet in Heaven",
-    "source": "Mitch Albom",
-    "loggedAt": "2026-03-16",
-    "href": "https://www.amazon.com/dp/1401308589",
-    "asin": "1401308589"
-  },
-  {
-    "id": "book-b429d7a384fa8a4d",
-    "kind": "book",
-    "title": "Psycho-Cybernetics",
-    "source": "Maxwell Maltz",
-    "loggedAt": "2026-03-16",
-    "href": "https://www.amazon.com/dp/0399176136",
-    "asin": "0399176136"
-  },
-  {
-    "id": "book-92272d172f40eff3",
-    "kind": "book",
-    "title": "The Psychology of Money",
-    "source": "Morgan Housel",
-    "loggedAt": "2026-03-16",
-    "href": "https://www.amazon.com/dp/0857197681",
-    "asin": "0857197681"
-  },
-  {
-    "id": "book-498b428cba4250d8",
-    "kind": "book",
-    "title": "Tuesdays with Morrie",
-    "source": "Mitch Albom",
-    "loggedAt": "2026-03-16",
-    "href": "https://www.amazon.com/dp/076790592X",
-    "asin": "076790592X"
+    "title": "Surely You're Joking, Mr. Feynman!",
+    "source": "Richard P Feynman",
+    "loggedAt": "2026-07-26",
+    "href": "https://www.amazon.com/dp/0393316041",
+    "asin": "0393316041"
   }
 ]

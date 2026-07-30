@@ -148,6 +148,33 @@ export function categorizeBook(
     return "Autobiography & Memoir";
   }
 
+  // Memoirs / life stories first — before physics/tech keyword traps
+  // (e.g. "Feynman" would otherwise file as Physics)
+  if (
+    includesAny(value, [
+      "walter isaacson",
+      "isaacson",
+      "elon musk",
+      "steve jobs",
+      "leonardo da vinci",
+      "benjamin franklin",
+      "the innovators",
+      "titan",
+      "rockefeller",
+      "ron chernow",
+      "wright brothers",
+      "david mccullough",
+      "surely you're joking",
+      "surely youre joking",
+      "moonwalk",
+      "autobiograph",
+      "biograph",
+      "memoir",
+    ])
+  ) {
+    return "Autobiography & Memoir";
+  }
+
   if (
     includesAny(value, [
       "feynman",
@@ -168,23 +195,6 @@ export function categorizeBook(
     ])
   ) {
     return "Music & Culture";
-  }
-  if (
-    includesAny(value, [
-      "elon musk",
-      "steve jobs",
-      "moonwalk",
-      "benjamin franklin",
-      "titan",
-      "tuesdays with morrie",
-      "wright brothers",
-      "david mccullough",
-      "autobiograph",
-      "biograph",
-      "memoir",
-    ])
-  ) {
-    return "Autobiography & Memoir";
   }
   if (
     includesAny(value, [
@@ -265,21 +275,6 @@ export function categorizeBook(
     ])
   ) {
     return "Psychology & Self-Development";
-  }
-  if (
-    includesAny(value, [
-      "leonardo da vinci",
-      "leonardo",
-      "isaacson",
-      "steve jobs",
-      "elon musk",
-      "benjamin franklin",
-      "biograph",
-      "memoir",
-      "autobiograph",
-    ])
-  ) {
-    return "Autobiography & Memoir";
   }
   if (
     includesAny(value, [
