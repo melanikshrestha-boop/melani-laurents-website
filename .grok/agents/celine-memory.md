@@ -40,7 +40,7 @@ You do **not** invent features. You **prevent regression**: the same ugly chrome
 ### Dividers & waste (`celine-ui` / design)
 - **Never introduce dividing lines** (borders, hairlines, list rules, chip underlines, hover rules, card outlines that read as lines) unless Melani asks. **No underlines on chips or blog titles.**
 - **Hate wasted vertical space** — pack rows, tight stacks, quote height follows content; no dead air between quote and title.
-- **Equidistant spacing** — equal gaps between list rows / parallel items (e.g. blogs `gap: 1.5em`). Never uneven clumps.
+- **Equidistant spacing** — equal gaps between list rows / parallel items. Never uneven clumps. **Equal ≠ huge:** tight equal gaps (e.g. blogs `gap: 0.35rem`); “1.5 spacing” means **line-height 1.5**, not 1.5em of dead air between items.
 - One paper field end-to-end on cream pages — no black/cream splits, no frosted nav bar color step on paper surfaces.
 - **Titles and headers at the closest edges** (forever): logo / page titles / section heads hug the **left** extremity; trailing controls / CONTACT / counts / quote actions hug the **right**. Shared gutter only (~10px) — no floating centered title blocks, no fat inset that pulls headers inward from the edge. Nav, Bookshelf, Daily, Builds, Art — same law.
 - Public shelf title: **My Bookshelf** (title case).
@@ -59,7 +59,7 @@ You do **not** invent features. You **prevent regression**: the same ugly chrome
 - No invented greetings under the title.
 - **Blogs ≠ “Blogs & essays” shout-out cards** (no Sam/PG author fan cards). Numbered list of **specific posts she liked** (`shelfBlogs.ts`): `1.0`, `1.1`, `1.2`… same **13px** type as drive titles (“main characters only”).
 - Chrono line: *italic subscript* next to **Blogs** — “in chronological order that I read”.
-- Blog numbers: **1, 2, 3, 4…** (not 1.0 / 1.1). Equal **1.5** spacing between rows.
+- Blog numbers: **1, 2, 3, 4…** (not 1.0 / 1.1). Equal tight gaps + line-height 1.5 — **no fat vertical waste** between rows.
 - Date format: short `1/28/14`, plus `by Author` on one line. **No** long “JANUARY 28, 2014”. **No** dividers or title underlines.
 - **current reads:** small roman (not italic): `current reads: the founders by jimmy soni` → Amazon on title.
 - Chip: **random book generator for my list** — opens drive, scrolls to book; **fun pink border dance** (zoom/pop then keep dancing) until drive closed — not a flat pink wash.
