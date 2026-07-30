@@ -563,6 +563,30 @@ body {
   backdrop-filter: blur(14px);
 }
 
+/* Same type DNA as home hub (.hub-page__nav) — Share Tech Mono coherence */
+.cinema-nav__link {
+  font-family: var(--font-share-tech-mono), var(--font-jetbrains-mono), ui-monospace,
+    monospace;
+  font-size: 0.58rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+.cinema-nav__link--cinema {
+  color: rgba(255, 255, 255, 0.45);
+}
+.cinema-nav__link--cinema:hover {
+  color: rgba(var(--hub-champagne-bright-rgb, 232, 213, 163), 0.9);
+}
+.cinema-nav__link--paper {
+  color: rgba(20, 18, 16, 0.48);
+}
+.cinema-nav__link--paper:hover {
+  color: var(--hub-gold, #c9a962);
+}
+
 .cinema-nav .social-icons__link {
   color: rgba(var(--hub-champagne-rgb), 0.58);
 }

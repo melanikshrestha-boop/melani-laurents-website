@@ -7,9 +7,10 @@ import { MelaniSignature } from "./MelaniSignature";
 import { SocialIcons } from "./SocialIcons";
 
 function NavLink({ item, paper = false }: { item: NavItem; paper?: boolean }) {
+  // Match home hub (.hub-page__nav): Share Tech Mono — not IBM Plex label mono
   const className = paper
-    ? "font-mono-label text-[10px] tracking-[0.22em] uppercase text-black/50 transition-colors hover:text-[var(--hub-gold)]"
-    : "font-mono-label text-[10px] tracking-[0.22em] uppercase text-white/45 transition-colors hover:text-amber/90";
+    ? "cinema-nav__link cinema-nav__link--paper"
+    : "cinema-nav__link cinema-nav__link--cinema";
 
   if ("external" in item && item.external) {
     return (
@@ -90,7 +91,7 @@ export function Navigation() {
 
           <details className="relative md:hidden">
             <summary
-              className={`cursor-pointer list-none font-mono-label text-[10px] tracking-[0.2em] uppercase${paper ? " text-black/60" : " text-white/60"}`}
+              className={`cinema-nav__link cursor-pointer list-none${paper ? " cinema-nav__link--paper" : " cinema-nav__link--cinema"}`}
             >
               Menu
             </summary>
