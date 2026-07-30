@@ -5101,12 +5101,8 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 .pb-root .pb-blogs--after-books {
   margin-top: 6px !important;
 }
-/* “Blogs” + italic subscript on the same baseline band */
+/* “Blogs” + italic subscript inline after the word */
 .pb-root .pb-blogs__head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.35rem 0.45rem;
   margin: 0 0 1px;
   padding: 0;
   border: 0 !important;
@@ -5122,16 +5118,15 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 }
 .pb-root .pb-blogs__chrono {
   margin: 0;
+  padding: 0;
   color: #9a9084;
   font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif;
-  font-size: 9px;
+  font-size: 0.72em;
   font-weight: 400;
   font-style: italic;
   letter-spacing: 0.01em;
   line-height: 1;
-  vertical-align: baseline;
-  position: relative;
-  top: 0.12em; /* slight subscript drop under “Blogs” */
+  vertical-align: sub;
 }
 .pb-root .pb-blogs__list {
   list-style: none;
@@ -5207,7 +5202,8 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   background: currentColor;
   transform: scaleX(0);
   transform-origin: left center;
-  transition: transform 160ms cubic-bezier(0.22, 1, 0.36, 1);
+  /* enter: short draw; leave: instant with the cursor */
+  transition: transform 140ms cubic-bezier(0.22, 1, 0.36, 1);
   opacity: 0.75;
 }
 .pb-root .pb-blogs__row:hover .pb-blogs__name {
@@ -5216,10 +5212,10 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 .pb-root .pb-blogs__row:hover .pb-blogs__name::after {
   transform: scaleX(1);
 }
-/* Leave hover: collapse line with the cursor (same transition, no animation loop) */
+/* Off the row → line gone with the cursor (no pulse, no hang) */
 .pb-root .pb-blogs__row:not(:hover) .pb-blogs__name::after {
   transform: scaleX(0);
-  transition-duration: 90ms;
+  transition: none;
 }
 .pb-root .pb-blogs__date {
   color: #9a9084;
