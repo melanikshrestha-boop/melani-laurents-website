@@ -152,11 +152,7 @@ export function XPostCarousel({ posts }: { posts: DailyPost[] }) {
   }, [prev, next]);
 
   if (n === 0) {
-    return (
-      <p className="daily-x-carousel__empty">
-        No posts yet — the ones I write land here.
-      </p>
-    );
+    return <p className="daily-x-carousel__empty">—</p>;
   }
 
   return (
