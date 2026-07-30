@@ -4411,33 +4411,49 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   box-shadow: none !important;
   background: var(--pb-paper) !important;
   background-image: none !important;
+  /* Default: no drag-select pink wash over chrome (looks like a UI highlight) */
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+
+/*
+ * Selection must NOT use the pick pink — that color is only for random-generator cards.
+ * Subtle neutral if someone selects quote text.
+ */
+.bookshelf-page--wonder ::selection {
+  background: rgba(41, 37, 31, 0.14);
+  color: #1a1214;
+  text-shadow: none;
+}
+.bookshelf-page--wonder ::-moz-selection {
+  background: rgba(41, 37, 31, 0.14);
+  color: #1a1214;
+  text-shadow: none;
+}
+
+/* Quote body can be selected; chrome cannot */
+.bookshelf-page--wonder .pb-quote__text,
+.bookshelf-page--wonder .pb-quote__text p,
+.bookshelf-page--wonder .pb-quote__author {
   -webkit-user-select: text;
   user-select: text;
   cursor: text;
 }
 
-/* Light pink translucent selection — letters stay readable */
-.bookshelf-page--wonder ::selection {
-  background: rgba(244, 164, 188, 0.42);
-  color: #1a1214;
-  text-shadow: none;
-}
-.bookshelf-page--wonder ::-moz-selection {
-  background: rgba(244, 164, 188, 0.42);
-  color: #1a1214;
-  text-shadow: none;
-}
 .bookshelf-page--wonder button,
 .bookshelf-page--wonder a,
 .bookshelf-page--wonder .bl-folder,
 .bookshelf-page--wonder .bl-chip,
 .bookshelf-page--wonder .bl-search {
   cursor: pointer;
-  -webkit-user-select: text;
-  user-select: text;
+  -webkit-user-select: none;
+  user-select: none;
 }
 .bookshelf-page--wonder .bl-search {
   cursor: text;
+  -webkit-user-select: text;
+  user-select: text;
 }
 
 /*
@@ -4642,8 +4658,9 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 }
 
 /*
- * Random-generator pick — sticky pink wash until the drive is closed.
- * No flash-and-gone; stays readable in the grid.
+ * ONLY intentional pink highlight on the shelf:
+ * random-generator pick — one card, sticky until that drive closes.
+ * Never on quote / title / chips (those are not “highlighted”).
  */
 .pb-root .pb-card-wrap--picked {
   border-radius: 6px;
