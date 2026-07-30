@@ -4394,7 +4394,7 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   background:
     radial-gradient(90% 46% at 50% -8%, rgba(167, 139, 212, 0.08), transparent 65%),
     linear-gradient(180deg, #fbf7ef, #f0e8da);
-  padding: 0.25rem 0 0.75rem;
+  padding: 0.1rem 0 0.5rem;
   /* Fun interaction: highlight anything (xAI-style playfulness) */
   -webkit-user-select: text;
   user-select: text;
@@ -4423,21 +4423,21 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 }
 .bl-public-wrap {
   width: min(100% - 1.5rem, 78rem);
-  margin: 0.35rem auto 0.75rem;
+  margin: 0.15rem auto 0.5rem;
 }
 .bl-public-wrap .bl {
   min-height: calc(100svh - 5rem);
-  padding: 10px 16px 18px;
+  padding: 6px 14px 12px;
   box-sizing: border-box;
-  line-height: 1.15;
+  line-height: 1.05;
 }
 .bookshelf-page__home {
   width: min(100% - 1.5rem, 78rem);
-  margin: 0 auto 0.75rem;
+  margin: 0 auto 0.5rem;
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  line-height: 1.15;
+  line-height: 1.05;
 }
 .bookshelf-page__home a {
   color: #71695f;
@@ -4462,55 +4462,111 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   color: #1a1612 !important;
 }
 
+/*
+ * celine-ui density lock
+ * Root cause of fat rows was base `.bl-folder { min-height: 46px }` + loose lh/margins.
+ * Force true single-space: lh ~1.0–1.1, zero shelf gaps, compact drive rows.
+ */
+.pb-root,
+.pb-root .bl {
+  line-height: 1.05 !important;
+}
+.pb-root p,
+.pb-root li,
+.pb-root span,
+.pb-root small,
+.pb-root strong,
+.pb-root a,
+.pb-root button,
+.pb-root h1,
+.pb-root h2,
+.pb-root h3,
+.pb-root cite,
+.pb-root em {
+  line-height: 1.05 !important;
+  margin-block: 0;
+}
+
+/* Tagline removed from product — never show if leftover markup appears */
+.pb-root .pb-shelf-tagline,
+.pb-root .bl-tagline {
+  display: none !important;
+}
+
+.pb-root .bl-head {
+  margin: 0 0 2px !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+.pb-root .bl-head-main {
+  gap: 4px !important;
+  align-items: baseline !important;
+}
+.pb-root .bl-head-copy {
+  width: 100%;
+  max-width: none;
+  flex: 1 1 100%;
+  gap: 0 !important;
+  display: block !important;
+}
+.pb-root .bl-title {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 1.55rem !important;
+  line-height: 1 !important;
+  letter-spacing: -0.01em;
+}
+
 /* ——— Quote generator (top of shelf) ——— */
 .pb-root .pb-quote {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 12px;
-  margin: 6px 0 10px;
-  padding: 0;
+  gap: 8px;
+  margin: 2px 0 4px !important;
+  padding: 0 !important;
 }
 .pb-root .pb-quote__text {
-  margin: 0;
+  margin: 0 !important;
   flex: 1 1 auto;
   min-width: 0;
 }
 .pb-root .pb-quote__text p {
-  margin: 0;
+  margin: 0 !important;
   color: #2a2420 !important;
-  font-size: 0.95rem;
+  font-size: 0.9rem !important;
   font-style: italic;
   font-weight: 400;
-  line-height: 1.35 !important;
+  /* Multi-line quote: still single-space feel, not 1.35 loose body */
+  line-height: 1.15 !important;
 }
 .pb-root .pb-quote__author {
   display: block;
-  margin-top: 4px;
+  margin: 1px 0 0 !important;
   color: #3b7ea8 !important;
-  font-size: 0.85rem;
+  font-size: 0.8rem !important;
   font-style: normal;
   font-weight: 500;
-  line-height: 1.15 !important;
+  line-height: 1.05 !important;
   text-decoration: none;
 }
 .pb-root .pb-quote__controls {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 0 !important;
   flex: 0 0 auto;
-  padding-top: 2px;
+  padding-top: 0 !important;
 }
 .pb-root .pb-quote__refresh {
   display: grid;
   place-items: center;
-  width: 28px;
-  height: 28px;
-  margin: 0;
-  padding: 0;
+  width: 24px;
+  height: 24px;
+  margin: 0 !important;
+  padding: 0 !important;
   border: 0;
-  border-radius: 6px;
+  border-radius: 5px;
   background: transparent;
   color: #6b6358 !important;
   cursor: pointer;
@@ -4522,107 +4578,31 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 }
 .pb-root .pb-quote__index {
   color: #8a8278 !important;
-  font-size: 11px;
+  font-size: 10px !important;
   font-variant-numeric: tabular-nums;
-  line-height: 1.1 !important;
+  line-height: 1 !important;
   user-select: none;
 }
 
-/* Wonder-style drives: colored folder + title + “N books”; tap whole row */
-.pb-root .pb-drive-btn {
-  display: flex !important;
-  width: 100%;
-  align-items: flex-start !important;
-  gap: 10px !important;
-  padding: 6px 4px !important;
-  border: 0 !important;
-  border-radius: 8px;
-  background: transparent !important;
-  cursor: pointer !important;
-}
-.pb-root .pb-drive-btn:hover,
-.pb-root .pb-drive.is-open .pb-drive-btn {
-  background: color-mix(in srgb, var(--bl-folder-accent) 9%, transparent) !important;
-}
-.pb-root .pb-drive-btn:active {
-  background: color-mix(in srgb, var(--bl-folder-accent) 14%, transparent) !important;
-}
-.pb-root .pb-drive-copy {
-  display: grid !important;
-  gap: 1px !important;
-  text-align: left;
-}
-.pb-root .pb-drive-copy strong {
-  font-size: 15px !important;
-  font-weight: 500 !important;
-  line-height: 1.2 !important;
-  color: #1a1612 !important;
-}
-.pb-root .pb-drive-copy small {
-  font-size: 12px !important;
-  line-height: 1.15 !important;
-  color: #8a8278 !important;
-}
-/* No hover-only caret chrome — open/close is the whole row tap */
-.pb-root .pb-drive .bl-folder-caret {
-  display: none !important;
-}
-
-/* ——— celine-ui: entire public bookshelf is single-spaced + tight ——— */
-.pb-root,
-.pb-root .bl,
-.pb-root p,
-.pb-root li,
-.pb-root span,
-.pb-root small,
-.pb-root strong,
-.pb-root a,
-.pb-root button {
-  line-height: 1.15 !important;
-}
-
-.pb-root .bl-head {
-  margin-bottom: 4px !important;
-  padding-bottom: 0 !important;
-}
-.pb-root .bl-head-main {
-  gap: 8px !important;
-}
-.pb-root .bl-head-copy {
-  width: 100%;
-  max-width: none;
-  flex: 1 1 100%;
-  gap: 0 !important;
-}
-.pb-root .bl-title {
-  margin: 0 !important;
-  line-height: 1.05 !important;
-}
-
-.pb-root .pb-shelf-tagline,
-.pb-root .bl-tagline {
-  display: block;
-  box-sizing: border-box;
-  margin: 0.2rem 0 0 !important;
-  padding: 0;
-  max-width: none !important;
-  width: 100% !important;
-  color: #5c534a !important;
-  font-size: 0.72rem;
-  line-height: 1.2 !important;
-  font-weight: 400;
-  font-style: italic;
-  text-align: left;
-}
-
+/* Filter chips — compact single-line pills */
 .pb-root .bl-filter {
-  gap: 4px !important;
-  margin: 4px 0 6px !important;
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px !important;
+  margin: 2px 0 4px !important;
   padding: 0 !important;
 }
 .pb-root .bl-chip {
-  padding: 4px 8px !important;
-  line-height: 1.1 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 2px 7px !important;
+  line-height: 1.05 !important;
+  font-size: 11px !important;
+}
+.pb-root .bl-chip span,
+.pb-root .bl-chip em {
+  line-height: 1.05 !important;
 }
 .pb-root .bl-card-author,
 .pb-root .bl-stats,
@@ -4639,8 +4619,65 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 }
 .pb-root .bl-empty-all {
   color: #3d3630 !important;
-  margin: 4px 0 !important;
-  line-height: 1.15 !important;
+  margin: 2px 0 !important;
+  line-height: 1.05 !important;
+}
+
+/* Wonder-style drives: colored folder + title + “N books”; tap whole row */
+.pb-root .pb-drive-btn,
+.pb-root .bl-folder.pb-drive-btn {
+  display: flex !important;
+  width: 100%;
+  /* center icon with two-line label — not stretch to 46px min-height */
+  align-items: center !important;
+  gap: 8px !important;
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 2px 2px !important;
+  border: 0 !important;
+  border-radius: 6px;
+  background: transparent !important;
+  cursor: pointer !important;
+  line-height: 1.05 !important;
+}
+.pb-root .pb-drive-btn:hover,
+.pb-root .pb-drive.is-open .pb-drive-btn {
+  background: color-mix(in srgb, var(--bl-folder-accent) 9%, transparent) !important;
+}
+.pb-root .pb-drive-btn:active {
+  background: color-mix(in srgb, var(--bl-folder-accent) 14%, transparent) !important;
+}
+.pb-root .pb-drive-copy,
+.pb-root .bl-folder-copy.pb-drive-copy {
+  display: grid !important;
+  gap: 0 !important;
+  text-align: left;
+  line-height: 1.05 !important;
+}
+.pb-root .pb-drive-copy strong {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 1.05 !important;
+  color: #1a1612 !important;
+}
+.pb-root .pb-drive-copy small {
+  font-size: 11px !important;
+  line-height: 1 !important;
+  color: #8a8278 !important;
+  margin: 0 !important;
+}
+/* No hover-only caret chrome — open/close is the whole row tap */
+.pb-root .pb-drive .bl-folder-caret,
+.pb-root .pb-drive-btn .bl-folder-caret {
+  display: none !important;
+}
+.pb-root .pb-drive .bl-folder-icon,
+.pb-root .pb-drive-btn .bl-folder-icon {
+  flex: 0 0 auto;
+  width: 18px !important;
+  height: 18px !important;
+  font-size: 18px !important;
+  line-height: 1 !important;
 }
 
 /* Card is a link — no detail page */
@@ -4657,30 +4694,33 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   cursor: pointer;
 }
 .pb-root .bl-card-title {
-  margin: 2px 0 0 !important;
-  line-height: 1.15 !important;
+  margin: 1px 0 0 !important;
+  line-height: 1.05 !important;
 }
 .pb-root .bl-card-author {
   margin: 0 !important;
-  line-height: 1.1 !important;
+  line-height: 1 !important;
 }
 .pb-root .bl-grid {
-  gap: 8px 10px !important;
-  padding: 4px 0 8px 28px !important;
+  gap: 6px 8px !important;
+  padding: 2px 0 4px 24px !important;
 }
 
-/* Folders: single-spaced stack, no fat gaps / dividers */
+/* Folders: true single-spaced stack — kill Wonder base min-height + borders */
 .pb-root .bl-shelf,
-.pb-root .bl-shelf:last-of-type {
+.pb-root .bl-shelf:last-of-type,
+.pb-root .bl-shelf.pb-drive {
   margin: 0 !important;
+  padding: 0 !important;
   border: 0 !important;
   border-top: 0 !important;
   border-bottom: 0 !important;
-  box-shadow: none;
-  outline: none;
+  box-shadow: none !important;
+  outline: none !important;
+  min-height: 0 !important;
 }
 .pb-root .bl-shelf + .bl-shelf {
-  margin-top: 0.2rem !important;
+  margin-top: 0 !important;
 }
 .pb-root .bl-shelf::before,
 .pb-root .bl-shelf:hover::before,
@@ -4690,67 +4730,76 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 }
 .pb-root .bl-folder-row {
   margin: 0 !important;
+  min-height: 0 !important;
+  align-items: center !important;
 }
+/* Override base `.bl-folder { min-height: 46px; padding: 8px 7px }` */
 .pb-root .bl-folder {
-  gap: 6px !important;
-  padding: 3px 2px !important;
-  line-height: 1.1 !important;
+  gap: 8px !important;
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 2px 2px !important;
+  line-height: 1.05 !important;
 }
 .pb-root .bl-folder-copy {
   gap: 0 !important;
 }
 .pb-root .bl-folder strong {
-  line-height: 1.1 !important;
+  line-height: 1.05 !important;
+  font-size: 14px !important;
 }
 .pb-root .bl-folder small {
-  line-height: 1.05 !important;
+  line-height: 1 !important;
   margin: 0 !important;
-}
-.pb-root .bl-folder-caret {
-  display: inline-block;
-  width: 1em;
-  transition: transform 140ms ease;
-}
-.pb-root .bl-shelf.is-open .bl-folder-caret {
-  transform: rotate(90deg);
+  font-size: 11px !important;
 }
 .pb-root .bl-folder-icon {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1 !important;
 }
 .pb-root .bl-shelf > .bl-grid {
-  padding: 2px 0 6px 28px !important;
+  padding: 2px 0 6px 24px !important;
 }
 
 /* Greats / blogs — tight under books */
 .pb-root .bl-greats,
 .pb-root .bl-greats-after-books {
   border-top: 0 !important;
-  margin: 0.5rem 0 0 !important;
+  margin: 6px 0 0 !important;
   padding-top: 0 !important;
 }
 .pb-root .bl-greats-head {
-  gap: 8px !important;
-  margin-bottom: 4px !important;
+  gap: 6px !important;
+  margin: 0 0 2px !important;
   align-items: baseline !important;
 }
 .pb-root .bl-greats-head > div {
   gap: 0 !important;
+  display: grid !important;
+}
+.pb-root .bl-greats-head > div > span {
+  line-height: 1 !important;
+  font-size: 10px !important;
 }
 .pb-root .bl-greats-h {
   margin: 0 !important;
-  line-height: 1.1 !important;
+  line-height: 1.05 !important;
+  font-size: 1.05rem !important;
 }
 .pb-root .bl-greats-grid {
-  gap: 6px !important;
+  gap: 4px !important;
 }
 .pb-root .bl-greats-card {
-  gap: 4px !important;
-  padding: 8px 10px !important;
+  gap: 2px !important;
+  padding: 6px 8px !important;
 }
 .pb-root .bl-greats-card > header {
-  gap: 4px !important;
+  gap: 2px !important;
   margin: 0 !important;
+}
+.pb-root .bl-greats-card h3 {
+  margin: 0 !important;
+  line-height: 1.05 !important;
 }
 .pb-root .bl-greats-card ul {
   gap: 0 !important;
@@ -4758,12 +4807,12 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   padding: 0 !important;
 }
 .pb-root .bl-greats-card li a {
-  padding: 1px 0 !important;
-  line-height: 1.15 !important;
+  padding: 0 !important;
+  line-height: 1.05 !important;
 }
 .pb-root .bl-greats-home {
-  margin-top: 2px !important;
-  line-height: 1.1 !important;
+  margin-top: 1px !important;
+  line-height: 1 !important;
 }
 
 /* Product covers from Amazon — clean photo, no fake spine gradients */

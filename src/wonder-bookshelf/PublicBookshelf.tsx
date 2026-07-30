@@ -435,7 +435,7 @@ export function PublicBookshelf() {
                 >
                   <FolderSimple
                     className="bl-folder-icon"
-                    size={22}
+                    size={18}
                     weight="fill"
                     aria-hidden
                     style={{ color: group.accent, fill: group.accent }}
