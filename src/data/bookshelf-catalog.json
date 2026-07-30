@@ -1,5 +1,126 @@
 [
   {
+    "id": "book-55954427f3f8",
+    "kind": "book",
+    "title": "A Gentle Creature",
+    "source": "Fyodor Dostoevsky",
+    "loggedAt": "2026-07-30",
+    "category": "dostoevsky",
+    "asin": "0140447551",
+    "href": "https://www.amazon.com/dp/0140447551",
+    "rating": 4
+  },
+  {
+    "id": "book-5388334a3a65",
+    "kind": "book",
+    "title": "The Eternal Husband",
+    "source": "Fyodor Dostoevsky",
+    "loggedAt": "2026-07-30",
+    "category": "dostoevsky",
+    "asin": "0486465896",
+    "href": "https://www.amazon.com/dp/0486465896",
+    "rating": 4
+  },
+  {
+    "id": "book-66a0d6ac3ff4",
+    "kind": "book",
+    "title": "The House of the Dead",
+    "source": "Fyodor Dostoevsky",
+    "loggedAt": "2026-07-30",
+    "category": "dostoevsky",
+    "asin": "0486434095",
+    "href": "https://www.amazon.com/dp/0486434095",
+    "rating": 4
+  },
+  {
+    "id": "book-533b804b9a75",
+    "kind": "book",
+    "title": "Poor Folk",
+    "source": "Fyodor Dostoevsky",
+    "loggedAt": "2026-07-30",
+    "category": "dostoevsky",
+    "asin": "0486457230",
+    "href": "https://www.amazon.com/dp/0486457230",
+    "rating": 4
+  },
+  {
+    "id": "book-f1fca1a58033",
+    "kind": "book",
+    "title": "The Double",
+    "source": "Fyodor Dostoevsky",
+    "loggedAt": "2026-07-30",
+    "category": "dostoevsky",
+    "asin": "0140446067",
+    "href": "https://www.amazon.com/dp/0140446067",
+    "rating": 4
+  },
+  {
+    "id": "book-7dab0ad8c4c2",
+    "kind": "book",
+    "title": "The Gambler",
+    "source": "Fyodor Dostoevsky",
+    "loggedAt": "2026-07-30",
+    "category": "dostoevsky",
+    "asin": "0486290816",
+    "href": "https://www.amazon.com/dp/0486290816",
+    "rating": 4
+  },
+  {
+    "id": "book-67679b57f8ea",
+    "kind": "book",
+    "title": "Notes from Underground",
+    "source": "Fyodor Dostoevsky",
+    "loggedAt": "2026-07-30",
+    "category": "dostoevsky",
+    "asin": "067973452X",
+    "href": "https://www.amazon.com/dp/067973452X",
+    "rating": 4
+  },
+  {
+    "id": "book-2a42f0225d7c",
+    "kind": "book",
+    "title": "Demons",
+    "source": "Fyodor Dostoevsky",
+    "loggedAt": "2026-07-30",
+    "category": "dostoevsky",
+    "asin": "0679734511",
+    "href": "https://www.amazon.com/dp/0679734511",
+    "rating": 4
+  },
+  {
+    "id": "book-db9da1b46704",
+    "kind": "book",
+    "title": "The Idiot",
+    "source": "Fyodor Dostoevsky",
+    "loggedAt": "2026-07-30",
+    "category": "dostoevsky",
+    "asin": "0375702245",
+    "href": "https://www.amazon.com/dp/0375702245",
+    "rating": 4
+  },
+  {
+    "id": "book-ed8b1b7632da",
+    "kind": "book",
+    "title": "Crime and Punishment",
+    "source": "Fyodor Dostoevsky",
+    "loggedAt": "2026-07-30",
+    "category": "dostoevsky",
+    "asin": "0486415872",
+    "href": "https://www.amazon.com/dp/0486415872",
+    "rating": 4
+  },
+  {
+    "id": "book-d88d012e585f",
+    "kind": "book",
+    "title": "The Brothers Karamazov",
+    "source": "Fyodor Dostoevsky",
+    "loggedAt": "2026-07-30",
+    "category": "dostoevsky",
+    "asin": "0374528373",
+    "href": "https://www.amazon.com/dp/0374528373",
+    "rating": 4
+  },
+  {
     "id": "book-1619-project",
     "kind": "book",
     "title": "The 1619 Project: A New Origin Story",
@@ -1688,12 +1809,12 @@
   {
     "id": "book-hist-d79cf9905a",
     "kind": "book",
-    "title": "Night",
-    "source": "Elie Wiesel",
-    "loggedAt": "2026-07-29",
-    "category": "history",
-    "asin": "0374500010",
-    "href": "https://www.amazon.com/dp/0374500010",
+    "title": "White Nights",
+    "source": "Fyodor Dostoevsky",
+    "loggedAt": "2026-07-30",
+    "category": "dostoevsky",
+    "asin": "0241252083",
+    "href": "https://www.amazon.com/dp/0241252083",
     "rating": 4
   },
   {
