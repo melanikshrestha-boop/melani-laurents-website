@@ -12,6 +12,7 @@ import {
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 import "@/styles/daily-pulse.css";
+import "@/styles/builds-surface.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

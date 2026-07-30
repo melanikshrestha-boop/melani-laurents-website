@@ -3,79 +3,79 @@
 import { motion, useReducedMotion } from "framer-motion";
 import type { Project } from "@/data/projects";
 
-const statusClass: Record<Project["status"], string> = {
-  Active: "status-active",
-  Stealth: "status-stealth",
-  "Open Source": "status-open",
+const statusMod: Record<Project["status"], string> = {
+  Active: "builds-list__status--active",
+  Stealth: "builds-list__status--stealth",
+  "Open Source": "builds-list__status--open",
 };
 
-interface ProjectCardProps {
-  project: Project;
-  index?: number;
-}
-
-export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
+function ProjectRow({ project, index }: { project: Project; index: number }) {
   const reduced = useReducedMotion();
-  const Wrapper = project.href ? "a" : "div";
-  const wrapperProps = project.href
-    ? { href: project.href, target: "_blank", rel: "noopener noreferrer" }
-    : {};
+  const isLink = Boolean(project.href);
 
-  return (
-    <motion.div
-      initial={reduced ? false : { opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
-      className="group"
-    >
-      <Wrapper
-        {...wrapperProps}
-        className="relative block overflow-hidden border-l-2 border-accent/40 py-6 pl-6 pr-4 transition-all hover:border-accent hover:bg-surface/40 hover:pl-8"
-      >
-        <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-          <span className="font-mono-label text-[10px] text-muted-foreground">
-            {String(index + 1).padStart(2, "0")}
-          </span>
-          <h3 className="font-sans text-xl font-semibold text-foreground">
-            {project.title}
-          </h3>
-          <span
-            className={`rounded-full px-2 py-0.5 font-mono-label text-[10px] ${statusClass[project.status]}`}
-          >
+  const body = (
+    <>
+      <span className="builds-list__index" aria-hidden>
+        {String(index + 1).padStart(2, "0")}
+      </span>
+      <div className="builds-list__body">
+        <div className="builds-list__topline">
+          <h2 className="builds-list__name">{project.title}</h2>
+          <span className={`builds-list__status ${statusMod[project.status]}`}>
             {project.status}
           </span>
         </div>
-        <p className="mt-1 font-mono-label text-[11px] text-accent">
-          {project.role}
-        </p>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">
-          {project.description}
-        </p>
-        {project.readout && (
-          <p className="mt-3 font-mono-label text-[10px] text-muted-foreground opacity-60 transition-opacity group-hover:opacity-100">
-            {project.readout}
-          </p>
-        )}
-      </Wrapper>
-    </motion.div>
+        <p className="builds-list__role">{project.role}</p>
+        <p className="builds-list__desc">{project.description}</p>
+        {project.tags.length > 0 ? (
+          <ul className="builds-list__tags">
+            {project.tags.map((tag) => (
+              <li key={tag}>{tag}</li>
+            ))}
+          </ul>
+        ) : null}
+        {project.readout ? (
+          <p className="builds-list__readout">{project.readout}</p>
+        ) : null}
+        {isLink ? <span className="builds-list__go">Open ↗</span> : null}
+      </div>
+    </>
+  );
+
+  return (
+    <motion.li
+      className="builds-list__item"
+      initial={reduced ? false : { opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.45, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
+    >
+      {isLink ? (
+        <a
+          href={project.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="builds-list__card"
+        >
+          {body}
+        </a>
+      ) : (
+        <div className="builds-list__card builds-list__card--static">{body}</div>
+      )}
+    </motion.li>
   );
 }
 
-interface ProjectGridProps {
-  projects: Project[];
-}
-
-export function ProjectGrid({ projects }: ProjectGridProps) {
+export function ProjectGrid({ projects }: { projects: Project[] }) {
   const sorted = [...projects].sort(
     (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
   );
 
   return (
-    <div className="divide-y divide-border/50">
+    <ol className="builds-list">
       {sorted.map((project, i) => (
-        <ProjectCard key={project.id} project={project} index={i} />
+        <ProjectRow key={project.id} project={project} index={i} />
       ))}
-    </div>
+    </ol>
   );
 }

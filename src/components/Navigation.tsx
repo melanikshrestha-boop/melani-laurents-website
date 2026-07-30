@@ -69,10 +69,15 @@ export function Navigation() {
     pathname === "/youtube" ||
     pathname.startsWith("/youtube/") ||
     pathname === "/bookshelf" ||
-    pathname.startsWith("/bookshelf/");
+    pathname.startsWith("/bookshelf/") ||
+    pathname === "/projects" ||
+    pathname.startsWith("/projects/");
 
   const bookshelf =
-    pathname === "/bookshelf" || pathname.startsWith("/bookshelf/");
+    pathname === "/bookshelf" ||
+    pathname.startsWith("/bookshelf/") ||
+    pathname === "/projects" ||
+    pathname.startsWith("/projects/");
 
   if (pathname === "/") return null;
 

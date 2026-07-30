@@ -5,26 +5,43 @@ import { projects } from "@/data/projects";
 
 export const metadata: Metadata = {
   title: "Builds",
-  description: "Builds and tools — what I'm shipping in med-tech and systems.",
+  description:
+    "What I’m shipping — systems, tools, and products. Founder builds, not a portfolio dump.",
 };
 
 export default function ProjectsPage() {
+  const active = projects.filter((p) => p.status === "Active").length;
+  const open = projects.filter((p) => p.status === "Open Source").length;
+
   return (
-    <div className="px-6 py-20">
-      <div className="mx-auto max-w-3xl">
-        <header className="mb-16">
-          <h1 className="font-sans text-4xl font-semibold text-foreground md:text-5xl">
-            Builds
-          </h1>
-          <p className="mt-4 max-w-xl text-muted">
-            Things I build and ship. Long-form notes and public writeups live under{" "}
-            <Link href="/daily#journals" className="text-accent underline underline-offset-2">
-              Daily
-            </Link>
-            .
+    <div className="builds-surface">
+      <div className="builds-surface__inner">
+        <header>
+          <p className="builds-surface__kicker">Builds</p>
+          <h1 className="builds-surface__title">What I ship.</h1>
+          <p className="builds-surface__lede">
+            Products and tools I build for myself and for the company — systems
+            thinking, real code, no vapor slides. Longer notes live under{" "}
+            <Link href="/daily#journals">Daily</Link>.
           </p>
+          <div className="builds-surface__meta" aria-label="Build totals">
+            <span>
+              <b>{String(projects.length).padStart(2, "0")}</b> projects
+            </span>
+            <span>
+              <b>{String(active).padStart(2, "0")}</b> active
+            </span>
+            <span>
+              <b>{String(open).padStart(2, "0")}</b> open source
+            </span>
+          </div>
         </header>
+
         <ProjectGrid projects={projects} />
+
+        <p className="builds-surface__home">
+          <Link href="/">← Back home</Link>
+        </p>
       </div>
     </div>
   );
