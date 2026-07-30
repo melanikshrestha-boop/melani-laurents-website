@@ -1,119 +1,302 @@
 [
   {
-    "id": "book-a1611b66632c3b11",
+    "id": "book-conqueror-alexander",
     "kind": "book",
-    "title": "Titan: The Life of John D. Rockefeller, Sr.",
-    "source": "Ron Chernow",
-    "loggedAt": "2026-07-30",
-    "href": "https://www.amazon.com/dp/1400077303",
-    "asin": "1400077303"
+    "title": "Alexander the Great",
+    "source": "Philip Freeman",
+    "loggedAt": "2026-07-28",
+    "category": "Conqueror",
+    "href": "https://www.amazon.com/dp/1416592806",
+    "asin": "1416592806"
   },
   {
-    "id": "book-isaacson-elon-musk",
+    "id": "book-conqueror-hannibal",
+    "kind": "book",
+    "title": "Hannibal",
+    "source": "Philip Freeman",
+    "loggedAt": "2026-07-27",
+    "category": "Conqueror",
+    "href": "https://www.amazon.com/dp/1639363653",
+    "asin": "1639363653"
+  },
+  {
+    "id": "book-conqueror-caesar",
+    "kind": "book",
+    "title": "Caesar",
+    "source": "Philip Freeman",
+    "loggedAt": "2026-07-26",
+    "category": "Conqueror",
+    "href": "https://www.amazon.com/dp/0743289544",
+    "asin": "0743289544"
+  },
+  {
+    "id": "book-conqueror-napoleon",
+    "kind": "book",
+    "title": "Napoleon: A Life",
+    "source": "Andrew Roberts",
+    "loggedAt": "2026-07-25",
+    "category": "Conqueror",
+    "href": "https://www.amazon.com/dp/0143127853",
+    "asin": "0143127853"
+  },
+  {
+    "id": "book-conqueror-masters",
+    "kind": "book",
+    "title": "Masters of Command: Alexander, Hannibal, Caesar, and the Genius of Leadership",
+    "source": "Barry Strauss",
+    "loggedAt": "2026-07-24",
+    "category": "Conqueror",
+    "href": "https://www.amazon.com/dp/1439164495",
+    "asin": "1439164495"
+  },
+  {
+    "id": "book-conqueror-cleopatra",
+    "kind": "book",
+    "title": "Cleopatra: A Life",
+    "source": "Stacy Schiff",
+    "loggedAt": "2026-07-23",
+    "category": "Conqueror",
+    "href": "https://www.amazon.com/dp/0316001945",
+    "asin": "0316001945"
+  },
+  {
+    "id": "book-conqueror-philip-alexander",
+    "kind": "book",
+    "title": "Philip and Alexander: Kings and Conquerors",
+    "source": "Adrian Goldsworthy",
+    "loggedAt": "2026-07-22",
+    "category": "Conqueror",
+    "href": "https://www.amazon.com/dp/1541602625",
+    "asin": "1541602625"
+  },
+  {
+    "id": "book-conqueror-hitler-charisma",
+    "kind": "book",
+    "title": "Hitler's Charisma: Leading Millions into the Abyss",
+    "source": "Laurence Rees",
+    "loggedAt": "2026-07-21",
+    "category": "Conqueror",
+    "href": "https://www.amazon.com/dp/0307389588",
+    "asin": "0307389588"
+  },
+  {
+    "id": "book-conqueror-talleyrand",
+    "kind": "book",
+    "title": "Talleyrand",
+    "source": "Duff Cooper",
+    "loggedAt": "2026-07-20",
+    "category": "Conqueror",
+    "href": "https://www.amazon.com/dp/0802137679",
+    "asin": "0802137679"
+  },
+  {
+    "id": "book-conqueror-napoleon-maxims",
+    "kind": "book",
+    "title": "Napoleon's Military Maxims",
+    "source": "Napoleon Bonaparte",
+    "loggedAt": "2026-07-19",
+    "category": "Conqueror",
+    "href": "https://www.amazon.com/dp/0486437302",
+    "asin": "0486437302"
+  },
+  {
+    "id": "book-entrepreneur-disney",
+    "kind": "book",
+    "title": "Walt Disney: The Triumph of the American Imagination",
+    "source": "Neal Gabler",
+    "loggedAt": "2026-07-18",
+    "category": "Entrepreneur",
+    "href": "https://www.amazon.com/dp/0679757473",
+    "asin": "0679757473"
+  },
+  {
+    "id": "book-entrepreneur-musk-vance",
     "kind": "book",
     "title": "Elon Musk",
-    "source": "Walter Isaacson",
-    "loggedAt": "2026-06-07",
-    "href": "https://www.amazon.com/dp/1982181281",
-    "asin": "1982181281"
+    "source": "Ashlee Vance",
+    "loggedAt": "2026-07-17",
+    "category": "Entrepreneur",
+    "href": "https://www.amazon.com/dp/0062301233",
+    "asin": "0062301233"
   },
   {
-    "id": "book-isaacson-code-breaker",
+    "id": "book-entrepreneur-rockefeller-letters",
     "kind": "book",
-    "title": "The Code Breaker: Jennifer Doudna, Gene Editing, and the Future of the Human Race",
-    "source": "Walter Isaacson",
-    "loggedAt": "2026-06-06",
-    "href": "https://www.amazon.com/dp/1982115858",
-    "asin": "1982115858"
+    "title": "The 38 Letters from J.D. Rockefeller to His Son",
+    "source": "J.D. Rockefeller",
+    "loggedAt": "2026-07-16",
+    "category": "Entrepreneur",
+    "href": "https://www.amazon.com/dp/1088177832",
+    "asin": "1088177832"
   },
   {
-    "id": "book-isaacson-leonardo",
+    "id": "book-entrepreneur-nvidia",
     "kind": "book",
-    "title": "Leonardo da Vinci",
-    "source": "Walter Isaacson",
-    "loggedAt": "2026-06-05",
-    "href": "https://www.amazon.com/dp/1501139150",
-    "asin": "1501139150"
+    "title": "The Nvidia Way",
+    "source": "Tae Kim",
+    "loggedAt": "2026-07-15",
+    "category": "Entrepreneur",
+    "href": "https://www.amazon.com/dp/1324086718",
+    "asin": "1324086718"
   },
   {
-    "id": "book-isaacson-innovators",
-    "kind": "book",
-    "title": "The Innovators: How a Group of Hackers, Geniuses, and Geeks Created the Digital Revolution",
-    "source": "Walter Isaacson",
-    "loggedAt": "2026-06-04",
-    "href": "https://www.amazon.com/dp/1476708703",
-    "asin": "1476708703"
-  },
-  {
-    "id": "book-isaacson-steve-jobs",
+    "id": "book-entrepreneur-jobs",
     "kind": "book",
     "title": "Steve Jobs",
     "source": "Walter Isaacson",
-    "loggedAt": "2026-06-03",
+    "loggedAt": "2026-07-14",
+    "category": "Entrepreneur",
     "href": "https://www.amazon.com/dp/1451648537",
     "asin": "1451648537"
   },
   {
-    "id": "book-isaacson-american-sketches",
+    "id": "book-entrepreneur-titan",
     "kind": "book",
-    "title": "American Sketches: Great Leaders, Creative Thinkers, and Heroes of a Hurricane",
-    "source": "Walter Isaacson",
-    "loggedAt": "2026-06-02",
-    "href": "https://www.amazon.com/dp/1439183449",
-    "asin": "1439183449"
+    "title": "Titan: The Life of John D. Rockefeller, Sr.",
+    "source": "Ron Chernow",
+    "loggedAt": "2026-07-13",
+    "category": "Entrepreneur",
+    "href": "https://www.amazon.com/dp/1400077303",
+    "asin": "1400077303"
   },
   {
-    "id": "book-isaacson-einstein",
+    "id": "book-entrepreneur-source-code",
     "kind": "book",
-    "title": "Einstein: His Life and Universe",
-    "source": "Walter Isaacson",
-    "loggedAt": "2026-06-01",
-    "href": "https://www.amazon.com/dp/0743264746",
-    "asin": "0743264746"
+    "title": "Source Code",
+    "source": "Bill Gates",
+    "loggedAt": "2026-07-12",
+    "category": "Entrepreneur",
+    "href": "https://www.amazon.com/dp/059380158X",
+    "asin": "059380158X"
   },
   {
-    "id": "book-isaacson-franklin",
+    "id": "book-entrepreneur-book-of-elon",
     "kind": "book",
-    "title": "Benjamin Franklin: An American Life",
-    "source": "Walter Isaacson",
-    "loggedAt": "2026-05-31",
-    "href": "https://www.amazon.com/dp/074325807X",
-    "asin": "074325807X"
+    "title": "The Book of Elon",
+    "source": "Eric Jorgenson",
+    "loggedAt": "2026-07-11",
+    "category": "Entrepreneur",
+    "href": "https://www.amazon.com/dp/154455074X",
+    "asin": "154455074X"
   },
   {
-    "id": "book-isaacson-kissinger",
+    "id": "book-entrepreneur-poor-charlie",
     "kind": "book",
-    "title": "Kissinger: A Biography",
-    "source": "Walter Isaacson",
-    "loggedAt": "2026-05-30",
-    "href": "https://www.amazon.com/dp/0684825570",
-    "asin": "0684825570"
+    "title": "Poor Charlie's Almanack",
+    "source": "Charlie Munger",
+    "loggedAt": "2026-07-10",
+    "category": "Entrepreneur",
+    "href": "https://www.amazon.com/dp/157864366X",
+    "asin": "157864366X"
   },
   {
-    "id": "book-isaacson-wise-men",
+    "id": "book-entrepreneur-fish-whale",
     "kind": "book",
-    "title": "The Wise Men: Six Friends and the World They Made",
-    "source": "Walter Isaacson & Evan Thomas",
-    "loggedAt": "2026-05-29",
-    "href": "https://www.amazon.com/dp/0684837714",
-    "asin": "0684837714"
+    "title": "The Fish That Ate the Whale: The Life and Times of America's Banana King",
+    "source": "Rich Cohen",
+    "loggedAt": "2026-07-09",
+    "category": "Entrepreneur",
+    "href": "https://www.amazon.com/dp/0374299277",
+    "asin": "0374299277"
   },
   {
-    "id": "book-b257408ae8a5ff4e",
+    "id": "book-genius-wright",
     "kind": "book",
     "title": "The Wright Brothers",
     "source": "David McCullough",
-    "loggedAt": "2026-07-26",
+    "loggedAt": "2026-07-08",
+    "category": "Genius",
     "href": "https://www.amazon.com/dp/1476728755",
     "asin": "1476728755"
   },
   {
-    "id": "book-6d7a4c381c475d37",
+    "id": "book-genius-einstein",
+    "kind": "book",
+    "title": "Einstein: His Life and Universe",
+    "source": "Walter Isaacson",
+    "loggedAt": "2026-07-07",
+    "category": "Genius",
+    "href": "https://www.amazon.com/dp/0743264746",
+    "asin": "0743264746"
+  },
+  {
+    "id": "book-genius-feynman-joking",
     "kind": "book",
     "title": "Surely You're Joking, Mr. Feynman!",
-    "source": "Richard P Feynman",
-    "loggedAt": "2026-07-26",
+    "source": "Richard P. Feynman",
+    "loggedAt": "2026-07-06",
+    "category": "Genius",
     "href": "https://www.amazon.com/dp/0393316041",
     "asin": "0393316041"
+  },
+  {
+    "id": "book-genius-gleick-feynman",
+    "kind": "book",
+    "title": "Genius: The Life and Science of Richard Feynman",
+    "source": "James Gleick",
+    "loggedAt": "2026-07-05",
+    "category": "Genius",
+    "href": "https://www.amazon.com/dp/0679747044",
+    "asin": "0679747044"
+  },
+  {
+    "id": "book-genius-tesla-carlson",
+    "kind": "book",
+    "title": "Tesla: Inventor of the Electrical Age",
+    "source": "W. Bernard Carlson",
+    "loggedAt": "2026-07-04",
+    "category": "Genius",
+    "href": "https://www.amazon.com/dp/0691165610",
+    "asin": "0691165610"
+  },
+  {
+    "id": "book-genius-leonardo",
+    "kind": "book",
+    "title": "Leonardo da Vinci",
+    "source": "Walter Isaacson",
+    "loggedAt": "2026-07-03",
+    "category": "Genius",
+    "href": "https://www.amazon.com/dp/1501139150",
+    "asin": "1501139150"
+  },
+  {
+    "id": "book-genius-tesla-auto",
+    "kind": "book",
+    "title": "My Inventions: The Autobiography of Nikola Tesla",
+    "source": "Nikola Tesla",
+    "loggedAt": "2026-07-02",
+    "category": "Genius",
+    "href": "https://www.amazon.com/dp/159547871X",
+    "asin": "159547871X"
+  },
+  {
+    "id": "book-genius-menlo",
+    "kind": "book",
+    "title": "The Wizard of Menlo Park: How Thomas Alva Edison Invented the Modern World",
+    "source": "Randall Stross",
+    "loggedAt": "2026-07-01",
+    "category": "Genius",
+    "href": "https://www.amazon.com/dp/1400047625",
+    "asin": "1400047625"
+  },
+  {
+    "id": "book-genius-newton",
+    "kind": "book",
+    "title": "Isaac Newton",
+    "source": "James Gleick",
+    "loggedAt": "2026-06-30",
+    "category": "Genius",
+    "href": "https://www.amazon.com/dp/0060554851",
+    "asin": "0060554851"
+  },
+  {
+    "id": "book-genius-franklin",
+    "kind": "book",
+    "title": "Benjamin Franklin: An American Life",
+    "source": "Walter Isaacson",
+    "loggedAt": "2026-06-29",
+    "category": "Genius",
+    "href": "https://www.amazon.com/dp/074325807X",
+    "asin": "074325807X"
   }
 ]

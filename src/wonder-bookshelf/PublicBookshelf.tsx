@@ -39,7 +39,13 @@ const CHIPS: { id: Filter; label: string }[] = [
   { id: "faves", label: "Faves" },
 ];
 
+/** Shelf order for Melani's public reading list */
+const PUBLIC_FOLDER_ORDER = ["Conqueror", "Entrepreneur", "Genius"] as const;
+
 const FOLDER_ACCENT: Record<string, string> = {
+  Conqueror: "#c45c4a",
+  Entrepreneur: "#d4a84b",
+  Genius: "#5b9fd4",
   "Autobiography & Memoir": "#c97b84",
   "Physics & Science": "#4faf8c",
   "Literature & Fiction": "#9b7fd4",
@@ -76,6 +82,8 @@ function buyLabel(kind: BookshelfKind): string {
 function folderLabelFor(entry: BookshelfEntry): string {
   if (entry.kind === "paper") return "Papers";
   if (entry.kind === "podcast") return "Podcasts";
+  // Explicit catalog folder wins (Conqueror / Entrepreneur / Genius)
+  if (entry.category?.trim()) return entry.category.trim();
   return String(categorizeBook(entry.title, entry.source));
 }
 
@@ -299,7 +307,13 @@ export function PublicBookshelf() {
       map.set(label, list);
     }
 
-    const order = [...CATEGORY_ORDER, "Papers", "Podcasts"];
+    // Conqueror → Entrepreneur → Genius first, then any leftover subjects
+    const order = [
+      ...PUBLIC_FOLDER_ORDER,
+      ...CATEGORY_ORDER,
+      "Papers",
+      "Podcasts",
+    ];
     const out: ShelfGroup[] = [];
     for (const label of order) {
       const items = map.get(label);

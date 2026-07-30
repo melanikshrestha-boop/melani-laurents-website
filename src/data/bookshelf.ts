@@ -23,6 +23,11 @@ export type BookshelfEntry = {
   href?: string;
   /** Amazon ASIN — product page + matching cover art */
   asin?: string;
+  /**
+   * Explicit public shelf folder (Conqueror / Entrepreneur / Genius).
+   * When set, PublicBookshelf uses this instead of keyword auto-sort.
+   */
+  category?: string;
   year?: number;
   favorite?: boolean;
   favoriteWhy?: string;
