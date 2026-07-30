@@ -4468,8 +4468,8 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   --books-bg: #f7f1e7;
   min-height: 0 !important;
   height: auto !important;
-  /* No horizontal pad — headers/title already at wrap edges */
-  padding: 4px 0 12px !important;
+  /* Tight under quote — no dead air between quote strip and Bookshelf */
+  padding: 0 0 12px !important;
   box-sizing: border-box;
   border: 0 !important;
   border-radius: 0 !important;
@@ -4514,11 +4514,11 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   justify-content: flex-start;
 }
 
-/* Quote: text left edge, refresh controls right edge */
+/* Quote: text left edge, refresh controls right edge — hugs title below */
 .pb-root > .pb-quote {
   width: 100%;
   box-sizing: border-box;
-  margin: 0 0 8px !important;
+  margin: 0 0 4px !important;
   padding: 0 !important;
   gap: 10px !important;
 }
@@ -4544,14 +4544,9 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   gap: 10px 16px;
 }
 
-/* Time-of-day line under Bookshelf title */
+/* No invented greetings under title (celine-copywrite) */
 .pb-root .pb-greeting {
-  margin: 2px 0 0 !important;
-  color: #9a9084 !important;
-  font-family: "Source Serif 4", Georgia, ui-serif, serif;
-  font-size: 0.8rem;
-  font-style: italic;
-  line-height: 1.2;
+  display: none !important;
 }
 
 /* Surprise chip — wand + gold whisper */
@@ -4589,24 +4584,9 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   font-size: 0.78rem;
 }
 
+/* Keyboard legend removed from DOM; keep hide if it returns */
 .pb-root .pb-kbd-hint {
-  margin: 0 0 8px !important;
-  color: #b0a89c;
-  font-family: var(--font-share-tech-mono), var(--font-jetbrains-mono), ui-monospace,
-    monospace;
-  font-size: 0.55rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-.pb-root .pb-kbd-hint kbd {
-  display: inline-block;
-  margin: 0 1px;
-  padding: 1px 4px;
-  border-radius: 3px;
-  background: rgba(41, 37, 31, 0.06);
-  color: #71695f;
-  font: inherit;
-  letter-spacing: 0.06em;
+  display: none !important;
 }
 
 /* Surprise flash on a drawn card */

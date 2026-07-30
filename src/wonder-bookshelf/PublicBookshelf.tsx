@@ -100,14 +100,6 @@ const SHELF_QUOTES: { text: string; author: string }[] = [
   },
 ];
 
-function shelfGreeting(hour = new Date().getHours()): string {
-  if (hour < 5) return "Late-night shelf energy.";
-  if (hour < 12) return "Morning pages start here.";
-  if (hour < 17) return "Afternoon fuel for the stack.";
-  if (hour < 21) return "Evening read mode.";
-  return "Night shift for the curious.";
-}
-
 /** Public folder order */
 const PUBLIC_FOLDER_ORDER = [
   "main characters only",
@@ -306,7 +298,6 @@ export function PublicBookshelf() {
     folder: string;
   } | null>(null);
   const [highlightId, setHighlightId] = useState<string | null>(null);
-  const [greeting] = useState(() => shelfGreeting());
 
   /** Books / papers / podcasts only — never fake blog "book" covers */
   const catalog = useMemo<ShelfItem[]>(() => {
@@ -544,7 +535,6 @@ export function PublicBookshelf() {
                 <MinimalIcon name="books" size={22} />
                 Bookshelf
               </h1>
-              <p className="pb-greeting">{greeting}</p>
               <div className="bl-stats" aria-label="Shelf totals">
                 <span>
                   <b>{counts.book}</b> books
@@ -588,17 +578,11 @@ export function PublicBookshelf() {
 
         {surprise ? (
           <p className="pb-surprise-toast" role="status" aria-live="polite">
-            Drawn from <em>{surprise.folder}</em>:{" "}
+            <em>{surprise.folder}</em>:{" "}
             <strong>{surprise.title}</strong>
-            {surprise.author ? ` — ${surprise.author}` : ""}.{" "}
-            <span className="pb-surprise-hint">Press S again for another.</span>
+            {surprise.author ? ` — ${surprise.author}` : ""}
           </p>
-        ) : (
-          <p className="pb-kbd-hint" aria-hidden>
-            Keys: <kbd>R</kbd> quote · <kbd>S</kbd> surprise · <kbd>C</kbd>{" "}
-            copy · <kbd>1</kbd>–<kbd>4</kbd> chips
-          </p>
-        )}
+        ) : null}
 
         {groups.length === 0 &&
         !(filter === "faves" && filtered.length > 0) &&
