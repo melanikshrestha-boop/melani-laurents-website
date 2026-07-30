@@ -147,7 +147,9 @@
     "loggedAt": "2026-07-14",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/1451648537",
-    "asin": "1451648537"
+    "asin": "1451648537",
+    "favorite": true,
+    "favoriteWhy": "Isaacson — main character energy."
   },
   {
     "id": "book-entrepreneur-titan",
@@ -308,7 +310,9 @@
     "loggedAt": "2026-06-07",
     "href": "https://www.amazon.com/dp/1982181281",
     "asin": "1982181281",
-    "category": "main characters only"
+    "category": "main characters only",
+    "favorite": true,
+    "favoriteWhy": "Isaacson — main character energy."
   },
   {
     "id": "book-isaacson-code-breaker",
