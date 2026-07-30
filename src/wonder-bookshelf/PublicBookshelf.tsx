@@ -99,6 +99,7 @@ function BookCover({
   const showImg = Boolean(book.coverUrl) && !imgFailed;
 
   // Real product covers: clean image, no muddy gradient overlay
+  // Amazon missing covers return a 1×1 GIF — treat those as failed.
   if (showImg) {
     return (
       <div className="bl-card-cover pb-cover-photo">
@@ -109,6 +110,12 @@ function BookCover({
           className="bl-cover-image"
           loading="lazy"
           onError={() => setImgFailed(true)}
+          onLoad={(e) => {
+            const img = e.currentTarget;
+            if (img.naturalWidth < 40 || img.naturalHeight < 40) {
+              setImgFailed(true);
+            }
+          }}
         />
       </div>
     );
