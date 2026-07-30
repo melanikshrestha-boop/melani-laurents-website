@@ -21,7 +21,6 @@ import {
 import {
   CATEGORY_ORDER,
   SPINE_COLORS,
-  categorizeBook,
   type Book,
 } from "./booksStore";
 import { coverUrlForBook, storeUrlForBook } from "./amazon";
@@ -368,7 +367,7 @@ export function PublicBookshelf() {
               setQuoteIndex((i) => (i + 1) % SHELF_QUOTES.length)
             }
           >
-            <ArrowClockwise size={16} weight="bold" aria-hidden />
+            <ArrowClockwise size={14} weight="bold" aria-hidden />
           </button>
           <span className="pb-quote__index" aria-live="polite">
             {(quoteIndex % quoteTotal) + 1}/{quoteTotal}
@@ -469,7 +468,7 @@ export function PublicBookshelf() {
           return (
             <section
               key={group.id}
-              className={`bl-shelf pb-drive${expanded ? " is-open" : ""}`}
+              className={`bl-shelf${expanded ? " is-open" : ""}`}
               style={
                 {
                   "--bl-folder-accent": group.accent,

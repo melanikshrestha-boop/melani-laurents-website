@@ -4,7 +4,6 @@
  */
 import { bookshelfEntries, type BookshelfEntry } from "@/data/bookshelf";
 import { newBook, type Book } from "./booksStore";
-import { amazonSearchUrl } from "./amazon";
 
 export const PUBLIC_PAPERS = bookshelfEntries.filter((e) => e.kind === "paper");
 export const PUBLIC_PODCASTS = bookshelfEntries.filter(

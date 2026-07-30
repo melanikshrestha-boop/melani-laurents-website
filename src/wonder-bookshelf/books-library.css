@@ -4459,20 +4459,14 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   text-decoration: none;
 }
 
-/* Tagline removed */
-.pb-root .pb-shelf-tagline,
-.pb-root .bl-tagline {
-  display: none !important;
-}
-
-/* ——— Quote strip (above cream card, Wonder shell placement) ——— */
+/* ——— Quote strip (above cream card) — secondary to title, not a hero block ——— */
 .pb-root > .pb-quote {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 16px;
-  margin: 0 0 14px;
-  padding: 4px 8px 10px;
+  gap: 12px;
+  margin: 0 0 10px;
+  padding: 2px 4px 6px;
 }
 .pb-root .pb-quote__text {
   margin: 0;
@@ -4481,41 +4475,42 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 }
 .pb-root .pb-quote__text p {
   margin: 0;
-  color: #29251f;
+  color: #3d3630;
   font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif;
-  font-size: 1.05rem;
+  /* ~14px: readable italic without competing with 28px Bookshelf title */
+  font-size: 0.875rem;
   font-style: italic;
   font-weight: 400;
-  line-height: 1.45;
+  line-height: 1.35;
 }
 .pb-root .pb-quote__author {
   display: block;
-  margin-top: 6px;
+  margin-top: 3px;
   color: #3b7ea8;
   font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif;
-  font-size: 0.95rem;
+  font-size: 0.75rem;
   font-style: normal;
   font-weight: 500;
-  line-height: 1.2;
+  line-height: 1.15;
   text-decoration: none;
 }
 .pb-root .pb-quote__controls {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 1px;
   flex: 0 0 auto;
-  padding-top: 2px;
+  padding-top: 0;
 }
 .pb-root .pb-quote__refresh {
   display: grid;
   place-items: center;
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   margin: 0;
   padding: 0;
   border: 0;
-  border-radius: 6px;
+  border-radius: 5px;
   background: transparent;
   color: #71695f;
   cursor: pointer;
@@ -4527,7 +4522,7 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 .pb-root .pb-quote__index {
   color: #9a9084;
   font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
-  font-size: 11px;
+  font-size: 10px;
   font-variant-numeric: tabular-nums;
   line-height: 1.1;
   user-select: none;
@@ -4663,8 +4658,7 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
  * min-height 46 · pad 8/7 · gap 8 · copy grid gap 0
  */
 .pb-root .bl-shelf,
-.pb-root .bl-shelf:last-of-type,
-.pb-root .bl-shelf.pb-drive {
+.pb-root .bl-shelf:last-of-type {
   margin: 0;
   padding: 0;
   border: 0 !important;
@@ -4746,11 +4740,6 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   line-height: 1 !important;
   color: #9a9084 !important;
 }
-/* Public: no rename pencil */
-.pb-root .bl-folder-edit {
-  display: none !important;
-}
-
 /* Open cover grid under drive */
 .pb-root .bl-shelf > .bl-grid {
   padding: 7px 4px 18px 36px !important;
