@@ -1,69 +1,26 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { siteConfig } from "@/config/site";
-import {
-  getXHeartPicks,
-  getYouTubePicks,
-  type DailyPost,
-} from "@/data/daily-posts";
+import { getMyXPosts, getYouTubePicks } from "@/data/daily-posts";
+import { XPostCarousel } from "@/components/XPostCarousel";
 
 export const metadata: Metadata = {
   title: "Daily",
   description: siteConfig.dailyDescription,
 };
 
-function formatDate(date: string): string {
-  return new Date(date + "T12:00:00").toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
-}
-
-function kindBadge(post: DailyPost): string {
-  if (post.kind === "x-heart") return "♡ Heart pick";
-  if (post.kind === "x-note") return "On X";
-  if (post.kind === "youtube") return "YouTube";
-  return "Journal";
-}
-
-function PulseCard({ post }: { post: DailyPost }) {
-  return (
-    <li>
-      <a
-        href={post.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="daily-pulse__card"
-      >
-        <div className="daily-pulse__card-meta">
-          <span className="daily-pulse__badge">{kindBadge(post)}</span>
-          <span>{formatDate(post.date)}</span>
-          {post.sourceLabel ? <span>{post.sourceLabel}</span> : null}
-        </div>
-        <h3 className="daily-pulse__card-title">{post.title}</h3>
-        {post.excerpt ? (
-          <p className="daily-pulse__card-excerpt">{post.excerpt}</p>
-        ) : null}
-        <span className="daily-pulse__card-go">Open ↗</span>
-      </a>
-    </li>
-  );
-}
-
 /**
- * Daily pulse — X heart picks + YouTube.
- * No Spotify footer on this surface (photo Spotify removed separately).
+ * Daily — my X posts (mine only) as a sliding feed + YouTube.
+ * Not other people’s hearts. Fun, user-controlled carousel.
  */
 export default function DailyPage() {
-  const hearts = getXHeartPicks();
+  const myPosts = getMyXPosts();
   const youtube = getYouTubePicks();
   const xUrl =
     siteConfig.socialLinks.find((link) => link.id === "x")?.href ??
-    "https://x.com/MelaniShrestha";
+    "https://x.com/MelaniLaurentS";
   const ytUrl =
-    youtube[0]?.href ??
-    "https://www.youtube.com/@ResetYourMind.-fb5nn";
+    youtube[0]?.href ?? "https://www.youtube.com/@ResetYourMind.-fb5nn";
 
   return (
     <div className="daily-pulse">
@@ -71,42 +28,44 @@ export default function DailyPage() {
         <header>
           <p className="daily-pulse__kicker">Daily</p>
           <h1 className="daily-pulse__heading">
-            What I hearted. What I watched. What stuck.
+            What I post. What I love. What stuck.
           </h1>
           <p className="daily-pulse__lede">
-            Short-form picks from X and longer cuts on YouTube — a living feed of
-            signal, not a finished archive.
+            Only my own writing on X — the posts I actually put out into the
+            world. Slide through them like the timeline, on your terms. YouTube
+            when a thread isn’t enough.
           </p>
         </header>
 
-        {/* Hub deep-link anchors */}
         <div id="inputs" />
         <div id="journals" />
         <div id="bookshelf" />
 
         <section
           className="daily-pulse__section"
-          aria-labelledby="hearts-title"
+          aria-labelledby="x-posts-title"
         >
           <div className="daily-pulse__section-head">
             <div>
-              <p className="daily-pulse__kicker">X</p>
-              <h2 id="hearts-title" className="daily-pulse__section-title">
-                Heart picks &amp; notes
+              <p className="daily-pulse__kicker">X · mine only</p>
+              <h2 id="x-posts-title" className="daily-pulse__section-title">
+                Posts I wrote
               </h2>
             </div>
             <span className="daily-pulse__count">
-              {String(hearts.length).padStart(2, "0")} items
+              {String(myPosts.length).padStart(2, "0")} posts
             </span>
           </div>
-          <ul className="daily-pulse__list">
-            {hearts.map((post) => (
-              <PulseCard key={post.slug} post={post} />
-            ))}
-          </ul>
+          <p className="daily-pulse__mine-note">
+            Reiterated on purpose: this is not a list of other people’s content
+            I hearted. It’s the posts I love enough to put my name on.
+          </p>
+
+          <XPostCarousel posts={myPosts} />
+
           <p className="daily-pulse__home" style={{ marginTop: "0.85rem" }}>
             <a href={xUrl} target="_blank" rel="noopener noreferrer">
-              Follow on X ↗
+              Full timeline on X ↗
             </a>
           </p>
         </section>
@@ -139,21 +98,6 @@ export default function DailyPage() {
               </p>
               <span className="daily-pulse__card-go">Open channel ↗</span>
             </a>
-            {youtube.slice(1).map((post) => (
-              <a
-                key={post.slug}
-                href={post.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="daily-pulse__card"
-              >
-                <h3 className="daily-pulse__card-title">{post.title}</h3>
-                {post.excerpt ? (
-                  <p className="daily-pulse__card-excerpt">{post.excerpt}</p>
-                ) : null}
-                <span className="daily-pulse__card-go">Watch ↗</span>
-              </a>
-            ))}
           </div>
         </section>
 
