@@ -9,25 +9,7 @@
     "asin": "1400077303"
   },
   {
-    "id": "book-09010af5cb84dd7f",
-    "kind": "book",
-    "title": "Steve Jobs",
-    "source": "Walter Isaacson",
-    "loggedAt": "2026-06-07",
-    "href": "https://www.amazon.com/dp/1451648537",
-    "asin": "1451648537"
-  },
-  {
-    "id": "book-1e1c0a6dcb8fe7a7",
-    "kind": "book",
-    "title": "Leonardo Da Vinci",
-    "source": "Walter Isaacson",
-    "loggedAt": "2026-06-07",
-    "href": "https://www.amazon.com/dp/1501139150",
-    "asin": "1501139150"
-  },
-  {
-    "id": "book-42e0b3b2b24131fe",
+    "id": "book-isaacson-elon-musk",
     "kind": "book",
     "title": "Elon Musk",
     "source": "Walter Isaacson",
@@ -36,22 +18,85 @@
     "asin": "1982181281"
   },
   {
-    "id": "book-ce963a461a6107d1",
+    "id": "book-isaacson-code-breaker",
+    "kind": "book",
+    "title": "The Code Breaker: Jennifer Doudna, Gene Editing, and the Future of the Human Race",
+    "source": "Walter Isaacson",
+    "loggedAt": "2026-06-06",
+    "href": "https://www.amazon.com/dp/1982115858",
+    "asin": "1982115858"
+  },
+  {
+    "id": "book-isaacson-leonardo",
+    "kind": "book",
+    "title": "Leonardo da Vinci",
+    "source": "Walter Isaacson",
+    "loggedAt": "2026-06-05",
+    "href": "https://www.amazon.com/dp/1501139150",
+    "asin": "1501139150"
+  },
+  {
+    "id": "book-isaacson-innovators",
+    "kind": "book",
+    "title": "The Innovators: How a Group of Hackers, Geniuses, and Geeks Created the Digital Revolution",
+    "source": "Walter Isaacson",
+    "loggedAt": "2026-06-04",
+    "href": "https://www.amazon.com/dp/1476708703",
+    "asin": "1476708703"
+  },
+  {
+    "id": "book-isaacson-steve-jobs",
+    "kind": "book",
+    "title": "Steve Jobs",
+    "source": "Walter Isaacson",
+    "loggedAt": "2026-06-03",
+    "href": "https://www.amazon.com/dp/1451648537",
+    "asin": "1451648537"
+  },
+  {
+    "id": "book-isaacson-american-sketches",
+    "kind": "book",
+    "title": "American Sketches: Great Leaders, Creative Thinkers, and Heroes of a Hurricane",
+    "source": "Walter Isaacson",
+    "loggedAt": "2026-06-02",
+    "href": "https://www.amazon.com/dp/1439183449",
+    "asin": "1439183449"
+  },
+  {
+    "id": "book-isaacson-einstein",
+    "kind": "book",
+    "title": "Einstein: His Life and Universe",
+    "source": "Walter Isaacson",
+    "loggedAt": "2026-06-01",
+    "href": "https://www.amazon.com/dp/0743264746",
+    "asin": "0743264746"
+  },
+  {
+    "id": "book-isaacson-franklin",
     "kind": "book",
     "title": "Benjamin Franklin: An American Life",
     "source": "Walter Isaacson",
-    "loggedAt": "2026-06-07",
+    "loggedAt": "2026-05-31",
     "href": "https://www.amazon.com/dp/074325807X",
     "asin": "074325807X"
   },
   {
-    "id": "book-0a6fe23bc5ab6261",
+    "id": "book-isaacson-kissinger",
     "kind": "book",
-    "title": "The Innovators",
+    "title": "Kissinger: A Biography",
     "source": "Walter Isaacson",
-    "loggedAt": "2026-07-02",
-    "href": "https://www.amazon.com/dp/1476708703",
-    "asin": "1476708703"
+    "loggedAt": "2026-05-30",
+    "href": "https://www.amazon.com/dp/0684825570",
+    "asin": "0684825570"
+  },
+  {
+    "id": "book-isaacson-wise-men",
+    "kind": "book",
+    "title": "The Wise Men: Six Friends and the World They Made",
+    "source": "Walter Isaacson & Evan Thomas",
+    "loggedAt": "2026-05-29",
+    "href": "https://www.amazon.com/dp/0684837714",
+    "asin": "0684837714"
   },
   {
     "id": "book-b257408ae8a5ff4e",

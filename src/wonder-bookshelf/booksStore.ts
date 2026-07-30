@@ -149,16 +149,23 @@ export function categorizeBook(
   }
 
   // Memoirs / life stories first — before physics/tech keyword traps
-  // (e.g. "Feynman" would otherwise file as Physics)
+  // Full Isaacson shelf lives here (bios + co-written Wise Men)
   if (
     includesAny(value, [
       "walter isaacson",
       "isaacson",
+      "evan thomas",
       "elon musk",
       "steve jobs",
       "leonardo da vinci",
       "benjamin franklin",
       "the innovators",
+      "the code breaker",
+      "jennifer doudna",
+      "einstein",
+      "kissinger",
+      "wise men",
+      "american sketches",
       "titan",
       "rockefeller",
       "ron chernow",
