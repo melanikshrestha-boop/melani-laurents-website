@@ -178,10 +178,33 @@ function BookCover({
   );
 }
 
-/** Filled stars for a personal 1–5 rating (empty string if unrated). */
-function starsLabel(rating?: number): string {
-  if (!rating || rating < 1) return "";
-  return "★".repeat(Math.min(5, Math.round(rating)));
+/**
+ * Always 5 star slots. Fill color = rating; empty = muted outline.
+ * Never shorten the row to “★★★” for a 3 — that was wrong.
+ */
+function StarRating({ rating }: { rating?: number }) {
+  const filled = Math.max(0, Math.min(5, Math.round(rating ?? 0)));
+  if (filled < 1) return null;
+
+  return (
+    <span
+      className="bl-card-stars pb-card-stars"
+      aria-label={`${filled} out of 5 stars`}
+      role="img"
+    >
+      {Array.from({ length: 5 }, (_, i) => (
+        <span
+          key={i}
+          className={
+            i < filled ? "pb-star pb-star--on" : "pb-star pb-star--off"
+          }
+          aria-hidden
+        >
+          ★
+        </span>
+      ))}
+    </span>
+  );
 }
 
 function CatalogCard({
@@ -194,8 +217,6 @@ function CatalogCard({
   const { entry, book } = item;
   const href = buyUrl(entry, book);
   const label = openLabel(entry.kind);
-  const rating = entry.rating;
-  const stars = starsLabel(rating);
 
   return (
     <div className="bl-card-wrap">
@@ -212,14 +233,7 @@ function CatalogCard({
         {book.author ? (
           <span className="bl-card-author">{book.author}</span>
         ) : null}
-        {stars ? (
-          <span
-            className="bl-card-stars pb-card-stars"
-            aria-label={`${rating} out of 5 stars`}
-          >
-            {stars}
-          </span>
-        ) : null}
+        <StarRating rating={entry.rating} />
       </a>
     </div>
   );
