@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { getRecentDailyPosts } from "@/data/daily-posts";
 import { getRecentBookshelf, BOOKSHELF_KIND_LABEL } from "@/data/bookshelf";
 import { googleScholarUrl } from "@/data/publications";
 import { siteConfig } from "@/config/site";
@@ -61,7 +60,6 @@ function EmptySlots({ label }: { label: string }) {
 }
 
 export function HomeRecentArchive() {
-  const daily = getRecentDailyPosts(SLOT_COUNT);
   const shelfPreview = getRecentBookshelf(SLOT_COUNT);
 
   return (
@@ -143,40 +141,8 @@ export function HomeRecentArchive() {
             </ul>
           </div>
 
-          <div className="hub-archive__section hub-archive__section--daily">
-            <header className="hub-archive__header">
-              <h2 className="hub-archive__title">
-                <Link href="/daily">Daily</Link>
-              </h2>
-              <Link href="/daily" className="hub-archive__more">
-                all daily →
-              </Link>
-            </header>
-            <Link href="/daily" className="hub-archive__callout-card">
-              <p className="hub-archive__callout-body">
-                {siteConfig.dailyDescription}
-              </p>
-            </Link>
-            {daily.length > 0 ? (
-              <ul className="hub-archive__list">
-                {daily.map((post) => (
-                  <li key={post.slug} className="hub-archive__item">
-                    <time className="hub-archive__date" dateTime={post.date}>
-                      {formatDate(post.date)}
-                    </time>
-                    <Link href={`/daily/${post.slug}`} className="hub-archive__link">
-                      {post.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <EmptySlots label="Daily" />
-            )}
-          </div>
-
-          {/* Bookshelf — papers, physical books, blogs, podcasts */}
-          <div className="hub-archive__section hub-archive__section--bookshelf">
+          {/* Bookshelf owns the old Daily slot + manifesto */}
+          <div className="hub-archive__section hub-archive__section--bookshelf hub-archive__section--daily">
             <header className="hub-archive__header">
               <h2 className="hub-archive__title">
                 <Link href="/bookshelf">Bookshelf</Link>
@@ -185,10 +151,11 @@ export function HomeRecentArchive() {
                 all bookshelf →
               </Link>
             </header>
-            <p className="hub-archive__bookshelf-blurb">
-              Everything I learn in one shelf — books, papers, blogs, podcasts —
-              with thoughts and how I applied them.
-            </p>
+            <Link href="/bookshelf" className="hub-archive__callout-card">
+              <p className="hub-archive__callout-body">
+                {siteConfig.bookshelfDescription}
+              </p>
+            </Link>
             {shelfPreview.length > 0 ? (
               <ul className="hub-archive__list">
                 {shelfPreview.map((entry) => (

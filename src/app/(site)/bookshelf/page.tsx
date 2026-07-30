@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BookshelfView } from "@/components/BookshelfView";
 import { getBookshelfEntries } from "@/data/bookshelf";
+import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Bookshelf",
-  description:
-    "Research papers, physical books, blogs, and podcasts — with notes and how I applied them.",
+  description: siteConfig.bookshelfDescription,
 };
 
 export default function BookshelfPage() {

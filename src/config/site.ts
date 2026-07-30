@@ -7,10 +7,15 @@ export const siteConfig = {
     "Open sourcing my mind through essays, books, daily inputs, and the things I build.",
   email: "itsmelanilaurents@gmail.com",
   location: "Mostly LA — sometimes SF or NYC",
-  /** Daily letter — home archive + /daily page. */
+  /**
+   * Bookshelf manifesto (home callout + /bookshelf).
+   * Used to live under Daily — now owns this line.
+   */
+  bookshelfDescription:
+    'The consolidation of memory is the art of writing what you listen to, read about, or converse with other people while adding your own "n+1" aspect on a consistent basis. Follow along if you want to grow your neuroplasticity by incremental daily learning on a variety of topics.',
+  /** @deprecated kept for any leftover Daily surfaces */
   dailyDescription:
     'The consolidation of memory is the art of writing what you listen to, read about, or converse with other people while adding your own "n+1" aspect on a consistent basis. Follow along if you want to grow your neuroplasticity by incremental daily learning on a variety of topics.',
-  /** Intentionally empty — no gold slogan under the Daily callout. */
   dailySlogan: "",
   artPath: "/art",
   photographyPath: "/photography",

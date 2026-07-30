@@ -1,46 +1,39 @@
 /**
- * Public bookshelf — what I read / listen to / study, with notes.
- * Physical books link out to the store page (no PDFs — copyright).
+ * Public bookshelf — books, papers, blogs, podcasts.
+ * Physical books: store links only (no PDFs).
+ * Edit this file to add/change entries (no admin UI yet).
  */
 
-export type BookshelfKind =
-  | "book"
-  | "paper"
-  | "blog"
-  | "podcast";
+export type BookshelfKind = "book" | "paper" | "blog" | "podcast";
 
 export type BookshelfEntry = {
   id: string;
   kind: BookshelfKind;
   title: string;
-  /** Author, journal, host, publication */
   source: string;
-  /** ISO date when you logged it (not publish date) */
+  /** When you logged it (ISO) */
   loggedAt: string;
-  /** Short public blurb */
-  summary: string;
-  /** Your takeaways */
+  /** One-line what it is */
+  summary?: string;
+  /** Your take */
   thoughts?: string;
-  /** How you used it in real life */
+  /** How you used it */
   applied?: string;
-  /**
-   * Outbound link:
-   * - book → Amazon (or other store)
-   * - paper / blog / podcast → original URL
-   */
   href?: string;
-  /** Optional year of the work itself */
   year?: number;
+  /** Show in Faves */
+  favorite?: boolean;
+  /** Why it’s a fave (public) */
+  favoriteWhy?: string;
 };
 
 export const BOOKSHELF_KIND_LABEL: Record<BookshelfKind, string> = {
-  book: "Physical book",
-  paper: "Research paper",
+  book: "Book",
+  paper: "Paper",
   blog: "Blog",
   podcast: "Podcast",
 };
 
-/** Newest first */
 export const bookshelfEntries: BookshelfEntry[] = [
   {
     id: "zero-to-one",
@@ -49,14 +42,14 @@ export const bookshelfEntries: BookshelfEntry[] = [
     source: "Peter Thiel",
     loggedAt: "2026-05-20",
     year: 2014,
-    summary:
-      "On building things that don’t exist yet — monopoly as a feature, not a bug.",
+    summary: "Building what doesn’t exist yet.",
     thoughts:
-      "The contrarian question is useful every week: what important truth do few people agree with you on?",
-    applied:
-      "Used it as a filter for what I ship in public — unique systems over me-too features.",
-    // Store link only (no PDF). Swap in your tagged URL when ready.
+      "What important truth do few people agree with you on?",
+    applied: "Filter for unique systems over me-too features.",
     href: "https://www.amazon.com/s?k=Zero+to+One+Peter+Thiel",
+    favorite: true,
+    favoriteWhy:
+      "The contrarian question is a weekly check on whether I’m actually building something new.",
   },
   {
     id: "attention-is-all-you-need",
@@ -65,13 +58,13 @@ export const bookshelfEntries: BookshelfEntry[] = [
     source: "Vaswani et al.",
     loggedAt: "2026-05-12",
     year: 2017,
-    summary:
-      "The transformer paper — self-attention as the core of modern sequence models.",
-    thoughts:
-      "Architecture clarity beats hype: understand the mechanism before the product story.",
-    applied:
-      "Framed how I explain AI systems to non-technical people — attention as selective focus.",
+    summary: "Transformers — self-attention as the core.",
+    thoughts: "Mechanism before product story.",
+    applied: "How I explain AI without the hype layer.",
     href: "https://arxiv.org/abs/1706.03762",
+    favorite: true,
+    favoriteWhy:
+      "Clean architecture paper — still the mental model I use for modern models.",
   },
   {
     id: "paulg-maker",
@@ -80,26 +73,18 @@ export const bookshelfEntries: BookshelfEntry[] = [
     source: "Paul Graham",
     loggedAt: "2026-05-05",
     year: 2009,
-    summary:
-      "Why a single meeting can destroy a whole day of deep work.",
-    thoughts:
-      "Protect maker blocks like product deadlines.",
-    applied:
-      "Batch meetings. Morning = build. Afternoon = optional noise.",
+    summary: "One meeting can kill a maker day.",
+    applied: "Mornings = build. Meetings batched.",
     href: "https://paulgraham.com/makersschedule.html",
   },
   {
     id: "lex-first-principles",
     kind: "podcast",
     title: "First principles conversations",
-    source: "Long-form tech / science shows",
+    source: "Long-form tech / science",
     loggedAt: "2026-04-28",
-    summary:
-      "Hours with builders and researchers — less soundbite, more mechanism.",
-    thoughts:
-      "Good interviews are research notes in audio form.",
-    applied:
-      "Capture 3 bullets after every episode before they evaporate.",
+    summary: "Hours with builders — less soundbite.",
+    applied: "3 bullets after every episode.",
     href: "https://open.spotify.com/",
   },
 ];
@@ -108,6 +93,10 @@ export function getBookshelfEntries(): BookshelfEntry[] {
   return [...bookshelfEntries].sort(
     (a, b) => +new Date(b.loggedAt) - +new Date(a.loggedAt)
   );
+}
+
+export function getFavorites(): BookshelfEntry[] {
+  return getBookshelfEntries().filter((e) => e.favorite);
 }
 
 export function getRecentBookshelf(limit = 3): BookshelfEntry[] {
