@@ -784,7 +784,7 @@ export function PublicBookshelf() {
                     title="Tap: open post · double-tap: notes"
                   >
                     <span className="pb-blogs__n" aria-hidden>
-                      {i + 1}
+                      {`1.${i}`}
                     </span>
                     <span className="pb-blogs__line">
                       <span className="pb-blogs__name">{blog.title}</span>

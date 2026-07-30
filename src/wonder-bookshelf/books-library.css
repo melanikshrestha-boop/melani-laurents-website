@@ -5073,39 +5073,39 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 }
 
 /*
- * Blogs — numbered stack, no dividers ever (celine-ui law).
- * One line each: N  title  1/28/14  by Author
+ * Blogs — same type size as drive titles (“main characters only” = 13px).
+ * Numbering 1.0, 1.1, 1.2… · title gets home-nav underline pulse · zero dividers · tight stack.
  */
 .pb-root .pb-blogs {
-  margin: 6px 0 0 !important;
+  margin: 4px 0 0 !important;
   padding: 0 !important;
   border: 0 !important;
 }
 .pb-root .pb-blogs--after-books {
-  margin-top: 8px !important;
+  margin-top: 6px !important;
 }
 .pb-root .pb-blogs__head {
-  margin: 0 0 3px;
+  margin: 0 0 1px;
   padding: 0;
   border: 0 !important;
 }
 .pb-root .pb-blogs__title {
   margin: 0;
   color: #29251f;
-  font-family: "Source Serif 4", Georgia, ui-serif, serif;
-  font-size: 1.05rem;
+  font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif;
+  font-size: 13px;
   font-weight: 500;
-  line-height: 1.1;
-  letter-spacing: -0.015em;
+  line-height: 1.05;
+  letter-spacing: 0;
 }
 .pb-root .pb-blogs__chrono {
-  margin: 1px 0 0;
+  margin: 0;
   color: #9a9084;
   font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
-  font-size: 0.55rem;
+  font-size: 9px;
   font-weight: 400;
-  letter-spacing: 0.04em;
-  line-height: 1.15;
+  letter-spacing: 0.02em;
+  line-height: 1;
 }
 .pb-root .pb-blogs__list {
   list-style: none;
@@ -5125,12 +5125,12 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 }
 .pb-root .pb-blogs__row {
   display: grid;
-  grid-template-columns: 1.35rem minmax(0, 1fr);
+  grid-template-columns: 1.6rem minmax(0, 1fr);
   align-items: baseline;
-  gap: 0.35rem;
+  gap: 0.25rem;
   width: 100%;
   margin: 0;
-  padding: 0.12rem 0;
+  padding: 1px 0;
   border: 0 !important;
   border-bottom: 0 !important;
   background: transparent;
@@ -5139,46 +5139,85 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   font: inherit;
   color: inherit;
 }
-.pb-root .pb-blogs__row:hover .pb-blogs__name {
-  color: #2a6a94;
-}
 .pb-root .pb-blogs__n {
-  color: #71695f;
-  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
-  font-size: 0.95rem;
+  color: #9a9084;
+  font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif;
+  font-size: 13px;
   font-variant-numeric: tabular-nums;
   font-weight: 500;
-  line-height: 1.35;
+  line-height: 1.05;
 }
 .pb-root .pb-blogs__line {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 0.35rem 0.55rem;
+  gap: 0 0.4rem;
   min-width: 0;
+  line-height: 1.05;
 }
+/* Title: drive-size type + home Art/Essays underline pulse */
 .pb-root .pb-blogs__name {
-  color: #3b7ea8;
-  font-family: "Source Serif 4", Georgia, ui-serif, serif;
-  font-size: 1.05rem;
-  font-weight: 400;
-  line-height: 1.3;
+  position: relative;
+  display: inline-block;
+  color: #29251f;
+  font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: 0;
+  text-decoration: none;
+}
+.pb-root .pb-blogs__name::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  left: -0.1em;
+  right: -0.1em;
+  bottom: -0.15em;
+  height: 1px;
+  opacity: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(41, 37, 31, 0.4),
+    transparent
+  );
+  transition: opacity 220ms ease;
+}
+.pb-root .pb-blogs__row:hover .pb-blogs__name {
+  color: #1a1612;
+}
+.pb-root .pb-blogs__row:hover .pb-blogs__name::after {
+  opacity: 1;
+  animation: pb-blog-link-pulse 1.6s ease-in-out infinite;
+}
+@keyframes pb-blog-link-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scaleX(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
 }
 .pb-root .pb-blogs__date {
-  color: #71695f;
-  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
-  font-size: 0.85rem;
+  color: #9a9084;
+  font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif;
+  font-size: 13px;
   font-variant-numeric: tabular-nums;
+  font-weight: 400;
   letter-spacing: 0;
   text-transform: none;
-  line-height: 1.3;
+  line-height: 1.05;
 }
 .pb-root .pb-blogs__by {
   color: #9a9084;
-  font-family: "Source Serif 4", Georgia, ui-serif, serif;
-  font-size: 0.95rem;
+  font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif;
+  font-size: 13px;
   font-weight: 400;
-  line-height: 1.3;
+  line-height: 1.05;
 }
 
 /* Book card as button (single/double tap) */
