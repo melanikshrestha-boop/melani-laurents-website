@@ -2,12 +2,13 @@
   "name": "melanilaurents.com",
   "version": "0.1.0",
   "private": true,
-  "description": "Celine Nova — open sourcing my mind.",
+  "description": "Celine Nova \u2014 open sourcing my mind.",
   "scripts": {
     "dev": "next dev -H 127.0.0.1",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "bookshelf:add": "node scripts/add-bookshelf-book.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
