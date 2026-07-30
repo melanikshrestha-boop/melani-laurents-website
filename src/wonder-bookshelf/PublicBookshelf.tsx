@@ -33,11 +33,16 @@ const CHIPS: { id: Filter; label: string }[] = [
   { id: "faves", label: "Faves" },
 ];
 
-/** Public folder order — main pile first, then parking lot */
-const PUBLIC_FOLDER_ORDER = ["main characters only", "uncategorized"] as const;
+/** Public folder order — main pile, startups, then parking lot */
+const PUBLIC_FOLDER_ORDER = [
+  "main characters only",
+  "everything startups",
+  "uncategorized",
+] as const;
 
 const FOLDER_ACCENT: Record<string, string> = {
   "main characters only": "#c4a06a",
+  "everything startups": "#5b9fd4",
   uncategorized: "#8e98a6",
   Conqueror: "#c45c4a",
   Entrepreneur: "#d4a84b",
