@@ -1,7 +1,10 @@
 "use client";
 
+/**
+ * Public Bookshelf — Wonder Library UI (same classes/CSS), without PDF/EPUB reader.
+ * "Read" opens the store / source link (Amazon for physical books).
+ */
 import { useMemo, useState } from "react";
-import { siteConfig } from "@/config/site";
 import {
   BOOKSHELF_KIND_LABEL,
   type BookshelfEntry,
@@ -9,8 +12,10 @@ import {
   countByKind,
   getFavorites,
 } from "@/data/bookshelf";
+import { siteConfig } from "@/config/site";
+import "@/styles/wonder-bookshelf.css";
 
-type Filter = "all" | BookshelfKind;
+type Filter = "all" | BookshelfKind | "faves";
 
 const CHIPS: { id: Filter; label: string }[] = [
   { id: "all", label: "All" },
@@ -18,141 +23,216 @@ const CHIPS: { id: Filter; label: string }[] = [
   { id: "paper", label: "Papers" },
   { id: "blog", label: "Blogs" },
   { id: "podcast", label: "Podcasts" },
+  { id: "faves", label: "Faves" },
 ];
 
-function formatDate(date: string): string {
-  return new Date(date).toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
+function openLibraryCover(title: string): string {
+  return `https://covers.openlibrary.org/b/title/${encodeURIComponent(title)}-L.jpg?default=false`;
 }
 
-function outboundLabel(kind: BookshelfKind): string {
-  if (kind === "book") return "Book ↗";
-  if (kind === "paper") return "Paper ↗";
-  if (kind === "blog") return "Link ↗";
-  return "Listen ↗";
+function Cover({ entry }: { entry: BookshelfEntry }) {
+  const [failed, setFailed] = useState(false);
+  const letter = (entry.title.trim()[0] || "?").toUpperCase();
+
+  if (failed || entry.kind !== "book") {
+    return (
+      <div className="bl-cover-fallback" aria-hidden>
+        <small>{BOOKSHELF_KIND_LABEL[entry.kind]}</small>
+        <strong>{letter}</strong>
+      </div>
+    );
+  }
+
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      className="bl-cover-image"
+      src={openLibraryCover(entry.title)}
+      alt=""
+      loading="lazy"
+      onError={() => setFailed(true)}
+    />
+  );
+}
+
+function PublicBookCard({ entry }: { entry: BookshelfEntry }) {
+  const readHref = entry.href;
+  const readLabel =
+    entry.kind === "book"
+      ? "Read"
+      : entry.kind === "paper"
+        ? "Paper"
+        : entry.kind === "blog"
+          ? "Open"
+          : "Listen";
+
+  return (
+    <div className="bl-card-wrap">
+      <div className="bl-card" title={entry.title}>
+        <div className="bl-card-cover">
+          <Cover entry={entry} />
+        </div>
+        <span className="bl-card-title">{entry.title}</span>
+        {entry.source ? (
+          <span className="bl-card-author">{entry.source}</span>
+        ) : null}
+        <span className="bl-card-meta">
+          <span>{BOOKSHELF_KIND_LABEL[entry.kind]}</span>
+          {entry.favorite ? <span>fave</span> : null}
+        </span>
+      </div>
+      {readHref ? (
+        <a
+          className="bl-card-continue"
+          href={readHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          /* Physical books → Amazon (etc). No PDF / no Wonder library sync. */
+        >
+          {readLabel}
+        </a>
+      ) : null}
+    </div>
+  );
 }
 
 export function BookshelfView({ entries }: { entries: BookshelfEntry[] }) {
   const [filter, setFilter] = useState<Filter>("all");
+  const [q, setQ] = useState("");
   const counts = useMemo(() => countByKind(entries), [entries]);
   const faves = useMemo(() => getFavorites(), []);
 
   const filtered = useMemo(() => {
-    if (filter === "all") return entries;
-    return entries.filter((e) => e.kind === filter);
-  }, [entries, filter]);
+    let list =
+      filter === "faves"
+        ? entries.filter((e) => e.favorite)
+        : filter === "all"
+          ? entries
+          : entries.filter((e) => e.kind === filter);
+
+    const query = q.trim().toLowerCase();
+    if (query) {
+      list = list.filter(
+        (e) =>
+          e.title.toLowerCase().includes(query) ||
+          e.source.toLowerCase().includes(query) ||
+          e.summary?.toLowerCase().includes(query) ||
+          e.favoriteWhy?.toLowerCase().includes(query)
+      );
+    }
+    return list;
+  }, [entries, filter, q]);
+
+  const chipCount = (id: Filter) => {
+    if (id === "all") return entries.length;
+    if (id === "faves") return faves.length;
+    return counts[id] ?? 0;
+  };
 
   return (
-    <div className="bookshelf">
-      <header className="bookshelf__masthead">
-        <p className="bookshelf__kicker">Bookshelf</p>
-        <p className="bookshelf__manifesto">{siteConfig.bookshelfDescription}</p>
-      </header>
-
-      {faves.length > 0 ? (
-        <section className="bookshelf__faves" aria-labelledby="bookshelf-faves">
-          <h2 id="bookshelf-faves" className="bookshelf__section-label">
-            Faves
-          </h2>
-          <ul className="bookshelf__faves-list">
-            {faves.map((entry) => (
-              <li key={entry.id} className="bookshelf__fave">
-                <div className="bookshelf__fave-head">
-                  <span className="bookshelf__kind">
-                    {BOOKSHELF_KIND_LABEL[entry.kind]}
-                  </span>
-                  <strong className="bookshelf__fave-title">{entry.title}</strong>
-                  <span className="bookshelf__fave-source">{entry.source}</span>
-                </div>
-                {entry.favoriteWhy ? (
-                  <p className="bookshelf__fave-why">
-                    <span className="bookshelf__note-label">Why</span>
-                    {entry.favoriteWhy}
-                  </p>
-                ) : null}
-                {entry.href ? (
-                  <a
-                    href={entry.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bookshelf__out"
-                  >
-                    {outboundLabel(entry.kind)}
-                  </a>
-                ) : null}
-              </li>
-            ))}
-          </ul>
-        </section>
-      ) : null}
-
-      <div className="bookshelf__chips" role="tablist" aria-label="Filter">
-        {CHIPS.map((chip) => {
-          const n =
-            chip.id === "all"
-              ? entries.length
-              : counts[chip.id as BookshelfKind] ?? 0;
-          const active = filter === chip.id;
-          return (
-            <button
-              key={chip.id}
-              type="button"
-              role="tab"
-              aria-selected={active}
-              className={`bookshelf__chip${active ? " is-active" : ""}`}
-              onClick={() => setFilter(chip.id)}
-            >
-              {chip.label}
-              <span className="bookshelf__chip-count">{n}</span>
-            </button>
-          );
-        })}
-      </div>
-
-      {filtered.length === 0 ? (
-        <p className="bookshelf__empty">Empty.</p>
-      ) : (
-        <ul className="bookshelf__list">
-          {filtered.map((entry) => (
-            <li key={entry.id} className="bookshelf__item">
-              <div className="bookshelf__item-top">
-                <span className="bookshelf__kind">
-                  {BOOKSHELF_KIND_LABEL[entry.kind]}
-                  {entry.favorite ? " · fave" : ""}
+    <div className="bl-public-wrap">
+      <div className="bl" data-books-theme="light" data-books-font="serif">
+        <header className="bl-head">
+          <div className="bl-head-main">
+            <div className="bl-head-copy">
+              <h1 className="bl-title">Bookshelf</h1>
+              <div className="bl-stats" aria-label="Library totals">
+                <span>
+                  <b>{entries.length}</b> titles
                 </span>
-                <time dateTime={entry.loggedAt}>{formatDate(entry.loggedAt)}</time>
+                <span>
+                  <b>{counts.book ?? 0}</b> books
+                </span>
+                <span>
+                  <b>{counts.paper ?? 0}</b> papers
+                </span>
+                <span>
+                  <b>{faves.length}</b> faves
+                </span>
               </div>
-              <h2 className="bookshelf__item-title">{entry.title}</h2>
-              <p className="bookshelf__item-source">
-                {entry.source}
-                {entry.year ? ` · ${entry.year}` : null}
+              <p className="bl-public-manifesto">
+                {siteConfig.bookshelfDescription}
               </p>
-              {entry.summary ? (
-                <p className="bookshelf__item-summary">{entry.summary}</p>
-              ) : null}
-              {entry.applied ? (
-                <p className="bookshelf__item-applied">
-                  <span className="bookshelf__note-label">Applied</span>
-                  {entry.applied}
-                </p>
-              ) : null}
-              {entry.href ? (
-                <a
-                  href={entry.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bookshelf__out"
-                >
-                  {outboundLabel(entry.kind)}
-                </a>
-              ) : null}
-            </li>
+            </div>
+          </div>
+        </header>
+
+        {faves.length > 0 && filter === "all" && !q.trim() ? (
+          <section className="bl-public-faves" aria-labelledby="public-faves">
+            <h2 id="public-faves" className="bl-shelf-h">
+              Faves <em>{faves.length}</em>
+            </h2>
+            <ul className="bl-public-faves-list">
+              {faves.map((entry) => (
+                <li key={entry.id}>
+                  <strong>{entry.title}</strong>
+                  <span className="bl-public-faves-src">{entry.source}</span>
+                  {entry.favoriteWhy ? (
+                    <p>
+                      <em>Why · </em>
+                      {entry.favoriteWhy}
+                    </p>
+                  ) : null}
+                  {entry.href ? (
+                    <a
+                      href={entry.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bl-link-quiet"
+                    >
+                      {entry.kind === "book" ? "Read ↗" : "Open ↗"}
+                    </a>
+                  ) : null}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
+        <div className="bl-filter" aria-label="Library sections">
+          {CHIPS.map(({ id, label }) => (
+            <button
+              key={id}
+              type="button"
+              className={`bl-chip${filter === id ? " is-on" : ""}`}
+              onClick={() => setFilter(id)}
+            >
+              <span>{label}</span>
+              <em>{chipCount(id)}</em>
+            </button>
           ))}
-        </ul>
-      )}
+        </div>
+
+        <div className="bl-toolbar">
+          <form
+            className="bl-search-wrap"
+            onSubmit={(e) => e.preventDefault()}
+          >
+            <span className="bl-public-search-icon" aria-hidden>
+              ⌕
+            </span>
+            <input
+              className="bl-search"
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder="Search titles, authors, notes…"
+              aria-label="Search bookshelf"
+            />
+          </form>
+        </div>
+
+        {filtered.length === 0 ? (
+          <p className="bl-empty-all">
+            {q ? "No titles match that search." : "Nothing on this shelf yet."}
+          </p>
+        ) : (
+          <div className="bl-grid bl-public-grid">
+            {filtered.map((entry) => (
+              <PublicBookCard key={entry.id} entry={entry} />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

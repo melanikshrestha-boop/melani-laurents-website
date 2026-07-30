@@ -13,7 +13,7 @@ export default function BookshelfPage() {
   const entries = getBookshelfEntries();
 
   return (
-    <div className="bookshelf-page">
+    <div className="bookshelf-page bookshelf-page--wonder">
       <BookshelfView entries={entries} />
       <div className="bookshelf-page__home">
         <Link href="/">← Back home</Link>
