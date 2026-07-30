@@ -41,6 +41,7 @@ You do **not** invent features. You **prevent regression**: the same ugly chrome
 - **Never introduce dividing lines** (borders, hairlines, list rules, card outlines that read as lines) unless Melani asks.
 - **Hate wasted vertical space** — pack rows, tight stacks, quote height follows content; no dead air between quote and Bookshelf title.
 - One paper field end-to-end on cream pages — no black/cream splits, no frosted nav bar color step on paper surfaces.
+- **Titles and headers at the closest edges** (forever): logo / page titles / section heads hug the **left** extremity; trailing controls / CONTACT / counts / quote actions hug the **right**. Shared gutter only (~10px) — no floating centered title blocks, no fat inset that pulls headers inward from the edge. Nav, Bookshelf, Daily, Builds, Art — same law.
 
 ### Selection & pink highlight
 - **Pink is only for random-generator pick cards** (sticky until that drive closes).
