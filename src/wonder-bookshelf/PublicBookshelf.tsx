@@ -1,25 +1,25 @@
 "use client";
 
 /**
- * Public bookshelf — Wonder shelf look, static catalog only.
- * - Organized in folders (Business & Money, Autobiography, …)
- * - Cover + title only
- * - Click / Buy on Amazon → store link (affiliate-ready later)
- * - No detail page, no sync, no “Read here”, no device library
+ * Wonder Bookshelf UI (folders + cover grid) for the public site.
+ * Static catalog only — no sync, no detail page.
+ * Click / Buy on Amazon → store link.
  */
 import { useMemo, useState, type CSSProperties } from "react";
+import { CaretRight, FolderSimple, MagnifyingGlass } from "@phosphor-icons/react";
 import {
   bookshelfEntries,
-  BOOKSHELF_KIND_LABEL,
   type BookshelfEntry,
   type BookshelfKind,
 } from "@/data/bookshelf";
 import {
   CATEGORY_ORDER,
+  SPINE_COLORS,
   categorizeBook,
-  type BuiltInBookCategory,
+  type Book,
 } from "./booksStore";
 import { amazonSearchUrl } from "./amazon";
+import { catalogEntryToBook } from "./publicCatalog";
 import "./books-library.css";
 
 type Filter = "all" | BookshelfKind | "faves";
@@ -49,64 +49,89 @@ const FOLDER_ACCENT: Record<string, string> = {
   Faves: "#d4bc82",
 };
 
-function openLibraryCover(title: string): string {
+function coverUrlFor(title: string): string {
   return `https://covers.openlibrary.org/b/title/${encodeURIComponent(title)}-L.jpg?default=false`;
 }
 
-function buyUrl(entry: BookshelfEntry): string {
+function buyUrl(entry: BookshelfEntry, book: Book): string {
   if (entry.kind === "book") {
-    return entry.href || amazonSearchUrl(entry.title, entry.source);
+    return book.externalUrl || entry.href || amazonSearchUrl(entry.title, entry.source);
   }
-  return entry.href || "#";
+  return entry.href || book.externalUrl || "#";
 }
 
-function buyLabel(entry: BookshelfEntry): string {
-  if (entry.kind === "book") return "Buy on Amazon";
-  if (entry.kind === "paper") return "Read paper";
-  if (entry.kind === "blog") return "Open essay";
+function buyLabel(kind: BookshelfKind): string {
+  if (kind === "book") return "Buy on Amazon";
+  if (kind === "paper") return "Read paper";
+  if (kind === "blog") return "Open essay";
   return "Listen";
 }
 
-function folderFor(entry: BookshelfEntry): string {
+function folderLabelFor(entry: BookshelfEntry): string {
   if (entry.kind === "blog") return "Blogs";
   if (entry.kind === "paper") return "Papers";
   if (entry.kind === "podcast") return "Podcasts";
-  const cat = categorizeBook(entry.title, entry.source);
-  return typeof cat === "string" ? cat : "Unsorted";
+  return String(categorizeBook(entry.title, entry.source));
 }
 
-function Cover({ entry }: { entry: BookshelfEntry }) {
-  const [failed, setFailed] = useState(false);
-  const letter = (entry.title.trim()[0] || "?").toUpperCase();
+type ShelfItem = { entry: BookshelfEntry; book: Book };
 
-  if (failed || entry.kind !== "book") {
-    return (
-      <div className="bl-cover-fallback" aria-hidden>
-        <small>{BOOKSHELF_KIND_LABEL[entry.kind]}</small>
-        <strong>{letter}</strong>
-      </div>
-    );
-  }
+type ShelfGroup = {
+  id: string;
+  label: string;
+  accent: string;
+  items: ShelfItem[];
+};
+
+function BookCover({
+  book,
+  folderLabel,
+}: {
+  book: Book;
+  folderLabel: string;
+}) {
+  const [imgFailed, setImgFailed] = useState(false);
+  const style: CSSProperties = {
+    backgroundColor: book.color || "#6b6358",
+    backgroundImage:
+      "linear-gradient(165deg, rgba(255,255,255,.14), transparent 42%), linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.58))",
+  };
+  const showImg = Boolean(book.coverUrl) && !imgFailed;
 
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      className="bl-cover-image"
-      src={openLibraryCover(entry.title)}
-      alt=""
-      loading="lazy"
-      onError={() => setFailed(true)}
-    />
+    <div className="bl-card-cover" style={style}>
+      <span className="bl-cover-fallback" aria-hidden>
+        <small>{book.author || folderLabel || book.category}</small>
+        <strong>{book.title || "Untitled"}</strong>
+      </span>
+      {showImg ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={book.coverUrl}
+          alt=""
+          className="bl-cover-image"
+          loading="lazy"
+          onError={() => setImgFailed(true)}
+        />
+      ) : null}
+    </div>
   );
 }
 
-function CatalogCard({ entry }: { entry: BookshelfEntry }) {
-  const href = buyUrl(entry);
-  const label = buyLabel(entry);
+function CatalogCard({
+  item,
+  folderLabel,
+}: {
+  item: ShelfItem;
+  folderLabel: string;
+}) {
+  const { entry, book } = item;
+  const href = buyUrl(entry, book);
+  const label = buyLabel(entry.kind);
 
   return (
-    <div className="bl-card-wrap pb-card">
-      {/* Whole card is the buy/open link — no detail page */}
+    <div className="bl-card-wrap">
+      {/* No detail page — whole card + CTA open Amazon / source */}
       <a
         className="bl-card pb-card-link"
         href={href}
@@ -114,12 +139,10 @@ function CatalogCard({ entry }: { entry: BookshelfEntry }) {
         rel="noopener noreferrer"
         title={label}
       >
-        <div className="bl-card-cover">
-          <Cover entry={entry} />
-        </div>
-        <span className="bl-card-title">{entry.title}</span>
-        {entry.source ? (
-          <span className="bl-card-author">{entry.source}</span>
+        <BookCover book={book} folderLabel={folderLabel} />
+        <span className="bl-card-title">{book.title}</span>
+        {book.author ? (
+          <span className="bl-card-author">{book.author}</span>
         ) : null}
       </a>
       <a
@@ -134,43 +157,57 @@ function CatalogCard({ entry }: { entry: BookshelfEntry }) {
   );
 }
 
-type Shelf = { id: string; label: string; accent: string; items: BookshelfEntry[] };
-
 export function PublicBookshelf() {
   const [filter, setFilter] = useState<Filter>("all");
   const [q, setQ] = useState("");
+  /** Wonder default: folders open unless explicitly closed */
   const [openFolders, setOpenFolders] = useState<Record<string, boolean>>({});
 
+  const catalog = useMemo<ShelfItem[]>(() => {
+    return bookshelfEntries.map((entry, i) => {
+      const book = catalogEntryToBook(entry);
+      // Spine color + Open Library cover (art only — not a file sync)
+      book.color = SPINE_COLORS[i % SPINE_COLORS.length];
+      if (entry.kind === "book") {
+        book.coverUrl = coverUrlFor(entry.title);
+      }
+      book.category = folderLabelFor(entry) as Book["category"];
+      return { entry, book };
+    });
+  }, []);
+
   const counts = useMemo(() => {
-    const base = {
-      all: bookshelfEntries.length,
+    const c = {
+      all: catalog.length,
       book: 0,
       paper: 0,
       blog: 0,
       podcast: 0,
       faves: 0,
     };
-    for (const e of bookshelfEntries) {
-      base[e.kind] += 1;
-      if (e.favorite) base.faves += 1;
+    for (const { entry } of catalog) {
+      c[entry.kind] += 1;
+      if (entry.favorite) c.faves += 1;
     }
-    return base;
-  }, []);
+    return c;
+  }, [catalog]);
 
   const filtered = useMemo(() => {
     const query = q.trim().toLowerCase();
-    return bookshelfEntries.filter((e) => {
-      if (filter === "faves" && !e.favorite) return false;
-      if (filter !== "all" && filter !== "faves" && e.kind !== filter) return false;
+    return catalog.filter(({ entry }) => {
+      if (filter === "faves" && !entry.favorite) return false;
+      if (filter !== "all" && filter !== "faves" && entry.kind !== filter) {
+        return false;
+      }
       if (!query) return true;
       return (
-        e.title.toLowerCase().includes(query) ||
-        e.source.toLowerCase().includes(query)
+        entry.title.toLowerCase().includes(query) ||
+        entry.source.toLowerCase().includes(query)
       );
     });
-  }, [filter, q]);
+  }, [catalog, filter, q]);
 
-  const shelves = useMemo<Shelf[]>(() => {
+  const groups = useMemo<ShelfGroup[]>(() => {
     if (filter === "faves") {
       return filtered.length
         ? [
@@ -185,7 +222,14 @@ export function PublicBookshelf() {
     }
     if (filter === "blog") {
       return filtered.length
-        ? [{ id: "blogs", label: "Blogs", accent: FOLDER_ACCENT.Blogs, items: filtered }]
+        ? [
+            {
+              id: "blogs",
+              label: "Blogs",
+              accent: FOLDER_ACCENT.Blogs,
+              items: filtered,
+            },
+          ]
         : [];
     }
     if (filter === "paper") {
@@ -213,25 +257,19 @@ export function PublicBookshelf() {
         : [];
     }
 
-    // Books / All — foldered like Wonder (Business & Money, Autobiography, …)
-    const byFolder = new Map<string, BookshelfEntry[]>();
-    for (const e of filtered) {
-      const folder = folderFor(e);
-      const list = byFolder.get(folder) || [];
-      list.push(e);
-      byFolder.set(folder, list);
+    // Books / All — Wonder-style subject folders
+    const map = new Map<string, ShelfItem[]>();
+    for (const item of filtered) {
+      const label = folderLabelFor(item.entry);
+      const list = map.get(label) || [];
+      list.push(item);
+      map.set(label, list);
     }
 
-    const order: string[] = [
-      ...CATEGORY_ORDER,
-      "Blogs",
-      "Papers",
-      "Podcasts",
-    ];
-
-    const out: Shelf[] = [];
+    const order = [...CATEGORY_ORDER, "Blogs", "Papers", "Podcasts"];
+    const out: ShelfGroup[] = [];
     for (const label of order) {
-      const items = byFolder.get(label);
+      const items = map.get(label);
       if (!items?.length) continue;
       out.push({
         id: label,
@@ -239,11 +277,9 @@ export function PublicBookshelf() {
         accent: FOLDER_ACCENT[label] || FOLDER_ACCENT.Unsorted,
         items,
       });
-      byFolder.delete(label);
+      map.delete(label);
     }
-    // any leftover folders
-    for (const [label, items] of byFolder) {
-      if (!items.length) continue;
+    for (const [label, items] of map) {
       out.push({
         id: label,
         label,
@@ -260,7 +296,9 @@ export function PublicBookshelf() {
     return counts[id];
   };
 
-  const isOpen = (id: string) => openFolders[id] !== false;
+  /** Wonder: expanded unless explicitly false; search forces open */
+  const isExpanded = (id: string) =>
+    openFolders[id] !== false || Boolean(q.trim());
 
   return (
     <div className="bl-public-wrap pb-root">
@@ -300,9 +338,7 @@ export function PublicBookshelf() {
 
         <div className="bl-toolbar">
           <form className="bl-search-wrap" onSubmit={(e) => e.preventDefault()}>
-            <span className="bl-public-search-icon" aria-hidden>
-              ⌕
-            </span>
+            <MagnifyingGlass size={15} aria-hidden />
             <input
               className="bl-search"
               value={q}
@@ -313,59 +349,68 @@ export function PublicBookshelf() {
           </form>
         </div>
 
-        {shelves.length === 0 ? (
+        {groups.length === 0 ? (
           <p className="bl-empty-all">
             {q ? "No matches." : "Nothing in this section yet."}
           </p>
         ) : (
-          shelves.map((shelf) => {
-            const open = isOpen(shelf.id);
+          groups.map((group) => {
+            const expanded = isExpanded(group.id);
             return (
               <section
-                key={shelf.id}
-                className={`bl-shelf${open ? " is-open" : ""}`}
+                key={group.id}
+                className={`bl-shelf${expanded ? " is-open" : ""}`}
                 style={
                   {
-                    "--bl-folder-accent": shelf.accent,
-                    "--bl-folder-wash": `${shelf.accent}18`,
+                    "--bl-folder-accent": group.accent,
+                    "--bl-folder-wash": `${group.accent}18`,
                   } as CSSProperties
                 }
               >
+                {/* Exact Wonder folder row */}
                 <div className="bl-folder-row">
                   <button
                     type="button"
                     className="bl-folder"
-                    aria-expanded={open}
+                    aria-expanded={expanded}
                     onClick={() =>
-                      setOpenFolders((cur) => ({
-                        ...cur,
-                        [shelf.id]: !open,
+                      setOpenFolders((current) => ({
+                        ...current,
+                        // Wonder toggle: false means closed; missing/true = open
+                        [group.id]: current[group.id] === false,
                       }))
                     }
                   >
-                    <span className="bl-folder-caret" aria-hidden>
-                      ▸
-                    </span>
-                    <span
-                      className="bl-folder-icon"
+                    <CaretRight
+                      className="bl-folder-caret"
+                      size={14}
                       aria-hidden
-                      style={{ color: shelf.accent }}
-                    >
-                      ▦
-                    </span>
+                    />
+                    <FolderSimple
+                      className="bl-folder-icon"
+                      size={22}
+                      weight="fill"
+                      aria-hidden
+                      style={{ color: group.accent, fill: group.accent }}
+                    />
                     <span className="bl-folder-copy">
-                      <strong>{shelf.label}</strong>
+                      <strong>{group.label}</strong>
                       <small>
-                        {shelf.items.length}{" "}
-                        {shelf.items.length === 1 ? "title" : "titles"}
+                        {group.items.length}{" "}
+                        {group.items.length === 1 ? "book" : "books"}
                       </small>
                     </span>
                   </button>
                 </div>
-                {open ? (
+
+                {expanded ? (
                   <div className="bl-grid">
-                    {shelf.items.map((entry) => (
-                      <CatalogCard key={entry.id} entry={entry} />
+                    {group.items.map((item) => (
+                      <CatalogCard
+                        key={item.entry.id}
+                        item={item}
+                        folderLabel={group.label}
+                      />
                     ))}
                   </div>
                 ) : null}
