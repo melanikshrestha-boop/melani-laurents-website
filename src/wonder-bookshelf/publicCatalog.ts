@@ -50,10 +50,9 @@ export function catalogEntryToBook(entry: BookshelfEntry): Book {
     description: entry.summary || entry.thoughts || entry.applied || "",
     notes: entry.favoriteWhy || entry.applied || entry.thoughts || "",
     externalUrl:
-      entry.href ||
-      (entry.kind === "book"
-        ? amazonSearchUrl(entry.title, entry.source)
-        : undefined),
+      entry.kind === "book"
+        ? undefined // set by PublicBookshelf via storeUrlForBook
+        : entry.href || undefined,
     rating: entry.favorite ? 5 : 0,
   });
 }

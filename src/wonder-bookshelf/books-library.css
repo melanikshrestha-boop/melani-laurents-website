@@ -4516,3 +4516,21 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   font-size: 16px;
   line-height: 1;
 }
+
+/* Product covers from Amazon — clean photo, no fake spine gradients */
+.pb-root .pb-cover-photo {
+  background: #e8e2d6 !important;
+  background-image: none !important;
+  overflow: hidden;
+}
+.pb-root .pb-cover-photo .bl-cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+/* Hide the fake spine edge line over real covers */
+.pb-root .pb-cover-photo::after {
+  display: none !important;
+}

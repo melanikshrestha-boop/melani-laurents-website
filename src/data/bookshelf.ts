@@ -1,6 +1,7 @@
 /**
  * Public bookshelf — imported from Wonder local library + Greats blogs.
- * Physical books: Amazon search links only (no PDFs / no Ocean reader).
+ * Physical books: Amazon product /dp/{ASIN} links + matching cover art
+ * (affiliate tag can be added later). No PDFs / no Ocean reader.
  * 32 books from Wonder scan · 9 blog posts (Sam Altman + Paul Graham).
  */
 
@@ -16,6 +17,8 @@ export type BookshelfEntry = {
   thoughts?: string;
   applied?: string;
   href?: string;
+  /** Amazon ASIN — product page + matching cover art */
+  asin?: string;
   year?: number;
   favorite?: boolean;
   favoriteWhy?: string;
@@ -35,7 +38,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "Surely You're Joking, Mr. Feynman!",
     source: "Richard P Feynman",
     loggedAt: "2026-07-26",
-    href: "https://www.amazon.com/s?k=Surely+You%27re+Joking%2C+Mr.+Feynman%21+Richard+P+Feynman",
+    href: "https://www.amazon.com/dp/0393316041",
+    asin: "0393316041",
   },
   {
     id: "book-b257408ae8a5ff4e",
@@ -43,7 +47,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "The Wright Brothers",
     source: "David McCullough",
     loggedAt: "2026-07-26",
-    href: "https://www.amazon.com/s?k=The+Wright+Brothers+David+McCullough",
+    href: "https://www.amazon.com/dp/1476728755",
+    asin: "1476728755",
   },
   {
     id: "book-e7f9c6441fe1172d",
@@ -51,7 +56,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "YouTube Secrets",
     source: "Benji Travis",
     loggedAt: "2026-07-23",
-    href: "https://www.amazon.com/s?k=YouTube+Secrets+Benji+Travis",
+    href: "https://www.amazon.com/dp/1599329013",
+    asin: "1599329013",
   },
   {
     id: "book-2627d126db3f96c6",
@@ -59,7 +65,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "Automate the Boring Stuff with Python",
     source: "Al Sweigart",
     loggedAt: "2026-07-09",
-    href: "https://www.amazon.com/s?k=Automate+the+Boring+Stuff+with+Python+Al+Sweigart",
+    href: "https://www.amazon.com/dp/1593279922",
+    asin: "1593279922",
   },
   {
     id: "book-4e9ff96473e1851b",
@@ -67,7 +74,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "The Feynman Lectures on Physics",
     source: "Richard P. Feynman, Robert B. Leighton, Matthew Sands",
     loggedAt: "2026-07-04",
-    href: "https://www.amazon.com/s?k=The+Feynman+Lectures+on+Physics+Richard+P.+Feynman%2C+Robert+B.+Leighton%2C+Matthew+Sands",
+    href: "https://www.amazon.com/dp/0465023827",
+    asin: "0465023827",
   },
   {
     id: "book-0a6fe23bc5ab6261",
@@ -75,7 +83,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "The Innovators",
     source: "Walter Isaacson",
     loggedAt: "2026-07-02",
-    href: "https://www.amazon.com/s?k=The+Innovators+Walter+Isaacson",
+    href: "https://www.amazon.com/dp/1476708703",
+    asin: "1476708703",
   },
   {
     id: "book-29afba0bcfdb06e3",
@@ -83,15 +92,17 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "The Nvidia Way",
     source: "Tae Kim",
     loggedAt: "2026-06-29",
-    href: "https://www.amazon.com/s?k=The+Nvidia+Way+Tae+Kim",
+    href: "https://www.amazon.com/dp/1324086718",
+    asin: "1324086718",
   },
   {
     id: "book-a1611b66632c3b11",
     kind: "book",
-    title: "Titan",
+    title: "Titan: The Life of John D. Rockefeller, Sr.",
     source: "Ron Chernow",
     loggedAt: "2026-06-27",
-    href: "https://www.amazon.com/s?k=Titan+Ron+Chernow",
+    href: "https://www.amazon.com/dp/1400077303",
+    asin: "1400077303",
   },
   {
     id: "book-09010af5cb84dd7f",
@@ -99,7 +110,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "Steve Jobs",
     source: "Walter Isaacson",
     loggedAt: "2026-06-07",
-    href: "https://www.amazon.com/s?k=Steve+Jobs+Walter+Isaacson",
+    href: "https://www.amazon.com/dp/1451648537",
+    asin: "1451648537",
   },
   {
     id: "book-1e1c0a6dcb8fe7a7",
@@ -107,7 +119,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "Leonardo Da Vinci",
     source: "Walter Isaacson",
     loggedAt: "2026-06-07",
-    href: "https://www.amazon.com/s?k=Leonardo+Da+Vinci+Walter+Isaacson",
+    href: "https://www.amazon.com/dp/1501139150",
+    asin: "1501139150",
   },
   {
     id: "book-20b6aab997b43c52",
@@ -115,7 +128,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "The Innovator's Dilemma",
     source: "Clayton M Christensen",
     loggedAt: "2026-06-07",
-    href: "https://www.amazon.com/s?k=The+Innovator%27s+Dilemma+Clayton+M+Christensen",
+    href: "https://www.amazon.com/dp/1633691780",
+    asin: "1633691780",
   },
   {
     id: "book-42e0b3b2b24131fe",
@@ -123,15 +137,17 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "Elon Musk",
     source: "Walter Isaacson",
     loggedAt: "2026-06-07",
-    href: "https://www.amazon.com/s?k=Elon+Musk+Walter+Isaacson",
+    href: "https://www.amazon.com/dp/1982181281",
+    asin: "1982181281",
   },
   {
     id: "book-ce963a461a6107d1",
     kind: "book",
-    title: "Benjamin Franklin an American Life",
+    title: "Benjamin Franklin: An American Life",
     source: "Walter Isaacson",
     loggedAt: "2026-06-07",
-    href: "https://www.amazon.com/s?k=Benjamin+Franklin+an+American+Life+Walter+Isaacson",
+    href: "https://www.amazon.com/dp/074325807X",
+    asin: "074325807X",
   },
   {
     id: "book-f9d60c7daa0d8a2f",
@@ -139,7 +155,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "Michael Jackson Inc",
     source: "Zack O'Malley Greenburg",
     loggedAt: "2026-06-04",
-    href: "https://www.amazon.com/s?k=Michael+Jackson+Inc+Zack+O%27Malley+Greenburg",
+    href: "https://www.amazon.com/dp/1477809660",
+    asin: "1477809660",
   },
   {
     id: "book-ccc87d6ca1a8c997",
@@ -147,7 +164,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "Man in the Music",
     source: "Joseph Vogel",
     loggedAt: "2026-06-04",
-    href: "https://www.amazon.com/s?k=Man+in+the+Music+Joseph+Vogel",
+    href: "https://www.amazon.com/dp/1457432552",
+    asin: "1457432552",
   },
   {
     id: "book-aeb4a7f1c8211302",
@@ -155,7 +173,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "Moonwalk",
     source: "Michael Jackson",
     loggedAt: "2026-06-03",
-    href: "https://www.amazon.com/s?k=Moonwalk+Michael+Jackson",
+    href: "https://www.amazon.com/dp/0385314642",
+    asin: "0385314642",
   },
   {
     id: "book-fe08f07f76ff9be9",
@@ -163,7 +182,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "100M Offers",
     source: "Alex Hormozi",
     loggedAt: "2026-03-29",
-    href: "https://www.amazon.com/s?k=100M+Offers+Alex+Hormozi",
+    href: "https://www.amazon.com/dp/1737475707",
+    asin: "1737475707",
   },
   {
     id: "book-04ab6be86966f247",
@@ -171,7 +191,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "The Stranger",
     source: "Albert Camus",
     loggedAt: "2026-03-21",
-    href: "https://www.amazon.com/s?k=The+Stranger+Albert+Camus",
+    href: "https://www.amazon.com/dp/0679720200",
+    asin: "0679720200",
   },
   {
     id: "book-c1e4800144be8ed4",
@@ -179,7 +200,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "Fahrenheit 451",
     source: "Ray Bradbury",
     loggedAt: "2026-03-21",
-    href: "https://www.amazon.com/s?k=Fahrenheit+451+Ray+Bradbury",
+    href: "https://www.amazon.com/dp/1451673310",
+    asin: "1451673310",
   },
   {
     id: "book-1492f3c3d8b92a43",
@@ -187,7 +209,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "Zero to One",
     source: "Peter Thiel",
     loggedAt: "2026-03-21",
-    href: "https://www.amazon.com/s?k=Zero+to+One+Peter+Thiel",
+    href: "https://www.amazon.com/dp/0804139296",
+    asin: "0804139296",
     favorite: true,
     favoriteWhy: "Contrarian questions for what I ship.",
   },
@@ -197,7 +220,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "1984",
     source: "George Orwell",
     loggedAt: "2026-03-21",
-    href: "https://www.amazon.com/s?k=1984+George+Orwell",
+    href: "https://www.amazon.com/dp/0451524934",
+    asin: "0451524934",
   },
   {
     id: "book-0df09c9d265ac04a",
@@ -205,7 +229,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "Deep Work",
     source: "Cal Newport",
     loggedAt: "2026-03-17",
-    href: "https://www.amazon.com/s?k=Deep+Work+Cal+Newport",
+    href: "https://www.amazon.com/dp/1455586692",
+    asin: "1455586692",
   },
   {
     id: "book-3727bd322ea6dc75",
@@ -213,7 +238,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "Influence",
     source: "Robert B Cialdini",
     loggedAt: "2026-03-17",
-    href: "https://www.amazon.com/s?k=Influence+Robert+B+Cialdini",
+    href: "https://www.amazon.com/dp/006124189X",
+    asin: "006124189X",
   },
   {
     id: "book-fa595a4a2d3bff12",
@@ -221,7 +247,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "Atomic Habits",
     source: "James Clear",
     loggedAt: "2026-03-17",
-    href: "https://www.amazon.com/s?k=Atomic+Habits+James+Clear",
+    href: "https://www.amazon.com/dp/0735211299",
+    asin: "0735211299",
   },
   {
     id: "book-6b917f8361b02708",
@@ -229,7 +256,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "Talk Like Ted",
     source: "Carmine Gallo",
     loggedAt: "2026-03-17",
-    href: "https://www.amazon.com/s?k=Talk+Like+Ted+Carmine+Gallo",
+    href: "https://www.amazon.com/dp/1250061539",
+    asin: "1250061539",
   },
   {
     id: "book-2b7e66ba09b8ab01",
@@ -237,7 +265,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "I Will Teach You to Be Rich",
     source: "Ramit Sethi",
     loggedAt: "2026-03-16",
-    href: "https://www.amazon.com/s?k=I+Will+Teach+You+to+Be+Rich+Ramit+Sethi",
+    href: "https://www.amazon.com/dp/1523505745",
+    asin: "1523505745",
   },
   {
     id: "book-a8610f910c8c1a79",
@@ -245,7 +274,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "Man's Search for Meaning",
     source: "Viktor Frankl",
     loggedAt: "2026-03-16",
-    href: "https://www.amazon.com/s?k=Man%27s+Search+for+Meaning+Viktor+Frankl",
+    href: "https://www.amazon.com/dp/0807014273",
+    asin: "0807014273",
   },
   {
     id: "book-de7b7544706eadbc",
@@ -253,7 +283,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "Five People You Meet in Heaven",
     source: "Mitch Albom",
     loggedAt: "2026-03-16",
-    href: "https://www.amazon.com/s?k=Five+People+You+Meet+in+Heaven+Mitch+Albom",
+    href: "https://www.amazon.com/dp/1401308589",
+    asin: "1401308589",
   },
   {
     id: "book-b429d7a384fa8a4d",
@@ -261,7 +292,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "Psycho-Cybernetics",
     source: "Maxwell Maltz",
     loggedAt: "2026-03-16",
-    href: "https://www.amazon.com/s?k=Psycho-Cybernetics+Maxwell+Maltz",
+    href: "https://www.amazon.com/dp/0399176136",
+    asin: "0399176136",
   },
   {
     id: "book-92272d172f40eff3",
@@ -269,7 +301,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "The Psychology of Money",
     source: "Morgan Housel",
     loggedAt: "2026-03-16",
-    href: "https://www.amazon.com/s?k=The+Psychology+of+Money+Morgan+Housel",
+    href: "https://www.amazon.com/dp/0857197681",
+    asin: "0857197681",
   },
   {
     id: "book-498b428cba4250d8",
@@ -277,7 +310,8 @@ export const bookshelfEntries: BookshelfEntry[] = [
     title: "Tuesdays with Morrie",
     source: "Mitch Albom",
     loggedAt: "2026-03-16",
-    href: "https://www.amazon.com/s?k=Tuesdays+with+Morrie+Mitch+Albom",
+    href: "https://www.amazon.com/dp/076790592X",
+    asin: "076790592X",
   },
   {
     id: "blog-sa-growth-gov",

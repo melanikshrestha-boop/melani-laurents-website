@@ -18,7 +18,7 @@ import {
   categorizeBook,
   type Book,
 } from "./booksStore";
-import { amazonSearchUrl } from "./amazon";
+import { coverUrlForBook, storeUrlForBook } from "./amazon";
 import { catalogEntryToBook } from "./publicCatalog";
 import "./books-library.css";
 
@@ -49,13 +49,14 @@ const FOLDER_ACCENT: Record<string, string> = {
   Faves: "#d4bc82",
 };
 
-function coverUrlFor(title: string): string {
-  return `https://covers.openlibrary.org/b/title/${encodeURIComponent(title)}-L.jpg?default=false`;
-}
-
 function buyUrl(entry: BookshelfEntry, book: Book): string {
   if (entry.kind === "book") {
-    return book.externalUrl || entry.href || amazonSearchUrl(entry.title, entry.source);
+    return storeUrlForBook({
+      asin: entry.asin,
+      href: entry.href || book.externalUrl,
+      title: entry.title,
+      author: entry.source,
+    });
   }
   return entry.href || book.externalUrl || "#";
 }
@@ -91,21 +92,13 @@ function BookCover({
   folderLabel: string;
 }) {
   const [imgFailed, setImgFailed] = useState(false);
-  const style: CSSProperties = {
-    backgroundColor: book.color || "#6b6358",
-    backgroundImage:
-      "linear-gradient(165deg, rgba(255,255,255,.14), transparent 42%), linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.58))",
-  };
   const showImg = Boolean(book.coverUrl) && !imgFailed;
 
-  return (
-    <div className="bl-card-cover" style={style}>
-      <span className="bl-cover-fallback" aria-hidden>
-        <small>{book.author || folderLabel || book.category}</small>
-        <strong>{book.title || "Untitled"}</strong>
-      </span>
-      {showImg ? (
-        // eslint-disable-next-line @next/next/no-img-element
+  // Real product covers: clean image, no muddy gradient overlay
+  if (showImg) {
+    return (
+      <div className="bl-card-cover pb-cover-photo">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={book.coverUrl}
           alt=""
@@ -113,7 +106,22 @@ function BookCover({
           loading="lazy"
           onError={() => setImgFailed(true)}
         />
-      ) : null}
+      </div>
+    );
+  }
+
+  const style: CSSProperties = {
+    backgroundColor: book.color || "#6b6358",
+    backgroundImage:
+      "linear-gradient(165deg, rgba(255,255,255,.14), transparent 42%), linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.58))",
+  };
+
+  return (
+    <div className="bl-card-cover" style={style}>
+      <span className="bl-cover-fallback" aria-hidden>
+        <small>{book.author || folderLabel || book.category}</small>
+        <strong>{book.title || "Untitled"}</strong>
+      </span>
     </div>
   );
 }
@@ -158,10 +166,20 @@ export function PublicBookshelf() {
   const catalog = useMemo<ShelfItem[]>(() => {
     return bookshelfEntries.map((entry, i) => {
       const book = catalogEntryToBook(entry);
-      // Spine color + Open Library cover (art only — not a file sync)
       book.color = SPINE_COLORS[i % SPINE_COLORS.length];
+      // Amazon ASIN → product cover (matches the product page you link)
       if (entry.kind === "book") {
-        book.coverUrl = coverUrlFor(entry.title);
+        book.coverUrl = coverUrlForBook({
+          asin: entry.asin,
+          href: entry.href,
+          title: entry.title,
+        });
+        book.externalUrl = storeUrlForBook({
+          asin: entry.asin,
+          href: entry.href,
+          title: entry.title,
+          author: entry.source,
+        });
       }
       book.category = folderLabelFor(entry) as Book["category"];
       return { entry, book };
