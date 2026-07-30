@@ -4534,3 +4534,19 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 .pb-root .pb-cover-photo::after {
   display: none !important;
 }
+
+/* Public: greats (blogs) section ink on cream */
+.pb-root .bl-greats-h,
+.pb-root .bl-greats-card h3,
+.pb-root .bl-greats-card li a span {
+  color: #1a1612 !important;
+}
+.pb-root .bl-greats-head > div > span,
+.pb-root .bl-greats-head > small,
+.pb-root .bl-greats-home,
+.pb-root .bl-greats-card > header span {
+  color: #5c534a !important;
+}
+.pb-root .bl-greats-card li a:hover span {
+  color: #1a1612 !important;
+}

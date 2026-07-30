@@ -6,7 +6,12 @@
  * Click / Buy on Amazon → store link.
  */
 import { useMemo, useState, type CSSProperties } from "react";
-import { CaretRight, FolderSimple, MagnifyingGlass } from "@phosphor-icons/react";
+import {
+  ArrowSquareOut,
+  CaretRight,
+  FolderSimple,
+  MagnifyingGlass,
+} from "@phosphor-icons/react";
 import {
   bookshelfEntries,
   type BookshelfEntry,
@@ -20,6 +25,7 @@ import {
 } from "./booksStore";
 import { coverUrlForBook, storeUrlForBook } from "./amazon";
 import { catalogEntryToBook } from "./publicCatalog";
+import { GREATS_AUTHORS } from "./greatsBlogs";
 import "./books-library.css";
 
 type Filter = "all" | BookshelfKind | "faves";
@@ -43,7 +49,6 @@ const FOLDER_ACCENT: Record<string, string> = {
   "Philosophy & Spirituality": "#b89adc",
   "Music & Culture": "#e58fa3",
   Unsorted: "#8e98a6",
-  Blogs: "#d6b367",
   Papers: "#65c5a6",
   Podcasts: "#7eb8ff",
   Faves: "#d4bc82",
@@ -64,12 +69,11 @@ function buyUrl(entry: BookshelfEntry, book: Book): string {
 function buyLabel(kind: BookshelfKind): string {
   if (kind === "book") return "Buy on Amazon";
   if (kind === "paper") return "Read paper";
-  if (kind === "blog") return "Open essay";
   return "Listen";
 }
 
+/** Subject folders for books; papers/podcasts get kind shelves. Never blogs. */
 function folderLabelFor(entry: BookshelfEntry): string {
-  if (entry.kind === "blog") return "Blogs";
   if (entry.kind === "paper") return "Papers";
   if (entry.kind === "podcast") return "Podcasts";
   return String(categorizeBook(entry.title, entry.source));
@@ -163,35 +167,42 @@ export function PublicBookshelf() {
   /** Wonder default: folders open unless explicitly closed */
   const [openFolders, setOpenFolders] = useState<Record<string, boolean>>({});
 
+  /** Books / papers / podcasts only — never fake blog "book" covers */
   const catalog = useMemo<ShelfItem[]>(() => {
-    return bookshelfEntries.map((entry, i) => {
-      const book = catalogEntryToBook(entry);
-      book.color = SPINE_COLORS[i % SPINE_COLORS.length];
-      // Amazon ASIN → product cover (matches the product page you link)
-      if (entry.kind === "book") {
-        book.coverUrl = coverUrlForBook({
-          asin: entry.asin,
-          href: entry.href,
-          title: entry.title,
-        });
-        book.externalUrl = storeUrlForBook({
-          asin: entry.asin,
-          href: entry.href,
-          title: entry.title,
-          author: entry.source,
-        });
-      }
-      book.category = folderLabelFor(entry) as Book["category"];
-      return { entry, book };
-    });
+    return bookshelfEntries
+      .filter((entry) => entry.kind !== "blog")
+      .map((entry, i) => {
+        const book = catalogEntryToBook(entry);
+        book.color = SPINE_COLORS[i % SPINE_COLORS.length];
+        if (entry.kind === "book") {
+          book.coverUrl = coverUrlForBook({
+            asin: entry.asin,
+            href: entry.href,
+            title: entry.title,
+          });
+          book.externalUrl = storeUrlForBook({
+            asin: entry.asin,
+            href: entry.href,
+            title: entry.title,
+            author: entry.source,
+          });
+        }
+        book.category = folderLabelFor(entry) as Book["category"];
+        return { entry, book };
+      });
   }, []);
+
+  const blogPostCount = useMemo(
+    () => GREATS_AUTHORS.reduce((n, a) => n + a.posts.length, 0),
+    []
+  );
 
   const counts = useMemo(() => {
     const c = {
-      all: catalog.length,
+      all: catalog.length + blogPostCount,
       book: 0,
       paper: 0,
-      blog: 0,
+      blog: blogPostCount,
       podcast: 0,
       faves: 0,
     };
@@ -200,12 +211,14 @@ export function PublicBookshelf() {
       if (entry.favorite) c.faves += 1;
     }
     return c;
-  }, [catalog]);
+  }, [catalog, blogPostCount]);
 
   const filtered = useMemo(() => {
     const query = q.trim().toLowerCase();
     return catalog.filter(({ entry }) => {
       if (filter === "faves" && !entry.favorite) return false;
+      // blogs are not in the cover grid
+      if (filter === "blog") return false;
       if (filter !== "all" && filter !== "faves" && entry.kind !== filter) {
         return false;
       }
@@ -217,7 +230,31 @@ export function PublicBookshelf() {
     });
   }, [catalog, filter, q]);
 
+  /** Wonder: blogs are a link section below books — never a folder of covers */
+  const showBlogs = filter === "all" || filter === "blog";
+
+  const filteredGreats = useMemo(() => {
+    if (!showBlogs) return [];
+    const query = q.trim().toLowerCase();
+    if (!query) return GREATS_AUTHORS;
+    return GREATS_AUTHORS.map((author) => ({
+      ...author,
+      posts: author.posts.filter(
+        (p) =>
+          p.title.toLowerCase().includes(query) ||
+          author.name.toLowerCase().includes(query)
+      ),
+    })).filter(
+      (author) =>
+        author.posts.length > 0 ||
+        author.name.toLowerCase().includes(query)
+    );
+  }, [showBlogs, q]);
+
   const groups = useMemo<ShelfGroup[]>(() => {
+    // Blogs chip: only the greats link section (no book folders)
+    if (filter === "blog") return [];
+
     if (filter === "faves") {
       return filtered.length
         ? [
@@ -225,18 +262,6 @@ export function PublicBookshelf() {
               id: "faves",
               label: "Faves",
               accent: FOLDER_ACCENT.Faves,
-              items: filtered,
-            },
-          ]
-        : [];
-    }
-    if (filter === "blog") {
-      return filtered.length
-        ? [
-            {
-              id: "blogs",
-              label: "Blogs",
-              accent: FOLDER_ACCENT.Blogs,
               items: filtered,
             },
           ]
@@ -267,7 +292,7 @@ export function PublicBookshelf() {
         : [];
     }
 
-    // Books / All — Wonder-style subject folders
+    // Books / All — subject folders only. Blogs are never folders (links below).
     const map = new Map<string, ShelfItem[]>();
     for (const item of filtered) {
       const label = folderLabelFor(item.entry);
@@ -276,7 +301,7 @@ export function PublicBookshelf() {
       map.set(label, list);
     }
 
-    const order = [...CATEGORY_ORDER, "Blogs", "Papers", "Podcasts"];
+    const order = [...CATEGORY_ORDER, "Papers", "Podcasts"];
     const out: ShelfGroup[] = [];
     for (const label of order) {
       const items = map.get(label);
@@ -303,6 +328,7 @@ export function PublicBookshelf() {
   const chipCount = (id: Filter) => {
     if (id === "all") return counts.all;
     if (id === "faves") return counts.faves;
+    if (id === "blog") return GREATS_AUTHORS.length; // sources, like Wonder
     return counts[id];
   };
 
@@ -322,7 +348,7 @@ export function PublicBookshelf() {
                   <b>{counts.book}</b> books
                 </span>
                 <span>
-                  <b>{counts.blog}</b> blogs
+                  <b>{GREATS_AUTHORS.length}</b> blog sources
                 </span>
                 <span>
                   <b>{counts.faves}</b> faves
@@ -359,75 +385,162 @@ export function PublicBookshelf() {
           </form>
         </div>
 
-        {groups.length === 0 ? (
+        {groups.length === 0 && !showBlogs ? (
           <p className="bl-empty-all">
             {q ? "No matches." : "Nothing in this section yet."}
           </p>
-        ) : (
-          groups.map((group) => {
-            const expanded = isExpanded(group.id);
-            return (
-              <section
-                key={group.id}
-                className={`bl-shelf${expanded ? " is-open" : ""}`}
-                style={
-                  {
-                    "--bl-folder-accent": group.accent,
-                    "--bl-folder-wash": `${group.accent}18`,
-                  } as CSSProperties
-                }
-              >
-                {/* Exact Wonder folder row */}
-                <div className="bl-folder-row">
-                  <button
-                    type="button"
-                    className="bl-folder"
-                    aria-expanded={expanded}
-                    onClick={() =>
-                      setOpenFolders((current) => ({
-                        ...current,
-                        // Wonder toggle: false means closed; missing/true = open
-                        [group.id]: current[group.id] === false,
-                      }))
-                    }
-                  >
-                    <CaretRight
-                      className="bl-folder-caret"
-                      size={14}
-                      aria-hidden
-                    />
-                    <FolderSimple
-                      className="bl-folder-icon"
-                      size={22}
-                      weight="fill"
-                      aria-hidden
-                      style={{ color: group.accent, fill: group.accent }}
-                    />
-                    <span className="bl-folder-copy">
-                      <strong>{group.label}</strong>
-                      <small>
-                        {group.items.length}{" "}
-                        {group.items.length === 1 ? "book" : "books"}
-                      </small>
-                    </span>
-                  </button>
-                </div>
+        ) : null}
 
-                {expanded ? (
-                  <div className="bl-grid">
-                    {group.items.map((item) => (
-                      <CatalogCard
-                        key={item.entry.id}
-                        item={item}
-                        folderLabel={group.label}
-                      />
-                    ))}
-                  </div>
-                ) : null}
-              </section>
-            );
-          })
-        )}
+        {groups.map((group) => {
+          const expanded = isExpanded(group.id);
+          return (
+            <section
+              key={group.id}
+              className={`bl-shelf${expanded ? " is-open" : ""}`}
+              style={
+                {
+                  "--bl-folder-accent": group.accent,
+                  "--bl-folder-wash": `${group.accent}18`,
+                } as CSSProperties
+              }
+            >
+              <div className="bl-folder-row">
+                <button
+                  type="button"
+                  className="bl-folder"
+                  aria-expanded={expanded}
+                  onClick={() =>
+                    setOpenFolders((current) => ({
+                      ...current,
+                      [group.id]: current[group.id] === false,
+                    }))
+                  }
+                >
+                  <CaretRight
+                    className="bl-folder-caret"
+                    size={14}
+                    aria-hidden
+                  />
+                  <FolderSimple
+                    className="bl-folder-icon"
+                    size={22}
+                    weight="fill"
+                    aria-hidden
+                    style={{ color: group.accent, fill: group.accent }}
+                  />
+                  <span className="bl-folder-copy">
+                    <strong>{group.label}</strong>
+                    <small>
+                      {group.items.length}{" "}
+                      {group.items.length === 1 ? "book" : "books"}
+                    </small>
+                  </span>
+                </button>
+              </div>
+
+              {expanded ? (
+                <div className="bl-grid">
+                  {group.items.map((item) => (
+                    <CatalogCard
+                      key={item.entry.id}
+                      item={item}
+                      folderLabel={group.label}
+                    />
+                  ))}
+                </div>
+              ) : null}
+            </section>
+          );
+        })}
+
+        {/* Wonder: blogs are links below books — not covers in a folder */}
+        {showBlogs && filteredGreats.length > 0 ? (
+          <section
+            className={`bl-greats${filter === "all" ? " bl-greats-after-books" : ""}`}
+            aria-label="Blogs and essays"
+          >
+            <div className="bl-greats-head">
+              <div>
+                <span>Writing worth returning to</span>
+                <h2 className="bl-greats-h">Blogs &amp; essays</h2>
+              </div>
+              <small>
+                {filteredGreats.length} source
+                {filteredGreats.length === 1 ? "" : "s"}
+              </small>
+            </div>
+            <div className="bl-greats-grid">
+              {filteredGreats.map((author) => (
+                <article
+                  key={author.id}
+                  className="bl-greats-card"
+                  style={
+                    { "--bl-blog-accent": author.accent } as CSSProperties
+                  }
+                >
+                  <header>
+                    <div>
+                      <span>{author.kind}</span>
+                      <h3>{author.name}</h3>
+                    </div>
+                    <a
+                      href={author.homeUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={`Open ${author.name}`}
+                      aria-label={`Open ${author.name}`}
+                    >
+                      <ArrowSquareOut size={16} aria-hidden />
+                    </a>
+                  </header>
+                  {author.posts.length ? (
+                    <ul>
+                      {author.posts.map((post) => (
+                        <li key={post.id}>
+                          <a
+                            href={post.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <span>{post.title}</span>
+                            <CaretRight size={13} weight="bold" aria-hidden />
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <a
+                      className="bl-greats-own-blog"
+                      href={author.homeUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Open {author.name}&apos;s writing
+                      <CaretRight size={13} weight="bold" aria-hidden />
+                    </a>
+                  )}
+                  <a
+                    className="bl-greats-home"
+                    href={author.homeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {(() => {
+                      try {
+                        return new URL(author.homeUrl).hostname.replace(
+                          /^www\./,
+                          ""
+                        );
+                      } catch {
+                        return author.homeUrl;
+                      }
+                    })()}
+                  </a>
+                </article>
+              ))}
+            </div>
+          </section>
+        ) : null}
       </div>
     </div>
   );
