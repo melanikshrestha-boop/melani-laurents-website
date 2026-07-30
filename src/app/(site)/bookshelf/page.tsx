@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { BookshelfView } from "@/components/BookshelfView";
-import { getBookshelfEntries } from "@/data/bookshelf";
+import { WonderBookshelfClient } from "@/wonder-bookshelf/WonderBookshelfClient";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -10,11 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function BookshelfPage() {
-  const entries = getBookshelfEntries();
-
   return (
     <div className="bookshelf-page bookshelf-page--wonder">
-      <BookshelfView entries={entries} />
+      <WonderBookshelfClient />
       <div className="bookshelf-page__home">
         <Link href="/">← Back home</Link>
       </div>
