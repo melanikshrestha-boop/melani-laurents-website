@@ -4395,6 +4395,31 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
     radial-gradient(90% 46% at 50% -8%, rgba(167, 139, 212, 0.08), transparent 65%),
     linear-gradient(180deg, #fbf7ef, #f0e8da);
   padding: 0.25rem 0 0.75rem;
+  /* Fun interaction: highlight anything (xAI-style playfulness) */
+  -webkit-user-select: text;
+  user-select: text;
+  cursor: text;
+}
+
+/* Light pink translucent selection — letters stay readable */
+.bookshelf-page--wonder ::selection {
+  background: rgba(244, 164, 188, 0.42);
+  color: #1a1214;
+  text-shadow: none;
+}
+.bookshelf-page--wonder ::-moz-selection {
+  background: rgba(244, 164, 188, 0.42);
+  color: #1a1214;
+  text-shadow: none;
+}
+/* Keep controls clickable; still allow selecting their labels */
+.bookshelf-page--wonder button,
+.bookshelf-page--wonder a,
+.bookshelf-page--wonder .bl-folder,
+.bookshelf-page--wonder .bl-chip {
+  cursor: pointer;
+  -webkit-user-select: text;
+  user-select: text;
 }
 .bl-public-wrap {
   width: min(100% - 1.5rem, 78rem);

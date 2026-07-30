@@ -36,6 +36,9 @@ You are **UI polish** for the public Bookshelf (not the whole site unless asked)
 - **Single-spaced everything** on the bookshelf page: line-height ~1.15, tight
   folder gaps (~0.2rem), compressed greats/cards/chips — no double-spaced air
 - No dividing-line clutter between folders
+- **Selection highlight:** light pink translucent (`rgba(244, 164, 188, ~0.42)`)
+  with dark ink so letters stay readable; `user-select: text` on the whole
+  bookshelf page so people can highlight anything for fun (xAI-style)
 
 ## Rules
 - Smallest CSS/TSX diff that ships the request
