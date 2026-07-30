@@ -16,7 +16,10 @@ export function Footer() {
     pathname.startsWith("/podcast/") ||
     pathname === "/youtube" ||
     pathname.startsWith("/youtube/");
-  if (pathname === "/") return null;
+  // Home + Bookshelf: no black footer chrome (shelf is a full reading surface)
+  if (pathname === "/" || pathname === "/bookshelf" || pathname.startsWith("/bookshelf/")) {
+    return null;
+  }
 
   return (
     <footer
