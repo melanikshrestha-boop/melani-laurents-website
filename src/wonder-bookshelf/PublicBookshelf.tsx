@@ -11,6 +11,7 @@ import {
   ArrowSquareOut,
   CaretRight,
   FolderSimple,
+  MagnifyingGlass,
 } from "@phosphor-icons/react";
 import {
   bookshelfEntries,
@@ -26,6 +27,7 @@ import {
 import { coverUrlForBook, storeUrlForBook } from "./amazon";
 import { catalogEntryToBook } from "./publicCatalog";
 import { GREATS_AUTHORS } from "./greatsBlogs";
+import { MinimalIcon } from "./MinimalIcon";
 import "./books-library.css";
 
 /** Public chips only — no empty Papers/Podcasts until real content exists */
@@ -210,9 +212,14 @@ function CatalogCard({
 
 export function PublicBookshelf() {
   const [filter, setFilter] = useState<Filter>("all");
-  /** Start closed — one tap/click toggles open or closed (no hover-only chrome) */
+  /**
+   * Wonder semantics: folders default OPEN.
+   * openFolders[id] === false → closed; undefined/true → open.
+   */
   const [openFolders, setOpenFolders] = useState<Record<string, boolean>>({});
   const [quoteIndex, setQuoteIndex] = useState(0);
+  /** Local filter of public catalog titles/authors — same control as Wonder */
+  const [q, setQ] = useState("");
 
   /** Books / papers / podcasts only — never fake blog "book" covers */
   const catalog = useMemo<ShelfItem[]>(() => {
@@ -260,23 +267,33 @@ export function PublicBookshelf() {
     return c;
   }, [catalog, blogPostCount]);
 
+  const query = q.trim().toLowerCase();
+
   const filtered = useMemo(() => {
-    return catalog.filter(({ entry }) => {
+    return catalog.filter(({ entry, book }) => {
       if (filter === "faves" && !entry.favorite) return false;
       // blogs are not in the cover grid
       if (filter === "blog") return false;
       if (filter === "book" && entry.kind !== "book") return false;
+      if (query) {
+        const hay = `${book.title} ${book.author || ""} ${entry.source || ""}`.toLowerCase();
+        if (!hay.includes(query)) return false;
+      }
       return true;
     });
-  }, [catalog, filter]);
+  }, [catalog, filter, query]);
 
   /** Wonder: blogs are a link section below books — never a folder of covers */
-  const showBlogs = filter === "all" || filter === "blog";
+  const showBlogs = (filter === "all" || filter === "blog") && !query;
 
   const filteredGreats = useMemo(() => {
     if (!showBlogs) return [];
-    return GREATS_AUTHORS;
-  }, [showBlogs]);
+    if (!query) return GREATS_AUTHORS;
+    return GREATS_AUTHORS.filter((a) => {
+      const hay = `${a.name} ${a.posts.map((p) => p.title).join(" ")}`.toLowerCase();
+      return hay.includes(query);
+    });
+  }, [showBlogs, query]);
 
   const groups = useMemo<ShelfGroup[]>(() => {
     // Blogs chip: only the greats link section (no book folders)
@@ -326,48 +343,67 @@ export function PublicBookshelf() {
     return 0;
   };
 
-  /** Closed by default; true only after a tap opens the drive */
-  const isExpanded = (id: string) => openFolders[id] === true;
+  /** Wonder: open unless explicitly closed; search forces open */
+  const isExpanded = (id: string) =>
+    openFolders[id] !== false || Boolean(query);
 
   const quote = SHELF_QUOTES[quoteIndex % SHELF_QUOTES.length];
   const quoteTotal = SHELF_QUOTES.length;
 
   return (
     <div className="bl-public-wrap pb-root">
+      {/* Quote strip above the cream card — same placement as Wonder shell */}
+      <section className="pb-quote" aria-label="Shelf quote">
+        <blockquote className="pb-quote__text">
+          <p>“{quote.text}”</p>
+          <cite className="pb-quote__author">{quote.author}</cite>
+        </blockquote>
+        <div className="pb-quote__controls">
+          <button
+            type="button"
+            className="pb-quote__refresh"
+            aria-label="Next quote"
+            title="Next quote"
+            onClick={() =>
+              setQuoteIndex((i) => (i + 1) % SHELF_QUOTES.length)
+            }
+          >
+            <ArrowClockwise size={16} weight="bold" aria-hidden />
+          </button>
+          <span className="pb-quote__index" aria-live="polite">
+            {(quoteIndex % quoteTotal) + 1}/{quoteTotal}
+          </span>
+        </div>
+      </section>
+
+      {/* Wonder light panel — same structure as BooksLibrary list view */}
       <div className="bl" data-books-theme="light">
         <header className="bl-head">
           <div className="bl-head-main">
             <div className="bl-head-copy">
-              <h1 className="bl-title">Bookshelf</h1>
+              <h1 className="bl-title">
+                <MinimalIcon name="books" size={22} />
+                Bookshelf
+              </h1>
+              <div className="bl-stats" aria-label="Shelf totals">
+                <span>
+                  <b>{counts.book}</b> books
+                </span>
+                <span>
+                  <b>{GREATS_AUTHORS.length}</b> blogs
+                </span>
+                <span>
+                  <b>{counts.faves}</b> faves
+                </span>
+                <span>
+                  <b>{blogPostCount}</b> essays
+                </span>
+              </div>
             </div>
           </div>
         </header>
 
-        {/* Quote generator — rotate for fun, like a personal board */}
-        <section className="pb-quote" aria-label="Shelf quote">
-          <blockquote className="pb-quote__text">
-            <p>“{quote.text}”</p>
-            <cite className="pb-quote__author">{quote.author}</cite>
-          </blockquote>
-          <div className="pb-quote__controls">
-            <button
-              type="button"
-              className="pb-quote__refresh"
-              aria-label="Next quote"
-              title="Next quote"
-              onClick={() =>
-                setQuoteIndex((i) => (i + 1) % SHELF_QUOTES.length)
-              }
-            >
-              <ArrowClockwise size={16} weight="bold" aria-hidden />
-            </button>
-            <span className="pb-quote__index" aria-live="polite">
-              {(quoteIndex % quoteTotal) + 1}/{quoteTotal}
-            </span>
-          </div>
-        </section>
-
-        <div className="bl-filter" aria-label="Sections">
+        <div className="bl-filter" aria-label="Library sections">
           {CHIPS.map(({ id, label }) => (
             <button
               key={id}
@@ -381,17 +417,37 @@ export function PublicBookshelf() {
           ))}
         </div>
 
+        {filter !== "blog" ? (
+          <div className="bl-toolbar">
+            <form
+              className="bl-search-wrap"
+              onSubmit={(event) => event.preventDefault()}
+            >
+              <MagnifyingGlass size={15} aria-hidden />
+              <input
+                className="bl-search"
+                value={q}
+                aria-label="Search bookshelf"
+                onChange={(event) => setQ(event.target.value)}
+                placeholder="Search titles, authors, notes, or highlights"
+              />
+            </form>
+          </div>
+        ) : null}
+
         {groups.length === 0 &&
         !(filter === "faves" && filtered.length > 0) &&
         !showBlogs ? (
           <p className="bl-empty-all">
-            {filter === "faves"
-              ? "Almost never a fave — when one sticks, it lands here."
-              : "Nothing in this section yet."}
+            {query
+              ? "No books match that search."
+              : filter === "faves"
+                ? "Almost never a fave — when one sticks, it lands here."
+                : "Nothing in this section yet."}
           </p>
         ) : null}
 
-        {/* Faves: flat grid only — no nested folder toggle (they're already rare picks) */}
+        {/* Faves: flat grid only — rare picks, no folder chrome */}
         {filter === "faves" && filtered.length > 0 ? (
           <section className="bl-shelf is-open pb-faves-flat" aria-label="Faves">
             <div className="bl-grid">
@@ -406,67 +462,69 @@ export function PublicBookshelf() {
           </section>
         ) : null}
 
-        {/* Wonder drive UI (spacing/fonts) — public: no edit pencils; count is n = x */}
-        {groups.length > 0 ? (
-          <div className="pb-drives" role="list">
-            {groups.map((group) => {
-              const expanded = isExpanded(group.id);
-              const n = group.items.length;
-              return (
-                <section
-                  key={group.id}
-                  role="listitem"
-                  className={`bl-shelf pb-drive${expanded ? " is-open" : ""}`}
-                  style={
-                    {
-                      "--bl-folder-accent": group.accent,
-                      "--bl-folder-wash": `${group.accent}18`,
-                    } as CSSProperties
+        {/* Wonder drive rows — caret + icon + title + “N books”; no rename pencils */}
+        {groups.map((group) => {
+          const expanded = isExpanded(group.id);
+          const n = group.items.length;
+          return (
+            <section
+              key={group.id}
+              className={`bl-shelf pb-drive${expanded ? " is-open" : ""}`}
+              style={
+                {
+                  "--bl-folder-accent": group.accent,
+                  "--bl-folder-wash": `${group.accent}18`,
+                } as CSSProperties
+              }
+            >
+              <div className="bl-folder-row">
+                <button
+                  type="button"
+                  className="bl-folder"
+                  aria-expanded={expanded}
+                  onClick={() =>
+                    setOpenFolders((current) => ({
+                      ...current,
+                      // Wonder toggle: open by default; click sets false/true flip
+                      [group.id]: current[group.id] === false,
+                    }))
                   }
                 >
-                  <div className="bl-folder-row">
-                    <button
-                      type="button"
-                      className="bl-folder pb-drive-btn"
-                      aria-expanded={expanded}
-                      onClick={() =>
-                        setOpenFolders((current) => ({
-                          ...current,
-                          [group.id]: !current[group.id],
-                        }))
-                      }
-                    >
-                      <FolderSimple
-                        className="bl-folder-icon"
-                        size={22}
-                        weight="fill"
-                        aria-hidden
-                        style={{ color: group.accent, fill: group.accent }}
-                      />
-                      <span className="bl-folder-copy pb-drive-copy">
-                        <strong>{group.label}</strong>
-                        {/* Public count format: n = x (not “14 books”) */}
-                        <small>n = {n}</small>
-                      </span>
-                    </button>
-                  </div>
+                  <CaretRight
+                    className="bl-folder-caret"
+                    size={14}
+                    aria-hidden
+                  />
+                  <FolderSimple
+                    className="bl-folder-icon"
+                    size={22}
+                    weight="fill"
+                    aria-hidden
+                    style={{ color: group.accent, fill: group.accent }}
+                  />
+                  <span className="bl-folder-copy">
+                    <strong>{group.label}</strong>
+                    <small>
+                      {n} {n === 1 ? "book" : "books"}
+                    </small>
+                  </span>
+                </button>
+              </div>
 
-                  {expanded ? (
-                    <div className="bl-grid">
-                      {group.items.map((item) => (
-                        <CatalogCard
-                          key={item.entry.id}
-                          item={item}
-                          folderLabel={group.label}
-                        />
-                      ))}
-                    </div>
-                  ) : null}
-                </section>
-              );
-            })}
-          </div>
-        ) : null}
+              {expanded ? (
+                <div className="bl-grid">
+                  {group.items.map((item) => (
+                    <CatalogCard
+                      key={item.entry.id}
+                      item={item}
+                      folderLabel={group.label}
+                    />
+                  ))}
+                </div>
+              ) : null}
+            </section>
+          );
+        })}
 
         {/* Wonder: blogs are links below books — not covers in a folder */}
         {showBlogs && filteredGreats.length > 0 ? (

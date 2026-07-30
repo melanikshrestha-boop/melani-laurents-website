@@ -4388,14 +4388,13 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   }
 }
 
-/* Public page chrome — tight, single-spaced shelf */
+/* Public page — Wonder Bookshelf UI (exact look + interaction) */
 .bookshelf-page--wonder {
   min-height: calc(100vh - 3.5rem);
   background:
     radial-gradient(90% 46% at 50% -8%, rgba(167, 139, 212, 0.08), transparent 65%),
     linear-gradient(180deg, #fbf7ef, #f0e8da);
-  padding: 0.1rem 0 0.5rem;
-  /* Fun interaction: highlight anything (xAI-style playfulness) */
+  padding: 0.35rem 0 1rem;
   -webkit-user-select: text;
   user-select: text;
   cursor: text;
@@ -4412,318 +4411,353 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   color: #1a1214;
   text-shadow: none;
 }
-/* Keep controls clickable; still allow selecting their labels */
 .bookshelf-page--wonder button,
 .bookshelf-page--wonder a,
 .bookshelf-page--wonder .bl-folder,
-.bookshelf-page--wonder .bl-chip {
+.bookshelf-page--wonder .bl-chip,
+.bookshelf-page--wonder .bl-search {
   cursor: pointer;
   -webkit-user-select: text;
   user-select: text;
 }
+.bookshelf-page--wonder .bl-search {
+  cursor: text;
+}
+
 .bl-public-wrap {
   width: min(100% - 1.5rem, 78rem);
-  margin: 0.15rem auto 0.5rem;
+  margin: 0.5rem auto 1rem;
 }
-.bl-public-wrap .bl {
-  min-height: calc(100svh - 5rem);
-  padding: 6px 14px 12px;
+
+/* Match Wonder .bl pad (10px 24px 64px) + light cream panel */
+.pb-root.bl-public-wrap .bl[data-books-theme="light"] {
+  min-height: calc(100svh - 6rem);
+  padding: 10px 24px 64px;
   box-sizing: border-box;
-  line-height: 1.05;
+  border-radius: 24px;
+  --bl-ink: #29251f;
+  --bl-soft: #71695f;
+  --bl-faint: #9a9084;
+  --books-text: #29251f;
+  --books-muted: #71695f;
+  --books-faint: #9a9084;
+  --books-line: rgba(65, 51, 36, 0.11);
+  --books-surface: rgba(255, 255, 255, 0.54);
+  color: #29251f;
 }
+
 .bookshelf-page__home {
   width: min(100% - 1.5rem, 78rem);
-  margin: 0 auto 0.5rem;
+  margin: 0 auto 0.75rem;
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  line-height: 1.05;
+  line-height: 1.15;
 }
 .bookshelf-page__home a {
   color: #71695f;
   text-decoration: none;
 }
 
-/* ——— Public catalog: readable ink on cream (no washed-out grey text) ——— */
-.pb-root.bl-public-wrap .bl[data-books-theme="light"] {
-  --bl-ink: #1a1612;
-  --bl-soft: #3d3630;
-  --bl-faint: #5c534a;
-  --books-text: #1a1612;
-  --books-muted: #3d3630;
-  --books-faint: #5c534a;
-  color: #1a1612;
-}
-
-.pb-root .bl-title,
-.pb-root .bl-card-title,
-.pb-root .bl-folder strong,
-.pb-root .bl-stats b {
-  color: #1a1612 !important;
-}
-
-/*
- * celine-ui density lock
- * Root cause of fat rows was base `.bl-folder { min-height: 46px }` + loose lh/margins.
- * Force true single-space: lh ~1.0–1.1, zero shelf gaps, compact drive rows.
- */
-.pb-root,
-.pb-root .bl {
-  line-height: 1.05 !important;
-}
-.pb-root p,
-.pb-root li,
-.pb-root span,
-.pb-root small,
-.pb-root strong,
-.pb-root a,
-.pb-root button,
-.pb-root h1,
-.pb-root h2,
-.pb-root h3,
-.pb-root cite,
-.pb-root em {
-  line-height: 1.05 !important;
-  margin-block: 0;
-}
-
-/* Tagline removed from product — never show if leftover markup appears */
+/* Tagline removed */
 .pb-root .pb-shelf-tagline,
 .pb-root .bl-tagline {
   display: none !important;
 }
 
-.pb-root .bl-head {
-  margin: 0 0 2px !important;
-  padding: 0 !important;
-  border: 0 !important;
-}
-.pb-root .bl-head-main {
-  gap: 4px !important;
-  align-items: baseline !important;
-}
-.pb-root .bl-head-copy {
-  width: 100%;
-  max-width: none;
-  flex: 1 1 100%;
-  gap: 0 !important;
-  display: block !important;
-}
-.pb-root .bl-title {
-  margin: 0 !important;
-  padding: 0 !important;
-  font-size: 1.55rem !important;
-  line-height: 1 !important;
-  letter-spacing: -0.01em;
-}
-
-/* ——— Quote generator (top of shelf) ——— */
-.pb-root .pb-quote {
+/* ——— Quote strip (above cream card, Wonder shell placement) ——— */
+.pb-root > .pb-quote {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 8px;
-  margin: 2px 0 4px !important;
-  padding: 0 !important;
+  gap: 16px;
+  margin: 0 0 14px;
+  padding: 4px 8px 10px;
 }
 .pb-root .pb-quote__text {
-  margin: 0 !important;
+  margin: 0;
   flex: 1 1 auto;
   min-width: 0;
 }
 .pb-root .pb-quote__text p {
-  margin: 0 !important;
-  color: #2a2420 !important;
-  font-size: 0.9rem !important;
+  margin: 0;
+  color: #29251f;
+  font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif;
+  font-size: 1.05rem;
   font-style: italic;
   font-weight: 400;
-  /* Multi-line quote: still single-space feel, not 1.35 loose body */
-  line-height: 1.15 !important;
+  line-height: 1.45;
 }
 .pb-root .pb-quote__author {
   display: block;
-  margin: 1px 0 0 !important;
-  color: #3b7ea8 !important;
-  font-size: 0.8rem !important;
+  margin-top: 6px;
+  color: #3b7ea8;
+  font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif;
+  font-size: 0.95rem;
   font-style: normal;
   font-weight: 500;
-  line-height: 1.05 !important;
+  line-height: 1.2;
   text-decoration: none;
 }
 .pb-root .pb-quote__controls {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0 !important;
+  gap: 2px;
   flex: 0 0 auto;
-  padding-top: 0 !important;
+  padding-top: 2px;
 }
 .pb-root .pb-quote__refresh {
   display: grid;
   place-items: center;
-  width: 24px;
-  height: 24px;
-  margin: 0 !important;
-  padding: 0 !important;
+  width: 28px;
+  height: 28px;
+  margin: 0;
+  padding: 0;
   border: 0;
-  border-radius: 5px;
+  border-radius: 6px;
   background: transparent;
-  color: #6b6358 !important;
+  color: #71695f;
   cursor: pointer;
-  line-height: 1 !important;
 }
 .pb-root .pb-quote__refresh:hover {
   background: rgba(244, 164, 188, 0.22);
-  color: #1a1214 !important;
+  color: #1a1214;
 }
 .pb-root .pb-quote__index {
-  color: #8a8278 !important;
-  font-size: 10px !important;
+  color: #9a9084;
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-size: 11px;
   font-variant-numeric: tabular-nums;
-  line-height: 1 !important;
+  line-height: 1.1;
   user-select: none;
 }
 
-/* Filter chips — compact single-line pills */
-.pb-root .bl-filter {
-  display: flex !important;
-  flex-wrap: wrap;
+/* Title + stats — Wonder header */
+.pb-root .bl-head {
+  margin-bottom: 8px;
+  padding-bottom: 0;
+  border: 0;
+}
+.pb-root .bl-title {
+  display: flex;
   align-items: center;
-  gap: 2px !important;
-  margin: 2px 0 4px !important;
-  padding: 0 !important;
+  gap: 10px;
+  margin: 0;
+  color: #29251f !important;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1;
 }
+.pb-root .bl-title svg,
+.pb-root .bl-title .min-icon {
+  opacity: 0.78;
+  flex: 0 0 auto;
+}
+.pb-root .bl-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 14px;
+  margin-top: 6px;
+  color: #9a9084 !important;
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-size: 11px;
+}
+.pb-root .bl-stats b {
+  color: #29251f !important;
+  font-weight: 600;
+}
+
+/* Chips — Wonder underline tabs */
+.pb-root .bl-filter {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  margin: 0 0 18px;
+  padding: 0;
+  overflow-x: auto;
+  border: 0;
+  background: transparent;
+  scrollbar-width: none;
+}
+.pb-root .bl-filter::-webkit-scrollbar { display: none; }
 .pb-root .bl-chip {
-  min-height: 0 !important;
-  height: auto !important;
-  padding: 2px 7px !important;
-  line-height: 1.05 !important;
-  font-size: 11px !important;
+  display: inline-flex;
+  min-height: 32px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 3px 0 7px !important;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  border-radius: 0;
+  background: transparent !important;
+  color: #71695f !important;
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-size: 11px;
+  cursor: pointer;
 }
-.pb-root .bl-chip span,
 .pb-root .bl-chip em {
-  line-height: 1.05 !important;
+  color: #9a9084 !important;
+  font-size: 9px;
+  font-style: normal;
+  font-variant-numeric: tabular-nums;
 }
-.pb-root .bl-card-author,
-.pb-root .bl-stats,
-.pb-root .bl-folder small,
-.pb-root .bl-chip {
-  color: #3d3630 !important;
+.pb-root .bl-chip:hover,
+.pb-root .bl-chip.is-on {
+  border-color: currentColor;
+  background: transparent !important;
+  color: #29251f !important;
 }
-.pb-root .bl-chip.is-on,
 .pb-root .bl-chip.is-on em {
-  color: #1a1612 !important;
+  color: #29251f !important;
 }
-.pb-root .bl-chip em {
-  color: #5c534a !important;
+
+/* Search — Wonder pill */
+.pb-root .bl-toolbar {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr);
+  gap: 9px;
+  margin-bottom: 10px;
 }
+.pb-root .bl-search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  height: 38px;
+  margin: 0;
+  padding: 0 6px 0 11px;
+  border: 1px solid rgba(65, 51, 36, 0.11);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.54);
+  color: #9a9084;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset;
+}
+.pb-root .bl-search-wrap:focus-within {
+  border-color: rgba(167, 139, 212, 0.48);
+}
+.pb-root .bl-search {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #29251f;
+  font-size: 13px;
+  font-family: inherit;
+}
+.pb-root .bl-search::placeholder {
+  color: #9a9084;
+}
+
 .pb-root .bl-empty-all {
-  color: #3d3630 !important;
-  margin: 2px 0 !important;
-  line-height: 1.05 !important;
+  color: #71695f;
+  margin: 8px 0;
 }
 
 /*
- * Wonder drive UI (exact spacing + fonts) — public copy only.
- * Measured from Wonder Bookshelf light/dark folder rows:
- *   min-height 46px · pad 8px 7px · gap 8px · strong 14/500 · small 10px
- * Count text is “n = x” (not “14 books”). No edit pencils.
+ * Drives — 100% Wonder folder rows
+ * caret + icon 22 + strong 14/500 + small 10 “N books”
+ * min-height 46 · pad 8/7 · gap 8 · copy grid gap 0
  */
-.pb-root .pb-drives {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-.pb-root .pb-drives > .pb-drive,
-.pb-root .pb-drives > .bl-shelf {
-  margin: 0 !important;
-  padding: 0 !important;
+.pb-root .bl-shelf,
+.pb-root .bl-shelf:last-of-type,
+.pb-root .bl-shelf.pb-drive {
+  margin: 0;
+  padding: 0;
   border: 0 !important;
   border-top: 0 !important;
   border-bottom: 0 !important;
-  flex: 0 0 auto;
+  box-shadow: none;
+  outline: none;
 }
-.pb-root .pb-drive .bl-folder-row {
-  display: flex !important;
-  align-items: stretch !important;
-  margin: 0 !important;
-  padding: 0 !important;
+.pb-root .bl-shelf::before,
+.pb-root .bl-shelf:hover::before,
+.pb-root .bl-shelf.is-open::before {
+  display: none !important;
+  content: none !important;
 }
-.pb-root .pb-drive-btn,
-.pb-root .bl-folder.pb-drive-btn {
+.pb-root .bl-folder-row {
+  display: flex;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+}
+.pb-root .bl-folder {
   display: flex !important;
   width: 100%;
   align-items: center !important;
   gap: 8px !important;
   min-height: 46px !important;
   height: auto !important;
-  margin: 0 !important;
+  margin: 0;
   padding: 8px 7px !important;
   border: 0 !important;
   border-radius: 0;
   background: transparent !important;
-  cursor: pointer !important;
-  text-align: left !important;
-  /* Match Wonder folder serif voice */
+  color: #29251f !important;
+  text-align: left;
+  cursor: pointer;
   font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif !important;
-  line-height: 1 !important;
   transition: background 150ms ease;
 }
-.pb-root .pb-drive-btn:hover,
-.pb-root .pb-drive.is-open .pb-drive-btn {
+.pb-root .bl-folder:hover,
+.pb-root .bl-shelf.is-open .bl-folder {
   background: color-mix(in srgb, var(--bl-folder-accent) 7%, transparent) !important;
 }
-.pb-root .pb-drive-btn:active {
-  background: color-mix(in srgb, var(--bl-folder-accent) 12%, transparent) !important;
+.pb-root .bl-folder-caret {
+  display: inline-flex !important;
+  flex: 0 0 auto;
+  color: #9a9084 !important;
+  transition: transform 140ms ease;
 }
-/* Two-line copy: title over “n = x” (Wonder grid, gap 0) */
-.pb-root .pb-drive-copy,
-.pb-root .bl-folder-copy.pb-drive-copy {
+.pb-root .bl-shelf.is-open .bl-folder-caret {
+  transform: rotate(90deg);
+}
+.pb-root .bl-folder-icon {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  color: var(--bl-folder-accent) !important;
+  fill: var(--bl-folder-accent) !important;
+  line-height: 1;
+}
+.pb-root .bl-folder-copy {
   display: grid !important;
   gap: 0 !important;
   min-width: 0;
   text-align: left;
-  line-height: 1 !important;
 }
-.pb-root .pb-drive-copy strong {
-  display: block !important;
-  font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif !important;
+.pb-root .bl-folder strong {
+  display: block;
   font-size: 14px !important;
   font-weight: 500 !important;
   line-height: 1 !important;
   color: #29251f !important;
-  letter-spacing: 0 !important;
+  letter-spacing: 0;
 }
-.pb-root .pb-drive-copy small {
-  display: block !important;
-  font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif !important;
+.pb-root .bl-folder small {
+  display: block;
+  margin: 0 !important;
   font-size: 10px !important;
   font-weight: 400 !important;
   line-height: 1 !important;
   color: #9a9084 !important;
-  margin: 0 !important;
-  letter-spacing: 0 !important;
 }
-/* Public: no caret / no rename pencil */
-.pb-root .pb-drive .bl-folder-caret,
-.pb-root .pb-drive-btn .bl-folder-caret,
-.pb-root .pb-drive .bl-folder-edit {
+/* Public: no rename pencil */
+.pb-root .bl-folder-edit {
   display: none !important;
 }
-.pb-root .pb-drive .bl-folder-icon,
-.pb-root .pb-drive-btn .bl-folder-icon {
-  flex: 0 0 auto;
-  width: 22px !important;
-  height: 22px !important;
-  font-size: 22px !important;
-  line-height: 1 !important;
-  color: var(--bl-folder-accent) !important;
-  fill: var(--bl-folder-accent) !important;
+
+/* Open cover grid under drive */
+.pb-root .bl-shelf > .bl-grid {
+  padding: 7px 4px 18px 36px !important;
+  gap: 22px 16px;
 }
 
-/* Card is a link — no detail page */
+/* Card link */
 .pb-root a.bl-card.pb-card-link {
   display: block;
   width: 100%;
@@ -4737,136 +4771,17 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   cursor: pointer;
 }
 .pb-root .bl-card-title {
-  margin: 1px 0 0 !important;
-  line-height: 1.05 !important;
+  margin: 4px 0 0;
+  color: #29251f !important;
+  line-height: 1.2;
 }
 .pb-root .bl-card-author {
-  margin: 0 !important;
-  line-height: 1 !important;
-}
-.pb-root .bl-grid {
-  gap: 6px 8px !important;
-  padding: 2px 0 4px 24px !important;
+  margin: 0;
+  color: #71695f !important;
+  line-height: 1.2;
 }
 
-/* Public shelves: no dividers; Wonder row metrics live on .pb-drive-btn */
-.pb-root .bl-shelf,
-.pb-root .bl-shelf:last-of-type,
-.pb-root .bl-shelf.pb-drive {
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-top: 0 !important;
-  border-bottom: 0 !important;
-  box-shadow: none !important;
-  outline: none !important;
-}
-.pb-root .bl-shelf + .bl-shelf,
-.pb-root .pb-drive + .pb-drive {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-.pb-root .bl-shelf::before,
-.pb-root .bl-shelf:hover::before,
-.pb-root .bl-shelf.is-open::before {
-  display: none !important;
-  content: none !important;
-}
-.pb-root .bl-folder-row {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-/* Keep Wonder folder metrics for any non-drive folders under pb-root */
-.pb-root .bl-folder {
-  gap: 8px !important;
-  min-height: 46px !important;
-  height: auto !important;
-  padding: 8px 7px !important;
-  line-height: 1 !important;
-  font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif !important;
-}
-.pb-root .bl-folder-copy {
-  display: grid !important;
-  gap: 0 !important;
-}
-.pb-root .bl-folder strong {
-  line-height: 1 !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  color: #29251f !important;
-}
-.pb-root .bl-folder small {
-  line-height: 1 !important;
-  margin: 0 !important;
-  font-size: 10px !important;
-  color: #9a9084 !important;
-}
-.pb-root .bl-folder-icon {
-  font-size: 22px;
-  line-height: 1 !important;
-}
-/* Open grid under a drive (Wonder-ish indent) */
-.pb-root .bl-shelf > .bl-grid,
-.pb-root .pb-drive > .bl-grid {
-  padding: 7px 4px 18px 36px !important;
-  margin: 0 !important;
-}
-
-/* Greats / blogs — tight under books */
-.pb-root .bl-greats,
-.pb-root .bl-greats-after-books {
-  border-top: 0 !important;
-  margin: 6px 0 0 !important;
-  padding-top: 0 !important;
-}
-.pb-root .bl-greats-head {
-  gap: 6px !important;
-  margin: 0 0 2px !important;
-  align-items: baseline !important;
-}
-.pb-root .bl-greats-head > div {
-  gap: 0 !important;
-  display: grid !important;
-}
-.pb-root .bl-greats-head > div > span {
-  line-height: 1 !important;
-  font-size: 10px !important;
-}
-.pb-root .bl-greats-h {
-  margin: 0 !important;
-  line-height: 1.05 !important;
-  font-size: 1.05rem !important;
-}
-.pb-root .bl-greats-grid {
-  gap: 4px !important;
-}
-.pb-root .bl-greats-card {
-  gap: 2px !important;
-  padding: 6px 8px !important;
-}
-.pb-root .bl-greats-card > header {
-  gap: 2px !important;
-  margin: 0 !important;
-}
-.pb-root .bl-greats-card h3 {
-  margin: 0 !important;
-  line-height: 1.05 !important;
-}
-.pb-root .bl-greats-card ul {
-  gap: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-.pb-root .bl-greats-card li a {
-  padding: 0 !important;
-  line-height: 1.05 !important;
-}
-.pb-root .bl-greats-home {
-  margin-top: 1px !important;
-  line-height: 1 !important;
-}
-
-/* Product covers from Amazon — clean photo, no fake spine gradients */
+/* Product covers */
 .pb-root .pb-cover-photo {
   background: #e8e2d6 !important;
   background-image: none !important;
@@ -4883,18 +4798,37 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   display: none !important;
 }
 
-/* Public: greats (blogs) section ink on cream */
+/* Greats / blogs */
+.pb-root .bl-greats,
+.pb-root .bl-greats-after-books {
+  border-top: 0 !important;
+  margin: 18px 0 0;
+  padding-top: 0;
+}
 .pb-root .bl-greats-h,
 .pb-root .bl-greats-card h3,
 .pb-root .bl-greats-card li a span {
-  color: #1a1612 !important;
+  color: #29251f !important;
 }
 .pb-root .bl-greats-head > div > span,
 .pb-root .bl-greats-head > small,
 .pb-root .bl-greats-home,
 .pb-root .bl-greats-card > header span {
-  color: #5c534a !important;
+  color: #9a9084 !important;
 }
 .pb-root .bl-greats-card li a:hover span {
-  color: #1a1612 !important;
+  color: #29251f !important;
+}
+
+@media (max-width: 720px) {
+  .pb-root.bl-public-wrap .bl[data-books-theme="light"] {
+    padding: 12px 14px 56px;
+    border-radius: 18px;
+  }
+  .pb-root .bl-title {
+    font-size: 24px;
+  }
+  .pb-root .bl-filter {
+    gap: 16px;
+  }
 }
