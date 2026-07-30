@@ -103,6 +103,65 @@
   -webkit-text-fill-color: #a8842e !important;
 }
 
+/*
+ * Art / photography profile — no cream strip over images.
+ * Transparent overlay, light type, photo bleeds to the top edge.
+ */
+.cinema-nav--art {
+  border: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+.cinema-nav--art .cinema-nav__inner--bookshelf {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0 10px !important;
+  box-sizing: border-box;
+}
+.cinema-nav--art .melani-signature-link {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+}
+.cinema-nav--art .melani-signature--nav-edge .melani-signature__mark {
+  display: block;
+  height: 2.1rem;
+  width: auto;
+  margin: 0 0 0 -0.45rem;
+  padding: 0;
+  color: #fff;
+  filter: drop-shadow(0 1px 8px rgba(0, 0, 0, 0.35));
+}
+.cinema-nav--art .cinema-nav__end {
+  margin-left: auto;
+  margin-right: 0;
+  padding: 0;
+}
+.cinema-nav--art .cinema-nav__link--cinema {
+  color: rgba(255, 255, 255, 0.72);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
+}
+.cinema-nav--art .cinema-nav__link--cinema:hover,
+.cinema-nav--art .cinema-nav__link--cinema:focus-visible {
+  color: #fff;
+}
+.cinema-nav--art .cinema-nav__link--gold {
+  color: #e8d5a3 !important;
+  -webkit-text-fill-color: #e8d5a3 !important;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
+}
+.cinema-nav--art .cinema-nav__link--gold:hover,
+.cinema-nav--art .cinema-nav__link--gold:focus-visible {
+  color: #f5e6c0 !important;
+  -webkit-text-fill-color: #f5e6c0 !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .cinema-nav__item {
     animation: none !important;

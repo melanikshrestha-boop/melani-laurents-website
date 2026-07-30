@@ -14,13 +14,14 @@
 }
 
 /* ——— Header ——— */
+/* Sits under transparent site nav (3.5rem) — no double cream strip */
 .photography-header {
   position: absolute;
-  top: 0;
+  top: 3.5rem;
   left: 0;
   right: 0;
   z-index: 50;
-  padding: var(--photo-header-pad-y) var(--photo-page-padding);
+  padding: 0.65rem var(--photo-page-padding) var(--photo-header-pad-y);
 }
 
 .photography-header-inner {

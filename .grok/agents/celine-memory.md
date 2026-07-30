@@ -70,6 +70,7 @@ You do **not** invent features. You **prevent regression**: the same ugly chrome
 - **First and last** remaining items gold.
 - Hover: line draws under label (cursor-linked).
 - Home keeps its own hub nav (no double bar).
+- **Art / photography:** never cream paper bar over photos. Transparent overlay (`cinema-nav--art`), light type, full-bleed image to top — no `pt-14` cream gap. Photo chrome sits under the site nav, not a second solid strip.
 
 ### Site chrome to never bring back
 - Site-wide black footer: Celine Nova + “open sourcing my mind.” + ART/ESSAYS/… + ← Home. **Removed.** Do not remount.

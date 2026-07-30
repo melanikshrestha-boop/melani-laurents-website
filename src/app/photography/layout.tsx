@@ -30,9 +30,9 @@ export default function PhotographyLayout({
   return (
     <PhotographyMode>
       <div className={`photography-site ${anton.variable} ${epilogue.variable}`}>
-        {/* Site primary nav (Art hidden on this surface) */}
+        {/* Transparent site nav over full-bleed art — no cream bar, no pt-14 gap */}
         <Navigation />
-        <div className="photography-site__body pt-14">{children}</div>
+        <div className="photography-site__body">{children}</div>
       </div>
     </PhotographyMode>
   );

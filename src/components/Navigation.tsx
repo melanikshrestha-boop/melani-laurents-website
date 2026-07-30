@@ -65,33 +65,37 @@ export function Navigation() {
   // Home keeps its own hub nav
   if (pathname === "/") return null;
 
+  /** Art / photography — full-bleed profile, not cream paper product */
+  const isArt =
+    pathname === "/photography" || pathname.startsWith("/photography/");
+
   const paper =
-    pathname === "/daily" ||
-    pathname.startsWith("/daily/") ||
-    pathname === "/research" ||
-    pathname.startsWith("/research/") ||
-    pathname === "/podcast" ||
-    pathname.startsWith("/podcast/") ||
-    pathname === "/youtube" ||
-    pathname.startsWith("/youtube/") ||
-    pathname === "/bookshelf" ||
-    pathname.startsWith("/bookshelf/") ||
-    pathname === "/projects" ||
-    pathname.startsWith("/projects/") ||
-    pathname === "/contact" ||
-    pathname.startsWith("/contact/") ||
-    pathname === "/photography" ||
-    pathname.startsWith("/photography/");
+    !isArt &&
+    (pathname === "/daily" ||
+      pathname.startsWith("/daily/") ||
+      pathname === "/research" ||
+      pathname.startsWith("/research/") ||
+      pathname === "/podcast" ||
+      pathname.startsWith("/podcast/") ||
+      pathname === "/youtube" ||
+      pathname.startsWith("/youtube/") ||
+      pathname === "/bookshelf" ||
+      pathname.startsWith("/bookshelf/") ||
+      pathname === "/projects" ||
+      pathname.startsWith("/projects/") ||
+      pathname === "/contact" ||
+      pathname.startsWith("/contact/"));
 
   const edgePaper =
-    pathname === "/bookshelf" ||
-    pathname.startsWith("/bookshelf/") ||
-    pathname === "/projects" ||
-    pathname.startsWith("/projects/") ||
-    pathname === "/daily" ||
-    pathname.startsWith("/daily/") ||
-    pathname === "/contact" ||
-    pathname.startsWith("/contact/");
+    !isArt &&
+    (pathname === "/bookshelf" ||
+      pathname.startsWith("/bookshelf/") ||
+      pathname === "/projects" ||
+      pathname.startsWith("/projects/") ||
+      pathname === "/daily" ||
+      pathname.startsWith("/daily/") ||
+      pathname === "/contact" ||
+      pathname.startsWith("/contact/"));
 
   /** Current page dropped; first + last of what's left go gold */
   const items = siteConfig.nav.filter(
@@ -100,13 +104,20 @@ export function Navigation() {
 
   const revealDelay = (i: number) => `${0.12 + i * 0.14}s`;
 
+  const headerClass = [
+    "cinema-nav fixed top-0 left-0 right-0 z-[100]",
+    paper ? "cinema-nav--paper" : "",
+    edgePaper ? "cinema-nav--bookshelf" : "",
+    isArt ? "cinema-nav--art" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <header
-      className={`cinema-nav fixed top-0 left-0 right-0 z-[100]${paper ? " cinema-nav--paper" : ""}${edgePaper ? " cinema-nav--bookshelf" : ""}`}
-    >
+    <header className={headerClass}>
       <nav
         className={
-          edgePaper
+          edgePaper || isArt
             ? "cinema-nav__inner--bookshelf flex h-14 w-full max-w-none items-center justify-between"
             : "mx-auto flex h-14 max-w-6xl items-center justify-between px-6"
         }
@@ -114,12 +125,12 @@ export function Navigation() {
       >
         <MelaniSignature
           variant={paper ? "ink" : "light"}
-          className={`melani-signature--nav${edgePaper ? " melani-signature--nav-edge" : ""}`}
+          className={`melani-signature--nav${edgePaper || isArt ? " melani-signature--nav-edge" : ""}`}
         />
 
         <div
           className={
-            edgePaper
+            edgePaper || isArt
               ? "cinema-nav__end flex items-center gap-4 sm:gap-5"
               : "flex items-center gap-5"
           }
@@ -140,7 +151,8 @@ export function Navigation() {
             ))}
           </ul>
 
-          {!edgePaper ? (
+          {/* Social row only on dark non-art inner pages — not on art profile */}
+          {!edgePaper && !isArt ? (
             <SocialIcons className="hidden sm:flex" size="sm" />
           ) : null}
 
