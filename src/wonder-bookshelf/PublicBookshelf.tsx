@@ -131,7 +131,7 @@ function CatalogCard({
 
   return (
     <div className="bl-card-wrap">
-      {/* No detail page — whole card + CTA open Amazon / source */}
+      {/* Cover + title only — whole card opens store link. No Buy button. */}
       <a
         className="bl-card pb-card-link"
         href={href}
@@ -144,14 +144,6 @@ function CatalogCard({
         {book.author ? (
           <span className="bl-card-author">{book.author}</span>
         ) : null}
-      </a>
-      <a
-        className="bl-card-continue pb-buy"
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {label}
       </a>
     </div>
   );
