@@ -4573,19 +4573,22 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   border-bottom-color: currentColor !important;
 }
 
-/* currently reading — no cover; title is the Amazon link */
+/* current reads — small roman, zero fluff, title is Amazon link */
 .pb-root .pb-currently-reading {
-  margin: 0 0 10px !important;
+  margin: 2px 0 6px !important;
   padding: 0;
   color: #71695f;
-  font-family: "Source Serif 4", Georgia, ui-serif, serif;
-  font-size: 0.88rem;
-  font-style: italic;
-  line-height: 1.35;
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-size: 0.68rem;
+  font-style: normal !important;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  text-transform: none;
 }
 .pb-root .pb-currently-reading a {
   color: #29251f;
-  font-style: normal;
+  font-style: normal !important;
   font-weight: 500;
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -4593,6 +4596,14 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 }
 .pb-root .pb-currently-reading a:hover {
   color: #3b7ea8;
+}
+
+/* Never show old greats “Blogs & essays” shout-out cards on public shelf */
+.pb-root .bl-greats,
+.pb-root .bl-greats-after-books,
+.pb-root .bl-greats-grid,
+.pb-root .bl-greats-card {
+  display: none !important;
 }
 
 /* 5s tip after random pick — floats, self-dismisses */
@@ -5067,36 +5078,36 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   }
 }
 
-/* ——— Blogs: numbered chronological list ——— */
+/* ——— Blogs: numbered list of posts she liked (not author shout-outs) ——— */
 .pb-root .pb-blogs {
-  margin: 14px 0 0 !important;
+  margin: 8px 0 0 !important;
   padding: 0 !important;
 }
 .pb-root .pb-blogs--after-books {
-  margin-top: 18px !important;
+  margin-top: 10px !important;
 }
 .pb-root .pb-blogs__head {
-  margin: 0 0 8px;
+  margin: 0 0 4px;
   padding: 0;
 }
 .pb-root .pb-blogs__title {
   margin: 0;
   color: #29251f;
   font-family: "Source Serif 4", Georgia, ui-serif, serif;
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 500;
-  line-height: 1.15;
+  line-height: 1.1;
   letter-spacing: -0.015em;
 }
 .pb-root .pb-blogs__chrono {
-  margin: 3px 0 0;
+  margin: 1px 0 0;
   color: #9a9084;
   font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
-  font-size: 0.58rem;
+  font-size: 0.52rem;
   font-weight: 400;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: none;
-  line-height: 1.25;
+  line-height: 1.2;
 }
 .pb-root .pb-blogs__list {
   list-style: none;
@@ -5112,13 +5123,13 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 }
 .pb-root .pb-blogs__row {
   display: grid;
-  grid-template-columns: 1.5rem minmax(0, 1fr);
-  gap: 0.55rem;
+  grid-template-columns: 1.15rem minmax(0, 1fr);
+  gap: 0.4rem;
   width: 100%;
   margin: 0;
-  padding: 0.55rem 0;
+  padding: 0.32rem 0;
   border: 0;
-  border-bottom: 1px solid rgba(41, 37, 31, 0.06);
+  border-bottom: 1px solid rgba(41, 37, 31, 0.05);
   background: transparent;
   text-align: left;
   cursor: pointer;
@@ -5145,17 +5156,17 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 .pb-root .pb-blogs__name {
   color: #3b7ea8;
   font-family: "Source Serif 4", Georgia, ui-serif, serif;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 400;
-  line-height: 1.3;
+  line-height: 1.25;
 }
 .pb-root .pb-blogs__date {
   color: #9a9084;
   font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
-  font-size: 0.62rem;
+  font-size: 0.55rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
 /* Book card as button (single/double tap) */

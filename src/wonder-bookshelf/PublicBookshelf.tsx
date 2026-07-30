@@ -631,23 +631,24 @@ export function PublicBookshelf() {
             type="button"
             className="bl-chip pb-chip-surprise"
             onClick={surpriseMe}
-            title="Random generator from my list (S)"
+            title="random book generator for my list (S)"
           >
             <MagicWand size={12} weight="fill" aria-hidden />
-            <span>random generator from my list</span>
+            <span>random book generator for my list</span>
           </button>
         </div>
 
-        {/* Explicit currently-reading line (Melani) — title opens Amazon */}
+        {/* Compact current read — small roman, not italic; Amazon on title */}
         <p className="pb-currently-reading">
-          currently reading{" "}
+          current reads:{" "}
           <a
             href="https://www.amazon.com/dp/1982153733"
             target="_blank"
             rel="noopener noreferrer"
           >
-            The Founders
-          </a>
+            the founders
+          </a>{" "}
+          by jimmy soni
         </p>
 
         {sHint ? (
