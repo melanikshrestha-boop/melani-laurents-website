@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { siteConfig, type NavItem } from "@/config/site";
 import { MelaniSignature } from "./MelaniSignature";
 import { SocialIcons } from "./SocialIcons";
+import "./cinema-nav.css";
 
 /** Art + Contact carry the home-hub gold accent. */
 function isGoldNavItem(item: NavItem): boolean {

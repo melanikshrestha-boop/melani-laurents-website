@@ -1,0 +1,74 @@
+/* Top nav — home hub type motion + Art/Contact gold (loaded with Navigation) */
+
+.cinema-nav__link {
+  font-family: var(--font-share-tech-mono), var(--font-jetbrains-mono), ui-monospace,
+    monospace;
+  font-size: 0.58rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+.cinema-nav__link--cinema {
+  color: rgba(255, 255, 255, 0.45);
+}
+.cinema-nav__link--cinema:hover {
+  color: rgba(var(--hub-champagne-bright-rgb, 232, 213, 163), 0.9);
+}
+
+.cinema-nav__link--paper {
+  color: rgba(20, 18, 16, 0.48);
+}
+.cinema-nav__link--paper:hover {
+  color: var(--hub-gold, #c9a962);
+}
+
+/* Same keyframes as home hub-nav-reveal */
+@keyframes cinema-nav-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cinema-nav__item {
+  display: inline-block;
+  animation: cinema-nav-reveal 0.7s ease backwards;
+}
+
+/* Art + Contact — home gold accent */
+.cinema-nav__link--gold {
+  color: #d4bc82 !important;
+  -webkit-text-fill-color: #d4bc82 !important;
+  font-weight: 500;
+}
+.cinema-nav__link--gold:hover {
+  color: #f0dfb0 !important;
+  -webkit-text-fill-color: #f0dfb0 !important;
+}
+
+/* Cream paper / bookshelf: gold that still reads on #f7f1e7 */
+.cinema-nav--paper .cinema-nav__link--gold,
+.cinema-nav--bookshelf .cinema-nav__link--gold {
+  color: #c9a962 !important;
+  -webkit-text-fill-color: #c9a962 !important;
+}
+.cinema-nav--paper .cinema-nav__link--gold:hover,
+.cinema-nav--bookshelf .cinema-nav__link--gold:hover {
+  color: #b8954a !important;
+  -webkit-text-fill-color: #b8954a !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cinema-nav__item {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
