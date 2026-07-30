@@ -112,8 +112,11 @@ const SHELF_QUOTES: { text: string; author: string }[] = [
   },
 ];
 
-/** Public folder order */
+/** Public folder order — high school reread drives near top */
 const PUBLIC_FOLDER_ORDER = [
+  "10th grade",
+  "11th grade",
+  "12th grade",
   "main characters only",
   "everything startups",
   "psychology",
@@ -122,6 +125,9 @@ const PUBLIC_FOLDER_ORDER = [
 ] as const;
 
 const FOLDER_ACCENT: Record<string, string> = {
+  "10th grade": "#c97b84",
+  "11th grade": "#5b9fd4",
+  "12th grade": "#9b7fd4",
   "main characters only": "#c4a06a",
   "everything startups": "#5b9fd4",
   psychology: "#9b7fd4",
@@ -140,6 +146,7 @@ const FOLDER_ACCENT: Record<string, string> = {
   "Music & Culture": "#e58fa3",
   Unsorted: "#8e98a6",
   Faves: "#d4bc82",
+  "Your intelligence": "#d4bc82",
 };
 
 function buyUrl(entry: BookshelfEntry, book: Book): string {
