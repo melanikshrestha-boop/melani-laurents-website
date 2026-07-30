@@ -1,9 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { DailyPost } from "@/data/daily-posts";
+import type { DailyPost, QuotedPost } from "@/data/daily-posts";
 
-function formatPostTime(date: string): string {
+function formatDateShort(date: string): string {
   return new Date(date + "T12:00:00").toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
@@ -11,13 +11,109 @@ function formatPostTime(date: string): string {
   });
 }
 
+function QuotedCard({ q }: { q: QuotedPost }) {
+  const inner = (
+    <>
+      <div className="x-quote__head">
+        {q.avatarUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img className="x-quote__avatar" src={q.avatarUrl} alt="" width={20} height={20} />
+        ) : (
+          <span className="x-quote__avatar x-quote__avatar--fallback" aria-hidden />
+        )}
+        <strong>{q.displayName}</strong>
+        <span className="x-quote__handle">{q.handle}</span>
+        {q.date ? <span className="x-quote__dot">·</span> : null}
+        {q.date ? <span className="x-quote__date">{q.date}</span> : null}
+      </div>
+      <p className="x-quote__body">{q.text}</p>
+    </>
+  );
+
+  if (q.href) {
+    return (
+      <a
+        href={q.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="x-quote"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {inner}
+      </a>
+    );
+  }
+  return <div className="x-quote">{inner}</div>;
+}
+
+function XPostCard({ post }: { post: DailyPost }) {
+  const name = post.displayName ?? "Celine Nova";
+  const handle = post.handle ?? "@MelaniLaurentS";
+  const avatar =
+    post.avatarUrl ??
+    "https://pbs.twimg.com/profile_images/2076576094493327360/LaEvB-1S.jpg";
+
+  return (
+    <article className="x-tweet">
+      <div className="x-tweet__row">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="x-tweet__avatar" src={avatar} alt="" width={40} height={40} />
+        <div className="x-tweet__main">
+          <header className="x-tweet__meta">
+            <div className="x-tweet__names">
+              <strong className="x-tweet__name">{name}</strong>
+              <span className="x-tweet__handle">{handle}</span>
+            </div>
+            <span className="x-tweet__logo" aria-hidden>
+              𝕏
+            </span>
+          </header>
+
+          <p className="x-tweet__text">{post.title}</p>
+
+          {post.quoted ? <QuotedCard q={post.quoted} /> : null}
+
+          <div className="x-tweet__time">
+            {post.timeLabel ? <span>{post.timeLabel}</span> : null}
+            {post.timeLabel ? <span className="x-tweet__sep">·</span> : null}
+            <time dateTime={post.date}>{formatDateShort(post.date)}</time>
+            {post.viewsLabel ? (
+              <>
+                <span className="x-tweet__sep">·</span>
+                <span>
+                  <strong>{post.viewsLabel}</strong> Views
+                </span>
+              </>
+            ) : null}
+          </div>
+
+          <div className="x-tweet__actions" aria-hidden>
+            <span>💬</span>
+            <span>🔁</span>
+            <span>♡</span>
+            <span>↗</span>
+          </div>
+
+          <a
+            href={post.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="x-tweet__open"
+          >
+            Open on X ↗
+          </a>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 /**
- * X-style post cards in a user-controlled horizontal slider.
- * Prev / next, dots, keyboard, and swipe — fun without autoplay hijacking.
+ * Real X-format posts in a user-controlled horizontal slider.
+ * Looks like the app (dark tweet cards), not generic “Open ↗” list rows.
  */
 export function XPostCarousel({ posts }: { posts: DailyPost[] }) {
   const [index, setIndex] = useState(0);
-  const trackRef = useRef<HTMLDivElement>(null);
   const touchX = useRef<number | null>(null);
   const n = posts.length;
 
@@ -63,8 +159,6 @@ export function XPostCarousel({ posts }: { posts: DailyPost[] }) {
     );
   }
 
-  const post = posts[index];
-
   return (
     <div
       className="daily-x-carousel"
@@ -98,55 +192,17 @@ export function XPostCarousel({ posts }: { posts: DailyPost[] }) {
           }}
         >
           <div
-            ref={trackRef}
             className="daily-x-carousel__track"
             style={{ transform: `translateX(-${index * 100}%)` }}
           >
             {posts.map((p, i) => (
-              <article
+              <div
                 key={p.slug}
-                className="daily-x-post"
+                className="daily-x-carousel__slide"
                 aria-hidden={i !== index}
-                aria-roledescription="slide"
-                aria-label={`${i + 1} of ${n}`}
               >
-                <header className="daily-x-post__head">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    className="daily-x-post__avatar"
-                    src={
-                      p.avatarUrl ??
-                      "https://pbs.twimg.com/profile_images/2076576094493327360/LaEvB-1S.jpg"
-                    }
-                    alt=""
-                    width={44}
-                    height={44}
-                  />
-                  <div className="daily-x-post__who">
-                    <div className="daily-x-post__names">
-                      <strong>{p.displayName ?? "Celine Nova"}</strong>
-                      <span className="daily-x-post__handle">
-                        {p.handle ?? "@MelaniLaurentS"}
-                      </span>
-                    </div>
-                    <time dateTime={p.date}>{formatPostTime(p.date)}</time>
-                  </div>
-                  <span className="daily-x-post__x" aria-hidden>
-                    𝕏
-                  </span>
-                </header>
-                <p className="daily-x-post__body">{p.title}</p>
-                <footer className="daily-x-post__foot">
-                  <a
-                    href={p.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="daily-x-post__open"
-                  >
-                    View on X ↗
-                  </a>
-                </footer>
-              </article>
+                <XPostCard post={p} />
+              </div>
             ))}
           </div>
         </div>
@@ -180,12 +236,9 @@ export function XPostCarousel({ posts }: { posts: DailyPost[] }) {
           {index + 1} / {n}
         </p>
         <p className="daily-x-carousel__hint">
-          Swipe · arrows · ← → keys — only posts I write
+          Swipe · ‹ › · ← → — only posts I write
         </p>
       </div>
-
-      {/* Prefetch/read current for screen readers when not on slide */}
-      <span className="sr-only">{post.title}</span>
     </div>
   );
 }

@@ -31,9 +31,8 @@ export default function DailyPage() {
             What I post. What I love. What stuck.
           </h1>
           <p className="daily-pulse__lede">
-            Only my own writing on X — the posts I actually put out into the
-            world. Slide through them like the timeline, on your terms. YouTube
-            when a thread isn’t enough.
+            My X posts — same format as the app (avatar, handle, body). Only
+            things I wrote. Slide when you want; nothing autoplays.
           </p>
         </header>
 
@@ -49,7 +48,7 @@ export default function DailyPage() {
             <div>
               <p className="daily-pulse__kicker">X · mine only</p>
               <h2 id="x-posts-title" className="daily-pulse__section-title">
-                Posts I wrote
+                On the timeline
               </h2>
             </div>
             <span className="daily-pulse__count">
@@ -57,8 +56,8 @@ export default function DailyPage() {
             </span>
           </div>
           <p className="daily-pulse__mine-note">
-            Reiterated on purpose: this is not a list of other people’s content
-            I hearted. It’s the posts I love enough to put my name on.
+            Not other people’s links. Posts under my name — the ones I love
+            enough to publish.
           </p>
 
           <XPostCarousel posts={myPosts} />
