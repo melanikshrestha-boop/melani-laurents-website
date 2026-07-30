@@ -34,9 +34,17 @@ export function HomeHub() {
           lineClassName="hub-page__title-line"
         />
         <p className="hub-page__tagline">open sourcing my mind.</p>
+      </div>
+
+      {/* Bottom-left edge — original stagger reveal (hub-nav-reveal) */}
+      <footer className="hub-page__footer hub-page__footer--locked">
         <nav className="hub-page__nav hub-page__nav--locked" aria-label="Sections">
           {siteConfig.hubPortals.map((portal, i) => (
-            <span key={portal.href} className="hub-page__nav-item">
+            <span
+              key={portal.href}
+              className="hub-page__nav-item"
+              style={{ animationDelay: `${1.15 + i * 0.18}s` }}
+            >
               {i > 0 ? <span className="hub-page__sep" aria-hidden> · </span> : null}
               {"external" in portal && portal.external ? (
                 <a href={portal.href} target="_blank" rel="noopener noreferrer">
@@ -47,14 +55,19 @@ export function HomeHub() {
               )}
             </span>
           ))}
-          <span className="hub-page__nav-item hub-page__nav-item--contact">
+          <span
+            className="hub-page__nav-item hub-page__nav-item--contact"
+            style={{
+              animationDelay: `${1.15 + siteConfig.hubPortals.length * 0.18}s`,
+            }}
+          >
             <span className="hub-page__sep" aria-hidden> · </span>
             <Link href="/contact" className="hub-page__nav-contact">
               Contact
             </Link>
           </span>
         </nav>
-      </div>
+      </footer>
     </section>
   );
 }

@@ -4666,14 +4666,15 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .hub-page--locked {
   /*
    * Double space from the viewport edge (one space ≈ 0.75rem).
-   * Header + hero share this inset — nothing flush to the glass.
+   * Header + hero + bottom nav share this inset — nothing flush to the glass.
    */
   --hub-edge: 1.5rem;
   --hub-header-h: 2.4rem; /* shared top/bottom rail for the whole header line */
   position: relative;
   z-index: 20;
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
+  /* header · center hero · bottom-left footer nav */
+  grid-template-rows: auto minmax(0, 1fr) auto;
   min-height: 100svh;
   height: 100svh;
   width: 100%;
@@ -4807,7 +4808,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   display: block;
 }
 
-/* Hero stack — real air between name, tagline, nav */
+/* Hero stack — title + tagline only (nav lives bottom-left again) */
 .hub-page__center--locked {
   position: relative;
   z-index: 3;
@@ -4820,6 +4821,21 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   text-align: center;
   /* Optical center: slight lift so title isn’t dead middle of the screen */
   padding-bottom: clamp(1.5rem, 4vh, 3rem);
+}
+
+/* Bottom-left edge of the frame — same place as the original hub footer */
+.hub-page__footer--locked {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  justify-content: flex-start;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
 }
 
 .hub-page--locked .hub-page__title {
@@ -4857,20 +4873,23 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 }
 
 .hub-page__nav--locked {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  row-gap: 0.45rem;
-  margin: clamp(1.6rem, 4vh, 2.6rem) 0 0;
+  display: block; /* inline nav items + seps flow left like the original footer */
+  margin: 0;
   padding: 0;
-  max-width: min(40rem, 94vw);
+  max-width: none;
+  text-align: left;
   font-family: var(--font-share-tech-mono), var(--font-jetbrains-mono), ui-monospace, monospace;
   font-size: clamp(0.58rem, 0.9vw, 0.72rem);
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   line-height: 1.2;
+}
+
+/* Staggered reveal is on .hub-page__nav-item (hub-nav-reveal) — keep it alive */
+.hub-page--locked .hub-page__nav-item {
+  display: inline;
+  animation: hub-nav-reveal 0.7s ease backwards;
 }
 
 .hub-page__nav--locked a {
@@ -4997,7 +5016,6 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   }
 
   .hub-page__nav--locked {
-    margin-top: 1.35rem;
     font-size: 0.55rem;
     letter-spacing: 0.14em;
   }
