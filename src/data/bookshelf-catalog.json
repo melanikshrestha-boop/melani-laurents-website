@@ -1714,5 +1714,405 @@
     "asin": "0807014273",
     "favorite": true,
     "favoriteWhy": "Rare fave — meaning under pressure."
+  },
+  {
+    "id": "book-sa-c044629b71",
+    "kind": "book",
+    "title": "The Beginning of Infinity",
+    "source": "David Deutsch",
+    "loggedAt": "2026-07-30",
+    "category": "everything startups",
+    "asin": "0143121359",
+    "href": "https://www.amazon.com/dp/0143121359"
+  },
+  {
+    "id": "book-sa-23aa1255e5",
+    "kind": "book",
+    "title": "Blitzscaling",
+    "source": "Reid Hoffman",
+    "loggedAt": "2026-07-30",
+    "category": "everything startups",
+    "asin": "1524761419",
+    "href": "https://www.amazon.com/dp/1524761419"
+  },
+  {
+    "id": "book-sa-631a71f022",
+    "kind": "book",
+    "title": "Superintelligence",
+    "source": "Nick Bostrom",
+    "loggedAt": "2026-07-30",
+    "category": "everything startups",
+    "asin": "0198739834",
+    "href": "https://www.amazon.com/dp/0198739834"
+  },
+  {
+    "id": "book-sa-98c5188e52",
+    "kind": "book",
+    "title": "Winning",
+    "source": "Jack Welch",
+    "loggedAt": "2026-07-30",
+    "category": "everything startups",
+    "asin": "0060753943",
+    "href": "https://www.amazon.com/dp/0060753943"
+  },
+  {
+    "id": "book-sa-ec41dd4af0",
+    "kind": "book",
+    "title": "Secrets of Sand Hill Road",
+    "source": "Scott Kupor",
+    "loggedAt": "2026-07-30",
+    "category": "everything startups",
+    "asin": "059308358X",
+    "href": "https://www.amazon.com/dp/059308358X"
+  },
+  {
+    "id": "book-sa-b35be21dd3",
+    "kind": "book",
+    "title": "The Republic",
+    "source": "Plato",
+    "loggedAt": "2026-07-29",
+    "category": "everything startups",
+    "asin": "0140455116",
+    "href": "https://www.amazon.com/dp/0140455116"
+  },
+  {
+    "id": "book-sa-27aef0a5f6",
+    "kind": "book",
+    "title": "Thinking, Fast and Slow",
+    "source": "Daniel Kahneman",
+    "loggedAt": "2026-07-29",
+    "category": "everything startups",
+    "asin": "0374533555",
+    "href": "https://www.amazon.com/dp/0374533555"
+  },
+  {
+    "id": "book-sa-d1bd07d8f1",
+    "kind": "book",
+    "title": "Meditations",
+    "source": "Marcus Aurelius",
+    "loggedAt": "2026-07-29",
+    "category": "everything startups",
+    "asin": "0812968255",
+    "href": "https://www.amazon.com/dp/0812968255"
+  },
+  {
+    "id": "book-sa-7aecf89b0c",
+    "kind": "book",
+    "title": "Brave New World",
+    "source": "Aldous Huxley",
+    "loggedAt": "2026-07-29",
+    "category": "everything startups",
+    "asin": "0060850523",
+    "href": "https://www.amazon.com/dp/0060850523"
+  },
+  {
+    "id": "book-sa-f91542f279",
+    "kind": "book",
+    "title": "The Score Takes Care of Itself",
+    "source": "Bill Walsh",
+    "loggedAt": "2026-07-29",
+    "category": "everything startups",
+    "asin": "1591843472",
+    "href": "https://www.amazon.com/dp/1591843472"
+  },
+  {
+    "id": "book-sa-2b9094931e",
+    "kind": "book",
+    "title": "Anna Karenina",
+    "source": "Leo Tolstoy",
+    "loggedAt": "2026-07-29",
+    "category": "everything startups",
+    "asin": "0143035002",
+    "href": "https://www.amazon.com/dp/0143035002"
+  },
+  {
+    "id": "book-sa-a173b60e42",
+    "kind": "book",
+    "title": "Foundation",
+    "source": "Isaac Asimov",
+    "loggedAt": "2026-07-29",
+    "category": "everything startups",
+    "asin": "0553382578",
+    "href": "https://www.amazon.com/dp/0553382578"
+  },
+  {
+    "id": "book-sa-0c87ca0c31",
+    "kind": "book",
+    "title": "A Pattern Language",
+    "source": "Christopher Alexander",
+    "loggedAt": "2026-07-29",
+    "category": "everything startups",
+    "asin": "0195019199",
+    "href": "https://www.amazon.com/dp/0195019199"
+  },
+  {
+    "id": "book-sa-b1c411b9b6",
+    "kind": "book",
+    "title": "The Death and Life of Great American Cities",
+    "source": "Jane Jacobs",
+    "loggedAt": "2026-07-29",
+    "category": "everything startups",
+    "asin": "067974195X",
+    "href": "https://www.amazon.com/dp/067974195X"
+  },
+  {
+    "id": "book-sa-1a53d0e46e",
+    "kind": "book",
+    "title": "The Origin of Consciousness in the Breakdown of the Bicameral Mind",
+    "source": "Julian Jaynes",
+    "loggedAt": "2026-07-29",
+    "category": "everything startups",
+    "asin": "0618057072",
+    "href": "https://www.amazon.com/dp/0618057072"
+  },
+  {
+    "id": "book-sa-59c8b3c9a4",
+    "kind": "book",
+    "title": "Hateship, Friendship, Courtship, Loveship, Marriage",
+    "source": "Alice Munro",
+    "loggedAt": "2026-07-29",
+    "category": "everything startups",
+    "asin": "0375727434",
+    "href": "https://www.amazon.com/dp/0375727434"
+  },
+  {
+    "id": "book-sa-4f6a514908",
+    "kind": "book",
+    "title": "Call Me by Your Name",
+    "source": "André Aciman",
+    "loggedAt": "2026-07-29",
+    "category": "everything startups",
+    "asin": "1250169445",
+    "href": "https://www.amazon.com/dp/1250169445"
+  },
+  {
+    "id": "book-sa-e1b381f266",
+    "kind": "book",
+    "title": "The Principia",
+    "source": "Isaac Newton",
+    "loggedAt": "2026-07-29",
+    "category": "everything startups",
+    "asin": "0520290887",
+    "href": "https://www.amazon.com/dp/0520290887"
+  },
+  {
+    "id": "book-sa-8bbb3cb014",
+    "kind": "book",
+    "title": "Dealers of Lightning",
+    "source": "Michael A. Hiltzik",
+    "loggedAt": "2026-07-29",
+    "category": "everything startups",
+    "asin": "0887308910",
+    "href": "https://www.amazon.com/dp/0887308910"
+  },
+  {
+    "id": "book-sa-3a4c7bf14e",
+    "kind": "book",
+    "title": "The Old Way",
+    "source": "Elizabeth Marshall Thomas",
+    "loggedAt": "2026-07-29",
+    "category": "everything startups",
+    "asin": "031242728X",
+    "href": "https://www.amazon.com/dp/031242728X"
+  },
+  {
+    "id": "book-sa-453ff164c6",
+    "kind": "book",
+    "title": "A Heartbreaking Work of Staggering Genius",
+    "source": "Dave Eggers",
+    "loggedAt": "2026-07-29",
+    "category": "everything startups",
+    "asin": "0375725784",
+    "href": "https://www.amazon.com/dp/0375725784"
+  },
+  {
+    "id": "book-sa-d4e2bb53eb",
+    "kind": "book",
+    "title": "Molecular Biology of the Cell",
+    "source": "Bruce Alberts",
+    "loggedAt": "2026-07-29",
+    "category": "everything startups",
+    "asin": "0815344643",
+    "href": "https://www.amazon.com/dp/0815344643"
+  },
+  {
+    "id": "book-sa-3a1063e1f6",
+    "kind": "book",
+    "title": "Hacking Sales",
+    "source": "Max Altschuler",
+    "loggedAt": "2026-07-29",
+    "category": "everything startups",
+    "asin": "1119281644",
+    "href": "https://www.amazon.com/dp/1119281644"
+  },
+  {
+    "id": "book-sa-eba41532f0",
+    "kind": "book",
+    "title": "The Picture of Dorian Gray",
+    "source": "Oscar Wilde",
+    "loggedAt": "2026-07-29",
+    "category": "everything startups",
+    "asin": "0486278077",
+    "href": "https://www.amazon.com/dp/0486278077"
+  },
+  {
+    "id": "book-sa-00756755e3",
+    "kind": "book",
+    "title": "A Life Decoded",
+    "source": "J. Craig Venter",
+    "loggedAt": "2026-07-29",
+    "category": "everything startups",
+    "asin": "0670063584",
+    "href": "https://www.amazon.com/dp/0670063584"
+  },
+  {
+    "id": "book-sa-841afacceb",
+    "kind": "book",
+    "title": "Fundamentals of Plasma Physics",
+    "source": "Paul M. Bellan",
+    "loggedAt": "2026-07-29",
+    "category": "everything startups",
+    "asin": "0521528003",
+    "href": "https://www.amazon.com/dp/0521528003"
+  },
+  {
+    "id": "book-sa-97e1c8ddcf",
+    "kind": "book",
+    "title": "The Crime of Reason",
+    "source": "Robert B. Laughlin",
+    "loggedAt": "2026-07-29",
+    "category": "everything startups",
+    "asin": "0465020283",
+    "href": "https://www.amazon.com/dp/0465020283"
+  },
+  {
+    "id": "book-sa-c8c73de46a",
+    "kind": "book",
+    "title": "The Fall",
+    "source": "Albert Camus",
+    "loggedAt": "2026-07-29",
+    "category": "everything startups",
+    "asin": "0679720227",
+    "href": "https://www.amazon.com/dp/0679720227"
+  },
+  {
+    "id": "book-sa-329d90939c",
+    "kind": "book",
+    "title": "The Trial of Socrates",
+    "source": "I.F. Stone",
+    "loggedAt": "2026-07-29",
+    "category": "everything startups",
+    "asin": "0385260326",
+    "href": "https://www.amazon.com/dp/0385260326"
+  },
+  {
+    "id": "book-sa-9b9a527782",
+    "kind": "book",
+    "title": "The Endurance",
+    "source": "Caroline Alexander",
+    "loggedAt": "2026-07-28",
+    "category": "everything startups",
+    "asin": "0375404031",
+    "href": "https://www.amazon.com/dp/0375404031"
+  },
+  {
+    "id": "book-sa-cf7100fcf9",
+    "kind": "book",
+    "title": "Hold'em Poker for Advanced Players",
+    "source": "David Sklansky",
+    "loggedAt": "2026-07-28",
+    "category": "everything startups",
+    "asin": "1880685221",
+    "href": "https://www.amazon.com/dp/1880685221"
+  },
+  {
+    "id": "book-sa-c861b4f193",
+    "kind": "book",
+    "title": "The Sleepwalkers: How Europe Went to War in 1914",
+    "source": "Christopher Clark",
+    "loggedAt": "2026-07-28",
+    "category": "everything startups",
+    "asin": "0061146668",
+    "href": "https://www.amazon.com/dp/0061146668"
+  },
+  {
+    "id": "book-sa-df82c2b748",
+    "kind": "book",
+    "title": "The Transit of Venus",
+    "source": "Shirley Hazzard",
+    "loggedAt": "2026-07-28",
+    "category": "everything startups",
+    "asin": "0140107479",
+    "href": "https://www.amazon.com/dp/0140107479"
+  },
+  {
+    "id": "book-sa-8fbb5ca4d2",
+    "kind": "book",
+    "title": "The Beak of the Finch",
+    "source": "Jonathan Weiner",
+    "loggedAt": "2026-07-28",
+    "category": "everything startups",
+    "asin": "067973337X",
+    "href": "https://www.amazon.com/dp/067973337X"
+  },
+  {
+    "id": "book-sa-3879dba73a",
+    "kind": "book",
+    "title": "Powering the Future",
+    "source": "Robert B. Laughlin",
+    "loggedAt": "2026-07-28",
+    "category": "everything startups",
+    "asin": "0465022200",
+    "href": "https://www.amazon.com/dp/0465022200"
+  },
+  {
+    "id": "book-sa-a0fdd26380",
+    "kind": "book",
+    "title": "How I Raised Myself from Failure to Success in Selling",
+    "source": "Frank Bettger",
+    "loggedAt": "2026-07-28",
+    "category": "everything startups",
+    "asin": "067179437X",
+    "href": "https://www.amazon.com/dp/067179437X"
+  },
+  {
+    "id": "book-sa-0912aa8db1",
+    "kind": "book",
+    "title": "Skunk Works",
+    "source": "Ben R. Rich",
+    "loggedAt": "2026-07-28",
+    "category": "everything startups",
+    "asin": "0316743305",
+    "href": "https://www.amazon.com/dp/0316743305"
+  },
+  {
+    "id": "book-sa-e1e3e103d6",
+    "kind": "book",
+    "title": "Hunger of Memory",
+    "source": "Richard Rodríguez",
+    "loggedAt": "2026-07-28",
+    "category": "everything startups",
+    "asin": "0553382519",
+    "href": "https://www.amazon.com/dp/0553382519"
+  },
+  {
+    "id": "book-sa-0c5790caec",
+    "kind": "book",
+    "title": "Solution Selling",
+    "source": "Michael T. Bosworth",
+    "loggedAt": "2026-07-28",
+    "category": "everything startups",
+    "asin": "0786303158",
+    "href": "https://www.amazon.com/dp/0786303158"
+  },
+  {
+    "id": "book-sa-f37f006fc9",
+    "kind": "book",
+    "title": "The Supermen",
+    "source": "Charles J. Murray",
+    "loggedAt": "2026-07-28",
+    "category": "everything startups",
+    "asin": "0471048852",
+    "href": "https://www.amazon.com/dp/0471048852"
   }
 ]
