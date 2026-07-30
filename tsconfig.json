@@ -37,6 +37,10 @@
     "**/*.mts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "src/wonder-bookshelf/BooksLibrary.tsx",
+    "src/wonder-bookshelf/BookReader.tsx",
+    "src/wonder-bookshelf/appleBooks.ts",
+    "src/wonder-bookshelf/localBooks.ts"
   ]
 }

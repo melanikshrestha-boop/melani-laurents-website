@@ -227,15 +227,22 @@ export function mergeAppleBooks(
   return next.filter(keepBook);
 }
 
-function blockText(blocks: Block[], depth = 0): string[] {
+function blockText(blocks: Block[] | unknown, depth = 0): string[] {
+  if (!Array.isArray(blocks)) return [];
   const lines: string[] = [];
-  for (const block of blocks) {
-    const text = block.text?.trim();
+  for (const block of blocks as Block[]) {
+    const raw = typeof block?.text === "string" ? block.text : "";
+    const text = raw.trim();
+    const blockType = typeof block?.type === "string" ? block.type : "";
     if (text) {
-      const prefix = block.type.startsWith("heading") ? `${"#".repeat(Math.min(3, depth + 1))} ` : "";
+      const prefix = blockType.startsWith("heading")
+        ? `${"#".repeat(Math.min(3, depth + 1))} `
+        : "";
       lines.push(`${prefix}${text}`);
     }
-    if (block.children?.length) lines.push(...blockText(block.children, depth + 1));
+    if (Array.isArray(block?.children) && block.children.length) {
+      lines.push(...blockText(block.children, depth + 1));
+    }
   }
   return lines;
 }

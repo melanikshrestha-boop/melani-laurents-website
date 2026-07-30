@@ -98,30 +98,15 @@ function PublicBookCard({ entry }: { entry: BookshelfEntry }) {
 
 export function BookshelfView({ entries }: { entries: BookshelfEntry[] }) {
   const [filter, setFilter] = useState<Filter>("all");
-  const [q, setQ] = useState("");
   const counts = useMemo(() => countByKind(entries), [entries]);
   const faves = useMemo(() => getFavorites(), []);
 
+  // Personal insight shelf — no search (not a store catalog)
   const filtered = useMemo(() => {
-    let list =
-      filter === "faves"
-        ? entries.filter((e) => e.favorite)
-        : filter === "all"
-          ? entries
-          : entries.filter((e) => e.kind === filter);
-
-    const query = q.trim().toLowerCase();
-    if (query) {
-      list = list.filter(
-        (e) =>
-          e.title.toLowerCase().includes(query) ||
-          e.source.toLowerCase().includes(query) ||
-          e.summary?.toLowerCase().includes(query) ||
-          e.favoriteWhy?.toLowerCase().includes(query)
-      );
-    }
-    return list;
-  }, [entries, filter, q]);
+    if (filter === "faves") return entries.filter((e) => e.favorite);
+    if (filter === "all") return entries;
+    return entries.filter((e) => e.kind === filter);
+  }, [entries, filter]);
 
   const chipCount = (id: Filter) => {
     if (id === "all") return entries.length;
@@ -157,7 +142,7 @@ export function BookshelfView({ entries }: { entries: BookshelfEntry[] }) {
           </div>
         </header>
 
-        {faves.length > 0 && filter === "all" && !q.trim() ? (
+        {faves.length > 0 && filter === "all" ? (
           <section className="bl-public-faves" aria-labelledby="public-faves">
             <h2 id="public-faves" className="bl-shelf-h">
               Faves <em>{faves.length}</em>
@@ -203,28 +188,8 @@ export function BookshelfView({ entries }: { entries: BookshelfEntry[] }) {
           ))}
         </div>
 
-        <div className="bl-toolbar">
-          <form
-            className="bl-search-wrap"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <span className="bl-public-search-icon" aria-hidden>
-              ⌕
-            </span>
-            <input
-              className="bl-search"
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-              placeholder="Search titles, authors, notes…"
-              aria-label="Search bookshelf"
-            />
-          </form>
-        </div>
-
         {filtered.length === 0 ? (
-          <p className="bl-empty-all">
-            {q ? "No titles match that search." : "Nothing on this shelf yet."}
-          </p>
+          <p className="bl-empty-all">Nothing on this shelf yet.</p>
         ) : (
           <div className="bl-grid bl-public-grid">
             {filtered.map((entry) => (
