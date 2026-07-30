@@ -39,6 +39,9 @@ You are **UI polish** for the public Bookshelf (not the whole site unless asked)
 - **Selection highlight:** light pink translucent (`rgba(244, 164, 188, ~0.42)`)
   with dark ink so letters stay readable; `user-select: text` on the whole
   bookshelf page so people can highlight anything for fun (xAI-style)
+- **Drives UI:** Wonder-style — colored folder icon + title + “N books”; no
+  hover-only carets; whole row taps open/close (start closed)
+- **Quote generator** under tagline: italic quote + author + refresh + index
 
 ## Rules
 - Smallest CSS/TSX diff that ships the request

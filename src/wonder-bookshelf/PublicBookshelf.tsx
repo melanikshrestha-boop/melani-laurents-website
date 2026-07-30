@@ -6,7 +6,12 @@
  * this is not a storefront.
  */
 import { useMemo, useState, type CSSProperties } from "react";
-import { ArrowSquareOut, CaretRight, FolderSimple } from "@phosphor-icons/react";
+import {
+  ArrowClockwise,
+  ArrowSquareOut,
+  CaretRight,
+  FolderSimple,
+} from "@phosphor-icons/react";
 import {
   bookshelfEntries,
   type BookshelfEntry,
@@ -31,6 +36,30 @@ const CHIPS: { id: Filter; label: string }[] = [
   { id: "book", label: "Books" },
   { id: "blog", label: "Blogs" },
   { id: "faves", label: "Faves" },
+];
+
+/** Quote rotator under the title — fun, not a library search chrome */
+const SHELF_QUOTES: { text: string; author: string }[] = [
+  {
+    text: "Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work. And the only way to do great work is to love what you do.",
+    author: "Steve Jobs",
+  },
+  {
+    text: "When we are no longer able to change a situation, we are challenged to change ourselves.",
+    author: "Viktor E. Frankl",
+  },
+  {
+    text: "The people who are crazy enough to think they can change the world are the ones who do.",
+    author: "Steve Jobs",
+  },
+  {
+    text: "I wish I had a second life dedicated to just reading everything written out there.",
+    author: "Melani Laurent",
+  },
+  {
+    text: "Zero to one is about creating something new. Copying is one to n.",
+    author: "Peter Thiel",
+  },
 ];
 
 /** Public folder order */
@@ -181,8 +210,9 @@ function CatalogCard({
 
 export function PublicBookshelf() {
   const [filter, setFilter] = useState<Filter>("all");
-  /** Wonder default: folders open unless explicitly closed */
+  /** Start closed — one tap/click toggles open or closed (no hover-only chrome) */
   const [openFolders, setOpenFolders] = useState<Record<string, boolean>>({});
+  const [quoteIndex, setQuoteIndex] = useState(0);
 
   /** Books / papers / podcasts only — never fake blog "book" covers */
   const catalog = useMemo<ShelfItem[]>(() => {
@@ -296,8 +326,11 @@ export function PublicBookshelf() {
     return 0;
   };
 
-  /** Wonder: expanded unless explicitly closed */
-  const isExpanded = (id: string) => openFolders[id] !== false;
+  /** Closed by default; true only after a tap opens the drive */
+  const isExpanded = (id: string) => openFolders[id] === true;
+
+  const quote = SHELF_QUOTES[quoteIndex % SHELF_QUOTES.length];
+  const quoteTotal = SHELF_QUOTES.length;
 
   return (
     <div className="bl-public-wrap pb-root">
@@ -316,6 +349,30 @@ export function PublicBookshelf() {
             </div>
           </div>
         </header>
+
+        {/* Quote generator — rotate for fun, like a personal board */}
+        <section className="pb-quote" aria-label="Shelf quote">
+          <blockquote className="pb-quote__text">
+            <p>“{quote.text}”</p>
+            <cite className="pb-quote__author">{quote.author}</cite>
+          </blockquote>
+          <div className="pb-quote__controls">
+            <button
+              type="button"
+              className="pb-quote__refresh"
+              aria-label="Next quote"
+              title="Next quote"
+              onClick={() =>
+                setQuoteIndex((i) => (i + 1) % SHELF_QUOTES.length)
+              }
+            >
+              <ArrowClockwise size={16} weight="bold" aria-hidden />
+            </button>
+            <span className="pb-quote__index" aria-live="polite">
+              {(quoteIndex % quoteTotal) + 1}/{quoteTotal}
+            </span>
+          </div>
+        </section>
 
         <div className="bl-filter" aria-label="Sections">
           {CHIPS.map(({ id, label }) => (
@@ -356,12 +413,14 @@ export function PublicBookshelf() {
           </section>
         ) : null}
 
+        {/* Wonder-style drives: icon + title + count; whole row taps open/close */}
         {groups.map((group) => {
           const expanded = isExpanded(group.id);
+          const n = group.items.length;
           return (
             <section
               key={group.id}
-              className={`bl-shelf${expanded ? " is-open" : ""}`}
+              className={`bl-shelf pb-drive${expanded ? " is-open" : ""}`}
               style={
                 {
                   "--bl-folder-accent": group.accent,
@@ -372,20 +431,15 @@ export function PublicBookshelf() {
               <div className="bl-folder-row">
                 <button
                   type="button"
-                  className="bl-folder"
+                  className="bl-folder pb-drive-btn"
                   aria-expanded={expanded}
                   onClick={() =>
                     setOpenFolders((current) => ({
                       ...current,
-                      [group.id]: current[group.id] === false,
+                      [group.id]: !current[group.id],
                     }))
                   }
                 >
-                  <CaretRight
-                    className="bl-folder-caret"
-                    size={14}
-                    aria-hidden
-                  />
                   <FolderSimple
                     className="bl-folder-icon"
                     size={22}
@@ -393,10 +447,11 @@ export function PublicBookshelf() {
                     aria-hidden
                     style={{ color: group.accent, fill: group.accent }}
                   />
-                  <span className="bl-folder-copy">
+                  <span className="bl-folder-copy pb-drive-copy">
                     <strong>{group.label}</strong>
-                    {/* Quirky shelf math — not “9 books” corporate-speak */}
-                    <small>n = {group.items.length}</small>
+                    <small>
+                      {n} {n === 1 ? "book" : "books"}
+                    </small>
                   </span>
                 </button>
               </div>
