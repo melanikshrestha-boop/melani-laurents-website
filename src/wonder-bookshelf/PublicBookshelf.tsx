@@ -28,13 +28,12 @@ import { catalogEntryToBook } from "./publicCatalog";
 import { GREATS_AUTHORS } from "./greatsBlogs";
 import "./books-library.css";
 
-type Filter = "all" | BookshelfKind | "faves";
+/** Public chips only — no empty Papers/Podcasts until real content exists */
+type Filter = "all" | "book" | "blog" | "faves";
 
 const CHIPS: { id: Filter; label: string }[] = [
   { id: "all", label: "All" },
   { id: "book", label: "Books" },
-  { id: "podcast", label: "Podcasts" },
-  { id: "paper", label: "Papers" },
   { id: "blog", label: "Blogs" },
   { id: "faves", label: "Faves" },
 ];
@@ -57,8 +56,6 @@ const FOLDER_ACCENT: Record<string, string> = {
   "Philosophy & Spirituality": "#b89adc",
   "Music & Culture": "#e58fa3",
   Unsorted: "#8e98a6",
-  Papers: "#65c5a6",
-  Podcasts: "#7eb8ff",
   Faves: "#d4bc82",
 };
 
@@ -77,14 +74,13 @@ function buyUrl(entry: BookshelfEntry, book: Book): string {
 function buyLabel(kind: BookshelfKind): string {
   if (kind === "book") return "Buy on Amazon";
   if (kind === "paper") return "Read paper";
+  if (kind === "blog") return "Open essay";
   return "Listen";
 }
 
-/** Subject folders for books; papers/podcasts get kind shelves. Never blogs. */
+/** Subject folders for books. Never blogs. */
 function folderLabelFor(entry: BookshelfEntry): string {
-  if (entry.kind === "paper") return "Papers";
-  if (entry.kind === "podcast") return "Podcasts";
-  // Explicit catalog folder (one pile for now)
+  // Explicit catalog folder
   if (entry.category?.trim()) return entry.category.trim();
   // Default public shelf — don't scatter into old subject bins
   return "main characters only";
@@ -221,13 +217,11 @@ export function PublicBookshelf() {
     const c = {
       all: catalog.length + blogPostCount,
       book: 0,
-      paper: 0,
       blog: blogPostCount,
-      podcast: 0,
       faves: 0,
     };
     for (const { entry } of catalog) {
-      c[entry.kind] += 1;
+      if (entry.kind === "book") c.book += 1;
       if (entry.favorite) c.faves += 1;
     }
     return c;
@@ -239,9 +233,7 @@ export function PublicBookshelf() {
       if (filter === "faves" && !entry.favorite) return false;
       // blogs are not in the cover grid
       if (filter === "blog") return false;
-      if (filter !== "all" && filter !== "faves" && entry.kind !== filter) {
-        return false;
-      }
+      if (filter === "book" && entry.kind !== "book") return false;
       if (!query) return true;
       return (
         entry.title.toLowerCase().includes(query) ||
@@ -278,31 +270,6 @@ export function PublicBookshelf() {
     // Faves: no folder chrome — rare picks shown as a flat cover grid
     if (filter === "faves") return [];
 
-    if (filter === "paper") {
-      return filtered.length
-        ? [
-            {
-              id: "papers",
-              label: "Papers",
-              accent: FOLDER_ACCENT.Papers,
-              items: filtered,
-            },
-          ]
-        : [];
-    }
-    if (filter === "podcast") {
-      return filtered.length
-        ? [
-            {
-              id: "podcasts",
-              label: "Podcasts",
-              accent: FOLDER_ACCENT.Podcasts,
-              items: filtered,
-            },
-          ]
-        : [];
-    }
-
     // Books / All — subject folders only. Blogs are never folders (links below).
     const map = new Map<string, ShelfItem[]>();
     for (const item of filtered) {
@@ -312,13 +279,7 @@ export function PublicBookshelf() {
       map.set(label, list);
     }
 
-    // Conqueror → Entrepreneur → Genius first, then any leftover subjects
-    const order = [
-      ...PUBLIC_FOLDER_ORDER,
-      ...CATEGORY_ORDER,
-      "Papers",
-      "Podcasts",
-    ];
+    const order = [...PUBLIC_FOLDER_ORDER, ...CATEGORY_ORDER];
     const out: ShelfGroup[] = [];
     for (const label of order) {
       const items = map.get(label);
@@ -346,7 +307,8 @@ export function PublicBookshelf() {
     if (id === "all") return counts.all;
     if (id === "faves") return counts.faves;
     if (id === "blog") return GREATS_AUTHORS.length; // sources, like Wonder
-    return counts[id];
+    if (id === "book") return counts.book;
+    return 0;
   };
 
   /** Wonder: expanded unless explicitly false; search forces open */
