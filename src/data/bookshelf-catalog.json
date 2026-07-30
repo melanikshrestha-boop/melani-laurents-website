@@ -806,17 +806,6 @@
     "href": "https://www.amazon.com/dp/0399562184"
   },
   {
-    "id": "book-sv-76cdca118d",
-    "kind": "book",
-    "title": "The Innovators",
-    "source": "Walter Isaacson",
-    "loggedAt": "2026-07-28",
-    "category": "everything startups",
-    "year": 2014,
-    "asin": "1476708703",
-    "href": "https://www.amazon.com/dp/1476708703"
-  },
-  {
     "id": "book-sv-15fe619354",
     "kind": "book",
     "title": "Alpha Girls",
@@ -947,5 +936,181 @@
     "year": 2020,
     "asin": "111969129X",
     "href": "https://www.amazon.com/dp/111969129X"
+  },
+  {
+    "id": "book-psy-820c59ef06",
+    "kind": "book",
+    "title": "The Public Speaking Bible: A Survival Guide for Standing on Stage",
+    "source": "Marcus Alexander",
+    "loggedAt": "2026-07-30",
+    "category": "psychology"
+  },
+  {
+    "id": "book-psy-566baa3d22",
+    "kind": "book",
+    "title": "Influence: The Psychology of Persuasion",
+    "source": "Robert B. Cialdini",
+    "loggedAt": "2026-07-30",
+    "category": "psychology",
+    "asin": "006124189X",
+    "href": "https://www.amazon.com/dp/006124189X"
+  },
+  {
+    "id": "book-psy-1d254f9913",
+    "kind": "book",
+    "title": "Words That Change Minds: The 14 Patterns for Mastering the Language of Influence",
+    "source": "Shelle Rose Charvet",
+    "loggedAt": "2026-07-30",
+    "category": "psychology",
+    "asin": "1733670300",
+    "href": "https://www.amazon.com/dp/1733670300"
+  },
+  {
+    "id": "book-psy-7b3a1ba6e9",
+    "kind": "book",
+    "title": "How to Win Friends and Influence People",
+    "source": "Dale Carnegie",
+    "loggedAt": "2026-07-30",
+    "category": "psychology"
+  },
+  {
+    "id": "book-psy-0344e700b7",
+    "kind": "book",
+    "title": "Never Split the Difference: Negotiating As If Your Life Depended On It",
+    "source": "Chris Voss",
+    "loggedAt": "2026-07-30",
+    "category": "psychology",
+    "asin": "0062407805",
+    "href": "https://www.amazon.com/dp/0062407805"
+  },
+  {
+    "id": "book-psy-35000981c0",
+    "kind": "book",
+    "title": "The Art of Persuasion: The Language of Influence and Manipulation",
+    "source": "Andrzej Batko",
+    "loggedAt": "2026-07-29",
+    "category": "psychology"
+  },
+  {
+    "id": "book-psy-8c03dc3fb4",
+    "kind": "book",
+    "title": "The Extremely Successful Salesman's Club",
+    "source": "Chris Murray",
+    "loggedAt": "2026-07-29",
+    "category": "psychology"
+  },
+  {
+    "id": "book-psy-bb89dc0441",
+    "kind": "book",
+    "title": "Closing Deals: Make an Offer",
+    "source": "Snapshot Systems",
+    "loggedAt": "2026-07-29",
+    "category": "psychology"
+  },
+  {
+    "id": "book-psy-7e9d31611d",
+    "kind": "book",
+    "title": "The Art of Influencing Anyone",
+    "source": "Niall Cassidy",
+    "loggedAt": "2026-07-29",
+    "category": "psychology"
+  },
+  {
+    "id": "book-psy-bd459b2f2e",
+    "kind": "book",
+    "title": "Made to Stick: Why Some Ideas Survive and Others Die",
+    "source": "Chip Heath",
+    "loggedAt": "2026-07-29",
+    "category": "psychology",
+    "asin": "1400064287",
+    "href": "https://www.amazon.com/dp/1400064287"
+  },
+  {
+    "id": "book-psy-31723681d1",
+    "kind": "book",
+    "title": "Ogilvy on Advertising",
+    "source": "David Ogilvy",
+    "loggedAt": "2026-07-29",
+    "category": "psychology",
+    "asin": "039472903X",
+    "href": "https://www.amazon.com/dp/039472903X"
+  },
+  {
+    "id": "book-psy-923c113927",
+    "kind": "book",
+    "title": "Magical Worlds of The Wizard of Ads: Tools and Techniques for Profitable Persuasion",
+    "source": "Roy H. Williams",
+    "loggedAt": "2026-07-29",
+    "category": "psychology"
+  },
+  {
+    "id": "book-psy-ff8716879b",
+    "kind": "book",
+    "title": "Getting to Yes: Negotiating Agreement Without Giving In",
+    "source": "Roger Fisher",
+    "loggedAt": "2026-07-29",
+    "category": "psychology",
+    "asin": "0143118757",
+    "href": "https://www.amazon.com/dp/0143118757"
+  },
+  {
+    "id": "book-psy-7dbd68db83",
+    "kind": "book",
+    "title": "MindHub: Personality Profiler",
+    "source": "Snapshot Systems",
+    "loggedAt": "2026-07-29",
+    "category": "psychology"
+  },
+  {
+    "id": "book-psy-54b2b2b5ad",
+    "kind": "book",
+    "title": "Scientific Advertising",
+    "source": "Claude C. Hopkins",
+    "loggedAt": "2026-07-29",
+    "category": "psychology"
+  },
+  {
+    "id": "book-psy-f206395e04",
+    "kind": "book",
+    "title": "Zig Ziglar's Secrets of Closing the Sale",
+    "source": "Zig Ziglar",
+    "loggedAt": "2026-07-29",
+    "category": "psychology"
+  },
+  {
+    "id": "book-psy-987da6c073",
+    "kind": "book",
+    "title": "The Art of Seduction",
+    "source": "Robert Greene",
+    "loggedAt": "2026-07-29",
+    "category": "psychology",
+    "asin": "0142001198",
+    "href": "https://www.amazon.com/dp/0142001198"
+  },
+  {
+    "id": "book-psy-90d1d49085",
+    "kind": "book",
+    "title": "Yes!: 50 Scientifically Proven Ways to Be Persuasive",
+    "source": "Noah J. Goldstein",
+    "loggedAt": "2026-07-29",
+    "category": "psychology",
+    "asin": "1416576142",
+    "href": "https://www.amazon.com/dp/1416576142"
+  },
+  {
+    "id": "book-psy-e79f281887",
+    "kind": "book",
+    "title": "Selling with EASE: The Four Step Sales Cycle Found in Every Successful Business Transaction",
+    "source": "Chris Murray",
+    "loggedAt": "2026-07-29",
+    "category": "psychology"
+  },
+  {
+    "id": "book-psy-2500b078e0",
+    "kind": "book",
+    "title": "The Wizard of Ads",
+    "source": "Roy H. Williams",
+    "loggedAt": "2026-07-30",
+    "category": "psychology"
   }
 ]
