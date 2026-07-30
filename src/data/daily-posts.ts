@@ -37,8 +37,8 @@ export interface DailyPost {
 /** Always-on outbound social */
 export const dailySocial = {
   x: {
-    handle: "@MelaniLaurentS",
-    href: "https://x.com/MelaniLaurentS",
+    handle: "@melanilaurents",
+    href: "https://x.com/melanilaurents",
     label: "X",
     note: "My posts live here in full.",
   },
@@ -69,9 +69,9 @@ const myXPosts: DailyPost[] = [
     date: "2026-07-30",
     title:
       "Reluctantly having to post on LinkedIn bc YC asks for it. Elon can you acquire LinkedIn and wipe it off the internet?",
-    href: "https://x.com/MelaniLaurentS/status/2082718301851943375",
+    href: "https://x.com/melanilaurents/status/2082718301851943375",
     displayName: "Celine Nova",
-    handle: "@MelaniLaurentS",
+    handle: "@melanilaurents",
     avatarUrl: AVATAR,
   },
   {
@@ -79,9 +79,9 @@ const myXPosts: DailyPost[] = [
     date: "2026-07-30",
     title:
       "Unfortunately Grok Pro's $300/month subscription is worth it. The devs are fking cracked",
-    href: "https://x.com/MelaniLaurentS/status/2082711485315268684",
+    href: "https://x.com/melanilaurents/status/2082711485315268684",
     displayName: "Celine Nova",
-    handle: "@MelaniLaurentS",
+    handle: "@melanilaurents",
     avatarUrl: AVATAR,
   },
   {
@@ -89,9 +89,9 @@ const myXPosts: DailyPost[] = [
     date: "2026-06-09",
     title:
       "99% of the world's problems would be gone if people pursued what they loved.",
-    href: "https://x.com/MelaniLaurentS/status/2064235359186374952",
+    href: "https://x.com/melanilaurents/status/2064235359186374952",
     displayName: "Celine Nova",
-    handle: "@MelaniLaurentS",
+    handle: "@melanilaurents",
     avatarUrl: AVATAR,
   },
 ];

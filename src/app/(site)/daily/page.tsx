@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function DailyPage() {
   const xUrl =
     siteConfig.socialLinks.find((link) => link.id === "x")?.href ??
-    "https://x.com/MelaniLaurentS";
+    "https://x.com/melanilaurents";
 
   return (
     <div className="daily-pulse">

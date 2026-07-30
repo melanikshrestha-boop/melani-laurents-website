@@ -48,7 +48,7 @@ function QuotedCard({ q }: { q: QuotedPost }) {
 
 function XPostCard({ post }: { post: DailyPost }) {
   const name = post.displayName ?? "Celine Nova";
-  const handle = post.handle ?? "@MelaniLaurentS";
+  const handle = post.handle ?? "@melanilaurents";
   const avatar =
     post.avatarUrl ??
     "https://pbs.twimg.com/profile_images/2076576094493327360/LaEvB-1S.jpg";

@@ -51,7 +51,7 @@ export const siteConfig = {
     {
       id: "x",
       label: "X",
-      href: "https://x.com/MelaniShrestha",
+      href: "https://x.com/melanilaurents",
     },
     {
       id: "youtube",
