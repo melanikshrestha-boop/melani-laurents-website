@@ -41,13 +41,19 @@ export function Navigation() {
     pathname === "/podcast" ||
     pathname.startsWith("/podcast/") ||
     pathname === "/youtube" ||
-    pathname.startsWith("/youtube/");
+    pathname.startsWith("/youtube/") ||
+    // Same cream paper as the shelf — no black bar / color divide
+    pathname === "/bookshelf" ||
+    pathname.startsWith("/bookshelf/");
+
+  const bookshelf =
+    pathname === "/bookshelf" || pathname.startsWith("/bookshelf/");
 
   if (pathname === "/") return null;
 
   return (
     <header
-      className={`cinema-nav fixed top-0 left-0 right-0 z-50${paper ? " cinema-nav--paper" : ""}`}
+      className={`cinema-nav fixed top-0 left-0 right-0 z-50${paper ? " cinema-nav--paper" : ""}${bookshelf ? " cinema-nav--bookshelf" : ""}`}
     >
       <nav className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
         <MelaniSignature

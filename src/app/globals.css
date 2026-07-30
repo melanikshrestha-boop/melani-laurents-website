@@ -572,9 +572,21 @@ body {
 }
 
 .cinema-nav--paper {
-  border-bottom-color: rgba(20, 18, 16, 0.1);
+  border-bottom: 0 !important;
+  border-bottom-color: transparent;
   background: rgba(240, 237, 229, 0.94);
   backdrop-filter: blur(14px);
+  box-shadow: none;
+}
+
+/* Bookshelf: nav is the SAME solid paper as the page — no bar, no edge */
+.cinema-nav--bookshelf {
+  border: 0 !important;
+  border-bottom: 0 !important;
+  background: #f7f1e7 !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
 }
 
 .cinema-nav--paper .social-icons__link {
