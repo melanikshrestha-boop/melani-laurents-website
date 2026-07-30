@@ -31,6 +31,7 @@ You are **UI polish** for the public Bookshelf (not the whole site unless asked)
 - Personal insight shelf, **not** Amazon/library search UX
 - **No search bar**
 - **No tagline** under title (deleted; keep `.pb-shelf-tagline` / `.bl-tagline` `display: none`)
+- **NEVER introduce dividing lines** (borders, hairlines, row rules, card outlines that read as a line) unless Melani explicitly asks. Default = no dividers. Anywhere on public shelf.
 - Clean covers; cream/light ink on `.pb-root`
 - **Drives UI = Wonder exact** (style only, no edit pencils):
   - `min-height: 46px`, padding `8px 7px`, icon/text gap `8px`

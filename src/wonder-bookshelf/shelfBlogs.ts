@@ -7,33 +7,45 @@ export type ShelfBlog = {
   id: string;
   title: string;
   url: string;
-  /** ISO date published (optional, for display) */
+  author: string;
+  /** ISO date published — shown as M/D/YY next to title */
   date?: string;
   /** Her notes — empty until she writes */
   annotation?: string;
 };
 
+/** Format 2014-01-28 → 1/28/14 */
+export function shortBlogDate(iso?: string): string {
+  if (!iso) return "";
+  const [y, m, d] = iso.split("-").map(Number);
+  if (!y || !m || !d) return "";
+  return `${m}/${d}/${String(y).slice(-2)}`;
+}
+
 /**
  * Chronological order she read (1 → n).
- * Seed: three Sam Altman posts she pointed at.
+ * Specific posts she liked — not author shout-out cards.
  */
 export const SHELF_BLOGS: ShelfBlog[] = [
   {
     id: "sa-tech-wealth",
     title: "Technology and wealth inequality",
     url: "https://blog.samaltman.com/technology-and-wealth-inequality",
+    author: "Sam Altman",
     date: "2014-01-28",
   },
   {
     id: "sa-value-doing",
     title: "Value is created by doing",
     url: "https://blog.samaltman.com/value-is-created-by-doing",
+    author: "Sam Altman",
     date: "2014-01-16",
   },
   {
     id: "sa-super-successful",
     title: "Super successful companies",
     url: "https://blog.samaltman.com/super-successful-companies",
+    author: "Sam Altman",
     date: "2014-01-15",
   },
 ];

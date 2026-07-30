@@ -36,7 +36,7 @@ import {
 } from "./booksStore";
 import { coverUrlForBook, storeUrlForBook } from "./amazon";
 import { catalogEntryToBook } from "./publicCatalog";
-import { SHELF_BLOGS, type ShelfBlog } from "./shelfBlogs";
+import { SHELF_BLOGS, shortBlogDate, type ShelfBlog } from "./shelfBlogs";
 import { MinimalIcon } from "./MinimalIcon";
 import "./books-library.css";
 
@@ -774,20 +774,14 @@ export function PublicBookshelf() {
                     <span className="pb-blogs__n" aria-hidden>
                       {i + 1}
                     </span>
-                    <span className="pb-blogs__copy">
+                    <span className="pb-blogs__line">
                       <span className="pb-blogs__name">{blog.title}</span>
                       {blog.date ? (
                         <time className="pb-blogs__date" dateTime={blog.date}>
-                          {new Date(blog.date + "T12:00:00").toLocaleDateString(
-                            "en-US",
-                            {
-                              month: "long",
-                              day: "numeric",
-                              year: "numeric",
-                            },
-                          )}
+                          {shortBlogDate(blog.date)}
                         </time>
                       ) : null}
+                      <span className="pb-blogs__by">by {blog.author}</span>
                     </span>
                   </button>
                 </li>
