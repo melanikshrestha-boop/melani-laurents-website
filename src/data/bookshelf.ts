@@ -200,14 +200,6 @@ export const bookshelfEntries: BookshelfEntry[] = [
     href: "https://www.amazon.com/s?k=1984+George+Orwell",
   },
   {
-    id: "book-9ac170a820fae3d0",
-    kind: "book",
-    title: "The Bhagavad Gita",
-    source: "Eknath Easwaran",
-    loggedAt: "2026-03-21",
-    href: "https://www.amazon.com/s?k=The+Bhagavad+Gita+Eknath+Easwaran",
-  },
-  {
     id: "book-0df09c9d265ac04a",
     kind: "book",
     title: "Deep Work",
