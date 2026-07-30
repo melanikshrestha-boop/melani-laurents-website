@@ -4568,7 +4568,7 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   display: flex;
   align-items: center;
   gap: 26px;
-  margin: 0 0 18px;
+  margin: 0 0 14px;
   padding: 0;
   overflow-x: auto;
   border: 0;
@@ -4609,47 +4609,38 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   color: #29251f !important;
 }
 
-/* Search — Wonder pill */
-.pb-root .bl-toolbar {
-  display: grid;
-  grid-template-columns: minmax(260px, 1fr);
-  gap: 9px;
-  margin-bottom: 10px;
-}
+/* Public: no search bar */
+.pb-root .bl-toolbar,
 .pb-root .bl-search-wrap {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-width: 0;
-  height: 38px;
-  margin: 0;
-  padding: 0 6px 0 11px;
-  border: 1px solid rgba(65, 51, 36, 0.11);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.54);
-  color: #9a9084;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset;
-}
-.pb-root .bl-search-wrap:focus-within {
-  border-color: rgba(167, 139, 212, 0.48);
-}
-.pb-root .bl-search {
-  width: 100%;
-  min-width: 0;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  color: #29251f;
-  font-size: 13px;
-  font-family: inherit;
-}
-.pb-root .bl-search::placeholder {
-  color: #9a9084;
+  display: none !important;
 }
 
 .pb-root .bl-empty-all {
   color: #71695f;
   margin: 8px 0;
+}
+
+/* Faves: only 5-star personal ratings */
+.pb-root .pb-faves-tagline {
+  margin: 0 0 12px !important;
+  padding: 0;
+  color: #71695f !important;
+  font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif;
+  font-size: 0.875rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+/* Personal star ratings under cover title */
+.pb-root .pb-card-stars,
+.pb-root .bl-card-stars {
+  display: block;
+  margin-top: 3px;
+  color: #c4a06a !important;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  line-height: 1;
 }
 
 /*

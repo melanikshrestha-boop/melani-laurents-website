@@ -11,10 +11,10 @@ import {
   ArrowSquareOut,
   CaretRight,
   FolderSimple,
-  MagnifyingGlass,
 } from "@phosphor-icons/react";
 import {
   bookshelfEntries,
+  isFiveStar,
   type BookshelfEntry,
   type BookshelfKind,
 } from "@/data/bookshelf";
@@ -178,6 +178,12 @@ function BookCover({
   );
 }
 
+/** Filled stars for a personal 1–5 rating (empty string if unrated). */
+function starsLabel(rating?: number): string {
+  if (!rating || rating < 1) return "";
+  return "★".repeat(Math.min(5, Math.round(rating)));
+}
+
 function CatalogCard({
   item,
   folderLabel,
@@ -188,6 +194,8 @@ function CatalogCard({
   const { entry, book } = item;
   const href = buyUrl(entry, book);
   const label = openLabel(entry.kind);
+  const rating = entry.rating;
+  const stars = starsLabel(rating);
 
   return (
     <div className="bl-card-wrap">
@@ -204,6 +212,14 @@ function CatalogCard({
         {book.author ? (
           <span className="bl-card-author">{book.author}</span>
         ) : null}
+        {stars ? (
+          <span
+            className="bl-card-stars pb-card-stars"
+            aria-label={`${rating} out of 5 stars`}
+          >
+            {stars}
+          </span>
+        ) : null}
       </a>
     </div>
   );
@@ -217,8 +233,6 @@ export function PublicBookshelf() {
    */
   const [openFolders, setOpenFolders] = useState<Record<string, boolean>>({});
   const [quoteIndex, setQuoteIndex] = useState(0);
-  /** Local filter of public catalog titles/authors — same control as Wonder */
-  const [q, setQ] = useState("");
 
   /** Books / papers / podcasts only — never fake blog "book" covers */
   const catalog = useMemo<ShelfItem[]>(() => {
@@ -261,38 +275,30 @@ export function PublicBookshelf() {
     };
     for (const { entry } of catalog) {
       if (entry.kind === "book") c.book += 1;
-      if (entry.favorite) c.faves += 1;
+      // Faves = only personal 5-star ratings
+      if (isFiveStar(entry)) c.faves += 1;
     }
     return c;
   }, [catalog, blogPostCount]);
 
-  const query = q.trim().toLowerCase();
-
   const filtered = useMemo(() => {
-    return catalog.filter(({ entry, book }) => {
-      if (filter === "faves" && !entry.favorite) return false;
+    return catalog.filter(({ entry }) => {
+      // Faves chip = only 5-star personal ratings
+      if (filter === "faves" && !isFiveStar(entry)) return false;
       // blogs are not in the cover grid
       if (filter === "blog") return false;
       if (filter === "book" && entry.kind !== "book") return false;
-      if (query) {
-        const hay = `${book.title} ${book.author || ""} ${entry.source || ""}`.toLowerCase();
-        if (!hay.includes(query)) return false;
-      }
       return true;
     });
-  }, [catalog, filter, query]);
+  }, [catalog, filter]);
 
   /** Wonder: blogs are a link section below books — never a folder of covers */
-  const showBlogs = (filter === "all" || filter === "blog") && !query;
+  const showBlogs = filter === "all" || filter === "blog";
 
   const filteredGreats = useMemo(() => {
     if (!showBlogs) return [];
-    if (!query) return GREATS_AUTHORS;
-    return GREATS_AUTHORS.filter((a) => {
-      const hay = `${a.name} ${a.posts.map((p) => p.title).join(" ")}`.toLowerCase();
-      return hay.includes(query);
-    });
-  }, [showBlogs, query]);
+    return GREATS_AUTHORS;
+  }, [showBlogs]);
 
   const groups = useMemo<ShelfGroup[]>(() => {
     // Blogs chip: only the greats link section (no book folders)
@@ -342,9 +348,8 @@ export function PublicBookshelf() {
     return 0;
   };
 
-  /** Wonder: open unless explicitly closed; search forces open */
-  const isExpanded = (id: string) =>
-    openFolders[id] !== false || Boolean(query);
+  /** Wonder: open unless explicitly closed */
+  const isExpanded = (id: string) => openFolders[id] !== false;
 
   const quote = SHELF_QUOTES[quoteIndex % SHELF_QUOTES.length];
   const quoteTotal = SHELF_QUOTES.length;
@@ -416,39 +421,20 @@ export function PublicBookshelf() {
           ))}
         </div>
 
-        {filter !== "blog" ? (
-          <div className="bl-toolbar">
-            <form
-              className="bl-search-wrap"
-              onSubmit={(event) => event.preventDefault()}
-            >
-              <MagnifyingGlass size={15} aria-hidden />
-              <input
-                className="bl-search"
-                value={q}
-                aria-label="Search bookshelf"
-                onChange={(event) => setQ(event.target.value)}
-                placeholder="Search titles, authors, notes, or highlights"
-              />
-            </form>
-          </div>
-        ) : null}
-
         {groups.length === 0 &&
         !(filter === "faves" && filtered.length > 0) &&
         !showBlogs ? (
           <p className="bl-empty-all">
-            {query
-              ? "No books match that search."
-              : filter === "faves"
-                ? "Almost never a fave — when one sticks, it lands here."
-                : "Nothing in this section yet."}
+            {filter === "faves"
+              ? "No 5-star ratings yet — when one earns five, it lands here."
+              : "Nothing in this section yet."}
           </p>
         ) : null}
 
-        {/* Faves: flat grid only — rare picks, no folder chrome */}
+        {/* Faves: only personal 5-star ratings — flat grid, no folder chrome */}
         {filter === "faves" && filtered.length > 0 ? (
           <section className="bl-shelf is-open pb-faves-flat" aria-label="Faves">
+            <p className="pb-faves-tagline">My only 5 star ratings.</p>
             <div className="bl-grid">
               {filtered.map((item) => (
                 <CatalogCard

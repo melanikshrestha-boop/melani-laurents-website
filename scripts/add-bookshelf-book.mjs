@@ -233,14 +233,22 @@ async function main() {
     asin: resolved.asin,
   };
   if (favorite) {
+    // Faves = only personal 5-star ratings
     entry.favorite = true;
+    entry.rating = 5;
     entry.favoriteWhy =
       (existingIdx >= 0 && catalog[existingIdx].favoriteWhy) ||
       "Shout-out title.";
-  } else if (existingIdx >= 0 && catalog[existingIdx].favorite) {
-    entry.favorite = catalog[existingIdx].favorite;
-    if (catalog[existingIdx].favoriteWhy) {
-      entry.favoriteWhy = catalog[existingIdx].favoriteWhy;
+  } else if (existingIdx >= 0) {
+    if (catalog[existingIdx].favorite) {
+      entry.favorite = catalog[existingIdx].favorite;
+      if (catalog[existingIdx].favoriteWhy) {
+        entry.favoriteWhy = catalog[existingIdx].favoriteWhy;
+      }
+    }
+    // Keep prior personal rating when re-adding / refreshing metadata
+    if (catalog[existingIdx].rating != null) {
+      entry.rating = catalog[existingIdx].rating;
     }
   }
 

@@ -149,7 +149,8 @@
     "href": "https://www.amazon.com/dp/1451648537",
     "asin": "1451648537",
     "favorite": true,
-    "favoriteWhy": "Isaacson — main character energy."
+    "favoriteWhy": "Isaacson — main character energy.",
+    "rating": 5
   },
   {
     "id": "book-entrepreneur-titan",
@@ -312,7 +313,8 @@
     "asin": "1982181281",
     "category": "main characters only",
     "favorite": true,
-    "favoriteWhy": "Isaacson — main character energy."
+    "favoriteWhy": "Isaacson — main character energy.",
+    "rating": 5
   },
   {
     "id": "book-isaacson-code-breaker",
@@ -1713,7 +1715,8 @@
     "href": "https://www.amazon.com/dp/0807014273",
     "asin": "0807014273",
     "favorite": true,
-    "favoriteWhy": "Rare fave — meaning under pressure."
+    "favoriteWhy": "Rare fave — meaning under pressure.",
+    "rating": 5
   },
   {
     "id": "book-sa-c044629b71",

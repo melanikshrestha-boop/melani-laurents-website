@@ -34,6 +34,11 @@ export type BookshelfEntry = {
    */
   category?: string;
   year?: number;
+  /**
+   * Personal rating 1–5.
+   * Faves = only 5-star books (see favorite + PublicBookshelf Faves chip).
+   */
+  rating?: 1 | 2 | 3 | 4 | 5;
   favorite?: boolean;
   favoriteWhy?: string;
 };
@@ -54,8 +59,15 @@ export function getBookshelfEntries(): BookshelfEntry[] {
   );
 }
 
+/** Faves = only 5-star personal ratings (favorite flag kept in sync). */
 export function getFavorites(): BookshelfEntry[] {
-  return getBookshelfEntries().filter((e) => e.favorite);
+  return getBookshelfEntries().filter(
+    (e) => e.rating === 5 || e.favorite === true
+  );
+}
+
+export function isFiveStar(entry: BookshelfEntry): boolean {
+  return entry.rating === 5 || entry.favorite === true;
 }
 
 export function getRecentBookshelf(limit = 3): BookshelfEntry[] {
