@@ -406,63 +406,67 @@ export function PublicBookshelf() {
           </section>
         ) : null}
 
-        {/* Wonder-style drives: icon + title + count; whole row taps open/close */}
-        {groups.map((group) => {
-          const expanded = isExpanded(group.id);
-          const n = group.items.length;
-          return (
-            <section
-              key={group.id}
-              className={`bl-shelf pb-drive${expanded ? " is-open" : ""}`}
-              style={
-                {
-                  "--bl-folder-accent": group.accent,
-                  "--bl-folder-wash": `${group.accent}18`,
-                } as CSSProperties
-              }
-            >
-              <div className="bl-folder-row">
-                <button
-                  type="button"
-                  className="bl-folder pb-drive-btn"
-                  aria-expanded={expanded}
-                  onClick={() =>
-                    setOpenFolders((current) => ({
-                      ...current,
-                      [group.id]: !current[group.id],
-                    }))
+        {/* Drives stacked flush — one continuous list, zero air between rows */}
+        {groups.length > 0 ? (
+          <div className="pb-drives" role="list">
+            {groups.map((group) => {
+              const expanded = isExpanded(group.id);
+              const n = group.items.length;
+              return (
+                <section
+                  key={group.id}
+                  role="listitem"
+                  className={`bl-shelf pb-drive${expanded ? " is-open" : ""}`}
+                  style={
+                    {
+                      "--bl-folder-accent": group.accent,
+                      "--bl-folder-wash": `${group.accent}18`,
+                    } as CSSProperties
                   }
                 >
-                  <FolderSimple
-                    className="bl-folder-icon"
-                    size={18}
-                    weight="fill"
-                    aria-hidden
-                    style={{ color: group.accent, fill: group.accent }}
-                  />
-                  <span className="bl-folder-copy pb-drive-copy">
-                    <strong>{group.label}</strong>
-                    <small>
-                      {n} {n === 1 ? "book" : "books"}
-                    </small>
-                  </span>
-                </button>
-              </div>
-
-              {expanded ? (
-                <div className="bl-grid">
-                  {group.items.map((item) => (
-                    <CatalogCard
-                      key={item.entry.id}
-                      item={item}
-                      folderLabel={group.label}
+                  <button
+                    type="button"
+                    className="bl-folder pb-drive-btn"
+                    aria-expanded={expanded}
+                    onClick={() =>
+                      setOpenFolders((current) => ({
+                        ...current,
+                        [group.id]: !current[group.id],
+                      }))
+                    }
+                  >
+                    <FolderSimple
+                      className="bl-folder-icon"
+                      size={16}
+                      weight="fill"
+                      aria-hidden
+                      style={{ color: group.accent, fill: group.accent }}
                     />
-                  ))}
-                </div>
-              ) : null}
-            </section>
-          );
-        })}
+                    {/* Single-line row: name + count so rows stack flush on each other */}
+                    <span className="pb-drive-copy">
+                      <strong>{group.label}</strong>
+                      <small>
+                        {n}&nbsp;{n === 1 ? "book" : "books"}
+                      </small>
+                    </span>
+                  </button>
+
+                  {expanded ? (
+                    <div className="bl-grid">
+                      {group.items.map((item) => (
+                        <CatalogCard
+                          key={item.entry.id}
+                          item={item}
+                          folderLabel={group.label}
+                        />
+                      ))}
+                    </div>
+                  ) : null}
+                </section>
+              );
+            })}
+          </div>
+        ) : null}
 
         {/* Wonder: blogs are links below books — not covers in a folder */}
         {showBlogs && filteredGreats.length > 0 ? (

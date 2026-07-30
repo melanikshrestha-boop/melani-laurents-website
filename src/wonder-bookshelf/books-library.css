@@ -4623,48 +4623,77 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   line-height: 1.05 !important;
 }
 
-/* Wonder-style drives: colored folder + title + “N books”; tap whole row */
+/*
+ * Drive stack — folders sit ON TOP of each other (gap: 0).
+ * Single-line rows (name · count) so no two-line air between drives.
+ */
+.pb-root .pb-drives {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.pb-root .pb-drives > .pb-drive,
+.pb-root .pb-drives > .bl-shelf {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  min-height: 0 !important;
+  flex: 0 0 auto;
+}
 .pb-root .pb-drive-btn,
 .pb-root .bl-folder.pb-drive-btn {
   display: flex !important;
   width: 100%;
-  /* center icon with two-line label — not stretch to 46px min-height */
   align-items: center !important;
-  gap: 8px !important;
+  gap: 7px !important;
   min-height: 0 !important;
   height: auto !important;
-  padding: 2px 2px !important;
+  margin: 0 !important;
+  padding: 1px 4px !important;
   border: 0 !important;
-  border-radius: 6px;
+  border-radius: 4px;
   background: transparent !important;
   cursor: pointer !important;
-  line-height: 1.05 !important;
+  line-height: 1 !important;
 }
 .pb-root .pb-drive-btn:hover,
 .pb-root .pb-drive.is-open .pb-drive-btn {
-  background: color-mix(in srgb, var(--bl-folder-accent) 9%, transparent) !important;
+  background: color-mix(in srgb, var(--bl-folder-accent) 10%, transparent) !important;
 }
 .pb-root .pb-drive-btn:active {
-  background: color-mix(in srgb, var(--bl-folder-accent) 14%, transparent) !important;
+  background: color-mix(in srgb, var(--bl-folder-accent) 16%, transparent) !important;
 }
-.pb-root .pb-drive-copy,
-.pb-root .bl-folder-copy.pb-drive-copy {
-  display: grid !important;
-  gap: 0 !important;
+/* ONE line: title + muted count — not stacked title/subtitle */
+.pb-root .pb-drive-copy {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: baseline !important;
+  gap: 0.55em !important;
+  min-width: 0;
   text-align: left;
-  line-height: 1.05 !important;
+  line-height: 1 !important;
 }
 .pb-root .pb-drive-copy strong {
+  display: inline !important;
   font-size: 14px !important;
   font-weight: 500 !important;
-  line-height: 1.05 !important;
+  line-height: 1 !important;
   color: #1a1612 !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .pb-root .pb-drive-copy small {
-  font-size: 11px !important;
+  display: inline !important;
+  flex: 0 0 auto;
+  font-size: 12px !important;
   line-height: 1 !important;
   color: #8a8278 !important;
   margin: 0 !important;
+  white-space: nowrap;
 }
 /* No hover-only caret chrome — open/close is the whole row tap */
 .pb-root .pb-drive .bl-folder-caret,
@@ -4674,9 +4703,9 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 .pb-root .pb-drive .bl-folder-icon,
 .pb-root .pb-drive-btn .bl-folder-icon {
   flex: 0 0 auto;
-  width: 18px !important;
-  height: 18px !important;
-  font-size: 18px !important;
+  width: 16px !important;
+  height: 16px !important;
+  font-size: 16px !important;
   line-height: 1 !important;
 }
 
@@ -4706,7 +4735,7 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   padding: 2px 0 4px 24px !important;
 }
 
-/* Folders: true single-spaced stack — kill Wonder base min-height + borders */
+/* Folders: flush stack — kill Wonder base min-height + borders + every gap */
 .pb-root .bl-shelf,
 .pb-root .bl-shelf:last-of-type,
 .pb-root .bl-shelf.pb-drive {
@@ -4719,8 +4748,10 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   outline: none !important;
   min-height: 0 !important;
 }
-.pb-root .bl-shelf + .bl-shelf {
-  margin-top: 0 !important;
+.pb-root .bl-shelf + .bl-shelf,
+.pb-root .pb-drive + .pb-drive {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 .pb-root .bl-shelf::before,
 .pb-root .bl-shelf:hover::before,
@@ -4730,35 +4761,39 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 }
 .pb-root .bl-folder-row {
   margin: 0 !important;
+  padding: 0 !important;
   min-height: 0 !important;
   align-items: center !important;
 }
 /* Override base `.bl-folder { min-height: 46px; padding: 8px 7px }` */
 .pb-root .bl-folder {
-  gap: 8px !important;
+  gap: 7px !important;
   min-height: 0 !important;
   height: auto !important;
-  padding: 2px 2px !important;
-  line-height: 1.05 !important;
+  padding: 1px 4px !important;
+  line-height: 1 !important;
 }
 .pb-root .bl-folder-copy {
   gap: 0 !important;
 }
 .pb-root .bl-folder strong {
-  line-height: 1.05 !important;
+  line-height: 1 !important;
   font-size: 14px !important;
 }
 .pb-root .bl-folder small {
   line-height: 1 !important;
   margin: 0 !important;
-  font-size: 11px !important;
+  font-size: 12px !important;
 }
 .pb-root .bl-folder-icon {
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1 !important;
 }
-.pb-root .bl-shelf > .bl-grid {
-  padding: 2px 0 6px 24px !important;
+/* Open grid sits under its own drive only — does not add air between closed rows */
+.pb-root .bl-shelf > .bl-grid,
+.pb-root .pb-drive > .bl-grid {
+  padding: 4px 0 8px 24px !important;
+  margin: 0 !important;
 }
 
 /* Greats / blogs — tight under books */
