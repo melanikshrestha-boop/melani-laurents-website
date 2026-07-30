@@ -471,18 +471,20 @@ export function HomeSlideToolbar({
                 />
                 <output>{Math.round(scale * 100)}%</output>
               </label>
-              <label className="hub-slide-toolbar__scale">
-                Character spacing
-                <input
-                  type="range"
-                  min={-0.15}
-                  max={0.6}
-                  step={0.005}
-                  value={tracking}
-                  onChange={(event) => onTracking(Number(event.target.value))}
-                />
-                <output>{tracking.toFixed(3)}em</output>
-              </label>
+              {selected !== "signature" && selected !== "socials" ? (
+                <label className="hub-slide-toolbar__scale">
+                  Character spacing
+                  <input
+                    type="range"
+                    min={-0.15}
+                    max={0.6}
+                    step={0.005}
+                    value={tracking}
+                    onChange={(event) => onTracking(Number(event.target.value))}
+                  />
+                  <output>{tracking.toFixed(3)}em</output>
+                </label>
+              ) : null}
             </>
           ) : (
             <span className="hub-slide-toolbar__hint is-warn">
