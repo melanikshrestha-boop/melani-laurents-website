@@ -4435,15 +4435,23 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   color: #1a1612 !important;
 }
 
-/* Personal why-I-read line under Bookshelf — full width, small italic */
+/* Personal why-I-read line under Bookshelf — full shelf width, small italic */
+.pb-root .bl-head-copy {
+  width: 100%;
+  max-width: none;
+  flex: 1 1 100%;
+}
 .pb-root .pb-shelf-tagline,
 .pb-root .bl-tagline {
+  display: block;
+  box-sizing: border-box;
   margin: 0.4rem 0 0;
-  max-width: none;
-  width: 100%;
+  padding: 0;
+  max-width: none !important;
+  width: 100% !important;
   color: #5c534a !important;
-  font-size: 0.78rem;
-  line-height: 1.45;
+  font-size: 0.72rem;
+  line-height: 1.4;
   font-weight: 400;
   font-style: italic;
   text-align: left;
