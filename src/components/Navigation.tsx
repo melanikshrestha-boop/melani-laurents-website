@@ -58,18 +58,24 @@ export function Navigation() {
       <nav
         className={
           bookshelf
-            ? "flex h-14 w-full max-w-none items-center justify-between px-3 sm:px-4"
+            ? "cinema-nav__inner--bookshelf flex h-14 w-full max-w-none items-center justify-between"
             : "mx-auto flex h-14 max-w-6xl items-center justify-between px-6"
         }
       >
-        {/* Logo hugs left edge of the bar; links hug the right */}
+        {/* Logo hard-left; links hard-right (bookshelf) */}
         <MelaniSignature
           variant={paper ? "ink" : "light"}
-          className="melani-signature--nav"
+          className={`melani-signature--nav${bookshelf ? " melani-signature--nav-edge" : ""}`}
         />
 
-        <div className="flex items-center gap-5">
-          <ul className="hidden items-center gap-5 md:flex">
+        <div
+          className={
+            bookshelf
+              ? "cinema-nav__end flex items-center gap-4 sm:gap-5"
+              : "flex items-center gap-5"
+          }
+        >
+          <ul className="hidden items-center gap-4 sm:gap-5 md:flex">
             {siteConfig.nav.map((item) => (
               <li key={item.href}>
                 <NavLink item={item} paper={paper} />
@@ -77,7 +83,10 @@ export function Navigation() {
             ))}
           </ul>
 
-          <SocialIcons className="hidden sm:flex" size="sm" />
+          {/* Social icons sit between links and edge elsewhere; omit on shelf so CONTACT is true right edge */}
+          {!bookshelf ? (
+            <SocialIcons className="hidden sm:flex" size="sm" />
+          ) : null}
 
           <details className="relative md:hidden">
             <summary

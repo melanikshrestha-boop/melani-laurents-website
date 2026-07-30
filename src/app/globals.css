@@ -587,20 +587,36 @@ body {
   background-image: none !important;
   backdrop-filter: none !important;
   box-shadow: none !important;
+  padding: 0 !important;
 }
 
-/* Header extremities: wordmark leftmost, nav cluster rightmost */
-.cinema-nav--bookshelf nav {
+/* True extremities: logo at left pad, CONTACT at right pad (shared 10px gutter) */
+.cinema-nav--bookshelf .cinema-nav__inner--bookshelf {
   width: 100%;
   max-width: none;
+  margin: 0;
+  padding: 0 10px !important;
+  box-sizing: border-box;
 }
-.cinema-nav--bookshelf .melani-signature--nav {
-  margin-left: 0;
-  justify-self: start;
+.cinema-nav--bookshelf .melani-signature-link {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
 }
-.cinema-nav--bookshelf nav > div:last-child {
+/* SVG text starts at x=18/460 — pull ink to the gutter edge */
+.cinema-nav--bookshelf .melani-signature--nav-edge .melani-signature__mark {
+  display: block;
+  height: 2.1rem;
+  width: auto;
+  margin: 0 0 0 -0.45rem;
+  padding: 0;
+}
+.cinema-nav--bookshelf .cinema-nav__end {
   margin-left: auto;
   margin-right: 0;
+  padding: 0;
 }
 
 .cinema-nav--paper .social-icons__link {
