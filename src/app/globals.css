@@ -5452,11 +5452,12 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   max-width: none;
   text-align: left;
   font-family: var(--font-share-tech-mono), var(--font-jetbrains-mono), ui-monospace, monospace;
-  font-size: 0.58rem;
+  /* Slightly larger than 0.58rem — still mono label energy, easier to hit/read */
+  font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 /*
@@ -5639,7 +5640,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   }
 
   .hub-page__nav--locked {
-    font-size: 0.55rem;
-    letter-spacing: 0.14em;
+    font-size: 0.65rem;
+    letter-spacing: 0.13em;
   }
 }
