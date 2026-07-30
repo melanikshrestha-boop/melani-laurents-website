@@ -4440,9 +4440,21 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   cursor: text;
 }
 
+/*
+ * Content column shares nav edge gutters (12–16px).
+ * Headers sit on the left/right extremities of this column — no extra inset.
+ */
 .bl-public-wrap {
-  width: min(100% - 1.5rem, 78rem);
-  margin: 0.25rem auto 0.75rem;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+@media (min-width: 640px) {
+  .bl-public-wrap {
+    padding: 0 16px;
+  }
 }
 
 /* Shelf panel = same paper as page (no second card color / no borders) */
@@ -4460,7 +4472,8 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   --books-bg: #f7f1e7;
   min-height: 0 !important;
   height: auto !important;
-  padding: 8px 16px 12px !important;
+  /* No horizontal pad — headers/title already at wrap edges */
+  padding: 4px 0 12px !important;
   box-sizing: border-box;
   border: 0 !important;
   border-radius: 0 !important;
@@ -4469,6 +4482,95 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   background: transparent !important;
   background-image: none !important;
   color: #29251f;
+}
+
+/* ——— Headers hug nearest edges ——— */
+.pb-root .bl-head {
+  width: 100%;
+  margin: 0 0 6px !important;
+  padding: 0 !important;
+}
+.pb-root .bl-head-main {
+  display: flex !important;
+  width: 100%;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+}
+.pb-root .bl-head-copy {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left;
+}
+.pb-root .bl-title {
+  display: flex !important;
+  align-items: center;
+  gap: 8px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left;
+  justify-content: flex-start;
+}
+.pb-root .bl-stats {
+  margin-top: 4px !important;
+  justify-content: flex-start;
+}
+
+/* Quote: text left edge, refresh controls right edge */
+.pb-root > .pb-quote {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 0 8px !important;
+  padding: 0 !important;
+  gap: 10px !important;
+}
+.pb-root .pb-quote__text {
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left;
+}
+.pb-root .pb-quote__controls {
+  margin: 0 !important;
+  margin-left: auto !important;
+  padding: 0 !important;
+  align-items: flex-end !important;
+}
+
+/* Chips flush left on the content edge */
+.pb-root .bl-filter {
+  width: 100%;
+  margin: 0 0 8px !important;
+  padding: 0 !important;
+  justify-content: flex-start;
+}
+
+/* Greats section header: label left, meta right */
+.pb-root .bl-greats-head {
+  display: flex !important;
+  width: 100%;
+  align-items: baseline !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  margin: 0 0 6px !important;
+  padding: 0 !important;
+}
+.pb-root .bl-greats-head > div {
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left;
+}
+.pb-root .bl-greats-head > small {
+  margin: 0 0 0 auto !important;
+  text-align: right;
+  flex: 0 0 auto;
+}
+
+/* Drive rows: caret+icon+title from the left edge of the column */
+.pb-root .bl-folder {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .bookshelf-page--wonder .bookshelf-page__home {
@@ -4488,17 +4590,13 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   color: #29251f;
 }
 
-/* ——— Quote strip (above cream card) — secondary to title, not a hero block ——— */
+/* Quote type — edges/layout already set above (no extra pad that floats content) */
 .pb-root > .pb-quote {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 12px;
-  margin: 0 0 10px;
-  padding: 2px 4px 6px;
 }
 .pb-root .pb-quote__text {
-  margin: 0;
   flex: 1 1 auto;
   min-width: 0;
 }
@@ -4506,7 +4604,6 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   margin: 0;
   color: #3d3630;
   font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif;
-  /* ~14px: readable italic without competing with 28px Bookshelf title */
   font-size: 0.875rem;
   font-style: italic;
   font-weight: 400;
@@ -4526,10 +4623,9 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 .pb-root .pb-quote__controls {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
   gap: 1px;
   flex: 0 0 auto;
-  padding-top: 0;
 }
 .pb-root .pb-quote__refresh {
   display: grid;
@@ -4557,10 +4653,8 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   user-select: none;
 }
 
-/* Title + stats — Wonder header */
+/* Title + stats — keep edge-hug rules from above; only ink/type here */
 .pb-root .bl-head {
-  margin-bottom: 8px;
-  padding-bottom: 0;
   border: 0;
 }
 .pb-root .bl-title {

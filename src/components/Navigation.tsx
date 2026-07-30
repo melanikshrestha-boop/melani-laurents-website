@@ -55,7 +55,14 @@ export function Navigation() {
     <header
       className={`cinema-nav fixed top-0 left-0 right-0 z-50${paper ? " cinema-nav--paper" : ""}${bookshelf ? " cinema-nav--bookshelf" : ""}`}
     >
-      <nav className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
+      <nav
+        className={
+          bookshelf
+            ? "flex h-14 w-full max-w-none items-center justify-between px-3 sm:px-4"
+            : "mx-auto flex h-14 max-w-6xl items-center justify-between px-6"
+        }
+      >
+        {/* Logo hugs left edge of the bar; links hug the right */}
         <MelaniSignature
           variant={paper ? "ink" : "light"}
           className="melani-signature--nav"
