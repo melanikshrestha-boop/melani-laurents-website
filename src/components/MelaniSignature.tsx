@@ -36,7 +36,7 @@ export function MelaniSignature({
       {!linked ? <span className="sr-only">Celine Nova</span> : null}
       <svg
         className="melani-signature__mark"
-        viewBox="8 18 400 100"
+        viewBox="0 0 460 130"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden
