@@ -4416,3 +4416,103 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   color: #71695f;
   text-decoration: none;
 }
+
+/* ——— Public catalog: readable ink on cream (no washed-out grey text) ——— */
+.pb-root.bl-public-wrap .bl[data-books-theme="light"] {
+  --bl-ink: #1a1612;
+  --bl-soft: #3d3630;
+  --bl-faint: #5c534a;
+  --books-text: #1a1612;
+  --books-muted: #3d3630;
+  --books-faint: #5c534a;
+  color: #1a1612;
+}
+
+.pb-root .bl-title,
+.pb-root .bl-card-title,
+.pb-root .bl-folder strong,
+.pb-root .bl-stats b {
+  color: #1a1612 !important;
+}
+
+.pb-root .bl-card-author,
+.pb-root .bl-stats,
+.pb-root .bl-folder small,
+.pb-root .bl-chip {
+  color: #3d3630 !important;
+}
+
+.pb-root .bl-chip.is-on,
+.pb-root .bl-chip.is-on em {
+  color: #1a1612 !important;
+}
+
+.pb-root .bl-chip em {
+  color: #5c534a !important;
+}
+
+.pb-root .bl-search {
+  color: #1a1612 !important;
+}
+
+.pb-root .bl-search::placeholder {
+  color: #6b6358 !important;
+}
+
+.pb-root .bl-empty-all {
+  color: #3d3630 !important;
+}
+
+/* Card is a link — no detail page */
+.pb-root a.bl-card.pb-card-link {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.pb-root a.pb-buy.bl-card-continue {
+  display: block;
+  margin-top: 8px;
+  padding: 7px 8px;
+  border: 1px solid rgba(65, 51, 36, 0.16);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.65);
+  color: #1a1612 !important;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-decoration: none;
+}
+
+.pb-root a.pb-buy.bl-card-continue:hover {
+  border-color: rgba(184, 134, 11, 0.45);
+  background: rgba(212, 188, 130, 0.22);
+  color: #1a1612 !important;
+}
+
+.pb-root .bl-shelf {
+  margin-bottom: 10px;
+}
+
+.pb-root .bl-folder-caret {
+  display: inline-block;
+  width: 1em;
+  transition: transform 140ms ease;
+}
+
+.pb-root .bl-shelf.is-open .bl-folder-caret {
+  transform: rotate(90deg);
+}
+
+.pb-root .bl-folder-icon {
+  font-size: 16px;
+  line-height: 1;
+}
