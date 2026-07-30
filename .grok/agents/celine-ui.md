@@ -31,29 +31,26 @@ You are **UI polish** for the public Bookshelf (not the whole site unless asked)
 - Personal insight shelf, **not** Amazon/library search UX
 - **No search bar**
 - **No tagline** under title (deleted; keep `.pb-shelf-tagline` / `.bl-tagline` `display: none`)
-- Folder counts: `N books` / `1 book` (Wonder drive copy)
 - Clean covers; cream/light ink on `.pb-root`
-- **True single-space density** (not half-tight):
-  - `line-height: 1.0–1.05` on chrome; quote multi-line max `1.15`
-  - **Zero** shelf-to-shelf margin (`margin-top: 0` on `.bl-shelf + .bl-shelf`)
-  - Drive row target height ~28–32px (two-line label + 2px pad)
-  - Chips ~16–18px tall (`min-height: 0`, pad `2px 7px`)
-  - **Must override** base Wonder rule `.bl-folder { min-height: 46px }` with
-    `.pb-root .bl-folder { min-height: 0 !important }`
-- No dividing-line clutter between folders
+- **Drives UI = Wonder exact** (style only, no edit pencils):
+  - `min-height: 46px`, padding `8px 7px`, icon/text gap `8px`
+  - Icon `FolderSimple` size **22**, fill accent
+  - Title `strong` 14px / weight 500 / line-height 1 / Source Serif 4
+  - Count `small` 10px / faint `#9a9084` / **format `n = {count}`** (not “14 books”)
+  - Two-line grid copy (`display: grid; gap: 0`)
+  - No carets, no rename pencils; whole row taps open/close (**start closed**)
+  - Zero shelf dividers / zero margin between closed drives
+- Chips compact; quote multi-line max `1.15`
 - **Selection highlight:** light pink translucent (`rgba(244, 164, 188, ~0.42)`)
-  with dark ink so letters stay readable; `user-select: text` on the whole
-  bookshelf page so people can highlight anything for fun (xAI-style)
-- **Drives UI:** Wonder-style — colored folder icon (~18px) + title + “N books”;
-  no hover-only carets; whole row taps open/close (**start closed**)
+  with dark ink; `user-select: text` on bookshelf page
 - **Quote generator** under title: italic quote + author + refresh + index
 
 ## Verify before “done”
-Measure live at `http://127.0.0.1:3001/bookshelf` (Playwright or DevTools):
-- `.pb-drive-btn` height ≲ 32px, `minHeight` = 0
-- shelf gaps between closed drives = 0
-- chip height ≲ 20px
-- no tagline node visible
+Measure live at `http://127.0.0.1:3001/bookshelf`:
+- `.pb-drive-btn` height = 46px, pad 8px, gap 8px
+- count text matches `/^n = \d+$/`
+- strong 14px / small 10px
+- no tagline / no pencil icons
 
 ## Rules
 - Smallest CSS/TSX diff that ships the request

@@ -406,7 +406,7 @@ export function PublicBookshelf() {
           </section>
         ) : null}
 
-        {/* Drives stacked flush — one continuous list, zero air between rows */}
+        {/* Wonder drive UI (spacing/fonts) — public: no edit pencils; count is n = x */}
         {groups.length > 0 ? (
           <div className="pb-drives" role="list">
             {groups.map((group) => {
@@ -424,32 +424,32 @@ export function PublicBookshelf() {
                     } as CSSProperties
                   }
                 >
-                  <button
-                    type="button"
-                    className="bl-folder pb-drive-btn"
-                    aria-expanded={expanded}
-                    onClick={() =>
-                      setOpenFolders((current) => ({
-                        ...current,
-                        [group.id]: !current[group.id],
-                      }))
-                    }
-                  >
-                    <FolderSimple
-                      className="bl-folder-icon"
-                      size={16}
-                      weight="fill"
-                      aria-hidden
-                      style={{ color: group.accent, fill: group.accent }}
-                    />
-                    {/* Single-line row: name + count so rows stack flush on each other */}
-                    <span className="pb-drive-copy">
-                      <strong>{group.label}</strong>
-                      <small>
-                        {n}&nbsp;{n === 1 ? "book" : "books"}
-                      </small>
-                    </span>
-                  </button>
+                  <div className="bl-folder-row">
+                    <button
+                      type="button"
+                      className="bl-folder pb-drive-btn"
+                      aria-expanded={expanded}
+                      onClick={() =>
+                        setOpenFolders((current) => ({
+                          ...current,
+                          [group.id]: !current[group.id],
+                        }))
+                      }
+                    >
+                      <FolderSimple
+                        className="bl-folder-icon"
+                        size={22}
+                        weight="fill"
+                        aria-hidden
+                        style={{ color: group.accent, fill: group.accent }}
+                      />
+                      <span className="bl-folder-copy pb-drive-copy">
+                        <strong>{group.label}</strong>
+                        {/* Public count format: n = x (not “14 books”) */}
+                        <small>n = {n}</small>
+                      </span>
+                    </button>
+                  </div>
 
                   {expanded ? (
                     <div className="bl-grid">

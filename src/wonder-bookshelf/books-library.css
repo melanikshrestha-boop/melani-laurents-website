@@ -4624,8 +4624,10 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 }
 
 /*
- * Drive stack — folders sit ON TOP of each other (gap: 0).
- * Single-line rows (name · count) so no two-line air between drives.
+ * Wonder drive UI (exact spacing + fonts) — public copy only.
+ * Measured from Wonder Bookshelf light/dark folder rows:
+ *   min-height 46px · pad 8px 7px · gap 8px · strong 14/500 · small 10px
+ * Count text is “n = x” (not “14 books”). No edit pencils.
  */
 .pb-root .pb-drives {
   display: flex !important;
@@ -4639,74 +4641,86 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   margin: 0 !important;
   padding: 0 !important;
   border: 0 !important;
-  min-height: 0 !important;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
   flex: 0 0 auto;
+}
+.pb-root .pb-drive .bl-folder-row {
+  display: flex !important;
+  align-items: stretch !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 .pb-root .pb-drive-btn,
 .pb-root .bl-folder.pb-drive-btn {
   display: flex !important;
   width: 100%;
   align-items: center !important;
-  gap: 7px !important;
-  min-height: 0 !important;
+  gap: 8px !important;
+  min-height: 46px !important;
   height: auto !important;
   margin: 0 !important;
-  padding: 1px 4px !important;
+  padding: 8px 7px !important;
   border: 0 !important;
-  border-radius: 4px;
+  border-radius: 0;
   background: transparent !important;
   cursor: pointer !important;
+  text-align: left !important;
+  /* Match Wonder folder serif voice */
+  font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif !important;
   line-height: 1 !important;
+  transition: background 150ms ease;
 }
 .pb-root .pb-drive-btn:hover,
 .pb-root .pb-drive.is-open .pb-drive-btn {
-  background: color-mix(in srgb, var(--bl-folder-accent) 10%, transparent) !important;
+  background: color-mix(in srgb, var(--bl-folder-accent) 7%, transparent) !important;
 }
 .pb-root .pb-drive-btn:active {
-  background: color-mix(in srgb, var(--bl-folder-accent) 16%, transparent) !important;
+  background: color-mix(in srgb, var(--bl-folder-accent) 12%, transparent) !important;
 }
-/* ONE line: title + muted count — not stacked title/subtitle */
-.pb-root .pb-drive-copy {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: nowrap !important;
-  align-items: baseline !important;
-  gap: 0.55em !important;
+/* Two-line copy: title over “n = x” (Wonder grid, gap 0) */
+.pb-root .pb-drive-copy,
+.pb-root .bl-folder-copy.pb-drive-copy {
+  display: grid !important;
+  gap: 0 !important;
   min-width: 0;
   text-align: left;
   line-height: 1 !important;
 }
 .pb-root .pb-drive-copy strong {
-  display: inline !important;
+  display: block !important;
+  font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif !important;
   font-size: 14px !important;
   font-weight: 500 !important;
   line-height: 1 !important;
-  color: #1a1612 !important;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: #29251f !important;
+  letter-spacing: 0 !important;
 }
 .pb-root .pb-drive-copy small {
-  display: inline !important;
-  flex: 0 0 auto;
-  font-size: 12px !important;
+  display: block !important;
+  font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif !important;
+  font-size: 10px !important;
+  font-weight: 400 !important;
   line-height: 1 !important;
-  color: #8a8278 !important;
+  color: #9a9084 !important;
   margin: 0 !important;
-  white-space: nowrap;
+  letter-spacing: 0 !important;
 }
-/* No hover-only caret chrome — open/close is the whole row tap */
+/* Public: no caret / no rename pencil */
 .pb-root .pb-drive .bl-folder-caret,
-.pb-root .pb-drive-btn .bl-folder-caret {
+.pb-root .pb-drive-btn .bl-folder-caret,
+.pb-root .pb-drive .bl-folder-edit {
   display: none !important;
 }
 .pb-root .pb-drive .bl-folder-icon,
 .pb-root .pb-drive-btn .bl-folder-icon {
   flex: 0 0 auto;
-  width: 16px !important;
-  height: 16px !important;
-  font-size: 16px !important;
+  width: 22px !important;
+  height: 22px !important;
+  font-size: 22px !important;
   line-height: 1 !important;
+  color: var(--bl-folder-accent) !important;
+  fill: var(--bl-folder-accent) !important;
 }
 
 /* Card is a link — no detail page */
@@ -4735,7 +4749,7 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   padding: 2px 0 4px 24px !important;
 }
 
-/* Folders: flush stack — kill Wonder base min-height + borders + every gap */
+/* Public shelves: no dividers; Wonder row metrics live on .pb-drive-btn */
 .pb-root .bl-shelf,
 .pb-root .bl-shelf:last-of-type,
 .pb-root .bl-shelf.pb-drive {
@@ -4746,7 +4760,6 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   border-bottom: 0 !important;
   box-shadow: none !important;
   outline: none !important;
-  min-height: 0 !important;
 }
 .pb-root .bl-shelf + .bl-shelf,
 .pb-root .pb-drive + .pb-drive {
@@ -4762,37 +4775,40 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 .pb-root .bl-folder-row {
   margin: 0 !important;
   padding: 0 !important;
-  min-height: 0 !important;
-  align-items: center !important;
 }
-/* Override base `.bl-folder { min-height: 46px; padding: 8px 7px }` */
+/* Keep Wonder folder metrics for any non-drive folders under pb-root */
 .pb-root .bl-folder {
-  gap: 7px !important;
-  min-height: 0 !important;
+  gap: 8px !important;
+  min-height: 46px !important;
   height: auto !important;
-  padding: 1px 4px !important;
+  padding: 8px 7px !important;
   line-height: 1 !important;
+  font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif !important;
 }
 .pb-root .bl-folder-copy {
+  display: grid !important;
   gap: 0 !important;
 }
 .pb-root .bl-folder strong {
   line-height: 1 !important;
   font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #29251f !important;
 }
 .pb-root .bl-folder small {
   line-height: 1 !important;
   margin: 0 !important;
-  font-size: 12px !important;
+  font-size: 10px !important;
+  color: #9a9084 !important;
 }
 .pb-root .bl-folder-icon {
-  font-size: 16px;
+  font-size: 22px;
   line-height: 1 !important;
 }
-/* Open grid sits under its own drive only — does not add air between closed rows */
+/* Open grid under a drive (Wonder-ish indent) */
 .pb-root .bl-shelf > .bl-grid,
 .pb-root .pb-drive > .bl-grid {
-  padding: 4px 0 8px 24px !important;
+  padding: 7px 4px 18px 36px !important;
   margin: 0 !important;
 }
 
