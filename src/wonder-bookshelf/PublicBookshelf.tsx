@@ -12,10 +12,11 @@ import {
   useRef,
   useState,
   type CSSProperties,
+  type KeyboardEvent as ReactKeyboardEvent,
+  type MouseEvent as ReactMouseEvent,
 } from "react";
 import {
   ArrowClockwise,
-  ArrowSquareOut,
   CaretRight,
   FolderSimple,
   MagicWand,
@@ -35,9 +36,17 @@ import {
 } from "./booksStore";
 import { coverUrlForBook, storeUrlForBook } from "./amazon";
 import { catalogEntryToBook } from "./publicCatalog";
-import { GREATS_AUTHORS } from "./greatsBlogs";
+import { SHELF_BLOGS, type ShelfBlog } from "./shelfBlogs";
 import { MinimalIcon } from "./MinimalIcon";
 import "./books-library.css";
+
+/** Single tap vs double tap (ms). Double = annotations; single = outbound link. */
+const TAP_MS = 280;
+
+function openExternal(href: string) {
+  if (!href || href === "#") return;
+  window.open(href, "_blank", "noopener,noreferrer");
+}
 
 /** Public chips only — no empty Papers/Podcasts until real content exists */
 type Filter = "all" | "book" | "blog" | "faves";
@@ -249,14 +258,39 @@ function CatalogCard({
   item,
   folderLabel,
   highlight = false,
+  onAnnotate,
 }: {
   item: ShelfItem;
   folderLabel: string;
   highlight?: boolean;
+  onAnnotate: (title: string, body: string) => void;
 }) {
   const { entry, book } = item;
   const href = buyUrl(entry, book);
   const label = openLabel(entry.kind);
+  const tapTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (tapTimer.current) clearTimeout(tapTimer.current);
+    };
+  }, []);
+
+  const onActivate = (e: ReactMouseEvent | ReactKeyboardEvent) => {
+    e.preventDefault();
+    if (tapTimer.current) {
+      clearTimeout(tapTimer.current);
+      tapTimer.current = null;
+      // Double tap → her annotations (thoughts when she has written them)
+      const body = (entry.thoughts || entry.summary || "").trim();
+      onAnnotate(book.title, body);
+      return;
+    }
+    tapTimer.current = setTimeout(() => {
+      tapTimer.current = null;
+      openExternal(href);
+    }, TAP_MS);
+  };
 
   return (
     <div
@@ -264,13 +298,15 @@ function CatalogCard({
       id={`pb-book-${entry.id}`}
       data-book-id={entry.id}
     >
-      {/* Cover + title — personal shelf; link is optional deeper look, not a cart */}
-      <a
-        className="bl-card pb-card-link"
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        title={label}
+      {/* Single tap → Amazon; double tap → annotations */}
+      <button
+        type="button"
+        className="bl-card pb-card-link pb-card-btn"
+        title={`${label} · double-tap for notes`}
+        onClick={onActivate}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") onActivate(e);
+        }}
       >
         <BookCover book={book} folderLabel={folderLabel} />
         <span className="bl-card-title">{book.title}</span>
@@ -278,7 +314,7 @@ function CatalogCard({
           <span className="bl-card-author">{book.author}</span>
         ) : null}
         <StarRating rating={entry.rating} />
-      </a>
+      </button>
     </div>
   );
 }
@@ -296,6 +332,11 @@ export function PublicBookshelf() {
   const [sHint, setSHint] = useState(false);
   const [highlightId, setHighlightId] = useState<string | null>(null);
   const sHintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  /** Formal annotation panel — double-tap on book or blog */
+  const [annotation, setAnnotation] = useState<{
+    title: string;
+    body: string;
+  } | null>(null);
 
   /** Books / papers / podcasts only — never fake blog "book" covers */
   const catalog = useMemo<ShelfItem[]>(() => {
@@ -324,16 +365,13 @@ export function PublicBookshelf() {
       });
   }, []);
 
-  const blogPostCount = useMemo(
-    () => GREATS_AUTHORS.reduce((n, a) => n + a.posts.length, 0),
-    []
-  );
+  const blogCount = SHELF_BLOGS.length;
 
   const counts = useMemo(() => {
     const c = {
-      all: catalog.length + blogPostCount,
+      all: catalog.length + blogCount,
       book: 0,
-      blog: blogPostCount,
+      blog: blogCount,
       faves: 0,
     };
     for (const { entry } of catalog) {
@@ -342,7 +380,7 @@ export function PublicBookshelf() {
       if (isFiveStar(entry)) c.faves += 1;
     }
     return c;
-  }, [catalog, blogPostCount]);
+  }, [catalog, blogCount]);
 
   const filtered = useMemo(() => {
     return catalog.filter(({ entry }) => {
@@ -355,16 +393,11 @@ export function PublicBookshelf() {
     });
   }, [catalog, filter]);
 
-  /** Wonder: blogs are a link section below books — never a folder of covers */
+  /** Blogs: numbered list below books — never a folder of covers */
   const showBlogs = filter === "all" || filter === "blog";
 
-  const filteredGreats = useMemo(() => {
-    if (!showBlogs) return [];
-    return GREATS_AUTHORS;
-  }, [showBlogs]);
-
   const groups = useMemo<ShelfGroup[]>(() => {
-    // Blogs chip: only the greats link section (no book folders)
+    // Blogs chip: only the numbered list (no book folders)
     if (filter === "blog") return [];
 
     // Faves: no folder chrome — rare picks shown as a flat cover grid
@@ -406,10 +439,36 @@ export function PublicBookshelf() {
   const chipCount = (id: Filter) => {
     if (id === "all") return counts.all;
     if (id === "faves") return counts.faves;
-    if (id === "blog") return GREATS_AUTHORS.length; // sources, like Wonder
+    if (id === "blog") return blogCount;
     if (id === "book") return counts.book;
     return 0;
   };
+
+  const openAnnotation = useCallback((title: string, body: string) => {
+    setAnnotation({ title, body });
+  }, []);
+
+  const blogTapTimers = useRef<
+    Map<string, ReturnType<typeof setTimeout>>
+  >(new Map());
+
+  const onBlogActivate = useCallback(
+    (blog: ShelfBlog) => {
+      const existing = blogTapTimers.current.get(blog.id);
+      if (existing) {
+        clearTimeout(existing);
+        blogTapTimers.current.delete(blog.id);
+        openAnnotation(blog.title, (blog.annotation || "").trim());
+        return;
+      }
+      const t = setTimeout(() => {
+        blogTapTimers.current.delete(blog.id);
+        openExternal(blog.url);
+      }, TAP_MS);
+      blogTapTimers.current.set(blog.id, t);
+    },
+    [openAnnotation],
+  );
 
   /** Closed until user opens — denser shelf, less wasted space */
   const isExpanded = (id: string) => openFolders[id] === true;
@@ -546,13 +605,10 @@ export function PublicBookshelf() {
                   <b>{counts.book}</b> books
                 </span>
                 <span>
-                  <b>{GREATS_AUTHORS.length}</b> blogs
+                  <b>{blogCount}</b> blogs
                 </span>
                 <span>
                   <b>{counts.faves}</b> faves
-                </span>
-                <span>
-                  <b>{blogPostCount}</b> essays
                 </span>
               </div>
             </div>
@@ -621,6 +677,7 @@ export function PublicBookshelf() {
                   item={item}
                   folderLabel="Faves"
                   highlight={highlightId === item.entry.id}
+                  onAnnotate={openAnnotation}
                 />
               ))}
             </div>
@@ -683,6 +740,7 @@ export function PublicBookshelf() {
                       item={item}
                       folderLabel={group.label}
                       highlight={highlightId === item.entry.id}
+                      onAnnotate={openAnnotation}
                     />
                   ))}
                 </div>
@@ -691,95 +749,87 @@ export function PublicBookshelf() {
           );
         })}
 
-        {/* Wonder: blogs are links below books — not covers in a folder */}
-        {showBlogs && filteredGreats.length > 0 ? (
+        {/* Blogs: numbered list, chronological read order */}
+        {showBlogs && SHELF_BLOGS.length > 0 ? (
           <section
-            className={`bl-greats${filter === "all" ? " bl-greats-after-books" : ""}`}
-            aria-label="Blogs and essays"
+            className={`pb-blogs${filter === "all" ? " pb-blogs--after-books" : ""}`}
+            aria-label="Blogs"
           >
-            <div className="bl-greats-head">
-              <div>
-                <span>Writing worth returning to</span>
-                <h2 className="bl-greats-h">Blogs &amp; essays</h2>
-              </div>
-              <small>
-                {filteredGreats.length} source
-                {filteredGreats.length === 1 ? "" : "s"}
-              </small>
-            </div>
-            <div className="bl-greats-grid">
-              {filteredGreats.map((author) => (
-                <article
-                  key={author.id}
-                  className="bl-greats-card"
-                  style={
-                    { "--bl-blog-accent": author.accent } as CSSProperties
-                  }
-                >
-                  <header>
-                    <div>
-                      <span>{author.kind}</span>
-                      <h3>{author.name}</h3>
-                    </div>
-                    <a
-                      href={author.homeUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title={`Open ${author.name}`}
-                      aria-label={`Open ${author.name}`}
-                    >
-                      <ArrowSquareOut size={16} aria-hidden />
-                    </a>
-                  </header>
-                  {author.posts.length ? (
-                    <ul>
-                      {author.posts.map((post) => (
-                        <li key={post.id}>
-                          <a
-                            href={post.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <span>{post.title}</span>
-                            <CaretRight size={13} weight="bold" aria-hidden />
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <a
-                      className="bl-greats-own-blog"
-                      href={author.homeUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Open {author.name}&apos;s writing
-                      <CaretRight size={13} weight="bold" aria-hidden />
-                    </a>
-                  )}
-                  <a
-                    className="bl-greats-home"
-                    href={author.homeUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+            <header className="pb-blogs__head">
+              <h2 className="pb-blogs__title">Blogs</h2>
+              <p className="pb-blogs__chrono">
+                in chronological order that I read
+              </p>
+            </header>
+            <ol className="pb-blogs__list">
+              {SHELF_BLOGS.map((blog, i) => (
+                <li key={blog.id} className="pb-blogs__item">
+                  <button
+                    type="button"
+                    className="pb-blogs__row"
+                    onClick={() => onBlogActivate(blog)}
+                    title="Tap: open post · double-tap: notes"
                   >
-                    {(() => {
-                      try {
-                        return new URL(author.homeUrl).hostname.replace(
-                          /^www\./,
-                          ""
-                        );
-                      } catch {
-                        return author.homeUrl;
-                      }
-                    })()}
-                  </a>
-                </article>
+                    <span className="pb-blogs__n" aria-hidden>
+                      {i + 1}
+                    </span>
+                    <span className="pb-blogs__copy">
+                      <span className="pb-blogs__name">{blog.title}</span>
+                      {blog.date ? (
+                        <time className="pb-blogs__date" dateTime={blog.date}>
+                          {new Date(blog.date + "T12:00:00").toLocaleDateString(
+                            "en-US",
+                            {
+                              month: "long",
+                              day: "numeric",
+                              year: "numeric",
+                            },
+                          )}
+                        </time>
+                      ) : null}
+                    </span>
+                  </button>
+                </li>
               ))}
-            </div>
+            </ol>
           </section>
         ) : null}
       </div>
+
+      {annotation ? (
+        <div
+          className="pb-note-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="pb-note-title"
+        >
+          <button
+            type="button"
+            className="pb-note-modal__backdrop"
+            aria-label="Close"
+            onClick={() => setAnnotation(null)}
+          />
+          <div className="pb-note-modal__panel">
+            <header className="pb-note-modal__head">
+              <h3 id="pb-note-title">{annotation.title}</h3>
+              <button
+                type="button"
+                className="pb-note-modal__close"
+                onClick={() => setAnnotation(null)}
+              >
+                Close
+              </button>
+            </header>
+            <div className="pb-note-modal__body">
+              {annotation.body ? (
+                <p>{annotation.body}</p>
+              ) : (
+                <p className="pb-note-modal__empty">—</p>
+              )}
+            </div>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

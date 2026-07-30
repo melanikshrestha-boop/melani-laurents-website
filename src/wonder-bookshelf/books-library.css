@@ -4514,22 +4514,31 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   justify-content: flex-start;
 }
 
-/* Quote: text left edge, refresh controls right edge — hugs title below */
+/*
+ * Quote → Bookshelf gap = Image #2: always ~12px after the last quote line.
+ * Controls are absolute so short quotes don’t leave empty air under the text.
+ */
 .pb-root > .pb-quote {
+  position: relative;
+  display: block;
   width: 100%;
   box-sizing: border-box;
-  margin: 0 0 4px !important;
-  padding: 0 !important;
-  gap: 10px !important;
+  margin: 0 0 12px !important;
+  padding: 0 2.5rem 0 0 !important;
+  min-height: 0 !important;
+  gap: 0 !important;
 }
 .pb-root .pb-quote__text {
+  display: block;
   margin: 0 !important;
   padding: 0 !important;
   text-align: left;
 }
 .pb-root .pb-quote__controls {
+  position: absolute;
+  top: 0;
+  right: 0;
   margin: 0 !important;
-  margin-left: auto !important;
   padding: 0 !important;
   align-items: flex-end !important;
 }
@@ -4693,14 +4702,8 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   color: #29251f;
 }
 
-/* Quote type — edges/layout already set above (no extra pad that floats content) */
-.pb-root > .pb-quote {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-}
+/* Quote type — height follows text only (controls abs-positioned above) */
 .pb-root .pb-quote__text {
-  flex: 1 1 auto;
   min-width: 0;
 }
 .pb-root .pb-quote__text p {
@@ -4759,6 +4762,8 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 /* Title + stats — keep edge-hug rules from above; only ink/type here */
 .pb-root .bl-head {
   border: 0;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
 }
 .pb-root .bl-title {
   display: flex;
@@ -5060,4 +5065,186 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   .pb-root .bl-filter {
     gap: 16px;
   }
+}
+
+/* ——— Blogs: numbered chronological list ——— */
+.pb-root .pb-blogs {
+  margin: 14px 0 0 !important;
+  padding: 0 !important;
+}
+.pb-root .pb-blogs--after-books {
+  margin-top: 18px !important;
+}
+.pb-root .pb-blogs__head {
+  margin: 0 0 8px;
+  padding: 0;
+}
+.pb-root .pb-blogs__title {
+  margin: 0;
+  color: #29251f;
+  font-family: "Source Serif 4", Georgia, ui-serif, serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+.pb-root .pb-blogs__chrono {
+  margin: 3px 0 0;
+  color: #9a9084;
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-size: 0.58rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  line-height: 1.25;
+}
+.pb-root .pb-blogs__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+}
+.pb-root .pb-blogs__item {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.pb-root .pb-blogs__row {
+  display: grid;
+  grid-template-columns: 1.5rem minmax(0, 1fr);
+  gap: 0.55rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.55rem 0;
+  border: 0;
+  border-bottom: 1px solid rgba(41, 37, 31, 0.06);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+.pb-root .pb-blogs__row:hover .pb-blogs__name {
+  color: #3b7ea8;
+}
+.pb-root .pb-blogs__n {
+  color: #9a9084;
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-size: 0.7rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.35;
+  padding-top: 0.12rem;
+}
+.pb-root .pb-blogs__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.pb-root .pb-blogs__name {
+  color: #3b7ea8;
+  font-family: "Source Serif 4", Georgia, ui-serif, serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.3;
+}
+.pb-root .pb-blogs__date {
+  color: #9a9084;
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+/* Book card as button (single/double tap) */
+.pb-root button.bl-card.pb-card-btn {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+/* Annotation modal — formal, quiet */
+.pb-root .pb-note-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  box-sizing: border-box;
+}
+.pb-root .pb-note-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: rgba(20, 18, 16, 0.35);
+  cursor: pointer;
+}
+.pb-root .pb-note-modal__panel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 26rem);
+  max-height: min(70vh, 28rem);
+  overflow: auto;
+  padding: 1.1rem 1.15rem 1.2rem;
+  border-radius: 10px;
+  background: #f7f1e7;
+  color: #29251f;
+  box-shadow: 0 18px 48px rgba(20, 18, 16, 0.2);
+  box-sizing: border-box;
+}
+.pb-root .pb-note-modal__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0 0 0.75rem;
+}
+.pb-root .pb-note-modal__head h3 {
+  margin: 0;
+  font-family: "Source Serif 4", Georgia, ui-serif, serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+.pb-root .pb-note-modal__close {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0.2rem 0.4rem;
+  border: 0;
+  background: transparent;
+  color: #71695f;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.pb-root .pb-note-modal__close:hover {
+  color: #29251f;
+}
+.pb-root .pb-note-modal__body p {
+  margin: 0;
+  font-family: "Source Serif 4", Georgia, ui-serif, serif;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: #3d3630;
+  white-space: pre-wrap;
+}
+.pb-root .pb-note-modal__empty {
+  color: #9a9084 !important;
+  font-style: italic;
 }
