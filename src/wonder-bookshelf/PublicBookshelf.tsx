@@ -294,7 +294,7 @@ function CatalogCard({
 
   return (
     <div
-      className={`bl-card-wrap${highlight ? " pb-card-wrap--pulse" : ""}`}
+      className={`bl-card-wrap${highlight ? " pb-card-wrap--picked" : ""}`}
       id={`pb-book-${entry.id}`}
       data-book-id={entry.id}
     >
@@ -330,7 +330,9 @@ export function PublicBookshelf() {
   const [quoteCopied, setQuoteCopied] = useState(false);
   /** Ephemeral “Press S again” tip after a random pick (~5s) */
   const [sHint, setSHint] = useState(false);
+  /** Pink pick stays until that drive is closed */
   const [highlightId, setHighlightId] = useState<string | null>(null);
+  const [highlightFolder, setHighlightFolder] = useState<string | null>(null);
   const sHintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   /** Formal annotation panel — double-tap on book or blog */
   const [annotation, setAnnotation] = useState<{
@@ -492,7 +494,7 @@ export function PublicBookshelf() {
     }
   }, [quote]);
 
-  /** Random pick from the list — no “drawn from…” prose */
+  /** Random pick — open drive, pink highlight until that drive closes */
   const surpriseMe = useCallback(() => {
     if (!catalog.length) return;
     const pick = catalog[Math.floor(Math.random() * catalog.length)];
@@ -500,14 +502,14 @@ export function PublicBookshelf() {
     setFilter("all");
     setOpenFolders((current) => ({ ...current, [folder]: true }));
     setHighlightId(pick.entry.id);
+    setHighlightFolder(folder);
     window.setTimeout(() => {
       document
         .getElementById(`pb-book-${pick.entry.id}`)
         ?.scrollIntoView({ behavior: "smooth", block: "center" });
     }, 80);
-    window.setTimeout(() => setHighlightId(null), 2800);
 
-    // 5s tip popup, then gone
+    // 5s tip popup only (highlight stays)
     if (sHintTimerRef.current) clearTimeout(sHintTimerRef.current);
     setSHint(true);
     sHintTimerRef.current = setTimeout(() => {
@@ -515,6 +517,21 @@ export function PublicBookshelf() {
       sHintTimerRef.current = null;
     }, 5000);
   }, [catalog]);
+
+  const toggleFolder = useCallback(
+    (folderId: string) => {
+      setOpenFolders((current) => {
+        const nextOpen = !current[folderId];
+        // Closing the drive that holds the pick clears the pink highlight
+        if (!nextOpen && highlightFolder === folderId) {
+          setHighlightId(null);
+          setHighlightFolder(null);
+        }
+        return { ...current, [folderId]: nextOpen };
+      });
+    },
+    [highlightFolder],
+  );
 
   useEffect(() => {
     return () => {
@@ -705,12 +722,7 @@ export function PublicBookshelf() {
                   type="button"
                   className="bl-folder"
                   aria-expanded={expanded}
-                  onClick={() =>
-                    setOpenFolders((current) => ({
-                      ...current,
-                      [group.id]: !current[group.id],
-                    }))
-                  }
+                  onClick={() => toggleFolder(group.id)}
                 >
                   <CaretRight
                     className="bl-folder-caret"
