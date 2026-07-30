@@ -11,6 +11,7 @@ import {
 } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
+import "@/styles/daily-pulse.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

@@ -1,0 +1,190 @@
+/* Daily pulse — X hearts + YouTube on cream paper */
+
+.daily-pulse {
+  --dp-paper: #f0ede5;
+  --dp-ink: #141210;
+  --dp-muted: #6b6358;
+  --dp-faint: #9a9084;
+  --dp-gold: #c9a962;
+  --dp-line: rgba(20, 18, 16, 0.1);
+  min-height: calc(100svh - 3.5rem);
+  background: var(--dp-paper);
+  color: var(--dp-ink);
+  font-family: var(--font-share-tech-mono), var(--font-jetbrains-mono), ui-monospace,
+    monospace;
+}
+
+.daily-pulse__inner {
+  width: min(100% - 1.5rem, 42rem);
+  margin: 0 auto;
+  padding: 1.25rem 0 3rem;
+  box-sizing: border-box;
+}
+
+.daily-pulse__kicker {
+  margin: 0 0 0.35rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dp-faint);
+}
+
+.daily-pulse__heading {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-size: clamp(1.75rem, 4vw, 2.35rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--dp-ink);
+}
+
+.daily-pulse__lede {
+  margin: 0 0 1.5rem;
+  max-width: 36rem;
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-size: 1rem;
+  line-height: 1.45;
+  color: var(--dp-muted);
+}
+
+.daily-pulse__section {
+  margin: 0 0 2rem;
+}
+
+.daily-pulse__section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.daily-pulse__section-title {
+  margin: 0;
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+}
+
+.daily-pulse__count {
+  font-size: 0.55rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dp-faint);
+}
+
+.daily-pulse__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.daily-pulse__card {
+  display: block;
+  padding: 0.85rem 0.9rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.45);
+  color: inherit;
+  text-decoration: none;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.daily-pulse__card:hover {
+  background: rgba(255, 255, 255, 0.72);
+  transform: translateY(-1px);
+}
+
+.daily-pulse__card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.75rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dp-faint);
+}
+
+.daily-pulse__badge {
+  color: var(--dp-gold);
+  font-weight: 500;
+}
+
+.daily-pulse__card-title {
+  margin: 0;
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--dp-ink);
+}
+
+.daily-pulse__card-excerpt {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--dp-muted);
+}
+
+.daily-pulse__card-go {
+  display: inline-block;
+  margin-top: 0.45rem;
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dp-gold);
+}
+
+.daily-pulse__yt {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.daily-pulse__yt-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 1.05rem;
+  border-radius: 12px;
+  background: linear-gradient(
+    135deg,
+    rgba(201, 169, 98, 0.14),
+    rgba(255, 255, 255, 0.5)
+  );
+  text-decoration: none;
+  color: inherit;
+}
+
+.daily-pulse__yt-hero:hover .daily-pulse__card-go {
+  color: #a8842e;
+}
+
+.daily-pulse__home {
+  margin-top: 2rem;
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.daily-pulse__home a {
+  color: var(--dp-muted);
+  text-decoration: none;
+}
+
+.daily-pulse__home a:hover {
+  color: var(--dp-ink);
+}
+
+/* Anchors for hub deep-links */
+.daily-pulse #inputs,
+.daily-pulse #journals,
+.daily-pulse #bookshelf {
+  scroll-margin-top: 4.5rem;
+}
