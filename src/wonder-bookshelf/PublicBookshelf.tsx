@@ -6,12 +6,7 @@
  * Click / Buy on Amazon → store link.
  */
 import { useMemo, useState, type CSSProperties } from "react";
-import {
-  ArrowSquareOut,
-  CaretRight,
-  FolderSimple,
-  MagnifyingGlass,
-} from "@phosphor-icons/react";
+import { ArrowSquareOut, CaretRight, FolderSimple } from "@phosphor-icons/react";
 import {
   bookshelfEntries,
   type BookshelfEntry,
@@ -177,7 +172,6 @@ function CatalogCard({
 
 export function PublicBookshelf() {
   const [filter, setFilter] = useState<Filter>("all");
-  const [q, setQ] = useState("");
   /** Wonder default: folders open unless explicitly closed */
   const [openFolders, setOpenFolders] = useState<Record<string, boolean>>({});
 
@@ -228,40 +222,22 @@ export function PublicBookshelf() {
   }, [catalog, blogPostCount]);
 
   const filtered = useMemo(() => {
-    const query = q.trim().toLowerCase();
     return catalog.filter(({ entry }) => {
       if (filter === "faves" && !entry.favorite) return false;
       // blogs are not in the cover grid
       if (filter === "blog") return false;
       if (filter === "book" && entry.kind !== "book") return false;
-      if (!query) return true;
-      return (
-        entry.title.toLowerCase().includes(query) ||
-        entry.source.toLowerCase().includes(query)
-      );
+      return true;
     });
-  }, [catalog, filter, q]);
+  }, [catalog, filter]);
 
   /** Wonder: blogs are a link section below books — never a folder of covers */
   const showBlogs = filter === "all" || filter === "blog";
 
   const filteredGreats = useMemo(() => {
     if (!showBlogs) return [];
-    const query = q.trim().toLowerCase();
-    if (!query) return GREATS_AUTHORS;
-    return GREATS_AUTHORS.map((author) => ({
-      ...author,
-      posts: author.posts.filter(
-        (p) =>
-          p.title.toLowerCase().includes(query) ||
-          author.name.toLowerCase().includes(query)
-      ),
-    })).filter(
-      (author) =>
-        author.posts.length > 0 ||
-        author.name.toLowerCase().includes(query)
-    );
-  }, [showBlogs, q]);
+    return GREATS_AUTHORS;
+  }, [showBlogs]);
 
   const groups = useMemo<ShelfGroup[]>(() => {
     // Blogs chip: only the greats link section (no book folders)
@@ -311,9 +287,8 @@ export function PublicBookshelf() {
     return 0;
   };
 
-  /** Wonder: expanded unless explicitly false; search forces open */
-  const isExpanded = (id: string) =>
-    openFolders[id] !== false || Boolean(q.trim());
+  /** Wonder: expanded unless explicitly closed */
+  const isExpanded = (id: string) => openFolders[id] !== false;
 
   return (
     <div className="bl-public-wrap pb-root">
@@ -347,28 +322,13 @@ export function PublicBookshelf() {
           ))}
         </div>
 
-        <div className="bl-toolbar">
-          <form className="bl-search-wrap" onSubmit={(e) => e.preventDefault()}>
-            <MagnifyingGlass size={15} aria-hidden />
-            <input
-              className="bl-search"
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-              placeholder="Search titles or authors"
-              aria-label="Search"
-            />
-          </form>
-        </div>
-
         {groups.length === 0 &&
         !(filter === "faves" && filtered.length > 0) &&
         !showBlogs ? (
           <p className="bl-empty-all">
-            {q
-              ? "No matches."
-              : filter === "faves"
-                ? "No faves yet — mark a few from scattered shelves when one truly sticks."
-                : "Nothing in this section yet."}
+            {filter === "faves"
+              ? "Almost never a fave — when one sticks, it lands here."
+              : "Nothing in this section yet."}
           </p>
         ) : null}
 
