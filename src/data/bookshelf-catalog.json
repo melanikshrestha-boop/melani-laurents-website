@@ -1702,5 +1702,17 @@
     "category": "history",
     "asin": "0451528816",
     "href": "https://www.amazon.com/dp/0451528816"
+  },
+  {
+    "id": "book-fave-mans-search-meaning",
+    "kind": "book",
+    "title": "Man's Search for Meaning",
+    "source": "Viktor E. Frankl",
+    "loggedAt": "2026-07-30",
+    "category": "psychology",
+    "href": "https://www.amazon.com/dp/0807014273",
+    "asin": "0807014273",
+    "favorite": true,
+    "favoriteWhy": "Rare fave — meaning under pressure."
   }
 ]
