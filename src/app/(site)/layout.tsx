@@ -1,5 +1,4 @@
 import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
 import { SiteBackground } from "@/components/SiteBackground";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { CinemaProvider } from "@/components/cinema/CinemaProvider";
@@ -16,7 +15,6 @@ export default function SiteLayout({
       <SmoothScroll>
         <Navigation />
         <MainShell>{children}</MainShell>
-        <Footer />
       </SmoothScroll>
     </CinemaProvider>
   );
