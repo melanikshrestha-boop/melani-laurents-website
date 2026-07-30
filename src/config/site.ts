@@ -68,14 +68,14 @@ export const siteConfig = {
   hubPortals: [
     { label: "Art", href: "/photography", tagline: "Visual signal · cinema" },
     { label: "Essays", href: "/daily#journals", tagline: "Long-form thinking" },
-    { label: "Bookshelf", href: "/daily#bookshelf", tagline: "Notes · highlights" },
+    { label: "Bookshelf", href: "/bookshelf", tagline: "Notes · highlights" },
     { label: "Builds", href: "/projects", tagline: "Things I make" },
     { label: "Daily", href: "/daily#inputs", tagline: "Public input log" },
   ],
   nav: [
     { label: "Art", href: "/photography" },
     { label: "Essays", href: "/daily#journals" },
-    { label: "Bookshelf", href: "/daily#bookshelf" },
+    { label: "Bookshelf", href: "/bookshelf" },
     { label: "Builds", href: "/projects" },
     { label: "Daily", href: "/daily#inputs" },
     { label: "Contact", href: "/contact" },

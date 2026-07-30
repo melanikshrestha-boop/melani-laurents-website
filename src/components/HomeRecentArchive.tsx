@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getRecentDailyPosts } from "@/data/daily-posts";
+import { getRecentBookshelf, BOOKSHELF_KIND_LABEL } from "@/data/bookshelf";
 import { googleScholarUrl } from "@/data/publications";
 import { siteConfig } from "@/config/site";
 import { HomeScrollExperience } from "@/components/HomeScrollExperience";
@@ -61,6 +62,7 @@ function EmptySlots({ label }: { label: string }) {
 
 export function HomeRecentArchive() {
   const daily = getRecentDailyPosts(SLOT_COUNT);
+  const shelfPreview = getRecentBookshelf(SLOT_COUNT);
 
   return (
     <HomeScrollExperience>
@@ -170,6 +172,41 @@ export function HomeRecentArchive() {
               </ul>
             ) : (
               <EmptySlots label="Daily" />
+            )}
+          </div>
+
+          {/* Bookshelf — papers, physical books, blogs, podcasts */}
+          <div className="hub-archive__section hub-archive__section--bookshelf">
+            <header className="hub-archive__header">
+              <h2 className="hub-archive__title">
+                <Link href="/bookshelf">Bookshelf</Link>
+              </h2>
+              <Link href="/bookshelf" className="hub-archive__more">
+                all bookshelf →
+              </Link>
+            </header>
+            <p className="hub-archive__bookshelf-blurb">
+              Everything I learn in one shelf — books, papers, blogs, podcasts —
+              with thoughts and how I applied them.
+            </p>
+            {shelfPreview.length > 0 ? (
+              <ul className="hub-archive__list">
+                {shelfPreview.map((entry) => (
+                  <li key={entry.id} className="hub-archive__item">
+                    <time className="hub-archive__date" dateTime={entry.loggedAt}>
+                      {formatDate(entry.loggedAt)}
+                    </time>
+                    <Link href="/bookshelf" className="hub-archive__link">
+                      <span className="hub-archive__kind-tag">
+                        {BOOKSHELF_KIND_LABEL[entry.kind]}
+                      </span>{" "}
+                      {entry.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <EmptySlots label="Bookshelf" />
             )}
           </div>
 
