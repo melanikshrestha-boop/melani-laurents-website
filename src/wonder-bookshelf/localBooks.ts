@@ -164,7 +164,8 @@ export function mergeLocalBooks(
 
 
 /** Public site: never expose EPUB reader URLs — only store links. */
-export function publicizeBooksForStore(books: Book[]): Book[] {
+export function publicizeBooksForStore(books: Book[] | null | undefined): Book[] {
+  if (!Array.isArray(books)) return [];
   return books.map((book) => ({
     ...book,
     readerUrl: undefined,

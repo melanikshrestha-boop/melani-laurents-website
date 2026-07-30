@@ -446,7 +446,8 @@ export function BooksLibrary({
     try {
       const result = await fetchLocalBooks();
       setBooks((current) => {
-        const merged = publicizeBooksForStore(mergeLocalBooks(current, result.books));
+        // mergeLocalBooks returns { books, addedCount, addedTitles } — not an array
+        const merged = mergeLocalBooks(current, result.books);
         if (merged.addedCount > 0) {
           const names = merged.addedTitles.slice(0, 2).join(" · ");
           const msg =
@@ -455,10 +456,9 @@ export function BooksLibrary({
               : `${merged.addedCount} new books · ${names}${
                   merged.addedCount > 2 ? "…" : ""
                 }`;
-          // Toast after React applies the shelf update
           window.queueMicrotask(() => setToast(msg));
         }
-        return merged.books;
+        return publicizeBooksForStore(merged.books);
       });
       if (!options?.quiet) {
         setSync({
@@ -495,7 +495,7 @@ export function BooksLibrary({
         limit: 16,
         fixUnsorted: true,
       });
-      setBooks(result.books);
+      setBooks(publicizeBooksForStore(result.books || []));
       if (result.filled > 0) {
         setToast(
           result.filled === 1
@@ -2202,11 +2202,11 @@ function BookCover({
   folderLabel?: string;
 }) {
   const style: CSSProperties = {
-    backgroundColor: book.color,
+    backgroundColor: book.color || "#6b6358",
     backgroundImage: `linear-gradient(165deg, rgba(255,255,255,.14), transparent 42%), linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.58))`,
   };
   return (
-    <div className={className} style={style}>
+    <div className={className} style={style} suppressHydrationWarning>
       <span className="bl-cover-fallback" aria-hidden>
         <small>{book.author || folderLabel || book.category}</small>
         <strong>{book.title || "Untitled"}</strong>
