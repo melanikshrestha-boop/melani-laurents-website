@@ -2,130 +2,64 @@
 
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import {
-  HomeSlideStage,
-  HomeSlideToolbar,
-  SlidePiece,
-  useHomeSlideLayout,
-} from "./HomeSlideEditor";
 import { InteractiveTitleLetters } from "./InteractiveTitleLetters";
 import { MelaniSignature } from "./MelaniSignature";
 import { MotionScrollToggle } from "./MotionScrollToggle";
 import { SocialIcons } from "./SocialIcons";
 
-/** Carlo Doroff–style editorial hub — free drag layout like Google Slides while editing. */
+/**
+ * Locked home landing — full-bleed black frame.
+ * Same structure at any window size (no letterbox slide canvas, no editor).
+ */
 export function HomeHub() {
-  const {
-    layout,
-    setLayout,
-    reset,
-    editMode,
-    setEditMode,
-    selected,
-    setSelected,
-    setScale,
-    setTracking,
-  } = useHomeSlideLayout();
-
-  const selectedScale = selected ? layout[selected].scale : 1;
-  const selectedTracking = selected ? layout[selected].tracking : 0;
-
   return (
-    <section className={`hub-page${editMode ? " hub-page--slide-edit" : ""}`}>
-      <HomeSlideStage
-        editMode={editMode}
-        selected={selected}
-        layout={layout}
-        onSelect={setSelected}
-        onLayoutChange={setLayout}
-      >
-        <SlidePiece id="signature">
-          <div className="hub-page__signature--slide">
-            <MelaniSignature variant="light" linked={!editMode} />
-          </div>
-        </SlidePiece>
-
-        <SlidePiece id="location">
-          <p className="hub-page__brand-loc hub-page__brand-loc--slide">
+    <section className="hub-page hub-page--locked">
+      <header className="hub-page__header hub-page__header--locked">
+        <div className="hub-page__brand hub-page__brand--locked">
+          <MelaniSignature variant="light" />
+          <p className="hub-page__brand-loc">
             <span className="hub-page__dot-inline" aria-hidden />
             LA / SF / NYC
           </p>
-        </SlidePiece>
+        </div>
 
-        <SlidePiece id="socials">
-          <nav className="hub-page__socials hub-page__socials--slide" aria-label="Social links">
-            <SocialIcons size="hub" className="hub-page__social-icons" />
-          </nav>
-        </SlidePiece>
+        <nav className="hub-page__socials hub-page__socials--locked" aria-label="Social links">
+          <SocialIcons size="hub" className="hub-page__social-icons" />
+        </nav>
+      </header>
 
-        <SlidePiece id="title">
-          <InteractiveTitleLetters
-            variant="hub"
-            className="hub-page__title"
-            lineClassName="hub-page__title-line"
-            interactive={!editMode}
-          />
-        </SlidePiece>
-
-        <SlidePiece id="tagline">
+      <div className="hub-page__center hub-page__center--locked">
+        <InteractiveTitleLetters
+          variant="hub"
+          className="hub-page__title"
+          lineClassName="hub-page__title-line"
+        />
+        <div className="hub-page__thesis">
           <p className="hub-page__tagline">open sourcing my mind.</p>
-        </SlidePiece>
-
-        <SlidePiece id="nav">
-          <nav className="hub-page__nav hub-page__nav--slide" aria-label="Sections">
-            {siteConfig.hubPortals.map((portal, i) => (
-              <span key={portal.href} className="hub-page__nav-item">
-                {i > 0 ? <span className="hub-page__sep"> · </span> : null}
-                {"external" in portal && portal.external ? (
-                  <a
-                    href={portal.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(event) => {
-                      if (editMode) event.preventDefault();
-                    }}
-                  >
-                    {portal.label}
-                  </a>
-                ) : (
-                  <Link
-                    href={portal.href}
-                    onClick={(event) => {
-                      if (editMode) event.preventDefault();
-                    }}
-                  >
-                    {portal.label}
-                  </Link>
-                )}
-              </span>
-            ))}
-            <span className="hub-page__nav-item hub-page__nav-item--contact">
-              <span className="hub-page__sep"> · </span>
-              <Link
-                href="/contact"
-                className="hub-page__nav-contact"
-                onClick={(event) => {
-                  if (editMode) event.preventDefault();
-                }}
-              >
-                Contact
-              </Link>
+        </div>
+        <nav className="hub-page__nav hub-page__nav--locked" aria-label="Sections">
+          {siteConfig.hubPortals.map((portal, i) => (
+            <span key={portal.href} className="hub-page__nav-item">
+              {i > 0 ? <span className="hub-page__sep"> · </span> : null}
+              {"external" in portal && portal.external ? (
+                <a href={portal.href} target="_blank" rel="noopener noreferrer">
+                  {portal.label}
+                </a>
+              ) : (
+                <Link href={portal.href}>{portal.label}</Link>
+              )}
             </span>
-          </nav>
-        </SlidePiece>
-      </HomeSlideStage>
+          ))}
+          <span className="hub-page__nav-item hub-page__nav-item--contact">
+            <span className="hub-page__sep"> · </span>
+            <Link href="/contact" className="hub-page__nav-contact">
+              Contact
+            </Link>
+          </span>
+        </nav>
+      </div>
 
       <MotionScrollToggle />
-      <HomeSlideToolbar
-        editMode={editMode}
-        onToggleEdit={() => setEditMode((v) => !v)}
-        onReset={reset}
-        selected={selected}
-        scale={selectedScale}
-        onScale={setScale}
-        tracking={selectedTracking}
-        onTracking={setTracking}
-      />
     </section>
   );
 }
