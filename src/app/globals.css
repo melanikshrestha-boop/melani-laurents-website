@@ -4711,7 +4711,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center; /* location sits mid-height of the signature box */
-  gap: 0.85rem;
+  /* Single-space after the last ink of “Celine Nova” (not a fat gap) */
+  gap: 0.3rem;
   min-width: 0;
   height: 100%;
 }
@@ -4722,6 +4723,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   height: 100%;
   line-height: 0;
   flex-shrink: 0;
+  /* SVG viewBox is wider than the script — eat trailing empty box so loc starts at the “a” */
+  margin-right: -0.55rem;
 }
 
 .hub-page__brand--locked .melani-signature {
@@ -4966,7 +4969,11 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   }
 
   .hub-page__brand--locked {
-    gap: 0.55rem;
+    gap: 0.25rem;
+  }
+
+  .hub-page__brand--locked .melani-signature-link {
+    margin-right: -0.4rem;
   }
 
   .hub-page__brand--locked .hub-page__brand-loc {
