@@ -4591,7 +4591,7 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   border-bottom: 0 !important;
 }
 
-/* current reads — small roman, zero fluff, title is Amazon link */
+/* current reads (plural) — small roman; titles = Amazon links */
 .pb-root .pb-currently-reading {
   margin: 2px 0 6px !important;
   padding: 0;
@@ -4601,7 +4601,7 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   font-style: normal !important;
   font-weight: 400;
   letter-spacing: 0.01em;
-  line-height: 1.25;
+  line-height: 1.35;
   text-transform: none;
 }
 .pb-root .pb-currently-reading a {
@@ -4614,6 +4614,9 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 }
 .pb-root .pb-currently-reading a:hover {
   color: #3b7ea8;
+}
+.pb-root .pb-currently-reading__sep {
+  color: #9a9084;
 }
 
 /* Never show old greats “Blogs & essays” shout-out cards on public shelf */

@@ -56,8 +56,7 @@ const CHIPS: { id: Filter; label: string }[] = [
   { id: "all", label: "All" },
   { id: "book", label: "Books" },
   { id: "blog", label: "Blogs" },
-  /** Your intelligence = 5★ faves + meditations */
-  { id: "faves", label: "Your intelligence" },
+  { id: "faves", label: "FAVS" },
 ];
 
 /** Quote rotator — shelf voice + founders + the stack itself */
@@ -637,7 +636,7 @@ export function PublicBookshelf() {
                   <b>{blogCount}</b> blogs
                 </span>
                 <span>
-                  <b>{counts.faves}</b> intelligence
+                  <b>{counts.faves}</b> favs
                 </span>
               </div>
             </div>
@@ -667,7 +666,7 @@ export function PublicBookshelf() {
           </button>
         </div>
 
-        {/* Compact current read — small roman, not italic; Amazon on title */}
+        {/* Plural current reads — small roman; titles open Amazon */}
         <p className="pb-currently-reading">
           current reads:{" "}
           <a
@@ -678,6 +677,15 @@ export function PublicBookshelf() {
             the founders
           </a>{" "}
           by jimmy soni
+          <span className="pb-currently-reading__sep"> · </span>
+          <a
+            href="https://www.amazon.com/dp/0807014273"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            man&apos;s search for meaning
+          </a>{" "}
+          by viktor e. frankl
         </p>
 
         {sHint ? (
@@ -692,18 +700,18 @@ export function PublicBookshelf() {
           <p className="bl-empty-all">—</p>
         ) : null}
 
-        {/* Your intelligence: 5★ faves + meditations — flat grid, no folder chrome */}
+        {/* FAVS: 5★ + meditations — flat grid, no folder chrome */}
         {filter === "faves" && filtered.length > 0 ? (
           <section
             className="bl-shelf is-open pb-faves-flat"
-            aria-label="Your intelligence"
+            aria-label="FAVS"
           >
             <div className="bl-grid">
               {filtered.map((item) => (
                 <CatalogCard
                   key={item.entry.id}
                   item={item}
-                  folderLabel="Your intelligence"
+                  folderLabel="FAVS"
                   highlight={highlightId === item.entry.id}
                   onAnnotate={openAnnotation}
                 />

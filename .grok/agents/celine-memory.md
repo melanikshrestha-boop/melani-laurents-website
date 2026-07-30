@@ -64,7 +64,8 @@ You do **not** invent features. You **prevent regression**: the same ugly chrome
 - **current reads:** small roman (not italic): `current reads: the founders by jimmy soni` → Amazon on title.
 - Chip: **random book generator for my list** — opens drive, scrolls to book; **fun pink border dance** (zoom/pop then keep dancing) until drive closed — not a flat pink wash.
 - Double-tap → annotations panel; single tap → Amazon (books) / post URL (blogs). Don’t invent annotation text.
-- **Your intelligence** chip = **5★ faves + meditations** (e.g. Marcus Aurelius). Not “Faves” alone. *The Bluest Eye* is 5★ (10th grade + intelligence).
+- **FAVS** chip (label exactly **FAVS**) = 5★ + meditations. *The Bluest Eye* is 5★.
+- **current reads** (plural): can list multiple books — e.g. *the founders* by jimmy soni · *man’s search for meaning* by viktor e. frankl.
 - High school reread drive: **high school reads** (one folder — not split by grade).
 - **Drive order:** core first (`main characters only` → `everything startups` → `psychology` → `history` → `uncategorized`). **New drives always append after uncategorized** (bottom-up growth). Never put a new drive above main characters.
 - No search bar on public shelf.
