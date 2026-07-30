@@ -4549,13 +4549,14 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   display: none !important;
 }
 
-/* Surprise chip — wand + gold whisper */
+/* Random generator chip — wand + gold whisper */
 .pb-root .pb-chip-surprise {
   display: inline-flex !important;
   align-items: center;
   gap: 5px;
   color: #8a6b2e !important;
   border-bottom-color: transparent !important;
+  white-space: nowrap;
 }
 .pb-root .pb-chip-surprise:hover,
 .pb-root .pb-chip-surprise:focus-visible {
@@ -4563,25 +4564,56 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   border-bottom-color: currentColor !important;
 }
 
-.pb-root .pb-surprise-toast {
+/* currently reading — no cover; title is the Amazon link */
+.pb-root .pb-currently-reading {
   margin: 0 0 10px !important;
-  padding: 6px 0;
-  color: #3d3630;
+  padding: 0;
+  color: #71695f;
   font-family: "Source Serif 4", Georgia, ui-serif, serif;
-  font-size: 0.85rem;
+  font-size: 0.88rem;
+  font-style: italic;
   line-height: 1.35;
 }
-.pb-root .pb-surprise-toast strong {
-  color: #1a1612;
-  font-weight: 600;
+.pb-root .pb-currently-reading a {
+  color: #29251f;
+  font-style: normal;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
 }
-.pb-root .pb-surprise-toast em {
-  font-style: italic;
-  color: #71695f;
+.pb-root .pb-currently-reading a:hover {
+  color: #3b7ea8;
 }
-.pb-root .pb-surprise-hint {
-  color: #9a9084;
-  font-size: 0.78rem;
+
+/* 5s tip after random pick — floats, self-dismisses */
+.pb-root .pb-s-popup {
+  position: fixed;
+  left: 50%;
+  bottom: 1.75rem;
+  z-index: 80;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 0.55rem 0.95rem;
+  border-radius: 8px;
+  background: #1a1612;
+  color: #f7f1e7;
+  font-family: "Source Serif 4", Georgia, ui-serif, serif;
+  font-size: 0.85rem;
+  line-height: 1.3;
+  box-shadow: 0 10px 28px rgba(20, 18, 16, 0.22);
+  pointer-events: none;
+  animation: pb-s-popup-in 180ms ease-out;
+}
+@keyframes pb-s-popup-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
 }
 
 /* Keyboard legend removed from DOM; keep hide if it returns */

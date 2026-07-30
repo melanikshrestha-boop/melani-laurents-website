@@ -9,6 +9,7 @@ import {
   useCallback,
   useEffect,
   useMemo,
+  useRef,
   useState,
   type CSSProperties,
 } from "react";
@@ -291,13 +292,10 @@ export function PublicBookshelf() {
   const [openFolders, setOpenFolders] = useState<Record<string, boolean>>({});
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [quoteCopied, setQuoteCopied] = useState(false);
-  const [surprise, setSurprise] = useState<{
-    id: string;
-    title: string;
-    author: string;
-    folder: string;
-  } | null>(null);
+  /** Ephemeral “Press S again” tip after a random pick (~5s) */
+  const [sHint, setSHint] = useState(false);
   const [highlightId, setHighlightId] = useState<string | null>(null);
+  const sHintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   /** Books / papers / podcasts only — never fake blog "book" covers */
   const catalog = useMemo<ShelfItem[]>(() => {
@@ -435,19 +433,13 @@ export function PublicBookshelf() {
     }
   }, [quote]);
 
-  /** Pick a random book, open its drive, pulse the card */
+  /** Random pick from the list — no “drawn from…” prose */
   const surpriseMe = useCallback(() => {
     if (!catalog.length) return;
     const pick = catalog[Math.floor(Math.random() * catalog.length)];
     const folder = folderLabelFor(pick.entry);
     setFilter("all");
     setOpenFolders((current) => ({ ...current, [folder]: true }));
-    setSurprise({
-      id: pick.entry.id,
-      title: pick.book.title,
-      author: pick.book.author || pick.entry.source || "",
-      folder,
-    });
     setHighlightId(pick.entry.id);
     window.setTimeout(() => {
       document
@@ -455,7 +447,21 @@ export function PublicBookshelf() {
         ?.scrollIntoView({ behavior: "smooth", block: "center" });
     }, 80);
     window.setTimeout(() => setHighlightId(null), 2800);
+
+    // 5s tip popup, then gone
+    if (sHintTimerRef.current) clearTimeout(sHintTimerRef.current);
+    setSHint(true);
+    sHintTimerRef.current = setTimeout(() => {
+      setSHint(false);
+      sHintTimerRef.current = null;
+    }, 5000);
   }, [catalog]);
+
+  useEffect(() => {
+    return () => {
+      if (sHintTimerRef.current) clearTimeout(sHintTimerRef.current);
+    };
+  }, []);
 
   // Keyboard: R = next quote · S = surprise · 1–4 = chips · C = copy quote
   useEffect(() => {
@@ -569,19 +575,29 @@ export function PublicBookshelf() {
             type="button"
             className="bl-chip pb-chip-surprise"
             onClick={surpriseMe}
-            title="Random book from the shelf (S)"
+            title="Random generator from my list (S)"
           >
             <MagicWand size={12} weight="fill" aria-hidden />
-            <span>Surprise</span>
+            <span>random generator from my list</span>
           </button>
         </div>
 
-        {surprise ? (
-          <p className="pb-surprise-toast" role="status" aria-live="polite">
-            <em>{surprise.folder}</em>:{" "}
-            <strong>{surprise.title}</strong>
-            {surprise.author ? ` — ${surprise.author}` : ""}
-          </p>
+        {/* Explicit currently-reading line (Melani) — title opens Amazon */}
+        <p className="pb-currently-reading">
+          currently reading{" "}
+          <a
+            href="https://www.amazon.com/dp/1982153733"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            The Founders
+          </a>
+        </p>
+
+        {sHint ? (
+          <div className="pb-s-popup" role="status" aria-live="polite">
+            Press S again for another.
+          </div>
         ) : null}
 
         {groups.length === 0 &&
