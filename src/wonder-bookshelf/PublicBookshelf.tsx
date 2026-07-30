@@ -26,6 +26,7 @@ import {
 import {
   bookshelfEntries,
   isFiveStar,
+  isYourIntelligence,
   type BookshelfEntry,
   type BookshelfKind,
 } from "@/data/bookshelf";
@@ -55,7 +56,8 @@ const CHIPS: { id: Filter; label: string }[] = [
   { id: "all", label: "All" },
   { id: "book", label: "Books" },
   { id: "blog", label: "Blogs" },
-  { id: "faves", label: "Faves" },
+  /** Your intelligence = 5★ faves + meditations */
+  { id: "faves", label: "Your intelligence" },
 ];
 
 /** Quote rotator — shelf voice + founders + the stack itself */
@@ -378,16 +380,16 @@ export function PublicBookshelf() {
     };
     for (const { entry } of catalog) {
       if (entry.kind === "book") c.book += 1;
-      // Faves = only personal 5-star ratings
-      if (isFiveStar(entry)) c.faves += 1;
+      // Your intelligence = 5★ faves + meditations
+      if (isYourIntelligence(entry)) c.faves += 1;
     }
     return c;
   }, [catalog, blogCount]);
 
   const filtered = useMemo(() => {
     return catalog.filter(({ entry }) => {
-      // Faves chip = only 5-star personal ratings
-      if (filter === "faves" && !isFiveStar(entry)) return false;
+      // Your intelligence chip = faves + meditations
+      if (filter === "faves" && !isYourIntelligence(entry)) return false;
       // blogs are not in the cover grid
       if (filter === "blog") return false;
       if (filter === "book" && entry.kind !== "book") return false;
@@ -625,7 +627,7 @@ export function PublicBookshelf() {
                   <b>{blogCount}</b> blogs
                 </span>
                 <span>
-                  <b>{counts.faves}</b> faves
+                  <b>{counts.faves}</b> intelligence
                 </span>
               </div>
             </div>
@@ -677,23 +679,21 @@ export function PublicBookshelf() {
         {groups.length === 0 &&
         !(filter === "faves" && filtered.length > 0) &&
         !showBlogs ? (
-          <p className="bl-empty-all">
-            {filter === "faves"
-              ? "No 5-star ratings yet — when one earns five, it lands here."
-              : "Nothing in this section yet."}
-          </p>
+          <p className="bl-empty-all">—</p>
         ) : null}
 
-        {/* Faves: only personal 5-star ratings — flat grid, no folder chrome */}
+        {/* Your intelligence: 5★ faves + meditations — flat grid, no folder chrome */}
         {filter === "faves" && filtered.length > 0 ? (
-          <section className="bl-shelf is-open pb-faves-flat" aria-label="Faves">
-            <p className="pb-faves-tagline">My only 5 star ratings.</p>
+          <section
+            className="bl-shelf is-open pb-faves-flat"
+            aria-label="Your intelligence"
+          >
             <div className="bl-grid">
               {filtered.map((item) => (
                 <CatalogCard
                   key={item.entry.id}
                   item={item}
-                  folderLabel="Faves"
+                  folderLabel="Your intelligence"
                   highlight={highlightId === item.entry.id}
                   onAnnotate={openAnnotation}
                 />

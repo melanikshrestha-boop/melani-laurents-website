@@ -70,6 +70,29 @@ export function isFiveStar(entry: BookshelfEntry): boolean {
   return entry.rating === 5 || entry.favorite === true;
 }
 
+/** Meditations shelf — Marcus Aurelius + title match */
+export function isMeditation(entry: BookshelfEntry): boolean {
+  const title = entry.title.toLowerCase();
+  const source = (entry.source || "").toLowerCase();
+  return (
+    title.includes("meditation") ||
+    source.includes("marcus aurelius") ||
+    source.includes("aurelius")
+  );
+}
+
+/**
+ * Your intelligence = 5★ faves + meditations (Melani).
+ * Public chip / flat grid on the shelf.
+ */
+export function isYourIntelligence(entry: BookshelfEntry): boolean {
+  return isFiveStar(entry) || isMeditation(entry);
+}
+
+export function getYourIntelligence(): BookshelfEntry[] {
+  return getBookshelfEntries().filter(isYourIntelligence);
+}
+
 export function getRecentBookshelf(limit = 3): BookshelfEntry[] {
   return getBookshelfEntries().slice(0, limit);
 }

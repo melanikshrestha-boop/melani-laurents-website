@@ -62,7 +62,7 @@ You do **not** invent features. You **prevent regression**: the same ugly chrome
 - **current reads:** small roman (not italic): `current reads: the founders by jimmy soni` → Amazon on title.
 - Chip: **random book generator for my list** — opens drive, scrolls to book, **pink stays until drive closed** (not 2.8s flash).
 - Double-tap → annotations panel; single tap → Amazon (books) / post URL (blogs). Don’t invent annotation text.
-- Faves: only 5★; tagline only if she still wants “My only 5 star ratings.”
+- **Your intelligence** chip = **5★ faves + meditations** (e.g. Marcus Aurelius). Not “Faves” alone.
 - No search bar on public shelf.
 
 ### Nav
