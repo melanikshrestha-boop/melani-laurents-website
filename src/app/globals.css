@@ -3210,16 +3210,19 @@ body {
   --lh-tight: 1.35;
   --lh-body: 1.5;
   --measure: 40rem;
-  --bs-paper: #f0ede5;
+  --bs-paper: #f7f1e7;
   --bs-ink: #141210;
   --bs-muted: #6b6358;
-  --bs-border: rgba(20, 18, 16, 0.14);
+  --bs-border: transparent;
   --bs-gold: var(--hub-gold, #c9a962);
-  /* Content-sized — do not force a cream void above the site footer */
-  min-height: 0;
+  /* Flat paper; wonder override paints the same solid (no black underfill) */
+  min-height: calc(100svh - 3.5rem);
   background: var(--bs-paper);
+  background-image: none;
   color: var(--bs-ink);
   font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  border: 0;
+  box-shadow: none;
 }
 
 .bookshelf {

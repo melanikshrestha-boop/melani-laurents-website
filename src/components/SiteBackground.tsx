@@ -14,7 +14,10 @@ export function SiteBackground() {
     pathname === "/podcast" ||
     pathname.startsWith("/podcast/") ||
     pathname === "/youtube" ||
-    pathname.startsWith("/youtube/");
+    pathname.startsWith("/youtube/") ||
+    // Bookshelf is a flat cream reading surface — no black space field under it
+    pathname === "/bookshelf" ||
+    pathname.startsWith("/bookshelf/");
   if (paper) return null;
   return <InterstellarField enabled />;
 }

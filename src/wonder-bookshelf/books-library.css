@@ -2943,12 +2943,21 @@ html.theme-light .bl .bl-greats-after-books {
   --books-text: #29251f;
   --books-muted: #71695f;
   --books-faint: #9a9084;
+  /* Default Wonder light still has atmosphere; public .pb-root overrides to flat */
   background:
     radial-gradient(90% 46% at 50% -8%, rgba(167, 139, 212, 0.1), transparent 65%),
     linear-gradient(180deg, #fbf7ef, #f4ecdf);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.9) inset,
     0 24px 70px rgba(91, 70, 44, 0.1);
+}
+
+/* Public bookshelf: force flat paper (beats light-theme gradients above) */
+.pb-root .bl[data-books-theme="light"] {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: 0 !important;
 }
 
 .bl[data-books-theme] .bl-head-main {
@@ -4388,14 +4397,20 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   }
 }
 
-/* Public page — content height only (no 100vh cream void above the footer) */
+/*
+ * Public page — ONE flat cream wall, edge to edge.
+ * No gradients, no black strip under content, no divider lines.
+ */
 .bookshelf-page--wonder {
-  min-height: 0 !important;
+  --pb-paper: #f7f1e7;
+  min-height: calc(100svh - 3.5rem) !important;
   height: auto !important;
-  background:
-    radial-gradient(90% 46% at 50% -8%, rgba(167, 139, 212, 0.08), transparent 65%),
-    linear-gradient(180deg, #fbf7ef, #f0e8da);
-  padding: 0.15rem 0 1.25rem;
+  margin: 0 !important;
+  padding: 0.15rem 0 2rem !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  background: var(--pb-paper) !important;
+  background-image: none !important;
   -webkit-user-select: text;
   user-select: text;
   cursor: text;
@@ -4430,7 +4445,7 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   margin: 0.25rem auto 0.75rem;
 }
 
-/* Cream panel — hug content, never force full viewport */
+/* Shelf panel = same paper as page (no second card color / no borders) */
 .pb-root.bl-public-wrap .bl[data-books-theme="light"],
 .pb-root .bl[data-books-theme="light"],
 .pb-root .bl {
@@ -4440,14 +4455,19 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   --books-text: #29251f;
   --books-muted: #71695f;
   --books-faint: #9a9084;
-  --books-line: rgba(65, 51, 36, 0.11);
-  --books-surface: rgba(255, 255, 255, 0.54);
+  --books-line: transparent;
+  --books-surface: transparent;
+  --books-bg: #f7f1e7;
   min-height: 0 !important;
   height: auto !important;
-  padding: 10px 16px 18px !important;
+  padding: 8px 16px 12px !important;
   box-sizing: border-box;
-  border-radius: 16px;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
   overflow: visible !important;
+  background: transparent !important;
+  background-image: none !important;
   color: #29251f;
 }
 
