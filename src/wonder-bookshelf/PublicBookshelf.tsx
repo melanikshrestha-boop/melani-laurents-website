@@ -1,9 +1,9 @@
 "use client";
 
 /**
- * Wonder Bookshelf UI (folders + cover grid) for the public site.
- * Static catalog only — no sync, no detail page.
- * Click / Buy on Amazon → store link.
+ * Public Bookshelf — insight into what Melani reads.
+ * Static catalog, folders, faves. Covers link out for the curious;
+ * this is not a storefront.
  */
 import { useMemo, useState, type CSSProperties } from "react";
 import { ArrowSquareOut, CaretRight, FolderSimple } from "@phosphor-icons/react";
@@ -66,11 +66,11 @@ function buyUrl(entry: BookshelfEntry, book: Book): string {
   return entry.href || book.externalUrl || "#";
 }
 
-function buyLabel(kind: BookshelfKind): string {
-  if (kind === "book") return "Buy on Amazon";
-  if (kind === "paper") return "Read paper";
+function openLabel(kind: BookshelfKind): string {
+  if (kind === "book") return "Open book page";
+  if (kind === "paper") return "Open paper";
   if (kind === "blog") return "Open essay";
-  return "Listen";
+  return "Open";
 }
 
 /** Subject folders for books. Never blogs. */
@@ -148,11 +148,11 @@ function CatalogCard({
 }) {
   const { entry, book } = item;
   const href = buyUrl(entry, book);
-  const label = buyLabel(entry.kind);
+  const label = openLabel(entry.kind);
 
   return (
     <div className="bl-card-wrap">
-      {/* Cover + title only — whole card opens store link. No Buy button. */}
+      {/* Cover + title — personal shelf; link is optional deeper look, not a cart */}
       <a
         className="bl-card pb-card-link"
         href={href}
