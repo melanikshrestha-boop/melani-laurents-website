@@ -114,9 +114,7 @@ const SHELF_QUOTES: { text: string; author: string }[] = [
 
 /** Public folder order — high school reread drives near top */
 const PUBLIC_FOLDER_ORDER = [
-  "10th grade",
-  "11th grade",
-  "12th grade",
+  "high school reads",
   "dostoevsky",
   "main characters only",
   "everything startups",
@@ -126,9 +124,7 @@ const PUBLIC_FOLDER_ORDER = [
 ] as const;
 
 const FOLDER_ACCENT: Record<string, string> = {
-  "10th grade": "#c97b84",
-  "11th grade": "#5b9fd4",
-  "12th grade": "#9b7fd4",
+  "high school reads": "#c97b84",
   dostoevsky: "#6b5344",
   "main characters only": "#c4a06a",
   "everything startups": "#5b9fd4",

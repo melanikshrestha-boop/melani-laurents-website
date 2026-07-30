@@ -65,7 +65,7 @@ You do **not** invent features. You **prevent regression**: the same ugly chrome
 - Chip: **random book generator for my list** — opens drive, scrolls to book; **fun pink border dance** (zoom/pop then keep dancing) until drive closed — not a flat pink wash.
 - Double-tap → annotations panel; single tap → Amazon (books) / post URL (blogs). Don’t invent annotation text.
 - **Your intelligence** chip = **5★ faves + meditations** (e.g. Marcus Aurelius). Not “Faves” alone. *The Bluest Eye* is 5★ (10th grade + intelligence).
-- High school reread drives: **10th grade**, **11th grade**, **12th grade** (American Studies + senior/sophomore syllabus). Keep them as named folders.
+- High school reread drive: **high school reads** (one folder — not split by grade).
 - No search bar on public shelf.
 
 ### Nav
