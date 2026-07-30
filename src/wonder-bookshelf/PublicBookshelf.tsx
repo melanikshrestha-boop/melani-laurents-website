@@ -769,10 +769,13 @@ export function PublicBookshelf() {
             aria-label="Blogs"
           >
             <header className="pb-blogs__head">
-              <h2 className="pb-blogs__title">Blogs</h2>
-              <p className="pb-blogs__chrono">
-                in chronological order that I read
-              </p>
+              <h2 className="pb-blogs__title">
+                Blogs
+                <span className="pb-blogs__chrono">
+                  {" "}
+                  in chronological order that I read
+                </span>
+              </h2>
             </header>
             <ol className="pb-blogs__list">
               {SHELF_BLOGS.map((blog, i) => (
