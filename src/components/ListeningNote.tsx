@@ -3,14 +3,18 @@ import { siteConfig } from "@/config/site";
 export function ListeningNote({ context }: { context: "daily" | "art" }) {
   return (
     <aside className={`listening-note listening-note--${context}`}>
-      <div className="listening-note__pointer" aria-hidden>
+      <div className="listening-note__pointer">
         <p>
-          While I was writing this, this was probably what I was listening to
-          while writing this.
+          This was probably what I was listening to while writing this.
         </p>
-        <span>→</span>
+        <span aria-hidden>→</span>
       </div>
-      <a href={siteConfig.spotifyUrl} target="_blank" rel="noopener noreferrer">
+      <a
+        href={siteConfig.spotifyUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open my Spotify"
+      >
         <svg viewBox="0 0 24 24" fill="none" aria-hidden>
           <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.8" />
           <path

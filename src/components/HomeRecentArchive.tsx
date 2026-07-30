@@ -1,12 +1,40 @@
 import Link from "next/link";
 import { getRecentDailyPosts } from "@/data/daily-posts";
 import { googleScholarUrl } from "@/data/publications";
-import { getResearchPosts } from "@/lib/research";
 import { siteConfig } from "@/config/site";
 import { HomeScrollExperience } from "@/components/HomeScrollExperience";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 
 const SLOT_COUNT = 3;
+
+const GITHUB_URL =
+  siteConfig.socialLinks.find((l) => l.id === "github")?.href ??
+  "https://github.com/melanikshrestha-boop";
+
+/**
+ * Temporary build list: GitHub repos, Pig Latin titles until real names land.
+ * Dates keep the same list rhythm as the old research stack.
+ */
+const BUILD_PLACEHOLDERS = [
+  {
+    id: "repo-1",
+    date: "2026-05-27",
+    title: "Onderway — Eposray Ameworkfray",
+    href: GITHUB_URL,
+  },
+  {
+    id: "repo-2",
+    date: "2026-05-14",
+    title: "Eamdray Ifelay — Ystemsay Uildbay",
+    href: GITHUB_URL,
+  },
+  {
+    id: "repo-3",
+    date: "2026-05-09",
+    title: "Elinacay Ovunay — Ersponalpay Iteway",
+    href: GITHUB_URL,
+  },
+] as const;
 
 function formatDate(date: string): string {
   return new Date(date).toLocaleDateString("en-US", {
@@ -33,7 +61,6 @@ function EmptySlots({ label }: { label: string }) {
 
 export function HomeRecentArchive() {
   const daily = getRecentDailyPosts(SLOT_COUNT);
-  const research = getResearchPosts().slice(0, SLOT_COUNT);
 
   return (
     <HomeScrollExperience>
@@ -75,12 +102,13 @@ export function HomeRecentArchive() {
             </Link>
           </div>
 
-          <div className="hub-archive__section hub-archive__section--research">
+          {/* Builds (was Research) — same list UI, shorter title, tighter header links */}
+          <div className="hub-archive__section hub-archive__section--builds">
             <header className="hub-archive__header">
               <h2 className="hub-archive__title">
-                <Link href="/research">Research</Link>
+                <Link href="/projects">Builds</Link>
               </h2>
-              <div className="hub-archive__header-links">
+              <div className="hub-archive__header-links hub-archive__header-links--builds">
                 <a
                   href={googleScholarUrl}
                   target="_blank"
@@ -89,30 +117,28 @@ export function HomeRecentArchive() {
                 >
                   Google Scholar ↗
                 </a>
-                <Link href="/research" className="hub-archive__more">
-                  all research →
+                <Link href="/projects" className="hub-archive__more">
+                  all builds →
                 </Link>
               </div>
             </header>
-            {research.length > 0 ? (
-              <ul className="hub-archive__list">
-                {research.map((post) => (
-                  <li key={post.slug} className="hub-archive__item">
-                    <time className="hub-archive__date" dateTime={post.date}>
-                      {formatDate(post.date)}
-                    </time>
-                    <Link
-                      href={`/research/${post.slug}`}
-                      className="hub-archive__link"
-                    >
-                      {post.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <EmptySlots label="Research" />
-            )}
+            <ul className="hub-archive__list">
+              {BUILD_PLACEHOLDERS.map((repo) => (
+                <li key={repo.id} className="hub-archive__item">
+                  <time className="hub-archive__date" dateTime={repo.date}>
+                    {formatDate(repo.date)}
+                  </time>
+                  <a
+                    href={repo.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hub-archive__link"
+                  >
+                    {repo.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className="hub-archive__section hub-archive__section--daily">
@@ -128,14 +154,6 @@ export function HomeRecentArchive() {
               <p className="hub-archive__callout-body">
                 {siteConfig.dailyDescription}
               </p>
-              <div className="hub-archive__callout-action">
-                <p className="hub-archive__callout-title">
-                  {siteConfig.dailySlogan}
-                </p>
-                <span className="hub-archive__callout-arrow" aria-hidden>
-                  →
-                </span>
-              </div>
             </Link>
             {daily.length > 0 ? (
               <ul className="hub-archive__list">

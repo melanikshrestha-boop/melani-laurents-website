@@ -9,8 +9,9 @@ export const siteConfig = {
   location: "Mostly LA — sometimes SF or NYC",
   /** Daily letter — home archive + /daily page. */
   dailyDescription:
-    "The consolidation of memory is the art of writing what you listen to, read about, or converse with other people while adding your own n+1 aspect on a consistent basis. Follow along if you want to grow your neuroplasticity by incremental daily learning on a variety of topics.",
-  dailySlogan: "everything backed by neuroscience",
+    'The consolidation of memory is the art of writing what you listen to, read about, or converse with other people while adding your own "n+1" aspect on a consistent basis. Follow along if you want to grow your neuroplasticity by incremental daily learning on a variety of topics.',
+  /** Intentionally empty — no gold slogan under the Daily callout. */
+  dailySlogan: "",
   artPath: "/art",
   photographyPath: "/photography",
   /** Occasional long-form channel — an extension of the public archive. */

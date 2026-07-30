@@ -2379,6 +2379,15 @@ body {
   gap: 0.75rem 1rem;
 }
 
+/* Builds is shorter than Research — pull Scholar / “all builds” tighter to the title */
+.hub-archive__header-links--builds {
+  gap: 0.55rem 0.85rem;
+}
+
+.hub-archive__section--builds .hub-archive__header {
+  gap: 0.4rem 0.75rem;
+}
+
 .hub-archive__title {
   margin: 0;
   font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
@@ -3076,6 +3085,35 @@ body {
   background: var(--daily-paper);
   color: var(--daily-ink);
   font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+}
+
+/* Cleared daily surface — Spotify note pushed to the bottom of the page */
+.daily-index--cleared {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 3.5rem);
+}
+
+.daily-index--cleared .daily-index__heading {
+  white-space: normal;
+  margin-top: 0.85rem;
+}
+
+.daily-index__cleared-note {
+  margin: 0.85rem 0 0;
+  max-width: 28rem;
+  font-size: 0.62rem;
+  line-height: 1.6;
+  letter-spacing: 0.03em;
+  color: var(--daily-muted);
+}
+
+.daily-index--cleared .listening-note--daily {
+  margin-top: auto;
+}
+
+.daily-index--cleared .daily-index__home-link {
+  padding-bottom: 2rem;
 }
 
 .daily-index__masthead,
