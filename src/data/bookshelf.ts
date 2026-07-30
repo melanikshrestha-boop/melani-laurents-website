@@ -24,7 +24,12 @@ export type BookshelfEntry = {
   /** Amazon ASIN — product page + matching cover art */
   asin?: string;
   /**
-   * Explicit public shelf folder (Conqueror / Entrepreneur / Genius).
+   * Override cover image when Amazon’s ASIN art is wrong
+   * (e.g. back cover, blank, or foreign edition).
+   */
+  coverUrl?: string;
+  /**
+   * Explicit public shelf folder.
    * When set, PublicBookshelf uses this instead of keyword auto-sort.
    */
   category?: string;

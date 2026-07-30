@@ -196,6 +196,8 @@ export function PublicBookshelf() {
             asin: entry.asin,
             href: entry.href,
             title: entry.title,
+            // Catalog coverUrl wins when Amazon serves the wrong face (back, blank…)
+            coverUrl: entry.coverUrl,
           });
           book.externalUrl = storeUrlForBook({
             asin: entry.asin,
