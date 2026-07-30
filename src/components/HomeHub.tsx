@@ -4,16 +4,15 @@ import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { InteractiveTitleLetters } from "./InteractiveTitleLetters";
 import { MelaniSignature } from "./MelaniSignature";
-import { MotionScrollToggle } from "./MotionScrollToggle";
 import { SocialIcons } from "./SocialIcons";
 
 /**
- * Locked home landing — full-bleed black frame.
- * Same structure at any window size (no letterbox slide canvas, no editor).
+ * Production home landing — clean full-bleed frame.
+ * No layout editor. No motion-scroll gadget.
  */
 export function HomeHub() {
   return (
-    <section className="hub-page hub-page--locked">
+    <section className="hub-page hub-page--locked" aria-label="Celine Nova home">
       <header className="hub-page__header hub-page__header--locked">
         <div className="hub-page__brand hub-page__brand--locked">
           <MelaniSignature variant="light" />
@@ -34,13 +33,11 @@ export function HomeHub() {
           className="hub-page__title"
           lineClassName="hub-page__title-line"
         />
-        <div className="hub-page__thesis">
-          <p className="hub-page__tagline">open sourcing my mind.</p>
-        </div>
+        <p className="hub-page__tagline">open sourcing my mind.</p>
         <nav className="hub-page__nav hub-page__nav--locked" aria-label="Sections">
           {siteConfig.hubPortals.map((portal, i) => (
             <span key={portal.href} className="hub-page__nav-item">
-              {i > 0 ? <span className="hub-page__sep"> · </span> : null}
+              {i > 0 ? <span className="hub-page__sep" aria-hidden> · </span> : null}
               {"external" in portal && portal.external ? (
                 <a href={portal.href} target="_blank" rel="noopener noreferrer">
                   {portal.label}
@@ -51,15 +48,13 @@ export function HomeHub() {
             </span>
           ))}
           <span className="hub-page__nav-item hub-page__nav-item--contact">
-            <span className="hub-page__sep"> · </span>
+            <span className="hub-page__sep" aria-hidden> · </span>
             <Link href="/contact" className="hub-page__nav-contact">
               Contact
             </Link>
           </span>
         </nav>
       </div>
-
-      <MotionScrollToggle />
     </section>
   );
 }
