@@ -943,7 +943,9 @@
     "title": "The Public Speaking Bible: A Survival Guide for Standing on Stage",
     "source": "Marcus Alexander",
     "loggedAt": "2026-07-30",
-    "category": "psychology"
+    "category": "psychology",
+    "coverUrl": "https://covers.openlibrary.org/b/id/13209292-L.jpg",
+    "href": "https://www.amazon.com/s?k=The%20Public%20Speaking%20Bible%3A%20A%20Survival%20Guide%20for%20Standing%20on%20Stage%20Marcus%20Alexander"
   },
   {
     "id": "book-psy-566baa3d22",
@@ -971,7 +973,9 @@
     "title": "How to Win Friends and Influence People",
     "source": "Dale Carnegie",
     "loggedAt": "2026-07-30",
-    "category": "psychology"
+    "category": "psychology",
+    "asin": "0671723650",
+    "href": "https://www.amazon.com/dp/0671723650"
   },
   {
     "id": "book-psy-0344e700b7",
@@ -1067,7 +1071,9 @@
     "title": "Scientific Advertising",
     "source": "Claude C. Hopkins",
     "loggedAt": "2026-07-29",
-    "category": "psychology"
+    "category": "psychology",
+    "asin": "0743271130",
+    "href": "https://www.amazon.com/dp/0743271130"
   },
   {
     "id": "book-psy-f206395e04",
@@ -1075,7 +1081,9 @@
     "title": "Zig Ziglar's Secrets of Closing the Sale",
     "source": "Zig Ziglar",
     "loggedAt": "2026-07-29",
-    "category": "psychology"
+    "category": "psychology",
+    "coverUrl": "https://covers.openlibrary.org/b/id/561872-L.jpg",
+    "href": "https://www.amazon.com/s?k=Zig%20Ziglar's%20Secrets%20of%20Closing%20the%20Sale%20Zig%20Ziglar"
   },
   {
     "id": "book-psy-987da6c073",
@@ -1111,6 +1119,588 @@
     "title": "The Wizard of Ads",
     "source": "Roy H. Williams",
     "loggedAt": "2026-07-30",
-    "category": "psychology"
+    "category": "psychology",
+    "coverUrl": "https://covers.openlibrary.org/b/id/3729638-L.jpg",
+    "href": "https://www.amazon.com/s?k=The%20Wizard%20of%20Ads%20Roy%20H.%20Williams"
+  },
+  {
+    "id": "book-hist-07dd7424fb",
+    "kind": "book",
+    "title": "John Adams",
+    "source": "David McCullough",
+    "loggedAt": "2026-07-30",
+    "category": "history",
+    "asin": "0743223136",
+    "href": "https://www.amazon.com/dp/0743223136"
+  },
+  {
+    "id": "book-hist-818c6ffe86",
+    "kind": "book",
+    "title": "The Rise and Fall of the Third Reich: A History of Nazi Germany",
+    "source": "William L. Shirer",
+    "loggedAt": "2026-07-30",
+    "category": "history",
+    "asin": "1451651686",
+    "href": "https://www.amazon.com/dp/1451651686"
+  },
+  {
+    "id": "book-hist-7606f9dd38",
+    "kind": "book",
+    "title": "1776",
+    "source": "David McCullough",
+    "loggedAt": "2026-07-30",
+    "category": "history",
+    "asin": "0743226720",
+    "href": "https://www.amazon.com/dp/0743226720"
+  },
+  {
+    "id": "book-hist-77a049a21d",
+    "kind": "book",
+    "title": "The Guns of August",
+    "source": "Barbara W. Tuchman",
+    "loggedAt": "2026-07-30",
+    "category": "history",
+    "asin": "0345476093",
+    "href": "https://www.amazon.com/dp/0345476093"
+  },
+  {
+    "id": "book-hist-1459cdf1d7",
+    "kind": "book",
+    "title": "Team of Rivals: The Political Genius of Abraham Lincoln",
+    "source": "Doris Kearns Goodwin",
+    "loggedAt": "2026-07-30",
+    "category": "history",
+    "asin": "0743270754",
+    "href": "https://www.amazon.com/dp/0743270754"
+  },
+  {
+    "id": "book-hist-f96348d72c",
+    "kind": "book",
+    "title": "Guns, Germs, and Steel: The Fates of Human Societies",
+    "source": "Jared Diamond",
+    "loggedAt": "2026-07-29",
+    "category": "history",
+    "asin": "0393317552",
+    "href": "https://www.amazon.com/dp/0393317552"
+  },
+  {
+    "id": "book-hist-2bd69e5b03",
+    "kind": "book",
+    "title": "The Diary of a Young Girl",
+    "source": "Anne Frank",
+    "loggedAt": "2026-07-29",
+    "category": "history",
+    "asin": "0553577123",
+    "href": "https://www.amazon.com/dp/0553577123"
+  },
+  {
+    "id": "book-hist-9b775f9b4e",
+    "kind": "book",
+    "title": "Unbroken: A World War II Story of Survival, Resilience, and Redemption",
+    "source": "Laura Hillenbrand",
+    "loggedAt": "2026-07-29",
+    "category": "history",
+    "asin": "0812974492",
+    "href": "https://www.amazon.com/dp/0812974492"
+  },
+  {
+    "id": "book-hist-bbc6363ef6",
+    "kind": "book",
+    "title": "Bury My Heart at Wounded Knee: An Indian History of the American West",
+    "source": "Dee Brown",
+    "loggedAt": "2026-07-29",
+    "category": "history",
+    "asin": "0805086846",
+    "href": "https://www.amazon.com/dp/0805086846"
+  },
+  {
+    "id": "book-hist-ce0095c427",
+    "kind": "book",
+    "title": "The Devil in the White City",
+    "source": "Erik Larson",
+    "loggedAt": "2026-07-29",
+    "category": "history",
+    "asin": "0375725601",
+    "href": "https://www.amazon.com/dp/0375725601"
+  },
+  {
+    "id": "book-hist-04affaf3de",
+    "kind": "book",
+    "title": "A Short History of Nearly Everything",
+    "source": "Bill Bryson",
+    "loggedAt": "2026-07-29",
+    "category": "history",
+    "asin": "076790818X",
+    "href": "https://www.amazon.com/dp/076790818X"
+  },
+  {
+    "id": "book-hist-606cd4b3dc",
+    "kind": "book",
+    "title": "A People's History of the United States",
+    "source": "Howard Zinn",
+    "loggedAt": "2026-07-29",
+    "category": "history",
+    "asin": "0062397346",
+    "href": "https://www.amazon.com/dp/0062397346"
+  },
+  {
+    "id": "book-hist-3df24136f8",
+    "kind": "book",
+    "title": "A Distant Mirror: The Calamitous 14th Century",
+    "source": "Barbara W. Tuchman",
+    "loggedAt": "2026-07-29",
+    "category": "history",
+    "asin": "0345349571",
+    "href": "https://www.amazon.com/dp/0345349571"
+  },
+  {
+    "id": "book-hist-8e80407496",
+    "kind": "book",
+    "title": "Battle Cry of Freedom: The Civil War Era",
+    "source": "James M. McPherson",
+    "loggedAt": "2026-07-29",
+    "category": "history",
+    "asin": "019516895X",
+    "href": "https://www.amazon.com/dp/019516895X"
+  },
+  {
+    "id": "book-hist-d79cf9905a",
+    "kind": "book",
+    "title": "Night",
+    "source": "Elie Wiesel",
+    "loggedAt": "2026-07-29",
+    "category": "history",
+    "asin": "0374500010",
+    "href": "https://www.amazon.com/dp/0374500010"
+  },
+  {
+    "id": "book-hist-cf8cbd568a",
+    "kind": "book",
+    "title": "The Histories",
+    "source": "Herodotus",
+    "loggedAt": "2026-07-29",
+    "category": "history",
+    "href": "https://www.amazon.com/s?k=The%20Histories%20Herodotus",
+    "coverUrl": "https://covers.openlibrary.org/b/id/9829028-L.jpg"
+  },
+  {
+    "id": "book-hist-9086349b76",
+    "kind": "book",
+    "title": "The Decline and Fall of the Roman Empire",
+    "source": "Edward Gibbon",
+    "loggedAt": "2026-07-29",
+    "category": "history",
+    "asin": "0140437649",
+    "href": "https://www.amazon.com/dp/0140437649"
+  },
+  {
+    "id": "book-hist-992b72ca76",
+    "kind": "book",
+    "title": "Undaunted Courage",
+    "source": "Stephen E. Ambrose",
+    "loggedAt": "2026-07-29",
+    "category": "history",
+    "asin": "0684826976",
+    "href": "https://www.amazon.com/dp/0684826976"
+  },
+  {
+    "id": "book-hist-20814c0760",
+    "kind": "book",
+    "title": "Hiroshima",
+    "source": "John Hersey",
+    "loggedAt": "2026-07-29",
+    "category": "history",
+    "asin": "0679721037",
+    "href": "https://www.amazon.com/dp/0679721037"
+  },
+  {
+    "id": "book-hist-ac3292e6ea",
+    "kind": "book",
+    "title": "Truman",
+    "source": "David McCullough",
+    "loggedAt": "2026-07-29",
+    "category": "history",
+    "asin": "0671869205",
+    "href": "https://www.amazon.com/dp/0671869205"
+  },
+  {
+    "id": "book-hist-8192473ec8",
+    "kind": "book",
+    "title": "The Rape of Nanking: The Forgotten Holocaust of World War II",
+    "source": "Iris Chang",
+    "loggedAt": "2026-07-29",
+    "category": "history",
+    "asin": "0465068367",
+    "href": "https://www.amazon.com/dp/0465068367"
+  },
+  {
+    "id": "book-hist-3ab6c28f91",
+    "kind": "book",
+    "title": "History of the Peloponnesian War",
+    "source": "Thucydides",
+    "loggedAt": "2026-07-29",
+    "category": "history",
+    "asin": "0140440399",
+    "href": "https://www.amazon.com/dp/0140440399"
+  },
+  {
+    "id": "book-hist-aa25c5c789",
+    "kind": "book",
+    "title": "1491: New Revelations of the Americas Before Columbus",
+    "source": "Charles C. Mann",
+    "loggedAt": "2026-07-29",
+    "category": "history",
+    "asin": "1400032059",
+    "href": "https://www.amazon.com/dp/1400032059"
+  },
+  {
+    "id": "book-hist-3b5504ead0",
+    "kind": "book",
+    "title": "Stalingrad: The Fateful Siege, 1942–1943",
+    "source": "Antony Beevor",
+    "loggedAt": "2026-07-29",
+    "category": "history",
+    "asin": "0140284583",
+    "href": "https://www.amazon.com/dp/0140284583"
+  },
+  {
+    "id": "book-hist-a6860eeea1",
+    "kind": "book",
+    "title": "Band of Brothers: E Company, 506th Regiment, 101st Airborne from Normandy to Hitler's Eagle's Nest",
+    "source": "Stephen E. Ambrose",
+    "loggedAt": "2026-07-29",
+    "category": "history",
+    "asin": "074322454X",
+    "href": "https://www.amazon.com/dp/074322454X"
+  },
+  {
+    "id": "book-hist-ce91fe29ba",
+    "kind": "book",
+    "title": "The Rise of Theodore Roosevelt",
+    "source": "Edmund Morris",
+    "loggedAt": "2026-07-29",
+    "category": "history",
+    "asin": "0375756787",
+    "href": "https://www.amazon.com/dp/0375756787"
+  },
+  {
+    "id": "book-hist-45949ede7d",
+    "kind": "book",
+    "title": "Genghis Khan and the Making of the Modern World",
+    "source": "Jack Weatherford",
+    "loggedAt": "2026-07-29",
+    "category": "history",
+    "asin": "0609809644",
+    "href": "https://www.amazon.com/dp/0609809644"
+  },
+  {
+    "id": "book-hist-0958a88c65",
+    "kind": "book",
+    "title": "The Civil War: A Narrative",
+    "source": "Shelby Foote",
+    "loggedAt": "2026-07-29",
+    "category": "history",
+    "href": "https://www.amazon.com/s?k=The%20Civil%20War%3A%20A%20Narrative%20Shelby%20Foote",
+    "coverUrl": "https://covers.openlibrary.org/b/id/167629-L.jpg"
+  },
+  {
+    "id": "book-hist-d550669a6e",
+    "kind": "book",
+    "title": "Alexander Hamilton",
+    "source": "Ron Chernow",
+    "loggedAt": "2026-07-29",
+    "category": "history",
+    "asin": "0143034758",
+    "href": "https://www.amazon.com/dp/0143034758"
+  },
+  {
+    "id": "book-hist-66aff1e027",
+    "kind": "book",
+    "title": "Peter the Great: His Life and World",
+    "source": "Robert K. Massie",
+    "loggedAt": "2026-07-28",
+    "category": "history",
+    "asin": "0345298063",
+    "href": "https://www.amazon.com/dp/0345298063"
+  },
+  {
+    "id": "book-hist-b2c878c83f",
+    "kind": "book",
+    "title": "King Leopold's Ghost: A Story of Greed, Terror, and Heroism in Colonial Africa",
+    "source": "Adam Hochschild",
+    "loggedAt": "2026-07-28",
+    "category": "history",
+    "asin": "0618001905",
+    "href": "https://www.amazon.com/dp/0618001905"
+  },
+  {
+    "id": "book-hist-5fe2302de2",
+    "kind": "book",
+    "title": "Catherine the Great: Portrait of a Woman",
+    "source": "Robert K. Massie",
+    "loggedAt": "2026-07-28",
+    "category": "history",
+    "asin": "0345408772",
+    "href": "https://www.amazon.com/dp/0345408772"
+  },
+  {
+    "id": "book-hist-23083a1c99",
+    "kind": "book",
+    "title": "The Worst Hard Time: The Untold Story of Those Who Survived the Great American Dust Bowl",
+    "source": "Timothy Egan",
+    "loggedAt": "2026-07-28",
+    "category": "history",
+    "asin": "0618773479",
+    "href": "https://www.amazon.com/dp/0618773479"
+  },
+  {
+    "id": "book-hist-6dcf6f608d",
+    "kind": "book",
+    "title": "Paris 1919: Six Months That Changed the World",
+    "source": "Margaret MacMillan",
+    "loggedAt": "2026-07-28",
+    "category": "history",
+    "asin": "0375760520",
+    "href": "https://www.amazon.com/dp/0375760520"
+  },
+  {
+    "id": "book-hist-4bada8e2cf",
+    "kind": "book",
+    "title": "Mayflower: A Story of Courage, Community, and War",
+    "source": "Nathaniel Philbrick",
+    "loggedAt": "2026-07-28",
+    "category": "history",
+    "asin": "0143111973",
+    "href": "https://www.amazon.com/dp/0143111973"
+  },
+  {
+    "id": "book-hist-e552e88c53",
+    "kind": "book",
+    "title": "Nicholas and Alexandra",
+    "source": "Robert K. Massie",
+    "loggedAt": "2026-07-28",
+    "category": "history",
+    "asin": "0345438310",
+    "href": "https://www.amazon.com/dp/0345438310"
+  },
+  {
+    "id": "book-hist-06152f7e8f",
+    "kind": "book",
+    "title": "The Twelve Caesars",
+    "source": "Suetonius",
+    "loggedAt": "2026-07-28",
+    "category": "history",
+    "asin": "0140455167",
+    "href": "https://www.amazon.com/dp/0140455167"
+  },
+  {
+    "id": "book-hist-5286808c2f",
+    "kind": "book",
+    "title": "The Gulag Archipelago 1918–1956",
+    "source": "Aleksandr Solzhenitsyn",
+    "loggedAt": "2026-07-28",
+    "category": "history",
+    "asin": "0061253804",
+    "href": "https://www.amazon.com/dp/0061253804"
+  },
+  {
+    "id": "book-hist-469784da76",
+    "kind": "book",
+    "title": "In the Heart of the Sea: The Tragedy of the Whaleship Essex",
+    "source": "Nathaniel Philbrick",
+    "loggedAt": "2026-07-28",
+    "category": "history",
+    "href": "https://www.amazon.com/s?k=In%20the%20Heart%20of%20the%20Sea%3A%20The%20Tragedy%20of%20the%20Whaleship%20Essex%20Nathaniel%20Philbrick",
+    "coverUrl": "https://covers.openlibrary.org/b/id/402602-L.jpg"
+  },
+  {
+    "id": "book-hist-abfae9193e",
+    "kind": "book",
+    "title": "Lies My Teacher Told Me: Everything Your American History Textbook Got Wrong",
+    "source": "James W. Loewen",
+    "loggedAt": "2026-07-28",
+    "category": "history",
+    "asin": "0743296281",
+    "href": "https://www.amazon.com/dp/0743296281"
+  },
+  {
+    "id": "book-hist-5f3a8ae4a3",
+    "kind": "book",
+    "title": "Empire of the Summer Moon",
+    "source": "S.C. Gwynne",
+    "loggedAt": "2026-07-28",
+    "category": "history",
+    "asin": "1416591060",
+    "href": "https://www.amazon.com/dp/1416591060"
+  },
+  {
+    "id": "book-hist-d01c22d5ec",
+    "kind": "book",
+    "title": "The Proud Tower: A Portrait of the World Before the War, 1890-1914",
+    "source": "Barbara W. Tuchman",
+    "loggedAt": "2026-07-28",
+    "category": "history",
+    "asin": "0345405013",
+    "href": "https://www.amazon.com/dp/0345405013"
+  },
+  {
+    "id": "book-hist-0d097cedc3",
+    "kind": "book",
+    "title": "The Professor and the Madman",
+    "source": "Simon Winchester",
+    "loggedAt": "2026-07-28",
+    "category": "history",
+    "asin": "0060839783",
+    "href": "https://www.amazon.com/dp/0060839783"
+  },
+  {
+    "id": "book-hist-c32e678b99",
+    "kind": "book",
+    "title": "Ghost Soldiers: The Epic Account of World War II's Greatest Rescue Mission",
+    "source": "Hampton Sides",
+    "loggedAt": "2026-07-28",
+    "category": "history",
+    "asin": "038549565X",
+    "href": "https://www.amazon.com/dp/038549565X"
+  },
+  {
+    "id": "book-hist-eff45db825",
+    "kind": "book",
+    "title": "Theodore Rex",
+    "source": "Edmund Morris",
+    "loggedAt": "2026-07-28",
+    "category": "history",
+    "asin": "0812966007",
+    "href": "https://www.amazon.com/dp/0812966007"
+  },
+  {
+    "id": "book-hist-faac83c1ec",
+    "kind": "book",
+    "title": "Collapse: How Societies Choose to Fail or Succeed",
+    "source": "Jared Diamond",
+    "loggedAt": "2026-07-28",
+    "category": "history",
+    "asin": "0143117009",
+    "href": "https://www.amazon.com/dp/0143117009"
+  },
+  {
+    "id": "book-hist-5a898ec938",
+    "kind": "book",
+    "title": "Destiny of the Republic",
+    "source": "Candice Millard",
+    "loggedAt": "2026-07-28",
+    "category": "history",
+    "asin": "0767929713",
+    "href": "https://www.amazon.com/dp/0767929713"
+  },
+  {
+    "id": "book-hist-caba14efdf",
+    "kind": "book",
+    "title": "Rubicon: The Last Years of the Roman Republic",
+    "source": "Tom Holland",
+    "loggedAt": "2026-07-28",
+    "category": "history",
+    "asin": "1400078970",
+    "href": "https://www.amazon.com/dp/1400078970"
+  },
+  {
+    "id": "book-hist-fc3477d1e0",
+    "kind": "book",
+    "title": "The Making of the Atomic Bomb",
+    "source": "Richard Rhodes",
+    "loggedAt": "2026-07-28",
+    "category": "history",
+    "asin": "1451677618",
+    "href": "https://www.amazon.com/dp/1451677618"
+  },
+  {
+    "id": "book-hist-c923a9ae0f",
+    "kind": "book",
+    "title": "With the Old Breed: At Peleliu and Okinawa",
+    "source": "Eugene B. Sledge",
+    "loggedAt": "2026-07-28",
+    "category": "history",
+    "asin": "0891419063",
+    "href": "https://www.amazon.com/dp/0891419063"
+  },
+  {
+    "id": "book-hist-a2cfe8060d",
+    "kind": "book",
+    "title": "Citizen Soldiers",
+    "source": "Stephen E. Ambrose",
+    "loggedAt": "2026-07-28",
+    "category": "history",
+    "asin": "0684848015",
+    "href": "https://www.amazon.com/dp/0684848015"
+  },
+  {
+    "id": "book-hist-57c4e01807",
+    "kind": "book",
+    "title": "Manhunt: The 12-Day Chase for Lincoln's Killer",
+    "source": "James L. Swanson",
+    "loggedAt": "2026-07-28",
+    "category": "history",
+    "asin": "0060518502",
+    "href": "https://www.amazon.com/dp/0060518502"
+  },
+  {
+    "id": "book-hist-da9995d223",
+    "kind": "book",
+    "title": "Longitude",
+    "source": "Dava Sobel",
+    "loggedAt": "2026-07-28",
+    "category": "history",
+    "asin": "080271529X",
+    "href": "https://www.amazon.com/dp/080271529X"
+  },
+  {
+    "id": "book-hist-5d9aba7921",
+    "kind": "book",
+    "title": "How the Irish Saved Civilization",
+    "source": "Thomas Cahill",
+    "loggedAt": "2026-07-27",
+    "category": "history",
+    "asin": "0385418493",
+    "href": "https://www.amazon.com/dp/0385418493"
+  },
+  {
+    "id": "book-hist-b6b623adb1",
+    "kind": "book",
+    "title": "The Fall of Berlin 1945",
+    "source": "Antony Beevor",
+    "loggedAt": "2026-07-27",
+    "category": "history",
+    "asin": "0143036971",
+    "href": "https://www.amazon.com/dp/0143036971"
+  },
+  {
+    "id": "book-hist-a73b265d1c",
+    "kind": "book",
+    "title": "Salt: A World History",
+    "source": "Mark Kurlansky",
+    "loggedAt": "2026-07-27",
+    "category": "history",
+    "asin": "0142001619",
+    "href": "https://www.amazon.com/dp/0142001619"
+  },
+  {
+    "id": "book-hist-840261bdaa",
+    "kind": "book",
+    "title": "Bloodlands: Europe Between Hitler and Stalin",
+    "source": "Timothy Snyder",
+    "loggedAt": "2026-07-27",
+    "category": "history",
+    "asin": "0465031471",
+    "href": "https://www.amazon.com/dp/0465031471"
+  },
+  {
+    "id": "book-hist-38513700c5",
+    "kind": "book",
+    "title": "The Federalist Papers",
+    "source": "Alexander Hamilton",
+    "loggedAt": "2026-07-27",
+    "category": "history",
+    "asin": "0451528816",
+    "href": "https://www.amazon.com/dp/0451528816"
   }
 ]
