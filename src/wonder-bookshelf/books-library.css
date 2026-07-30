@@ -4435,15 +4435,18 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   color: #1a1612 !important;
 }
 
-/* Personal why-I-read line under Bookshelf (counts stay on chips only) */
+/* Personal why-I-read line under Bookshelf — full width, small italic */
 .pb-root .pb-shelf-tagline,
 .pb-root .bl-tagline {
-  margin: 0.55rem 0 0;
-  max-width: 38rem;
-  color: #3d3630 !important;
-  font-size: 0.95rem;
-  line-height: 1.55;
+  margin: 0.4rem 0 0;
+  max-width: none;
+  width: 100%;
+  color: #5c534a !important;
+  font-size: 0.78rem;
+  line-height: 1.45;
   font-weight: 400;
+  font-style: italic;
+  text-align: left;
 }
 
 .pb-root .bl-card-author,
