@@ -322,17 +322,13 @@ export function PublicBookshelf() {
           <div className="bl-head-main">
             <div className="bl-head-copy">
               <h1 className="bl-title">Bookshelf</h1>
-              <div className="bl-stats" aria-label="Catalog">
-                <span>
-                  <b>{counts.book}</b> books
-                </span>
-                <span>
-                  <b>{GREATS_AUTHORS.length}</b> blog sources
-                </span>
-                <span>
-                  <b>{counts.faves}</b> faves
-                </span>
-              </div>
+              {/* Counts live on the chips below — tagline is why this shelf exists */}
+              <p className="bl-tagline pb-shelf-tagline">
+                I wish I had a second life dedicated to just reading everything
+                written out there. Here are my book counts. The goal is to read
+                at least 1 book every week with the intent to have fun more than
+                seeking to learn something.
+              </p>
             </div>
           </div>
         </header>

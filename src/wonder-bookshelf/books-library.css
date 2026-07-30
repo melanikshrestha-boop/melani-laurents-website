@@ -4435,6 +4435,17 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   color: #1a1612 !important;
 }
 
+/* Personal why-I-read line under Bookshelf (counts stay on chips only) */
+.pb-root .pb-shelf-tagline,
+.pb-root .bl-tagline {
+  margin: 0.55rem 0 0;
+  max-width: 38rem;
+  color: #3d3630 !important;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  font-weight: 400;
+}
+
 .pb-root .bl-card-author,
 .pb-root .bl-stats,
 .pb-root .bl-folder small,
