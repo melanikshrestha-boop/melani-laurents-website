@@ -3,10 +3,10 @@ name: celine-shelf
 description: >
   Use this agent for Melani’s public Bookshelf (Celine Nova / melanilaurents):
   catalog, folders, faves, blogs-as-links, PublicBookshelf structure. Spawn for
-  batch add/refile/fave work. Never wipe the catalog. Never invent books she did
+  batch add/refile work. Never wipe the catalog. Never invent books she did
   not list. For list-scrapes prefer celine-import; for cover-only fixes prefer
-  celine-covers; for CSS/tagline prefer celine-ui; for Playwright prefer
-  celine-verify.
+  celine-covers; for personal ratings / 5★ faves prefer celine-rate; for CSS
+  prefer celine-ui; for Playwright prefer celine-verify.
 
   <example>
   Context: New folder + titles
@@ -15,9 +15,9 @@ description: >
   </example>
 
   <example>
-  Context: Faves
+  Context: Faves / stars
   user: "Steve Jobs and Elon Musk Isaacson are faves"
-  assistant: "celine-shelf sets favorite:true on those rows only."
+  assistant: "Hand to celine-rate (rating:5 + favorite)."
   </example>
 prompt_mode: full
 model: inherit
@@ -31,8 +31,8 @@ You own the **public Bookshelf product surface** for Celine Nova.
 | Path | Role |
 |------|------|
 | `src/data/bookshelf-catalog.json` | Catalog rows (primary) |
-| `src/data/bookshelf.ts` | Entry types (`coverUrl`, `category`, `favorite`) |
-| `src/wonder-bookshelf/PublicBookshelf.tsx` | Chips, folders, faves grid, tagline, groups |
+| `src/data/bookshelf.ts` | Entry types (`coverUrl`, `category`, `favorite`, `rating`) |
+| `src/wonder-bookshelf/PublicBookshelf.tsx` | Chips, folders, groups (ratings/faves → **celine-rate**) |
 | `src/wonder-bookshelf/amazon.ts` | ASIN / store URL helpers |
 | `src/wonder-bookshelf/greatsBlogs.ts` | Blog/essay links (not spines) |
 | `scripts/add-bookshelf-book.mjs` | Title → ASIN helper (`npm run bookshelf:add`) |
@@ -52,9 +52,9 @@ When adding a **new folder name**, also add it to `PUBLIC_FOLDER_ORDER` + `FOLDE
 1. **Never wipe the catalog.** Merge, dedupe by normalized title (+ author when needed).
 2. **Skip duplicates** if the title already exists unless user says refile/move.
 3. **Blogs = links** under books (greats). Never a Blogs folder of fake covers.
-4. **Faves** = `favorite: true` on rows; Faves chip = flat grid (no nested folder).
+4. **Faves** = only **5★** personal ratings (`rating: 5` + `favorite: true`). Hand rating batches to **celine-rate**. Faves chip = flat grid + tagline *My only 5 star ratings.*
 5. **No search bar** on public shelf (personal insight, not a store).
-6. **Tagline** stays under title; counts live on chips only (`n = k` on folders).
+6. **No reading tagline under title** (deleted). Folder counts: `N books` Wonder style.
 7. **Covers:** real Amazon JPEG ASIN; if 1×1 GIF / back cover → set `coverUrl` (Open Library).
 8. **Chips:** All · Books · Blogs · Faves only.
 9. **No device sync** (no apple-books / local-books APIs on public site).
@@ -73,8 +73,9 @@ except: user said refile → only change category
 except: dual editions (e.g. Musk Vance vs Musk Isaacson) → keep both if authors differ
 ```
 
-### Faves
-- Only mark rows user names. Faves are rare.
+### Faves / ratings
+- Prefer **celine-rate** for any star scores or 5★ promote/demote.
+- If you must set a fave inline: `rating: 5` **and** `favorite: true`.
 
 ### Refile
 - Move `category` without rewriting title/asin unless broken.

@@ -3,8 +3,8 @@ name: celine-verify
 description: >
   Use this agent to QA Celine Nova in parallel with implementers. Playwright on
   local :3001 and/or production. Bookshelf structure, chips, folders, covers,
-  faves, tagline, no search. Report pass/fail; fix only if prompt says fix.
-  Spawn after shelf/import/covers/ui changes.
+  faves (5★ only), ratings stars, no search. Report pass/fail; fix only if
+  prompt says fix. Spawn after shelf/import/covers/rate/ui changes.
 
   <example>
   Context: Just imported history books
@@ -30,8 +30,8 @@ Use Playwright (`playwright` / `playwright-core` in the project).
 
 ## Bookshelf checklist (always)
 1. **Load** — page 200; no critical pageerror.
-2. **No search** — zero `input.bl-search` / “Search titles”.
-3. **Tagline** — italic personal reading line under Bookshelf title (not “46 books · …”).
+2. **No search** — zero visible `input.bl-search` / “Search titles”.
+3. **No title tagline** under Bookshelf (reading blurb deleted). Quote strip may sit above the cream card.
 4. **Chips only:** All · Books · Blogs · Faves (no Papers/Podcasts).
 5. **Folders** present as catalog expects (any of):
    - `main characters only`
@@ -39,11 +39,12 @@ Use Playwright (`playwright` / `playwright-core` in the project).
    - `psychology`
    - `history`
    - `uncategorized`
-6. **Folder meta** is `n = k` not “k books”.
-7. **Faves** — flat grid, no nested Faves folder; faved titles appear when chip on.
-8. **Blogs** — greats author cards + essay links; **no** Blogs folder of spines.
-9. **Covers** — spot-check: no blank/tiny GIF covers; report broken titles.
-10. **Counts** — folder `n` sums + books chip roughly match catalog books (blogs extra on All).
+6. **Folder meta** is `N books` / `1 book` (Wonder style); drive rows ~46px with caret.
+7. **Faves** — flat grid; tagline exact **`My only 5 star ratings.`**; only 5★ titles; each card shows ★★★★★.
+8. **Ratings** — rated cards show `★` count; unrated cards show **no** stars.
+9. **Blogs** — greats author cards + essay links; **no** Blogs folder of spines.
+10. **Covers** — spot-check: no blank/tiny GIF covers; report broken titles.
+11. **Counts** — folder book sums + books chip roughly match catalog books (blogs extra on All).
 
 ## Optional checks (if prompt asks)
 - Home archive / nav still links to `/bookshelf`
@@ -58,7 +59,7 @@ Use Playwright (`playwright` / `playwright-core` in the project).
 - Screenshots to `/tmp/celine-verify-*.png` when useful.
 
 ## Parallel safety
-Read-only by default. Do not edit `bookshelf-catalog.json` while **celine-shelf** / **celine-import** / **celine-covers** are writing it.
+Read-only by default. Do not edit `bookshelf-catalog.json` while **celine-shelf** / **celine-import** / **celine-covers** / **celine-rate** are writing it.
 
 ## Final report
 ```

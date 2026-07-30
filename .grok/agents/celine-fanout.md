@@ -23,9 +23,10 @@ fan-out; you may implement tiny glue, but **prefer spawning**:
 | Agent | When |
 |-------|------|
 | `celine-import` | Goodreads / library / paste lists → catalog |
-| `celine-shelf` | Faves, refile, new folder wiring, structural shelf rules |
+| `celine-shelf` | Refile, new folder wiring, structural shelf rules |
+| `celine-rate` | Personal 1–5 ratings; Faves = 5★ only; faves tagline |
 | `celine-covers` | ASIN / coverUrl only |
-| `celine-ui` | Tagline, CSS, chips look |
+| `celine-ui` | Spacing, CSS, chips look, quote chrome |
 | `celine-home` | Home/archive/nav |
 | `celine-verify` | Playwright QA |
 | `celine-ship` | Build + commit + push |
@@ -49,10 +50,16 @@ fan-out; you may implement tiny glue, but **prefer spawning**:
 3. `celine-verify`
 4. `celine-ship`
 
+### D — Personal ratings batch
+1. `celine-rate` (catalog ratings only)
+2. Parallel: `celine-verify` after rate finishes
+3. `celine-ship` if asked
+
 ## Conflict rules
 - **One writer** per file at a time.
-- Catalog writers: import/shelf/covers — sequence covers **after** import when both touch JSON.
-- Verify is read-only; can parallel with ui if ui doesn’t need verify DOM yet — usually verify **last**.
+- Catalog writers: import / shelf / covers / **rate** — do not parallel two JSON writers.
+- Sequence: import → covers → rate (if both) when same batch.
+- Verify is read-only; usually **last**.
 
 ## Output
 Return a **spawn plan** with exact prompts for each child, then spawn them (or
