@@ -39,11 +39,11 @@ const CHIPS: { id: Filter; label: string }[] = [
   { id: "faves", label: "Faves" },
 ];
 
-/** One pile for now — Conqueror/Entrepreneur/Genius were just examples */
-const PUBLIC_FOLDER_ORDER = ["on some stock or shit"] as const;
+/** One public pile — life stories (bios + memoirs), quirky label */
+const PUBLIC_FOLDER_ORDER = ["main characters only"] as const;
 
 const FOLDER_ACCENT: Record<string, string> = {
-  "on some stock or shit": "#c4a06a",
+  "main characters only": "#c4a06a",
   Conqueror: "#c45c4a",
   Entrepreneur: "#d4a84b",
   Genius: "#5b9fd4",
@@ -86,7 +86,7 @@ function folderLabelFor(entry: BookshelfEntry): string {
   // Explicit catalog folder (one pile for now)
   if (entry.category?.trim()) return entry.category.trim();
   // Default public shelf — don't scatter into old subject bins
-  return "on some stock or shit";
+  return "main characters only";
 }
 
 type ShelfItem = { entry: BookshelfEntry; book: Book };
