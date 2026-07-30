@@ -4666,15 +4666,16 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .hub-page--locked {
   /*
    * Double space from the viewport edge (one space ≈ 0.75rem).
-   * Header + hero + bottom nav share this inset — nothing flush to the glass.
+   * Signature (top-left) and section nav (bottom-left) share --hub-edge
+   * so a vertical line down from “Celine Nova” hits ART.
    */
   --hub-edge: 1.5rem;
   --hub-header-h: 2.4rem; /* shared top/bottom rail for the whole header line */
   position: relative;
   z-index: 20;
   display: grid;
-  /* header · center hero · bottom-left footer nav */
-  grid-template-rows: auto minmax(0, 1fr) auto;
+  /* header · center hero only — footer is absolute so it shares the signature column */
+  grid-template-rows: auto minmax(0, 1fr);
   min-height: 100svh;
   height: 100svh;
   width: 100%;
@@ -4682,6 +4683,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   box-sizing: border-box;
   overflow: hidden;
   padding: var(--hub-edge);
+  /* room so absolute footer doesn’t sit under the hero */
+  padding-bottom: calc(var(--hub-edge) + 1.75rem);
   background: transparent;
   color: var(--muted);
 }
@@ -4823,19 +4826,22 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   padding-bottom: clamp(1.5rem, 4vh, 3rem);
 }
 
-/* Bottom-left edge of the frame — same place as the original hub footer */
+/*
+ * Bottom-left: same left edge as the signature (padding-box of .hub-page--locked).
+ * left/bottom = --hub-edge → plumb line under Celine Nova.
+ */
 .hub-page__footer--locked {
-  position: relative;
-  z-index: 5;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: flex-end;
-  justify-content: flex-start;
-  width: 100%;
+  position: absolute;
+  left: var(--hub-edge);
+  bottom: var(--hub-edge);
+  right: auto;
+  z-index: 6;
+  display: block;
+  width: auto;
+  max-width: calc(100% - (var(--hub-edge) * 2));
   margin: 0;
   padding: 0;
-  flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 .hub-page--locked .hub-page__title {
@@ -4873,42 +4879,71 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 }
 
 .hub-page__nav--locked {
-  display: block; /* inline nav items + seps flow left like the original footer */
+  display: block;
   margin: 0;
   padding: 0;
   max-width: none;
   text-align: left;
   font-family: var(--font-share-tech-mono), var(--font-jetbrains-mono), ui-monospace, monospace;
-  font-size: clamp(0.58rem, 0.9vw, 0.72rem);
+  font-size: 0.58rem;
   font-weight: 500;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   line-height: 1.2;
 }
 
-/* Staggered reveal is on .hub-page__nav-item (hub-nav-reveal) — keep it alive */
+/*
+ * Original stagger: hub-nav-reveal + per-item delay from HomeHub.
+ * inline-block so translateY actually runs (transform ignores pure inline).
+ */
 .hub-page--locked .hub-page__nav-item {
-  display: inline;
+  display: inline-block;
   animation: hub-nav-reveal 0.7s ease backwards;
 }
 
 .hub-page__nav--locked a {
+  position: relative;
   color: rgba(232, 230, 227, 0.42);
   text-decoration: none;
-  transition: color 160ms ease;
+  transition: color 200ms ease;
 }
 
 .hub-page__nav--locked a:hover {
   color: rgba(232, 230, 227, 0.92);
 }
 
+/* Original underline pulse on hover */
+.hub-page__nav--locked a::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  left: -0.15em;
+  right: -0.15em;
+  bottom: -0.2em;
+  height: 1px;
+  opacity: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(232, 230, 227, 0.35),
+    transparent
+  );
+  transition: opacity 220ms ease;
+}
+
+.hub-page__nav--locked a:hover::after {
+  opacity: 1;
+  animation: hub-link-pulse 1.6s ease-in-out infinite;
+}
+
 .hub-page__nav--locked .hub-page__sep {
   color: rgba(232, 230, 227, 0.22);
-  margin: 0 0.4em;
+  margin: 0 0.35em;
 }
 
 .hub-page__nav--locked .hub-page__nav-contact {
   color: var(--hub-contact-morph, #d4bc82) !important;
+  font-weight: 500;
 }
 
 .hub-page__nav--locked .hub-page__nav-contact:hover {
