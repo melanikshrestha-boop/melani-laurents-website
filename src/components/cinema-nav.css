@@ -1,6 +1,20 @@
-/* Top nav — home hub type motion + Art/Contact gold (loaded with Navigation) */
+/* Top nav — works on every surface; hover line draws in */
+
+.cinema-nav {
+  pointer-events: auto;
+  z-index: 100;
+}
+
+.cinema-nav a,
+.cinema-nav button,
+.cinema-nav summary {
+  pointer-events: auto;
+  cursor: pointer;
+}
 
 .cinema-nav__link {
+  position: relative;
+  display: inline-block;
   font-family: var(--font-share-tech-mono), var(--font-jetbrains-mono), ui-monospace,
     monospace;
   font-size: 0.58rem;
@@ -11,21 +25,43 @@
   transition: color 200ms ease;
 }
 
+/* Draw-in underline (home Art/Essays energy) */
+.cinema-nav__link::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.22em;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 0.85;
+}
+
+.cinema-nav__link:hover::after,
+.cinema-nav__link:focus-visible::after {
+  transform: scaleX(1);
+}
+
 .cinema-nav__link--cinema {
   color: rgba(255, 255, 255, 0.45);
 }
-.cinema-nav__link--cinema:hover {
-  color: rgba(var(--hub-champagne-bright-rgb, 232, 213, 163), 0.9);
+.cinema-nav__link--cinema:hover,
+.cinema-nav__link--cinema:focus-visible {
+  color: rgba(var(--hub-champagne-bright-rgb, 232, 213, 163), 0.95);
 }
 
 .cinema-nav__link--paper {
   color: rgba(20, 18, 16, 0.48);
 }
-.cinema-nav__link--paper:hover {
-  color: var(--hub-gold, #c9a962);
+.cinema-nav__link--paper:hover,
+.cinema-nav__link--paper:focus-visible {
+  color: rgba(20, 18, 16, 0.88);
 }
 
-/* Same keyframes as home hub-nav-reveal */
 @keyframes cinema-nav-reveal {
   from {
     opacity: 0;
@@ -42,27 +78,29 @@
   animation: cinema-nav-reveal 0.7s ease backwards;
 }
 
-/* Art + Contact — home gold accent */
+/* First + last of the visible set — gold */
 .cinema-nav__link--gold {
   color: #d4bc82 !important;
   -webkit-text-fill-color: #d4bc82 !important;
   font-weight: 500;
 }
-.cinema-nav__link--gold:hover {
+.cinema-nav__link--gold:hover,
+.cinema-nav__link--gold:focus-visible {
   color: #f0dfb0 !important;
   -webkit-text-fill-color: #f0dfb0 !important;
 }
 
-/* Cream paper / bookshelf: gold that still reads on #f7f1e7 */
 .cinema-nav--paper .cinema-nav__link--gold,
 .cinema-nav--bookshelf .cinema-nav__link--gold {
   color: #c9a962 !important;
   -webkit-text-fill-color: #c9a962 !important;
 }
 .cinema-nav--paper .cinema-nav__link--gold:hover,
-.cinema-nav--bookshelf .cinema-nav__link--gold:hover {
-  color: #b8954a !important;
-  -webkit-text-fill-color: #b8954a !important;
+.cinema-nav--paper .cinema-nav__link--gold:focus-visible,
+.cinema-nav--bookshelf .cinema-nav__link--gold:hover,
+.cinema-nav--bookshelf .cinema-nav__link--gold:focus-visible {
+  color: #a8842e !important;
+  -webkit-text-fill-color: #a8842e !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -70,5 +108,8 @@
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+  .cinema-nav__link::after {
+    transition: none;
   }
 }

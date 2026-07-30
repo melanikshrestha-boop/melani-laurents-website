@@ -1,5 +1,6 @@
 import { Anton, Epilogue } from "next/font/google";
 import { PhotographyMode } from "@/components/photography/PhotographyMode";
+import { Navigation } from "@/components/Navigation";
 import "@/styles/photography.css";
 
 export const metadata = {
@@ -29,7 +30,9 @@ export default function PhotographyLayout({
   return (
     <PhotographyMode>
       <div className={`photography-site ${anton.variable} ${epilogue.variable}`}>
-        {children}
+        {/* Site primary nav (Art hidden on this surface) */}
+        <Navigation />
+        <div className="photography-site__body pt-14">{children}</div>
       </div>
     </PhotographyMode>
   );

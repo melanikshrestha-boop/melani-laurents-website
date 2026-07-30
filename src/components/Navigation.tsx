@@ -7,16 +7,19 @@ import { MelaniSignature } from "./MelaniSignature";
 import { SocialIcons } from "./SocialIcons";
 import "./cinema-nav.css";
 
-/** Art + Contact carry the home-hub gold accent. */
-function isGoldNavItem(item: NavItem): boolean {
-  const label = item.label.trim().toLowerCase();
-  if (label === "art" || label === "contact") return true;
-  const href = item.href;
-  if (href === "/contact" || href.startsWith("/contact/")) return true;
-  // Home hub “Art” points at photography
-  if (href === "/photography" || href.startsWith("/photography/")) return true;
-  if (href.startsWith("/art")) return true;
-  return false;
+/** Path part of href (no hash). */
+function hrefPath(href: string): string {
+  return href.split("#")[0] || "/";
+}
+
+/**
+ * Hide the section you're already in.
+ * Essays + Daily both live under /daily — either hash hides both on that surface.
+ */
+function isCurrentNavItem(pathname: string, item: NavItem): boolean {
+  const path = hrefPath(item.href);
+  if (path === "/") return pathname === "/";
+  return pathname === path || pathname.startsWith(`${path}/`);
 }
 
 function NavLink({
@@ -28,7 +31,6 @@ function NavLink({
   paper?: boolean;
   gold?: boolean;
 }) {
-  // Share Tech Mono via .cinema-nav__link — same DNA as home hub
   const className = [
     "cinema-nav__link",
     paper ? "cinema-nav__link--paper" : "cinema-nav__link--cinema",
@@ -51,7 +53,7 @@ function NavLink({
   }
 
   return (
-    <Link href={item.href} className={className}>
+    <Link href={item.href} className={className} prefetch>
       {item.label}
     </Link>
   );
@@ -59,6 +61,10 @@ function NavLink({
 
 export function Navigation() {
   const pathname = usePathname();
+
+  // Home keeps its own hub nav
+  if (pathname === "/") return null;
+
   const paper =
     pathname === "/daily" ||
     pathname.startsWith("/daily/") ||
@@ -71,47 +77,55 @@ export function Navigation() {
     pathname === "/bookshelf" ||
     pathname.startsWith("/bookshelf/") ||
     pathname === "/projects" ||
-    pathname.startsWith("/projects/");
+    pathname.startsWith("/projects/") ||
+    pathname === "/contact" ||
+    pathname.startsWith("/contact/") ||
+    pathname === "/photography" ||
+    pathname.startsWith("/photography/");
 
-  /* Solid paper field (no frosted bar / color step) on cream product pages */
-  const bookshelf =
+  const edgePaper =
     pathname === "/bookshelf" ||
     pathname.startsWith("/bookshelf/") ||
     pathname === "/projects" ||
     pathname.startsWith("/projects/") ||
     pathname === "/daily" ||
-    pathname.startsWith("/daily/");
+    pathname.startsWith("/daily/") ||
+    pathname === "/contact" ||
+    pathname.startsWith("/contact/");
 
-  if (pathname === "/") return null;
+  /** Current page dropped; first + last of what's left go gold */
+  const items = siteConfig.nav.filter(
+    (item) => !isCurrentNavItem(pathname, item),
+  );
 
-  /** Home hub stagger: 1.15 + i*0.18 — top bar is snappier but same motion curve */
   const revealDelay = (i: number) => `${0.12 + i * 0.14}s`;
 
   return (
     <header
-      className={`cinema-nav fixed top-0 left-0 right-0 z-50${paper ? " cinema-nav--paper" : ""}${bookshelf ? " cinema-nav--bookshelf" : ""}`}
+      className={`cinema-nav fixed top-0 left-0 right-0 z-[100]${paper ? " cinema-nav--paper" : ""}${edgePaper ? " cinema-nav--bookshelf" : ""}`}
     >
       <nav
         className={
-          bookshelf
+          edgePaper
             ? "cinema-nav__inner--bookshelf flex h-14 w-full max-w-none items-center justify-between"
             : "mx-auto flex h-14 max-w-6xl items-center justify-between px-6"
         }
+        aria-label="Primary"
       >
         <MelaniSignature
           variant={paper ? "ink" : "light"}
-          className={`melani-signature--nav${bookshelf ? " melani-signature--nav-edge" : ""}`}
+          className={`melani-signature--nav${edgePaper ? " melani-signature--nav-edge" : ""}`}
         />
 
         <div
           className={
-            bookshelf
+            edgePaper
               ? "cinema-nav__end flex items-center gap-4 sm:gap-5"
               : "flex items-center gap-5"
           }
         >
           <ul className="hidden items-center gap-4 sm:gap-5 md:flex">
-            {siteConfig.nav.map((item, i) => (
+            {items.map((item, i) => (
               <li
                 key={item.href}
                 className="cinema-nav__item"
@@ -120,13 +134,13 @@ export function Navigation() {
                 <NavLink
                   item={item}
                   paper={paper}
-                  gold={isGoldNavItem(item)}
+                  gold={i === 0 || i === items.length - 1}
                 />
               </li>
             ))}
           </ul>
 
-          {!bookshelf ? (
+          {!edgePaper ? (
             <SocialIcons className="hidden sm:flex" size="sm" />
           ) : null}
 
@@ -139,7 +153,7 @@ export function Navigation() {
             <div
               className={`cinema-hud-panel absolute right-0 top-full mt-2 w-52 py-2 shadow-xl${paper ? " cinema-hud-panel--paper" : ""}`}
             >
-              {siteConfig.nav.map((item, i) => (
+              {items.map((item, i) => (
                 <div
                   key={item.href}
                   className="cinema-nav__item px-4 py-2"
@@ -148,13 +162,10 @@ export function Navigation() {
                   <NavLink
                     item={item}
                     paper={paper}
-                    gold={isGoldNavItem(item)}
+                    gold={i === 0 || i === items.length - 1}
                   />
                 </div>
               ))}
-              <div className="mt-2 px-4 pt-3">
-                <SocialIcons size="sm" />
-              </div>
             </div>
           </details>
         </div>
