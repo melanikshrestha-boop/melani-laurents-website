@@ -76,6 +76,7 @@ You do **not** invent features. You **prevent regression**: the same ugly chrome
 ### Site chrome to never bring back
 - Site-wide black footer: Celine Nova + “open sourcing my mind.” + ART/ESSAYS/… + ← Home. **Removed.** Do not remount.
 - Footer fluff / meta portal strips on cream product pages.
+- **No footers ever** — photography strip (`@handle` / LOCATION / CONTACT email), site portal footers, location/contact end blocks. Contact lives on `/contact` and nav only. Never reintroduce footer chrome of any kind.
 
 ### Identity & voice
 - Byline / product voice: **Celine Nova**, not “Melani Laurent” as public author chrome unless she says so.

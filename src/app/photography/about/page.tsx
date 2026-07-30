@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { photographyBooking } from "@/data/photography-meta";
 import { PhotographyBookingForm } from "@/components/photography/PhotographyBookingForm";
-import { ShotByMelaniFooter } from "@/components/photography/ShotByMelaniFooter";
 import { ShotByMelaniHeader } from "@/components/photography/ShotByMelaniHeader";
 import {
   ABOUT_PORTRAIT,
@@ -89,7 +88,6 @@ export default function PhotographyAboutPage() {
           <PhotographyBookingForm />
         </section>
       </article>
-      <ShotByMelaniFooter />
     </>
   );
 }

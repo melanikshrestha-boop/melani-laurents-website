@@ -301,8 +301,9 @@
   flex-shrink: 0;
 }
 
-/* ——— Footer ——— */
+/* ——— Footer (deleted — never remount) ——— */
 .photography-footer {
+  display: none !important;
   background: var(--photo-page-bg);
   color: var(--photo-ink);
   padding: 3rem var(--photo-page-padding) 4rem;
