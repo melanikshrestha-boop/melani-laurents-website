@@ -255,18 +255,9 @@ export function PublicBookshelf() {
     // Blogs chip: only the greats link section (no book folders)
     if (filter === "blog") return [];
 
-    if (filter === "faves") {
-      return filtered.length
-        ? [
-            {
-              id: "faves",
-              label: "Faves",
-              accent: FOLDER_ACCENT.Faves,
-              items: filtered,
-            },
-          ]
-        : [];
-    }
+    // Faves: no folder chrome — rare picks shown as a flat cover grid
+    if (filter === "faves") return [];
+
     if (filter === "paper") {
       return filtered.length
         ? [
@@ -385,10 +376,31 @@ export function PublicBookshelf() {
           </form>
         </div>
 
-        {groups.length === 0 && !showBlogs ? (
+        {groups.length === 0 &&
+        !(filter === "faves" && filtered.length > 0) &&
+        !showBlogs ? (
           <p className="bl-empty-all">
-            {q ? "No matches." : "Nothing in this section yet."}
+            {q
+              ? "No matches."
+              : filter === "faves"
+                ? "No faves yet — mark a few from scattered shelves when one truly sticks."
+                : "Nothing in this section yet."}
           </p>
+        ) : null}
+
+        {/* Faves: flat grid only — no nested folder toggle (they're already rare picks) */}
+        {filter === "faves" && filtered.length > 0 ? (
+          <section className="bl-shelf is-open pb-faves-flat" aria-label="Faves">
+            <div className="bl-grid">
+              {filtered.map((item) => (
+                <CatalogCard
+                  key={item.entry.id}
+                  item={item}
+                  folderLabel="Faves"
+                />
+              ))}
+            </div>
+          </section>
         ) : null}
 
         {groups.map((group) => {
