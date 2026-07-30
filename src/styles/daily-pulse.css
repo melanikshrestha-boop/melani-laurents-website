@@ -1,12 +1,10 @@
-/* Daily — X posts + YouTube. Minimal chrome; posts lead. */
+/* Daily — edge-to-edge paper. No tweet chrome until Melani adds posts. */
 
 .daily-pulse {
   --dp-paper: #f7f1e7;
   --dp-ink: #141210;
   --dp-muted: #6b6358;
   --dp-faint: #9a9084;
-  --dp-gold: #c9a962;
-  --dp-line: rgba(20, 18, 16, 0.1);
   min-height: calc(100svh - 3.5rem);
   background: var(--dp-paper);
   color: var(--dp-ink);
@@ -14,159 +12,64 @@
     monospace;
 }
 
+/* Full width left → right; same edge gutters as paper nav / bookshelf */
 .daily-pulse__inner {
-  width: min(100% - 1.5rem, 42rem);
-  margin: 0 auto;
-  padding: 1rem 0 2.5rem;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0.55rem 10px 2.5rem;
   box-sizing: border-box;
 }
 
-/* One title. No kicker + lede + section stack. */
-.daily-pulse__header {
-  margin: 0 0 1.15rem;
+/* Title + Twitter line on one horizontal band */
+.daily-pulse__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.65rem 1.5rem;
+  margin: 0;
+  width: 100%;
 }
 
 .daily-pulse__title {
   margin: 0;
   font-family: var(--font-instrument-serif), Georgia, serif;
-  font-size: clamp(1.85rem, 4.2vw, 2.4rem);
-  font-weight: 400;
+  font-size: clamp(1.85rem, 4.2vw, 2.45rem);
+  font-weight: 600;
   line-height: 1.1;
   letter-spacing: -0.025em;
   color: var(--dp-ink);
 }
 
-.daily-pulse__kicker {
-  margin: 0 0 0.35rem;
-  font-size: 0.58rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--dp-faint);
-}
-
-.daily-pulse__section {
-  margin: 0 0 2rem;
-}
-
-/* Quiet mono label for secondary blocks only (YouTube) */
-.daily-pulse__section-label {
-  margin: 0 0 0.65rem;
-  font-size: 0.58rem;
+.daily-pulse__x {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  margin: 0;
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
   font-weight: 400;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--dp-faint);
-}
-
-.daily-pulse__outlink {
-  margin: 0.75rem 0 0;
-  font-size: 0.55rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.daily-pulse__outlink a {
-  color: var(--dp-muted);
+  line-height: 1.25;
+  color: var(--dp-ink);
   text-decoration: none;
 }
 
-.daily-pulse__outlink a:hover {
-  color: var(--dp-ink);
-}
-
-.daily-pulse__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 0.65rem;
-}
-
-.daily-pulse__card {
-  display: block;
-  padding: 0.85rem 0.9rem;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.45);
-  color: inherit;
-  text-decoration: none;
-  transition: background 160ms ease, transform 160ms ease;
-}
-
-.daily-pulse__card:hover {
-  background: rgba(255, 255, 255, 0.72);
-  transform: translateY(-1px);
-}
-
-.daily-pulse__card-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.4rem 0.75rem;
-  margin-bottom: 0.35rem;
-  font-size: 0.55rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--dp-faint);
-}
-
-.daily-pulse__badge {
-  color: var(--dp-gold);
-  font-weight: 500;
-}
-
-.daily-pulse__card-title {
-  margin: 0;
-  font-family: var(--font-instrument-serif), Georgia, serif;
-  font-size: 1.05rem;
-  font-weight: 400;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
-  color: var(--dp-ink);
-}
-
-.daily-pulse__card-excerpt {
-  margin: 0.35rem 0 0;
-  font-family: var(--font-instrument-serif), Georgia, serif;
-  font-size: 0.9rem;
-  line-height: 1.4;
+.daily-pulse__x:hover {
   color: var(--dp-muted);
 }
 
-.daily-pulse__card-go {
-  display: inline-block;
-  margin-top: 0.45rem;
-  font-size: 0.55rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--dp-gold);
-}
-
-.daily-pulse__yt {
-  display: grid;
-  gap: 0.75rem;
-}
-
-.daily-pulse__yt-hero {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 1rem 1.05rem;
-  border-radius: 12px;
-  background: linear-gradient(
-    135deg,
-    rgba(201, 169, 98, 0.14),
-    rgba(255, 255, 255, 0.5)
-  );
-  text-decoration: none;
+/* Exact external-link arrow (Image #2) */
+.daily-pulse__arrow {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.95em;
+  font-weight: 400;
+  line-height: 1;
   color: inherit;
-}
-
-.daily-pulse__yt-hero:hover .daily-pulse__card-go {
-  color: #a8842e;
 }
 
 .daily-pulse__home {
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   font-size: 0.55rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -186,315 +89,4 @@
 .daily-pulse #journals,
 .daily-pulse #bookshelf {
   scroll-margin-top: 4.5rem;
-}
-
-
-
-/* ——— Real X-format tweets in a user-controlled slider ——— */
-.daily-x-carousel {
-  margin: 0;
-}
-
-.daily-x-carousel__stage {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.daily-x-carousel__viewport {
-  overflow: hidden;
-  border-radius: 16px;
-  touch-action: pan-y;
-}
-
-.daily-x-carousel__track {
-  display: flex;
-  width: 100%;
-  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform;
-}
-
-.daily-x-carousel__slide {
-  flex: 0 0 100%;
-  min-width: 100%;
-  box-sizing: border-box;
-  padding: 0 2px;
-}
-
-.daily-x-carousel__arrow {
-  display: grid;
-  place-items: center;
-  width: 2.1rem;
-  height: 2.6rem;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 999px;
-  background: #14171a;
-  color: #e7e9ea;
-  font-size: 1.45rem;
-  line-height: 1;
-  cursor: pointer;
-  transition: background 150ms ease, color 150ms ease;
-}
-
-.daily-x-carousel__arrow:hover:not(:disabled) {
-  background: #1d1f23;
-  color: #fff;
-}
-
-.daily-x-carousel__arrow:disabled {
-  opacity: 0.35;
-  cursor: default;
-}
-
-/* Dark X tweet card — matches the real app layout (avatar · name · body · quote · time) */
-.x-tweet {
-  --x-bg: #000000;
-  --x-fg: #e7e9ea;
-  --x-muted: #71767b;
-  --x-line: #2f3336;
-  --x-blue: #1d9bf0;
-  box-sizing: border-box;
-  width: 100%;
-  padding: 12px 14px 10px;
-  border-radius: 16px;
-  background: var(--x-bg);
-  color: var(--x-fg);
-  border: 1px solid var(--x-line);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif;
-}
-
-.x-tweet__row {
-  display: grid;
-  grid-template-columns: 40px minmax(0, 1fr);
-  gap: 10px;
-  align-items: start;
-}
-
-.x-tweet__avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 999px;
-  object-fit: cover;
-  background: #2f3336;
-}
-
-.x-tweet__main {
-  min-width: 0;
-}
-
-.x-tweet__meta {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 2px;
-}
-
-.x-tweet__names {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0 6px;
-  min-width: 0;
-}
-
-.x-tweet__name {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--x-fg);
-  line-height: 1.2;
-}
-
-.x-tweet__handle {
-  font-size: 15px;
-  font-weight: 400;
-  color: var(--x-muted);
-  line-height: 1.2;
-}
-
-.x-tweet__logo {
-  flex: 0 0 auto;
-  font-size: 16px;
-  color: var(--x-fg);
-  opacity: 0.9;
-  line-height: 1;
-}
-
-.x-tweet__text {
-  margin: 0 0 10px;
-  font-size: 15px;
-  line-height: 1.4;
-  font-weight: 400;
-  color: var(--x-fg);
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-
-/* Nested quote tweet (Sam quoting Elon style) */
-.x-quote {
-  display: block;
-  margin: 0 0 10px;
-  padding: 10px 12px;
-  border: 1px solid var(--x-line);
-  border-radius: 16px;
-  text-decoration: none;
-  color: inherit;
-  transition: background 120ms ease;
-}
-
-a.x-quote:hover {
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.x-quote__head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 4px 6px;
-  margin-bottom: 4px;
-  font-size: 13px;
-  line-height: 1.2;
-}
-
-.x-quote__avatar {
-  width: 20px;
-  height: 20px;
-  border-radius: 999px;
-  object-fit: cover;
-}
-
-.x-quote__avatar--fallback {
-  display: inline-block;
-  background: #2f3336;
-}
-
-.x-quote__head strong {
-  font-weight: 700;
-  color: var(--x-fg);
-}
-
-.x-quote__handle,
-.x-quote__date,
-.x-quote__dot {
-  color: var(--x-muted);
-  font-weight: 400;
-}
-
-.x-quote__body {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.35;
-  color: var(--x-fg);
-  white-space: pre-wrap;
-}
-
-.x-tweet__time {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 4px;
-  margin: 0 0 8px;
-  padding-top: 2px;
-  font-size: 14px;
-  color: var(--x-muted);
-}
-
-.x-tweet__time strong {
-  color: var(--x-fg);
-  font-weight: 700;
-}
-
-.x-tweet__sep {
-  color: var(--x-muted);
-}
-
-.x-tweet__actions {
-  display: flex;
-  justify-content: space-between;
-  max-width: 280px;
-  margin: 0 0 8px;
-  padding: 4px 0;
-  font-size: 13px;
-  opacity: 0.75;
-  user-select: none;
-}
-
-.x-tweet__open {
-  display: inline-block;
-  font-size: 13px;
-  color: var(--x-blue);
-  text-decoration: none;
-}
-
-.x-tweet__open:hover {
-  text-decoration: underline;
-}
-
-.daily-x-carousel__controls {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem 1rem;
-  margin-top: 0.85rem;
-}
-
-.daily-x-carousel__dots {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  justify-content: center;
-}
-
-.daily-x-carousel__dot {
-  width: 8px;
-  height: 8px;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 999px;
-  background: rgba(20, 18, 16, 0.15);
-  cursor: pointer;
-  transition: background 150ms ease, transform 150ms ease;
-}
-
-.daily-x-carousel__dot.is-on {
-  background: var(--dp-gold);
-  transform: scale(1.2);
-}
-
-.daily-x-carousel__counter {
-  margin: 0;
-  font-size: 0.55rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--dp-faint);
-  font-variant-numeric: tabular-nums;
-}
-
-.daily-x-carousel__empty {
-  margin: 0;
-  padding: 1rem;
-  font-family: var(--font-instrument-serif), Georgia, serif;
-  font-style: italic;
-  color: var(--dp-muted);
-}
-
-@media (max-width: 520px) {
-  .daily-x-carousel__stage {
-    grid-template-columns: 1fr;
-  }
-  .daily-x-carousel__arrow {
-    display: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .daily-x-carousel__track {
-    transition: none;
-  }
 }
