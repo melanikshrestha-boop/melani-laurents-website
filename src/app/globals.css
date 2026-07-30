@@ -2193,6 +2193,20 @@ body {
   --archive-gold: var(--hub-gold);
   --archive-gold-bright: var(--hub-gold-bright);
   --archive-gold-hover: var(--hub-gold-bright);
+  /*
+   * Spacing scale — same idea as x.ai/cli / Grok Build docs:
+   * 4 · 8 · 12 · 16 · 24 · 32 · 48. No random air. No empty fields.
+   */
+  --s1: 0.25rem;
+  --s2: 0.5rem;
+  --s3: 0.75rem;
+  --s4: 1rem;
+  --s5: 1.5rem;
+  --s6: 2rem;
+  --s7: 3rem;
+  --lh-tight: 1.35;
+  --lh-body: 1.5;
+  --measure: 40rem; /* readable column, like product pages */
   position: relative;
   z-index: 15;
   min-height: 100svh;
@@ -2201,12 +2215,11 @@ body {
   color: var(--archive-ink);
   font-family: var(--font-share-tech-mono), var(--font-jetbrains-mono), ui-monospace,
     monospace;
-  /* Split-screen ≈ fullscreen density via container queries on children */
   container-type: inline-size;
   container-name: hub-archive;
 }
 
-/* Home archive — scroll below hub hero (“second page”), single-spaced stack */
+/* Home archive — second page; x.ai/cli density throughout */
 .hub-archive {
   position: relative;
   z-index: 1;
@@ -2214,19 +2227,18 @@ body {
 }
 
 .hub-archive__inner {
-  /* One content column — same relative padding whether window is half or full */
-  --archive-pad-x: clamp(1rem, 3.5cqi, 1.75rem);
-  --archive-pad-y: clamp(1rem, 2.8cqi, 1.5rem);
-  max-width: min(40rem, 100%);
+  /* Side pad scales with column width → split-screen ≈ fullscreen proportions */
+  --archive-pad-x: clamp(var(--s4), 4cqi, var(--s5));
+  --archive-pad-y: clamp(var(--s5), 5cqi, var(--s6));
+  max-width: min(var(--measure), 100%);
   margin: 0 auto;
-  padding: var(--archive-pad-y) var(--archive-pad-x)
-    clamp(1.75rem, 4cqi, 2.5rem);
+  padding: var(--archive-pad-y) var(--archive-pad-x) var(--s7);
   background: transparent;
   box-sizing: border-box;
 }
 
 .hub-archive__eyebrow {
-  margin: 0 0 0.85rem;
+  margin: 0 0 var(--s4);
   font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
   font-size: 0.58rem;
   font-weight: 500;
@@ -2365,8 +2377,8 @@ body {
 }
 
 .hub-archive__section + .hub-archive__section {
-  margin-top: 0.95rem;
-  padding-top: 0.85rem;
+  margin-top: var(--s5);
+  padding-top: var(--s5);
   border-top: 1px solid var(--archive-border);
 }
 
@@ -2375,8 +2387,8 @@ body {
   flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
-  gap: 0.25rem 0.75rem;
-  margin-bottom: 0.45rem;
+  gap: var(--s2) var(--s3);
+  margin-bottom: var(--s3);
 }
 
 .hub-archive__header-links {
@@ -2439,10 +2451,11 @@ body {
 
 .hub-archive__item {
   display: grid;
-  grid-template-columns: 5.75rem minmax(0, 1fr);
-  gap: 0.3rem 0.75rem;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  column-gap: var(--s3);
+  row-gap: var(--s1);
   align-items: baseline;
-  padding: 0.28rem 0;
+  padding: var(--s2) 0;
   border-bottom: 1px solid var(--archive-border);
 }
 
@@ -2467,8 +2480,8 @@ body {
   font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
   font-size: 0.62rem;
   font-weight: 500;
-  line-height: 1.25; /* single-spaced */
-  letter-spacing: 0.03em;
+  line-height: var(--lh-tight);
+  letter-spacing: 0.02em;
   color: var(--archive-ink);
   text-decoration: none;
   transition: color 200ms ease;
@@ -2504,13 +2517,13 @@ body {
   color: var(--archive-muted-faint);
 }
 
-/* Archive callout card — boxed monospace (podcast, bookshelf) */
+/* Callout — product-page density (x.ai/cli feature blocks): pad = s3/s4, body fills box */
 .hub-archive__callout-card {
   display: block;
   width: 100%;
   max-width: 100%;
-  margin: 0 0 0.4rem;
-  padding: 0.4rem 0.55rem;
+  margin: 0 0 var(--s3);
+  padding: var(--s3) var(--s4);
   min-height: 0;
   height: auto;
   box-sizing: border-box;
@@ -2527,56 +2540,52 @@ body {
   background: color-mix(in srgb, var(--archive-cream, #f0ede5) 52%, white);
 }
 
-/* Podcast / bookshelf: flat card, no stretchy empty field */
 .hub-archive__section--daily .hub-archive__callout-card,
 .hub-archive__section--bookshelf .hub-archive__callout-card,
 .hub-archive__section--podcast .hub-archive__callout-card {
   display: block;
   flex: none;
   align-self: stretch;
-  background: rgba(255, 255, 255, 0.11);
+  background: rgba(255, 255, 255, 0.14);
 }
 
 .hub-archive__section--daily .hub-archive__callout-card:hover,
 .hub-archive__section--bookshelf .hub-archive__callout-card:hover,
 .hub-archive__section--podcast .hub-archive__callout-card:hover {
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.2);
 }
 
-/*
- * Bookshelf manifesto — dense copy block.
- * Body fills the card (no 36rem island inside a wider empty box).
- */
+/* Bookshelf manifesto — same block language as Skills/Plan copy on x.ai/cli */
 .hub-archive__section--bookshelf .hub-archive__callout-card {
-  margin-bottom: 0.5rem;
-  padding: 0.42rem 0.55rem;
+  margin-bottom: var(--s3);
+  padding: var(--s3) var(--s4);
 }
 
 .hub-archive__section--bookshelf .hub-archive__callout-body {
   max-width: none;
   width: 100%;
-  font-size: clamp(0.52rem, 0.45rem + 0.35cqi, 0.58rem);
-  line-height: 1.4;
-  letter-spacing: 0.02em;
+  font-size: clamp(0.55rem, 0.5rem + 0.3cqi, 0.62rem);
+  line-height: var(--lh-body);
+  letter-spacing: 0.015em;
 }
 
 .hub-archive__section--bookshelf .hub-archive__header {
-  margin-bottom: 0.35rem;
+  margin-bottom: var(--s3);
 }
 
 .hub-archive__section--bookshelf .hub-archive__list {
-  margin-top: 0.1rem;
+  margin-top: 0;
 }
 
 .hub-archive__section--bookshelf .hub-archive__item {
-  padding: 0.32rem 0;
-  grid-template-columns: 5.75rem minmax(0, 1fr);
-  gap: 0.3rem 0.75rem;
+  padding: var(--s2) 0;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  column-gap: var(--s3);
 }
 
 .hub-archive__section--bookshelf .hub-archive__kind-tag {
   display: inline;
-  margin-right: 0.35em;
+  margin-right: 0.4em;
   font-size: 0.5rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -2635,16 +2644,22 @@ body {
   }
 }
 
-/* Narrow archive column (split-screen): keep list columns proportional */
+/* Split-screen: same scale, slightly tighter date column — still --s* rhythm */
 @container hub-archive (max-width: 560px) {
   .hub-archive__inner {
-    --archive-pad-x: 1rem;
+    --archive-pad-x: var(--s4);
+    --archive-pad-y: var(--s5);
   }
 
   .hub-archive__item,
   .hub-archive__section--bookshelf .hub-archive__item {
-    grid-template-columns: 4.85rem minmax(0, 1fr);
-    gap: 0.25rem 0.55rem;
+    grid-template-columns: 4.75rem minmax(0, 1fr);
+    column-gap: var(--s2);
+  }
+
+  .hub-archive__section + .hub-archive__section {
+    margin-top: var(--s4);
+    padding-top: var(--s4);
   }
 
   .hub-archive__date {
@@ -2653,6 +2668,11 @@ body {
 
   .hub-archive__link {
     font-size: 0.58rem;
+  }
+
+  .hub-archive__callout-card,
+  .hub-archive__section--bookshelf .hub-archive__callout-card {
+    padding: var(--s3);
   }
 }
 
@@ -2675,12 +2695,12 @@ body {
 
 .hub-archive__callout-body {
   margin: 0;
-  max-width: 100%; /* fill the card — no empty side gutter */
+  max-width: 100%;
   font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
-  font-size: 0.58rem;
+  font-size: 0.6rem;
   font-weight: 400;
-  line-height: 1.4;
-  letter-spacing: 0.02em;
+  line-height: var(--lh-body);
+  letter-spacing: 0.015em;
   color: var(--archive-muted-faint);
   transition: color 200ms ease;
 }
@@ -2822,8 +2842,8 @@ body {
 
 /* Newsletter — page bottom */
 .hub-archive__section--newsletter {
-  margin-top: 1rem;
-  padding-top: 0.85rem;
+  margin-top: var(--s5);
+  padding-top: var(--s5);
 }
 
 /* Empty daily slots: same single-space row height as real list items */
@@ -3179,6 +3199,17 @@ body {
 }
 
 .bookshelf-page {
+  /* Same --s* scale as archive / x.ai/cli product pages */
+  --s1: 0.25rem;
+  --s2: 0.5rem;
+  --s3: 0.75rem;
+  --s4: 1rem;
+  --s5: 1.5rem;
+  --s6: 2rem;
+  --s7: 3rem;
+  --lh-tight: 1.35;
+  --lh-body: 1.5;
+  --measure: 40rem;
   --bs-paper: #f0ede5;
   --bs-ink: #141210;
   --bs-muted: #6b6358;
@@ -3192,22 +3223,22 @@ body {
 
 .bookshelf {
   container-type: inline-size;
-  width: min(100% - 2rem, 40rem);
+  width: min(100% - 2 * var(--s4), var(--measure));
   margin-inline: auto;
-  padding: clamp(1.15rem, 3cqi, 1.75rem) 0 clamp(1rem, 2.5cqi, 1.5rem);
+  padding: var(--s5) 0 var(--s6);
   box-sizing: border-box;
 }
 
 .bookshelf__masthead {
-  margin-bottom: 0.55rem;
-  padding: 0.42rem 0.55rem;
+  margin-bottom: var(--s4);
+  padding: var(--s3) var(--s4);
   border: 1px solid var(--bs-border);
   background: rgba(255, 255, 255, 0.35);
   box-sizing: border-box;
 }
 
 .bookshelf__kicker {
-  margin: 0 0 0.35rem;
+  margin: 0 0 var(--s2);
   font-size: 0.58rem;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -3215,20 +3246,19 @@ body {
   color: var(--bs-gold);
 }
 
-/* Manifesto fills the box — same density as home callout */
 .bookshelf__manifesto {
   margin: 0;
   max-width: none;
   width: 100%;
-  font-size: clamp(0.52rem, 0.45rem + 0.4cqi, 0.58rem);
+  font-size: clamp(0.55rem, 0.5rem + 0.35cqi, 0.62rem);
   font-weight: 400;
-  line-height: 1.4;
-  letter-spacing: 0.02em;
+  line-height: var(--lh-body);
+  letter-spacing: 0.015em;
   color: rgba(20, 18, 16, 0.72);
 }
 
 .bookshelf__section-label {
-  margin: 0 0 0.4rem;
+  margin: 0 0 var(--s3);
   font-size: 0.58rem;
   font-weight: 600;
   letter-spacing: 0.2em;
@@ -3237,8 +3267,8 @@ body {
 }
 
 .bookshelf__faves {
-  margin: 0 0 0.85rem;
-  padding-bottom: 0.65rem;
+  margin: 0 0 var(--s5);
+  padding-bottom: var(--s4);
   border-bottom: 1px solid var(--bs-border);
 }
 
@@ -3250,7 +3280,7 @@ body {
 
 .bookshelf__fave {
   margin: 0;
-  padding: 0.5rem 0;
+  padding: var(--s3) 0;
   border-bottom: 1px solid var(--bs-border);
 }
 
@@ -3263,7 +3293,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 0.35rem 0.55rem;
+  gap: var(--s1) var(--s2);
 }
 
 .bookshelf__fave-title {
@@ -3280,9 +3310,9 @@ body {
 }
 
 .bookshelf__fave-why {
-  margin: 0.3rem 0 0;
+  margin: var(--s2) 0 0;
   font-size: 0.56rem;
-  line-height: 1.3;
+  line-height: var(--lh-body);
   color: rgba(20, 18, 16, 0.72);
 }
 
@@ -3307,8 +3337,8 @@ body {
 .bookshelf__chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
-  margin: 0.75rem 0 0.85rem;
+  gap: var(--s2);
+  margin: 0 0 var(--s4);
 }
 
 .bookshelf__chip {
@@ -3363,7 +3393,7 @@ body {
 
 .bookshelf__item {
   margin: 0;
-  padding: 0.7rem 0;
+  padding: var(--s3) 0;
   border-bottom: 1px solid var(--bs-border);
 }
 
