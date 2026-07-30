@@ -4941,13 +4941,14 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   margin: 0 0.35em;
 }
 
+/* Contact matches Art (and every other section link) — same cream, no gold special */
 .hub-page__nav--locked .hub-page__nav-contact {
-  color: var(--hub-contact-morph, #d4bc82) !important;
+  color: rgba(232, 230, 227, 0.42) !important;
   font-weight: 500;
 }
 
 .hub-page__nav--locked .hub-page__nav-contact:hover {
-  color: #f0dfb0 !important;
+  color: rgba(232, 230, 227, 0.92) !important;
 }
 
 /* Scroll morph (home stack) — keep cream→ink when scrolling into archive */
@@ -5009,6 +5010,23 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
     rgba(232, 230, 227, 0.92) calc((1 - var(--scroll-p, 0)) * 100%),
     #1a1814
   );
+}
+
+/* Contact = Art (beat the global gold !important on .hub-page__nav-contact) */
+.home-sections .hub-page--locked .hub-page__nav--locked .hub-page__nav-contact {
+  color: color-mix(
+    in srgb,
+    rgba(232, 230, 227, 0.42) calc((1 - var(--scroll-p, 0)) * 100%),
+    rgba(42, 40, 36, 0.45)
+  ) !important;
+}
+
+.home-sections .hub-page--locked .hub-page__nav--locked .hub-page__nav-contact:hover {
+  color: color-mix(
+    in srgb,
+    rgba(232, 230, 227, 0.92) calc((1 - var(--scroll-p, 0)) * 100%),
+    #1a1814
+  ) !important;
 }
 
 /* Kill motion-scroll gadget globally (dead control) */
