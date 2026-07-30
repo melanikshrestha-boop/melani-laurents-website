@@ -587,6 +587,39 @@ body {
   color: var(--hub-gold, #c9a962);
 }
 
+/*
+ * Home hub entrance: hub-nav-reveal + stagger (HomeHub).
+ * Art + Contact gold accent — same as .hub-page__nav--locked first-child / contact.
+ */
+.cinema-nav__item {
+  display: inline-block;
+  animation: hub-nav-reveal 0.7s ease backwards;
+}
+.cinema-nav__link--gold {
+  color: var(--hub-contact-morph, #d4bc82) !important;
+  font-weight: 500;
+}
+.cinema-nav__link--gold:hover {
+  color: #f0dfb0 !important;
+}
+/* On cream paper, gold still reads as the home accent */
+.cinema-nav--paper .cinema-nav__link--gold,
+.cinema-nav--bookshelf .cinema-nav__link--gold {
+  color: var(--hub-gold, #c9a962) !important;
+}
+.cinema-nav--paper .cinema-nav__link--gold:hover,
+.cinema-nav--bookshelf .cinema-nav__link--gold:hover {
+  color: var(--hub-gold-bright, #d4bc82) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cinema-nav__item {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 .cinema-nav .social-icons__link {
   color: rgba(var(--hub-champagne-rgb), 0.58);
 }

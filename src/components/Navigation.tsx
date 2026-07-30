@@ -6,11 +6,34 @@ import { siteConfig, type NavItem } from "@/config/site";
 import { MelaniSignature } from "./MelaniSignature";
 import { SocialIcons } from "./SocialIcons";
 
-function NavLink({ item, paper = false }: { item: NavItem; paper?: boolean }) {
-  // Match home hub (.hub-page__nav): Share Tech Mono — not IBM Plex label mono
-  const className = paper
-    ? "cinema-nav__link cinema-nav__link--paper"
-    : "cinema-nav__link cinema-nav__link--cinema";
+/** Art + Contact carry the home-hub gold accent. */
+function isGoldNavItem(item: NavItem): boolean {
+  const label = item.label.trim().toLowerCase();
+  if (label === "art" || label === "contact") return true;
+  if (item.href === "/contact" || item.href.startsWith("/contact/")) return true;
+  if (item.href === "/art" || item.href.startsWith("/art")) return true;
+  if (item.href === "/photography" || item.href.startsWith("/photography"))
+    return true;
+  return false;
+}
+
+function NavLink({
+  item,
+  paper = false,
+  gold = false,
+}: {
+  item: NavItem;
+  paper?: boolean;
+  gold?: boolean;
+}) {
+  // Share Tech Mono via .cinema-nav__link — same DNA as home hub
+  const className = [
+    "cinema-nav__link",
+    paper ? "cinema-nav__link--paper" : "cinema-nav__link--cinema",
+    gold ? "cinema-nav__link--gold" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   if ("external" in item && item.external) {
     return (
@@ -43,7 +66,6 @@ export function Navigation() {
     pathname.startsWith("/podcast/") ||
     pathname === "/youtube" ||
     pathname.startsWith("/youtube/") ||
-    // Same cream paper as the shelf — no black bar / color divide
     pathname === "/bookshelf" ||
     pathname.startsWith("/bookshelf/");
 
@@ -51,6 +73,9 @@ export function Navigation() {
     pathname === "/bookshelf" || pathname.startsWith("/bookshelf/");
 
   if (pathname === "/") return null;
+
+  /** Home hub stagger: 1.15 + i*0.18 — top bar is snappier but same motion curve */
+  const revealDelay = (i: number) => `${0.12 + i * 0.14}s`;
 
   return (
     <header
@@ -63,7 +88,6 @@ export function Navigation() {
             : "mx-auto flex h-14 max-w-6xl items-center justify-between px-6"
         }
       >
-        {/* Logo hard-left; links hard-right (bookshelf) */}
         <MelaniSignature
           variant={paper ? "ink" : "light"}
           className={`melani-signature--nav${bookshelf ? " melani-signature--nav-edge" : ""}`}
@@ -77,14 +101,21 @@ export function Navigation() {
           }
         >
           <ul className="hidden items-center gap-4 sm:gap-5 md:flex">
-            {siteConfig.nav.map((item) => (
-              <li key={item.href}>
-                <NavLink item={item} paper={paper} />
+            {siteConfig.nav.map((item, i) => (
+              <li
+                key={item.href}
+                className="cinema-nav__item"
+                style={{ animationDelay: revealDelay(i) }}
+              >
+                <NavLink
+                  item={item}
+                  paper={paper}
+                  gold={isGoldNavItem(item)}
+                />
               </li>
             ))}
           </ul>
 
-          {/* Social icons sit between links and edge elsewhere; omit on shelf so CONTACT is true right edge */}
           {!bookshelf ? (
             <SocialIcons className="hidden sm:flex" size="sm" />
           ) : null}
@@ -98,9 +129,17 @@ export function Navigation() {
             <div
               className={`cinema-hud-panel absolute right-0 top-full mt-2 w-52 py-2 shadow-xl${paper ? " cinema-hud-panel--paper" : ""}`}
             >
-              {siteConfig.nav.map((item) => (
-                <div key={item.href} className="px-4 py-2">
-                    <NavLink item={item} paper={paper} />
+              {siteConfig.nav.map((item, i) => (
+                <div
+                  key={item.href}
+                  className="cinema-nav__item px-4 py-2"
+                  style={{ animationDelay: revealDelay(i) }}
+                >
+                  <NavLink
+                    item={item}
+                    paper={paper}
+                    gold={isGoldNavItem(item)}
+                  />
                 </div>
               ))}
               <div className="mt-2 px-4 pt-3">
