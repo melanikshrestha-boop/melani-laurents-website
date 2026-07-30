@@ -1,16 +1,25 @@
 "use client";
 
 /**
- * Public Bookshelf — insight into what Melani reads.
+ * Public Bookshelf — insight into what Celine Nova reads.
  * Static catalog, folders, faves. Covers link out for the curious;
  * this is not a storefront.
  */
-import { useMemo, useState, type CSSProperties } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  type CSSProperties,
+} from "react";
 import {
   ArrowClockwise,
   ArrowSquareOut,
   CaretRight,
   FolderSimple,
+  MagicWand,
+  Copy,
+  Check,
 } from "@phosphor-icons/react";
 import {
   bookshelfEntries,
@@ -39,7 +48,7 @@ const CHIPS: { id: Filter; label: string }[] = [
   { id: "faves", label: "Faves" },
 ];
 
-/** Quote rotator under the title — fun, not a library search chrome */
+/** Quote rotator — shelf voice + founders + the stack itself */
 const SHELF_QUOTES: { text: string; author: string }[] = [
   {
     text: "Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work. And the only way to do great work is to love what you do.",
@@ -61,7 +70,43 @@ const SHELF_QUOTES: { text: string; author: string }[] = [
     text: "Zero to one is about creating something new. Copying is one to n.",
     author: "Peter Thiel",
   },
+  {
+    text: "The best way to predict the future is to invent it.",
+    author: "Alan Kay",
+  },
+  {
+    text: "Stay hungry. Stay foolish.",
+    author: "Stewart Brand / Steve Jobs",
+  },
+  {
+    text: "Reading is a discount ticket to everywhere.",
+    author: "Mary Schmich",
+  },
+  {
+    text: "Open sourcing my mind is how I stay sharp — and how I leave a trail.",
+    author: "Celine Nova",
+  },
+  {
+    text: "Make something people want.",
+    author: "Paul Graham / YC",
+  },
+  {
+    text: "The obstacle is the way.",
+    author: "Ryan Holiday (via Marcus Aurelius)",
+  },
+  {
+    text: "I don't read to finish. I read to rewire.",
+    author: "Celine Nova",
+  },
 ];
+
+function shelfGreeting(hour = new Date().getHours()): string {
+  if (hour < 5) return "Late-night shelf energy.";
+  if (hour < 12) return "Morning pages start here.";
+  if (hour < 17) return "Afternoon fuel for the stack.";
+  if (hour < 21) return "Evening read mode.";
+  return "Night shift for the curious.";
+}
 
 /** Public folder order */
 const PUBLIC_FOLDER_ORDER = [
@@ -210,16 +255,22 @@ function StarRating({ rating }: { rating?: number }) {
 function CatalogCard({
   item,
   folderLabel,
+  highlight = false,
 }: {
   item: ShelfItem;
   folderLabel: string;
+  highlight?: boolean;
 }) {
   const { entry, book } = item;
   const href = buyUrl(entry, book);
   const label = openLabel(entry.kind);
 
   return (
-    <div className="bl-card-wrap">
+    <div
+      className={`bl-card-wrap${highlight ? " pb-card-wrap--pulse" : ""}`}
+      id={`pb-book-${entry.id}`}
+      data-book-id={entry.id}
+    >
       {/* Cover + title — personal shelf; link is optional deeper look, not a cart */}
       <a
         className="bl-card pb-card-link"
@@ -247,6 +298,15 @@ export function PublicBookshelf() {
    */
   const [openFolders, setOpenFolders] = useState<Record<string, boolean>>({});
   const [quoteIndex, setQuoteIndex] = useState(0);
+  const [quoteCopied, setQuoteCopied] = useState(false);
+  const [surprise, setSurprise] = useState<{
+    id: string;
+    title: string;
+    author: string;
+    folder: string;
+  } | null>(null);
+  const [highlightId, setHighlightId] = useState<string | null>(null);
+  const [greeting] = useState(() => shelfGreeting());
 
   /** Books / papers / podcasts only — never fake blog "book" covers */
   const catalog = useMemo<ShelfItem[]>(() => {
@@ -368,6 +428,76 @@ export function PublicBookshelf() {
   const quote = SHELF_QUOTES[quoteIndex % SHELF_QUOTES.length];
   const quoteTotal = SHELF_QUOTES.length;
 
+  const nextQuote = useCallback(() => {
+    setQuoteIndex((i) => (i + 1) % SHELF_QUOTES.length);
+    setQuoteCopied(false);
+  }, []);
+
+  const copyQuote = useCallback(async () => {
+    const line = `“${quote.text}” — ${quote.author}`;
+    try {
+      await navigator.clipboard.writeText(line);
+      setQuoteCopied(true);
+      window.setTimeout(() => setQuoteCopied(false), 1600);
+    } catch {
+      /* clipboard may be blocked; ignore */
+    }
+  }, [quote]);
+
+  /** Pick a random book, open its drive, pulse the card */
+  const surpriseMe = useCallback(() => {
+    if (!catalog.length) return;
+    const pick = catalog[Math.floor(Math.random() * catalog.length)];
+    const folder = folderLabelFor(pick.entry);
+    setFilter("all");
+    setOpenFolders((current) => ({ ...current, [folder]: true }));
+    setSurprise({
+      id: pick.entry.id,
+      title: pick.book.title,
+      author: pick.book.author || pick.entry.source || "",
+      folder,
+    });
+    setHighlightId(pick.entry.id);
+    window.setTimeout(() => {
+      document
+        .getElementById(`pb-book-${pick.entry.id}`)
+        ?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 80);
+    window.setTimeout(() => setHighlightId(null), 2800);
+  }, [catalog]);
+
+  // Keyboard: R = next quote · S = surprise · 1–4 = chips · C = copy quote
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => {
+      const t = event.target as HTMLElement | null;
+      if (
+        t &&
+        (t.tagName === "INPUT" ||
+          t.tagName === "TEXTAREA" ||
+          t.isContentEditable)
+      ) {
+        return;
+      }
+      const k = event.key.toLowerCase();
+      if (k === "r") {
+        event.preventDefault();
+        nextQuote();
+      } else if (k === "s") {
+        event.preventDefault();
+        surpriseMe();
+      } else if (k === "c" && (event.metaKey || event.ctrlKey) === false) {
+        // plain C copies quote (not ⌘C)
+        event.preventDefault();
+        void copyQuote();
+      } else if (k >= "1" && k <= "4") {
+        const map: Filter[] = ["all", "book", "blog", "faves"];
+        setFilter(map[Number(k) - 1]);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [nextQuote, surpriseMe, copyQuote]);
+
   return (
     <div className="bl-public-wrap pb-root">
       {/* Quote strip above the cream card — same placement as Wonder shell */}
@@ -380,11 +510,22 @@ export function PublicBookshelf() {
           <button
             type="button"
             className="pb-quote__refresh"
+            aria-label={quoteCopied ? "Copied" : "Copy quote"}
+            title={quoteCopied ? "Copied" : "Copy quote (C)"}
+            onClick={() => void copyQuote()}
+          >
+            {quoteCopied ? (
+              <Check size={14} weight="bold" aria-hidden />
+            ) : (
+              <Copy size={14} weight="bold" aria-hidden />
+            )}
+          </button>
+          <button
+            type="button"
+            className="pb-quote__refresh"
             aria-label="Next quote"
-            title="Next quote"
-            onClick={() =>
-              setQuoteIndex((i) => (i + 1) % SHELF_QUOTES.length)
-            }
+            title="Next quote (R)"
+            onClick={nextQuote}
           >
             <ArrowClockwise size={14} weight="bold" aria-hidden />
           </button>
@@ -403,6 +544,7 @@ export function PublicBookshelf() {
                 <MinimalIcon name="books" size={22} />
                 Bookshelf
               </h1>
+              <p className="pb-greeting">{greeting}</p>
               <div className="bl-stats" aria-label="Shelf totals">
                 <span>
                   <b>{counts.book}</b> books
@@ -433,7 +575,30 @@ export function PublicBookshelf() {
               <em>{chipCount(id)}</em>
             </button>
           ))}
+          <button
+            type="button"
+            className="bl-chip pb-chip-surprise"
+            onClick={surpriseMe}
+            title="Random book from the shelf (S)"
+          >
+            <MagicWand size={12} weight="fill" aria-hidden />
+            <span>Surprise</span>
+          </button>
         </div>
+
+        {surprise ? (
+          <p className="pb-surprise-toast" role="status" aria-live="polite">
+            Drawn from <em>{surprise.folder}</em>:{" "}
+            <strong>{surprise.title}</strong>
+            {surprise.author ? ` — ${surprise.author}` : ""}.{" "}
+            <span className="pb-surprise-hint">Press S again for another.</span>
+          </p>
+        ) : (
+          <p className="pb-kbd-hint" aria-hidden>
+            Keys: <kbd>R</kbd> quote · <kbd>S</kbd> surprise · <kbd>C</kbd>{" "}
+            copy · <kbd>1</kbd>–<kbd>4</kbd> chips
+          </p>
+        )}
 
         {groups.length === 0 &&
         !(filter === "faves" && filtered.length > 0) &&
@@ -455,6 +620,7 @@ export function PublicBookshelf() {
                   key={item.entry.id}
                   item={item}
                   folderLabel="Faves"
+                  highlight={highlightId === item.entry.id}
                 />
               ))}
             </div>
@@ -516,6 +682,7 @@ export function PublicBookshelf() {
                       key={item.entry.id}
                       item={item}
                       folderLabel={group.label}
+                      highlight={highlightId === item.entry.id}
                     />
                   ))}
                 </div>

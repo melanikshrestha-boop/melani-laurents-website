@@ -11,10 +11,11 @@ import "./cinema-nav.css";
 function isGoldNavItem(item: NavItem): boolean {
   const label = item.label.trim().toLowerCase();
   if (label === "art" || label === "contact") return true;
-  if (item.href === "/contact" || item.href.startsWith("/contact/")) return true;
-  if (item.href === "/art" || item.href.startsWith("/art")) return true;
-  if (item.href === "/photography" || item.href.startsWith("/photography"))
-    return true;
+  const href = item.href;
+  if (href === "/contact" || href.startsWith("/contact/")) return true;
+  // Home hub “Art” points at photography
+  if (href === "/photography" || href.startsWith("/photography/")) return true;
+  if (href.startsWith("/art")) return true;
   return false;
 }
 

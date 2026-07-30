@@ -4540,6 +4540,101 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   margin: 0 0 8px !important;
   padding: 0 !important;
   justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+}
+
+/* Time-of-day line under Bookshelf title */
+.pb-root .pb-greeting {
+  margin: 2px 0 0 !important;
+  color: #9a9084 !important;
+  font-family: "Source Serif 4", Georgia, ui-serif, serif;
+  font-size: 0.8rem;
+  font-style: italic;
+  line-height: 1.2;
+}
+
+/* Surprise chip — wand + gold whisper */
+.pb-root .pb-chip-surprise {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 5px;
+  color: #8a6b2e !important;
+  border-bottom-color: transparent !important;
+}
+.pb-root .pb-chip-surprise:hover,
+.pb-root .pb-chip-surprise:focus-visible {
+  color: #5c4520 !important;
+  border-bottom-color: currentColor !important;
+}
+
+.pb-root .pb-surprise-toast {
+  margin: 0 0 10px !important;
+  padding: 6px 0;
+  color: #3d3630;
+  font-family: "Source Serif 4", Georgia, ui-serif, serif;
+  font-size: 0.85rem;
+  line-height: 1.35;
+}
+.pb-root .pb-surprise-toast strong {
+  color: #1a1612;
+  font-weight: 600;
+}
+.pb-root .pb-surprise-toast em {
+  font-style: italic;
+  color: #71695f;
+}
+.pb-root .pb-surprise-hint {
+  color: #9a9084;
+  font-size: 0.78rem;
+}
+
+.pb-root .pb-kbd-hint {
+  margin: 0 0 8px !important;
+  color: #b0a89c;
+  font-family: var(--font-share-tech-mono), var(--font-jetbrains-mono), ui-monospace,
+    monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.pb-root .pb-kbd-hint kbd {
+  display: inline-block;
+  margin: 0 1px;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: rgba(41, 37, 31, 0.06);
+  color: #71695f;
+  font: inherit;
+  letter-spacing: 0.06em;
+}
+
+/* Surprise flash on a drawn card */
+@keyframes pb-pulse-card {
+  0% {
+    box-shadow: 0 0 0 0 rgba(201, 169, 98, 0.55);
+    transform: scale(1);
+  }
+  40% {
+    box-shadow: 0 0 0 6px rgba(201, 169, 98, 0.18);
+    transform: scale(1.02);
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+    transform: scale(1);
+  }
+}
+.pb-root .pb-card-wrap--pulse {
+  border-radius: 6px;
+  animation: pb-pulse-card 1.1s ease 2;
+  outline: 1px solid rgba(201, 169, 98, 0.45);
+  outline-offset: 3px;
+}
+.pb-root .pb-quote__controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
 }
 
 /* Greats section header: label left, meta right */
