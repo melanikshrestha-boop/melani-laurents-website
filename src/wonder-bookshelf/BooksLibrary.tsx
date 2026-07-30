@@ -82,24 +82,23 @@ import {
 } from "./booksPreferences";
 import "./books-library.css";
 import { openBookStore } from "./amazon";
+import {
+  isPublicFave,
+  publicPaperBooks,
+  publicPodcastBooks,
+} from "./publicCatalog";
 
 /**
- * Library sections (top chips):
- * All · Books · Audiobooks · Blogs · Finished
- * - All: the complete real library + blogs underneath
- * - Books: book drives only
- * - Audiobooks: any title marked as audiobook (including overlaps)
- * - Blogs: greats blogs/essays only
- * - Finished: completed books across all formats
+ * Public site library sections (not Wonder multi-format):
+ * All · Books · Podcasts · Papers · Blogs · Faves
  */
 type Filter =
   | "all"
   | "books"
-  | "ebooks"
-  | "audiobooks"
-  | "physical"
+  | "podcasts"
+  | "papers"
   | "blogs"
-  | BookStatus;
+  | "faves";
 type GroupMode = "subjects" | "status";
 type ShelfGroup = {
   id: string;
@@ -112,11 +111,10 @@ type ShelfGroup = {
 const LIBRARY_CHIPS: { id: Filter; label: string }[] = [
   { id: "all", label: "All" },
   { id: "books", label: "Books" },
-  { id: "ebooks", label: "Ebooks" },
-  { id: "audiobooks", label: "Audiobooks" },
-  { id: "physical", label: "Physical" },
+  { id: "podcasts", label: "Podcasts" },
+  { id: "papers", label: "Papers" },
   { id: "blogs", label: "Blogs" },
-  { id: "finished", label: "Finished" },
+  { id: "faves", label: "Faves" },
 ];
 
 const LIBRARY_VIEW_KEY = "wonder-bookshelf-view-v1";
@@ -157,13 +155,9 @@ function saveLibraryView(view: LibraryViewState) {
   }
 }
 
-function isBookStatusFilter(filter: Filter): filter is BookStatus {
-  return (
-    filter === "reading" ||
-    filter === "want" ||
-    filter === "finished" ||
-    filter === "paused"
-  );
+function isBookStatusFilter(_filter: Filter): boolean {
+  // Public chips: All / Books / Podcasts / Papers / Blogs / Faves only
+  return false;
 }
 
 function BooksAppearanceControls({
@@ -280,7 +274,7 @@ export function BooksLibrary({
   const [booksPreferences, setBooksPreferences] = useState(() => {
     const prefs = loadBooksPreferences();
     // Public site defaults to Wonder light bookshelf
-    return { ...prefs, theme: "light" as const };
+    return { ...prefs, theme: "light" as BooksTheme };
   });
   const [folders, setFolders] = useState<BookFolder[]>(() =>
     includeBookFolders(loadBookFolders(), loadBooks())
@@ -685,65 +679,54 @@ export function BooksLibrary({
 
   const sectionCounts = useMemo<Record<Filter, number>>(
     () => ({
-      all: books.length + GREATS_AUTHORS.length,
+      all:
+        books.length +
+        GREATS_AUTHORS.length +
+        publicPaperBooks.length +
+        publicPodcastBooks.length,
       books: books.length,
-      ebooks: books.filter((book) => book.readingFormats?.includes("ebook"))
-        .length,
-      audiobooks: books.filter((book) =>
-        book.readingFormats?.includes("audiobook")
-      ).length,
-      physical: books.filter((book) =>
-        book.readingFormats?.includes("physical")
-      ).length,
+      podcasts: publicPodcastBooks.length,
+      papers: publicPaperBooks.length,
       blogs: GREATS_AUTHORS.length,
-      reading: stats.reading,
-      want: stats.want,
-      paused: books.filter((book) => book.status === "paused").length,
-      finished: stats.finished,
+      faves: books.filter((book) => isPublicFave(book)).length,
     }),
-    [books, stats.finished, stats.reading, stats.want]
+    [books]
   );
 
   const filtered = useMemo(() => {
-    // Blogs tab is essays only — no books in the list.
+    // Blogs tab: Greats section only (no book cards)
     if (filter === "blogs") return [] as Book[];
+
     const query = q.trim().toLowerCase();
-    return books
-      .filter((book) => {
-        const formatFilter: Partial<Record<Filter, BookMedium>> = {
-          ebooks: "ebook",
-          audiobooks: "audiobook",
-          physical: "physical",
-        };
-        const requiredFormat = formatFilter[filter];
-        if (
-          requiredFormat &&
-          !book.readingFormats?.includes(requiredFormat)
-        ) {
-          return false;
-        }
-        // Status chips: Reading / Next (want) / Done / Paused
-        if (isBookStatusFilter(filter) && book.status !== filter) return false;
-        // all + books: every status (drives of books)
-        if (!query) return true;
-        return [
-          book.title,
-          book.author,
-          book.category,
-          book.notes,
-          book.description || "",
-          ...book.quotes.flatMap((quote) => [
-            quote.text,
-            quote.note || "",
-            quote.interpretation || "",
-          ]),
-        ].some((value) => value.toLowerCase().includes(query));
-      })
+    const matchesQuery = (book: Book) => {
+      if (!query) return true;
+      return [
+        book.title,
+        book.author,
+        book.category,
+        book.notes,
+        book.description || "",
+        ...book.quotes.flatMap((quote) => [
+          quote.text,
+          quote.note || "",
+          quote.interpretation || "",
+        ]),
+      ].some((value) => value.toLowerCase().includes(query));
+    };
+
+    let pool: Book[] = books;
+    if (filter === "papers") pool = publicPaperBooks;
+    else if (filter === "podcasts") pool = publicPodcastBooks;
+    else if (filter === "faves") pool = books.filter((book) => isPublicFave(book));
+    else if (filter === "books" || filter === "all") pool = books;
+
+    return pool
+      .filter(matchesQuery)
       .sort((left, right) => {
-        const leftActive = left.status === "reading" ? 1 : 0;
-        const rightActive = right.status === "reading" ? 1 : 0;
+        const leftFave = isPublicFave(left) ? 1 : 0;
+        const rightFave = isPublicFave(right) ? 1 : 0;
         return (
-          rightActive - leftActive ||
+          rightFave - leftFave ||
           right.updatedAt - left.updatedAt ||
           left.title.localeCompare(right.title)
         );
@@ -756,6 +739,25 @@ export function BooksLibrary({
 
   const groups = useMemo<ShelfGroup[]>(() => {
     if (filter === "blogs") return [];
+    // Papers / podcasts / faves: one flat shelf (no format folders)
+    if (filter === "papers" || filter === "podcasts" || filter === "faves") {
+      if (!filtered.length) return [];
+      const label =
+        filter === "papers"
+          ? "Papers"
+          : filter === "podcasts"
+            ? "Podcasts"
+            : "Faves";
+      return [
+        {
+          id: filter,
+          label,
+          books: filtered,
+          accent: filter === "faves" ? "#d4bc82" : "#8e98a6",
+          canRename: false,
+        },
+      ];
+    }
     if (effectiveGroupMode === "subjects") {
       return folders
         .map((folder) => ({
@@ -856,7 +858,7 @@ export function BooksLibrary({
     setBooks((current) => [book, ...current]);
     setOpenFolders((current) => ({ ...current, [category]: true }));
     setGroupMode("subjects");
-    setFilter("want");
+    setFilter("books");
     if (options?.openAfter) setOpenId(book.id);
     if (!options?.silent) {
       const freeNote =

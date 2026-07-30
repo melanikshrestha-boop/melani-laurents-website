@@ -1,4 +1,4 @@
-import type { Block, Page } from "../types";
+import type { Block, Page } from "./types";
 import {
   SPINE_COLORS,
   categorizeBook,
