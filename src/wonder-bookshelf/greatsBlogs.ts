@@ -88,8 +88,8 @@ export const GREATS_AUTHORS: GreatsAuthor[] = [
     ],
   },
   {
-    id: "melani-laurent",
-    name: "Melani Laurent",
+    id: "celine-nova",
+    name: "Celine Nova",
     homeUrl: "https://itsmelanilaurent.com/",
     kind: "blog",
     accent: "#e58fa3",

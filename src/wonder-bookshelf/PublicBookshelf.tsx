@@ -55,7 +55,7 @@ const SHELF_QUOTES: { text: string; author: string }[] = [
   },
   {
     text: "I wish I had a second life dedicated to just reading everything written out there.",
-    author: "Melani Laurent",
+    author: "Celine Nova",
   },
   {
     text: "Zero to one is about creating something new. Copying is one to n.",
