@@ -359,5 +359,105 @@
     "href": "https://www.amazon.com/dp/0684837714",
     "asin": "0684837714",
     "category": "main characters only"
+  },
+  {
+    "id": "book-72b4a40be692",
+    "kind": "book",
+    "title": "The Founders: The Story of Paypal and the Entrepreneurs Who Shaped Silicon Valley",
+    "source": "Jimmy Soni",
+    "loggedAt": "2026-07-30",
+    "category": "uncategorized",
+    "asin": "1982153733",
+    "href": "https://www.amazon.com/dp/1982153733"
+  },
+  {
+    "id": "book-a58aa4d15bc2",
+    "kind": "book",
+    "title": "Endurance: Shackleton's Incredible Voyage",
+    "source": "Alfred Lansing",
+    "loggedAt": "2026-07-29",
+    "category": "uncategorized",
+    "asin": "0465062881",
+    "href": "https://www.amazon.com/dp/0465062881"
+  },
+  {
+    "id": "book-31173b526b1c",
+    "kind": "book",
+    "title": "Liftoff: Elon Musk and the Desperate Early Days That Launched SpaceX",
+    "source": "Eric Berger",
+    "loggedAt": "2026-07-28",
+    "category": "uncategorized",
+    "asin": "0062979973",
+    "href": "https://www.amazon.com/dp/0062979973"
+  },
+  {
+    "id": "book-86c41ec62df4",
+    "kind": "book",
+    "title": "Alone on the Wall",
+    "source": "Alex Honnold",
+    "loggedAt": "2026-07-27",
+    "category": "uncategorized",
+    "asin": "0393356906",
+    "href": "https://www.amazon.com/dp/0393356906"
+  },
+  {
+    "id": "book-c03817b07b8e",
+    "kind": "book",
+    "title": "Confessions of an Advertising Man",
+    "source": "David Ogilvy",
+    "loggedAt": "2026-07-26",
+    "category": "uncategorized",
+    "asin": "190491537X",
+    "href": "https://www.amazon.com/dp/190491537X"
+  },
+  {
+    "id": "book-cae465db841c",
+    "kind": "book",
+    "title": "Instant: The Story of Polaroid",
+    "source": "Christopher Bonanos",
+    "loggedAt": "2026-07-25",
+    "category": "uncategorized",
+    "asin": "1612190219",
+    "href": "https://www.amazon.com/dp/1612190219"
+  },
+  {
+    "id": "book-8f23b3eb170a",
+    "kind": "book",
+    "title": "Bushido: The Soul of Japan",
+    "source": "Inazo Nitobe",
+    "loggedAt": "2026-07-24",
+    "category": "uncategorized",
+    "asin": "0486433072",
+    "href": "https://www.amazon.com/dp/0486433072"
+  },
+  {
+    "id": "book-97755bbe6218",
+    "kind": "book",
+    "title": "Reentry: SpaceX, Elon Musk, and the Reusable Rockets that Launched a Second Space Age",
+    "source": "Eric Berger",
+    "loggedAt": "2026-07-23",
+    "category": "uncategorized",
+    "asin": "1324093064",
+    "href": "https://www.amazon.com/dp/1324093064"
+  },
+  {
+    "id": "book-865338a8451c",
+    "kind": "book",
+    "title": "Glock: The Rise of America's Gun",
+    "source": "Paul M. Barrett",
+    "loggedAt": "2026-07-22",
+    "category": "uncategorized",
+    "asin": "0307719952",
+    "href": "https://www.amazon.com/dp/0307719952"
+  },
+  {
+    "id": "book-8dd63c47daa5",
+    "kind": "book",
+    "title": "Talk to Strangers: The Yes Theory Story",
+    "source": "Matt Dahlia",
+    "loggedAt": "2026-07-21",
+    "category": "uncategorized",
+    "coverUrl": "https://covers.openlibrary.org/b/id/14578444-L.jpg",
+    "href": "https://www.amazon.com/dp/B0CHR1L7BM"
   }
 ]
