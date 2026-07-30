@@ -38,10 +38,12 @@ You do **not** invent features. You **prevent regression**: the same ugly chrome
 - Never invent brand poetry to fill hierarchy.
 
 ### Dividers & waste (`celine-ui` / design)
-- **Never introduce dividing lines** (borders, hairlines, list rules, card outlines that read as lines) unless Melani asks.
-- **Hate wasted vertical space** — pack rows, tight stacks, quote height follows content; no dead air between quote and Bookshelf title.
+- **Never introduce dividing lines** (borders, hairlines, list rules, chip underlines, hover rules, card outlines that read as lines) unless Melani asks. **No underlines on chips or blog titles.**
+- **Hate wasted vertical space** — pack rows, tight stacks, quote height follows content; no dead air between quote and title.
+- **Equidistant spacing** — equal gaps between list rows / parallel items (e.g. blogs `gap: 1.5em`). Never uneven clumps.
 - One paper field end-to-end on cream pages — no black/cream splits, no frosted nav bar color step on paper surfaces.
 - **Titles and headers at the closest edges** (forever): logo / page titles / section heads hug the **left** extremity; trailing controls / CONTACT / counts / quote actions hug the **right**. Shared gutter only (~10px) — no floating centered title blocks, no fat inset that pulls headers inward from the edge. Nav, Bookshelf, Daily, Builds, Art — same law.
+- Public shelf title: **My Bookshelf** (title case).
 
 ### Selection & pink highlight
 - **Pink is only for random-generator pick cards** (sticky until that drive closes).
@@ -57,10 +59,10 @@ You do **not** invent features. You **prevent regression**: the same ugly chrome
 - No invented greetings under the title.
 - **Blogs ≠ “Blogs & essays” shout-out cards** (no Sam/PG author fan cards). Numbered list of **specific posts she liked** (`shelfBlogs.ts`): `1.0`, `1.1`, `1.2`… same **13px** type as drive titles (“main characters only”).
 - Chrono line: *italic subscript* next to **Blogs** — “in chronological order that I read”.
-- Date format: short `1/28/14`, plus `by Author` on one tight line. **No** long “JANUARY 28, 2014”. **No** row dividers.
-- Title underline tracks **cursor only** — draw on hover, **gone immediately** on leave (no infinite pulse).
+- Blog numbers: **1, 2, 3, 4…** (not 1.0 / 1.1). Equal **1.5** spacing between rows.
+- Date format: short `1/28/14`, plus `by Author` on one line. **No** long “JANUARY 28, 2014”. **No** dividers or title underlines.
 - **current reads:** small roman (not italic): `current reads: the founders by jimmy soni` → Amazon on title.
-- Chip: **random book generator for my list** — opens drive, scrolls to book, **pink stays until drive closed** (not 2.8s flash).
+- Chip: **random book generator for my list** — opens drive, scrolls to book; **fun pink border dance** (zoom/pop then keep dancing) until drive closed — not a flat pink wash.
 - Double-tap → annotations panel; single tap → Amazon (books) / post URL (blogs). Don’t invent annotation text.
 - **Your intelligence** chip = **5★ faves + meditations** (e.g. Marcus Aurelius). Not “Faves” alone.
 - No search bar on public shelf.

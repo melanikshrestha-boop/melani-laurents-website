@@ -617,7 +617,7 @@ export function PublicBookshelf() {
             <div className="bl-head-copy">
               <h1 className="bl-title">
                 <MinimalIcon name="books" size={22} />
-                Bookshelf
+                My Bookshelf
               </h1>
               <div className="bl-stats" aria-label="Shelf totals">
                 <span>
@@ -787,7 +787,7 @@ export function PublicBookshelf() {
                     title="Tap: open post · double-tap: notes"
                   >
                     <span className="pb-blogs__n" aria-hidden>
-                      {`1.${i}`}
+                      {i + 1}
                     </span>
                     <span className="pb-blogs__line">
                       <span className="pb-blogs__name">{blog.title}</span>
