@@ -1,7 +1,7 @@
-/* Daily pulse — X hearts + YouTube on cream paper */
+/* Daily — X posts + YouTube. Minimal chrome; posts lead. */
 
 .daily-pulse {
-  --dp-paper: #f0ede5;
+  --dp-paper: #f7f1e7;
   --dp-ink: #141210;
   --dp-muted: #6b6358;
   --dp-faint: #9a9084;
@@ -17,8 +17,23 @@
 .daily-pulse__inner {
   width: min(100% - 1.5rem, 42rem);
   margin: 0 auto;
-  padding: 1.25rem 0 3rem;
+  padding: 1rem 0 2.5rem;
   box-sizing: border-box;
+}
+
+/* One title. No kicker + lede + section stack. */
+.daily-pulse__header {
+  margin: 0 0 1.15rem;
+}
+
+.daily-pulse__title {
+  margin: 0;
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-size: clamp(1.85rem, 4.2vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--dp-ink);
 }
 
 .daily-pulse__kicker {
@@ -29,50 +44,34 @@
   color: var(--dp-faint);
 }
 
-.daily-pulse__heading {
-  margin: 0 0 0.5rem;
-  font-family: var(--font-instrument-serif), Georgia, serif;
-  font-size: clamp(1.75rem, 4vw, 2.35rem);
-  font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: var(--dp-ink);
-}
-
-.daily-pulse__lede {
-  margin: 0 0 1.5rem;
-  max-width: 36rem;
-  font-family: var(--font-instrument-serif), Georgia, serif;
-  font-size: 1rem;
-  line-height: 1.45;
-  color: var(--dp-muted);
-}
-
 .daily-pulse__section {
   margin: 0 0 2rem;
 }
 
-.daily-pulse__section-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 0.75rem;
-}
-
-.daily-pulse__section-title {
-  margin: 0;
-  font-family: var(--font-instrument-serif), Georgia, serif;
-  font-size: 1.25rem;
+/* Quiet mono label for secondary blocks only (YouTube) */
+.daily-pulse__section-label {
+  margin: 0 0 0.65rem;
+  font-size: 0.58rem;
   font-weight: 400;
-  letter-spacing: -0.015em;
-}
-
-.daily-pulse__count {
-  font-size: 0.55rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--dp-faint);
+}
+
+.daily-pulse__outlink {
+  margin: 0.75rem 0 0;
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.daily-pulse__outlink a {
+  color: var(--dp-muted);
+  text-decoration: none;
+}
+
+.daily-pulse__outlink a:hover {
+  color: var(--dp-ink);
 }
 
 .daily-pulse__list {
@@ -189,15 +188,7 @@
   scroll-margin-top: 4.5rem;
 }
 
-.daily-pulse__mine-note {
-  margin: 0 0 1rem;
-  max-width: 34rem;
-  font-family: var(--font-instrument-serif), Georgia, serif;
-  font-size: 0.92rem;
-  font-style: italic;
-  line-height: 1.4;
-  color: var(--dp-muted);
-}
+
 
 /* ——— Real X-format tweets in a user-controlled slider ——— */
 .daily-x-carousel {
@@ -483,16 +474,6 @@ a.x-quote:hover {
   text-transform: uppercase;
   color: var(--dp-faint);
   font-variant-numeric: tabular-nums;
-}
-
-.daily-x-carousel__hint {
-  margin: 0;
-  width: 100%;
-  text-align: center;
-  font-size: 0.55rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--dp-faint);
 }
 
 .daily-x-carousel__empty {

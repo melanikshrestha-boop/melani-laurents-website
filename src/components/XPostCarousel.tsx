@@ -235,9 +235,6 @@ export function XPostCarousel({ posts }: { posts: DailyPost[] }) {
         <p className="daily-x-carousel__counter" aria-live="polite">
           {index + 1} / {n}
         </p>
-        <p className="daily-x-carousel__hint">
-          Swipe · ‹ › · ← → — only posts I write
-        </p>
       </div>
     </div>
   );

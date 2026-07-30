@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 /**
  * Daily — my X posts (mine only) as a sliding feed + YouTube.
- * Not other people’s hearts. Fun, user-controlled carousel.
+ * Chrome stays minimal so the posts lead.
  */
 export default function DailyPage() {
   const myPosts = getMyXPosts();
@@ -25,44 +25,21 @@ export default function DailyPage() {
   return (
     <div className="daily-pulse">
       <div className="daily-pulse__inner">
-        <header>
-          <p className="daily-pulse__kicker">Daily</p>
-          <h1 className="daily-pulse__heading">
-            What I post. What I love. What stuck.
-          </h1>
-          <p className="daily-pulse__lede">
-            My X posts — same format as the app (avatar, handle, body). Only
-            things I wrote. Slide when you want; nothing autoplays.
-          </p>
+        <header className="daily-pulse__header">
+          <h1 className="daily-pulse__title">Daily</h1>
         </header>
 
+        {/* Deep-link anchors from hub (kept for existing routes) */}
         <div id="inputs" />
         <div id="journals" />
         <div id="bookshelf" />
 
         <section
           className="daily-pulse__section"
-          aria-labelledby="x-posts-title"
+          aria-label="Posts on X"
         >
-          <div className="daily-pulse__section-head">
-            <div>
-              <p className="daily-pulse__kicker">X · mine only</p>
-              <h2 id="x-posts-title" className="daily-pulse__section-title">
-                On the timeline
-              </h2>
-            </div>
-            <span className="daily-pulse__count">
-              {String(myPosts.length).padStart(2, "0")} posts
-            </span>
-          </div>
-          <p className="daily-pulse__mine-note">
-            Not other people’s links. Posts under my name — the ones I love
-            enough to publish.
-          </p>
-
           <XPostCarousel posts={myPosts} />
-
-          <p className="daily-pulse__home" style={{ marginTop: "0.85rem" }}>
+          <p className="daily-pulse__outlink">
             <a href={xUrl} target="_blank" rel="noopener noreferrer">
               Full timeline on X ↗
             </a>
@@ -70,17 +47,9 @@ export default function DailyPage() {
         </section>
 
         <section className="daily-pulse__section" aria-labelledby="yt-title">
-          <div className="daily-pulse__section-head">
-            <div>
-              <p className="daily-pulse__kicker">Video</p>
-              <h2 id="yt-title" className="daily-pulse__section-title">
-                YouTube
-              </h2>
-            </div>
-            <span className="daily-pulse__count">
-              {siteConfig.youtubeCadence}
-            </span>
-          </div>
+          <h2 id="yt-title" className="daily-pulse__section-label">
+            YouTube
+          </h2>
           <div className="daily-pulse__yt">
             <a
               href={ytUrl}

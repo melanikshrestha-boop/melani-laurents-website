@@ -73,11 +73,14 @@ export function Navigation() {
     pathname === "/projects" ||
     pathname.startsWith("/projects/");
 
+  /* Solid paper field (no frosted bar / color step) on cream product pages */
   const bookshelf =
     pathname === "/bookshelf" ||
     pathname.startsWith("/bookshelf/") ||
     pathname === "/projects" ||
-    pathname.startsWith("/projects/");
+    pathname.startsWith("/projects/") ||
+    pathname === "/daily" ||
+    pathname.startsWith("/daily/");
 
   if (pathname === "/") return null;
 
