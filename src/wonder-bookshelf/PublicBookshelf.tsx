@@ -39,10 +39,11 @@ const CHIPS: { id: Filter; label: string }[] = [
   { id: "faves", label: "Faves" },
 ];
 
-/** Shelf order for Melani's public reading list */
-const PUBLIC_FOLDER_ORDER = ["Conqueror", "Entrepreneur", "Genius"] as const;
+/** One pile for now — Conqueror/Entrepreneur/Genius were just examples */
+const PUBLIC_FOLDER_ORDER = ["on some stock or shit"] as const;
 
 const FOLDER_ACCENT: Record<string, string> = {
+  "on some stock or shit": "#c4a06a",
   Conqueror: "#c45c4a",
   Entrepreneur: "#d4a84b",
   Genius: "#5b9fd4",
@@ -82,9 +83,10 @@ function buyLabel(kind: BookshelfKind): string {
 function folderLabelFor(entry: BookshelfEntry): string {
   if (entry.kind === "paper") return "Papers";
   if (entry.kind === "podcast") return "Podcasts";
-  // Explicit catalog folder wins (Conqueror / Entrepreneur / Genius)
+  // Explicit catalog folder (one pile for now)
   if (entry.category?.trim()) return entry.category.trim();
-  return String(categorizeBook(entry.title, entry.source));
+  // Default public shelf — don't scatter into old subject bins
+  return "on some stock or shit";
 }
 
 type ShelfItem = { entry: BookshelfEntry; book: Book };
