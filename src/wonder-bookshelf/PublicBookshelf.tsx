@@ -112,15 +112,20 @@ const SHELF_QUOTES: { text: string; author: string }[] = [
   },
 ];
 
-/** Public folder order — high school reread drives near top */
+/**
+ * Public folder order:
+ * 1) Core shelf first (main characters → … → uncategorized)
+ * 2) New drives after uncategorized (bottom growth — never jump to top)
+ */
 const PUBLIC_FOLDER_ORDER = [
-  "high school reads",
-  "dostoevsky",
   "main characters only",
   "everything startups",
   "psychology",
   "history",
   "uncategorized",
+  // —— new drives stack below uncategorized ——
+  "high school reads",
+  "dostoevsky",
 ] as const;
 
 const FOLDER_ACCENT: Record<string, string> = {

@@ -66,6 +66,7 @@ You do **not** invent features. You **prevent regression**: the same ugly chrome
 - Double-tap → annotations panel; single tap → Amazon (books) / post URL (blogs). Don’t invent annotation text.
 - **Your intelligence** chip = **5★ faves + meditations** (e.g. Marcus Aurelius). Not “Faves” alone. *The Bluest Eye* is 5★ (10th grade + intelligence).
 - High school reread drive: **high school reads** (one folder — not split by grade).
+- **Drive order:** core first (`main characters only` → `everything startups` → `psychology` → `history` → `uncategorized`). **New drives always append after uncategorized** (bottom-up growth). Never put a new drive above main characters.
 - No search bar on public shelf.
 
 ### Nav
