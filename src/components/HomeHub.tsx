@@ -18,7 +18,7 @@ export function HomeHub() {
           <MelaniSignature variant="light" />
           <p className="hub-page__brand-loc">
             <span className="hub-page__dot-inline" aria-hidden />
-            LA / SF / NYC
+            currently in Los Angeles
           </p>
         </div>
 
