@@ -339,13 +339,6 @@ export function PublicBookshelf() {
           <div className="bl-head-main">
             <div className="bl-head-copy">
               <h1 className="bl-title">Bookshelf</h1>
-              {/* Counts live on the chips below — tagline is why this shelf exists */}
-              <p className="bl-tagline pb-shelf-tagline">
-                I wish I had a second life dedicated to just reading everything
-                written out there. Here are my book counts. The goal is to read
-                at least 1 book every week with the intent to have fun more than
-                seeking to learn something.
-              </p>
             </div>
           </div>
         </header>
