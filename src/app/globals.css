@@ -3215,7 +3215,8 @@ body {
   --bs-muted: #6b6358;
   --bs-border: rgba(20, 18, 16, 0.14);
   --bs-gold: var(--hub-gold, #c9a962);
-  min-height: calc(100vh - 3.5rem);
+  /* Content-sized — do not force a cream void above the site footer */
+  min-height: 0;
   background: var(--bs-paper);
   color: var(--bs-ink);
   font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
@@ -3486,7 +3487,7 @@ body {
 .bookshelf-page__home {
   width: min(100% - 2.5rem, 42rem);
   margin: 0 auto;
-  padding: 0 0 2rem;
+  padding: 0;
   font-size: 0.55rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;

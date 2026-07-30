@@ -11,10 +11,11 @@ export const metadata: Metadata = {
 export default function BookshelfPage() {
   return (
     <div className="bookshelf-page bookshelf-page--wonder">
-      <WonderBookshelfClient />
+      {/* Top chrome — never float alone in a cream void under the content */}
       <div className="bookshelf-page__home">
         <Link href="/">← Back home</Link>
       </div>
+      <WonderBookshelfClient />
     </div>
   );
 }

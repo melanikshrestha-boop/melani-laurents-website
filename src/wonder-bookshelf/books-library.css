@@ -4388,13 +4388,14 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   }
 }
 
-/* Public page — Wonder Bookshelf UI (exact look + interaction) */
+/* Public page — content height only (no 100vh cream void above the footer) */
 .bookshelf-page--wonder {
-  min-height: calc(100vh - 3.5rem);
+  min-height: 0 !important;
+  height: auto !important;
   background:
     radial-gradient(90% 46% at 50% -8%, rgba(167, 139, 212, 0.08), transparent 65%),
     linear-gradient(180deg, #fbf7ef, #f0e8da);
-  padding: 0.35rem 0 1rem;
+  padding: 0.15rem 0 1.25rem;
   -webkit-user-select: text;
   user-select: text;
   cursor: text;
@@ -4426,15 +4427,13 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 
 .bl-public-wrap {
   width: min(100% - 1.5rem, 78rem);
-  margin: 0.5rem auto 1rem;
+  margin: 0.25rem auto 0.75rem;
 }
 
-/* Cream panel — tight pad, less empty bottom air */
-.pb-root.bl-public-wrap .bl[data-books-theme="light"] {
-  min-height: 0;
-  padding: 10px 18px 28px;
-  box-sizing: border-box;
-  border-radius: 20px;
+/* Cream panel — hug content, never force full viewport */
+.pb-root.bl-public-wrap .bl[data-books-theme="light"],
+.pb-root .bl[data-books-theme="light"],
+.pb-root .bl {
   --bl-ink: #29251f;
   --bl-soft: #71695f;
   --bl-faint: #9a9084;
@@ -4443,20 +4442,30 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   --books-faint: #9a9084;
   --books-line: rgba(65, 51, 36, 0.11);
   --books-surface: rgba(255, 255, 255, 0.54);
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 10px 16px 18px !important;
+  box-sizing: border-box;
+  border-radius: 16px;
+  overflow: visible !important;
   color: #29251f;
 }
 
-.bookshelf-page__home {
+.bookshelf-page--wonder .bookshelf-page__home {
   width: min(100% - 1.5rem, 78rem);
-  margin: 0 auto 0.75rem;
-  font-size: 11px;
-  letter-spacing: 0.08em;
+  margin: 0.15rem auto 0.35rem;
+  padding: 0 !important;
+  font-size: 10px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   line-height: 1.15;
 }
-.bookshelf-page__home a {
+.bookshelf-page--wonder .bookshelf-page__home a {
   color: #71695f;
   text-decoration: none;
+}
+.bookshelf-page--wonder .bookshelf-page__home a:hover {
+  color: #29251f;
 }
 
 /* ——— Quote strip (above cream card) — secondary to title, not a hero block ——— */
@@ -4679,13 +4688,13 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   display: flex !important;
   width: 100%;
   align-items: center !important;
-  gap: 6px !important;
+  gap: 5px !important;
   min-height: 0 !important;
   height: auto !important;
   margin: 0 !important;
-  padding: 3px 4px !important;
+  padding: 2px 2px !important;
   border: 0 !important;
-  border-radius: 4px;
+  border-radius: 3px;
   background: transparent !important;
   color: #29251f !important;
   text-align: left;
@@ -4786,12 +4795,12 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   display: none !important;
 }
 
-/* Greats / blogs */
+/* Greats / blogs — snug under drives, no dead air before footer */
 .pb-root .bl-greats,
 .pb-root .bl-greats-after-books {
   border-top: 0 !important;
-  margin: 18px 0 0;
-  padding-top: 0;
+  margin: 10px 0 0 !important;
+  padding: 0 0 4px !important;
 }
 .pb-root .bl-greats-h,
 .pb-root .bl-greats-card h3,
