@@ -4429,12 +4429,12 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   margin: 0.5rem auto 1rem;
 }
 
-/* Match Wonder .bl pad (10px 24px 64px) + light cream panel */
+/* Cream panel — tight pad, less empty bottom air */
 .pb-root.bl-public-wrap .bl[data-books-theme="light"] {
-  min-height: calc(100svh - 6rem);
-  padding: 10px 24px 64px;
+  min-height: 0;
+  padding: 10px 18px 28px;
   box-sizing: border-box;
-  border-radius: 24px;
+  border-radius: 20px;
   --bl-ink: #29251f;
   --bl-soft: #71695f;
   --bl-faint: #9a9084;
@@ -4567,8 +4567,8 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 .pb-root .bl-filter {
   display: flex;
   align-items: center;
-  gap: 26px;
-  margin: 0 0 14px;
+  gap: 18px;
+  margin: 0 0 8px;
   padding: 0;
   overflow-x: auto;
   border: 0;
@@ -4644,19 +4644,23 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 }
 
 /*
- * Drives — 100% Wonder folder rows
- * caret + icon 22 + strong 14/500 + small 10 “N books”
- * min-height 46 · pad 8/7 · gap 8 · copy grid gap 0
+ * Drives — tight stack (Melani hates wasted space).
+ * Zero shelf gaps; compact row (~28–32px), not Wonder’s fat 46px pad.
  */
 .pb-root .bl-shelf,
 .pb-root .bl-shelf:last-of-type {
-  margin: 0;
-  padding: 0;
+  margin: 0 !important;
+  padding: 0 !important;
   border: 0 !important;
   border-top: 0 !important;
   border-bottom: 0 !important;
   box-shadow: none;
   outline: none;
+  min-height: 0 !important;
+}
+.pb-root .bl-shelf + .bl-shelf {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 .pb-root .bl-shelf::before,
 .pb-root .bl-shelf:hover::before,
@@ -4666,27 +4670,29 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 }
 .pb-root .bl-folder-row {
   display: flex;
-  align-items: stretch;
-  margin: 0;
-  padding: 0;
+  align-items: center;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 0 !important;
 }
 .pb-root .bl-folder {
   display: flex !important;
   width: 100%;
   align-items: center !important;
-  gap: 8px !important;
-  min-height: 46px !important;
+  gap: 6px !important;
+  min-height: 0 !important;
   height: auto !important;
-  margin: 0;
-  padding: 8px 7px !important;
+  margin: 0 !important;
+  padding: 3px 4px !important;
   border: 0 !important;
-  border-radius: 0;
+  border-radius: 4px;
   background: transparent !important;
   color: #29251f !important;
   text-align: left;
   cursor: pointer;
   font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif !important;
-  transition: background 150ms ease;
+  line-height: 1.05 !important;
+  transition: background 120ms ease;
 }
 .pb-root .bl-folder:hover,
 .pb-root .bl-shelf.is-open .bl-folder {
@@ -4695,46 +4701,48 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 .pb-root .bl-folder-caret {
   display: inline-flex !important;
   flex: 0 0 auto;
+  width: 12px;
   color: #9a9084 !important;
-  transition: transform 140ms ease;
+  transition: transform 120ms ease;
 }
 .pb-root .bl-shelf.is-open .bl-folder-caret {
   transform: rotate(90deg);
 }
 .pb-root .bl-folder-icon {
   flex: 0 0 auto;
-  width: 22px;
-  height: 22px;
+  width: 16px !important;
+  height: 16px !important;
   color: var(--bl-folder-accent) !important;
   fill: var(--bl-folder-accent) !important;
-  line-height: 1;
+  line-height: 1 !important;
 }
 .pb-root .bl-folder-copy {
   display: grid !important;
   gap: 0 !important;
   min-width: 0;
   text-align: left;
+  line-height: 1 !important;
 }
 .pb-root .bl-folder strong {
   display: block;
-  font-size: 14px !important;
+  font-size: 13px !important;
   font-weight: 500 !important;
-  line-height: 1 !important;
+  line-height: 1.05 !important;
   color: #29251f !important;
   letter-spacing: 0;
 }
 .pb-root .bl-folder small {
   display: block;
   margin: 0 !important;
-  font-size: 10px !important;
+  font-size: 9px !important;
   font-weight: 400 !important;
   line-height: 1 !important;
   color: #9a9084 !important;
 }
-/* Open cover grid under drive */
+/* Open cover grid under drive — less dead air */
 .pb-root .bl-shelf > .bl-grid {
-  padding: 7px 4px 18px 36px !important;
-  gap: 22px 16px;
+  padding: 4px 0 8px 28px !important;
+  gap: 12px 10px !important;
 }
 
 /* Card link */

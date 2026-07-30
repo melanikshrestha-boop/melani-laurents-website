@@ -228,8 +228,8 @@ function CatalogCard({
 export function PublicBookshelf() {
   const [filter, setFilter] = useState<Filter>("all");
   /**
-   * Wonder semantics: folders default OPEN.
-   * openFolders[id] === false → closed; undefined/true → open.
+   * Start CLOSED — dense drive stack, no empty cover air until tapped.
+   * openFolders[id] === true → open; undefined/false → closed.
    */
   const [openFolders, setOpenFolders] = useState<Record<string, boolean>>({});
   const [quoteIndex, setQuoteIndex] = useState(0);
@@ -348,8 +348,8 @@ export function PublicBookshelf() {
     return 0;
   };
 
-  /** Wonder: open unless explicitly closed */
-  const isExpanded = (id: string) => openFolders[id] !== false;
+  /** Closed until user opens — denser shelf, less wasted space */
+  const isExpanded = (id: string) => openFolders[id] === true;
 
   const quote = SHELF_QUOTES[quoteIndex % SHELF_QUOTES.length];
   const quoteTotal = SHELF_QUOTES.length;
@@ -470,19 +470,18 @@ export function PublicBookshelf() {
                   onClick={() =>
                     setOpenFolders((current) => ({
                       ...current,
-                      // Wonder toggle: open by default; click sets false/true flip
-                      [group.id]: current[group.id] === false,
+                      [group.id]: !current[group.id],
                     }))
                   }
                 >
                   <CaretRight
                     className="bl-folder-caret"
-                    size={14}
+                    size={12}
                     aria-hidden
                   />
                   <FolderSimple
                     className="bl-folder-icon"
-                    size={22}
+                    size={16}
                     weight="fill"
                     aria-hidden
                     style={{ color: group.accent, fill: group.accent }}

@@ -7,7 +7,8 @@
     "loggedAt": "2026-07-28",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/1416592806",
-    "asin": "1416592806"
+    "asin": "1416592806",
+    "rating": 4
   },
   {
     "id": "book-conqueror-hannibal",
@@ -17,7 +18,8 @@
     "loggedAt": "2026-07-27",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/1639363653",
-    "asin": "1639363653"
+    "asin": "1639363653",
+    "rating": 2
   },
   {
     "id": "book-conqueror-caesar",
@@ -27,7 +29,8 @@
     "loggedAt": "2026-07-26",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/0743289544",
-    "asin": "0743289544"
+    "asin": "0743289544",
+    "rating": 3
   },
   {
     "id": "book-conqueror-napoleon",
@@ -37,7 +40,8 @@
     "loggedAt": "2026-07-25",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/0143127853",
-    "asin": "0143127853"
+    "asin": "0143127853",
+    "rating": 3
   },
   {
     "id": "book-conqueror-masters",
@@ -47,7 +51,8 @@
     "loggedAt": "2026-07-24",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/1439164495",
-    "asin": "1439164495"
+    "asin": "1439164495",
+    "rating": 3
   },
   {
     "id": "book-conqueror-cleopatra",
@@ -57,7 +62,8 @@
     "loggedAt": "2026-07-23",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/0316001945",
-    "asin": "0316001945"
+    "asin": "0316001945",
+    "rating": 1
   },
   {
     "id": "book-conqueror-philip-alexander",
@@ -67,7 +73,8 @@
     "loggedAt": "2026-07-22",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/1541602625",
-    "asin": "1541602625"
+    "asin": "1541602625",
+    "rating": 3
   },
   {
     "id": "book-conqueror-hitler-charisma",
@@ -77,7 +84,8 @@
     "loggedAt": "2026-07-21",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/0307389588",
-    "asin": "0307389588"
+    "asin": "0307389588",
+    "rating": 3
   },
   {
     "id": "book-conqueror-talleyrand",
@@ -87,7 +95,8 @@
     "loggedAt": "2026-07-20",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/0802137679",
-    "asin": "0802137679"
+    "asin": "0802137679",
+    "rating": 3
   },
   {
     "id": "book-conqueror-napoleon-maxims",
@@ -97,7 +106,8 @@
     "loggedAt": "2026-07-19",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/0486437302",
-    "asin": "0486437302"
+    "asin": "0486437302",
+    "rating": 2
   },
   {
     "id": "book-entrepreneur-disney",
@@ -107,7 +117,8 @@
     "loggedAt": "2026-07-18",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/0679757473",
-    "asin": "0679757473"
+    "asin": "0679757473",
+    "rating": 4
   },
   {
     "id": "book-entrepreneur-musk-vance",
@@ -117,7 +128,8 @@
     "loggedAt": "2026-07-17",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/0062301233",
-    "asin": "0062301233"
+    "asin": "0062301233",
+    "rating": 2
   },
   {
     "id": "book-entrepreneur-rockefeller-letters",
@@ -127,7 +139,8 @@
     "loggedAt": "2026-07-16",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/1088177832",
-    "asin": "1088177832"
+    "asin": "1088177832",
+    "rating": 4
   },
   {
     "id": "book-entrepreneur-nvidia",
@@ -137,7 +150,8 @@
     "loggedAt": "2026-07-15",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/1324086718",
-    "asin": "1324086718"
+    "asin": "1324086718",
+    "rating": 3
   },
   {
     "id": "book-entrepreneur-jobs",
@@ -160,7 +174,8 @@
     "loggedAt": "2026-07-13",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/1400077303",
-    "asin": "1400077303"
+    "asin": "1400077303",
+    "rating": 3
   },
   {
     "id": "book-entrepreneur-source-code",
@@ -170,7 +185,8 @@
     "loggedAt": "2026-07-12",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/059380158X",
-    "asin": "059380158X"
+    "asin": "059380158X",
+    "rating": 2
   },
   {
     "id": "book-entrepreneur-book-of-elon",
@@ -180,7 +196,8 @@
     "loggedAt": "2026-07-11",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/154455074X",
-    "asin": "154455074X"
+    "asin": "154455074X",
+    "rating": 4
   },
   {
     "id": "book-entrepreneur-poor-charlie",
@@ -190,7 +207,8 @@
     "loggedAt": "2026-07-10",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/157864366X",
-    "asin": "157864366X"
+    "asin": "157864366X",
+    "rating": 3
   },
   {
     "id": "book-entrepreneur-fish-whale",
@@ -200,7 +218,8 @@
     "loggedAt": "2026-07-09",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/0374299277",
-    "asin": "0374299277"
+    "asin": "0374299277",
+    "rating": 2
   },
   {
     "id": "book-genius-wright",
@@ -210,7 +229,8 @@
     "loggedAt": "2026-07-08",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/1476728755",
-    "asin": "1476728755"
+    "asin": "1476728755",
+    "rating": 1
   },
   {
     "id": "book-genius-einstein",
@@ -220,7 +240,8 @@
     "loggedAt": "2026-07-07",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/0743264746",
-    "asin": "0743264746"
+    "asin": "0743264746",
+    "rating": 4
   },
   {
     "id": "book-genius-feynman-joking",
@@ -230,7 +251,8 @@
     "loggedAt": "2026-07-06",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/0393316041",
-    "asin": "0393316041"
+    "asin": "0393316041",
+    "rating": 4
   },
   {
     "id": "book-genius-gleick-feynman",
@@ -240,7 +262,8 @@
     "loggedAt": "2026-07-05",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/0679747044",
-    "asin": "0679747044"
+    "asin": "0679747044",
+    "rating": 4
   },
   {
     "id": "book-genius-tesla-carlson",
@@ -250,7 +273,8 @@
     "loggedAt": "2026-07-04",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/0691165610",
-    "asin": "0691165610"
+    "asin": "0691165610",
+    "rating": 3
   },
   {
     "id": "book-genius-leonardo",
@@ -260,7 +284,8 @@
     "loggedAt": "2026-07-03",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/1501139150",
-    "asin": "1501139150"
+    "asin": "1501139150",
+    "rating": 3
   },
   {
     "id": "book-genius-tesla-auto",
@@ -271,7 +296,8 @@
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/159547871X",
     "asin": "159547871X",
-    "coverUrl": "https://covers.openlibrary.org/b/id/702420-L.jpg"
+    "coverUrl": "https://covers.openlibrary.org/b/id/702420-L.jpg",
+    "rating": 2
   },
   {
     "id": "book-genius-menlo",
@@ -281,7 +307,8 @@
     "loggedAt": "2026-07-01",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/1400047625",
-    "asin": "1400047625"
+    "asin": "1400047625",
+    "rating": 4
   },
   {
     "id": "book-genius-newton",
@@ -291,7 +318,8 @@
     "loggedAt": "2026-06-30",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/0060554851",
-    "asin": "0060554851"
+    "asin": "0060554851",
+    "rating": 4
   },
   {
     "id": "book-genius-franklin",
@@ -301,7 +329,8 @@
     "loggedAt": "2026-06-29",
     "category": "main characters only",
     "href": "https://www.amazon.com/dp/074325807X",
-    "asin": "074325807X"
+    "asin": "074325807X",
+    "rating": 2
   },
   {
     "id": "book-isaacson-elon-musk",
@@ -324,7 +353,8 @@
     "loggedAt": "2026-06-06",
     "href": "https://www.amazon.com/dp/1982115858",
     "asin": "1982115858",
-    "category": "main characters only"
+    "category": "main characters only",
+    "rating": 1
   },
   {
     "id": "book-isaacson-innovators",
@@ -334,7 +364,8 @@
     "loggedAt": "2026-06-04",
     "href": "https://www.amazon.com/dp/1476708703",
     "asin": "1476708703",
-    "category": "main characters only"
+    "category": "main characters only",
+    "rating": 3
   },
   {
     "id": "book-isaacson-american-sketches",
@@ -344,7 +375,8 @@
     "loggedAt": "2026-06-02",
     "href": "https://www.amazon.com/dp/1439183449",
     "asin": "1439183449",
-    "category": "main characters only"
+    "category": "main characters only",
+    "rating": 4
   },
   {
     "id": "book-isaacson-kissinger",
@@ -354,7 +386,8 @@
     "loggedAt": "2026-05-30",
     "href": "https://www.amazon.com/dp/0684825570",
     "asin": "0684825570",
-    "category": "main characters only"
+    "category": "main characters only",
+    "rating": 3
   },
   {
     "id": "book-isaacson-wise-men",
@@ -364,7 +397,8 @@
     "loggedAt": "2026-05-29",
     "href": "https://www.amazon.com/dp/0684837714",
     "asin": "0684837714",
-    "category": "main characters only"
+    "category": "main characters only",
+    "rating": 3
   },
   {
     "id": "book-72b4a40be692",
@@ -374,7 +408,8 @@
     "loggedAt": "2026-07-30",
     "category": "uncategorized",
     "asin": "1982153733",
-    "href": "https://www.amazon.com/dp/1982153733"
+    "href": "https://www.amazon.com/dp/1982153733",
+    "rating": 3
   },
   {
     "id": "book-a58aa4d15bc2",
@@ -384,7 +419,8 @@
     "loggedAt": "2026-07-29",
     "category": "uncategorized",
     "asin": "0465062881",
-    "href": "https://www.amazon.com/dp/0465062881"
+    "href": "https://www.amazon.com/dp/0465062881",
+    "rating": 4
   },
   {
     "id": "book-31173b526b1c",
@@ -394,7 +430,8 @@
     "loggedAt": "2026-07-28",
     "category": "uncategorized",
     "asin": "0062979973",
-    "href": "https://www.amazon.com/dp/0062979973"
+    "href": "https://www.amazon.com/dp/0062979973",
+    "rating": 3
   },
   {
     "id": "book-86c41ec62df4",
@@ -404,7 +441,8 @@
     "loggedAt": "2026-07-27",
     "category": "uncategorized",
     "asin": "0393356906",
-    "href": "https://www.amazon.com/dp/0393356906"
+    "href": "https://www.amazon.com/dp/0393356906",
+    "rating": 3
   },
   {
     "id": "book-c03817b07b8e",
@@ -414,7 +452,8 @@
     "loggedAt": "2026-07-26",
     "category": "uncategorized",
     "asin": "190491537X",
-    "href": "https://www.amazon.com/dp/190491537X"
+    "href": "https://www.amazon.com/dp/190491537X",
+    "rating": 4
   },
   {
     "id": "book-cae465db841c",
@@ -424,7 +463,8 @@
     "loggedAt": "2026-07-25",
     "category": "uncategorized",
     "asin": "1612190219",
-    "href": "https://www.amazon.com/dp/1612190219"
+    "href": "https://www.amazon.com/dp/1612190219",
+    "rating": 4
   },
   {
     "id": "book-8f23b3eb170a",
@@ -434,7 +474,8 @@
     "loggedAt": "2026-07-24",
     "category": "uncategorized",
     "asin": "0486433072",
-    "href": "https://www.amazon.com/dp/0486433072"
+    "href": "https://www.amazon.com/dp/0486433072",
+    "rating": 2
   },
   {
     "id": "book-97755bbe6218",
@@ -444,7 +485,8 @@
     "loggedAt": "2026-07-23",
     "category": "uncategorized",
     "asin": "1324093064",
-    "href": "https://www.amazon.com/dp/1324093064"
+    "href": "https://www.amazon.com/dp/1324093064",
+    "rating": 2
   },
   {
     "id": "book-865338a8451c",
@@ -454,7 +496,8 @@
     "loggedAt": "2026-07-22",
     "category": "uncategorized",
     "asin": "0307719952",
-    "href": "https://www.amazon.com/dp/0307719952"
+    "href": "https://www.amazon.com/dp/0307719952",
+    "rating": 3
   },
   {
     "id": "book-8dd63c47daa5",
@@ -464,7 +507,8 @@
     "loggedAt": "2026-07-21",
     "category": "uncategorized",
     "coverUrl": "https://covers.openlibrary.org/b/id/14578444-L.jpg",
-    "href": "https://www.amazon.com/dp/B0CHR1L7BM"
+    "href": "https://www.amazon.com/dp/B0CHR1L7BM",
+    "rating": 4
   },
   {
     "id": "book-sv-a5b6547157",
@@ -475,7 +519,8 @@
     "category": "everything startups",
     "year": 2003,
     "asin": "0060008768",
-    "href": "https://www.amazon.com/dp/0060008768"
+    "href": "https://www.amazon.com/dp/0060008768",
+    "rating": 3
   },
   {
     "id": "book-sv-9b30042c09",
@@ -486,7 +531,8 @@
     "category": "everything startups",
     "year": 2016,
     "asin": "0062458191",
-    "href": "https://www.amazon.com/dp/0062458191"
+    "href": "https://www.amazon.com/dp/0062458191",
+    "rating": 4
   },
   {
     "id": "book-sv-53096bff76",
@@ -497,7 +543,8 @@
     "category": "everything startups",
     "year": 2018,
     "asin": "152473165X",
-    "href": "https://www.amazon.com/dp/152473165X"
+    "href": "https://www.amazon.com/dp/152473165X",
+    "rating": 1
   },
   {
     "id": "book-sv-a3b223fd03",
@@ -508,7 +555,8 @@
     "category": "everything startups",
     "year": 2000,
     "asin": "0393347818",
-    "href": "https://www.amazon.com/dp/0393347818"
+    "href": "https://www.amazon.com/dp/0393347818",
+    "rating": 3
   },
   {
     "id": "book-sv-284c167525",
@@ -519,7 +567,8 @@
     "category": "everything startups",
     "year": 2017,
     "asin": "039959101X",
-    "href": "https://www.amazon.com/dp/039959101X"
+    "href": "https://www.amazon.com/dp/039959101X",
+    "rating": 2
   },
   {
     "id": "book-sv-2f9376ba18",
@@ -530,7 +579,8 @@
     "category": "everything startups",
     "year": 2017,
     "asin": "1501158198",
-    "href": "https://www.amazon.com/dp/1501158198"
+    "href": "https://www.amazon.com/dp/1501158198",
+    "rating": 4
   },
   {
     "id": "book-sv-af7bbd15be",
@@ -541,7 +591,8 @@
     "category": "everything startups",
     "year": 2013,
     "asin": "1591846013",
-    "href": "https://www.amazon.com/dp/1591846013"
+    "href": "https://www.amazon.com/dp/1591846013",
+    "rating": 2
   },
   {
     "id": "book-sv-34a11f3c5e",
@@ -552,7 +603,8 @@
     "category": "everything startups",
     "year": 2017,
     "asin": "0393634639",
-    "href": "https://www.amazon.com/dp/0393634639"
+    "href": "https://www.amazon.com/dp/0393634639",
+    "rating": 2
   },
   {
     "id": "book-sv-6a46834d13",
@@ -563,7 +615,8 @@
     "category": "everything startups",
     "year": 2017,
     "asin": "1451651503",
-    "href": "https://www.amazon.com/dp/1451651503"
+    "href": "https://www.amazon.com/dp/1451651503",
+    "rating": 3
   },
   {
     "id": "book-sv-d9d10c3e9f",
@@ -574,7 +627,8 @@
     "category": "everything startups",
     "year": 2018,
     "asin": "0525540172",
-    "href": "https://www.amazon.com/dp/0525540172"
+    "href": "https://www.amazon.com/dp/0525540172",
+    "rating": 2
   },
   {
     "id": "book-sv-3fbc2d4df3",
@@ -585,7 +639,8 @@
     "category": "everything startups",
     "year": 2017,
     "asin": "1476778949",
-    "href": "https://www.amazon.com/dp/1476778949"
+    "href": "https://www.amazon.com/dp/1476778949",
+    "rating": 4
   },
   {
     "id": "book-sv-4557e6b941",
@@ -596,7 +651,8 @@
     "category": "everything startups",
     "year": 2016,
     "asin": "0544734149",
-    "href": "https://www.amazon.com/dp/0544734149"
+    "href": "https://www.amazon.com/dp/0544734149",
+    "rating": 2
   },
   {
     "id": "book-sv-5c3ea65d1d",
@@ -607,7 +663,8 @@
     "category": "everything startups",
     "year": 2011,
     "asin": "1416596585",
-    "href": "https://www.amazon.com/dp/1416596585"
+    "href": "https://www.amazon.com/dp/1416596585",
+    "rating": 3
   },
   {
     "id": "book-sv-cccf72a168",
@@ -618,7 +675,8 @@
     "category": "everything startups",
     "year": 2012,
     "asin": "1451668252",
-    "href": "https://www.amazon.com/dp/1451668252"
+    "href": "https://www.amazon.com/dp/1451668252",
+    "rating": 1
   },
   {
     "id": "book-sv-1142495654",
@@ -629,7 +687,8 @@
     "category": "everything startups",
     "year": 2017,
     "asin": "0735213658",
-    "href": "https://www.amazon.com/dp/0735213658"
+    "href": "https://www.amazon.com/dp/0735213658",
+    "rating": 3
   },
   {
     "id": "book-sv-ac0639eeae",
@@ -640,7 +699,8 @@
     "category": "everything startups",
     "year": 2017,
     "asin": "0316388394",
-    "href": "https://www.amazon.com/dp/0316388394"
+    "href": "https://www.amazon.com/dp/0316388394",
+    "rating": 3
   },
   {
     "id": "book-sv-a342a1c699",
@@ -651,7 +711,8 @@
     "category": "everything startups",
     "year": 1999,
     "asin": "0767906039",
-    "href": "https://www.amazon.com/dp/0767906039"
+    "href": "https://www.amazon.com/dp/0767906039",
+    "rating": 2
   },
   {
     "id": "book-sv-2fdc52ef44",
@@ -662,7 +723,8 @@
     "category": "everything startups",
     "year": 2017,
     "asin": "1620972107",
-    "href": "https://www.amazon.com/dp/1620972107"
+    "href": "https://www.amazon.com/dp/1620972107",
+    "rating": 2
   },
   {
     "id": "book-sv-3ddcd08391",
@@ -673,7 +735,8 @@
     "category": "everything startups",
     "year": 2017,
     "asin": "0316275778",
-    "href": "https://www.amazon.com/dp/0316275778"
+    "href": "https://www.amazon.com/dp/0316275778",
+    "rating": 4
   },
   {
     "id": "book-sv-787b774b42",
@@ -684,7 +747,8 @@
     "category": "everything startups",
     "year": 2014,
     "asin": "0804139296",
-    "href": "https://www.amazon.com/dp/0804139296"
+    "href": "https://www.amazon.com/dp/0804139296",
+    "rating": 2
   },
   {
     "id": "book-sv-0a112a44a2",
@@ -695,7 +759,8 @@
     "category": "everything startups",
     "year": 2011,
     "asin": "0307887898",
-    "href": "https://www.amazon.com/dp/0307887898"
+    "href": "https://www.amazon.com/dp/0307887898",
+    "rating": 2
   },
   {
     "id": "book-sv-a69a961d98",
@@ -706,7 +771,8 @@
     "category": "everything startups",
     "year": 2010,
     "asin": "0307463745",
-    "href": "https://www.amazon.com/dp/0307463745"
+    "href": "https://www.amazon.com/dp/0307463745",
+    "rating": 3
   },
   {
     "id": "book-sv-9d86d004d7",
@@ -717,7 +783,8 @@
     "category": "everything startups",
     "year": 2018,
     "asin": "0735217645",
-    "href": "https://www.amazon.com/dp/0735217645"
+    "href": "https://www.amazon.com/dp/0735217645",
+    "rating": 3
   },
   {
     "id": "book-sv-9cc33cb2bb",
@@ -728,7 +795,8 @@
     "category": "everything startups",
     "year": 2018,
     "asin": "0735213321",
-    "href": "https://www.amazon.com/dp/0735213321"
+    "href": "https://www.amazon.com/dp/0735213321",
+    "rating": 4
   },
   {
     "id": "book-sv-a2d8cacba3",
@@ -739,7 +807,8 @@
     "category": "everything startups",
     "year": 2019,
     "asin": "0393652246",
-    "href": "https://www.amazon.com/dp/0393652246"
+    "href": "https://www.amazon.com/dp/0393652246",
+    "rating": 4
   },
   {
     "id": "book-sv-ff97cd2787",
@@ -750,7 +819,8 @@
     "category": "everything startups",
     "year": 2018,
     "asin": "1455559024",
-    "href": "https://www.amazon.com/dp/1455559024"
+    "href": "https://www.amazon.com/dp/1455559024",
+    "rating": 3
   },
   {
     "id": "book-sv-1455d6bb45",
@@ -761,7 +831,8 @@
     "category": "everything startups",
     "year": 2018,
     "asin": "1621575764",
-    "href": "https://www.amazon.com/dp/1621575764"
+    "href": "https://www.amazon.com/dp/1621575764",
+    "rating": 3
   },
   {
     "id": "book-sv-be26cd3394",
@@ -772,7 +843,8 @@
     "category": "everything startups",
     "year": 2019,
     "asin": "0316530204",
-    "href": "https://www.amazon.com/dp/0316530204"
+    "href": "https://www.amazon.com/dp/0316530204",
+    "rating": 3
   },
   {
     "id": "book-sv-4a528ad263",
@@ -783,7 +855,8 @@
     "category": "everything startups",
     "year": 2020,
     "asin": "0735213151",
-    "href": "https://www.amazon.com/dp/0735213151"
+    "href": "https://www.amazon.com/dp/0735213151",
+    "rating": 3
   },
   {
     "id": "book-sv-532d1f0fd1",
@@ -794,7 +867,8 @@
     "category": "everything startups",
     "year": 2020,
     "asin": "0525560122",
-    "href": "https://www.amazon.com/dp/0525560122"
+    "href": "https://www.amazon.com/dp/0525560122",
+    "rating": 4
   },
   {
     "id": "book-sv-aea971efd0",
@@ -805,7 +879,8 @@
     "category": "everything startups",
     "year": 2019,
     "asin": "0399562184",
-    "href": "https://www.amazon.com/dp/0399562184"
+    "href": "https://www.amazon.com/dp/0399562184",
+    "rating": 1
   },
   {
     "id": "book-sv-15fe619354",
@@ -816,7 +891,8 @@
     "category": "everything startups",
     "year": 2019,
     "asin": "0525573925",
-    "href": "https://www.amazon.com/dp/0525573925"
+    "href": "https://www.amazon.com/dp/0525573925",
+    "rating": 3
   },
   {
     "id": "book-sv-eb17b4eee6",
@@ -827,7 +903,8 @@
     "category": "everything startups",
     "year": 2014,
     "asin": "1591846358",
-    "href": "https://www.amazon.com/dp/1591846358"
+    "href": "https://www.amazon.com/dp/1591846358",
+    "rating": 1
   },
   {
     "id": "book-sv-c0cc9c261c",
@@ -838,7 +915,8 @@
     "category": "everything startups",
     "year": 2014,
     "asin": "1626814236",
-    "href": "https://www.amazon.com/dp/1626814236"
+    "href": "https://www.amazon.com/dp/1626814236",
+    "rating": 1
   },
   {
     "id": "book-sv-9235f21356",
@@ -849,7 +927,8 @@
     "category": "everything startups",
     "year": 2016,
     "asin": "0062435612",
-    "href": "https://www.amazon.com/dp/0062435612"
+    "href": "https://www.amazon.com/dp/0062435612",
+    "rating": 4
   },
   {
     "id": "book-sv-39c739b888",
@@ -860,7 +939,8 @@
     "category": "everything startups",
     "year": 2014,
     "asin": "1118968050",
-    "href": "https://www.amazon.com/dp/1118968050"
+    "href": "https://www.amazon.com/dp/1118968050",
+    "rating": 3
   },
   {
     "id": "book-sv-f158a0b228",
@@ -871,7 +951,8 @@
     "category": "everything startups",
     "year": 2012,
     "asin": "1119690684",
-    "href": "https://www.amazon.com/dp/1119690684"
+    "href": "https://www.amazon.com/dp/1119690684",
+    "rating": 3
   },
   {
     "id": "book-sv-ab734a8c5d",
@@ -882,7 +963,8 @@
     "category": "everything startups",
     "year": 2021,
     "asin": "022678648X",
-    "href": "https://www.amazon.com/dp/022678648X"
+    "href": "https://www.amazon.com/dp/022678648X",
+    "rating": 3
   },
   {
     "id": "book-sv-d7c7094fd2",
@@ -893,7 +975,8 @@
     "category": "everything startups",
     "year": 2021,
     "asin": "0374159270",
-    "href": "https://www.amazon.com/dp/0374159270"
+    "href": "https://www.amazon.com/dp/0374159270",
+    "rating": 3
   },
   {
     "id": "book-sv-db7b874654",
@@ -904,7 +987,8 @@
     "category": "everything startups",
     "year": 2021,
     "asin": "163576744X",
-    "href": "https://www.amazon.com/dp/163576744X"
+    "href": "https://www.amazon.com/dp/163576744X",
+    "rating": 1
   },
   {
     "id": "book-sv-9498206c28",
@@ -915,7 +999,8 @@
     "category": "everything startups",
     "year": 2021,
     "asin": "1501199439",
-    "href": "https://www.amazon.com/dp/1501199439"
+    "href": "https://www.amazon.com/dp/1501199439",
+    "rating": 4
   },
   {
     "id": "book-sv-f08c41e790",
@@ -926,7 +1011,8 @@
     "category": "everything startups",
     "year": 2020,
     "asin": "1647820189",
-    "href": "https://www.amazon.com/dp/1647820189"
+    "href": "https://www.amazon.com/dp/1647820189",
+    "rating": 3
   },
   {
     "id": "book-sv-3fb3019601",
@@ -937,7 +1023,8 @@
     "category": "everything startups",
     "year": 2020,
     "asin": "111969129X",
-    "href": "https://www.amazon.com/dp/111969129X"
+    "href": "https://www.amazon.com/dp/111969129X",
+    "rating": 2
   },
   {
     "id": "book-psy-820c59ef06",
@@ -947,7 +1034,8 @@
     "loggedAt": "2026-07-30",
     "category": "psychology",
     "coverUrl": "https://covers.openlibrary.org/b/id/13209292-L.jpg",
-    "href": "https://www.amazon.com/s?k=The%20Public%20Speaking%20Bible%3A%20A%20Survival%20Guide%20for%20Standing%20on%20Stage%20Marcus%20Alexander"
+    "href": "https://www.amazon.com/s?k=The%20Public%20Speaking%20Bible%3A%20A%20Survival%20Guide%20for%20Standing%20on%20Stage%20Marcus%20Alexander",
+    "rating": 4
   },
   {
     "id": "book-psy-566baa3d22",
@@ -957,7 +1045,8 @@
     "loggedAt": "2026-07-30",
     "category": "psychology",
     "asin": "006124189X",
-    "href": "https://www.amazon.com/dp/006124189X"
+    "href": "https://www.amazon.com/dp/006124189X",
+    "rating": 4
   },
   {
     "id": "book-psy-1d254f9913",
@@ -967,7 +1056,8 @@
     "loggedAt": "2026-07-30",
     "category": "psychology",
     "asin": "1733670300",
-    "href": "https://www.amazon.com/dp/1733670300"
+    "href": "https://www.amazon.com/dp/1733670300",
+    "rating": 3
   },
   {
     "id": "book-psy-7b3a1ba6e9",
@@ -977,7 +1067,8 @@
     "loggedAt": "2026-07-30",
     "category": "psychology",
     "asin": "0671723650",
-    "href": "https://www.amazon.com/dp/0671723650"
+    "href": "https://www.amazon.com/dp/0671723650",
+    "rating": 3
   },
   {
     "id": "book-psy-0344e700b7",
@@ -987,7 +1078,8 @@
     "loggedAt": "2026-07-30",
     "category": "psychology",
     "asin": "0062407805",
-    "href": "https://www.amazon.com/dp/0062407805"
+    "href": "https://www.amazon.com/dp/0062407805",
+    "rating": 4
   },
   {
     "id": "book-psy-35000981c0",
@@ -995,7 +1087,8 @@
     "title": "The Art of Persuasion: The Language of Influence and Manipulation",
     "source": "Andrzej Batko",
     "loggedAt": "2026-07-29",
-    "category": "psychology"
+    "category": "psychology",
+    "rating": 1
   },
   {
     "id": "book-psy-8c03dc3fb4",
@@ -1003,7 +1096,8 @@
     "title": "The Extremely Successful Salesman's Club",
     "source": "Chris Murray",
     "loggedAt": "2026-07-29",
-    "category": "psychology"
+    "category": "psychology",
+    "rating": 4
   },
   {
     "id": "book-psy-bb89dc0441",
@@ -1011,7 +1105,8 @@
     "title": "Closing Deals: Make an Offer",
     "source": "Snapshot Systems",
     "loggedAt": "2026-07-29",
-    "category": "psychology"
+    "category": "psychology",
+    "rating": 2
   },
   {
     "id": "book-psy-7e9d31611d",
@@ -1019,7 +1114,8 @@
     "title": "The Art of Influencing Anyone",
     "source": "Niall Cassidy",
     "loggedAt": "2026-07-29",
-    "category": "psychology"
+    "category": "psychology",
+    "rating": 3
   },
   {
     "id": "book-psy-bd459b2f2e",
@@ -1029,7 +1125,8 @@
     "loggedAt": "2026-07-29",
     "category": "psychology",
     "asin": "1400064287",
-    "href": "https://www.amazon.com/dp/1400064287"
+    "href": "https://www.amazon.com/dp/1400064287",
+    "rating": 3
   },
   {
     "id": "book-psy-31723681d1",
@@ -1039,7 +1136,8 @@
     "loggedAt": "2026-07-29",
     "category": "psychology",
     "asin": "039472903X",
-    "href": "https://www.amazon.com/dp/039472903X"
+    "href": "https://www.amazon.com/dp/039472903X",
+    "rating": 4
   },
   {
     "id": "book-psy-923c113927",
@@ -1047,7 +1145,8 @@
     "title": "Magical Worlds of The Wizard of Ads: Tools and Techniques for Profitable Persuasion",
     "source": "Roy H. Williams",
     "loggedAt": "2026-07-29",
-    "category": "psychology"
+    "category": "psychology",
+    "rating": 2
   },
   {
     "id": "book-psy-ff8716879b",
@@ -1057,7 +1156,8 @@
     "loggedAt": "2026-07-29",
     "category": "psychology",
     "asin": "0143118757",
-    "href": "https://www.amazon.com/dp/0143118757"
+    "href": "https://www.amazon.com/dp/0143118757",
+    "rating": 4
   },
   {
     "id": "book-psy-7dbd68db83",
@@ -1065,7 +1165,8 @@
     "title": "MindHub: Personality Profiler",
     "source": "Snapshot Systems",
     "loggedAt": "2026-07-29",
-    "category": "psychology"
+    "category": "psychology",
+    "rating": 3
   },
   {
     "id": "book-psy-54b2b2b5ad",
@@ -1075,7 +1176,8 @@
     "loggedAt": "2026-07-29",
     "category": "psychology",
     "asin": "0743271130",
-    "href": "https://www.amazon.com/dp/0743271130"
+    "href": "https://www.amazon.com/dp/0743271130",
+    "rating": 3
   },
   {
     "id": "book-psy-f206395e04",
@@ -1085,7 +1187,8 @@
     "loggedAt": "2026-07-29",
     "category": "psychology",
     "coverUrl": "https://covers.openlibrary.org/b/id/561872-L.jpg",
-    "href": "https://www.amazon.com/s?k=Zig%20Ziglar's%20Secrets%20of%20Closing%20the%20Sale%20Zig%20Ziglar"
+    "href": "https://www.amazon.com/s?k=Zig%20Ziglar's%20Secrets%20of%20Closing%20the%20Sale%20Zig%20Ziglar",
+    "rating": 4
   },
   {
     "id": "book-psy-987da6c073",
@@ -1095,7 +1198,8 @@
     "loggedAt": "2026-07-29",
     "category": "psychology",
     "asin": "0142001198",
-    "href": "https://www.amazon.com/dp/0142001198"
+    "href": "https://www.amazon.com/dp/0142001198",
+    "rating": 4
   },
   {
     "id": "book-psy-90d1d49085",
@@ -1105,7 +1209,8 @@
     "loggedAt": "2026-07-29",
     "category": "psychology",
     "asin": "1416576142",
-    "href": "https://www.amazon.com/dp/1416576142"
+    "href": "https://www.amazon.com/dp/1416576142",
+    "rating": 3
   },
   {
     "id": "book-psy-e79f281887",
@@ -1113,7 +1218,8 @@
     "title": "Selling with EASE: The Four Step Sales Cycle Found in Every Successful Business Transaction",
     "source": "Chris Murray",
     "loggedAt": "2026-07-29",
-    "category": "psychology"
+    "category": "psychology",
+    "rating": 4
   },
   {
     "id": "book-psy-2500b078e0",
@@ -1123,7 +1229,8 @@
     "loggedAt": "2026-07-30",
     "category": "psychology",
     "coverUrl": "https://covers.openlibrary.org/b/id/3729638-L.jpg",
-    "href": "https://www.amazon.com/s?k=The%20Wizard%20of%20Ads%20Roy%20H.%20Williams"
+    "href": "https://www.amazon.com/s?k=The%20Wizard%20of%20Ads%20Roy%20H.%20Williams",
+    "rating": 4
   },
   {
     "id": "book-hist-07dd7424fb",
@@ -1133,7 +1240,8 @@
     "loggedAt": "2026-07-30",
     "category": "history",
     "asin": "0743223136",
-    "href": "https://www.amazon.com/dp/0743223136"
+    "href": "https://www.amazon.com/dp/0743223136",
+    "rating": 3
   },
   {
     "id": "book-hist-818c6ffe86",
@@ -1143,7 +1251,8 @@
     "loggedAt": "2026-07-30",
     "category": "history",
     "asin": "1451651686",
-    "href": "https://www.amazon.com/dp/1451651686"
+    "href": "https://www.amazon.com/dp/1451651686",
+    "rating": 4
   },
   {
     "id": "book-hist-7606f9dd38",
@@ -1153,7 +1262,8 @@
     "loggedAt": "2026-07-30",
     "category": "history",
     "asin": "0743226720",
-    "href": "https://www.amazon.com/dp/0743226720"
+    "href": "https://www.amazon.com/dp/0743226720",
+    "rating": 2
   },
   {
     "id": "book-hist-77a049a21d",
@@ -1163,7 +1273,8 @@
     "loggedAt": "2026-07-30",
     "category": "history",
     "asin": "0345476093",
-    "href": "https://www.amazon.com/dp/0345476093"
+    "href": "https://www.amazon.com/dp/0345476093",
+    "rating": 2
   },
   {
     "id": "book-hist-1459cdf1d7",
@@ -1173,7 +1284,8 @@
     "loggedAt": "2026-07-30",
     "category": "history",
     "asin": "0743270754",
-    "href": "https://www.amazon.com/dp/0743270754"
+    "href": "https://www.amazon.com/dp/0743270754",
+    "rating": 4
   },
   {
     "id": "book-hist-f96348d72c",
@@ -1183,7 +1295,8 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "asin": "0393317552",
-    "href": "https://www.amazon.com/dp/0393317552"
+    "href": "https://www.amazon.com/dp/0393317552",
+    "rating": 4
   },
   {
     "id": "book-hist-2bd69e5b03",
@@ -1193,7 +1306,8 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "asin": "0553577123",
-    "href": "https://www.amazon.com/dp/0553577123"
+    "href": "https://www.amazon.com/dp/0553577123",
+    "rating": 3
   },
   {
     "id": "book-hist-9b775f9b4e",
@@ -1203,7 +1317,8 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "asin": "0812974492",
-    "href": "https://www.amazon.com/dp/0812974492"
+    "href": "https://www.amazon.com/dp/0812974492",
+    "rating": 4
   },
   {
     "id": "book-hist-bbc6363ef6",
@@ -1213,7 +1328,8 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "asin": "0805086846",
-    "href": "https://www.amazon.com/dp/0805086846"
+    "href": "https://www.amazon.com/dp/0805086846",
+    "rating": 3
   },
   {
     "id": "book-hist-ce0095c427",
@@ -1223,7 +1339,8 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "asin": "0375725601",
-    "href": "https://www.amazon.com/dp/0375725601"
+    "href": "https://www.amazon.com/dp/0375725601",
+    "rating": 3
   },
   {
     "id": "book-hist-04affaf3de",
@@ -1233,7 +1350,8 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "asin": "076790818X",
-    "href": "https://www.amazon.com/dp/076790818X"
+    "href": "https://www.amazon.com/dp/076790818X",
+    "rating": 2
   },
   {
     "id": "book-hist-606cd4b3dc",
@@ -1243,7 +1361,8 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "asin": "0062397346",
-    "href": "https://www.amazon.com/dp/0062397346"
+    "href": "https://www.amazon.com/dp/0062397346",
+    "rating": 3
   },
   {
     "id": "book-hist-3df24136f8",
@@ -1253,7 +1372,8 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "asin": "0345349571",
-    "href": "https://www.amazon.com/dp/0345349571"
+    "href": "https://www.amazon.com/dp/0345349571",
+    "rating": 1
   },
   {
     "id": "book-hist-8e80407496",
@@ -1263,7 +1383,8 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "asin": "019516895X",
-    "href": "https://www.amazon.com/dp/019516895X"
+    "href": "https://www.amazon.com/dp/019516895X",
+    "rating": 1
   },
   {
     "id": "book-hist-d79cf9905a",
@@ -1273,7 +1394,8 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "asin": "0374500010",
-    "href": "https://www.amazon.com/dp/0374500010"
+    "href": "https://www.amazon.com/dp/0374500010",
+    "rating": 4
   },
   {
     "id": "book-hist-cf8cbd568a",
@@ -1283,7 +1405,8 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "href": "https://www.amazon.com/s?k=The%20Histories%20Herodotus",
-    "coverUrl": "https://covers.openlibrary.org/b/id/9829028-L.jpg"
+    "coverUrl": "https://covers.openlibrary.org/b/id/9829028-L.jpg",
+    "rating": 4
   },
   {
     "id": "book-hist-9086349b76",
@@ -1293,7 +1416,8 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "asin": "0140437649",
-    "href": "https://www.amazon.com/dp/0140437649"
+    "href": "https://www.amazon.com/dp/0140437649",
+    "rating": 3
   },
   {
     "id": "book-hist-992b72ca76",
@@ -1303,7 +1427,8 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "asin": "0684826976",
-    "href": "https://www.amazon.com/dp/0684826976"
+    "href": "https://www.amazon.com/dp/0684826976",
+    "rating": 4
   },
   {
     "id": "book-hist-20814c0760",
@@ -1313,7 +1438,8 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "asin": "0679721037",
-    "href": "https://www.amazon.com/dp/0679721037"
+    "href": "https://www.amazon.com/dp/0679721037",
+    "rating": 2
   },
   {
     "id": "book-hist-ac3292e6ea",
@@ -1323,7 +1449,8 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "asin": "0671869205",
-    "href": "https://www.amazon.com/dp/0671869205"
+    "href": "https://www.amazon.com/dp/0671869205",
+    "rating": 2
   },
   {
     "id": "book-hist-8192473ec8",
@@ -1333,7 +1460,8 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "asin": "0465068367",
-    "href": "https://www.amazon.com/dp/0465068367"
+    "href": "https://www.amazon.com/dp/0465068367",
+    "rating": 4
   },
   {
     "id": "book-hist-3ab6c28f91",
@@ -1343,7 +1471,8 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "asin": "0140440399",
-    "href": "https://www.amazon.com/dp/0140440399"
+    "href": "https://www.amazon.com/dp/0140440399",
+    "rating": 4
   },
   {
     "id": "book-hist-aa25c5c789",
@@ -1353,7 +1482,8 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "asin": "1400032059",
-    "href": "https://www.amazon.com/dp/1400032059"
+    "href": "https://www.amazon.com/dp/1400032059",
+    "rating": 3
   },
   {
     "id": "book-hist-3b5504ead0",
@@ -1363,7 +1493,8 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "asin": "0140284583",
-    "href": "https://www.amazon.com/dp/0140284583"
+    "href": "https://www.amazon.com/dp/0140284583",
+    "rating": 3
   },
   {
     "id": "book-hist-a6860eeea1",
@@ -1373,7 +1504,8 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "asin": "074322454X",
-    "href": "https://www.amazon.com/dp/074322454X"
+    "href": "https://www.amazon.com/dp/074322454X",
+    "rating": 4
   },
   {
     "id": "book-hist-ce91fe29ba",
@@ -1383,7 +1515,8 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "asin": "0375756787",
-    "href": "https://www.amazon.com/dp/0375756787"
+    "href": "https://www.amazon.com/dp/0375756787",
+    "rating": 3
   },
   {
     "id": "book-hist-45949ede7d",
@@ -1393,7 +1526,8 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "asin": "0609809644",
-    "href": "https://www.amazon.com/dp/0609809644"
+    "href": "https://www.amazon.com/dp/0609809644",
+    "rating": 4
   },
   {
     "id": "book-hist-0958a88c65",
@@ -1403,7 +1537,8 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "href": "https://www.amazon.com/s?k=The%20Civil%20War%3A%20A%20Narrative%20Shelby%20Foote",
-    "coverUrl": "https://covers.openlibrary.org/b/id/167629-L.jpg"
+    "coverUrl": "https://covers.openlibrary.org/b/id/167629-L.jpg",
+    "rating": 3
   },
   {
     "id": "book-hist-d550669a6e",
@@ -1413,7 +1548,8 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "asin": "0143034758",
-    "href": "https://www.amazon.com/dp/0143034758"
+    "href": "https://www.amazon.com/dp/0143034758",
+    "rating": 3
   },
   {
     "id": "book-hist-66aff1e027",
@@ -1423,7 +1559,8 @@
     "loggedAt": "2026-07-28",
     "category": "history",
     "asin": "0345298063",
-    "href": "https://www.amazon.com/dp/0345298063"
+    "href": "https://www.amazon.com/dp/0345298063",
+    "rating": 3
   },
   {
     "id": "book-hist-b2c878c83f",
@@ -1433,7 +1570,8 @@
     "loggedAt": "2026-07-28",
     "category": "history",
     "asin": "0618001905",
-    "href": "https://www.amazon.com/dp/0618001905"
+    "href": "https://www.amazon.com/dp/0618001905",
+    "rating": 4
   },
   {
     "id": "book-hist-5fe2302de2",
@@ -1443,7 +1581,8 @@
     "loggedAt": "2026-07-28",
     "category": "history",
     "asin": "0345408772",
-    "href": "https://www.amazon.com/dp/0345408772"
+    "href": "https://www.amazon.com/dp/0345408772",
+    "rating": 4
   },
   {
     "id": "book-hist-23083a1c99",
@@ -1453,7 +1592,8 @@
     "loggedAt": "2026-07-28",
     "category": "history",
     "asin": "0618773479",
-    "href": "https://www.amazon.com/dp/0618773479"
+    "href": "https://www.amazon.com/dp/0618773479",
+    "rating": 4
   },
   {
     "id": "book-hist-6dcf6f608d",
@@ -1463,7 +1603,8 @@
     "loggedAt": "2026-07-28",
     "category": "history",
     "asin": "0375760520",
-    "href": "https://www.amazon.com/dp/0375760520"
+    "href": "https://www.amazon.com/dp/0375760520",
+    "rating": 4
   },
   {
     "id": "book-hist-4bada8e2cf",
@@ -1473,7 +1614,8 @@
     "loggedAt": "2026-07-28",
     "category": "history",
     "asin": "0143111973",
-    "href": "https://www.amazon.com/dp/0143111973"
+    "href": "https://www.amazon.com/dp/0143111973",
+    "rating": 4
   },
   {
     "id": "book-hist-e552e88c53",
@@ -1483,7 +1625,8 @@
     "loggedAt": "2026-07-28",
     "category": "history",
     "asin": "0345438310",
-    "href": "https://www.amazon.com/dp/0345438310"
+    "href": "https://www.amazon.com/dp/0345438310",
+    "rating": 3
   },
   {
     "id": "book-hist-06152f7e8f",
@@ -1493,7 +1636,8 @@
     "loggedAt": "2026-07-28",
     "category": "history",
     "asin": "0140455167",
-    "href": "https://www.amazon.com/dp/0140455167"
+    "href": "https://www.amazon.com/dp/0140455167",
+    "rating": 4
   },
   {
     "id": "book-hist-5286808c2f",
@@ -1503,7 +1647,8 @@
     "loggedAt": "2026-07-28",
     "category": "history",
     "asin": "0061253804",
-    "href": "https://www.amazon.com/dp/0061253804"
+    "href": "https://www.amazon.com/dp/0061253804",
+    "rating": 1
   },
   {
     "id": "book-hist-469784da76",
@@ -1513,7 +1658,8 @@
     "loggedAt": "2026-07-28",
     "category": "history",
     "href": "https://www.amazon.com/s?k=In%20the%20Heart%20of%20the%20Sea%3A%20The%20Tragedy%20of%20the%20Whaleship%20Essex%20Nathaniel%20Philbrick",
-    "coverUrl": "https://covers.openlibrary.org/b/id/402602-L.jpg"
+    "coverUrl": "https://covers.openlibrary.org/b/id/402602-L.jpg",
+    "rating": 3
   },
   {
     "id": "book-hist-abfae9193e",
@@ -1523,7 +1669,8 @@
     "loggedAt": "2026-07-28",
     "category": "history",
     "asin": "0743296281",
-    "href": "https://www.amazon.com/dp/0743296281"
+    "href": "https://www.amazon.com/dp/0743296281",
+    "rating": 3
   },
   {
     "id": "book-hist-5f3a8ae4a3",
@@ -1533,7 +1680,8 @@
     "loggedAt": "2026-07-28",
     "category": "history",
     "asin": "1416591060",
-    "href": "https://www.amazon.com/dp/1416591060"
+    "href": "https://www.amazon.com/dp/1416591060",
+    "rating": 3
   },
   {
     "id": "book-hist-d01c22d5ec",
@@ -1543,7 +1691,8 @@
     "loggedAt": "2026-07-28",
     "category": "history",
     "asin": "0345405013",
-    "href": "https://www.amazon.com/dp/0345405013"
+    "href": "https://www.amazon.com/dp/0345405013",
+    "rating": 3
   },
   {
     "id": "book-hist-0d097cedc3",
@@ -1553,7 +1702,8 @@
     "loggedAt": "2026-07-28",
     "category": "history",
     "asin": "0060839783",
-    "href": "https://www.amazon.com/dp/0060839783"
+    "href": "https://www.amazon.com/dp/0060839783",
+    "rating": 1
   },
   {
     "id": "book-hist-c32e678b99",
@@ -1563,7 +1713,8 @@
     "loggedAt": "2026-07-28",
     "category": "history",
     "asin": "038549565X",
-    "href": "https://www.amazon.com/dp/038549565X"
+    "href": "https://www.amazon.com/dp/038549565X",
+    "rating": 3
   },
   {
     "id": "book-hist-eff45db825",
@@ -1573,7 +1724,8 @@
     "loggedAt": "2026-07-28",
     "category": "history",
     "asin": "0812966007",
-    "href": "https://www.amazon.com/dp/0812966007"
+    "href": "https://www.amazon.com/dp/0812966007",
+    "rating": 3
   },
   {
     "id": "book-hist-faac83c1ec",
@@ -1583,7 +1735,8 @@
     "loggedAt": "2026-07-28",
     "category": "history",
     "asin": "0143117009",
-    "href": "https://www.amazon.com/dp/0143117009"
+    "href": "https://www.amazon.com/dp/0143117009",
+    "rating": 3
   },
   {
     "id": "book-hist-5a898ec938",
@@ -1593,7 +1746,8 @@
     "loggedAt": "2026-07-28",
     "category": "history",
     "asin": "0767929713",
-    "href": "https://www.amazon.com/dp/0767929713"
+    "href": "https://www.amazon.com/dp/0767929713",
+    "rating": 4
   },
   {
     "id": "book-hist-caba14efdf",
@@ -1603,7 +1757,8 @@
     "loggedAt": "2026-07-28",
     "category": "history",
     "asin": "1400078970",
-    "href": "https://www.amazon.com/dp/1400078970"
+    "href": "https://www.amazon.com/dp/1400078970",
+    "rating": 4
   },
   {
     "id": "book-hist-fc3477d1e0",
@@ -1613,7 +1768,8 @@
     "loggedAt": "2026-07-28",
     "category": "history",
     "asin": "1451677618",
-    "href": "https://www.amazon.com/dp/1451677618"
+    "href": "https://www.amazon.com/dp/1451677618",
+    "rating": 1
   },
   {
     "id": "book-hist-c923a9ae0f",
@@ -1623,7 +1779,8 @@
     "loggedAt": "2026-07-28",
     "category": "history",
     "asin": "0891419063",
-    "href": "https://www.amazon.com/dp/0891419063"
+    "href": "https://www.amazon.com/dp/0891419063",
+    "rating": 4
   },
   {
     "id": "book-hist-a2cfe8060d",
@@ -1633,7 +1790,8 @@
     "loggedAt": "2026-07-28",
     "category": "history",
     "asin": "0684848015",
-    "href": "https://www.amazon.com/dp/0684848015"
+    "href": "https://www.amazon.com/dp/0684848015",
+    "rating": 4
   },
   {
     "id": "book-hist-57c4e01807",
@@ -1643,7 +1801,8 @@
     "loggedAt": "2026-07-28",
     "category": "history",
     "asin": "0060518502",
-    "href": "https://www.amazon.com/dp/0060518502"
+    "href": "https://www.amazon.com/dp/0060518502",
+    "rating": 2
   },
   {
     "id": "book-hist-da9995d223",
@@ -1653,7 +1812,8 @@
     "loggedAt": "2026-07-28",
     "category": "history",
     "asin": "080271529X",
-    "href": "https://www.amazon.com/dp/080271529X"
+    "href": "https://www.amazon.com/dp/080271529X",
+    "rating": 2
   },
   {
     "id": "book-hist-5d9aba7921",
@@ -1663,7 +1823,8 @@
     "loggedAt": "2026-07-27",
     "category": "history",
     "asin": "0385418493",
-    "href": "https://www.amazon.com/dp/0385418493"
+    "href": "https://www.amazon.com/dp/0385418493",
+    "rating": 2
   },
   {
     "id": "book-hist-b6b623adb1",
@@ -1673,7 +1834,8 @@
     "loggedAt": "2026-07-27",
     "category": "history",
     "asin": "0143036971",
-    "href": "https://www.amazon.com/dp/0143036971"
+    "href": "https://www.amazon.com/dp/0143036971",
+    "rating": 2
   },
   {
     "id": "book-hist-a73b265d1c",
@@ -1683,7 +1845,8 @@
     "loggedAt": "2026-07-27",
     "category": "history",
     "asin": "0142001619",
-    "href": "https://www.amazon.com/dp/0142001619"
+    "href": "https://www.amazon.com/dp/0142001619",
+    "rating": 4
   },
   {
     "id": "book-hist-840261bdaa",
@@ -1693,7 +1856,8 @@
     "loggedAt": "2026-07-27",
     "category": "history",
     "asin": "0465031471",
-    "href": "https://www.amazon.com/dp/0465031471"
+    "href": "https://www.amazon.com/dp/0465031471",
+    "rating": 4
   },
   {
     "id": "book-hist-38513700c5",
@@ -1703,7 +1867,8 @@
     "loggedAt": "2026-07-27",
     "category": "history",
     "asin": "0451528816",
-    "href": "https://www.amazon.com/dp/0451528816"
+    "href": "https://www.amazon.com/dp/0451528816",
+    "rating": 3
   },
   {
     "id": "book-fave-mans-search-meaning",
@@ -1726,7 +1891,8 @@
     "loggedAt": "2026-07-30",
     "category": "everything startups",
     "asin": "0143121359",
-    "href": "https://www.amazon.com/dp/0143121359"
+    "href": "https://www.amazon.com/dp/0143121359",
+    "rating": 3
   },
   {
     "id": "book-sa-23aa1255e5",
@@ -1736,7 +1902,8 @@
     "loggedAt": "2026-07-30",
     "category": "everything startups",
     "asin": "1524761419",
-    "href": "https://www.amazon.com/dp/1524761419"
+    "href": "https://www.amazon.com/dp/1524761419",
+    "rating": 3
   },
   {
     "id": "book-sa-631a71f022",
@@ -1746,7 +1913,8 @@
     "loggedAt": "2026-07-30",
     "category": "everything startups",
     "asin": "0198739834",
-    "href": "https://www.amazon.com/dp/0198739834"
+    "href": "https://www.amazon.com/dp/0198739834",
+    "rating": 4
   },
   {
     "id": "book-sa-98c5188e52",
@@ -1756,7 +1924,8 @@
     "loggedAt": "2026-07-30",
     "category": "everything startups",
     "asin": "0060753943",
-    "href": "https://www.amazon.com/dp/0060753943"
+    "href": "https://www.amazon.com/dp/0060753943",
+    "rating": 3
   },
   {
     "id": "book-sa-ec41dd4af0",
@@ -1766,7 +1935,8 @@
     "loggedAt": "2026-07-30",
     "category": "everything startups",
     "asin": "059308358X",
-    "href": "https://www.amazon.com/dp/059308358X"
+    "href": "https://www.amazon.com/dp/059308358X",
+    "rating": 4
   },
   {
     "id": "book-sa-b35be21dd3",
@@ -1776,7 +1946,8 @@
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "0140455116",
-    "href": "https://www.amazon.com/dp/0140455116"
+    "href": "https://www.amazon.com/dp/0140455116",
+    "rating": 4
   },
   {
     "id": "book-sa-27aef0a5f6",
@@ -1786,7 +1957,8 @@
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "0374533555",
-    "href": "https://www.amazon.com/dp/0374533555"
+    "href": "https://www.amazon.com/dp/0374533555",
+    "rating": 4
   },
   {
     "id": "book-sa-d1bd07d8f1",
@@ -1796,7 +1968,8 @@
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "0812968255",
-    "href": "https://www.amazon.com/dp/0812968255"
+    "href": "https://www.amazon.com/dp/0812968255",
+    "rating": 4
   },
   {
     "id": "book-sa-7aecf89b0c",
@@ -1806,7 +1979,8 @@
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "0060850523",
-    "href": "https://www.amazon.com/dp/0060850523"
+    "href": "https://www.amazon.com/dp/0060850523",
+    "rating": 4
   },
   {
     "id": "book-sa-f91542f279",
@@ -1816,7 +1990,8 @@
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "1591843472",
-    "href": "https://www.amazon.com/dp/1591843472"
+    "href": "https://www.amazon.com/dp/1591843472",
+    "rating": 3
   },
   {
     "id": "book-sa-2b9094931e",
@@ -1826,7 +2001,8 @@
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "0143035002",
-    "href": "https://www.amazon.com/dp/0143035002"
+    "href": "https://www.amazon.com/dp/0143035002",
+    "rating": 2
   },
   {
     "id": "book-sa-a173b60e42",
@@ -1836,7 +2012,8 @@
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "0553382578",
-    "href": "https://www.amazon.com/dp/0553382578"
+    "href": "https://www.amazon.com/dp/0553382578",
+    "rating": 4
   },
   {
     "id": "book-sa-0c87ca0c31",
@@ -1846,7 +2023,8 @@
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "0195019199",
-    "href": "https://www.amazon.com/dp/0195019199"
+    "href": "https://www.amazon.com/dp/0195019199",
+    "rating": 3
   },
   {
     "id": "book-sa-b1c411b9b6",
@@ -1856,7 +2034,8 @@
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "067974195X",
-    "href": "https://www.amazon.com/dp/067974195X"
+    "href": "https://www.amazon.com/dp/067974195X",
+    "rating": 4
   },
   {
     "id": "book-sa-1a53d0e46e",
@@ -1866,7 +2045,8 @@
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "0618057072",
-    "href": "https://www.amazon.com/dp/0618057072"
+    "href": "https://www.amazon.com/dp/0618057072",
+    "rating": 3
   },
   {
     "id": "book-sa-59c8b3c9a4",
@@ -1876,7 +2056,8 @@
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "0375727434",
-    "href": "https://www.amazon.com/dp/0375727434"
+    "href": "https://www.amazon.com/dp/0375727434",
+    "rating": 4
   },
   {
     "id": "book-sa-4f6a514908",
@@ -1886,7 +2067,8 @@
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "1250169445",
-    "href": "https://www.amazon.com/dp/1250169445"
+    "href": "https://www.amazon.com/dp/1250169445",
+    "rating": 2
   },
   {
     "id": "book-sa-e1b381f266",
@@ -1896,7 +2078,8 @@
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "0520290887",
-    "href": "https://www.amazon.com/dp/0520290887"
+    "href": "https://www.amazon.com/dp/0520290887",
+    "rating": 1
   },
   {
     "id": "book-sa-8bbb3cb014",
@@ -1906,7 +2089,8 @@
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "0887308910",
-    "href": "https://www.amazon.com/dp/0887308910"
+    "href": "https://www.amazon.com/dp/0887308910",
+    "rating": 2
   },
   {
     "id": "book-sa-3a4c7bf14e",
@@ -1916,7 +2100,8 @@
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "031242728X",
-    "href": "https://www.amazon.com/dp/031242728X"
+    "href": "https://www.amazon.com/dp/031242728X",
+    "rating": 1
   },
   {
     "id": "book-sa-453ff164c6",
@@ -1926,7 +2111,8 @@
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "0375725784",
-    "href": "https://www.amazon.com/dp/0375725784"
+    "href": "https://www.amazon.com/dp/0375725784",
+    "rating": 3
   },
   {
     "id": "book-sa-d4e2bb53eb",
@@ -1936,7 +2122,8 @@
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "0815344643",
-    "href": "https://www.amazon.com/dp/0815344643"
+    "href": "https://www.amazon.com/dp/0815344643",
+    "rating": 3
   },
   {
     "id": "book-sa-3a1063e1f6",
@@ -1946,7 +2133,8 @@
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "1119281644",
-    "href": "https://www.amazon.com/dp/1119281644"
+    "href": "https://www.amazon.com/dp/1119281644",
+    "rating": 3
   },
   {
     "id": "book-sa-eba41532f0",
@@ -1956,7 +2144,8 @@
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "0486278077",
-    "href": "https://www.amazon.com/dp/0486278077"
+    "href": "https://www.amazon.com/dp/0486278077",
+    "rating": 3
   },
   {
     "id": "book-sa-00756755e3",
@@ -1966,7 +2155,8 @@
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "0670063584",
-    "href": "https://www.amazon.com/dp/0670063584"
+    "href": "https://www.amazon.com/dp/0670063584",
+    "rating": 2
   },
   {
     "id": "book-sa-841afacceb",
@@ -1976,7 +2166,8 @@
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "0521528003",
-    "href": "https://www.amazon.com/dp/0521528003"
+    "href": "https://www.amazon.com/dp/0521528003",
+    "rating": 3
   },
   {
     "id": "book-sa-97e1c8ddcf",
@@ -1986,7 +2177,8 @@
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "0465020283",
-    "href": "https://www.amazon.com/dp/0465020283"
+    "href": "https://www.amazon.com/dp/0465020283",
+    "rating": 3
   },
   {
     "id": "book-sa-c8c73de46a",
@@ -1996,7 +2188,8 @@
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "0679720227",
-    "href": "https://www.amazon.com/dp/0679720227"
+    "href": "https://www.amazon.com/dp/0679720227",
+    "rating": 4
   },
   {
     "id": "book-sa-329d90939c",
@@ -2006,7 +2199,8 @@
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "0385260326",
-    "href": "https://www.amazon.com/dp/0385260326"
+    "href": "https://www.amazon.com/dp/0385260326",
+    "rating": 4
   },
   {
     "id": "book-sa-9b9a527782",
@@ -2016,7 +2210,8 @@
     "loggedAt": "2026-07-28",
     "category": "everything startups",
     "asin": "0375404031",
-    "href": "https://www.amazon.com/dp/0375404031"
+    "href": "https://www.amazon.com/dp/0375404031",
+    "rating": 3
   },
   {
     "id": "book-sa-cf7100fcf9",
@@ -2026,7 +2221,8 @@
     "loggedAt": "2026-07-28",
     "category": "everything startups",
     "asin": "1880685221",
-    "href": "https://www.amazon.com/dp/1880685221"
+    "href": "https://www.amazon.com/dp/1880685221",
+    "rating": 3
   },
   {
     "id": "book-sa-c861b4f193",
@@ -2036,7 +2232,8 @@
     "loggedAt": "2026-07-28",
     "category": "everything startups",
     "asin": "0061146668",
-    "href": "https://www.amazon.com/dp/0061146668"
+    "href": "https://www.amazon.com/dp/0061146668",
+    "rating": 2
   },
   {
     "id": "book-sa-df82c2b748",
@@ -2046,7 +2243,8 @@
     "loggedAt": "2026-07-28",
     "category": "everything startups",
     "asin": "0140107479",
-    "href": "https://www.amazon.com/dp/0140107479"
+    "href": "https://www.amazon.com/dp/0140107479",
+    "rating": 3
   },
   {
     "id": "book-sa-8fbb5ca4d2",
@@ -2056,7 +2254,8 @@
     "loggedAt": "2026-07-28",
     "category": "everything startups",
     "asin": "067973337X",
-    "href": "https://www.amazon.com/dp/067973337X"
+    "href": "https://www.amazon.com/dp/067973337X",
+    "rating": 4
   },
   {
     "id": "book-sa-3879dba73a",
@@ -2066,7 +2265,8 @@
     "loggedAt": "2026-07-28",
     "category": "everything startups",
     "asin": "0465022200",
-    "href": "https://www.amazon.com/dp/0465022200"
+    "href": "https://www.amazon.com/dp/0465022200",
+    "rating": 4
   },
   {
     "id": "book-sa-a0fdd26380",
@@ -2076,7 +2276,8 @@
     "loggedAt": "2026-07-28",
     "category": "everything startups",
     "asin": "067179437X",
-    "href": "https://www.amazon.com/dp/067179437X"
+    "href": "https://www.amazon.com/dp/067179437X",
+    "rating": 1
   },
   {
     "id": "book-sa-0912aa8db1",
@@ -2086,7 +2287,8 @@
     "loggedAt": "2026-07-28",
     "category": "everything startups",
     "asin": "0316743305",
-    "href": "https://www.amazon.com/dp/0316743305"
+    "href": "https://www.amazon.com/dp/0316743305",
+    "rating": 4
   },
   {
     "id": "book-sa-e1e3e103d6",
@@ -2096,7 +2298,8 @@
     "loggedAt": "2026-07-28",
     "category": "everything startups",
     "asin": "0553382519",
-    "href": "https://www.amazon.com/dp/0553382519"
+    "href": "https://www.amazon.com/dp/0553382519",
+    "rating": 2
   },
   {
     "id": "book-sa-0c5790caec",
@@ -2106,7 +2309,8 @@
     "loggedAt": "2026-07-28",
     "category": "everything startups",
     "asin": "0786303158",
-    "href": "https://www.amazon.com/dp/0786303158"
+    "href": "https://www.amazon.com/dp/0786303158",
+    "rating": 3
   },
   {
     "id": "book-sa-f37f006fc9",
@@ -2116,6 +2320,7 @@
     "loggedAt": "2026-07-28",
     "category": "everything startups",
     "asin": "0471048852",
-    "href": "https://www.amazon.com/dp/0471048852"
+    "href": "https://www.amazon.com/dp/0471048852",
+    "rating": 4
   }
 ]
