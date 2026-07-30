@@ -33,7 +33,9 @@ You are **UI polish** for the public Bookshelf (not the whole site unless asked)
 - Tagline: small, italic, full content width
 - Folder counts: `n = k`
 - Clean covers; cream/light ink on `.pb-root`
-- No dividing-line clutter between folders (1.5 spacing stack)
+- **Single-spaced everything** on the bookshelf page: line-height ~1.15, tight
+  folder gaps (~0.2rem), compressed greats/cards/chips — no double-spaced air
+- No dividing-line clutter between folders
 
 ## Rules
 - Smallest CSS/TSX diff that ships the request

@@ -4388,29 +4388,31 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   }
 }
 
-/* Public page chrome */
+/* Public page chrome — tight, single-spaced shelf */
 .bookshelf-page--wonder {
   min-height: calc(100vh - 3.5rem);
   background:
     radial-gradient(90% 46% at 50% -8%, rgba(167, 139, 212, 0.08), transparent 65%),
     linear-gradient(180deg, #fbf7ef, #f0e8da);
-  padding: 0.5rem 0 1rem;
+  padding: 0.25rem 0 0.75rem;
 }
 .bl-public-wrap {
   width: min(100% - 1.5rem, 78rem);
-  margin: 0.75rem auto 1.5rem;
+  margin: 0.35rem auto 0.75rem;
 }
 .bl-public-wrap .bl {
   min-height: calc(100svh - 5rem);
-  padding: 18px 20px 28px;
+  padding: 10px 16px 18px;
   box-sizing: border-box;
+  line-height: 1.15;
 }
 .bookshelf-page__home {
   width: min(100% - 1.5rem, 78rem);
-  margin: 0 auto 1.5rem;
+  margin: 0 auto 0.75rem;
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  line-height: 1.15;
 }
 .bookshelf-page__home a {
   color: #71695f;
@@ -4435,54 +4437,79 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   color: #1a1612 !important;
 }
 
-/* Personal why-I-read line under Bookshelf — full shelf width, small italic */
+/* ——— celine-ui: entire public bookshelf is single-spaced + tight ——— */
+.pb-root,
+.pb-root .bl,
+.pb-root p,
+.pb-root li,
+.pb-root span,
+.pb-root small,
+.pb-root strong,
+.pb-root a,
+.pb-root button {
+  line-height: 1.15 !important;
+}
+
+.pb-root .bl-head {
+  margin-bottom: 4px !important;
+  padding-bottom: 0 !important;
+}
+.pb-root .bl-head-main {
+  gap: 8px !important;
+}
 .pb-root .bl-head-copy {
   width: 100%;
   max-width: none;
   flex: 1 1 100%;
+  gap: 0 !important;
 }
+.pb-root .bl-title {
+  margin: 0 !important;
+  line-height: 1.05 !important;
+}
+
 .pb-root .pb-shelf-tagline,
 .pb-root .bl-tagline {
   display: block;
   box-sizing: border-box;
-  margin: 0.4rem 0 0;
+  margin: 0.2rem 0 0 !important;
   padding: 0;
   max-width: none !important;
   width: 100% !important;
   color: #5c534a !important;
   font-size: 0.72rem;
-  line-height: 1.4;
+  line-height: 1.2 !important;
   font-weight: 400;
   font-style: italic;
   text-align: left;
 }
 
+.pb-root .bl-filter {
+  gap: 4px !important;
+  margin: 4px 0 6px !important;
+  padding: 0 !important;
+}
+.pb-root .bl-chip {
+  padding: 4px 8px !important;
+  line-height: 1.1 !important;
+}
 .pb-root .bl-card-author,
 .pb-root .bl-stats,
 .pb-root .bl-folder small,
 .pb-root .bl-chip {
   color: #3d3630 !important;
 }
-
 .pb-root .bl-chip.is-on,
 .pb-root .bl-chip.is-on em {
   color: #1a1612 !important;
 }
-
 .pb-root .bl-chip em {
   color: #5c534a !important;
 }
-
-.pb-root .bl-search {
-  color: #1a1612 !important;
-}
-
-.pb-root .bl-search::placeholder {
-  color: #6b6358 !important;
-}
-
 .pb-root .bl-empty-all {
   color: #3d3630 !important;
+  margin: 4px 0 !important;
+  line-height: 1.15 !important;
 }
 
 /* Card is a link — no detail page */
@@ -4498,32 +4525,23 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   text-decoration: none;
   cursor: pointer;
 }
-
-.pb-root a.pb-buy.bl-card-continue {
-  display: block;
-  margin-top: 8px;
-  padding: 7px 8px;
-  border: 1px solid rgba(65, 51, 36, 0.16);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.65);
-  color: #1a1612 !important;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-align: center;
-  text-decoration: none;
+.pb-root .bl-card-title {
+  margin: 2px 0 0 !important;
+  line-height: 1.15 !important;
+}
+.pb-root .bl-card-author {
+  margin: 0 !important;
+  line-height: 1.1 !important;
+}
+.pb-root .bl-grid {
+  gap: 8px 10px !important;
+  padding: 4px 0 8px 28px !important;
 }
 
-.pb-root a.pb-buy.bl-card-continue:hover {
-  border-color: rgba(184, 134, 11, 0.45);
-  background: rgba(212, 188, 130, 0.22);
-  color: #1a1612 !important;
-}
-
-/* Public shelf: no dividing lines; folders stacked with room to breathe */
+/* Folders: single-spaced stack, no fat gaps / dividers */
 .pb-root .bl-shelf,
 .pb-root .bl-shelf:last-of-type {
-  margin: 0;
+  margin: 0 !important;
   border: 0 !important;
   border-top: 0 !important;
   border-bottom: 0 !important;
@@ -4531,7 +4549,7 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   outline: none;
 }
 .pb-root .bl-shelf + .bl-shelf {
-  margin-top: 1.5rem; /* stack folders with 1.5 spacing between */
+  margin-top: 0.2rem !important;
 }
 .pb-root .bl-shelf::before,
 .pb-root .bl-shelf:hover::before,
@@ -4539,26 +4557,82 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   display: none !important;
   content: none !important;
 }
-/* Greats section: no hairline divider above */
-.pb-root .bl-greats,
-.pb-root .bl-greats-after-books {
-  border-top: 0 !important;
-  margin-top: 1.5rem;
+.pb-root .bl-folder-row {
+  margin: 0 !important;
 }
-
+.pb-root .bl-folder {
+  gap: 6px !important;
+  padding: 3px 2px !important;
+  line-height: 1.1 !important;
+}
+.pb-root .bl-folder-copy {
+  gap: 0 !important;
+}
+.pb-root .bl-folder strong {
+  line-height: 1.1 !important;
+}
+.pb-root .bl-folder small {
+  line-height: 1.05 !important;
+  margin: 0 !important;
+}
 .pb-root .bl-folder-caret {
   display: inline-block;
   width: 1em;
   transition: transform 140ms ease;
 }
-
 .pb-root .bl-shelf.is-open .bl-folder-caret {
   transform: rotate(90deg);
 }
-
 .pb-root .bl-folder-icon {
   font-size: 16px;
-  line-height: 1;
+  line-height: 1 !important;
+}
+.pb-root .bl-shelf > .bl-grid {
+  padding: 2px 0 6px 28px !important;
+}
+
+/* Greats / blogs — tight under books */
+.pb-root .bl-greats,
+.pb-root .bl-greats-after-books {
+  border-top: 0 !important;
+  margin: 0.5rem 0 0 !important;
+  padding-top: 0 !important;
+}
+.pb-root .bl-greats-head {
+  gap: 8px !important;
+  margin-bottom: 4px !important;
+  align-items: baseline !important;
+}
+.pb-root .bl-greats-head > div {
+  gap: 0 !important;
+}
+.pb-root .bl-greats-h {
+  margin: 0 !important;
+  line-height: 1.1 !important;
+}
+.pb-root .bl-greats-grid {
+  gap: 6px !important;
+}
+.pb-root .bl-greats-card {
+  gap: 4px !important;
+  padding: 8px 10px !important;
+}
+.pb-root .bl-greats-card > header {
+  gap: 4px !important;
+  margin: 0 !important;
+}
+.pb-root .bl-greats-card ul {
+  gap: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.pb-root .bl-greats-card li a {
+  padding: 1px 0 !important;
+  line-height: 1.15 !important;
+}
+.pb-root .bl-greats-home {
+  margin-top: 2px !important;
+  line-height: 1.1 !important;
 }
 
 /* Product covers from Amazon — clean photo, no fake spine gradients */
@@ -4574,7 +4648,6 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   object-position: center top;
   display: block;
 }
-/* Hide the fake spine edge line over real covers */
 .pb-root .pb-cover-photo::after {
   display: none !important;
 }
