@@ -86,8 +86,9 @@ export const siteConfig = {
     { label: "Bookshelf", href: "/bookshelf", tagline: "Notes · highlights" },
     { label: "Contact", href: "/contact", tagline: "Say hello" },
   ],
-  /** BUILDS · BLOG · BOOKSHELF · CONTACT — keep it short, no overwhelm */
+  /** HOME first on every page, then BUILDS · BLOG · BOOKSHELF · CONTACT */
   nav: [
+    { label: "Home", href: "/" },
     { label: "Builds", href: "/projects" },
     { label: "Blog", href: "/blog" },
     { label: "Bookshelf", href: "/bookshelf" },

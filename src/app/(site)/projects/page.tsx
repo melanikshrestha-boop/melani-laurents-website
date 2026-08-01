@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ProjectGrid } from "@/components/ProjectGrid";
 import { projects } from "@/data/projects";
-// Link kept for back home only
 
 export const metadata: Metadata = {
   title: "Builds",
@@ -38,10 +36,6 @@ export default function ProjectsPage() {
         </header>
 
         <ProjectGrid projects={projects} />
-
-        <p className="builds-surface__home">
-          <Link href="/">← Back home</Link>
-        </p>
       </div>
     </div>
   );

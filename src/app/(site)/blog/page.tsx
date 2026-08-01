@@ -15,9 +15,6 @@ export default function BlogIndexPage() {
 
   return (
     <div className="ib-page">
-      <p className="ib-nav">
-        <Link href="/">← Home</Link>
-      </p>
       <p className="ib-kicker">Theses · open for disagreement</p>
       <h1 className="ib-title">Blog</h1>
       <p className="ib-lede">
