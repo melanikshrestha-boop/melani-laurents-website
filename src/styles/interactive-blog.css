@@ -10,12 +10,13 @@
   --notes-line: rgba(20, 18, 16, 0.08);
   --notes-paper: #f7f1e7;
   --notes-select: rgba(244, 164, 188, 0.45);
+  /* Same edge gutters as Bookshelf / cinema-nav (logo left · nav right · 10px) */
+  --notes-gutter: 10px;
 
   position: relative;
   z-index: 2;
   -webkit-user-select: text;
   user-select: text;
-  /* Full-bleed cream like Bookshelf / Builds — not a dark strip with a card */
   width: 100%;
   max-width: none;
   margin: 0;
@@ -23,13 +24,31 @@
   color: var(--notes-ink);
   background: var(--notes-paper);
   min-height: calc(100dvh - 3.5rem);
-  /* Center readable column at ~40rem */
-  padding: clamp(28px, 5vw, 48px) max(1.25rem, calc((100% - 40rem) / 2)) 5rem;
+  /* Edge-hug: content starts at left gutter, not a floating center column */
+  padding: 1.25rem var(--notes-gutter) 4rem;
 }
 
 .ib-page--wide {
-  padding-left: max(1.25rem, calc((100% - 40rem) / 2));
-  padding-right: max(1.25rem, calc((100% - 40rem) / 2));
+  padding-left: var(--notes-gutter);
+  padding-right: var(--notes-gutter);
+}
+
+/* Reading measure still left-aligned to the gutter */
+.ib-page > .ib-kicker,
+.ib-page > .ib-title,
+.ib-page > .ib-lede,
+.ib-page > .ib-nav,
+.ib-page > .ib-list,
+.ib-page > .ib-stance,
+.ib-page > .ib-thesis,
+.ib-page > .ib-body,
+.ib-page > .ib-related,
+.ib-page > .op-thread,
+.ib-page > .ib-date,
+.ib-page > .consume-grid {
+  max-width: 42rem;
+  margin-left: 0;
+  margin-right: auto;
 }
 
 .ib-page ::selection {
@@ -42,38 +61,38 @@
 }
 
 .ib-kicker {
-  margin: 0 0 20px;
-  font-size: 12px;
+  margin: 0 0 0.5rem;
+  font-size: 11px;
   font-weight: 400;
-  letter-spacing: 0.02em;
-  text-transform: none;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--notes-faint);
-  font-family: var(--font-serif), "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-family: var(--font-share-tech-mono), var(--font-jetbrains-mono), ui-monospace, monospace;
 }
 
 .ib-title {
-  margin: 0 0 10px;
+  margin: 0 0 0.65rem;
   font-family: var(--font-serif), "Iowan Old Style", Palatino, Georgia, serif;
-  font-size: clamp(1.85rem, 4.5vw, 2.35rem);
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
   font-weight: 400;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+  letter-spacing: -0.03em;
+  line-height: 1;
   color: var(--notes-ink);
 }
 
 .ib-lede {
-  margin: 0 0 40px;
+  margin: 0 0 1.75rem;
   font-family: var(--font-serif), Georgia, serif;
   font-size: 1.05rem;
   font-weight: 400;
-  line-height: 1.55;
+  line-height: 1.35;
   color: var(--notes-soft);
-  max-width: 34rem;
+  max-width: 36rem;
 }
 
 .ib-nav {
-  margin: 0 0 36px;
-  font-size: 13px;
+  margin: 0 0 1.25rem;
+  font-size: 12px;
   font-family: var(--font-serif), Georgia, serif;
   color: var(--notes-faint);
 }
@@ -114,13 +133,22 @@
   color: #3b7ea8;
 }
 
+/* Date left · discuss cue right */
+.ib-list__meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 4px;
+}
+
 .ib-list__date {
   display: block;
   font-size: 12px;
   letter-spacing: 0.01em;
   text-transform: none;
   color: var(--notes-faint);
-  margin-bottom: 6px;
+  margin-bottom: 0;
   font-family: var(--font-serif), Georgia, serif;
 }
 
@@ -143,13 +171,15 @@
 }
 
 .ib-list__discuss {
-  margin: 10px 0 0;
-  font-family: var(--font-mono-label, ui-monospace, monospace);
-  font-size: 10px;
-  letter-spacing: 0.14em;
+  margin: 0;
+  flex-shrink: 0;
+  font-family: var(--font-share-tech-mono), var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--notes-faint, #8a8478);
   font-weight: 400;
+  text-align: right;
 }
 
 /* Quiet stance — Notes-style secondary, not gold badge */

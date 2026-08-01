@@ -26,7 +26,10 @@ export default function BlogIndexPage() {
         {posts.map((post) => (
           <li key={post.slug}>
             <Link href={`/blog/${post.slug}`}>
-              <span className="ib-list__date">{post.date}</span>
+              <div className="ib-list__meta">
+                <span className="ib-list__date">{post.date}</span>
+                <span className="ib-list__discuss">comments →</span>
+              </div>
               <h2 className="ib-list__title">{post.title}</h2>
               <p className="ib-list__lede">
                 <span className="ib-stance" style={{ marginRight: 10 }}>
@@ -34,7 +37,6 @@ export default function BlogIndexPage() {
                 </span>
                 {post.lede}
               </p>
-              <p className="ib-list__discuss">Open for comments &amp; opinions →</p>
             </Link>
           </li>
         ))}

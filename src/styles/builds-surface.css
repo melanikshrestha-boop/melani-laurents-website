@@ -25,10 +25,20 @@
 }
 
 .builds-surface__inner {
-  width: min(100% - 2rem, 44rem);
-  margin: 0 auto;
-  padding: 1.5rem 0 4rem;
+  /* Edge-hug like Bookshelf: 10px gutters, content left-aligned (not centered float) */
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 1.25rem 10px 4rem;
   box-sizing: border-box;
+}
+
+.builds-surface__inner > header,
+.builds-surface__inner > .builds-list,
+.builds-surface__inner > .builds-surface__home {
+  max-width: 44rem;
+  margin-left: 0;
+  margin-right: auto;
 }
 
 .builds-surface__kicker {
