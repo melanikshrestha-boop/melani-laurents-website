@@ -190,7 +190,7 @@
     "id": "book-b4b8095d01fc",
     "kind": "book",
     "title": "The Laramie Project",
-    "source": "Moisés Kaufman",
+    "source": "Mois\u00e9s Kaufman",
     "loggedAt": "2026-07-30",
     "category": "high school reads",
     "href": "https://www.amazon.com/dp/8416876940",
@@ -406,7 +406,7 @@
     "asin": "0307278441",
     "rating": 5,
     "favorite": true,
-    "favoriteWhy": "High school — reread for fun. 5★."
+    "favoriteWhy": "High school \u2014 reread for fun. 5\u2605."
   },
   {
     "id": "book-4cd734f3a4c9",
@@ -583,7 +583,7 @@
     "href": "https://www.amazon.com/dp/1451648537",
     "asin": "1451648537",
     "favorite": true,
-    "favoriteWhy": "Isaacson — main character energy.",
+    "favoriteWhy": "Isaacson \u2014 main character energy.",
     "rating": 5
   },
   {
@@ -762,7 +762,7 @@
     "asin": "1982181281",
     "category": "main characters only",
     "favorite": true,
-    "favoriteWhy": "Isaacson — main character energy.",
+    "favoriteWhy": "Isaacson \u2014 main character energy.",
     "rating": 5
   },
   {
@@ -946,7 +946,7 @@
     "id": "book-sv-9b30042c09",
     "kind": "book",
     "title": "Chaos Monkeys",
-    "source": "Antonio García Martínez",
+    "source": "Antonio Garc\u00eda Mart\u00ednez",
     "loggedAt": "2026-07-30",
     "category": "everything startups",
     "year": 2016,
@@ -1908,7 +1908,7 @@
   {
     "id": "book-hist-3b5504ead0",
     "kind": "book",
-    "title": "Stalingrad: The Fateful Siege, 1942–1943",
+    "title": "Stalingrad: The Fateful Siege, 1942\u20131943",
     "source": "Antony Beevor",
     "loggedAt": "2026-07-29",
     "category": "history",
@@ -2062,7 +2062,7 @@
   {
     "id": "book-hist-5286808c2f",
     "kind": "book",
-    "title": "The Gulag Archipelago 1918–1956",
+    "title": "The Gulag Archipelago 1918\u20131956",
     "source": "Aleksandr Solzhenitsyn",
     "loggedAt": "2026-07-28",
     "category": "history",
@@ -2300,7 +2300,7 @@
     "href": "https://www.amazon.com/dp/0807014273",
     "asin": "0807014273",
     "favorite": true,
-    "favoriteWhy": "Rare fave — meaning under pressure.",
+    "favoriteWhy": "Rare fave \u2014 meaning under pressure.",
     "rating": 5
   },
   {
@@ -2375,7 +2375,7 @@
     "title": "Thinking, Fast and Slow",
     "source": "Daniel Kahneman",
     "loggedAt": "2026-07-29",
-    "category": "everything startups",
+    "category": "psychology",
     "asin": "0374533555",
     "href": "https://www.amazon.com/dp/0374533555",
     "rating": 4
@@ -2483,7 +2483,7 @@
     "id": "book-sa-4f6a514908",
     "kind": "book",
     "title": "Call Me by Your Name",
-    "source": "André Aciman",
+    "source": "Andr\u00e9 Aciman",
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "1250169445",
@@ -2714,7 +2714,7 @@
     "id": "book-sa-e1e3e103d6",
     "kind": "book",
     "title": "Hunger of Memory",
-    "source": "Richard Rodríguez",
+    "source": "Richard Rodr\u00edguez",
     "loggedAt": "2026-07-28",
     "category": "everything startups",
     "asin": "0553382519",
@@ -2742,5 +2742,104 @@
     "asin": "0471048852",
     "href": "https://www.amazon.com/dp/0471048852",
     "rating": 4
+  },
+  {
+    "id": "book-psy-a2d1b16a1c",
+    "kind": "book",
+    "title": "Predictably Irrational: The Hidden Forces That Shape Our Decisions",
+    "source": "Dan Ariely",
+    "loggedAt": "2026-08-01",
+    "category": "psychology",
+    "asin": "006135323X",
+    "href": "https://www.amazon.com/dp/006135323X",
+    "rating": 0
+  },
+  {
+    "id": "book-psy-def314e22b",
+    "kind": "book",
+    "title": "The Upside of Irrationality: The Unexpected Benefits of Defying Logic at Work and at Home",
+    "source": "Dan Ariely",
+    "loggedAt": "2026-08-01",
+    "category": "psychology",
+    "asin": "0061995037",
+    "href": "https://www.amazon.com/dp/0061995037",
+    "rating": 0
+  },
+  {
+    "id": "book-psy-bd5da3eeac",
+    "kind": "book",
+    "title": "Why Smart People Make Big Money Mistakes and How to Correct Them: Lessons from the Life-Changing Science of Behavioral Economics",
+    "source": "Gary Belsky and Thomas Gilovich",
+    "loggedAt": "2026-08-01",
+    "category": "psychology",
+    "asin": "0684844931",
+    "href": "https://www.amazon.com/dp/0684844931",
+    "rating": 0
+  },
+  {
+    "id": "book-psy-f05255f463",
+    "kind": "book",
+    "title": "Why She Buys: The New Strategy for Reaching the World's Most Powerful Consumers",
+    "source": "Bridget Brennan",
+    "loggedAt": "2026-08-01",
+    "category": "psychology",
+    "asin": "0307405935",
+    "href": "https://www.amazon.com/dp/0307405935",
+    "rating": 0
+  },
+  {
+    "id": "book-psy-ff605501df",
+    "kind": "book",
+    "title": "Blink: The Power of Thinking Without Thinking",
+    "source": "Malcolm Gladwell",
+    "loggedAt": "2026-08-01",
+    "category": "psychology",
+    "asin": "0316010669",
+    "href": "https://www.amazon.com/dp/0316010669",
+    "rating": 0
+  },
+  {
+    "id": "book-psy-c78866a2b7",
+    "kind": "book",
+    "title": "The Art of Choosing",
+    "source": "Sheena Iyengar",
+    "loggedAt": "2026-08-01",
+    "category": "psychology",
+    "asin": "0446504114",
+    "href": "https://www.amazon.com/dp/0446504114",
+    "rating": 0
+  },
+  {
+    "id": "book-psy-b86d4388ea",
+    "kind": "book",
+    "title": "The Paradox of Choice: Why More Is Less",
+    "source": "Barry Schwartz",
+    "loggedAt": "2026-08-01",
+    "category": "psychology",
+    "asin": "0060005696",
+    "href": "https://www.amazon.com/dp/0060005696",
+    "rating": 0
+  },
+  {
+    "id": "book-psy-e0f394c046",
+    "kind": "book",
+    "title": "Nudge: Improving Decisions About Health, Wealth, and Happiness",
+    "source": "Richard H. Thaler and Cass R. Sunstein",
+    "loggedAt": "2026-08-01",
+    "category": "psychology",
+    "asin": "014311526X",
+    "href": "https://www.amazon.com/dp/014311526X",
+    "rating": 0
+  },
+  {
+    "id": "book-psy-2afc6e2fd7",
+    "kind": "book",
+    "title": "Why We Buy: The Science of Shopping \u2014 Updated and Revised for the Internet, the Global Consumer, and Beyond",
+    "source": "Paco Underhill",
+    "loggedAt": "2026-08-01",
+    "category": "psychology",
+    "asin": "1416595244",
+    "href": "https://www.amazon.com/dp/1416595244",
+    "rating": 0
   }
 ]
