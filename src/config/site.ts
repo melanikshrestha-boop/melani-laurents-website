@@ -5,7 +5,7 @@ export const siteConfig = {
   title: "Celine Nova",
   description:
     "Open sourcing my mind through essays, books, daily inputs, and the things I build.",
-  email: "itsmelanilaurents@gmail.com",
+  email: "celinenovaa@gmail.com",
   location: "Mostly LA — sometimes SF or NYC",
   /**
    * Bookshelf manifesto (home callout + /bookshelf).

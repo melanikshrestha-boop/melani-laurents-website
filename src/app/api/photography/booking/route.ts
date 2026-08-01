@@ -19,7 +19,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         error:
-          "Booking email is not configured yet. Please email itsmelanilaurent@gmail.com directly.",
+          "Booking email is not configured yet. Please email celinenovaa@gmail.com directly.",
       },
       { status: 503 },
     );

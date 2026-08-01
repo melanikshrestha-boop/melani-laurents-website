@@ -33,7 +33,7 @@ export const photographyVibes = [
 
 export const photographyBooking = {
   instagramHandle: "melanilaurents",
-  email: "itsmelanilaurent@gmail.com",
+  email: "celinenovaa@gmail.com",
   mailtoSubject: "Photoshoot inquiry",
   dmMessage:
     "Hi Celine! I'd like to book a photoshoot.\n\nPreferred date: \nShoot type: Portraits / Scenery\n",
