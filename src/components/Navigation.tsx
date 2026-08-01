@@ -80,6 +80,12 @@ export function Navigation() {
       pathname.startsWith("/bookshelf/") ||
       pathname === "/projects" ||
       pathname.startsWith("/projects/") ||
+      pathname === "/blog" ||
+      pathname.startsWith("/blog/") ||
+      pathname === "/diary" ||
+      pathname.startsWith("/diary/") ||
+      pathname === "/consume" ||
+      pathname.startsWith("/consume/") ||
       pathname === "/contact" ||
       pathname.startsWith("/contact/"));
 
@@ -89,6 +95,10 @@ export function Navigation() {
       pathname.startsWith("/bookshelf/") ||
       pathname === "/projects" ||
       pathname.startsWith("/projects/") ||
+      pathname === "/blog" ||
+      pathname.startsWith("/blog/") ||
+      pathname === "/diary" ||
+      pathname.startsWith("/diary/") ||
       pathname === "/daily" ||
       pathname.startsWith("/daily/") ||
       pathname === "/contact" ||

@@ -1,33 +1,32 @@
 /*
- * Diary + Blog — Apple Notes minimal on the site void.
- * Quiet type, long breath between entries, no cages, no gold noise.
- * Homage to time kept: date, thing, thought. Nothing else.
+ * Blog + Diary — same cream paper as Bookshelf / Builds (#f7f1e7).
+ * Quiet type, tight single-space lists. No dark void.
  */
 
 .ib-page {
-  --notes-ink: rgba(244, 241, 234, 0.92);
-  --notes-soft: rgba(244, 241, 234, 0.42);
-  --notes-faint: rgba(244, 241, 234, 0.28);
-  --notes-line: rgba(244, 241, 234, 0.06);
+  --notes-ink: #141210;
+  --notes-soft: #5c534a;
+  --notes-faint: #9a9084;
+  --notes-line: rgba(20, 18, 16, 0.08);
+  --notes-paper: #f7f1e7;
 
   position: relative;
   z-index: 2;
-  width: min(640px, 100%);
-  margin: 0 auto;
-  padding: clamp(36px, 7vw, 72px) clamp(20px, 5vw, 32px) 96px;
+  /* Full-bleed cream like Bookshelf / Builds — not a dark strip with a card */
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  box-sizing: border-box;
   color: var(--notes-ink);
-  /* Soft veil so any residual field never cuts the words */
-  background: linear-gradient(
-    180deg,
-    rgba(3, 5, 8, 0.72) 0%,
-    rgba(3, 5, 8, 0.88) 18%,
-    rgba(3, 5, 8, 0.92) 100%
-  );
+  background: var(--notes-paper);
   min-height: calc(100dvh - 3.5rem);
+  /* Center readable column at ~40rem */
+  padding: clamp(28px, 5vw, 48px) max(1.25rem, calc((100% - 40rem) / 2)) 5rem;
 }
 
 .ib-page--wide {
-  width: min(640px, 100%);
+  padding-left: max(1.25rem, calc((100% - 40rem) / 2));
+  padding-right: max(1.25rem, calc((100% - 40rem) / 2));
 }
 
 .ib-kicker {
@@ -85,7 +84,7 @@
 }
 
 .ib-list > li {
-  padding: 22px 0;
+  padding: 12px 0;
   border-top: 1px solid var(--notes-line);
 }
 
@@ -100,7 +99,7 @@
 }
 
 .ib-list a:hover .ib-list__title {
-  color: #fff;
+  color: #3b7ea8;
 }
 
 .ib-list__date {
@@ -127,7 +126,7 @@
   margin: 0;
   font-family: var(--font-serif), Georgia, serif;
   font-size: 0.95rem;
-  line-height: 1.5;
+  line-height: 1.25;
   color: var(--notes-soft);
 }
 
@@ -175,7 +174,7 @@
   margin: 0;
   font-family: var(--font-serif), Georgia, serif;
   font-size: 1.05rem;
-  line-height: 1.62;
+  line-height: 1.35;
   color: var(--notes-ink);
   font-weight: 400;
 }
@@ -377,7 +376,7 @@
 .op-form__field input:focus,
 .op-form__field textarea:focus {
   outline: none;
-  border-bottom-color: rgba(244, 241, 234, 0.22);
+  border-bottom-color: rgba(20, 18, 16, 0.35);
 }
 
 .op-form__stances {
@@ -404,7 +403,7 @@
 }
 
 .op-stance input {
-  accent-color: rgba(244, 241, 234, 0.55);
+  accent-color: #c9a962;
 }
 
 .op-stance.is-on {
@@ -426,11 +425,11 @@
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 4px;
-  text-decoration-color: rgba(244, 241, 234, 0.25);
+  text-decoration-color: rgba(20, 18, 16, 0.25);
 }
 
 .op-form__submit:hover {
-  text-decoration-color: rgba(244, 241, 234, 0.55);
+  text-decoration-color: rgba(20, 18, 16, 0.55);
 }
 
 .op-form__submit:disabled {
