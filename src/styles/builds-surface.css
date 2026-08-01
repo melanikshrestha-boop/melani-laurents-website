@@ -7,9 +7,21 @@
   --bs-faint: #9a9084;
   --bs-gold: #c9a962;
   --bs-line: rgba(20, 18, 16, 0.08);
+  --bs-select: rgba(244, 164, 188, 0.45);
   min-height: calc(100svh - 3.5rem);
   background: var(--bs-paper);
   color: var(--bs-ink);
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.builds-surface ::selection {
+  background: var(--bs-select);
+  color: #1a1214;
+}
+.builds-surface ::-moz-selection {
+  background: var(--bs-select);
+  color: #1a1214;
 }
 
 .builds-surface__inner {

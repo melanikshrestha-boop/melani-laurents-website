@@ -138,9 +138,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Site-wide: light pink highlighter for copy/select */
 ::selection {
-  background: rgba(196, 180, 150, 0.22);
-  color: var(--foreground);
+  background: rgba(244, 164, 188, 0.45);
+  color: #1a1214;
+}
+::-moz-selection {
+  background: rgba(244, 164, 188, 0.45);
+  color: #1a1214;
 }
 
 .font-display {

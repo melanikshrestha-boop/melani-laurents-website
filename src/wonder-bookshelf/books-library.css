@@ -4403,6 +4403,8 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
  */
 .bookshelf-page--wonder {
   --pb-paper: #f7f1e7;
+  /* Light pink highlighter (Melani) — copy/select freely */
+  --pb-select: rgba(244, 164, 188, 0.45);
   min-height: calc(100svh - 3.5rem) !important;
   height: auto !important;
   margin: 0 !important;
@@ -4411,45 +4413,56 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   box-shadow: none !important;
   background: var(--pb-paper) !important;
   background-image: none !important;
-  /* Default: no drag-select pink wash over chrome (looks like a UI highlight) */
-  -webkit-user-select: none;
-  user-select: none;
-  cursor: default;
-}
-
-/*
- * Selection must NOT use the pick pink — that color is only for random-generator cards.
- * Subtle neutral if someone selects quote text.
- */
-.bookshelf-page--wonder ::selection {
-  background: rgba(41, 37, 31, 0.14);
-  color: #1a1214;
-  text-shadow: none;
-}
-.bookshelf-page--wonder ::-moz-selection {
-  background: rgba(41, 37, 31, 0.14);
-  color: #1a1214;
-  text-shadow: none;
-}
-
-/* Quote body can be selected; chrome cannot */
-.bookshelf-page--wonder .pb-quote__text,
-.bookshelf-page--wonder .pb-quote__text p,
-.bookshelf-page--wonder .pb-quote__author {
+  /* Seamless copy: text is selectable by default */
   -webkit-user-select: text;
   user-select: text;
   cursor: text;
 }
 
-.bookshelf-page--wonder button,
-.bookshelf-page--wonder a,
-.bookshelf-page--wonder .bl-folder,
+.bookshelf-page--wonder ::selection {
+  background: var(--pb-select);
+  color: #1a1214;
+  text-shadow: none;
+}
+.bookshelf-page--wonder ::-moz-selection {
+  background: var(--pb-select);
+  color: #1a1214;
+  text-shadow: none;
+}
+
+/* Keep interactive chrome from accidental multi-select, but labels stay copyable */
+.bookshelf-page--wonder button:not(.pb-blogs__row),
 .bookshelf-page--wonder .bl-chip,
-.bookshelf-page--wonder .bl-search {
+.bookshelf-page--wonder .bl-folder {
   cursor: pointer;
   -webkit-user-select: none;
   user-select: none;
 }
+
+/* Titles, quotes, blog lines, drives, stats — all copyable */
+.bookshelf-page--wonder .pb-quote__text,
+.bookshelf-page--wonder .pb-quote__text p,
+.bookshelf-page--wonder .pb-quote__author,
+.bookshelf-page--wonder .bl-title,
+.bookshelf-page--wonder .bl-stats,
+.bookshelf-page--wonder .pb-blogs,
+.bookshelf-page--wonder .pb-blogs__row,
+.bookshelf-page--wonder .pb-blogs__name,
+.bookshelf-page--wonder .pb-blogs__date,
+.bookshelf-page--wonder .pb-blogs__by,
+.bookshelf-page--wonder .pb-drive-btn,
+.bookshelf-page--wonder .pb-drive-btn strong,
+.bookshelf-page--wonder .pb-drive-btn small,
+.bookshelf-page--wonder a {
+  -webkit-user-select: text !important;
+  user-select: text !important;
+  cursor: text;
+}
+
+.bookshelf-page--wonder a:hover {
+  cursor: pointer;
+}
+
 .bookshelf-page--wonder .bl-search {
   cursor: text;
   -webkit-user-select: text;
