@@ -17,7 +17,7 @@ export default function ProjectsPage() {
     <div className="builds-surface">
       <div className="builds-surface__inner">
         <header>
-          <p className="builds-surface__kicker">Builds</p>
+          <p className="builds-surface__kicker">[ BUILDS · SHIPPING ]</p>
           <h1 className="builds-surface__title">What I ship.</h1>
           <div className="builds-surface__meta" aria-label="Build totals">
             <span>
