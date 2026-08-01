@@ -4552,7 +4552,7 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   display: block;
   width: 100%;
   box-sizing: border-box;
-  margin: 0 0 12px !important;
+  margin: 0 0 8px !important;
   padding: 0 2.5rem 0 0 !important;
   min-height: 0 !important;
   gap: 0 !important;
@@ -4807,25 +4807,27 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   color: #29251f;
 }
 
-/* Quote type — height follows text only (controls abs-positioned above) */
+/* Quote — quiet, smaller than page title (coherent hierarchy) */
 .pb-root .pb-quote__text {
   min-width: 0;
+  max-width: min(36rem, 100%);
 }
 .pb-root .pb-quote__text p {
   margin: 0;
   color: #3d3630;
   font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif;
-  font-size: 0.875rem;
+  font-size: 0.8125rem; /* 13px — under title, not competing */
   font-style: italic;
   font-weight: 400;
-  line-height: 1.35;
+  line-height: 1.3;
+  letter-spacing: 0;
 }
 .pb-root .pb-quote__author {
   display: block;
-  margin-top: 3px;
+  margin-top: 2px;
   color: #3b7ea8;
   font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif;
-  font-size: 0.75rem;
+  font-size: 0.6875rem; /* 11px */
   font-style: normal;
   font-weight: 500;
   line-height: 1.15;
@@ -4864,32 +4866,37 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   user-select: none;
 }
 
-/* Title + stats — keep edge-hug rules from above; only ink/type here */
+/* Title + stats — page title one step above drives (13–14px), not a hero billboard */
 .pb-root .bl-head {
   border: 0;
   margin-top: 0 !important;
   padding-top: 0 !important;
+  margin-bottom: 4px !important;
 }
 .pb-root .bl-title {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 7px;
   margin: 0;
   color: #29251f !important;
-  font-size: 28px;
+  font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif;
+  font-size: 1.25rem; /* 20px — was 28px, too loud */
   font-weight: 500;
-  line-height: 1;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
 }
 .pb-root .bl-title svg,
 .pb-root .bl-title .min-icon {
-  opacity: 0.78;
+  opacity: 0.72;
   flex: 0 0 auto;
+  width: 18px !important;
+  height: 18px !important;
 }
 .pb-root .bl-stats {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px 14px;
-  margin-top: 6px;
+  gap: 4px 12px;
+  margin-top: 4px;
   color: #9a9084 !important;
   font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
   font-size: 11px;
