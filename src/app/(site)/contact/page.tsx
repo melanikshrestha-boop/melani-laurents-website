@@ -3,7 +3,8 @@ import { ContactExperience } from "@/components/ContactExperience";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Open a channel — Celine Nova.",
+  description:
+    "Contact and email — building, research, business, personal, photography, bugs.",
 };
 
 export default function ContactPage() {

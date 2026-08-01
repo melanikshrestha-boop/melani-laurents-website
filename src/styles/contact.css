@@ -1,0 +1,186 @@
+/* Contact — Lex Fridman–style clean channel list on cream paper */
+
+.contact-page {
+  --c-paper: #f7f1e7;
+  --c-ink: #141210;
+  --c-soft: #5c534a;
+  --c-faint: #9a9084;
+  --c-link: #3b7ea8;
+  --c-line: rgba(20, 18, 16, 0.1);
+  --c-gutter: 10px;
+
+  min-height: calc(100svh - 3.5rem);
+  background: var(--c-paper);
+  color: var(--c-ink);
+  -webkit-user-select: text;
+  user-select: text;
+  box-sizing: border-box;
+  padding: 1.25rem var(--c-gutter) 4.5rem;
+}
+
+.contact-page ::selection {
+  background: rgba(244, 164, 188, 0.45);
+  color: #1a1214;
+}
+
+.contact-page__inner {
+  max-width: 40rem;
+  margin: 0;
+  /* left edge-hug like Bookshelf */
+}
+
+.contact-page__kicker {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-share-tech-mono), var(--font-jetbrains-mono), ui-monospace,
+    monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-faint);
+}
+
+.contact-page__title {
+  margin: 0 0 1.1rem;
+  font-family: var(--font-instrument-serif), Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 4.5vw, 2.75rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--c-ink);
+}
+
+.contact-page__lede {
+  margin: 0 0 1.15rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.02rem;
+  line-height: 1.45;
+  color: var(--c-soft);
+}
+
+.contact-page__rules {
+  margin: 0 0 1.75rem;
+  padding: 0 0 0 1.15rem;
+  list-style: decimal;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.98rem;
+  line-height: 1.45;
+  color: var(--c-ink);
+}
+
+.contact-page__rules li {
+  margin: 0 0 0.55rem;
+  padding-left: 0.2rem;
+}
+
+.contact-page__rules li strong {
+  font-weight: 600;
+  color: var(--c-ink);
+}
+
+.contact-page__intro {
+  margin: 0 0 1.5rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: var(--c-soft);
+}
+
+.contact-page__section {
+  margin: 0 0 2rem;
+}
+
+.contact-page__h2 {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--c-ink);
+}
+
+.contact-page__note {
+  margin: 0 0 0.85rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.92rem;
+  line-height: 1.4;
+  color: var(--c-soft);
+  font-style: italic;
+}
+
+.contact-page__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-page__item {
+  margin: 0;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--c-line);
+}
+
+.contact-page__item:last-child {
+  border-bottom: 1px solid var(--c-line);
+}
+
+.contact-page__item-label {
+  display: block;
+  margin: 0 0 0.25rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--c-ink);
+}
+
+.contact-page__item p {
+  margin: 0 0 0.4rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--c-soft);
+}
+
+.contact-page__item a {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.95rem;
+  color: var(--c-link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.contact-page__item a:hover {
+  color: #2a5f86;
+}
+
+.contact-page__foot {
+  margin: 2rem 0 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--c-line);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--c-soft);
+}
+
+.contact-page__socials {
+  margin: 1.5rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.1rem;
+  font-family: var(--font-share-tech-mono), ui-monospace, monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.contact-page__socials a {
+  color: var(--c-faint);
+  text-decoration: none;
+}
+
+.contact-page__socials a:hover {
+  color: var(--c-ink);
+}
