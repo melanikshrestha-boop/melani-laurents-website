@@ -18,9 +18,8 @@ export interface Project {
 }
 
 /**
- * Founder / systems / research builds.
- * Display order: priority asc, then createdAt desc.
- * Google Scholar is #1 — groundbreaking work (Melani).
+ * Builds copy: short, human, scannable.
+ * No patent-brochure walls. One idea per card — why it exists.
  */
 export const projects: Project[] = [
   {
@@ -29,26 +28,26 @@ export const projects: Project[] = [
     role: "Researcher & Inventor",
     status: "Research",
     description:
-      "Groundbreaking work: deep learning, neuroscience, and in-ear EEG systems — Bronx Science, Columbia Neuroscience, NIURA. Patents on wireless earbud EEG, multi-parameter vitals, and conductive electrode systems. This is the record that matters most.",
-    tags: ["research", "neuroscience", "deep learning", "patents", "EEG"],
+      "The public record of work I actually did — brain signals, deep learning, and gear people can wear. Not a résumé dump. Proof.",
+    tags: ["research", "EEG", "patents"],
     href: googleScholarUrl,
     featured: true,
     priority: 1,
-    readout: "scholar.google.com · cited work · patents",
+    readout: "cited work · patents",
     createdAt: "2023-01-01",
   },
   {
     id: "niura-ear-eeg",
-    title: "In-ear EEG systems",
-    role: "Inventor / Co-author",
+    title: "In-ear EEG",
+    role: "Inventor",
     status: "Research",
     description:
-      "Patent family for real-time in-the-ear electroencephalography: charging case with EEG, earbud electrode ports that play audio, n-doped silicone / filament electrodes, multi-parameter vitals connectivity. Hardware + signal path for what people actually wear.",
-    tags: ["hardware", "EEG", "patents", "signals"],
+      "Brain signal from earbuds — not a lab helmet. Hardware for real ears, real life.",
+    tags: ["hardware", "EEG"],
     href: googleScholarUrl,
     featured: true,
     priority: 2,
-    readout: "US patent applications · NIURA lineage",
+    readout: "patent family",
     createdAt: "2023-08-01",
   },
   {
@@ -57,11 +56,11 @@ export const projects: Project[] = [
     role: "Founder & Builder",
     status: "Active",
     description:
-      "Personal OS — bookshelf, finances, agents, wardrobe, and life tools in one local-first app. Built to beat fragmented SaaS for the one user who matters first: me.",
-    tags: ["systems", "product", "local-first"],
+      "My personal OS. Books, money, agents, wardrobe — one app, local-first, built for me first.",
+    tags: ["product", "systems"],
     featured: true,
     priority: 3,
-    readout: "personal OS · shipping continuously",
+    readout: "shipping now",
     createdAt: "2026-03-01",
   },
   {
@@ -70,8 +69,8 @@ export const projects: Project[] = [
     role: "Founder & Builder",
     status: "Active",
     description:
-      "Public site as product: open-sourcing how I think — essays, bookshelf, daily signal, builds. Design and systems obsessed; not a template portfolio.",
-    tags: ["web", "brand", "next.js"],
+      "This site. How I think in public — builds, bookshelf, opinions. Not a template portfolio.",
+    tags: ["web", "brand"],
     href: "https://celinenova.com",
     featured: true,
     priority: 4,
@@ -84,21 +83,21 @@ export const projects: Project[] = [
     role: "Creator",
     status: "Stealth",
     description:
-      "3D first-person dream reality — LA rooftop base, private jet, SF runs. Cinematic graphics that still play. Built for the life, not a crime sandbox.",
-    tags: ["3d", "engine", "experience"],
+      "3D life sim — LA rooftop, jet, SF. Beautiful enough to want. Playable enough to stay.",
+    tags: ["3d", "game"],
     featured: true,
     priority: 5,
-    readout: "LA ↔ SF · in progress",
+    readout: "LA ↔ SF",
     createdAt: "2025-11-02",
   },
   {
     id: "shotbyceline",
     title: "shotbyceline",
-    role: "Photographer & Builder",
+    role: "Photographer",
     status: "Active",
     description:
-      "Art profile and photography product — full-bleed portfolio, collections, booking. Visual work as a real surface, not a buried gallery page.",
-    tags: ["photography", "art", "product"],
+      "Photography as a real product — portraits, scenery, booking. Not a forgotten gallery tab.",
+    tags: ["photo", "art"],
     href: "https://celinenova.com/photography",
     featured: true,
     priority: 6,
@@ -111,22 +110,22 @@ export const projects: Project[] = [
     role: "Open Source",
     status: "Open Source",
     description:
-      "Git-native notes, experiment logs, and literature synthesis. Minimal tooling for builders who want a paper trail without enterprise ceremony.",
-    tags: ["tools", "open-source", "markdown"],
+      "Notes and experiment logs in git. A paper trail without enterprise theater.",
+    tags: ["tools", "open source"],
     href: "https://github.com/melanikshrestha-boop/melani-laurents-website",
     featured: true,
     priority: 7,
-    readout: "github.com/melanikshrestha-boop",
+    readout: "github",
     createdAt: "2025-08-20",
   },
   {
     id: "reproducible-research",
-    title: "Reproducible research protocol",
+    title: "Research protocol",
     role: "Author",
     status: "Research",
     description:
-      "Git-native research workflow design: literature, experiments, memos, tools — provenance without a bloated ELN. Notebooks for exploration; versioned structure for the long arc.",
-    tags: ["research", "infrastructure", "tools"],
+      "How I keep research honest over years — versioned, git-native, no bloated ELN.",
+    tags: ["research", "tools"],
     href: "/research",
     featured: true,
     priority: 8,
@@ -135,12 +134,12 @@ export const projects: Project[] = [
   },
   {
     id: "signal-integrity",
-    title: "Signal integrity · low resource",
+    title: "Signal integrity",
     role: "Researcher",
     status: "Research",
     description:
-      "Field notes and systems thinking on getting clean physiological and research signals under real constraints — low resource, high rigor.",
-    tags: ["signals", "research", "systems"],
+      "Clean signals under ugly constraints. Rigor when the lab isn’t perfect.",
+    tags: ["signals", "research"],
     href: "/research",
     featured: true,
     priority: 9,
@@ -153,8 +152,8 @@ export const projects: Project[] = [
     role: "Research lead",
     status: "Research",
     description:
-      "Research framework at the edge of civic engagement, social infrastructure, and institutional health — translation layers between community signals and research workflows.",
-    tags: ["research", "civic", "social"],
+      "Civic + social infrastructure research — how community signal becomes something institutions can act on.",
+    tags: ["research", "civic"],
     href: "/research",
     featured: true,
     priority: 10,
@@ -163,28 +162,28 @@ export const projects: Project[] = [
   },
   {
     id: "celine-agents",
-    title: "Celine agent stack",
+    title: "Celine agents",
     role: "Founder & Builder",
     status: "Active",
     description:
-      "Custom agents for the public product: design, copy law, shelf UI, ratings, memory, ship — so the site stays empire-grade and never relearns the same mistakes.",
-    tags: ["ai", "agents", "tooling"],
+      "Agents that ship and protect this product — design law, shelf UI, push. So nothing relearns bad habits.",
+    tags: ["ai", "agents"],
     featured: true,
     priority: 11,
-    readout: ".grok/agents · shipping",
+    readout: "shipping",
     createdAt: "2026-07-01",
   },
   {
     id: "grok-build-ops",
-    title: "Grok Build ops",
+    title: "AI build loop",
     role: "Operator",
     status: "Active",
     description:
-      "Daily use of frontier AI as leverage for engineering, design, and company building — not demos. The loop that ships Wonder, Celine Nova, and Dream Life.",
-    tags: ["ai", "ops", "engineering"],
+      "Frontier models as leverage for real engineering — Wonder, this site, Dream Life. Not demo cosplay.",
+    tags: ["ai", "ops"],
     featured: true,
     priority: 12,
-    readout: "build loop",
+    readout: "daily loop",
     createdAt: "2026-06-01",
   },
 ];
