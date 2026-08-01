@@ -4962,6 +4962,22 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 }
 
 /* Faves: only 5-star personal ratings */
+/* favs filter — quiet line under chips */
+.pb-root .pb-faves-note {
+  margin: 0 0 10px;
+  padding: 0;
+  border: 0;
+  color: #9a9084;
+  font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif;
+  font-size: 12px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  -webkit-user-select: text;
+  user-select: text;
+}
+
 .pb-root .pb-faves-tagline {
   margin: 0 0 12px !important;
   padding: 0;

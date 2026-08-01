@@ -56,7 +56,7 @@ const CHIPS: { id: Filter; label: string }[] = [
   { id: "all", label: "All" },
   { id: "book", label: "Books" },
   { id: "blog", label: "Blogs" },
-  { id: "faves", label: "FAVS" },
+  { id: "faves", label: "favs" },
 ];
 
 /** Quote rotator — shelf voice + founders + the stack itself */
@@ -705,18 +705,19 @@ export function PublicBookshelf() {
           <p className="bl-empty-all">—</p>
         ) : null}
 
-        {/* FAVS: 5★ + meditations — flat grid, no folder chrome */}
+        {/* favs: 5★ only — flat grid + small line under chip */}
         {filter === "faves" && filtered.length > 0 ? (
           <section
             className="bl-shelf is-open pb-faves-flat"
-            aria-label="FAVS"
+            aria-label="favs"
           >
+            <p className="pb-faves-note">my only 5 stars</p>
             <div className="bl-grid">
               {filtered.map((item) => (
                 <CatalogCard
                   key={item.entry.id}
                   item={item}
-                  folderLabel="FAVS"
+                  folderLabel="favs"
                   highlight={highlightId === item.entry.id}
                   onAnnotate={openAnnotation}
                 />
