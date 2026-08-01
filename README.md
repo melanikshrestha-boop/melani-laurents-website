@@ -1,6 +1,6 @@
 # Celine Nova — Open Sourcing My Mind
 
-Personal site for [MelaniLaurentS.com](https://melanilaurents.com) — BCI research, neurotech, art, photography, and daily writing.
+Personal site for [celinenova.com](https://celinenova.com) — BCI research, neurotech, art, photography, and daily writing.
 
 Built with [Next.js](https://nextjs.org).
 

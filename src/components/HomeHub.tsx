@@ -39,33 +39,35 @@ export function HomeHub() {
       {/* Bottom-left edge — original stagger reveal (hub-nav-reveal) */}
       <footer className="hub-page__footer hub-page__footer--locked">
         <nav className="hub-page__nav hub-page__nav--locked" aria-label="Sections">
-          {siteConfig.hubPortals.map((portal, i) => (
-            <span
-              key={portal.href}
-              className="hub-page__nav-item"
-              style={{ animationDelay: `${1.15 + i * 0.18}s` }}
-            >
-              {i > 0 ? <span className="hub-page__sep" aria-hidden> · </span> : null}
-              {"external" in portal && portal.external ? (
-                <a href={portal.href} target="_blank" rel="noopener noreferrer">
-                  {portal.label}
-                </a>
-              ) : (
-                <Link href={portal.href}>{portal.label}</Link>
-              )}
-            </span>
-          ))}
-          <span
-            className="hub-page__nav-item hub-page__nav-item--contact"
-            style={{
-              animationDelay: `${1.15 + siteConfig.hubPortals.length * 0.18}s`,
-            }}
-          >
-            <span className="hub-page__sep" aria-hidden> · </span>
-            <Link href="/contact" className="hub-page__nav-contact">
-              Contact
-            </Link>
-          </span>
+          {/* Order: Builds · Blog · Bookshelf · Contact */}
+          {siteConfig.hubPortals.map((portal, i) => {
+            const isContact = portal.href === "/contact";
+            return (
+              <span
+                key={portal.href}
+                className={
+                  isContact
+                    ? "hub-page__nav-item hub-page__nav-item--contact"
+                    : "hub-page__nav-item"
+                }
+                style={{ animationDelay: `${1.15 + i * 0.18}s` }}
+              >
+                {i > 0 ? <span className="hub-page__sep" aria-hidden> · </span> : null}
+                {"external" in portal && portal.external ? (
+                  <a href={portal.href} target="_blank" rel="noopener noreferrer">
+                    {portal.label}
+                  </a>
+                ) : (
+                  <Link
+                    href={portal.href}
+                    className={isContact ? "hub-page__nav-contact" : undefined}
+                  >
+                    {portal.label}
+                  </Link>
+                )}
+              </span>
+            );
+          })}
         </nav>
       </footer>
     </section>

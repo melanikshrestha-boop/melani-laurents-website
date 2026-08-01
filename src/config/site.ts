@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Celine Nova",
-  domain: "melanilaurents.com",
-  url: "https://melanilaurents.com",
+  domain: "celinenova.com",
+  url: "https://celinenova.com",
   title: "Celine Nova",
   description:
     "Open sourcing my mind through essays, books, daily inputs, and the things I build.",
@@ -40,7 +40,7 @@ export const siteConfig = {
     "https://open.spotify.com/user/21etydsnbqyqe7ekagfnqbhoq?si=c3c26ede4c8a46a5",
   /**
    * Header social row (home top-right). Order is left → right.
-   * GitHub · X · YouTube · Instagram · TikTok
+   * GitHub · X · YouTube · Instagram · TikTok · Spotify · LinkedIn
    */
   socialLinks: [
     {
@@ -56,7 +56,7 @@ export const siteConfig = {
     {
       id: "youtube",
       label: "YouTube",
-      href: "https://www.youtube.com/@ResetYourMind.-fb5nn",
+      href: "https://www.youtube.com/@Celine_Nova",
     },
     {
       id: "instagram",
@@ -68,21 +68,29 @@ export const siteConfig = {
       label: "TikTok",
       href: "https://www.tiktok.com/@melanilaurents",
     },
+    {
+      id: "spotify",
+      label: "Spotify",
+      href: "https://open.spotify.com/user/21etydsnbqyqe7ekagfnqbhoq?si=c3c26ede4c8a46a5",
+    },
+    {
+      id: "linkedin",
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/melanilaurents/",
+    },
   ],
   /** The single public index shown at the bottom of the home hero. */
   hubPortals: [
-    { label: "Art", href: "/photography", tagline: "Visual signal · cinema" },
-    { label: "Essays", href: "/daily#journals", tagline: "Long-form thinking" },
-    { label: "Bookshelf", href: "/bookshelf", tagline: "Notes · highlights" },
     { label: "Builds", href: "/projects", tagline: "Things I make" },
-    { label: "Daily", href: "/daily#inputs", tagline: "Public input log" },
+    { label: "Blog", href: "/blog", tagline: "Theses · public opinions" },
+    { label: "Bookshelf", href: "/bookshelf", tagline: "Notes · highlights" },
+    { label: "Contact", href: "/contact", tagline: "Say hello" },
   ],
+  /** BUILDS · BLOG · BOOKSHELF · CONTACT — keep it short, no overwhelm */
   nav: [
-    { label: "Art", href: "/photography" },
-    { label: "Essays", href: "/daily#journals" },
-    { label: "Bookshelf", href: "/bookshelf" },
     { label: "Builds", href: "/projects" },
-    { label: "Daily", href: "/daily#inputs" },
+    { label: "Blog", href: "/blog" },
+    { label: "Bookshelf", href: "/bookshelf" },
     { label: "Contact", href: "/contact" },
   ],
 } as const;

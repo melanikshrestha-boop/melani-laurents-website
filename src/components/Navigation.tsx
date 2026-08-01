@@ -12,10 +12,7 @@ function hrefPath(href: string): string {
   return href.split("#")[0] || "/";
 }
 
-/**
- * Hide the section you're already in.
- * Essays + Daily both live under /daily — either hash hides both on that surface.
- */
+/** Hide the section you're already in. */
 function isCurrentNavItem(pathname: string, item: NavItem): boolean {
   const path = hrefPath(item.href);
   if (path === "/") return pathname === "/";

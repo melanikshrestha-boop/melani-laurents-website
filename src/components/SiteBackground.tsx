@@ -5,7 +5,9 @@ import { InterstellarField } from "@/components/cinema/InterstellarField";
 
 export function SiteBackground() {
   const pathname = usePathname();
-  const paper =
+  // Quiet reading surfaces — solid void only, no constellation/wave HUD
+  // (Consume / Blog = Apple Notes minimal; same dark base as the rest of the site)
+  const quiet =
     pathname === "/" ||
     pathname === "/daily" ||
     pathname.startsWith("/daily/") ||
@@ -15,9 +17,14 @@ export function SiteBackground() {
     pathname.startsWith("/podcast/") ||
     pathname === "/youtube" ||
     pathname.startsWith("/youtube/") ||
-    // Bookshelf is a flat cream reading surface — no black space field under it
     pathname === "/bookshelf" ||
-    pathname.startsWith("/bookshelf/");
-  if (paper) return null;
+    pathname.startsWith("/bookshelf/") ||
+    pathname === "/diary" ||
+    pathname.startsWith("/diary/") ||
+    pathname === "/consume" ||
+    pathname.startsWith("/consume/") ||
+    pathname === "/blog" ||
+    pathname.startsWith("/blog/");
+  if (quiet) return null;
   return <InterstellarField enabled />;
 }

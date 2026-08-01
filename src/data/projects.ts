@@ -72,10 +72,10 @@ export const projects: Project[] = [
     description:
       "Public site as product: open-sourcing how I think — essays, bookshelf, daily signal, builds. Design and systems obsessed; not a template portfolio.",
     tags: ["web", "brand", "next.js"],
-    href: "https://melanilaurents.com",
+    href: "https://celinenova.com",
     featured: true,
     priority: 4,
-    readout: "melanilaurents.com",
+    readout: "celinenova.com",
     createdAt: "2026-01-15",
   },
   {
@@ -99,7 +99,7 @@ export const projects: Project[] = [
     description:
       "Art profile and photography product — full-bleed portfolio, collections, booking. Visual work as a real surface, not a buried gallery page.",
     tags: ["photography", "art", "product"],
-    href: "https://melanilaurents.com/photography",
+    href: "https://celinenova.com/photography",
     featured: true,
     priority: 6,
     readout: "/photography",

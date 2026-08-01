@@ -44,7 +44,7 @@ export const dailySocial = {
   },
   youtube: {
     handle: "YouTube",
-    href: "https://www.youtube.com/@ResetYourMind.-fb5nn",
+    href: "https://www.youtube.com/@Celine_Nova",
     label: "YouTube",
   },
   instagram: {

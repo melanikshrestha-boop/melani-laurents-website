@@ -8,16 +8,15 @@ import { siteConfig } from "@/config/site";
 
 const photographyData = data as PhotographyData;
 
-const INDEX_COLLECTION_ORDER = ["portraits", "vision", "scenery"] as const;
+const INDEX_COLLECTION_ORDER = ["portraits", "scenery"] as const;
 
 export const INDEX_HERO_IMAGES: Record<string, string> = {
   portraits: "/photography/index/portraits-hero.jpeg",
-  vision: "/photography/index/vision-hero.jpg",
   scenery: "/photography/index/scenery-hero.jpg",
 };
 
 /** Auto-rotating index hero, beginning with portraits. */
-export const INDEX_HERO_AUTO_CYCLE_SLUGS = ["portraits", "vision", "scenery"] as const;
+export const INDEX_HERO_AUTO_CYCLE_SLUGS = ["portraits", "scenery"] as const;
 export const INDEX_HERO_DEFAULT_SLUG = "portraits";
 export const INDEX_HERO_AUTO_CYCLE_MS = 4500;
 

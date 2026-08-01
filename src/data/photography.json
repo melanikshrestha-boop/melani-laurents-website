@@ -225,65 +225,6 @@
       ]
     },
     {
-      "id": "vision",
-      "title": "Vision",
-      "tagline": "editorial + experimental",
-      "slug": "vision",
-      "cover": "/photography/vision/image00008.jpeg",
-      "photos": [
-        {
-          "id": "vision-0",
-          "src": "/photography/vision/image00008.jpeg",
-          "alt": "Vision 1"
-        },
-        {
-          "id": "vision-1",
-          "src": "/photography/vision/image00002.jpeg",
-          "alt": "Vision 2"
-        },
-        {
-          "id": "vision-2",
-          "src": "/photography/vision/image00010.jpeg",
-          "alt": "Vision 3"
-        },
-        {
-          "id": "vision-3",
-          "src": "/photography/vision/image00001.jpeg",
-          "alt": "Vision 4"
-        },
-        {
-          "id": "vision-4",
-          "src": "/photography/vision/image00009.jpeg",
-          "alt": "Vision 5"
-        },
-        {
-          "id": "vision-5",
-          "src": "/photography/vision/image00004.jpeg",
-          "alt": "Vision 6"
-        },
-        {
-          "id": "vision-6",
-          "src": "/photography/vision/image00003.jpeg",
-          "alt": "Vision 7"
-        },
-        {
-          "id": "vision-7",
-          "src": "/photography/vision/image00005.jpeg",
-          "alt": "Vision 8"
-        },
-        {
-          "id": "vision-8",
-          "src": "/photography/vision/image00006.jpeg",
-          "alt": "Vision 9"
-        },
-        {
-          "id": "vision-9",
-          "src": "/photography/vision/image00007.jpeg",
-          "alt": "Vision 10"
-        }
-      ]
-    },
-    {
       "id": "scenery",
       "title": "Scenery",
       "tagline": "world as canvas",
