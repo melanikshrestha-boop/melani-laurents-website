@@ -112,29 +112,28 @@ const SHELF_QUOTES: { text: string; author: string }[] = [
 ];
 
 /**
- * Public folder order:
- * 1) Core shelf first (main characters → … → uncategorized)
- * 2) New drives after uncategorized (bottom growth — never jump to top)
+ * Public folder order — core shelf only.
+ * High school / Dostoevsky / uncategorized hidden for now (ugly dump piles).
  */
+const HIDDEN_PUBLIC_CATEGORIES = new Set([
+  "high school reads",
+  "dostoevsky",
+  "uncategorized",
+  "unsorted", // legacy dump label
+]);
+
 const PUBLIC_FOLDER_ORDER = [
   "main characters only",
   "everything startups",
   "psychology",
   "history",
-  "uncategorized",
-  // —— new drives stack below uncategorized ——
-  "high school reads",
-  "dostoevsky",
 ] as const;
 
 const FOLDER_ACCENT: Record<string, string> = {
-  "high school reads": "#c97b84",
-  dostoevsky: "#6b5344",
   "main characters only": "#c4a06a",
   "everything startups": "#5b9fd4",
   psychology: "#9b7fd4",
   history: "#c97b84",
-  uncategorized: "#8e98a6",
   Conqueror: "#c45c4a",
   Entrepreneur: "#d4a84b",
   Genius: "#5b9fd4",
@@ -146,10 +145,13 @@ const FOLDER_ACCENT: Record<string, string> = {
   "Psychology & Self-Development": "#72b9d6",
   "Philosophy & Spirituality": "#b89adc",
   "Music & Culture": "#e58fa3",
-  Unsorted: "#8e98a6",
   Faves: "#d4bc82",
   "Your intelligence": "#d4bc82",
 };
+
+function isHiddenPublicCategory(label: string): boolean {
+  return HIDDEN_PUBLIC_CATEGORIES.has(label.trim().toLowerCase());
+}
 
 function buyUrl(entry: BookshelfEntry, book: Book): string {
   if (entry.kind === "book") {
@@ -355,6 +357,8 @@ export function PublicBookshelf() {
   const catalog = useMemo<ShelfItem[]>(() => {
     return bookshelfEntries
       .filter((entry) => entry.kind !== "blog")
+      // Drop ugly drive dumps from public shelf (data stays in catalog for later)
+      .filter((entry) => !isHiddenPublicCategory(folderLabelFor(entry)))
       .map((entry, i) => {
         const book = catalogEntryToBook(entry);
         book.color = SPINE_COLORS[i % SPINE_COLORS.length];
@@ -433,16 +437,17 @@ export function PublicBookshelf() {
       out.push({
         id: label,
         label,
-        accent: FOLDER_ACCENT[label] || FOLDER_ACCENT.Unsorted,
+        accent: FOLDER_ACCENT[label] || "#8e98a6",
         items,
       });
       map.delete(label);
     }
     for (const [label, items] of map) {
+      if (isHiddenPublicCategory(label)) continue;
       out.push({
         id: label,
         label,
-        accent: FOLDER_ACCENT[label] || FOLDER_ACCENT.Unsorted,
+        accent: FOLDER_ACCENT[label] || "#8e98a6",
         items,
       });
     }
