@@ -45,111 +45,212 @@
 .ib-page > .ib-related,
 .ib-page > .op-thread,
 .ib-page > .ib-date,
-.ib-page > .consume-grid,
-.ib-page > .ib-dispatch-intro,
-.ib-page > .ib-dispatch {
+.ib-page > .consume-grid {
   max-width: 42rem;
   margin-left: 0;
   margin-right: auto;
 }
 
-/* ── Dispatches (Patrick Collison pattern) ──
- * One continuous scroll: title → date → full essay. No cards, no grid.
+/* ── Google Docs surface (blog only) ──
+ * Gray app canvas + white letter page + Arial. No cream paper, no serif essay look.
  */
-.ib-dispatches {
-  padding-top: 1.75rem;
+.ib-docs-canvas {
+  --docs-ink: #202124;
+  --docs-soft: #5f6368;
+  --docs-faint: #80868b;
+  --docs-link: #1a73e8;
+  --docs-canvas: #f9fbfd;
+  --docs-page: #ffffff;
+  --docs-select: #c2e7ff;
+  --docs-font: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  /* Letter width ≈ 8.5in at 96dpi, Docs-ish */
+  --docs-page-w: min(816px, calc(100% - 2rem));
+
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: calc(100dvh - 3.5rem);
+  margin: 0;
+  padding: 1.5rem 1rem 3.5rem;
+  background: var(--docs-canvas);
+  color: var(--docs-ink);
+  font-family: var(--docs-font);
+  -webkit-user-select: text;
+  user-select: text;
 }
 
-.ib-dispatch-intro {
-  margin: 0 0 2.25rem;
-  font-family: var(--font-serif), "Iowan Old Style", Palatino, Georgia, serif;
-  font-size: 1.05rem;
-  font-weight: 400;
-  font-style: italic;
-  line-height: 1.45;
-  color: var(--notes-soft);
-  max-width: 38rem;
+.ib-docs-canvas ::selection {
+  background: var(--docs-select);
+  color: var(--docs-ink);
 }
 
-.ib-dispatch {
-  margin: 0 0 3.25rem;
+.ib-docs-page {
+  box-sizing: border-box;
+  width: var(--docs-page-w);
+  max-width: 100%;
+  min-height: calc(100dvh - 6rem);
+  margin: 0 auto;
+  padding: 96px 96px 120px; /* ~1" margins like Docs */
+  background: var(--docs-page);
+  color: var(--docs-ink);
+  /* Soft page lift on the gray canvas */
+  box-shadow:
+    0 0 0 1px rgba(60, 64, 67, 0.08),
+    0 1px 3px 1px rgba(60, 64, 67, 0.1);
+  border-radius: 0;
+}
+
+@media (max-width: 720px) {
+  .ib-docs-page {
+    padding: 48px 24px 72px;
+    width: 100%;
+    box-shadow: none;
+    min-height: auto;
+  }
+
+  .ib-docs-canvas {
+    padding: 0 0 2rem;
+    background: var(--docs-page);
+  }
+}
+
+.ib-docs-section {
+  margin: 0 0 3rem;
   padding: 0;
   border: 0;
   background: transparent;
 }
 
-.ib-dispatch:last-child {
-  margin-bottom: 1rem;
+.ib-docs-section:last-child {
+  margin-bottom: 0;
 }
 
-.ib-dispatch__title {
-  margin: 0 0 0.35rem;
-  font-family: var(--font-serif), "Iowan Old Style", Palatino, Georgia, serif;
-  font-size: clamp(1.35rem, 2.8vw, 1.75rem);
+/* Docs Title style (~26pt / bold-ish heading) */
+.ib-docs-title {
+  margin: 0 0 0.15rem;
+  font-family: var(--docs-font);
+  font-size: 26px;
   font-weight: 400;
-  letter-spacing: -0.02em;
-  line-height: 1.25;
-  color: var(--notes-ink);
+  line-height: 1.15;
+  letter-spacing: 0;
+  color: var(--docs-ink);
 }
 
-.ib-dispatch__title a {
+.ib-docs-title a {
   color: inherit;
   text-decoration: none;
 }
 
-.ib-dispatch__title a:hover {
-  color: #3b7ea8;
+.ib-docs-title a:hover {
+  color: var(--docs-link);
   text-decoration: underline;
-  text-underline-offset: 0.12em;
-  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
 }
 
-.ib-dispatch__meta {
-  margin: 0 0 1rem;
-  font-family: var(--font-serif), Georgia, serif;
-  font-size: 0.9rem;
-  line-height: 1.35;
-  color: var(--notes-faint);
+/* Subtitle / date line — like Docs subtitle gray */
+.ib-docs-subtitle {
+  margin: 0 0 1.25rem;
+  font-family: var(--docs-font);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--docs-faint);
 }
 
-.ib-dispatch__meta a {
-  color: var(--notes-soft);
+.ib-docs-subtitle a {
+  color: var(--docs-link);
   text-decoration: none;
 }
 
-.ib-dispatch__meta a:hover {
-  color: #3b7ea8;
+.ib-docs-subtitle a:hover {
   text-decoration: underline;
-  text-underline-offset: 0.12em;
+  text-underline-offset: 2px;
 }
 
-.ib-dispatch__meta-sep {
-  margin: 0 0.35em;
-  opacity: 0.7;
-}
-
-.ib-dispatch__body {
-  font-family: var(--font-serif), "Iowan Old Style", Palatino, Georgia, serif;
-  font-size: 1.05rem;
+/* Body = default Docs 11pt Arial, 1.15 line-height (we use 1.5 for comfort) */
+.ib-docs-body {
+  font-family: var(--docs-font);
+  font-size: 11pt;
   font-weight: 400;
-  line-height: 1.55;
-  color: var(--notes-ink);
+  line-height: 1.5;
+  color: var(--docs-ink);
 }
 
-.ib-dispatch__body p {
-  margin: 0 0 0.95rem;
+.ib-docs-body p {
+  margin: 0 0 12px;
 }
 
-.ib-dispatch__body p:last-child {
+.ib-docs-body p:last-child {
   margin-bottom: 0;
 }
 
-.ib-dispatch__title--solo {
-  font-size: clamp(1.5rem, 3.2vw, 2rem);
+.ib-docs-nav {
+  margin: 0 0 1.5rem;
+  font-family: var(--docs-font);
+  font-size: 11pt;
+  color: var(--docs-soft);
 }
 
-.ib-dispatch__thesis {
+.ib-docs-nav a {
+  color: var(--docs-link);
+  text-decoration: none;
+}
+
+.ib-docs-nav a:hover {
+  text-decoration: underline;
+}
+
+.ib-docs-thesis {
+  margin: 1.75rem 0 0;
+  font-family: var(--docs-font);
+  font-size: 11pt;
+  line-height: 1.5;
+  color: var(--docs-soft);
+}
+
+.ib-docs-h2 {
+  margin: 2rem 0 0.5rem;
+  font-family: var(--docs-font);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--docs-ink);
+}
+
+.ib-docs-related {
   margin-top: 1.5rem;
+}
+
+.ib-docs-related ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ib-docs-related-title {
+  margin: 0 0 0.2rem;
+  font-size: 11pt;
+  color: var(--docs-ink);
+}
+
+.ib-docs-related-take {
+  margin: 0 0 0.85rem;
+  font-size: 11pt;
+  color: var(--docs-soft);
+  line-height: 1.45;
+}
+
+.ib-docs-thread {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e8eaed;
+}
+
+/* Opinion thread sits on white page — tone down cream inheritance if any */
+.ib-docs-page .op-thread {
+  max-width: none;
+  margin: 0;
+  background: transparent;
 }
 
 .ib-page ::selection {

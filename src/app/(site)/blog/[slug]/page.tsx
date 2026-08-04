@@ -37,51 +37,54 @@ export default async function BlogPostPage({ params }: Props) {
   const initial = await listOpinions(threadId);
 
   return (
-    <article className="ib-page ib-dispatches">
-      <p className="ib-nav">
-        <Link href="/blog">← Blog</Link>
-      </p>
+    <div className="ib-docs-canvas">
+      <article className="ib-docs-page">
+        <p className="ib-docs-nav">
+          <Link href="/blog">← Blog</Link>
+        </p>
 
-      <h1 className="ib-dispatch__title ib-dispatch__title--solo">
-        {post.title}
-      </h1>
-      <p className="ib-dispatch__meta">
-        <time dateTime={post.date}>{post.date}</time>
-      </p>
+        <h1 className="ib-docs-title">{post.title}</h1>
+        <p className="ib-docs-subtitle">
+          <time dateTime={post.date}>{post.date}</time>
+        </p>
 
-      <div className="ib-dispatch__body">
-        {post.body.map((para) => (
-          <p key={para.slice(0, 48)}>{para}</p>
-        ))}
-      </div>
+        <div className="ib-docs-body">
+          {post.body.map((para) => (
+            <p key={para.slice(0, 48)}>{para}</p>
+          ))}
+        </div>
 
-      <p className="ib-thesis ib-dispatch__thesis">{post.thesis}</p>
+        {post.thesis ? (
+          <p className="ib-docs-thesis">{post.thesis}</p>
+        ) : null}
 
-      {related.length ? (
-        <section className="ib-related" aria-label="Related notes">
-          <h2>Related notes</h2>
-          <ul>
-            {related.map((c) =>
-              c ? (
-                <li key={c.id}>
-                  <p className="ib-related__title">
-                    {c.title}
-                    {c.by ? ` · ${c.by}` : ""}
-                  </p>
-                  <p className="ib-related__take">{c.take}</p>
-                </li>
-              ) : null,
-            )}
-          </ul>
-        </section>
-      ) : null}
+        {related.length ? (
+          <section className="ib-docs-related" aria-label="Related notes">
+            <h2 className="ib-docs-h2">Related notes</h2>
+            <ul>
+              {related.map((c) =>
+                c ? (
+                  <li key={c.id}>
+                    <p className="ib-docs-related-title">
+                      {c.title}
+                      {c.by ? ` · ${c.by}` : ""}
+                    </p>
+                    <p className="ib-docs-related-take">{c.take}</p>
+                  </li>
+                ) : null,
+              )}
+            </ul>
+          </section>
+        ) : null}
 
-      {/* Every post: public comments + stances */}
-      <OpinionThread
-        threadId={threadId}
-        prompt={post.thesis}
-        initial={initial}
-      />
-    </article>
+        <div className="ib-docs-thread">
+          <OpinionThread
+            threadId={threadId}
+            prompt={post.thesis}
+            initial={initial}
+          />
+        </div>
+      </article>
+    </div>
   );
 }
