@@ -16,9 +16,8 @@ export default function ProjectsPage() {
   return (
     <div className="builds-surface">
       <div className="builds-surface__inner">
-        <header>
-          <p className="builds-surface__kicker">[ BUILDS · SHIPPING ]</p>
-          <h1 className="builds-surface__title">What I ship.</h1>
+        <header className="builds-surface__head">
+          <h1 className="builds-surface__title">Builds</h1>
           <div className="builds-surface__meta" aria-label="Build totals">
             <span>
               <b>{String(projects.length).padStart(2, "0")}</b> projects

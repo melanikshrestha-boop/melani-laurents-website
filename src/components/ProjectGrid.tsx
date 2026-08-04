@@ -43,10 +43,6 @@ function ProjectCard({
     <>
       <div className="mm-card__photo" style={{ background: visual }} aria-hidden>
         <span className="mm-card__tag">{tagFor(project)}</span>
-        <span className="mm-card__corner mm-card__corner--tl" />
-        <span className="mm-card__corner mm-card__corner--tr" />
-        <span className="mm-card__corner mm-card__corner--bl" />
-        <span className="mm-card__corner mm-card__corner--br" />
         <span className="mm-card__mono">{initial}</span>
       </div>
       <div className="mm-card__body">
@@ -54,7 +50,6 @@ function ProjectCard({
           <p className="mm-card__eyebrow">{project.role}</p>
         ) : null}
         <h2 className="mm-card__title">{project.title}</h2>
-        <p className="mm-card__desc">{project.description}</p>
         <div className="mm-card__meta">
           <span className="mm-card__price">
             {project.readout || project.tags.slice(0, 2).join(" · ") || project.status}

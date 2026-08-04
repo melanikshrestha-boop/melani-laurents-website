@@ -9,12 +9,11 @@ import "@/styles/daily-pulse.css";
 
 export const metadata: Metadata = {
   title: "Daily",
-  description:
-    "Diary of time spent + interactive essays — what Melani took in, thinks, and opens for debate.",
+  description: "Daily — Melani Laurents / Celine Nova.",
 };
 
 /**
- * Daily hub — Diary + Blog (the interactive core).
+ * Daily hub — Diary + theses. No marketing lede; edges clean; no hairlines.
  */
 export default function DailyPage() {
   const xUrl =
@@ -29,27 +28,27 @@ export default function DailyPage() {
       <div id="journals" />
       <div id="bookshelf" />
 
-      <p className="ib-kicker">Public attention</p>
-      <h1 className="ib-title">Daily</h1>
-      <p className="ib-lede">
-        Diary of what I took in, plus essays others can argue with. Most active
-        on{" "}
-        <a href={xUrl} target="_blank" rel="noopener noreferrer">
-          Twitter ↗
+      <header className="ib-head">
+        <h1 className="ib-title">Daily</h1>
+        <a
+          className="ib-head__x"
+          href={xUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          @melanilaurents
         </a>
-        — the archive lives here.
+      </header>
+
+      <p className="ib-nav">
+        <Link href="/diary">Diary</Link>
+        {" · "}
+        <Link href="/blog">Blog</Link>
+        {" · "}
+        <Link href="/bookshelf">Bookshelf</Link>
       </p>
 
-      <p className="ib-nav" style={{ marginBottom: 36 }}>
-        <Link href="/diary">Diary →</Link>
-        {" · "}
-        <Link href="/blog">Blog →</Link>
-        {" · "}
-        <Link href="/bookshelf">Bookshelf →</Link>
-      </p>
-
-      <section className="ib-related" aria-label="Recent diary">
-        <h2>Recent diary</h2>
+      <section className="ib-related" aria-label="Diary">
         <ul className="consume-grid">
           {recent.map((e) => (
             <li key={e.id} className="consume-item">
@@ -60,29 +59,30 @@ export default function DailyPage() {
                   {STANCE_LABEL[e.stance]}
                 </span>
               </div>
-              <h3 className="consume-item__title">{e.title}</h3>
+              <h2 className="consume-item__title">{e.title}</h2>
               <p className="consume-item__take">{e.take}</p>
             </li>
           ))}
         </ul>
       </section>
 
-      <section className="ib-related" style={{ marginTop: 48 }} aria-label="Open theses">
-        <h2>Open theses</h2>
-        <ul className="ib-list">
-          {posts.map((post) => (
-            <li key={post.slug}>
-              <Link href={`/blog/${post.slug}`}>
-                <span className="ib-list__date">{post.date}</span>
-                <h3 className="ib-list__title">{post.title}</h3>
-                <p className="ib-list__lede">{post.thesis}</p>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
+      {posts.length > 0 ? (
+        <section className="ib-related ib-related--tight" aria-label="Theses">
+          <ul className="ib-list">
+            {posts.map((post) => (
+              <li key={post.slug}>
+                <Link href={`/blog/${post.slug}`}>
+                  <span className="ib-list__date">{post.date}</span>
+                  <h2 className="ib-list__title">{post.title}</h2>
+                  <p className="ib-list__lede">{post.thesis}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
-      <p className="ib-nav" style={{ marginTop: 40 }}>
+      <p className="ib-nav ib-nav--foot">
         <Link href="/">← Home</Link>
       </p>
     </div>
