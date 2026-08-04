@@ -7,7 +7,6 @@ import {
   listBlogPosts,
   threadIdForBlog,
 } from "@/data/blog-posts";
-import { STANCE_LABEL } from "@/data/consume-types";
 import { listOpinions } from "@/lib/discussions";
 import { OpinionThread } from "@/components/discussion/OpinionThread";
 import "@/styles/interactive-blog.css";
@@ -38,21 +37,25 @@ export default async function BlogPostPage({ params }: Props) {
   const initial = await listOpinions(threadId);
 
   return (
-    <article className="ib-page">
+    <article className="ib-page ib-dispatches">
       <p className="ib-nav">
         <Link href="/blog">← Blog</Link>
       </p>
 
-      <p className="ib-kicker">{post.date}</p>
-      <h1 className="ib-title">{post.title}</h1>
-      <p className="ib-stance">{STANCE_LABEL[post.stance]}</p>
-      <p className="ib-thesis">{post.thesis}</p>
+      <h1 className="ib-dispatch__title ib-dispatch__title--solo">
+        {post.title}
+      </h1>
+      <p className="ib-dispatch__meta">
+        <time dateTime={post.date}>{post.date}</time>
+      </p>
 
-      <div className="ib-body">
+      <div className="ib-dispatch__body">
         {post.body.map((para) => (
           <p key={para.slice(0, 48)}>{para}</p>
         ))}
       </div>
+
+      <p className="ib-thesis ib-dispatch__thesis">{post.thesis}</p>
 
       {related.length ? (
         <section className="ib-related" aria-label="Related notes">

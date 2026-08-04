@@ -45,10 +45,111 @@
 .ib-page > .ib-related,
 .ib-page > .op-thread,
 .ib-page > .ib-date,
-.ib-page > .consume-grid {
+.ib-page > .consume-grid,
+.ib-page > .ib-dispatch-intro,
+.ib-page > .ib-dispatch {
   max-width: 42rem;
   margin-left: 0;
   margin-right: auto;
+}
+
+/* ── Dispatches (Patrick Collison pattern) ──
+ * One continuous scroll: title → date → full essay. No cards, no grid.
+ */
+.ib-dispatches {
+  padding-top: 1.75rem;
+}
+
+.ib-dispatch-intro {
+  margin: 0 0 2.25rem;
+  font-family: var(--font-serif), "Iowan Old Style", Palatino, Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--notes-soft);
+  max-width: 38rem;
+}
+
+.ib-dispatch {
+  margin: 0 0 3.25rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.ib-dispatch:last-child {
+  margin-bottom: 1rem;
+}
+
+.ib-dispatch__title {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-serif), "Iowan Old Style", Palatino, Georgia, serif;
+  font-size: clamp(1.35rem, 2.8vw, 1.75rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--notes-ink);
+}
+
+.ib-dispatch__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ib-dispatch__title a:hover {
+  color: #3b7ea8;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+  text-decoration-thickness: 1px;
+}
+
+.ib-dispatch__meta {
+  margin: 0 0 1rem;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 0.9rem;
+  line-height: 1.35;
+  color: var(--notes-faint);
+}
+
+.ib-dispatch__meta a {
+  color: var(--notes-soft);
+  text-decoration: none;
+}
+
+.ib-dispatch__meta a:hover {
+  color: #3b7ea8;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.ib-dispatch__meta-sep {
+  margin: 0 0.35em;
+  opacity: 0.7;
+}
+
+.ib-dispatch__body {
+  font-family: var(--font-serif), "Iowan Old Style", Palatino, Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--notes-ink);
+}
+
+.ib-dispatch__body p {
+  margin: 0 0 0.95rem;
+}
+
+.ib-dispatch__body p:last-child {
+  margin-bottom: 0;
+}
+
+.ib-dispatch__title--solo {
+  font-size: clamp(1.5rem, 3.2vw, 2rem);
+}
+
+.ib-dispatch__thesis {
+  margin-top: 1.5rem;
 }
 
 .ib-page ::selection {
