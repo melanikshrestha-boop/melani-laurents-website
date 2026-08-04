@@ -48,4 +48,31 @@ export const SHELF_BLOGS: ShelfBlog[] = [
     author: "Sam Altman",
     date: "2014-01-15",
   },
+  {
+    id: "pc-why-aesthetics",
+    title: "Why Aesthetics",
+    url: "https://patrickcollison.com/dispatches/why-aesthetics",
+    author: "Patrick Collison",
+    date: "2026-08-02",
+  },
+  {
+    id: "pc-paris",
+    title: "Paris",
+    url: "https://patrickcollison.com/dispatches/paris",
+    author: "Patrick Collison",
+    date: "2026-06-20",
+  },
+  {
+    id: "pc-new-aesthetics",
+    title: "New Aesthetics",
+    url: "https://patrickcollison.com/dispatches/new-aesthetics",
+    author: "Patrick Collison",
+    date: "2026-05-25",
+  },
+  {
+    id: "pc-fast",
+    title: "Fast",
+    url: "https://patrickcollison.com/fast",
+    author: "Patrick Collison",
+  },
 ];
