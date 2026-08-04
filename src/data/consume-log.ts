@@ -16,7 +16,6 @@ export const consumeLog: ConsumeEntry[] = [
       "Status platforms make you perform seriousness. The work should be the signal — not a timeline of fake milestones.",
     why: "Noticed how much energy goes into looking founder-like instead of shipping.",
     tags: ["startups", "attention", "status"],
-    blogSlug: "status-vs-signal",
   },
   {
     id: "c-2026-07-28-neuroplasticity",
@@ -29,7 +28,6 @@ export const consumeLog: ConsumeEntry[] = [
       "Writing what you listen to, read, and argue about is how you force the brain to keep the signal. Silence after input is wasted plasticity.",
     why: "Core of the bookshelf + daily archive thesis.",
     tags: ["neuroplasticity", "writing", "learning"],
-    blogSlug: "consume-to-claim",
   },
   {
     id: "c-2026-07-20-bci-signal",

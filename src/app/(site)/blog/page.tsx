@@ -1,46 +1,42 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { listBlogPosts } from "@/data/blog-posts";
+import { formatBlogArchiveDate, listBlogPosts } from "@/data/blog-posts";
 import "@/styles/interactive-blog.css";
 
 export const metadata: Metadata = {
   title: "Blog",
-  description: "Longer notes — written in public.",
+  description: "Notes and essays.",
 };
 
 /**
- * Exact structure of patrickcollison.com/dispatches:
- * intro italic → posts: h2 link, byline, body paragraphs.
- * CSS mirrors his /static/style.css (#content 500px, Helvetica 13, byline 10px #aaa).
+ * Sam Altman archive structure:
+ * full-bleed white · blue title links · gray uppercase dates · no side waste.
+ * No fake posts. Empty until she writes.
  */
 export default function BlogIndexPage() {
   const posts = listBlogPosts();
 
   return (
-    <div className="pc-blog">
-      <div className="pc-blog-content">
-        <p className="pc-blog-intro">
-          <i>
-            Longer notes — written in public. Under each permanent link: stances
-            and disagreement.
-          </i>
-        </p>
-
-        {posts.map((post) => (
-          <div key={post.slug} className="pc-post" id={post.slug}>
-            <h2>
-              <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-            </h2>
-            <span className="pc-byline">
-              {post.date}
-              {" · "}
-              <Link href={`/blog/${post.slug}`}>Discuss</Link>
-            </span>
-            {post.body.map((para) => (
-              <p key={para.slice(0, 72)}>{para}</p>
+    <div className="sa-blog">
+      <div className="sa-blog-inner">
+        {posts.length === 0 ? (
+          <p className="sa-blog-empty">Nothing published yet.</p>
+        ) : (
+          <ul className="sa-blog-list">
+            {posts.map((post) => (
+              <li key={post.slug} className="sa-blog-item">
+                <h2 className="sa-blog-title">
+                  <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                </h2>
+                <p className="sa-blog-date">
+                  <time dateTime={post.date}>
+                    {formatBlogArchiveDate(post.date)}
+                  </time>
+                </p>
+              </li>
             ))}
-          </div>
-        ))}
+          </ul>
+        )}
       </div>
     </div>
   );

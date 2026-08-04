@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
   consumeForPost,
+  formatBlogArchiveDate,
   getBlogPost,
   listBlogPosts,
   threadIdForBlog,
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-/** Single post — same Collison #content surface as the index. */
+/** Single post — full width body when she publishes. */
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   const post = getBlogPost(slug);
@@ -38,50 +39,50 @@ export default async function BlogPostPage({ params }: Props) {
   const initial = await listOpinions(threadId);
 
   return (
-    <div className="pc-blog">
-      <div className="pc-blog-content">
-        <p className="pc-blog-nav">
+    <div className="sa-blog">
+      <article className="sa-blog-inner sa-post">
+        <p className="sa-blog-nav">
           <Link href="/blog">← Blog</Link>
         </p>
 
-        <div className="pc-post pc-post--solo">
-          <h2>{post.title}</h2>
-          <span className="pc-byline">{post.date}</span>
+        <h1 className="sa-post-title">{post.title}</h1>
+        <p className="sa-blog-date">
+          <time dateTime={post.date}>{formatBlogArchiveDate(post.date)}</time>
+        </p>
+
+        <div className="sa-post-body">
           {post.body.map((para) => (
             <p key={para.slice(0, 72)}>{para}</p>
           ))}
         </div>
 
-        {post.thesis ? <p className="pc-thesis">{post.thesis}</p> : null}
-
         {related.length ? (
-          <div className="pc-related">
-            <h3>Related notes</h3>
+          <section className="sa-post-related" aria-label="Related notes">
+            <h2>Related</h2>
             <ul>
               {related.map((c) =>
                 c ? (
                   <li key={c.id}>
-                    <b>
+                    <strong>
                       {c.title}
                       {c.by ? ` · ${c.by}` : ""}
-                    </b>
-                    <br />
-                    {c.take}
+                    </strong>
+                    <p>{c.take}</p>
                   </li>
                 ) : null,
               )}
             </ul>
-          </div>
+          </section>
         ) : null}
 
-        <div className="pc-thread">
+        <div className="sa-post-thread">
           <OpinionThread
             threadId={threadId}
             prompt={post.thesis}
             initial={initial}
           />
         </div>
-      </div>
+      </article>
     </div>
   );
 }
