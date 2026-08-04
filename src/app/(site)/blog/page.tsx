@@ -5,36 +5,41 @@ import "@/styles/interactive-blog.css";
 
 export const metadata: Metadata = {
   title: "Blog",
-  description:
-    "Longer notes and essays — written in public, open to disagreement.",
+  description: "Longer notes — written in public.",
 };
 
 /**
- * Google Docs surface: gray canvas + white letter page, Arial body.
- * Structure still dispatches (full posts, reverse chrono).
+ * Exact structure of patrickcollison.com/dispatches:
+ * intro italic → posts: h2 link, byline, body paragraphs.
+ * CSS mirrors his /static/style.css (#content 500px, Helvetica 13, byline 10px #aaa).
  */
 export default function BlogIndexPage() {
   const posts = listBlogPosts();
 
   return (
-    <div className="ib-docs-canvas">
-      <div className="ib-docs-page">
+    <div className="pc-blog">
+      <div className="pc-blog-content">
+        <p className="pc-blog-intro">
+          <i>
+            Longer notes — written in public. Under each permanent link: stances
+            and disagreement.
+          </i>
+        </p>
+
         {posts.map((post) => (
-          <article key={post.slug} className="ib-docs-section" id={post.slug}>
-            <h1 className="ib-docs-title">
+          <div key={post.slug} className="pc-post" id={post.slug}>
+            <h2>
               <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-            </h1>
-            <p className="ib-docs-subtitle">
-              <time dateTime={post.date}>{post.date}</time>
-              <span aria-hidden> · </span>
+            </h2>
+            <span className="pc-byline">
+              {post.date}
+              {" · "}
               <Link href={`/blog/${post.slug}`}>Discuss</Link>
-            </p>
-            <div className="ib-docs-body">
-              {post.body.map((para) => (
-                <p key={para.slice(0, 64)}>{para}</p>
-              ))}
-            </div>
-          </article>
+            </span>
+            {post.body.map((para) => (
+              <p key={para.slice(0, 72)}>{para}</p>
+            ))}
+          </div>
         ))}
       </div>
     </div>

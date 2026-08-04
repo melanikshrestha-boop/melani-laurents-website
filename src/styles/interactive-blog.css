@@ -51,206 +51,192 @@
   margin-right: auto;
 }
 
-/* ── Google Docs surface (blog only) ──
- * Gray app canvas + white letter page + Arial. No cream paper, no serif essay look.
+/*
+ * ── Patrick Collison /dispatches — faithful port of
+ *    https://patrickcollison.com/static/style.css
+ *
+ * body { Helvetica; 13px }
+ * #left { width: 200px }  →  .pc-blog padding-left
+ * #content { width: 500px; margin-top: 15px }
+ * h2 { Myriad Pro / Helvetica Neue; margin-top: 2em }
+ * .byline { 10px; #aaa }
+ * a { #0864c7 }
+ * p { #333; line-height: 18px }
+ * .post + .post { margin-top: 50px }
+ *
+ * No Google Docs canvas. No cream paper. No card shadow.
  */
-.ib-docs-canvas {
-  --docs-ink: #202124;
-  --docs-soft: #5f6368;
-  --docs-faint: #80868b;
-  --docs-link: #1a73e8;
-  --docs-canvas: #f9fbfd;
-  --docs-page: #ffffff;
-  --docs-select: #c2e7ff;
-  --docs-font: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  /* Letter width ≈ 8.5in at 96dpi, Docs-ish */
-  --docs-page-w: min(816px, calc(100% - 2rem));
-
+.pc-blog {
   position: relative;
   z-index: 2;
   box-sizing: border-box;
   width: 100%;
   min-height: calc(100dvh - 3.5rem);
   margin: 0;
-  padding: 1.5rem 1rem 3.5rem;
-  background: var(--docs-canvas);
-  color: var(--docs-ink);
-  font-family: var(--docs-font);
+  /* White page over dark site shell — Collison is plain white */
+  background: #fff;
+  color: #333;
+  font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
   -webkit-user-select: text;
   user-select: text;
+  /* #left spacer 200px + content floats left */
+  padding: 0 1.25rem 4rem max(1rem, min(200px, 14vw));
 }
 
-.ib-docs-canvas ::selection {
-  background: var(--docs-select);
-  color: var(--docs-ink);
-}
-
-.ib-docs-page {
+.pc-blog-content {
   box-sizing: border-box;
-  width: var(--docs-page-w);
+  width: 500px;
   max-width: 100%;
-  min-height: calc(100dvh - 6rem);
-  margin: 0 auto;
-  padding: 96px 96px 120px; /* ~1" margins like Docs */
-  background: var(--docs-page);
-  color: var(--docs-ink);
-  /* Soft page lift on the gray canvas */
-  box-shadow:
-    0 0 0 1px rgba(60, 64, 67, 0.08),
-    0 1px 3px 1px rgba(60, 64, 67, 0.1);
-  border-radius: 0;
+  margin-top: 15px;
+  float: none; /* modern flow; same width as his #content */
 }
 
-@media (max-width: 720px) {
-  .ib-docs-page {
-    padding: 48px 24px 72px;
-    width: 100%;
-    box-shadow: none;
-    min-height: auto;
-  }
-
-  .ib-docs-canvas {
-    padding: 0 0 2rem;
-    background: var(--docs-page);
-  }
+.pc-blog-intro {
+  margin: 0 0 0;
+  color: #333;
+  line-height: 18px;
+  font-size: 13px;
 }
 
-.ib-docs-section {
-  margin: 0 0 3rem;
-  padding: 0;
-  border: 0;
-  background: transparent;
+.pc-blog-intro i {
+  font-style: italic;
 }
 
-.ib-docs-section:last-child {
-  margin-bottom: 0;
+.pc-blog-intro a {
+  color: #0864c7;
 }
 
-/* Docs Title style (~26pt / bold-ish heading) */
-.ib-docs-title {
-  margin: 0 0 0.15rem;
-  font-family: var(--docs-font);
-  font-size: 26px;
-  font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: 0;
-  color: var(--docs-ink);
+.pc-blog-nav {
+  margin: 0 0 0.5em;
+  font-size: 13px;
+  line-height: 18px;
 }
 
-.ib-docs-title a {
-  color: inherit;
-  text-decoration: none;
+.pc-blog-nav a {
+  color: #0864c7;
 }
 
-.ib-docs-title a:hover {
-  color: var(--docs-link);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-/* Subtitle / date line — like Docs subtitle gray */
-.ib-docs-subtitle {
-  margin: 0 0 1.25rem;
-  font-family: var(--docs-font);
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.3;
-  color: var(--docs-faint);
-}
-
-.ib-docs-subtitle a {
-  color: var(--docs-link);
-  text-decoration: none;
-}
-
-.ib-docs-subtitle a:hover {
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-/* Body = default Docs 11pt Arial, 1.15 line-height (we use 1.5 for comfort) */
-.ib-docs-body {
-  font-family: var(--docs-font);
-  font-size: 11pt;
-  font-weight: 400;
-  line-height: 1.5;
-  color: var(--docs-ink);
-}
-
-.ib-docs-body p {
-  margin: 0 0 12px;
-}
-
-.ib-docs-body p:last-child {
-  margin-bottom: 0;
-}
-
-.ib-docs-nav {
-  margin: 0 0 1.5rem;
-  font-family: var(--docs-font);
-  font-size: 11pt;
-  color: var(--docs-soft);
-}
-
-.ib-docs-nav a {
-  color: var(--docs-link);
-  text-decoration: none;
-}
-
-.ib-docs-nav a:hover {
-  text-decoration: underline;
-}
-
-.ib-docs-thesis {
-  margin: 1.75rem 0 0;
-  font-family: var(--docs-font);
-  font-size: 11pt;
-  line-height: 1.5;
-  color: var(--docs-soft);
-}
-
-.ib-docs-h2 {
-  margin: 2rem 0 0.5rem;
-  font-family: var(--docs-font);
-  font-size: 16px;
-  font-weight: 400;
-  color: var(--docs-ink);
-}
-
-.ib-docs-related {
-  margin-top: 1.5rem;
-}
-
-.ib-docs-related ul {
-  list-style: none;
+/* Headings — Collison Myriad / Helvetica Neue */
+.pc-blog-content h2,
+.pc-blog-content h3 {
+  font-family: "Myriad Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin: 0;
-  padding: 0;
+  font-weight: bold;
+  color: #000;
 }
 
-.ib-docs-related-title {
-  margin: 0 0 0.2rem;
-  font-size: 11pt;
-  color: var(--docs-ink);
+.pc-blog-content h2 {
+  margin-top: 2em;
+  font-size: 1.5em; /* browser-default h2 scale on 13px base */
+  line-height: 1.2;
 }
 
-.ib-docs-related-take {
-  margin: 0 0 0.85rem;
-  font-size: 11pt;
-  color: var(--docs-soft);
-  line-height: 1.45;
+.pc-post--solo h2 {
+  margin-top: 0.5em;
 }
 
-.ib-docs-thread {
-  margin-top: 2.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid #e8eaed;
+.pc-blog-content h2 a {
+  color: #0864c7;
+  text-decoration: none;
 }
 
-/* Opinion thread sits on white page — tone down cream inheritance if any */
-.ib-docs-page .op-thread {
+.pc-blog-content h2 a:visited {
+  color: #0864c7;
+}
+
+.pc-blog-content h2 a:hover {
+  text-decoration: underline;
+}
+
+/* Byline under title */
+.pc-byline,
+.pc-byline a {
+  font-size: 10px;
+  color: #aaa;
+  line-height: 1.4;
+}
+
+.pc-byline {
+  display: block;
+  margin: 0.15em 0 0.75em;
+}
+
+.pc-byline a:hover {
+  color: #0864c7;
+}
+
+/* Body copy */
+.pc-blog-content p {
+  color: #333;
+  line-height: 18px;
+  margin: 1em 0;
+  font-size: 13px;
+}
+
+.pc-blog-content a,
+.pc-blog-content a:visited {
+  color: #0864c7;
+}
+
+.pc-post + .pc-post {
+  margin-top: 50px;
+}
+
+.pc-thesis {
+  margin-top: 2em;
+  color: #777;
+  font-size: smaller;
+  line-height: 18px;
+}
+
+.pc-related {
+  margin-top: 2em;
+}
+
+.pc-related h3 {
+  margin: 0 0 0.5em;
+  font-size: 1.1em;
+}
+
+.pc-related ul {
+  color: #333;
+  line-height: 18px;
+  margin: 0.5em 0 0;
+  padding-left: 1.25em;
+}
+
+.pc-related li {
+  margin-bottom: 0.7em;
+}
+
+.pc-thread {
+  margin-top: 2em;
+  padding-top: 1em;
+  border-top: 1px solid #eee;
+  clear: both;
+}
+
+/* Discussion UI on white Collison page */
+.pc-blog .op-thread {
   max-width: none;
   margin: 0;
   background: transparent;
+  color: #333;
+  font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
+  font-size: 13px;
+}
+
+@media (max-width: 640px) {
+  .pc-blog {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .pc-blog-content {
+    width: 100%;
+  }
 }
 
 .ib-page ::selection {

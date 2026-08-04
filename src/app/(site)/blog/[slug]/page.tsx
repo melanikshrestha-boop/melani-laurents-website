@@ -27,6 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+/** Single post — same Collison #content surface as the index. */
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   const post = getBlogPost(slug);
@@ -37,54 +38,50 @@ export default async function BlogPostPage({ params }: Props) {
   const initial = await listOpinions(threadId);
 
   return (
-    <div className="ib-docs-canvas">
-      <article className="ib-docs-page">
-        <p className="ib-docs-nav">
+    <div className="pc-blog">
+      <div className="pc-blog-content">
+        <p className="pc-blog-nav">
           <Link href="/blog">← Blog</Link>
         </p>
 
-        <h1 className="ib-docs-title">{post.title}</h1>
-        <p className="ib-docs-subtitle">
-          <time dateTime={post.date}>{post.date}</time>
-        </p>
-
-        <div className="ib-docs-body">
+        <div className="pc-post pc-post--solo">
+          <h2>{post.title}</h2>
+          <span className="pc-byline">{post.date}</span>
           {post.body.map((para) => (
-            <p key={para.slice(0, 48)}>{para}</p>
+            <p key={para.slice(0, 72)}>{para}</p>
           ))}
         </div>
 
-        {post.thesis ? (
-          <p className="ib-docs-thesis">{post.thesis}</p>
-        ) : null}
+        {post.thesis ? <p className="pc-thesis">{post.thesis}</p> : null}
 
         {related.length ? (
-          <section className="ib-docs-related" aria-label="Related notes">
-            <h2 className="ib-docs-h2">Related notes</h2>
+          <div className="pc-related">
+            <h3>Related notes</h3>
             <ul>
               {related.map((c) =>
                 c ? (
                   <li key={c.id}>
-                    <p className="ib-docs-related-title">
+                    <b>
                       {c.title}
                       {c.by ? ` · ${c.by}` : ""}
-                    </p>
-                    <p className="ib-docs-related-take">{c.take}</p>
+                    </b>
+                    <br />
+                    {c.take}
                   </li>
                 ) : null,
               )}
             </ul>
-          </section>
+          </div>
         ) : null}
 
-        <div className="ib-docs-thread">
+        <div className="pc-thread">
           <OpinionThread
             threadId={threadId}
             prompt={post.thesis}
             initial={initial}
           />
         </div>
-      </article>
+      </div>
     </div>
   );
 }
