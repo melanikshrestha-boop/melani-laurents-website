@@ -1,5 +1,15 @@
 [
   {
+    "id": "book-0880d32bf5ec",
+    "kind": "book",
+    "title": "The Wealth of Nations",
+    "source": "Adam Smith",
+    "loggedAt": "2026-08-06",
+    "category": "Business & Money",
+    "href": "https://www.amazon.com/dp/0679783369",
+    "asin": "0679783369"
+  },
+  {
     "id": "book-55954427f3f8",
     "kind": "book",
     "title": "A Gentle Creature",
@@ -190,7 +200,7 @@
     "id": "book-b4b8095d01fc",
     "kind": "book",
     "title": "The Laramie Project",
-    "source": "Mois\u00e9s Kaufman",
+    "source": "Moisés Kaufman",
     "loggedAt": "2026-07-30",
     "category": "high school reads",
     "href": "https://www.amazon.com/dp/8416876940",
@@ -406,7 +416,7 @@
     "asin": "0307278441",
     "rating": 5,
     "favorite": true,
-    "favoriteWhy": "High school \u2014 reread for fun. 5\u2605."
+    "favoriteWhy": "High school — reread for fun. 5★."
   },
   {
     "id": "book-4cd734f3a4c9",
@@ -583,7 +593,7 @@
     "href": "https://www.amazon.com/dp/1451648537",
     "asin": "1451648537",
     "favorite": true,
-    "favoriteWhy": "Isaacson \u2014 main character energy.",
+    "favoriteWhy": "Isaacson — main character energy.",
     "rating": 5
   },
   {
@@ -762,7 +772,7 @@
     "asin": "1982181281",
     "category": "main characters only",
     "favorite": true,
-    "favoriteWhy": "Isaacson \u2014 main character energy.",
+    "favoriteWhy": "Isaacson — main character energy.",
     "rating": 5
   },
   {
@@ -946,7 +956,7 @@
     "id": "book-sv-9b30042c09",
     "kind": "book",
     "title": "Chaos Monkeys",
-    "source": "Antonio Garc\u00eda Mart\u00ednez",
+    "source": "Antonio García Martínez",
     "loggedAt": "2026-07-30",
     "category": "everything startups",
     "year": 2016,
@@ -1908,7 +1918,7 @@
   {
     "id": "book-hist-3b5504ead0",
     "kind": "book",
-    "title": "Stalingrad: The Fateful Siege, 1942\u20131943",
+    "title": "Stalingrad: The Fateful Siege, 1942–1943",
     "source": "Antony Beevor",
     "loggedAt": "2026-07-29",
     "category": "history",
@@ -2062,7 +2072,7 @@
   {
     "id": "book-hist-5286808c2f",
     "kind": "book",
-    "title": "The Gulag Archipelago 1918\u20131956",
+    "title": "The Gulag Archipelago 1918–1956",
     "source": "Aleksandr Solzhenitsyn",
     "loggedAt": "2026-07-28",
     "category": "history",
@@ -2300,7 +2310,7 @@
     "href": "https://www.amazon.com/dp/0807014273",
     "asin": "0807014273",
     "favorite": true,
-    "favoriteWhy": "Rare fave \u2014 meaning under pressure.",
+    "favoriteWhy": "Rare fave — meaning under pressure.",
     "rating": 5
   },
   {
@@ -2483,7 +2493,7 @@
     "id": "book-sa-4f6a514908",
     "kind": "book",
     "title": "Call Me by Your Name",
-    "source": "Andr\u00e9 Aciman",
+    "source": "André Aciman",
     "loggedAt": "2026-07-29",
     "category": "everything startups",
     "asin": "1250169445",
@@ -2714,7 +2724,7 @@
     "id": "book-sa-e1e3e103d6",
     "kind": "book",
     "title": "Hunger of Memory",
-    "source": "Richard Rodr\u00edguez",
+    "source": "Richard Rodríguez",
     "loggedAt": "2026-07-28",
     "category": "everything startups",
     "asin": "0553382519",
@@ -2834,7 +2844,7 @@
   {
     "id": "book-psy-2afc6e2fd7",
     "kind": "book",
-    "title": "Why We Buy: The Science of Shopping \u2014 Updated and Revised for the Internet, the Global Consumer, and Beyond",
+    "title": "Why We Buy: The Science of Shopping — Updated and Revised for the Internet, the Global Consumer, and Beyond",
     "source": "Paco Underhill",
     "loggedAt": "2026-08-01",
     "category": "psychology",

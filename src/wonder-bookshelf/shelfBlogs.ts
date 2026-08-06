@@ -56,6 +56,22 @@ export const SHELF_BLOGS: ShelfBlog[] = [
     date: "2018-04-10",
   },
   {
+    id: "sa-archive",
+    title: "Sam Altman — full archive (daily essay goal)",
+    url: "https://blog.samaltman.com/archive?date=1362096000",
+    author: "Sam Altman",
+    annotation:
+      "Owner goal: ≥1 essay by Sam Altman or Paul Graham every day. Start here and walk the archive.",
+  },
+  {
+    id: "pg-articles",
+    title: "Paul Graham — essays index (daily essay goal)",
+    url: "https://www.paulgraham.com/articles.html",
+    author: "Paul Graham",
+    annotation:
+      "Owner goal: ≥1 essay by Sam Altman or Paul Graham every day. Pair with SA archive.",
+  },
+  {
     id: "pc-why-aesthetics",
     title: "Why Aesthetics",
     url: "https://patrickcollison.com/dispatches/why-aesthetics",
