@@ -37,7 +37,11 @@ import {
 } from "./booksStore";
 import { coverUrlForBook, storeUrlForBook } from "./amazon";
 import { catalogEntryToBook } from "./publicCatalog";
-import { SHELF_BLOGS, shortBlogDate, type ShelfBlog } from "./shelfBlogs";
+import {
+  getShelfBlogs,
+  shortBlogDate,
+  type ShelfBlog,
+} from "./shelfBlogs";
 import { MinimalIcon } from "./MinimalIcon";
 import "./books-library.css";
 
@@ -424,7 +428,8 @@ export function PublicBookshelf() {
       });
   }, []);
 
-  const blogCount = SHELF_BLOGS.length;
+  const shelfBlogs = useMemo(() => getShelfBlogs(), []);
+  const blogCount = shelfBlogs.length;
 
   const counts = useMemo(() => {
     const c = {
@@ -518,7 +523,13 @@ export function PublicBookshelf() {
       if (existing) {
         clearTimeout(existing);
         blogTapTimers.current.delete(blog.id);
-        openAnnotation(blog.title, (blog.annotation || "").trim());
+        // Double-tap → full take (also always shown inline under the row)
+        openAnnotation(
+          blog.title,
+          [blog.highlight && `“${blog.highlight}”`, blog.take]
+            .filter(Boolean)
+            .join("\n\n")
+        );
         return;
       }
       const t = setTimeout(() => {
@@ -828,41 +839,46 @@ export function PublicBookshelf() {
           );
         })}
 
-        {/* Blogs: numbered list, chronological read order */}
-        {showBlogs && SHELF_BLOGS.length > 0 ? (
+        {/* Blogs: finished reads only — highlight + take always visible */}
+        {showBlogs && shelfBlogs.length > 0 ? (
           <section
             className={`pb-blogs${filter === "all" ? " pb-blogs--after-books" : ""}`}
             aria-label="Blogs"
           >
             <header className="pb-blogs__head">
-              <h2 className="pb-blogs__title">
-                Blogs
-                <span className="pb-blogs__chrono">
-                  {" "}
-                  in chronological order that I read
-                </span>
-              </h2>
+              <h2 className="pb-blogs__title">Blogs</h2>
             </header>
             <ol className="pb-blogs__list">
-              {SHELF_BLOGS.map((blog, i) => (
+              {shelfBlogs.map((blog, i) => (
                 <li key={blog.id} className="pb-blogs__item">
                   <button
                     type="button"
                     className="pb-blogs__row"
                     onClick={() => onBlogActivate(blog)}
-                    title="Tap: open post · double-tap: notes"
+                    title="Open essay"
                   >
                     <span className="pb-blogs__n" aria-hidden>
                       {i + 1}
                     </span>
-                    <span className="pb-blogs__line">
-                      <span className="pb-blogs__name">{blog.title}</span>
-                      {blog.date ? (
-                        <time className="pb-blogs__date" dateTime={blog.date}>
-                          {shortBlogDate(blog.date)}
-                        </time>
-                      ) : null}
-                      <span className="pb-blogs__by">by {blog.author}</span>
+                    <span className="pb-blogs__body">
+                      <span className="pb-blogs__line">
+                        <span className="pb-blogs__name">{blog.title}</span>
+                        {blog.date ? (
+                          <time
+                            className="pb-blogs__date"
+                            dateTime={blog.date}
+                          >
+                            {shortBlogDate(blog.date)}
+                          </time>
+                        ) : null}
+                        <span className="pb-blogs__by">
+                          {blog.author}
+                        </span>
+                      </span>
+                      <span className="pb-blogs__highlight">
+                        {blog.highlight}
+                      </span>
+                      <span className="pb-blogs__take">{blog.take}</span>
                     </span>
                   </button>
                 </li>
