@@ -145,6 +145,10 @@ const SHELF_QUOTES: { text: string; author: string }[] = [
     text: "I like a cold, dark, quiet room, and a great mattress (I resisted spending a bunch of money on a great mattress for years, which was stupid—it makes a huge difference to my sleep quality. I love this one). Not eating a lot in the few hours before sleep helps. Not drinking alcohol helps a lot, though I'm not willing to do that all the time.",
     author: "Sam Altman · Productivity",
   },
+  {
+    text: "Finally, to repeat one more time: productivity in the wrong direction isn't worth anything at all. Think more about what to work on.",
+    author: "Sam Altman · Productivity",
+  },
 ];
 
 /**
