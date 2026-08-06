@@ -109,6 +109,10 @@ const SHELF_QUOTES: { text: string; author: string }[] = [
     text: "I don't read to finish. I read to rewire.",
     author: "Celine Nova",
   },
+  {
+    text: "The most impressive people I know have strong beliefs about the world, which is rare in the general population. If you find yourself always agreeing with whomever you last spoke with, that's bad. You will of course be wrong sometimes, but develop the confidence to stick with your convictions. It will let you be courageous when you're right about something important that most people don't see.",
+    author: "Sam Altman · Productivity",
+  },
 ];
 
 /**

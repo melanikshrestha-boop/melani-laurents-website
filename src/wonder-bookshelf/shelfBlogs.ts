@@ -49,6 +49,13 @@ export const SHELF_BLOGS: ShelfBlog[] = [
     date: "2014-01-15",
   },
   {
+    id: "sa-productivity",
+    title: "Productivity",
+    url: "https://blog.samaltman.com/productivity",
+    author: "Sam Altman",
+    date: "2018-04-10",
+  },
+  {
     id: "pc-why-aesthetics",
     title: "Why Aesthetics",
     url: "https://patrickcollison.com/dispatches/why-aesthetics",
