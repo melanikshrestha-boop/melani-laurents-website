@@ -137,6 +137,10 @@ const SHELF_QUOTES: { text: string; author: string }[] = [
     text: "I have different times of day I try to use for different kinds of work. The first few hours of the morning are definitely my most productive time of the day, so I don't let anyone schedule anything then. I try to do meetings in the afternoon. I take a break, or switch tasks, whenever I feel my attention starting to fade.",
     author: "Sam Altman · Productivity",
   },
+  {
+    text: "The right goal is to allocate your year optimally, not your day.",
+    author: "Sam Altman · Productivity",
+  },
 ];
 
 /**
