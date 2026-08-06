@@ -113,6 +113,10 @@ const SHELF_QUOTES: { text: string; author: string }[] = [
     text: "The most impressive people I know have strong beliefs about the world, which is rare in the general population. If you find yourself always agreeing with whomever you last spoke with, that's bad. You will of course be wrong sometimes, but develop the confidence to stick with your convictions. It will let you be courageous when you're right about something important that most people don't see.",
     author: "Sam Altman · Productivity",
   },
+  {
+    text: "Try to be around smart, productive, happy, and positive people that don't belittle your ambitions. I love being around people who push me and inspire me to be better. To the degree you are able to, avoid the opposite kind of people—the cost of letting them take up your mental cycles is horrific.",
+    author: "Sam Altman · Productivity",
+  },
 ];
 
 /**
