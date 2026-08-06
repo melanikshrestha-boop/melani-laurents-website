@@ -1,11 +1,331 @@
 [
   {
+    "id": "book-2abedb704ee5",
+    "kind": "book",
+    "title": "Macroeconomics",
+    "source": "Olivier Blanchard",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "asin": "0133061639",
+    "href": "https://www.amazon.com/dp/0133061639"
+  },
+  {
+    "id": "book-ba39d3a23ea5",
+    "kind": "book",
+    "title": "Macroeconomics",
+    "source": "N. Gregory Mankiw",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "asin": "1319105998",
+    "href": "https://www.amazon.com/dp/1319105998"
+  },
+  {
+    "id": "book-e106004683b5",
+    "kind": "book",
+    "title": "The Power of Creative Destruction",
+    "source": "Philippe Aghion, Céline Antonin, and Simon Bunel",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "asin": "0674971167",
+    "href": "https://www.amazon.com/dp/0674971167"
+  },
+  {
+    "id": "book-c259de4030c7",
+    "kind": "book",
+    "title": "Capital in the Twenty-First Century",
+    "source": "Thomas Piketty",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "asin": "0674979850",
+    "href": "https://www.amazon.com/dp/0674979850"
+  },
+  {
+    "id": "book-faf64d864d30",
+    "kind": "book",
+    "title": "Introductory Econometrics",
+    "source": "Jeffrey M. Wooldridge",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/1337558869",
+    "asin": "1337558869"
+  },
+  {
+    "id": "book-250be90b3033",
+    "kind": "book",
+    "title": "Mathematics for Economists",
+    "source": "Carl P. Simon",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/0393117529",
+    "asin": "0393117529"
+  },
+  {
+    "id": "book-84d70b93f0ac",
+    "kind": "book",
+    "title": "Intermediate Microeconomics",
+    "source": "Hal R. Varian",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/0393980421",
+    "asin": "0393980421"
+  },
+  {
+    "id": "book-cf27b9a4b48c",
+    "kind": "book",
+    "title": "The Great Divergence",
+    "source": "Kenneth Pomeranz",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/0691005435",
+    "asin": "0691005435"
+  },
+  {
+    "id": "book-29f5854d250e",
+    "kind": "book",
+    "title": "The Lever of Riches",
+    "source": "Joel Mokyr",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/0195074777",
+    "asin": "0195074777"
+  },
+  {
+    "id": "book-7cd4b9d0994c",
+    "kind": "book",
+    "title": "A Culture of Growth",
+    "source": "Joel Mokyr",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/0691180962",
+    "asin": "0691180962"
+  },
+  {
+    "id": "book-68e94330fa62",
+    "kind": "book",
+    "title": "Animal Spirits",
+    "source": "George A. Akerlof",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/0691142335",
+    "asin": "0691142335"
+  },
+  {
+    "id": "book-d9d7a72af085",
+    "kind": "book",
+    "title": "Misbehaving",
+    "source": "Richard H. Thaler",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/8551004131",
+    "asin": "8551004131"
+  },
+  {
+    "id": "book-6b30b57f6886",
+    "kind": "book",
+    "title": "Information Rules",
+    "source": "Carl Shapiro",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/087584863X",
+    "asin": "087584863X"
+  },
+  {
+    "id": "book-2cce7f884215",
+    "kind": "book",
+    "title": "The Strategy of Conflict",
+    "source": "Thomas C. Schelling",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/0674840313",
+    "asin": "0674840313"
+  },
+  {
+    "id": "book-264d9ad4f72f",
+    "kind": "book",
+    "title": "This Time Is Different",
+    "source": "Carmen M. Reinhart",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/0691152640",
+    "asin": "0691152640"
+  },
+  {
+    "id": "book-4a27f105bc26",
+    "kind": "book",
+    "title": "A Monetary History of the United States, 1867–1960",
+    "source": "Milton Friedman",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/0691003548",
+    "asin": "0691003548"
+  },
+  {
+    "id": "book-b5127e72bd1b",
+    "kind": "book",
+    "title": "Manias, Panics, and Crashes",
+    "source": "Charles Poor Kindleberger",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/8502210807",
+    "asin": "8502210807"
+  },
+  {
+    "id": "book-01acf366044e",
+    "kind": "book",
+    "title": "The Book of Why",
+    "source": "Judea Pearl",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/1543695272",
+    "asin": "1543695272"
+  },
+  {
+    "id": "book-f056c4443b90",
+    "kind": "book",
+    "title": "Mostly Harmless Econometrics",
+    "source": "Joshua David Angrist",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/0691120358",
+    "asin": "0691120358"
+  },
+  {
+    "id": "book-efe67052ebdb",
+    "kind": "book",
+    "title": "Mastering 'Metrics",
+    "source": "Joshua D. Angrist",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/1400852382",
+    "asin": "1400852382"
+  },
+  {
+    "id": "book-3f9de11e8409",
+    "kind": "book",
+    "title": "Violence and Social Orders",
+    "source": "Douglass C. North",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/0521761735",
+    "asin": "0521761735"
+  },
+  {
+    "id": "book-44aeaa5c0dab",
+    "kind": "book",
+    "title": "Good Economics for Hard Times",
+    "source": "Abhijit Banerjee",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/9353450705",
+    "asin": "9353450705"
+  },
+  {
+    "id": "book-c66760cb8f5d",
+    "kind": "book",
+    "title": "Poor Economics",
+    "source": "Abhijit Banerjee",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/8184001819",
+    "asin": "8184001819"
+  },
+  {
+    "id": "book-991b72440612",
+    "kind": "book",
+    "title": "The Narrow Corridor",
+    "source": "Daron Acemoglu",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/0735224404",
+    "asin": "0735224404"
+  },
+  {
+    "id": "book-111610a7365c",
+    "kind": "book",
+    "title": "Why Nations Fail",
+    "source": "Daron Acemoglu",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/3596195586",
+    "asin": "3596195586"
+  },
+  {
+    "id": "book-d79a6e43d906",
+    "kind": "book",
+    "title": "The Road to Serfdom",
+    "source": "Friedrich A. von Hayek",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/0226320553",
+    "asin": "0226320553"
+  },
+  {
+    "id": "book-fe1426a365a9",
+    "kind": "book",
+    "title": "Capitalism and Freedom",
+    "source": "Milton Friedman",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/3492239625",
+    "asin": "3492239625"
+  },
+  {
+    "id": "book-98e49970cf27",
+    "kind": "book",
+    "title": "The Worldly Philosophers",
+    "source": "Robert L. Heilbroner",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/8491040331",
+    "asin": "8491040331"
+  },
+  {
+    "id": "book-a0d6cceab230",
+    "kind": "book",
+    "title": "Capitalism, Socialism and Democracy",
+    "source": "Joseph Alois Schumpeter",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/6254073862",
+    "asin": "6254073862"
+  },
+  {
+    "id": "book-06a8451fb774",
+    "kind": "book",
+    "title": "The General Theory of Employment, Interest and Money",
+    "source": "John Maynard Keynes",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/0333009428",
+    "asin": "0333009428"
+  },
+  {
+    "id": "book-5fbc00e1ac5d",
+    "kind": "book",
+    "title": "Principles of Political Economy and Taxation",
+    "source": "David Ricardo",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/1934568147",
+    "asin": "1934568147"
+  },
+  {
+    "id": "book-e92ce01da7fb",
+    "kind": "book",
+    "title": "The Theory of Moral Sentiments",
+    "source": "Adam Smith",
+    "loggedAt": "2026-08-06",
+    "category": "economics",
+    "href": "https://www.amazon.com/dp/1600960901",
+    "asin": "1600960901"
+  },
+  {
     "id": "book-0880d32bf5ec",
     "kind": "book",
     "title": "The Wealth of Nations",
     "source": "Adam Smith",
     "loggedAt": "2026-08-06",
-    "category": "Business & Money",
+    "category": "economics",
     "href": "https://www.amazon.com/dp/0679783369",
     "asin": "0679783369"
   },
@@ -1723,7 +2043,7 @@
     "title": "Guns, Germs, and Steel: The Fates of Human Societies",
     "source": "Jared Diamond",
     "loggedAt": "2026-07-29",
-    "category": "history",
+    "category": "economics",
     "asin": "0393317552",
     "href": "https://www.amazon.com/dp/0393317552",
     "rating": 4
@@ -2385,7 +2705,7 @@
     "title": "Thinking, Fast and Slow",
     "source": "Daniel Kahneman",
     "loggedAt": "2026-07-29",
-    "category": "psychology",
+    "category": "economics",
     "asin": "0374533555",
     "href": "https://www.amazon.com/dp/0374533555",
     "rating": 4
@@ -2836,7 +3156,7 @@
     "title": "Nudge: Improving Decisions About Health, Wealth, and Happiness",
     "source": "Richard H. Thaler and Cass R. Sunstein",
     "loggedAt": "2026-08-01",
-    "category": "psychology",
+    "category": "economics",
     "asin": "014311526X",
     "href": "https://www.amazon.com/dp/014311526X",
     "rating": 0

@@ -167,6 +167,7 @@ const PUBLIC_FOLDER_ORDER = [
   "everything startups",
   "psychology",
   "history",
+  "economics",
 ] as const;
 
 const FOLDER_ACCENT: Record<string, string> = {
@@ -174,6 +175,7 @@ const FOLDER_ACCENT: Record<string, string> = {
   "everything startups": "#5b9fd4",
   psychology: "#9b7fd4",
   history: "#c97b84",
+  economics: "#6b9e78",
   Conqueror: "#c45c4a",
   Entrepreneur: "#d4a84b",
   Genius: "#5b9fd4",
