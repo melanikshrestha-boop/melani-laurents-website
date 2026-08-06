@@ -1,8 +1,10 @@
 /**
  * Blogs Melani has *finished* reading — public shelf only.
  * Law: no unread placeholders. Every entry needs a highlight + her take (n+1).
- * Chronological by read order (1 → n).
+ * Data: src/data/shelf-blogs.json (editable from the page in edit mode).
  */
+
+import raw from "@/data/shelf-blogs.json";
 
 export type ShelfBlog = {
   id: string;
@@ -27,24 +29,7 @@ export function shortBlogDate(iso?: string): string {
   return `${m}/${d}/${String(y).slice(-2)}`;
 }
 
-/**
- * Only finished reads with a real highlight + take.
- * Add here only after she finishes and has something to say.
- */
-export const SHELF_BLOGS: ShelfBlog[] = [
-  {
-    id: "sa-productivity",
-    title: "Productivity",
-    url: "https://blog.samaltman.com/productivity",
-    author: "Sam Altman",
-    date: "2018-04-10",
-    readAt: "2026-08-06",
-    highlight:
-      "The right goal is to allocate your year optimally, not your day.",
-    take:
-      "Direction beats speed. Compound the right problem — year allocation over productivity porn.",
-  },
-];
+export const SHELF_BLOGS: ShelfBlog[] = raw as ShelfBlog[];
 
 /** Public list: finished + has contribution (never empty rows) */
 export function getShelfBlogs(): ShelfBlog[] {

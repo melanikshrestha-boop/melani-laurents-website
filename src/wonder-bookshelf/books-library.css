@@ -5143,6 +5143,95 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   line-height: 1.3 !important;
   letter-spacing: 0.01em !important;
 }
+.pb-root .pb-folder-view--input {
+  display: block;
+  width: calc(100% - 28px);
+  max-width: 36rem;
+  background: transparent;
+  border-bottom: 1px dashed #ddd4c8 !important;
+  box-sizing: border-box;
+}
+.pb-root .pb-page-edit-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 4px 0 0;
+}
+.pb-root .pb-page-title-input {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px dashed #ddd4c8;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  width: min(100%, 16rem);
+}
+.pb-root .pb-save-msg {
+  color: #9a9084;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 10px;
+}
+.pb-root .pb-currently-reading--edit {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+}
+.pb-root .pb-current-edit-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  width: 100%;
+}
+.pb-root .pb-current-edit-row input {
+  flex: 1 1 8rem;
+  min-width: 0;
+  margin: 0;
+  padding: 2px 0;
+  border: 0;
+  border-bottom: 1px solid #ddd4c8;
+  background: transparent;
+  color: #29251f;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 12px;
+}
+.pb-root .pb-card-wrap--edit {
+  position: relative;
+}
+.pb-root .pb-card-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 4px;
+}
+.pb-root .pb-card-edit__select {
+  width: 100%;
+  margin: 0;
+  padding: 1px 0;
+  border: 0;
+  border-bottom: 1px solid #ddd4c8;
+  background: transparent;
+  color: #71695f;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 9px;
+}
+.pb-root .pb-card-edit__delete {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #b07070;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  text-align: left;
+  cursor: pointer;
+}
+.pb-root .pb-card-edit__delete:hover {
+  color: #8a3030;
+}
 /* Open cover grid under drive — less dead air */
 .pb-root .bl-shelf > .bl-grid {
   padding: 4px 0 8px 28px !important;

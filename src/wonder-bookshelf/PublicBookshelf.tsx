@@ -47,14 +47,29 @@ import {
   DEFAULT_BLOG_STYLE,
   blogStyleToCssVars,
   loadBlogStyle,
-  loadBlogTextOverrides,
   saveBlogStyle,
-  saveBlogTextOverrides,
   type BlogDisplayStyle,
-  type BlogTextOverride,
 } from "./blogDisplayStyle";
+import {
+  applyBlogOverlay,
+  applyCatalogOverlay,
+  loadShelfEditor,
+  materializeBlogs,
+  materializeCatalog,
+  saveShelfEditor,
+  type ShelfEditorState,
+} from "./shelfEditorStore";
 import { MinimalIcon } from "./MinimalIcon";
 import "./books-library.css";
+
+/** Drives she can assign a book to while editing */
+const EDIT_FOLDER_OPTIONS = [
+  "main characters",
+  "everything startups",
+  "psychology",
+  "history",
+  "economics",
+] as const;
 
 /** Single tap vs double tap (ms). Double = annotations; single = outbound link. */
 const TAP_MS = 280;
@@ -184,11 +199,6 @@ const PUBLIC_FOLDER_ORDER = [
   "history",
   "economics",
 ] as const;
-
-/** One-liners shown above the grid when a drive is open (owner voice). */
-const FOLDER_VIEW: Record<string, string> = {
-  "main characters": "ditch self help books for autobiographies",
-};
 
 const FOLDER_ACCENT: Record<string, string> = {
   "main characters": "#c4a06a",
@@ -339,12 +349,20 @@ function CatalogCard({
   item,
   folderLabel,
   highlight = false,
+  editMode = false,
   onAnnotate,
+  onDelete,
+  onCategory,
+  onRating,
 }: {
   item: ShelfItem;
   folderLabel: string;
   highlight?: boolean;
+  editMode?: boolean;
   onAnnotate: (title: string, body: string) => void;
+  onDelete?: (id: string) => void;
+  onCategory?: (id: string, category: string) => void;
+  onRating?: (id: string, rating: number) => void;
 }) {
   const { entry, book } = item;
   const href = buyUrl(entry, book);
@@ -359,10 +377,10 @@ function CatalogCard({
 
   const onActivate = (e: ReactMouseEvent | ReactKeyboardEvent) => {
     e.preventDefault();
+    if (editMode) return;
     if (tapTimer.current) {
       clearTimeout(tapTimer.current);
       tapTimer.current = null;
-      // Double tap → her annotations (thoughts when she has written them)
       const body = (entry.thoughts || entry.summary || "").trim();
       onAnnotate(book.title, body);
       return;
@@ -375,15 +393,14 @@ function CatalogCard({
 
   return (
     <div
-      className={`bl-card-wrap${highlight ? " pb-card-wrap--picked" : ""}`}
+      className={`bl-card-wrap${highlight ? " pb-card-wrap--picked" : ""}${editMode ? " pb-card-wrap--edit" : ""}`}
       id={`pb-book-${entry.id}`}
       data-book-id={entry.id}
     >
-      {/* Single tap → Amazon; double tap → annotations */}
       <button
         type="button"
         className="bl-card pb-card-link pb-card-btn"
-        title={`${label} · double-tap for notes`}
+        title={editMode ? book.title : `${label} · double-tap for notes`}
         onClick={onActivate}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") onActivate(e);
@@ -394,8 +411,49 @@ function CatalogCard({
         {book.author ? (
           <span className="bl-card-author">{book.author}</span>
         ) : null}
-        <StarRating rating={entry.rating} />
+        {!editMode ? <StarRating rating={entry.rating} /> : null}
       </button>
+      {editMode ? (
+        <div className="pb-card-edit">
+          <select
+            className="pb-card-edit__select"
+            value={folderLabel}
+            aria-label="Folder"
+            onChange={(e) => onCategory?.(entry.id, e.target.value)}
+          >
+            {EDIT_FOLDER_OPTIONS.map((f) => (
+              <option key={f} value={f}>
+                {f}
+              </option>
+            ))}
+            {!EDIT_FOLDER_OPTIONS.includes(
+              folderLabel as (typeof EDIT_FOLDER_OPTIONS)[number]
+            ) ? (
+              <option value={folderLabel}>{folderLabel}</option>
+            ) : null}
+          </select>
+          <select
+            className="pb-card-edit__select"
+            value={entry.rating ?? 0}
+            aria-label="Rating"
+            onChange={(e) => onRating?.(entry.id, Number(e.target.value))}
+          >
+            <option value={0}>no stars</option>
+            {[1, 2, 3, 4, 5].map((n) => (
+              <option key={n} value={n}>
+                {n}★
+              </option>
+            ))}
+          </select>
+          <button
+            type="button"
+            className="pb-card-edit__delete"
+            onClick={() => onDelete?.(entry.id)}
+          >
+            delete
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -421,11 +479,38 @@ export function PublicBookshelf() {
     body: string;
   } | null>(null);
 
+  /** Full-page owner edit — delete / move / rewrite / style */
+  const [pageEdit, setPageEdit] = useState(false);
+  const [editor, setEditor] = useState<ShelfEditorState>(() =>
+    typeof window === "undefined" ? loadShelfEditor() : loadShelfEditor()
+  );
+  const [blogStyle, setBlogStyle] = useState<BlogDisplayStyle>(DEFAULT_BLOG_STYLE);
+  const [styleCopied, setStyleCopied] = useState(false);
+  const [saveMsg, setSaveMsg] = useState<string | null>(null);
+
+  useEffect(() => {
+    setEditor(loadShelfEditor());
+    setBlogStyle(loadBlogStyle());
+  }, []);
+
+  const patchEditor = useCallback(
+    (fn: (prev: ShelfEditorState) => ShelfEditorState) => {
+      setEditor((prev) => {
+        const next = fn(prev);
+        saveShelfEditor(next);
+        return next;
+      });
+    },
+    []
+  );
+
   /** Books / papers / podcasts only — never fake blog "book" covers */
   const catalog = useMemo<ShelfItem[]>(() => {
-    return bookshelfEntries
-      .filter((entry) => entry.kind !== "blog")
-      // Drop ugly drive dumps from public shelf (data stays in catalog for later)
+    const live = applyCatalogOverlay(
+      bookshelfEntries.filter((entry) => entry.kind !== "blog"),
+      editor
+    );
+    return live
       .filter((entry) => !isHiddenPublicCategory(folderLabelFor(entry)))
       .map((entry, i) => {
         const book = catalogEntryToBook(entry);
@@ -435,7 +520,6 @@ export function PublicBookshelf() {
             asin: entry.asin,
             href: entry.href,
             title: entry.title,
-            // Catalog coverUrl wins when Amazon serves the wrong face (back, blank…)
             coverUrl: entry.coverUrl,
           });
           book.externalUrl = storeUrlForBook({
@@ -448,32 +532,13 @@ export function PublicBookshelf() {
         book.category = folderLabelFor(entry) as Book["category"];
         return { entry, book };
       });
-  }, []);
+  }, [editor]);
 
   const baseShelfBlogs = useMemo(() => getShelfBlogs(), []);
-  const [blogStyle, setBlogStyle] = useState<BlogDisplayStyle>(DEFAULT_BLOG_STYLE);
-  const [blogText, setBlogText] = useState<Record<string, BlogTextOverride>>(
-    {}
+  const shelfBlogs = useMemo(
+    () => applyBlogOverlay(baseShelfBlogs, editor),
+    [baseShelfBlogs, editor]
   );
-  const [blogStudio, setBlogStudio] = useState(false);
-  const [styleCopied, setStyleCopied] = useState(false);
-
-  useEffect(() => {
-    setBlogStyle(loadBlogStyle());
-    setBlogText(loadBlogTextOverrides());
-  }, []);
-
-  const shelfBlogs = useMemo(() => {
-    return baseShelfBlogs.map((b) => {
-      const o = blogText[b.id];
-      if (!o) return b;
-      return {
-        ...b,
-        highlight: o.highlight?.trim() ? o.highlight : b.highlight,
-        take: o.take?.trim() ? o.take : b.take,
-      };
-    });
-  }, [baseShelfBlogs, blogText]);
   const blogCount = shelfBlogs.length;
   const blogCssVars = useMemo(
     () => blogStyleToCssVars(blogStyle) as CSSProperties,
@@ -491,18 +556,63 @@ export function PublicBookshelf() {
     []
   );
 
-  const patchBlogText = useCallback(
-    (id: string, field: keyof BlogTextOverride, value: string) => {
-      setBlogText((prev) => {
-        const next = {
-          ...prev,
-          [id]: { ...prev[id], [field]: value },
-        };
-        saveBlogTextOverrides(next);
-        return next;
+  const deleteBook = useCallback(
+    (id: string) => {
+      patchEditor((prev) => ({
+        ...prev,
+        deletedBookIds: prev.deletedBookIds.includes(id)
+          ? prev.deletedBookIds
+          : [...prev.deletedBookIds, id],
+      }));
+    },
+    [patchEditor]
+  );
+
+  const setBookCategory = useCallback(
+    (id: string, category: string) => {
+      patchEditor((prev) => ({
+        ...prev,
+        categoryById: { ...prev.categoryById, [id]: category },
+      }));
+    },
+    [patchEditor]
+  );
+
+  const setBookRating = useCallback(
+    (id: string, rating: number) => {
+      patchEditor((prev) => {
+        const ratingById = { ...prev.ratingById };
+        if (rating < 1) delete ratingById[id];
+        else ratingById[id] = rating;
+        return { ...prev, ratingById };
       });
     },
-    []
+    [patchEditor]
+  );
+
+  const deleteBlog = useCallback(
+    (id: string) => {
+      patchEditor((prev) => ({
+        ...prev,
+        deletedBlogIds: prev.deletedBlogIds.includes(id)
+          ? prev.deletedBlogIds
+          : [...prev.deletedBlogIds, id],
+      }));
+    },
+    [patchEditor]
+  );
+
+  const patchBlogField = useCallback(
+    (id: string, field: "highlight" | "take", value: string) => {
+      patchEditor((prev) => ({
+        ...prev,
+        blogById: {
+          ...prev.blogById,
+          [id]: { ...prev.blogById[id], [field]: value },
+        },
+      }));
+    },
+    [patchEditor]
   );
 
   const resetBlogStyle = useCallback(() => {
@@ -519,6 +629,37 @@ export function PublicBookshelf() {
       /* ignore */
     }
   }, [blogStyle]);
+
+  const saveToSite = useCallback(async () => {
+    setSaveMsg("saving…");
+    const nextCatalog = materializeCatalog(bookshelfEntries, editor);
+    const nextBlogs = materializeBlogs(baseShelfBlogs, editor);
+    try {
+      const res = await fetch("/api/bookshelf/catalog", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ catalog: nextCatalog, blogs: nextBlogs }),
+      });
+      const data = (await res.json()) as { ok?: boolean; error?: string };
+      if (!res.ok) {
+        setSaveMsg(data.error || "save failed");
+        return;
+      }
+      // Clear delete overlays — disk is source of truth now (reload for full sync)
+      patchEditor((prev) => ({
+        ...prev,
+        deletedBookIds: [],
+        deletedBlogIds: [],
+        categoryById: {},
+        ratingById: {},
+        blogById: {},
+      }));
+      setSaveMsg("saved to disk — refresh");
+      window.setTimeout(() => window.location.reload(), 600);
+    } catch (e) {
+      setSaveMsg(String(e instanceof Error ? e.message : e));
+    }
+  }, [editor, baseShelfBlogs, patchEditor]);
 
   const counts = useMemo(() => {
     const c = {
@@ -773,7 +914,21 @@ export function PublicBookshelf() {
             <div className="bl-head-copy">
               <h1 className="bl-title">
                 <MinimalIcon name="books" size={22} />
-                My Bookshelf
+                {pageEdit ? (
+                  <input
+                    className="pb-page-title-input"
+                    value={editor.pageTitle}
+                    onChange={(e) =>
+                      patchEditor((p) => ({
+                        ...p,
+                        pageTitle: e.target.value,
+                      }))
+                    }
+                    aria-label="Page title"
+                  />
+                ) : (
+                  editor.pageTitle
+                )}
               </h1>
               <div className="bl-stats" aria-label="Shelf totals">
                 <span>
@@ -786,6 +941,30 @@ export function PublicBookshelf() {
                   <b>{counts.faves}</b> favs
                 </span>
               </div>
+            </div>
+            <div className="pb-page-edit-bar">
+              <button
+                type="button"
+                className={`pb-blogs__edit-toggle${pageEdit ? " is-on" : ""}`}
+                onClick={() => setPageEdit((v) => !v)}
+                aria-pressed={pageEdit}
+              >
+                {pageEdit ? "done" : "edit page"}
+              </button>
+              {pageEdit ? (
+                <>
+                  <button
+                    type="button"
+                    className="pb-blogs__edit-toggle"
+                    onClick={() => void saveToSite()}
+                  >
+                    save to site
+                  </button>
+                  {saveMsg ? (
+                    <span className="pb-save-msg">{saveMsg}</span>
+                  ) : null}
+                </>
+              ) : null}
             </div>
           </div>
         </header>
@@ -813,27 +992,100 @@ export function PublicBookshelf() {
           </button>
         </div>
 
-        {/* Plural current reads — small roman; titles open Amazon */}
-        <p className="pb-currently-reading">
-          current reads:{" "}
-          <a
-            href="https://www.amazon.com/dp/1982153733"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            the founders
-          </a>{" "}
-          by jimmy soni
-          <span className="pb-currently-reading__sep"> · </span>
-          <a
-            href="https://www.amazon.com/dp/0807014273"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            man&apos;s search for meaning
-          </a>{" "}
-          by viktor e. frankl
-        </p>
+        {/* Current reads — editable in page edit mode */}
+        {pageEdit ? (
+          <div className="pb-currently-reading pb-currently-reading--edit">
+            <span>current reads:</span>
+            {editor.currentReads.map((r, i) => (
+              <div key={i} className="pb-current-edit-row">
+                <input
+                  value={r.title}
+                  aria-label={`Current read ${i + 1} title`}
+                  onChange={(e) =>
+                    patchEditor((p) => {
+                      const currentReads = [...p.currentReads];
+                      currentReads[i] = {
+                        ...currentReads[i],
+                        title: e.target.value,
+                      };
+                      return { ...p, currentReads };
+                    })
+                  }
+                />
+                <input
+                  value={r.author}
+                  aria-label={`Current read ${i + 1} author`}
+                  onChange={(e) =>
+                    patchEditor((p) => {
+                      const currentReads = [...p.currentReads];
+                      currentReads[i] = {
+                        ...currentReads[i],
+                        author: e.target.value,
+                      };
+                      return { ...p, currentReads };
+                    })
+                  }
+                />
+                <input
+                  value={r.href}
+                  aria-label={`Current read ${i + 1} link`}
+                  onChange={(e) =>
+                    patchEditor((p) => {
+                      const currentReads = [...p.currentReads];
+                      currentReads[i] = {
+                        ...currentReads[i],
+                        href: e.target.value,
+                      };
+                      return { ...p, currentReads };
+                    })
+                  }
+                />
+                <button
+                  type="button"
+                  className="pb-card-edit__delete"
+                  onClick={() =>
+                    patchEditor((p) => ({
+                      ...p,
+                      currentReads: p.currentReads.filter((_, j) => j !== i),
+                    }))
+                  }
+                >
+                  delete
+                </button>
+              </div>
+            ))}
+            <button
+              type="button"
+              className="pb-blogs__edit-toggle"
+              onClick={() =>
+                patchEditor((p) => ({
+                  ...p,
+                  currentReads: [
+                    ...p.currentReads,
+                    { title: "title", author: "author", href: "https://" },
+                  ],
+                }))
+              }
+            >
+              + current read
+            </button>
+          </div>
+        ) : (
+          <p className="pb-currently-reading">
+            current reads:{" "}
+            {editor.currentReads.map((r, i) => (
+              <span key={`${r.title}-${i}`}>
+                {i > 0 ? (
+                  <span className="pb-currently-reading__sep"> · </span>
+                ) : null}
+                <a href={r.href} target="_blank" rel="noopener noreferrer">
+                  {r.title}
+                </a>{" "}
+                by {r.author}
+              </span>
+            ))}
+          </p>
+        )}
 
         {sHint ? (
           <div className="pb-s-popup" role="status" aria-live="polite">
@@ -861,7 +1113,11 @@ export function PublicBookshelf() {
                   item={item}
                   folderLabel="favs"
                   highlight={highlightId === item.entry.id}
+                  editMode={pageEdit}
                   onAnnotate={openAnnotation}
+                  onDelete={deleteBook}
+                  onCategory={setBookCategory}
+                  onRating={setBookRating}
                 />
               ))}
             </div>
@@ -913,8 +1169,25 @@ export function PublicBookshelf() {
 
               {expanded ? (
                 <>
-                  {FOLDER_VIEW[group.label] ? (
-                    <p className="pb-folder-view">{FOLDER_VIEW[group.label]}</p>
+                  {pageEdit ? (
+                    <input
+                      className="pb-folder-view pb-folder-view--input"
+                      value={editor.folderViews[group.label] || ""}
+                      placeholder="line under drive name"
+                      onChange={(e) =>
+                        patchEditor((p) => ({
+                          ...p,
+                          folderViews: {
+                            ...p.folderViews,
+                            [group.label]: e.target.value,
+                          },
+                        }))
+                      }
+                    />
+                  ) : editor.folderViews[group.label] ? (
+                    <p className="pb-folder-view">
+                      {editor.folderViews[group.label]}
+                    </p>
                   ) : null}
                   <div className="bl-grid">
                     {group.items.map((item) => (
@@ -923,7 +1196,11 @@ export function PublicBookshelf() {
                         item={item}
                         folderLabel={group.label}
                         highlight={highlightId === item.entry.id}
+                        editMode={pageEdit}
                         onAnnotate={openAnnotation}
+                        onDelete={deleteBook}
+                        onCategory={setBookCategory}
+                        onRating={setBookRating}
                       />
                     ))}
                   </div>
@@ -942,17 +1219,9 @@ export function PublicBookshelf() {
           >
             <header className="pb-blogs__head">
               <h2 className="pb-blogs__title">Blogs</h2>
-              <button
-                type="button"
-                className={`pb-blogs__edit-toggle${blogStudio ? " is-on" : ""}`}
-                onClick={() => setBlogStudio((v) => !v)}
-                aria-pressed={blogStudio}
-              >
-                {blogStudio ? "done" : "edit"}
-              </button>
             </header>
 
-            {blogStudio ? (
+            {pageEdit ? (
               <div className="pb-blogs__studio" role="group" aria-label="Blog style">
                 <label>
                   font
@@ -1142,7 +1411,7 @@ export function PublicBookshelf() {
             <ol className="pb-blogs__list">
               {shelfBlogs.map((blog, i) => (
                 <li key={blog.id} className="pb-blogs__item">
-                  {blogStudio ? (
+                  {pageEdit ? (
                     <div className="pb-blogs__row">
                       <span className="pb-blogs__n" aria-hidden>
                         {i + 1}
@@ -1159,13 +1428,24 @@ export function PublicBookshelf() {
                             </time>
                           ) : null}
                           <span className="pb-blogs__by">{blog.author}</span>
+                          <button
+                            type="button"
+                            className="pb-card-edit__delete"
+                            onClick={() => deleteBlog(blog.id)}
+                          >
+                            delete
+                          </button>
                         </span>
                         <textarea
                           className="pb-blogs__field pb-blogs__field--highlight"
                           rows={2}
                           value={blog.highlight}
                           onChange={(e) =>
-                            patchBlogText(blog.id, "highlight", e.target.value)
+                            patchBlogField(
+                              blog.id,
+                              "highlight",
+                              e.target.value
+                            )
                           }
                           aria-label="Highlight"
                         />
@@ -1174,7 +1454,7 @@ export function PublicBookshelf() {
                           rows={2}
                           value={blog.take}
                           onChange={(e) =>
-                            patchBlogText(blog.id, "take", e.target.value)
+                            patchBlogField(blog.id, "take", e.target.value)
                           }
                           aria-label="Your take"
                         />
