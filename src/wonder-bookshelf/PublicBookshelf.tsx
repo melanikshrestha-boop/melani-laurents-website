@@ -121,6 +121,10 @@ const SHELF_QUOTES: { text: string; author: string }[] = [
     text: "I highly recommend using lists. I make lists of what I want to accomplish each year, each month, and each day. Lists are very focusing, and they help me with multitasking because I don't have to keep as much in my head. If I'm not in the mood for some particular task, I can always find something else I'm excited to do.",
     author: "Sam Altman · Productivity",
   },
+  {
+    text: "I am relentless about getting my most important projects done—I've found that if I really want something to happen and I push hard enough, it usually happens.",
+    author: "Sam Altman · Productivity",
+  },
 ];
 
 /**
