@@ -125,6 +125,10 @@ const SHELF_QUOTES: { text: string; author: string }[] = [
     text: "I am relentless about getting my most important projects done—I've found that if I really want something to happen and I push hard enough, it usually happens.",
     author: "Sam Altman · Productivity",
   },
+  {
+    text: "I generally try to avoid meetings and conferences as I find the time cost to be huge—I get the most value out of time in my office. However, it is critical that you keep enough space in your schedule to allow for chance encounters and exposure to new people and ideas. Having an open network is valuable; though probably 90% of the random meetings I take are a waste of time, the other 10% really make up for it.",
+    author: "Sam Altman · Productivity",
+  },
 ];
 
 /**
