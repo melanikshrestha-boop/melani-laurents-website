@@ -5227,29 +5227,125 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 
 /*
  * Blogs — finished reads only.
- * Title + meta, then always-visible highlight + take (no empty essay stubs).
+ * Live typography via CSS vars (set by style editor / defaults).
  */
 .pb-root .pb-blogs {
+  --pb-blog-font: "Times New Roman", Times, serif;
+  --pb-blog-heading-size: 13px;
+  --pb-blog-title-size: 11px;
+  --pb-blog-meta-size: 10px;
+  --pb-blog-highlight-size: 10px;
+  --pb-blog-take-size: 10px;
+  --pb-blog-heading-color: #29251f;
+  --pb-blog-title-color: #29251f;
+  --pb-blog-meta-color: #9a9084;
+  --pb-blog-highlight-color: #5c534a;
+  --pb-blog-take-color: #3d3630;
+  --pb-blog-number-color: #a89f93;
+  --pb-blog-row-gap: 12px;
+  --pb-blog-line-gap: 2px;
+  --pb-blog-section-top: 14px;
   margin: 10px 0 0 !important;
   padding: 0 !important;
   border: 0 !important;
 }
 .pb-root .pb-blogs--after-books {
-  margin-top: 14px !important;
+  margin-top: var(--pb-blog-section-top) !important;
 }
 .pb-root .pb-blogs__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
   margin: 0 0 8px;
   padding: 0;
   border: 0 !important;
 }
 .pb-root .pb-blogs__title {
   margin: 0;
-  color: #29251f;
+  color: var(--pb-blog-heading-color);
   font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif;
-  font-size: 13px;
+  font-size: var(--pb-blog-heading-size);
   font-weight: 500;
   line-height: 1.05;
   letter-spacing: 0;
+}
+.pb-root .pb-blogs__edit-toggle {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #9a9084;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+.pb-root .pb-blogs__edit-toggle:hover,
+.pb-root .pb-blogs__edit-toggle.is-on {
+  color: #29251f;
+}
+/* Docs-style controls — dense, no chrome boxes */
+.pb-root .pb-blogs__studio {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  gap: 6px 10px;
+  margin: 0 0 10px;
+  padding: 0;
+  border: 0;
+}
+.pb-root .pb-blogs__studio label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  color: #9a9084;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.03em;
+  text-transform: lowercase;
+}
+.pb-root .pb-blogs__studio input[type="number"],
+.pb-root .pb-blogs__studio input[type="color"],
+.pb-root .pb-blogs__studio select {
+  width: 100%;
+  margin: 0;
+  padding: 2px 4px;
+  border: 0;
+  border-bottom: 1px solid #ddd4c8;
+  border-radius: 0;
+  background: transparent;
+  color: #29251f;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 11px;
+  box-sizing: border-box;
+}
+.pb-root .pb-blogs__studio input[type="color"] {
+  height: 22px;
+  padding: 0;
+  border-bottom: 0;
+  cursor: pointer;
+}
+.pb-root .pb-blogs__studio-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2px;
+}
+.pb-root .pb-blogs__studio-actions button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #71695f;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+.pb-root .pb-blogs__studio-actions button:hover {
+  color: #29251f;
 }
 .pb-root .pb-blogs__list {
   list-style: none;
@@ -5257,7 +5353,7 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px !important;
+  gap: var(--pb-blog-row-gap) !important;
   border: 0 !important;
 }
 .pb-root .pb-blogs__item {
@@ -5282,11 +5378,10 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   font: inherit;
   color: inherit;
 }
-/* Entry stack: Times New Roman, clearly smaller than “Blogs” (13px) */
 .pb-root .pb-blogs__n {
-  color: #a89f93;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 10px;
+  color: var(--pb-blog-number-color);
+  font-family: var(--pb-blog-font);
+  font-size: var(--pb-blog-meta-size);
   font-variant-numeric: tabular-nums;
   font-weight: 400;
   line-height: 1.35;
@@ -5295,9 +5390,9 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 .pb-root .pb-blogs__body {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: var(--pb-blog-line-gap);
   min-width: 0;
-  font-family: "Times New Roman", Times, serif;
+  font-family: var(--pb-blog-font);
 }
 .pb-root .pb-blogs__line {
   display: flex;
@@ -5310,9 +5405,9 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 .pb-root .pb-blogs__name {
   position: relative;
   display: inline-block;
-  color: #29251f;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 11px;
+  color: var(--pb-blog-title-color);
+  font-family: var(--pb-blog-font);
+  font-size: var(--pb-blog-title-size);
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: 0;
@@ -5327,35 +5422,60 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 }
 .pb-root .pb-blogs__date,
 .pb-root .pb-blogs__by {
-  color: #9a9084;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 10px;
+  color: var(--pb-blog-meta-color);
+  font-family: var(--pb-blog-font);
+  font-size: var(--pb-blog-meta-size);
   font-weight: 400;
   line-height: 1.25;
 }
 .pb-root .pb-blogs__date {
   font-variant-numeric: tabular-nums;
 }
-/* Marked line from the essay */
 .pb-root .pb-blogs__highlight {
   display: block;
-  color: #5c534a;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 10px;
+  color: var(--pb-blog-highlight-color);
+  font-family: var(--pb-blog-font);
+  font-size: var(--pb-blog-highlight-size);
   font-style: italic;
   font-weight: 400;
   line-height: 1.35;
   letter-spacing: 0;
 }
-/* Her n+1 — always on the shelf, not buried in a modal */
 .pb-root .pb-blogs__take {
   display: block;
-  color: #3d3630;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 10px;
+  color: var(--pb-blog-take-color);
+  font-family: var(--pb-blog-font);
+  font-size: var(--pb-blog-take-size);
   font-weight: 400;
   line-height: 1.35;
   letter-spacing: 0;
+}
+/* Inline text edit in studio mode */
+.pb-root .pb-blogs__field {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px dashed #ddd4c8;
+  background: transparent;
+  resize: vertical;
+  font: inherit;
+  color: inherit;
+  box-sizing: border-box;
+}
+.pb-root .pb-blogs__field--highlight {
+  color: var(--pb-blog-highlight-color);
+  font-family: var(--pb-blog-font);
+  font-size: var(--pb-blog-highlight-size);
+  font-style: italic;
+  line-height: 1.35;
+}
+.pb-root .pb-blogs__field--take {
+  color: var(--pb-blog-take-color);
+  font-family: var(--pb-blog-font);
+  font-size: var(--pb-blog-take-size);
+  line-height: 1.35;
 }
 
 /* Book card as button (single/double tap) */

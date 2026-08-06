@@ -42,6 +42,17 @@ import {
   shortBlogDate,
   type ShelfBlog,
 } from "./shelfBlogs";
+import {
+  BLOG_FONT_OPTIONS,
+  DEFAULT_BLOG_STYLE,
+  blogStyleToCssVars,
+  loadBlogStyle,
+  loadBlogTextOverrides,
+  saveBlogStyle,
+  saveBlogTextOverrides,
+  type BlogDisplayStyle,
+  type BlogTextOverride,
+} from "./blogDisplayStyle";
 import { MinimalIcon } from "./MinimalIcon";
 import "./books-library.css";
 
@@ -439,8 +450,75 @@ export function PublicBookshelf() {
       });
   }, []);
 
-  const shelfBlogs = useMemo(() => getShelfBlogs(), []);
+  const baseShelfBlogs = useMemo(() => getShelfBlogs(), []);
+  const [blogStyle, setBlogStyle] = useState<BlogDisplayStyle>(DEFAULT_BLOG_STYLE);
+  const [blogText, setBlogText] = useState<Record<string, BlogTextOverride>>(
+    {}
+  );
+  const [blogStudio, setBlogStudio] = useState(false);
+  const [styleCopied, setStyleCopied] = useState(false);
+
+  useEffect(() => {
+    setBlogStyle(loadBlogStyle());
+    setBlogText(loadBlogTextOverrides());
+  }, []);
+
+  const shelfBlogs = useMemo(() => {
+    return baseShelfBlogs.map((b) => {
+      const o = blogText[b.id];
+      if (!o) return b;
+      return {
+        ...b,
+        highlight: o.highlight?.trim() ? o.highlight : b.highlight,
+        take: o.take?.trim() ? o.take : b.take,
+      };
+    });
+  }, [baseShelfBlogs, blogText]);
   const blogCount = shelfBlogs.length;
+  const blogCssVars = useMemo(
+    () => blogStyleToCssVars(blogStyle) as CSSProperties,
+    [blogStyle]
+  );
+
+  const patchBlogStyle = useCallback(
+    <K extends keyof BlogDisplayStyle>(key: K, value: BlogDisplayStyle[K]) => {
+      setBlogStyle((prev) => {
+        const next = { ...prev, [key]: value };
+        saveBlogStyle(next);
+        return next;
+      });
+    },
+    []
+  );
+
+  const patchBlogText = useCallback(
+    (id: string, field: keyof BlogTextOverride, value: string) => {
+      setBlogText((prev) => {
+        const next = {
+          ...prev,
+          [id]: { ...prev[id], [field]: value },
+        };
+        saveBlogTextOverrides(next);
+        return next;
+      });
+    },
+    []
+  );
+
+  const resetBlogStyle = useCallback(() => {
+    setBlogStyle({ ...DEFAULT_BLOG_STYLE });
+    saveBlogStyle(DEFAULT_BLOG_STYLE);
+  }, []);
+
+  const copyBlogStyle = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(JSON.stringify(blogStyle, null, 2));
+      setStyleCopied(true);
+      window.setTimeout(() => setStyleCopied(false), 1600);
+    } catch {
+      /* ignore */
+    }
+  }, [blogStyle]);
 
   const counts = useMemo(() => {
     const c = {
@@ -855,48 +933,283 @@ export function PublicBookshelf() {
           );
         })}
 
-        {/* Blogs: finished reads only — highlight + take always visible */}
+        {/* Blogs: finished reads — style studio + always-visible highlight/take */}
         {showBlogs && shelfBlogs.length > 0 ? (
           <section
             className={`pb-blogs${filter === "all" ? " pb-blogs--after-books" : ""}`}
             aria-label="Blogs"
+            style={blogCssVars}
           >
             <header className="pb-blogs__head">
               <h2 className="pb-blogs__title">Blogs</h2>
+              <button
+                type="button"
+                className={`pb-blogs__edit-toggle${blogStudio ? " is-on" : ""}`}
+                onClick={() => setBlogStudio((v) => !v)}
+                aria-pressed={blogStudio}
+              >
+                {blogStudio ? "done" : "edit"}
+              </button>
             </header>
+
+            {blogStudio ? (
+              <div className="pb-blogs__studio" role="group" aria-label="Blog style">
+                <label>
+                  font
+                  <select
+                    value={blogStyle.fontFamily}
+                    onChange={(e) =>
+                      patchBlogStyle("fontFamily", e.target.value)
+                    }
+                  >
+                    {BLOG_FONT_OPTIONS.map((f) => (
+                      <option key={f.label} value={f.value}>
+                        {f.label}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label>
+                  heading size
+                  <input
+                    type="number"
+                    min={9}
+                    max={28}
+                    value={blogStyle.headingSize}
+                    onChange={(e) =>
+                      patchBlogStyle("headingSize", Number(e.target.value) || 13)
+                    }
+                  />
+                </label>
+                <label>
+                  title size
+                  <input
+                    type="number"
+                    min={8}
+                    max={24}
+                    value={blogStyle.titleSize}
+                    onChange={(e) =>
+                      patchBlogStyle("titleSize", Number(e.target.value) || 11)
+                    }
+                  />
+                </label>
+                <label>
+                  meta size
+                  <input
+                    type="number"
+                    min={8}
+                    max={20}
+                    value={blogStyle.metaSize}
+                    onChange={(e) =>
+                      patchBlogStyle("metaSize", Number(e.target.value) || 10)
+                    }
+                  />
+                </label>
+                <label>
+                  highlight size
+                  <input
+                    type="number"
+                    min={8}
+                    max={22}
+                    value={blogStyle.highlightSize}
+                    onChange={(e) =>
+                      patchBlogStyle(
+                        "highlightSize",
+                        Number(e.target.value) || 10
+                      )
+                    }
+                  />
+                </label>
+                <label>
+                  take size
+                  <input
+                    type="number"
+                    min={8}
+                    max={22}
+                    value={blogStyle.takeSize}
+                    onChange={(e) =>
+                      patchBlogStyle("takeSize", Number(e.target.value) || 10)
+                    }
+                  />
+                </label>
+                <label>
+                  row gap
+                  <input
+                    type="number"
+                    min={0}
+                    max={40}
+                    value={blogStyle.rowGap}
+                    onChange={(e) =>
+                      patchBlogStyle("rowGap", Number(e.target.value) || 0)
+                    }
+                  />
+                </label>
+                <label>
+                  line gap
+                  <input
+                    type="number"
+                    min={0}
+                    max={20}
+                    value={blogStyle.lineGap}
+                    onChange={(e) =>
+                      patchBlogStyle("lineGap", Number(e.target.value) || 0)
+                    }
+                  />
+                </label>
+                <label>
+                  section top
+                  <input
+                    type="number"
+                    min={0}
+                    max={48}
+                    value={blogStyle.sectionTop}
+                    onChange={(e) =>
+                      patchBlogStyle("sectionTop", Number(e.target.value) || 0)
+                    }
+                  />
+                </label>
+                <label>
+                  heading color
+                  <input
+                    type="color"
+                    value={blogStyle.headingColor}
+                    onChange={(e) =>
+                      patchBlogStyle("headingColor", e.target.value)
+                    }
+                  />
+                </label>
+                <label>
+                  title color
+                  <input
+                    type="color"
+                    value={blogStyle.titleColor}
+                    onChange={(e) =>
+                      patchBlogStyle("titleColor", e.target.value)
+                    }
+                  />
+                </label>
+                <label>
+                  meta color
+                  <input
+                    type="color"
+                    value={blogStyle.metaColor}
+                    onChange={(e) =>
+                      patchBlogStyle("metaColor", e.target.value)
+                    }
+                  />
+                </label>
+                <label>
+                  highlight color
+                  <input
+                    type="color"
+                    value={blogStyle.highlightColor}
+                    onChange={(e) =>
+                      patchBlogStyle("highlightColor", e.target.value)
+                    }
+                  />
+                </label>
+                <label>
+                  take color
+                  <input
+                    type="color"
+                    value={blogStyle.takeColor}
+                    onChange={(e) =>
+                      patchBlogStyle("takeColor", e.target.value)
+                    }
+                  />
+                </label>
+                <label>
+                  number color
+                  <input
+                    type="color"
+                    value={blogStyle.numberColor}
+                    onChange={(e) =>
+                      patchBlogStyle("numberColor", e.target.value)
+                    }
+                  />
+                </label>
+                <div className="pb-blogs__studio-actions">
+                  <button type="button" onClick={resetBlogStyle}>
+                    reset
+                  </button>
+                  <button type="button" onClick={copyBlogStyle}>
+                    {styleCopied ? "copied" : "copy style json"}
+                  </button>
+                </div>
+              </div>
+            ) : null}
+
             <ol className="pb-blogs__list">
               {shelfBlogs.map((blog, i) => (
                 <li key={blog.id} className="pb-blogs__item">
-                  <button
-                    type="button"
-                    className="pb-blogs__row"
-                    onClick={() => onBlogActivate(blog)}
-                    title="Open essay"
-                  >
-                    <span className="pb-blogs__n" aria-hidden>
-                      {i + 1}
-                    </span>
-                    <span className="pb-blogs__body">
-                      <span className="pb-blogs__line">
-                        <span className="pb-blogs__name">{blog.title}</span>
-                        {blog.date ? (
-                          <time
-                            className="pb-blogs__date"
-                            dateTime={blog.date}
-                          >
-                            {shortBlogDate(blog.date)}
-                          </time>
-                        ) : null}
-                        <span className="pb-blogs__by">
-                          {blog.author}
+                  {blogStudio ? (
+                    <div className="pb-blogs__row">
+                      <span className="pb-blogs__n" aria-hidden>
+                        {i + 1}
+                      </span>
+                      <span className="pb-blogs__body">
+                        <span className="pb-blogs__line">
+                          <span className="pb-blogs__name">{blog.title}</span>
+                          {blog.date ? (
+                            <time
+                              className="pb-blogs__date"
+                              dateTime={blog.date}
+                            >
+                              {shortBlogDate(blog.date)}
+                            </time>
+                          ) : null}
+                          <span className="pb-blogs__by">{blog.author}</span>
                         </span>
+                        <textarea
+                          className="pb-blogs__field pb-blogs__field--highlight"
+                          rows={2}
+                          value={blog.highlight}
+                          onChange={(e) =>
+                            patchBlogText(blog.id, "highlight", e.target.value)
+                          }
+                          aria-label="Highlight"
+                        />
+                        <textarea
+                          className="pb-blogs__field pb-blogs__field--take"
+                          rows={2}
+                          value={blog.take}
+                          onChange={(e) =>
+                            patchBlogText(blog.id, "take", e.target.value)
+                          }
+                          aria-label="Your take"
+                        />
                       </span>
-                      <span className="pb-blogs__highlight">
-                        {blog.highlight}
+                    </div>
+                  ) : (
+                    <button
+                      type="button"
+                      className="pb-blogs__row"
+                      onClick={() => onBlogActivate(blog)}
+                      title="Open essay"
+                    >
+                      <span className="pb-blogs__n" aria-hidden>
+                        {i + 1}
                       </span>
-                      <span className="pb-blogs__take">{blog.take}</span>
-                    </span>
-                  </button>
+                      <span className="pb-blogs__body">
+                        <span className="pb-blogs__line">
+                          <span className="pb-blogs__name">{blog.title}</span>
+                          {blog.date ? (
+                            <time
+                              className="pb-blogs__date"
+                              dateTime={blog.date}
+                            >
+                              {shortBlogDate(blog.date)}
+                            </time>
+                          ) : null}
+                          <span className="pb-blogs__by">{blog.author}</span>
+                        </span>
+                        <span className="pb-blogs__highlight">
+                          {blog.highlight}
+                        </span>
+                        <span className="pb-blogs__take">{blog.take}</span>
+                      </span>
+                    </button>
+                  )}
                 </li>
               ))}
             </ol>
