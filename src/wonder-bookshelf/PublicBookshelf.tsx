@@ -117,6 +117,10 @@ const SHELF_QUOTES: { text: string; author: string }[] = [
     text: "Try to be around smart, productive, happy, and positive people that don't belittle your ambitions. I love being around people who push me and inspire me to be better. To the degree you are able to, avoid the opposite kind of people—the cost of letting them take up your mental cycles is horrific.",
     author: "Sam Altman · Productivity",
   },
+  {
+    text: "I highly recommend using lists. I make lists of what I want to accomplish each year, each month, and each day. Lists are very focusing, and they help me with multitasking because I don't have to keep as much in my head. If I'm not in the mood for some particular task, I can always find something else I'm excited to do.",
+    author: "Sam Altman · Productivity",
+  },
 ];
 
 /**
