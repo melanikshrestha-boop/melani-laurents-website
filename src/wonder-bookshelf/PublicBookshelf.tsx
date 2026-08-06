@@ -133,6 +133,10 @@ const SHELF_QUOTES: { text: string; author: string }[] = [
     text: "I find most meetings are best scheduled for 15-20 minutes, or 2 hours. The default of 1 hour is usually wrong, and leads to a lot of wasted time.",
     author: "Sam Altman · Productivity",
   },
+  {
+    text: "I have different times of day I try to use for different kinds of work. The first few hours of the morning are definitely my most productive time of the day, so I don't let anyone schedule anything then. I try to do meetings in the afternoon. I take a break, or switch tasks, whenever I feel my attention starting to fade.",
+    author: "Sam Altman · Productivity",
+  },
 ];
 
 /**
