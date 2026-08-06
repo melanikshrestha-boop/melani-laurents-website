@@ -755,7 +755,7 @@
     "title": "Alexander the Great",
     "source": "Philip Freeman",
     "loggedAt": "2026-07-28",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/1416592806",
     "asin": "1416592806",
     "rating": 4
@@ -766,7 +766,7 @@
     "title": "Hannibal",
     "source": "Philip Freeman",
     "loggedAt": "2026-07-27",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/1639363653",
     "asin": "1639363653",
     "rating": 2
@@ -777,7 +777,7 @@
     "title": "Caesar",
     "source": "Philip Freeman",
     "loggedAt": "2026-07-26",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/0743289544",
     "asin": "0743289544",
     "rating": 3
@@ -788,7 +788,7 @@
     "title": "Napoleon: A Life",
     "source": "Andrew Roberts",
     "loggedAt": "2026-07-25",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/0143127853",
     "asin": "0143127853",
     "rating": 3
@@ -799,7 +799,7 @@
     "title": "Masters of Command: Alexander, Hannibal, Caesar, and the Genius of Leadership",
     "source": "Barry Strauss",
     "loggedAt": "2026-07-24",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/1439164495",
     "asin": "1439164495",
     "rating": 3
@@ -810,7 +810,7 @@
     "title": "Cleopatra: A Life",
     "source": "Stacy Schiff",
     "loggedAt": "2026-07-23",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/0316001945",
     "asin": "0316001945",
     "rating": 1
@@ -821,7 +821,7 @@
     "title": "Philip and Alexander: Kings and Conquerors",
     "source": "Adrian Goldsworthy",
     "loggedAt": "2026-07-22",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/1541602625",
     "asin": "1541602625",
     "rating": 3
@@ -832,7 +832,7 @@
     "title": "Hitler's Charisma: Leading Millions into the Abyss",
     "source": "Laurence Rees",
     "loggedAt": "2026-07-21",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/0307389588",
     "asin": "0307389588",
     "rating": 3
@@ -843,7 +843,7 @@
     "title": "Talleyrand",
     "source": "Duff Cooper",
     "loggedAt": "2026-07-20",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/0802137679",
     "asin": "0802137679",
     "rating": 3
@@ -854,7 +854,7 @@
     "title": "Napoleon's Military Maxims",
     "source": "Napoleon Bonaparte",
     "loggedAt": "2026-07-19",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/0486437302",
     "asin": "0486437302",
     "rating": 2
@@ -865,7 +865,7 @@
     "title": "Walt Disney: The Triumph of the American Imagination",
     "source": "Neal Gabler",
     "loggedAt": "2026-07-18",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/0679757473",
     "asin": "0679757473",
     "rating": 4
@@ -876,7 +876,7 @@
     "title": "Elon Musk",
     "source": "Ashlee Vance",
     "loggedAt": "2026-07-17",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/0062301233",
     "asin": "0062301233",
     "rating": 2
@@ -887,7 +887,7 @@
     "title": "The 38 Letters from J.D. Rockefeller to His Son",
     "source": "J.D. Rockefeller",
     "loggedAt": "2026-07-16",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/1088177832",
     "asin": "1088177832",
     "rating": 4
@@ -898,7 +898,7 @@
     "title": "The Nvidia Way",
     "source": "Tae Kim",
     "loggedAt": "2026-07-15",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/1324086718",
     "asin": "1324086718",
     "rating": 3
@@ -909,7 +909,7 @@
     "title": "Steve Jobs",
     "source": "Walter Isaacson",
     "loggedAt": "2026-07-14",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/1451648537",
     "asin": "1451648537",
     "favorite": true,
@@ -922,7 +922,7 @@
     "title": "Titan: The Life of John D. Rockefeller, Sr.",
     "source": "Ron Chernow",
     "loggedAt": "2026-07-13",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/1400077303",
     "asin": "1400077303",
     "rating": 3
@@ -933,7 +933,7 @@
     "title": "Source Code",
     "source": "Bill Gates",
     "loggedAt": "2026-07-12",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/059380158X",
     "asin": "059380158X",
     "rating": 2
@@ -944,7 +944,7 @@
     "title": "The Book of Elon",
     "source": "Eric Jorgenson",
     "loggedAt": "2026-07-11",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/154455074X",
     "asin": "154455074X",
     "rating": 4
@@ -955,7 +955,7 @@
     "title": "Poor Charlie's Almanack",
     "source": "Charlie Munger",
     "loggedAt": "2026-07-10",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/157864366X",
     "asin": "157864366X",
     "rating": 3
@@ -966,7 +966,7 @@
     "title": "The Fish That Ate the Whale: The Life and Times of America's Banana King",
     "source": "Rich Cohen",
     "loggedAt": "2026-07-09",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/0374299277",
     "asin": "0374299277",
     "rating": 2
@@ -977,7 +977,7 @@
     "title": "The Wright Brothers",
     "source": "David McCullough",
     "loggedAt": "2026-07-08",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/1476728755",
     "asin": "1476728755",
     "rating": 1
@@ -988,7 +988,7 @@
     "title": "Einstein: His Life and Universe",
     "source": "Walter Isaacson",
     "loggedAt": "2026-07-07",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/0743264746",
     "asin": "0743264746",
     "rating": 4
@@ -999,7 +999,7 @@
     "title": "Surely You're Joking, Mr. Feynman!",
     "source": "Richard P. Feynman",
     "loggedAt": "2026-07-06",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/0393316041",
     "asin": "0393316041",
     "rating": 4
@@ -1010,7 +1010,7 @@
     "title": "Genius: The Life and Science of Richard Feynman",
     "source": "James Gleick",
     "loggedAt": "2026-07-05",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/0679747044",
     "asin": "0679747044",
     "rating": 4
@@ -1021,7 +1021,7 @@
     "title": "Tesla: Inventor of the Electrical Age",
     "source": "W. Bernard Carlson",
     "loggedAt": "2026-07-04",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/0691165610",
     "asin": "0691165610",
     "rating": 3
@@ -1032,7 +1032,7 @@
     "title": "Leonardo da Vinci",
     "source": "Walter Isaacson",
     "loggedAt": "2026-07-03",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/1501139150",
     "asin": "1501139150",
     "rating": 3
@@ -1043,7 +1043,7 @@
     "title": "My Inventions: The Autobiography of Nikola Tesla",
     "source": "Nikola Tesla",
     "loggedAt": "2026-07-02",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/159547871X",
     "asin": "159547871X",
     "coverUrl": "https://covers.openlibrary.org/b/id/702420-L.jpg",
@@ -1055,7 +1055,7 @@
     "title": "The Wizard of Menlo Park: How Thomas Alva Edison Invented the Modern World",
     "source": "Randall Stross",
     "loggedAt": "2026-07-01",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/1400047625",
     "asin": "1400047625",
     "rating": 4
@@ -1066,7 +1066,7 @@
     "title": "Isaac Newton",
     "source": "James Gleick",
     "loggedAt": "2026-06-30",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/0060554851",
     "asin": "0060554851",
     "rating": 4
@@ -1077,7 +1077,7 @@
     "title": "Benjamin Franklin: An American Life",
     "source": "Walter Isaacson",
     "loggedAt": "2026-06-29",
-    "category": "main characters only",
+    "category": "main characters",
     "href": "https://www.amazon.com/dp/074325807X",
     "asin": "074325807X",
     "rating": 2
@@ -1090,7 +1090,7 @@
     "loggedAt": "2026-06-07",
     "href": "https://www.amazon.com/dp/1982181281",
     "asin": "1982181281",
-    "category": "main characters only",
+    "category": "main characters",
     "favorite": true,
     "favoriteWhy": "Isaacson — main character energy.",
     "rating": 5
@@ -1103,7 +1103,7 @@
     "loggedAt": "2026-06-06",
     "href": "https://www.amazon.com/dp/1982115858",
     "asin": "1982115858",
-    "category": "main characters only",
+    "category": "main characters",
     "rating": 1
   },
   {
@@ -1114,7 +1114,7 @@
     "loggedAt": "2026-06-04",
     "href": "https://www.amazon.com/dp/1476708703",
     "asin": "1476708703",
-    "category": "main characters only",
+    "category": "main characters",
     "rating": 3
   },
   {
@@ -1125,7 +1125,7 @@
     "loggedAt": "2026-06-02",
     "href": "https://www.amazon.com/dp/1439183449",
     "asin": "1439183449",
-    "category": "main characters only",
+    "category": "main characters",
     "rating": 4
   },
   {
@@ -1136,7 +1136,7 @@
     "loggedAt": "2026-05-30",
     "href": "https://www.amazon.com/dp/0684825570",
     "asin": "0684825570",
-    "category": "main characters only",
+    "category": "main characters",
     "rating": 3
   },
   {
@@ -1147,7 +1147,7 @@
     "loggedAt": "2026-05-29",
     "href": "https://www.amazon.com/dp/0684837714",
     "asin": "0684837714",
-    "category": "main characters only",
+    "category": "main characters",
     "rating": 3
   },
   {

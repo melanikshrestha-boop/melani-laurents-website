@@ -167,15 +167,21 @@ const HIDDEN_PUBLIC_CATEGORIES = new Set([
 ]);
 
 const PUBLIC_FOLDER_ORDER = [
-  "main characters only",
+  "main characters",
   "everything startups",
   "psychology",
   "history",
   "economics",
 ] as const;
 
+/** One-liners shown above the grid when a drive is open (owner voice). */
+const FOLDER_VIEW: Record<string, string> = {
+  "main characters": "ditch self help books for autobiographies",
+};
+
 const FOLDER_ACCENT: Record<string, string> = {
-  "main characters only": "#c4a06a",
+  "main characters": "#c4a06a",
+  "main characters only": "#c4a06a", // legacy catalog key until fully migrated
   "everything startups": "#5b9fd4",
   psychology: "#9b7fd4",
   history: "#c97b84",
@@ -221,9 +227,14 @@ function openLabel(kind: BookshelfKind): string {
 /** Subject folders for books. Never blogs. */
 function folderLabelFor(entry: BookshelfEntry): string {
   // Explicit catalog folder
-  if (entry.category?.trim()) return entry.category.trim();
+  const raw = entry.category?.trim();
+  if (raw) {
+    // Rename legacy drive label
+    if (raw === "main characters only") return "main characters";
+    return raw;
+  }
   // Default public shelf — don't scatter into old subject bins
-  return "main characters only";
+  return "main characters";
 }
 
 type ShelfItem = { entry: BookshelfEntry; book: Book };
@@ -823,17 +834,22 @@ export function PublicBookshelf() {
               </div>
 
               {expanded ? (
-                <div className="bl-grid">
-                  {group.items.map((item) => (
-                    <CatalogCard
-                      key={item.entry.id}
-                      item={item}
-                      folderLabel={group.label}
-                      highlight={highlightId === item.entry.id}
-                      onAnnotate={openAnnotation}
-                    />
-                  ))}
-                </div>
+                <>
+                  {FOLDER_VIEW[group.label] ? (
+                    <p className="pb-folder-view">{FOLDER_VIEW[group.label]}</p>
+                  ) : null}
+                  <div className="bl-grid">
+                    {group.items.map((item) => (
+                      <CatalogCard
+                        key={item.entry.id}
+                        item={item}
+                        folderLabel={group.label}
+                        highlight={highlightId === item.entry.id}
+                        onAnnotate={openAnnotation}
+                      />
+                    ))}
+                  </div>
+                </>
               ) : null}
             </section>
           );

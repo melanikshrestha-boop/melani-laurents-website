@@ -5130,6 +5130,19 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   line-height: 1 !important;
   color: #9a9084 !important;
 }
+/* Owner one-liner above an open drive’s covers */
+.pb-root .pb-folder-view {
+  margin: 0 0 6px 28px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  color: #9a9084 !important;
+  font-family: "Times New Roman", Times, serif !important;
+  font-size: 10px !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  line-height: 1.3 !important;
+  letter-spacing: 0.01em !important;
+}
 /* Open cover grid under drive — less dead air */
 .pb-root .bl-shelf > .bl-grid {
   padding: 4px 0 8px 28px !important;
