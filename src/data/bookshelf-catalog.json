@@ -2810,17 +2810,6 @@
     "rating": 4
   },
   {
-    "id": "book-sa-4f6a514908",
-    "kind": "book",
-    "title": "Call Me by Your Name",
-    "source": "André Aciman",
-    "loggedAt": "2026-07-29",
-    "category": "everything startups",
-    "asin": "1250169445",
-    "href": "https://www.amazon.com/dp/1250169445",
-    "rating": 2
-  },
-  {
     "id": "book-sa-e1b381f266",
     "kind": "book",
     "title": "The Principia",
