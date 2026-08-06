@@ -129,6 +129,10 @@ const SHELF_QUOTES: { text: string; author: string }[] = [
     text: "I generally try to avoid meetings and conferences as I find the time cost to be huge—I get the most value out of time in my office. However, it is critical that you keep enough space in your schedule to allow for chance encounters and exposure to new people and ideas. Having an open network is valuable; though probably 90% of the random meetings I take are a waste of time, the other 10% really make up for it.",
     author: "Sam Altman · Productivity",
   },
+  {
+    text: "I find most meetings are best scheduled for 15-20 minutes, or 2 hours. The default of 1 hour is usually wrong, and leads to a lot of wasted time.",
+    author: "Sam Altman · Productivity",
+  },
 ];
 
 /**
