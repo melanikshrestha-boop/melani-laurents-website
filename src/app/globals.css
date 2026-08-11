@@ -5338,25 +5338,23 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 }
 
 /*
- * Name block: classic 50%/50% translate — true middle of the sticky viewport.
- * Do not use inset:0 flex (can sit high once header/footer absolute compete).
+ * CELINE NOVA — true geometric middle of the sticky viewport.
+ * IMPORTANT: do NOT use `inset: auto` after top/left — inset is a shorthand
+ * and was wiping top/left:50%, so the name sat high/off-center.
+ * Tagline hangs below the name and does not shift the name's midpoint.
  */
 .hub-page--photo .hub-page__center--locked,
 .home-sections .hub-page--photo .hub-page__center--locked {
   position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
-  right: auto !important;
-  bottom: auto !important;
-  inset: auto !important;
+  /* top | right | bottom | left — name block pinned to dead center */
+  inset: 50% auto auto 50% !important;
   z-index: 5;
   display: flex !important;
   flex-direction: column;
   align-items: center !important;
-  justify-content: center !important;
+  justify-content: flex-start !important;
   margin: 0 !important;
   padding: 0 !important;
-  padding-bottom: 0 !important;
   width: max-content !important;
   max-width: min(92vw, 100%) !important;
   height: auto !important;
@@ -5364,6 +5362,19 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   box-sizing: border-box;
   text-align: center;
   transform: translate(-50%, -50%) !important;
+}
+
+/* Tagline below the name — out of the vertical centering math */
+.hub-page--photo .hub-page__center--locked .hub-page__tagline,
+.home-sections .hub-page--photo .hub-page__center--locked .hub-page__tagline {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: clamp(0.85rem, 2vh, 1.35rem) 0 0;
+  width: max-content;
+  max-width: min(92vw, 100%);
+  white-space: nowrap;
 }
 
 .hub-page--photo .hub-page__footer--locked {
