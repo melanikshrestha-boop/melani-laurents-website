@@ -5337,15 +5337,18 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   margin: 0;
 }
 
-/* Override .hub-page__center--locked optical padding — true center always */
+/*
+ * Name block: classic 50%/50% translate — true middle of the sticky viewport.
+ * Do not use inset:0 flex (can sit high once header/footer absolute compete).
+ */
 .hub-page--photo .hub-page__center--locked,
 .home-sections .hub-page--photo .hub-page__center--locked {
   position: absolute !important;
-  inset: 0 !important;
-  top: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  left: 0 !important;
+  top: 50% !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
+  inset: auto !important;
   z-index: 5;
   display: flex !important;
   flex-direction: column;
@@ -5354,12 +5357,13 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   margin: 0 !important;
   padding: 0 !important;
   padding-bottom: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
+  width: max-content !important;
+  max-width: min(92vw, 100%) !important;
+  height: auto !important;
   min-height: 0 !important;
   box-sizing: border-box;
   text-align: center;
-  transform: none !important;
+  transform: translate(-50%, -50%) !important;
 }
 
 .hub-page--photo .hub-page__footer--locked {
