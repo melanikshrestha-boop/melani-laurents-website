@@ -5329,7 +5329,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 
 /* Always: title + tagline in the true center of the sticky frame */
 .hub-page--photo .hub-page__header--locked {
-  position: absolute;
+  position: absolute !important;
   top: var(--hub-edge);
   left: var(--hub-edge);
   right: var(--hub-edge);
@@ -5337,26 +5337,33 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   margin: 0;
 }
 
-.hub-page--photo .hub-page__center--locked {
-  position: absolute;
-  inset: 0;
+/* Override .hub-page__center--locked optical padding — true center always */
+.hub-page--photo .hub-page__center--locked,
+.home-sections .hub-page--photo .hub-page__center--locked {
+  position: absolute !important;
+  inset: 0 !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
   z-index: 5;
-  display: flex;
+  display: flex !important;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
   padding: 0 !important;
-  width: 100%;
-  height: 100%;
-  min-height: 0;
+  padding-bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
   box-sizing: border-box;
-  /* Geometric center of the viewport chrome — no optical offset */
-  transform: none;
+  text-align: center;
+  transform: none !important;
 }
 
 .hub-page--photo .hub-page__footer--locked {
-  position: absolute;
+  position: absolute !important;
   left: var(--hub-edge);
   bottom: var(--hub-edge);
   right: auto;
