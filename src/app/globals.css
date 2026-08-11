@@ -111,6 +111,9 @@
 
 html {
   scroll-behavior: auto;
+  /* Kill phantom horizontal scrollbar rail on home (hero overflow) */
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 html.lenis,
@@ -136,6 +139,8 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 /* Site-wide: light pink highlighter for copy/select */
@@ -2056,6 +2061,9 @@ body {
   --archive-cream: var(--hub-cream);
   --archive-ink: #2a2824;
   --scroll-p: 0;
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
   /* Light gold on void (p=0) → Carlo ink (p=1) */
   --hub-title-morph: color-mix(
     in srgb,
@@ -5275,19 +5283,19 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 }
 
 .hub-page__photo-img {
-  /* Full still fills the viewport; portrait master crops sides on wide screens, not the sky/street */
+  /* Full raw still (Sony A7III export) fills the frame — cover without horizontal bleed */
   object-fit: cover;
-  object-position: 52% 42%;
+  object-position: center 38%;
   width: 100%;
   height: 100%;
-  /* Never upscale-blur a tiny file — we serve the gallery master */
+  max-width: none;
   image-rendering: auto;
 }
 
 @media (min-width: 1100px) {
   .hub-page__photo-img {
-    /* Wide monitors: bias slightly left so the street corridor + LOEWE stay in frame */
-    object-position: 48% 40%;
+    /* Keep street corridor + LOEWE + people in the optical center under the name */
+    object-position: 50% 36%;
   }
 }
 
