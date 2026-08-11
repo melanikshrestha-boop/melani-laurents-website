@@ -8,12 +8,12 @@ import { MelaniSignature } from "./MelaniSignature";
 import { SocialIcons } from "./SocialIcons";
 
 /**
- * Production home landing — full-bleed photograph + name.
- * Hero still: Spring St (SoHo) — shot by Celine Nova.
+ * ONE photograph only — Spring Street (scenery still).
+ * Name + chrome layout matches the original locked hub (exactly centered title).
  */
 export const HUB_HERO_PHOTO = {
-  src: "/photography/hero/spring-st-loewe.jpg",
-  alt: "Spring Street, New York — late light, shot by Celine Nova",
+  src: "/photography/hero/spring-st.jpg",
+  alt: "Spring Street, New York — shot by Celine Nova",
 } as const;
 
 export function HomeHub() {
@@ -22,7 +22,6 @@ export function HomeHub() {
       className="hub-page hub-page--locked hub-page--photo"
       aria-label="Celine Nova home"
     >
-      {/* Full-bleed photograph — first impression */}
       <div className="hub-page__photo" aria-hidden>
         <Image
           src={HUB_HERO_PHOTO.src}
@@ -31,9 +30,8 @@ export function HomeHub() {
           priority
           sizes="100vw"
           className="hub-page__photo-img"
-          quality={90}
+          quality={92}
         />
-        {/* Legibility scrim — name + chrome stay readable */}
         <div className="hub-page__photo-scrim" />
       </div>
 
@@ -55,7 +53,6 @@ export function HomeHub() {
       </header>
 
       <div className="hub-page__center hub-page__center--locked">
-        <h1 className="sr-only">{HUB_HERO_PHOTO.alt}</h1>
         <InteractiveTitleLetters
           variant="hub"
           className="hub-page__title"
@@ -69,7 +66,6 @@ export function HomeHub() {
           className="hub-page__nav hub-page__nav--locked"
           aria-label="Sections"
         >
-          {/* Order: Builds · Blog · Bookshelf · Art · Contact */}
           {siteConfig.hubPortals.map((portal, i) => {
             const isContact = portal.href === "/contact";
             return (

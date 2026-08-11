@@ -5261,9 +5261,9 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   color: var(--muted);
 }
 
-/* Full-bleed photograph under name + chrome */
+/* Full-bleed photograph — single still, name layout unchanged */
 .hub-page--photo {
-  background: #0a0a0a;
+  background: #050505;
 }
 
 .hub-page__photo {
@@ -5276,45 +5276,51 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 
 .hub-page__photo-img {
   object-fit: cover;
-  object-position: center 42%;
+  /* One photo, full frame — center the still, never dual-panel */
+  object-position: center center;
   width: 100%;
   height: 100%;
-  /* slight scale so edges never letterbox on tall phones */
-  transform: scale(1.02);
 }
 
 .hub-page__photo-scrim {
   position: absolute;
   inset: 0;
   z-index: 1;
-  /* Readability for cream type without killing the still */
+  /* Light scrim only — keep photo visible, type readable */
   background:
     linear-gradient(
       180deg,
-      rgba(0, 0, 0, 0.55) 0%,
-      rgba(0, 0, 0, 0.22) 28%,
-      rgba(0, 0, 0, 0.28) 55%,
-      rgba(0, 0, 0, 0.62) 100%
-    ),
-    radial-gradient(
-      ellipse 78% 55% at 50% 48%,
-      rgba(0, 0, 0, 0.35) 0%,
-      transparent 72%
+      rgba(0, 0, 0, 0.42) 0%,
+      rgba(0, 0, 0, 0.12) 32%,
+      rgba(0, 0, 0, 0.18) 58%,
+      rgba(0, 0, 0, 0.5) 100%
     );
 }
 
-.hub-page--photo .hub-page__header--locked,
-.hub-page--photo .hub-page__center--locked,
-.hub-page--photo .hub-page__footer--locked {
+/* Keep original stacking: header / center / footer above photo */
+.hub-page--photo .hub-page__header--locked {
   position: relative;
-  z-index: 2;
+  z-index: 5;
+}
+
+.hub-page--photo .hub-page__center--locked {
+  position: relative;
+  z-index: 3;
+  /* Exact center — same as original locked hub (no extra optical shift) */
+  padding-bottom: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.hub-page--photo .hub-page__footer--locked {
+  z-index: 5;
 }
 
 .hub-page--photo .hub-page__title-line,
 .hub-page--photo .hub-page__tagline {
   text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.45),
-    0 8px 28px rgba(0, 0, 0, 0.35);
+    0 1px 2px rgba(0, 0, 0, 0.5),
+    0 6px 24px rgba(0, 0, 0, 0.4);
 }
 
 .hub-page--photo .hub-page__brand-loc,
