@@ -73,14 +73,18 @@ export function HomeHub() {
         >
           {siteConfig.hubPortals.map((portal, i) => {
             const isContact = portal.href === "/contact";
+            const isArt =
+              portal.href === "/photography" || portal.href === "/art";
             return (
               <span
                 key={portal.href}
-                className={
-                  isContact
-                    ? "hub-page__nav-item hub-page__nav-item--contact"
-                    : "hub-page__nav-item"
-                }
+                className={[
+                  "hub-page__nav-item",
+                  isContact ? "hub-page__nav-item--contact" : "",
+                  isArt ? "hub-page__nav-item--art" : "",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
                 style={{ animationDelay: `${1.15 + i * 0.18}s` }}
               >
                 {i > 0 ? (
@@ -100,7 +104,13 @@ export function HomeHub() {
                 ) : (
                   <Link
                     href={portal.href}
-                    className={isContact ? "hub-page__nav-contact" : undefined}
+                    className={
+                      isContact
+                        ? "hub-page__nav-contact"
+                        : isArt
+                          ? "hub-page__nav-art"
+                          : undefined
+                    }
                   >
                     {portal.label}
                   </Link>
