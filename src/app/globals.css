@@ -5271,10 +5271,15 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 }
 
 /*
- * Clean photo hero — retreat from tall-scroll + gradient dissolve.
- * One viewport, crisp still, white chrome. No scrim fog. No bottom gradient.
+ * Photo hero
+ * - First paint: clean still, NO gradient (opacity 0)
+ * - Extended: tall section = full photo; sticky name; scroll top→bottom of still
+ * - Exit only: brief dissolve via --hero-exit-p (last ~22% of pan)
  */
 .hub-page--photo {
+  --hero-ar-w: 2624;
+  --hero-ar-h: 3936;
+  --hero-exit-p: 0;
   background: #050505;
 }
 
@@ -5302,21 +5307,23 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   transform: translateZ(0);
 }
 
-/* Kill any leftover dissolve / fog / scrim on photo hero */
-.hub-page--photo::after,
-.hub-page__photo-scrim,
-.home-sections .hub-archive::before {
-  display: none !important;
-  content: none !important;
-  background: none !important;
+/* Chrome wrapper — on mobile just fills the 100svh frame */
+.hub-page__sticky-ui {
+  position: relative;
+  z-index: 5;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  height: 100%;
+  width: 100%;
+  min-height: 0;
+  box-sizing: border-box;
+  pointer-events: none;
 }
 
-.home-sections .hub-archive {
-  margin-top: 0;
-  padding-top: 0;
-  border: 0;
-  box-shadow: none;
-  background: transparent;
+.hub-page__sticky-ui a,
+.hub-page__sticky-ui button,
+.hub-page__sticky-ui .social-icons__link {
+  pointer-events: auto;
 }
 
 .hub-page--photo .hub-page__header--locked {
@@ -5334,6 +5341,102 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 
 .hub-page--photo .hub-page__footer--locked {
   z-index: 5;
+}
+
+/*
+ * Extended / full-screen: section is the full photo height.
+ * Scroll = pan Spring St top → bottom. Name stays sticky mid-viewport.
+ */
+@media (min-width: 900px), (min-aspect-ratio: 5 / 4) {
+  .hub-page--photo.hub-page--locked {
+    display: block;
+    height: auto;
+    min-height: 100svh;
+    /* Full still at this width — no crop of the master */
+    aspect-ratio: var(--hero-ar-w) / var(--hero-ar-h);
+    max-height: none;
+    overflow: visible;
+    padding: 0;
+  }
+
+  .hub-page--photo .hub-page__photo-img {
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .hub-page--photo .hub-page__sticky-ui {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    min-height: 100svh;
+    max-height: 100svh;
+    padding: var(--hub-edge);
+    padding-bottom: calc(var(--hub-edge) + 1.75rem);
+    box-sizing: border-box;
+    /* Soft name float while photo moves */
+    transition: opacity 0.15s linear;
+  }
+
+  .hub-page--photo .hub-page__footer--locked {
+    position: absolute;
+    left: var(--hub-edge);
+    bottom: var(--hub-edge);
+    right: auto;
+  }
+
+  /*
+   * Exit dissolve: opacity 0 on first paint (--hero-exit-p: 0).
+   * Only ramps in the last stretch of photo scroll (JS sets --hero-exit-p).
+   */
+  .hub-page--photo::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 6;
+    height: clamp(6rem, 22vh, 12rem);
+    pointer-events: none;
+    opacity: var(--hero-exit-p, 0);
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      color-mix(
+        in srgb,
+        #000000 calc((1 - var(--scroll-p, 0)) * 100%),
+        #f0ede5
+      ) 100%
+    );
+    transition: opacity 0.05s linear;
+  }
+}
+
+/* Phone: one-screen cover (no tall scroll) — no exit fog */
+@media (max-width: 899px) {
+  .hub-page--photo.hub-page--locked {
+    height: 100svh;
+    min-height: 100svh;
+  }
+
+  .hub-page--photo .hub-page__photo-img {
+    object-position: 50% 48%;
+  }
+
+  .hub-page--photo::after {
+    display: none;
+  }
+}
+
+.home-sections .hub-archive {
+  margin-top: 0;
+  padding-top: 0;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+}
+
+.home-sections .hub-archive::before {
+  display: none;
 }
 
 .hub-page--photo .hub-page__title-line,
