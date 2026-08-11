@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { InteractiveTitleLetters } from "./InteractiveTitleLetters";
@@ -7,12 +8,35 @@ import { MelaniSignature } from "./MelaniSignature";
 import { SocialIcons } from "./SocialIcons";
 
 /**
- * Production home landing — clean full-bleed frame.
- * No layout editor. No motion-scroll gadget.
+ * Production home landing — full-bleed photograph + name.
+ * Hero still: Spring St (SoHo) — shot by Celine Nova.
  */
+export const HUB_HERO_PHOTO = {
+  src: "/photography/hero/spring-st-loewe.jpg",
+  alt: "Spring Street, New York — late light, shot by Celine Nova",
+} as const;
+
 export function HomeHub() {
   return (
-    <section className="hub-page hub-page--locked" aria-label="Celine Nova home">
+    <section
+      className="hub-page hub-page--locked hub-page--photo"
+      aria-label="Celine Nova home"
+    >
+      {/* Full-bleed photograph — first impression */}
+      <div className="hub-page__photo" aria-hidden>
+        <Image
+          src={HUB_HERO_PHOTO.src}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="hub-page__photo-img"
+          quality={90}
+        />
+        {/* Legibility scrim — name + chrome stay readable */}
+        <div className="hub-page__photo-scrim" />
+      </div>
+
       <header className="hub-page__header hub-page__header--locked">
         <div className="hub-page__brand hub-page__brand--locked">
           <MelaniSignature variant="light" />
@@ -22,12 +46,16 @@ export function HomeHub() {
           </p>
         </div>
 
-        <nav className="hub-page__socials hub-page__socials--locked" aria-label="Social links">
+        <nav
+          className="hub-page__socials hub-page__socials--locked"
+          aria-label="Social links"
+        >
           <SocialIcons size="hub" className="hub-page__social-icons" />
         </nav>
       </header>
 
       <div className="hub-page__center hub-page__center--locked">
+        <h1 className="sr-only">{HUB_HERO_PHOTO.alt}</h1>
         <InteractiveTitleLetters
           variant="hub"
           className="hub-page__title"
@@ -36,9 +64,11 @@ export function HomeHub() {
         <p className="hub-page__tagline">open sourcing my mind.</p>
       </div>
 
-      {/* Bottom-left edge — original stagger reveal (hub-nav-reveal) */}
       <footer className="hub-page__footer hub-page__footer--locked">
-        <nav className="hub-page__nav hub-page__nav--locked" aria-label="Sections">
+        <nav
+          className="hub-page__nav hub-page__nav--locked"
+          aria-label="Sections"
+        >
           {/* Order: Builds · Blog · Bookshelf · Art · Contact */}
           {siteConfig.hubPortals.map((portal, i) => {
             const isContact = portal.href === "/contact";
@@ -52,9 +82,18 @@ export function HomeHub() {
                 }
                 style={{ animationDelay: `${1.15 + i * 0.18}s` }}
               >
-                {i > 0 ? <span className="hub-page__sep" aria-hidden> · </span> : null}
+                {i > 0 ? (
+                  <span className="hub-page__sep" aria-hidden>
+                    {" "}
+                    ·{" "}
+                  </span>
+                ) : null}
                 {"external" in portal && portal.external ? (
-                  <a href={portal.href} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={portal.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {portal.label}
                   </a>
                 ) : (
