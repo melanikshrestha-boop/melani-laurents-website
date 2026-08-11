@@ -5275,25 +5275,34 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 }
 
 .hub-page__photo-img {
+  /* Full still fills the viewport; portrait master crops sides on wide screens, not the sky/street */
   object-fit: cover;
-  /* One photo, full frame — center the still, never dual-panel */
-  object-position: center center;
+  object-position: 52% 42%;
   width: 100%;
   height: 100%;
+  /* Never upscale-blur a tiny file — we serve the gallery master */
+  image-rendering: auto;
+}
+
+@media (min-width: 1100px) {
+  .hub-page__photo-img {
+    /* Wide monitors: bias slightly left so the street corridor + LOEWE stay in frame */
+    object-position: 48% 40%;
+  }
 }
 
 .hub-page__photo-scrim {
   position: absolute;
   inset: 0;
   z-index: 1;
-  /* Light scrim only — keep photo visible, type readable */
+  /* Softer scrim — raw photo quality shows through */
   background:
     linear-gradient(
       180deg,
-      rgba(0, 0, 0, 0.42) 0%,
-      rgba(0, 0, 0, 0.12) 32%,
-      rgba(0, 0, 0, 0.18) 58%,
-      rgba(0, 0, 0, 0.5) 100%
+      rgba(0, 0, 0, 0.38) 0%,
+      rgba(0, 0, 0, 0.08) 30%,
+      rgba(0, 0, 0, 0.14) 55%,
+      rgba(0, 0, 0, 0.48) 100%
     );
 }
 

@@ -8,11 +8,14 @@ import { MelaniSignature } from "./MelaniSignature";
 import { SocialIcons } from "./SocialIcons";
 
 /**
- * ONE photograph only — Spring Street (scenery still).
+ * ONE photograph only — Spring Street from official scenery gallery
+ * (public/photography/scenery/DSC01775 — full posted master, not chat-compressed).
  * Name + chrome layout matches the original locked hub (exactly centered title).
  */
 export const HUB_HERO_PHOTO = {
   src: "/photography/hero/spring-st.jpg",
+  /** Prefer original gallery path as source-of-truth; hero is exported JPEG master */
+  gallerySrc: "/photography/scenery/DSC01775.jpeg",
   alt: "Spring Street, New York — shot by Celine Nova",
 } as const;
 
@@ -30,7 +33,7 @@ export function HomeHub() {
           priority
           sizes="100vw"
           className="hub-page__photo-img"
-          quality={92}
+          quality={100}
         />
         <div className="hub-page__photo-scrim" />
       </div>
