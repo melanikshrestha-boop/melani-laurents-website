@@ -5270,9 +5270,30 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   color: var(--muted);
 }
 
-/* Full-bleed photograph — single still, name layout unchanged */
+/* Full-bleed photograph — single still */
 .hub-page--photo {
+  --hero-ar-w: 2624;
+  --hero-ar-h: 3936;
   background: #050505;
+}
+
+/* Sticky chrome lives in first viewport; photo may be taller on extended screens */
+.hub-page__sticky-ui {
+  position: relative;
+  z-index: 5;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  min-height: 0;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.hub-page__sticky-ui a,
+.hub-page__sticky-ui button,
+.hub-page__sticky-ui .social-icons__link {
+  pointer-events: auto;
 }
 
 .hub-page__photo {
@@ -5284,7 +5305,6 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 }
 
 .hub-page__photo-img {
-  /* Same pixel file as Art → Scenery (native <img>, no next/image re-encode) */
   position: absolute;
   inset: 0;
   display: block;
@@ -5292,12 +5312,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   height: 100%;
   max-width: none;
   object-fit: cover;
-  /*
-   * Vertical anchor (second %): 0% = top of still, 100% = bottom.
-   * Was ~38% → stuck on ONE WAY / hand, chopped people (bad fullscreen).
-   * Target: Spring St + LOEWE + people group all in frame (like half-window view).
-   */
-  object-position: 50% 52%;
+  object-position: 50% 50%;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: high-quality;
   -webkit-backface-visibility: hidden;
@@ -5305,23 +5320,62 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   transform: translateZ(0);
 }
 
-/* Fully extended / wide: shift slightly lower so street base + people stay in */
-@media (min-width: 1100px) {
-  .hub-page__photo-img {
-    object-position: 50% 56%;
+/*
+ * Extended / landscape: scroll the ENTIRE still (full photo height at full width)
+ * before archive/projects. Sticky UI keeps name + nav in the first viewport.
+ */
+@media (min-width: 900px), (min-aspect-ratio: 5 / 4) {
+  .hub-page--photo.hub-page--locked {
+    display: block;
+    height: auto;
+    min-height: 100svh;
+    /* Section tall enough that cover-box matches the photo aspect → zero crop */
+    aspect-ratio: var(--hero-ar-w) / var(--hero-ar-h);
+    max-height: none;
+    overflow: visible;
+    padding: 0;
+  }
+
+  .hub-page--photo .hub-page__photo {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hub-page--photo .hub-page__photo-img {
+    /* Parent aspect = photo aspect → cover shows 100% of the still */
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .hub-page--photo .hub-page__sticky-ui {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    min-height: 100svh;
+    max-height: 100svh;
+    padding: var(--hub-edge);
+    padding-bottom: calc(var(--hub-edge) + 1.75rem);
+    box-sizing: border-box;
+  }
+
+  /* Footer is absolute to sticky frame, not the tall section */
+  .hub-page--photo .hub-page__footer--locked {
+    position: absolute;
+    left: var(--hub-edge);
+    bottom: var(--hub-edge);
+    right: auto;
   }
 }
 
-@media (min-width: 1400px) {
-  .hub-page__photo-img {
-    object-position: 50% 58%;
+/* Phone / portrait: keep one-screen cover (already close to photo aspect) */
+@media (max-width: 899px) {
+  .hub-page--photo.hub-page--locked {
+    height: 100svh;
+    min-height: 100svh;
   }
-}
 
-/* Very wide ultrawide: more down so it doesn’t feel like a zoom on the signal */
-@media (min-aspect-ratio: 16 / 10) {
-  .hub-page__photo-img {
-    object-position: 50% 60%;
+  .hub-page--photo .hub-page__photo-img {
+    object-position: 50% 48%;
   }
 }
 
