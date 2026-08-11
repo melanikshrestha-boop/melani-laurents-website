@@ -1,6 +1,5 @@
 "use client";
 
-import type { CSSProperties } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { InteractiveTitleLetters } from "./InteractiveTitleLetters";
@@ -8,9 +7,8 @@ import { MelaniSignature } from "./MelaniSignature";
 import { SocialIcons } from "./SocialIcons";
 
 /**
- * Hero still = Art → Scenery master (Sony A7III Lightroom).
- * Extended screens: section is full photo height — scroll the entire still
- * before Most recent / projects. Name chrome stays sticky in the viewport.
+ * Clean full-bleed still + centered name — one viewport.
+ * Same master as Art → Scenery. No tall-scroll, no gradient mess.
  */
 export const HUB_HERO_PHOTO = {
   src: "/photography/scenery/DSC01775.jpeg",
@@ -24,13 +22,6 @@ export function HomeHub() {
     <section
       className="hub-page hub-page--locked hub-page--photo"
       aria-label="Celine Nova home"
-      style={
-        {
-          /* Used by CSS for full-still scroll height on wide screens */
-          "--hero-ar-w": HUB_HERO_PHOTO.width,
-          "--hero-ar-h": HUB_HERO_PHOTO.height,
-        } as CSSProperties
-      }
     >
       <div className="hub-page__photo" aria-hidden>
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -43,91 +34,87 @@ export function HomeHub() {
           width={HUB_HERO_PHOTO.width}
           height={HUB_HERO_PHOTO.height}
         />
-        <div className="hub-page__photo-scrim" />
       </div>
 
-      {/* Sticky first-screen chrome: name stays centered while the still scrolls */}
-      <div className="hub-page__sticky-ui">
-        <header className="hub-page__header hub-page__header--locked">
-          <div className="hub-page__brand hub-page__brand--locked">
-            <MelaniSignature variant="light" />
-            <p className="hub-page__brand-loc">
-              <span className="hub-page__dot-inline" aria-hidden />
-              currently in Los Angeles
-            </p>
-          </div>
-
-          <nav
-            className="hub-page__socials hub-page__socials--locked"
-            aria-label="Social links"
-          >
-            <SocialIcons size="hub" className="hub-page__social-icons" />
-          </nav>
-        </header>
-
-        <div className="hub-page__center hub-page__center--locked">
-          <InteractiveTitleLetters
-            variant="hub"
-            className="hub-page__title"
-            lineClassName="hub-page__title-line"
-          />
-          <p className="hub-page__tagline">open sourcing my mind.</p>
+      <header className="hub-page__header hub-page__header--locked">
+        <div className="hub-page__brand hub-page__brand--locked">
+          <MelaniSignature variant="light" />
+          <p className="hub-page__brand-loc">
+            <span className="hub-page__dot-inline" aria-hidden />
+            currently in Los Angeles
+          </p>
         </div>
 
-        <footer className="hub-page__footer hub-page__footer--locked">
-          <nav
-            className="hub-page__nav hub-page__nav--locked"
-            aria-label="Sections"
-          >
-            {siteConfig.hubPortals.map((portal, i) => {
-              const isContact = portal.href === "/contact";
-              const isArt = portal.href === "/photography";
-              return (
-                <span
-                  key={portal.href}
-                  className={[
-                    "hub-page__nav-item",
-                    isContact ? "hub-page__nav-item--contact" : "",
-                    isArt ? "hub-page__nav-item--art" : "",
-                  ]
-                    .filter(Boolean)
-                    .join(" ")}
-                  style={{ animationDelay: `${1.15 + i * 0.18}s` }}
-                >
-                  {i > 0 ? (
-                    <span className="hub-page__sep" aria-hidden>
-                      {" "}
-                      ·{" "}
-                    </span>
-                  ) : null}
-                  {"external" in portal && portal.external ? (
-                    <a
-                      href={portal.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {portal.label}
-                    </a>
-                  ) : (
-                    <Link
-                      href={portal.href}
-                      className={
-                        isContact
-                          ? "hub-page__nav-contact"
-                          : isArt
-                            ? "hub-page__nav-art"
-                            : undefined
-                      }
-                    >
-                      {portal.label}
-                    </Link>
-                  )}
-                </span>
-              );
-            })}
-          </nav>
-        </footer>
+        <nav
+          className="hub-page__socials hub-page__socials--locked"
+          aria-label="Social links"
+        >
+          <SocialIcons size="hub" className="hub-page__social-icons" />
+        </nav>
+      </header>
+
+      <div className="hub-page__center hub-page__center--locked">
+        <InteractiveTitleLetters
+          variant="hub"
+          className="hub-page__title"
+          lineClassName="hub-page__title-line"
+        />
+        <p className="hub-page__tagline">open sourcing my mind.</p>
       </div>
+
+      <footer className="hub-page__footer hub-page__footer--locked">
+        <nav
+          className="hub-page__nav hub-page__nav--locked"
+          aria-label="Sections"
+        >
+          {siteConfig.hubPortals.map((portal, i) => {
+            const isContact = portal.href === "/contact";
+            const isArt = portal.href === "/photography";
+            return (
+              <span
+                key={portal.href}
+                className={[
+                  "hub-page__nav-item",
+                  isContact ? "hub-page__nav-item--contact" : "",
+                  isArt ? "hub-page__nav-item--art" : "",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+                style={{ animationDelay: `${1.15 + i * 0.18}s` }}
+              >
+                {i > 0 ? (
+                  <span className="hub-page__sep" aria-hidden>
+                    {" "}
+                    ·{" "}
+                  </span>
+                ) : null}
+                {"external" in portal && portal.external ? (
+                  <a
+                    href={portal.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {portal.label}
+                  </a>
+                ) : (
+                  <Link
+                    href={portal.href}
+                    className={
+                      isContact
+                        ? "hub-page__nav-contact"
+                        : isArt
+                          ? "hub-page__nav-art"
+                          : undefined
+                    }
+                  >
+                    {portal.label}
+                  </Link>
+                )}
+              </span>
+            );
+          })}
+        </nav>
+      </footer>
     </section>
   );
 }
