@@ -84,14 +84,16 @@ export const siteConfig = {
     { label: "Builds", href: "/projects", tagline: "Things I make" },
     { label: "Blog", href: "/blog", tagline: "Theses · public opinions" },
     { label: "Bookshelf", href: "/bookshelf", tagline: "Notes · highlights" },
+    { label: "Art", href: "/photography", tagline: "Photography · shot by Celine" },
     { label: "Contact", href: "/contact", tagline: "Say hello" },
   ],
-  /** HOME first on every page, then BUILDS · BLOG · BOOKSHELF · CONTACT */
+  /** HOME first on every page, then BUILDS · BLOG · BOOKSHELF · ART · CONTACT */
   nav: [
     { label: "Home", href: "/" },
     { label: "Builds", href: "/projects" },
     { label: "Blog", href: "/blog" },
     { label: "Bookshelf", href: "/bookshelf" },
+    { label: "Art", href: "/photography" },
     { label: "Contact", href: "/contact" },
   ],
 } as const;

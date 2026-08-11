@@ -39,7 +39,7 @@ export function HomeHub() {
       {/* Bottom-left edge — original stagger reveal (hub-nav-reveal) */}
       <footer className="hub-page__footer hub-page__footer--locked">
         <nav className="hub-page__nav hub-page__nav--locked" aria-label="Sections">
-          {/* Order: Builds · Blog · Bookshelf · Contact */}
+          {/* Order: Builds · Blog · Bookshelf · Art · Contact */}
           {siteConfig.hubPortals.map((portal, i) => {
             const isContact = portal.href === "/contact";
             return (
