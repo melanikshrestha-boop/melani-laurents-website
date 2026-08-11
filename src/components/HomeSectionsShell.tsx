@@ -12,9 +12,8 @@ function smoothstep(t: number) {
 }
 
 /**
- * Scroll-driven backdrop + hero exit fade.
- * --scroll-p: void → cream for archive
- * --hero-exit-p: 0 until late in photo scroll, then ramps for brief dissolve only
+ * Scroll-driven void → cream backdrop for the home hub + archive stack.
+ * No hero gradient / exit dissolve — photo stays clean.
  */
 export function HomeSectionsShell({ children }: { children: ReactNode }) {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -31,25 +30,7 @@ export function HomeSectionsShell({ children }: { children: ReactNode }) {
 
       const hubRect = hub.getBoundingClientRect();
       const vh = Math.max(window.innerHeight, 1);
-      const hubH = hub.offsetHeight;
 
-      /*
-       * How far we've scrolled through the hero (0 at top, 1 when hero
-       * bottom hits viewport bottom → leaving for archive).
-       */
-      const scrolledThrough = clamp(-hubRect.top / Math.max(hubH - vh, 1), 0, 1);
-
-      /*
-       * Exit dissolve only in the last ~22% of the photo scroll —
-       * invisible on first paint and most of the pan.
-       */
-      const exitStart = 0.78;
-      const exitRaw = clamp((scrolledThrough - exitStart) / (1 - exitStart), 0, 1);
-      const heroExit = smoothstep(exitRaw);
-
-      /*
-       * Page paper morph: starts as hero finishes, into archive.
-       */
       const hubBottomDoc = window.scrollY + hubRect.bottom;
       const transitionStart = hubBottomDoc - vh * 0.85;
       const transitionEnd = hubBottomDoc + vh * 0.2;
@@ -58,17 +39,9 @@ export function HomeSectionsShell({ children }: { children: ReactNode }) {
         clamp((window.scrollY - transitionStart) / span, 0, 1)
       );
 
-      root.style.setProperty("--scroll-p", scrollP.toFixed(4));
-      root.style.setProperty("--hero-exit-p", heroExit.toFixed(4));
-      root.style.setProperty("--hero-pan-p", scrolledThrough.toFixed(4));
-      document.documentElement.style.setProperty(
-        "--scroll-p",
-        scrollP.toFixed(4)
-      );
-      document.documentElement.style.setProperty(
-        "--hero-exit-p",
-        heroExit.toFixed(4)
-      );
+      const value = scrollP.toFixed(4);
+      root.style.setProperty("--scroll-p", value);
+      document.documentElement.style.setProperty("--scroll-p", value);
     };
 
     const schedule = () => {
@@ -85,10 +58,7 @@ export function HomeSectionsShell({ children }: { children: ReactNode }) {
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
       root.style.removeProperty("--scroll-p");
-      root.style.removeProperty("--hero-exit-p");
-      root.style.removeProperty("--hero-pan-p");
       document.documentElement.style.removeProperty("--scroll-p");
-      document.documentElement.style.removeProperty("--hero-exit-p");
     };
   }, []);
 
