@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { InteractiveTitleLetters } from "./InteractiveTitleLetters";
@@ -8,11 +7,12 @@ import { MelaniSignature } from "./MelaniSignature";
 import { SocialIcons } from "./SocialIcons";
 
 /**
- * ONE photograph — Spring Street raw (Sony ILCE-7M3 · Lightroom).
- * 2624×3936 master from Melani’s file, not a chat re-encode.
+ * Hero still = same file Art → Scenery uses (full Sony A7III Lightroom master).
+ * Plain <img> — no next/image optimizer (that softens the still vs /photography).
  */
 export const HUB_HERO_PHOTO = {
-  src: "/photography/hero/spring-st.jpg",
+  /** Identical path to scenery gallery so open = Art crispness */
+  src: "/photography/scenery/DSC01775.jpeg",
   alt: "Spring Street, New York — shot by Celine Nova",
 } as const;
 
@@ -23,14 +23,19 @@ export function HomeHub() {
       aria-label="Celine Nova home"
     >
       <div className="hub-page__photo" aria-hidden>
-        <Image
+        {/*
+          Native img = byte-identical to Art/scenery open.
+          next/image re-encodes and softens (failed 400 on full res / downscales otherwise).
+        */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src={HUB_HERO_PHOTO.src}
           alt=""
-          fill
-          priority
-          sizes="100vw"
           className="hub-page__photo-img"
-          quality={100}
+          decoding="async"
+          fetchPriority="high"
+          width={2624}
+          height={3936}
         />
         <div className="hub-page__photo-scrim" />
       </div>
