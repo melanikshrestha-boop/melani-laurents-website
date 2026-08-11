@@ -81,8 +81,7 @@ export function HomeHub() {
           >
             {siteConfig.hubPortals.map((portal, i) => {
               const isContact = portal.href === "/contact";
-              const isArt =
-                portal.href === "/photography" || portal.href === "/art";
+              const isArt = portal.href === "/photography";
               return (
                 <span
                   key={portal.href}
