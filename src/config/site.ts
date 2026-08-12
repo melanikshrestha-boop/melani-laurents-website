@@ -48,11 +48,14 @@ export const siteConfig = {
       id: "github",
       label: "GitHub",
       href: "https://github.com/melanikshrestha-boop",
+      hoverNote:
+        "I'm very specific about how I want things to exist, so I just bring my versions to life. It's pretty fun, check em out.",
     },
     {
       id: "x",
       label: "X",
       href: "https://x.com/melanilaurents",
+      hoverNote: "engaging in thoughtful activities 🤓",
     },
     {
       id: "youtube",
