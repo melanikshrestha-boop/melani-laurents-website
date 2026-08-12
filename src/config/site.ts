@@ -65,6 +65,8 @@ export const siteConfig = {
       id: "youtube",
       label: "YouTube",
       href: "https://www.youtube.com/@Celine_Nova",
+      hoverNote:
+        "this platform basically raised and taught me everything I know. I want to contribute my creativity as well. Hope you enjoy :)",
     },
     {
       id: "instagram",
