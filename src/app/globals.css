@@ -6219,22 +6219,38 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
     display: none;
   }
 
+  .hub-page--photo .hub-page__brand--locked {
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
   .hub-page--photo .hub-page__brand--locked .melani-signature__mark {
-    height: 1.65rem;
+    height: 1.55rem;
     width: auto;
   }
 
+  /*
+   * All 7 icons must fit (GitHub X LinkedIn YT IG TikTok Spotify).
+   * Never clip Spotify — was max-width 58% that ate the last icon.
+   */
   .hub-page--photo .hub-page__socials--locked {
     min-width: 0;
-    max-width: 58%;
-    flex-shrink: 1;
+    max-width: none;
+    flex: 1 1 auto;
+    overflow: visible;
   }
 
   .hub-page--photo .hub-page__socials--locked .hub-page__social-icons {
-    font-size: 0.92rem;
-    gap: 0.48rem;
+    font-size: 0.82rem;
+    gap: 0.4rem;
     flex-wrap: nowrap !important;
     justify-content: flex-end;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .hub-page--photo .hub-page__socials--locked .social-icons__link {
+    flex-shrink: 0;
   }
 
   /* Title stays dead-center but never wider than the phone */
@@ -6315,11 +6331,11 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   }
 }
 
-/* Narrow phones (~390 and below) — tighter still */
+/* Narrow phones (~390 and below) — tighter still, keep Spotify visible */
 @media (max-width: 400px) {
   .hub-page--photo .hub-page__socials--locked .hub-page__social-icons {
-    font-size: 0.84rem;
-    gap: 0.38rem;
+    font-size: 0.78rem;
+    gap: 0.32rem;
   }
 
   .hub-page--photo .hub-page__title-line,
@@ -6331,4 +6347,14 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
     font-size: 0.5rem;
     letter-spacing: 0.06em;
   }
+}
+
+/* Desktop/tablet: don’t let the icon rail overflow-hide Spotify */
+.hub-page--photo .hub-page__header--locked {
+  overflow: visible;
+}
+
+.hub-page--photo .hub-page__socials--locked {
+  overflow: visible;
+  min-width: max-content;
 }
