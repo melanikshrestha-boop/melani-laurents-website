@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-/** iOS home-screen icon — same monogram, larger. */
+/** iOS home-screen — same monogram, larger. */
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
@@ -15,27 +15,30 @@ export default function AppleIcon() {
           alignItems: "center",
           justifyContent: "center",
           background: "#0a0a0a",
+          position: "relative",
         }}
       >
         <div
           style={{
-            width: 132,
-            height: 132,
+            width: 108,
+            height: 108,
             borderRadius: 999,
-            border: "3px solid #d4af6a",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "#f4f0e6",
-            fontSize: 88,
-            fontFamily: "Georgia, Times New Roman, serif",
-            fontWeight: 500,
-            letterSpacing: "-0.03em",
-            lineHeight: 1,
+            border: "14px solid #f3efe6",
+            borderRightColor: "transparent",
+            transform: "rotate(-25deg)",
           }}
-        >
-          C
-        </div>
+        />
+        <div
+          style={{
+            position: "absolute",
+            width: 16,
+            height: 16,
+            borderRadius: 999,
+            background: "#c9a962",
+            right: 48,
+            top: 82,
+          }}
+        />
       </div>
     ),
     { ...size },

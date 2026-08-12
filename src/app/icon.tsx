@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-/** Browser tab + PWA icon — Celine Nova monogram (not the Vercel triangle). */
+/** Browser tab icon — void plate, open C, gold pin (not Vercel / not app-store chrome). */
 export const size = { width: 32, height: 32 };
 export const contentType = "image/png";
 
@@ -15,28 +15,34 @@ export default function Icon() {
           alignItems: "center",
           justifyContent: "center",
           background: "#0a0a0a",
-          borderRadius: 8,
+          borderRadius: 7,
         }}
       >
-        {/* Gold ring + open C — readable tiny in the tab */}
+        {/* Open C via CSS arc — cleaner than a text “C” at 16–32px */}
         <div
           style={{
-            width: 24,
-            height: 24,
+            width: 20,
+            height: 20,
             borderRadius: 999,
-            border: "1.5px solid #d4af6a",
+            border: "3px solid #f3efe6",
+            borderRightColor: "transparent",
+            transform: "rotate(-25deg)",
             display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "#f4f0e6",
-            fontSize: 15,
-            fontFamily: "Georgia, Times New Roman, serif",
-            fontWeight: 500,
-            lineHeight: 1,
+            position: "relative",
           }}
-        >
-          C
-        </div>
+        />
+        {/* Gold pin in the C opening */}
+        <div
+          style={{
+            position: "absolute",
+            width: 4,
+            height: 4,
+            borderRadius: 999,
+            background: "#c9a962",
+            right: 7,
+            top: 14,
+          }}
+        />
       </div>
     ),
     { ...size },
