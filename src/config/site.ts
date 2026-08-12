@@ -40,7 +40,7 @@ export const siteConfig = {
     "https://open.spotify.com/user/21etydsnbqyqe7ekagfnqbhoq?si=c3c26ede4c8a46a5",
   /**
    * Header social row (home top-right). Order is left → right.
-   * GitHub · X · YouTube · Instagram · TikTok · Spotify · LinkedIn
+   * GitHub · X · LinkedIn · YouTube · Instagram · TikTok · Spotify
    * hoverNote = personal popup on cursor only (omit until Melani writes one).
    */
   socialLinks: [
@@ -55,6 +55,11 @@ export const siteConfig = {
       id: "x",
       label: "X",
       href: "https://x.com/melanilaurents",
+    },
+    {
+      id: "linkedin",
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/melanilaurents/",
     },
     {
       id: "youtube",
@@ -77,11 +82,6 @@ export const siteConfig = {
       href: "https://open.spotify.com/user/21etydsnbqyqe7ekagfnqbhoq?si=c3c26ede4c8a46a5",
       hoverNote:
         "Music has been my best friend since forever. I hope to make at least 1 song before I die, regardless of it is shitty or not. But for now, I take pride in my music taste. Give it a listen!",
-    },
-    {
-      id: "linkedin",
-      label: "LinkedIn",
-      href: "https://www.linkedin.com/in/melanilaurents/",
     },
   ],
   /** The single public index shown at the bottom of the home hero. */

@@ -6322,11 +6322,6 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
     gap: 0.38rem;
   }
 
-  /* Drop LinkedIn on the thinnest rails so icons don’t crush the signature */
-  .hub-page--photo .hub-page__social-icons a[aria-label="LinkedIn"] {
-    display: none;
-  }
-
   .hub-page--photo .hub-page__title-line,
   .hub-page--locked .hub-page__title-line {
     font-size: clamp(1.55rem, 10vw, 2.2rem) !important;
