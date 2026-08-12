@@ -5468,16 +5468,46 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   opacity: 0 !important;
 }
 
+/*
+ * Photo home: no black void strip under the still.
+ * Hero is the photo; below = cream paper — kills the harsh divider line.
+ */
+.home-sections:has(.hub-page--photo) {
+  --scroll-p: 1;
+  background: #f0ede5;
+}
+
+.home-sections:has(.hub-page--photo)::before {
+  background: #f0ede5;
+}
+
+.hub-page--photo.hub-page--locked {
+  /* No 1px subpixel black seam from #050505 under the img */
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  outline: none;
+}
+
 .home-sections .hub-archive {
   margin-top: 0;
   padding-top: 0;
   border: 0;
+  border-top: 0 !important;
   box-shadow: none;
-  background: transparent;
+  background: #f0ede5;
 }
 
 .home-sections .hub-archive::before {
   display: none;
+}
+
+.home-sections:has(.hub-page--photo) .hub-archive,
+.home-sections:has(.hub-page--photo) .hub-archive__inner {
+  border: 0 !important;
+  border-top: 0 !important;
+  box-shadow: none !important;
+  outline: none;
 }
 
 .hub-page--photo .hub-page__title-line,

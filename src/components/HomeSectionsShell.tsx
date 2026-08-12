@@ -12,8 +12,9 @@ function smoothstep(t: number) {
 }
 
 /**
- * Scroll-driven void → cream backdrop for the home hub + archive stack.
- * No hero gradient / exit dissolve — photo stays clean.
+ * Home hub + archive stack.
+ * Photo hero: cream paper under the still (no black void strip / hard divider).
+ * Non-photo: scroll-driven void → cream morph.
  */
 export function HomeSectionsShell({ children }: { children: ReactNode }) {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -21,6 +22,16 @@ export function HomeSectionsShell({ children }: { children: ReactNode }) {
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
+
+    /* Photo home: lock cream — no void band under the still */
+    if (root.querySelector(".hub-page--photo")) {
+      root.style.setProperty("--scroll-p", "1");
+      document.documentElement.style.setProperty("--scroll-p", "1");
+      return () => {
+        root.style.removeProperty("--scroll-p");
+        document.documentElement.style.removeProperty("--scroll-p");
+      };
+    }
 
     let raf = 0;
 
