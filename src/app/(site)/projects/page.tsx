@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ProjectGrid } from "@/components/ProjectGrid";
 import { projects } from "@/data/projects";
+import { googleScholarUrl } from "@/data/publications";
 
 export const metadata: Metadata = {
   title: "Builds",
@@ -8,33 +9,42 @@ export const metadata: Metadata = {
     "What I’m shipping — systems, tools, and products. Founder builds, not a portfolio dump.",
 };
 
+/** Founder products on stage — not a research résumé dump. */
+const STAGE_IDS = new Set([
+  "wonder-os",
+  "lensoss",
+  "celine-nova",
+  "dream-life",
+  "shotbyceline",
+]);
+
 export default function ProjectsPage() {
-  const active = projects.filter((p) => p.status === "Active").length;
-  const research = projects.filter((p) => p.status === "Research").length;
-  const open = projects.filter((p) => p.status === "Open Source").length;
+  const stage = projects.filter((p) => STAGE_IDS.has(p.id));
 
   return (
-    <div className="builds-surface">
-      <div className="builds-surface__inner">
-        <header className="builds-surface__head">
-          <h1 className="builds-surface__title">Builds</h1>
-          <div className="builds-surface__meta" aria-label="Build totals">
-            <span>
-              <b>{String(projects.length).padStart(2, "0")}</b> projects
-            </span>
-            <span>
-              <b>{String(active).padStart(2, "0")}</b> active
-            </span>
-            <span>
-              <b>{String(research).padStart(2, "0")}</b> research
-            </span>
-            <span>
-              <b>{String(open).padStart(2, "0")}</b> open source
-            </span>
-          </div>
+    <div className="builds-surface builds-surface--stage">
+      <div className="builds-surface__inner builds-surface__inner--stage">
+        <header className="builds-surface__head builds-surface__head--stage">
+          <p className="builds-surface__kicker builds-surface__kicker--on">
+            Shipping
+          </p>
+          <h1 className="builds-surface__title builds-surface__title--stage">
+            Builds
+          </h1>
         </header>
 
-        <ProjectGrid projects={projects} />
+        <ProjectGrid projects={stage} />
+
+        <footer className="builds-surface__foot">
+          <a
+            href={googleScholarUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="builds-surface__scholar"
+          >
+            Research & patents · Google Scholar ↗
+          </a>
+        </footer>
       </div>
     </div>
   );
