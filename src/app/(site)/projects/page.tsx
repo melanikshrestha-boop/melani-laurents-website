@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { ProjectGrid } from "@/components/ProjectGrid";
+import { BuildsScholar } from "@/components/BuildsScholar";
 import { projects } from "@/data/projects";
-import { googleScholarUrl } from "@/data/publications";
 
 export const metadata: Metadata = {
   title: "Builds",
   description:
-    "What I’m shipping — systems, tools, and products. Founder builds, not a portfolio dump.",
+    "What I’m shipping — systems, tools, products, and research. Founder builds plus Scholar.",
 };
 
 /** Founder products on the page — clean tech portfolio set. */
@@ -32,16 +32,8 @@ export default function ProjectsPage() {
 
         <ProjectGrid projects={stage} />
 
-        <footer className="builds-surface__foot builds-surface__foot--folio">
-          <a
-            href={googleScholarUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="builds-surface__scholar"
-          >
-            Research & patents · Google Scholar ↗
-          </a>
-        </footer>
+        {/* Scholar profile + patents — LinkedIn-style proof inside Builds */}
+        <BuildsScholar />
       </div>
     </div>
   );
