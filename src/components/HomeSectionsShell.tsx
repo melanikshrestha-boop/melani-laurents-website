@@ -25,19 +25,29 @@ export function HomeSectionsShell({ children }: { children: ReactNode }) {
 
     const photoHub = root.querySelector<HTMLElement>(".hub-page--photo");
 
-    /* Photo home: cream locked; soft dissolve strength follows how far the still has left */
+    /* Photo home: cream locked; dissolve only after user scrolls (0 at rest) */
     if (photoHub) {
       root.style.setProperty("--scroll-p", "1");
+      root.style.setProperty("--hero-blend", "0");
+      photoHub.style.setProperty("--hero-blend", "0");
       document.documentElement.style.setProperty("--scroll-p", "1");
 
       let raf = 0;
       const updateBlend = () => {
+        const y = window.scrollY || 0;
         const vh = Math.max(window.innerHeight, 1);
-        const rect = photoHub.getBoundingClientRect();
-        /* 0 while hero fills the screen → 1 as bottom edge lifts away */
-        const raw = clamp((-rect.top) / (vh * 0.55), 0, 1);
+        /* Stay fully off until real scroll — no first-paint fog */
+        if (y < 2) {
+          photoHub.style.setProperty("--hero-blend", "0");
+          root.style.setProperty("--hero-blend", "0");
+          return;
+        }
+        /* 0 just after scroll starts → 1 over ~0.6 viewport of travel */
+        const raw = clamp(y / (vh * 0.6), 0, 1);
         const blend = smoothstep(raw);
-        photoHub.style.setProperty("--hero-blend", blend.toFixed(4));
+        const v = blend.toFixed(4);
+        photoHub.style.setProperty("--hero-blend", v);
+        root.style.setProperty("--hero-blend", v);
       };
       const schedule = () => {
         cancelAnimationFrame(raf);
@@ -51,6 +61,7 @@ export function HomeSectionsShell({ children }: { children: ReactNode }) {
         window.removeEventListener("scroll", schedule);
         window.removeEventListener("resize", schedule);
         photoHub.style.removeProperty("--hero-blend");
+        root.style.removeProperty("--hero-blend");
         root.style.removeProperty("--scroll-p");
         document.documentElement.style.removeProperty("--scroll-p");
       };
