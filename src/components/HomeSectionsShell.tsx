@@ -13,7 +13,7 @@ function smoothstep(t: number) {
 
 /**
  * Home hub + archive stack.
- * Photo hero: cream paper under the still (no black void strip / hard divider).
+ * Photo hero: cream under the still + --hero-blend deepens the soft dissolve on scroll.
  * Non-photo: scroll-driven void → cream morph.
  */
 export function HomeSectionsShell({ children }: { children: ReactNode }) {
@@ -23,11 +23,34 @@ export function HomeSectionsShell({ children }: { children: ReactNode }) {
     const root = rootRef.current;
     if (!root) return;
 
-    /* Photo home: lock cream — no void band under the still */
-    if (root.querySelector(".hub-page--photo")) {
+    const photoHub = root.querySelector<HTMLElement>(".hub-page--photo");
+
+    /* Photo home: cream locked; soft dissolve strength follows how far the still has left */
+    if (photoHub) {
       root.style.setProperty("--scroll-p", "1");
       document.documentElement.style.setProperty("--scroll-p", "1");
+
+      let raf = 0;
+      const updateBlend = () => {
+        const vh = Math.max(window.innerHeight, 1);
+        const rect = photoHub.getBoundingClientRect();
+        /* 0 while hero fills the screen → 1 as bottom edge lifts away */
+        const raw = clamp((-rect.top) / (vh * 0.55), 0, 1);
+        const blend = smoothstep(raw);
+        photoHub.style.setProperty("--hero-blend", blend.toFixed(4));
+      };
+      const schedule = () => {
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(updateBlend);
+      };
+      schedule();
+      window.addEventListener("scroll", schedule, { passive: true });
+      window.addEventListener("resize", schedule, { passive: true });
       return () => {
+        cancelAnimationFrame(raf);
+        window.removeEventListener("scroll", schedule);
+        window.removeEventListener("resize", schedule);
+        photoHub.style.removeProperty("--hero-blend");
         root.style.removeProperty("--scroll-p");
         document.documentElement.style.removeProperty("--scroll-p");
       };

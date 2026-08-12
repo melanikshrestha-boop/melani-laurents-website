@@ -5339,10 +5339,12 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 
 /*
  * Photo hero — one viewport only (no tall scroll pan).
- * Cropped cover frame (Spring St street crop) · CELINE NOVA dead center.
+ * Cropped cover · CELINE NOVA dead center · soft dissolve into cream (no hard line).
  */
 .hub-page--photo {
-  background: #050505;
+  --hero-cream: #f0ede5;
+  --hero-blend: 0; /* 0 at rest → 1 as you leave the still (scroll) */
+  background: transparent;
 }
 
 /* Always one screen — extended windows stay cover-cropped, never full-photo scroll */
@@ -5352,8 +5354,9 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   min-height: 100svh;
   max-height: 100svh;
   aspect-ratio: auto;
-  overflow: hidden;
+  overflow: visible; /* let the soft dissolve sit over the paper */
   padding: 0;
+  isolation: isolate;
 }
 
 .hub-page__photo {
@@ -5362,6 +5365,21 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
+  /* Still fades out toward the bottom so cream can breathe through */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 calc(68% - var(--hero-blend) * 12%),
+    rgba(0, 0, 0, 0.55) calc(86% - var(--hero-blend) * 8%),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 calc(68% - var(--hero-blend) * 12%),
+    rgba(0, 0, 0, 0.55) calc(86% - var(--hero-blend) * 8%),
+    transparent 100%
+  );
 }
 
 .hub-page__photo-img {
@@ -5458,8 +5476,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   margin: 0;
 }
 
-/* Never paint a gradient on the photo hero */
-.hub-page--photo::after,
+/* Old black scrims stay dead — cream dissolve is intentional */
 .hub-page__photo-scrim,
 .home-sections .hub-archive::before {
   display: none !important;
@@ -5469,8 +5486,32 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 }
 
 /*
- * Photo home: no black void strip under the still.
- * Hero is the photo; below = cream paper — kills the harsh divider line.
+ * Soft dissolve photo → cream.
+ * Not a hard rule / black bar — a long feather that deepens as you scroll.
+ */
+.hub-page--photo::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  pointer-events: none;
+  height: calc(22vh + var(--hero-blend) * 28vh);
+  opacity: 1 !important;
+  background: linear-gradient(
+    to bottom,
+    rgba(240, 237, 229, 0) 0%,
+    rgba(240, 237, 229, calc(0.2 + var(--hero-blend) * 0.25)) 35%,
+    rgba(240, 237, 229, calc(0.72 + var(--hero-blend) * 0.2)) 72%,
+    #f0ede5 100%
+  ) !important;
+  transition: height 120ms linear;
+}
+
+/*
+ * Photo home: cream paper under the still + overlap so the feather never shows a cut.
  */
 .home-sections:has(.hub-page--photo) {
   --scroll-p: 1;
@@ -5482,7 +5523,6 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 }
 
 .hub-page--photo.hub-page--locked {
-  /* No 1px subpixel black seam from #050505 under the img */
   background: transparent;
   border: 0;
   box-shadow: none;
@@ -5502,7 +5542,19 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   display: none;
 }
 
-.home-sections:has(.hub-page--photo) .hub-archive,
+.home-sections:has(.hub-page--photo) .hub-archive {
+  /* Pull paper up under the dissolve so the edge never pops as a line */
+  margin-top: -14vh;
+  padding-top: calc(14vh + var(--archive-pad-y, 2.5rem));
+  border: 0 !important;
+  border-top: 0 !important;
+  box-shadow: none !important;
+  outline: none;
+  position: relative;
+  z-index: 2;
+  background: #f0ede5;
+}
+
 .home-sections:has(.hub-page--photo) .hub-archive__inner {
   border: 0 !important;
   border-top: 0 !important;
