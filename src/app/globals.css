@@ -6191,4 +6191,149 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
     font-size: 0.65rem;
     letter-spacing: 0.13em;
   }
+
+  /*
+   * Phone photo hero — stop header / title / footer from stacking on each other.
+   * Safe-area aware for notched devices.
+   */
+  .hub-page--photo.hub-page--locked {
+    --hub-edge: max(0.85rem, env(safe-area-inset-left, 0px));
+    height: 100dvh;
+    min-height: 100dvh;
+    min-height: 100svh;
+  }
+
+  .hub-page--photo .hub-page__header--locked {
+    top: max(0.75rem, env(safe-area-inset-top, 0px));
+    left: max(0.75rem, env(safe-area-inset-left, 0px));
+    right: max(0.75rem, env(safe-area-inset-right, 0px));
+    height: auto;
+    min-height: 2rem;
+    max-height: none;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  /* Free horizontal room: location collides with socials on ~390px */
+  .hub-page--photo .hub-page__brand--locked .hub-page__brand-loc {
+    display: none;
+  }
+
+  .hub-page--photo .hub-page__brand--locked .melani-signature__mark {
+    height: 1.65rem;
+    width: auto;
+  }
+
+  .hub-page--photo .hub-page__socials--locked {
+    min-width: 0;
+    max-width: 58%;
+    flex-shrink: 1;
+  }
+
+  .hub-page--photo .hub-page__socials--locked .hub-page__social-icons {
+    font-size: 0.92rem;
+    gap: 0.48rem;
+    flex-wrap: nowrap !important;
+    justify-content: flex-end;
+  }
+
+  /* Title stays dead-center but never wider than the phone */
+  .hub-page--photo .hub-page__center--locked,
+  .home-sections .hub-page--photo .hub-page__center--locked {
+    width: min(94vw, 100%) !important;
+    max-width: min(94vw, 100%) !important;
+    padding-inline: 0.35rem;
+    box-sizing: border-box !important;
+  }
+
+  .hub-page--photo .hub-page__title,
+  .hub-page--photo .hub-page__title-line,
+  .hub-page--locked .hub-page__title-line {
+    font-size: clamp(1.7rem, 10.5vw, 2.55rem) !important;
+    letter-spacing: -0.04em;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: clip;
+  }
+
+  .hub-page--photo .hub-page__tagline,
+  .home-sections .hub-page--photo .hub-page__tagline,
+  .hub-page--photo .hub-page__center--locked .hub-page__tagline {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    white-space: normal !important;
+    max-width: min(18rem, 88vw) !important;
+    width: auto !important;
+    margin: 0.7rem auto 0 !important;
+    font-size: clamp(0.95rem, 3.6vw, 1.15rem) !important;
+    line-height: 1.25;
+    text-align: center;
+  }
+
+  .hub-page--photo .hub-page__footer--locked {
+    left: max(0.75rem, env(safe-area-inset-left, 0px));
+    right: max(0.75rem, env(safe-area-inset-right, 0px));
+    bottom: max(0.85rem, env(safe-area-inset-bottom, 0px));
+    max-width: none;
+    width: auto;
+  }
+
+  .hub-page--photo .hub-page__nav--locked {
+    font-size: 0.55rem;
+    letter-spacing: 0.07em;
+    line-height: 1.5;
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .hub-page--photo .hub-page__nav--locked .hub-page__sep {
+    margin: 0 0.2em;
+  }
+
+  /* Archive: no sideways overflow on phone */
+  .hub-archive__inner {
+    padding-left: max(1rem, env(safe-area-inset-left, 0px));
+    padding-right: max(1rem, env(safe-area-inset-right, 0px));
+    max-width: 100%;
+  }
+
+  .hub-archive__header {
+    flex-wrap: wrap;
+    gap: 0.35rem 0.75rem;
+  }
+
+  .hub-archive__podcast-heading {
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+
+  .hub-archive__callout-body {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+}
+
+/* Narrow phones (~390 and below) — tighter still */
+@media (max-width: 400px) {
+  .hub-page--photo .hub-page__socials--locked .hub-page__social-icons {
+    font-size: 0.84rem;
+    gap: 0.38rem;
+  }
+
+  /* Drop LinkedIn on the thinnest rails so icons don’t crush the signature */
+  .hub-page--photo .hub-page__social-icons a[aria-label="LinkedIn"] {
+    display: none;
+  }
+
+  .hub-page--photo .hub-page__title-line,
+  .hub-page--locked .hub-page__title-line {
+    font-size: clamp(1.55rem, 10vw, 2.2rem) !important;
+  }
+
+  .hub-page--photo .hub-page__nav--locked {
+    font-size: 0.5rem;
+    letter-spacing: 0.06em;
+  }
 }
