@@ -55,7 +55,6 @@ export const siteConfig = {
       id: "x",
       label: "X",
       href: "https://x.com/melanilaurents",
-      hoverNote: "engaging in thoughtful activities 🤓",
     },
     {
       id: "youtube",
