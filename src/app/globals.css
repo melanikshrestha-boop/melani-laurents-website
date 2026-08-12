@@ -5510,11 +5510,44 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   outline: none;
 }
 
+/* CELINE NOVA — pure white on the still (not cream / morph ink) */
 .hub-page--photo .hub-page__title-line,
-.hub-page--photo .hub-page__tagline {
+.hub-page--photo .hub-page__title,
+.hub-page--photo .title-char--hub,
+.hub-page--photo .title-char--hub.title-char--gold,
+.home-sections .hub-page--photo .hub-page__title-line,
+.home-sections .hub-page--photo .hub-page__title,
+.home-sections .hub-page--photo .title-char--hub,
+.home-sections .hub-page--photo .title-char--hub.title-char--gold,
+.home-sections .hub-page--photo.hub-page--locked .hub-page__title-line {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  filter: none !important;
   text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.55),
-    0 4px 18px rgba(0, 0, 0, 0.35);
+    0 1px 2px rgba(0, 0, 0, 0.45),
+    0 4px 18px rgba(0, 0, 0, 0.3);
+}
+
+.hub-page--photo .title-char--hub:hover,
+.hub-page--photo .title-char--hub.title-char--active,
+.home-sections .hub-page--photo .title-char--hub:hover,
+.home-sections .hub-page--photo .title-char--hub.title-char--active {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background: none !important;
+  filter: none !important;
+}
+
+.hub-page--photo .hub-page__tagline,
+.home-sections .hub-page--photo .hub-page__tagline,
+.home-sections .hub-page--photo.hub-page--locked .hub-page__tagline {
+  color: #ffffff !important;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.45),
+    0 4px 14px rgba(0, 0, 0, 0.28);
 }
 
 .hub-page--photo .hub-page__brand-loc,
