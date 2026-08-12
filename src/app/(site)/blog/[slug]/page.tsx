@@ -45,9 +45,13 @@ export default async function BlogPostPage({ params }: Props) {
           <Link href="/blog">← Blog</Link>
         </p>
 
-        <h1 className="sa-post-title">{post.title}</h1>
+        <h1 className="sa-post-title">
+          {post.title}
+          {post.draft ? <span className="sa-blog-draft"> Draft</span> : null}
+        </h1>
         <p className="sa-blog-date">
           <time dateTime={post.date}>{formatBlogArchiveDate(post.date)}</time>
+          {post.draft ? " · WORK IN PROGRESS" : null}
         </p>
 
         <div className="sa-post-body">

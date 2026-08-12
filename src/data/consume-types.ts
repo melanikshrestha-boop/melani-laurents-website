@@ -65,6 +65,8 @@ export type BlogPost = {
   tags?: string[];
   /** Discussion thread — defaults to blog:{slug} */
   threadId?: string;
+  /** Work-in-progress — still listed, labeled Draft */
+  draft?: boolean;
 };
 
 export type PublicOpinion = {

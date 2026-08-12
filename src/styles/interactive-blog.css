@@ -136,6 +136,15 @@
   line-height: 1.3;
 }
 
+.sa-blog-draft {
+  font-size: 0.65em;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sa-date);
+  white-space: nowrap;
+}
+
 .sa-blog-nav {
   margin: 0 0 1.5rem;
   font-size: 14px;

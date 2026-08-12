@@ -26,7 +26,12 @@ export default function BlogIndexPage() {
             {posts.map((post) => (
               <li key={post.slug} className="sa-blog-item">
                 <h2 className="sa-blog-title">
-                  <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                  <Link href={`/blog/${post.slug}`}>
+                    {post.title}
+                    {post.draft ? (
+                      <span className="sa-blog-draft"> Draft</span>
+                    ) : null}
+                  </Link>
                 </h2>
                 <p className="sa-blog-date">
                   <time dateTime={post.date}>
