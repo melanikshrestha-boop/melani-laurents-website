@@ -977,12 +977,17 @@ body {
  * Personal social hover notes — cursor only, never click-gated.
  * Font = bookshelf manifesto (Source Serif 4) — not Instrument display serif.
  */
+.social-icons__link--tip {
+  position: relative;
+  z-index: 8;
+}
+
 .social-icons__tip {
   position: absolute;
   top: calc(100% + 0.7rem);
   right: 0;
   left: auto;
-  z-index: 50;
+  z-index: 200;
   width: min(17.5rem, calc(100vw - 2rem));
   padding: 0.75rem 0.9rem;
   border-radius: 0.35rem;
@@ -1014,6 +1019,11 @@ body {
 
 /* Only real hover devices — no sticky “tap trap” on phones */
 @media (hover: hover) and (pointer: fine) {
+  .social-icons__link--tip:hover,
+  .social-icons__link--tip:focus-visible {
+    z-index: 210;
+  }
+
   .social-icons__link--tip:hover .social-icons__tip,
   .social-icons__link--tip:focus-visible .social-icons__tip {
     opacity: 1;
@@ -5338,100 +5348,34 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 }
 
 /*
- * Photo hero leave — FULL-SCREEN crossfade only.
- *
- * Bug that caused the cream bar: .hub-archive (cream) had z-index ABOVE the
- * fixed photo, so as you scrolled it slid up as a hard rectangle over the still.
- *
- * Fix: while leaving, ONLY two fixed full-bleed layers paint:
- *   1) photo (fades out)
- *   2) solid cream plate (fades in)
- * Archive stays UNDER them (z-index 0) until leave is done — never a bottom bar.
+ * Photo hero — pitch-black era model (normal document scroll).
+ * One viewport still in the flow. Scroll = photo leaves, cream archive enters.
+ * NO fixed overlays, NO cream plate, NO double-exposure fade.
  */
 .hub-page--photo {
-  --hero-leave: 0;
   background: #050505;
 }
 
-.home-sections--photo {
-  --hero-leave: 0;
-  --scroll-p: 1;
-  background: #000000;
-}
-
-.home-sections--photo::before {
-  background: #000000;
-}
-
-.home-leave-cream {
-  display: none;
-}
-
-/* Full-bleed solid cream plate (not a gradient, not a bottom wipe) */
-.home-sections--photo > .home-leave-cream {
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  min-height: 100dvh;
-  min-height: 100svh;
-  z-index: 30;
-  pointer-events: none;
-  background: #f0ede5;
-  opacity: var(--hero-leave, 0);
-  /* no gradient, no partial height */
-}
-
-/* Fixed full-bleed still */
+/* One screen cover crop — in document flow like the old void hub */
 .hub-page--photo.hub-page--locked {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  z-index: 20;
-  display: block;
-  width: 100% !important;
-  height: 100% !important;
-  min-height: 100dvh;
-  min-height: 100svh;
-  max-height: none !important;
-  aspect-ratio: auto;
-  overflow: hidden;
-  padding: 0 !important;
-  margin: 0 !important;
-  border: 0;
-  box-shadow: none;
-  outline: none;
-  isolation: isolate;
-  opacity: calc(1 - var(--hero-leave, 0));
-  pointer-events: none;
-  background: #050505;
-}
-
-.home-sections--photo:not([data-left="1"]) .hub-page--photo.hub-page--locked {
-  pointer-events: auto;
-}
-
-.home-sections--photo[data-left="1"] .hub-page--photo.hub-page--locked {
-  pointer-events: none;
-  visibility: hidden;
-}
-
-/* Leave runway = one viewport; archive starts AFTER this so it can't peek early */
-.hero-scroll-space {
+  position: relative;
+  z-index: 2;
   display: block;
   width: 100%;
   height: 100svh;
-  height: 100dvh;
   min-height: 100svh;
-  min-height: 100dvh;
-  pointer-events: none;
-  background: #000000;
+  max-height: 100svh;
+  aspect-ratio: auto;
+  /* visible so social tips aren’t clipped; still crops via .hub-page__photo */
+  overflow: visible;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-shadow: none;
+  outline: none;
+  opacity: 1;
+  pointer-events: auto;
+  isolation: isolate;
 }
 
 .hub-page__photo {
@@ -5466,10 +5410,11 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   display: block;
   width: 100%;
   height: 100%;
-  min-height: 100%;
-  max-height: none;
+  min-height: 100svh;
+  max-height: 100svh;
   box-sizing: border-box;
   pointer-events: none;
+  overflow: visible;
 }
 
 .hub-page__sticky-ui a,
@@ -5485,6 +5430,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   right: var(--hub-edge);
   z-index: 6;
   margin: 0;
+  overflow: visible;
 }
 
 .hub-page--photo .hub-page__center--locked,
@@ -5528,61 +5474,68 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   margin: 0;
 }
 
-/* Kill every photo fog / wipe / old scrim */
+/* No gradients / fog / leave plates on the photo */
 .hub-page--photo::after,
 .hub-page__photo-scrim,
+.home-leave-cream,
+.hero-scroll-space,
 .home-sections .hub-archive::before {
   display: none !important;
   content: none !important;
   background: none !important;
   opacity: 0 !important;
   height: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Stack under photo uses same void→cream morph as pitch-black hub */
+.home-sections:has(.hub-page--photo) {
+  background: color-mix(
+    in srgb,
+    #000000 calc((1 - var(--scroll-p, 0)) * 100%),
+    #f0ede5
+  );
+}
+
+.home-sections:has(.hub-page--photo)::before {
+  background: color-mix(
+    in srgb,
+    #000000 calc((1 - var(--scroll-p, 0)) * 100%),
+    #f0ede5
+  );
 }
 
 .home-sections .hub-archive,
 .home-sections .home-index {
+  position: relative;
+  z-index: 1;
   margin-top: 0;
   padding-top: 0;
   border: 0;
   border-top: 0 !important;
   box-shadow: none;
-  background: #f0ede5;
+  background: transparent;
+  opacity: 1;
 }
 
 .home-sections .hub-archive::before {
   display: none;
 }
 
-/*
- * Archive STAYS UNDER fixed photo+cream during leave (z-index 0).
- * Cannot slide up as a cream bar over the still.
- * After leave: rise above, cream plate drops away.
- */
-.home-sections--photo .hub-archive,
-.home-sections--photo .home-index {
-  position: relative;
-  z-index: 0;
+.home-sections:has(.hub-page--photo) .hub-archive,
+.home-sections:has(.hub-page--photo) .home-index {
   margin-top: 0 !important;
-  padding-top: 3rem;
+  padding-top: clamp(2.5rem, 6vh, 4rem);
   border: 0 !important;
   box-shadow: none !important;
   outline: none;
-  background: #f0ede5;
+  background: transparent;
   opacity: 1;
+  z-index: 1;
 }
 
-.home-sections--photo[data-left="1"] .hub-archive,
-.home-sections--photo[data-left="1"] .home-index {
-  z-index: 40;
-}
-
-.home-sections--photo[data-left="1"] > .home-leave-cream {
-  opacity: 0 !important;
-  visibility: hidden;
-}
-
-.home-sections--photo .hub-archive__inner,
-.home-sections--photo .home-index__inner {
+.home-sections:has(.hub-page--photo) .hub-archive__inner,
+.home-sections:has(.hub-page--photo) .home-index__inner {
   border: 0 !important;
   border-top: 0 !important;
   box-shadow: none !important;
