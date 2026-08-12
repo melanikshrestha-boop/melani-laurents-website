@@ -32,16 +32,13 @@ export function HomeSectionsShell({ children }: { children: ReactNode }) {
       const vh = Math.max(window.innerHeight, 1);
 
       /*
-       * Pitch-black leave: stay VOID BLACK while any of the still is on screen.
-       * Only morph to cream after the photo has fully left the viewport —
-       * so cream never peeks under the still as a hard bar.
+       * Morph void→cream as the still leaves — continuous with the soft photo
+       * bottom dissolve (no knife-edge black or cream bar).
        */
       const hubBottom = hubRect.bottom;
-      let scrollP = 0;
-      if (hubBottom <= 0) {
-        /* Photo fully above the fold — ramp cream over the next ~0.5 viewport */
-        scrollP = smoothstep(clamp((-hubBottom) / (vh * 0.5), 0, 1));
-      }
+      /* 0 while hero fills the screen; ramps as bottom edge rises through the viewport */
+      const raw = clamp((vh - hubBottom) / (vh * 0.85), 0, 1);
+      const scrollP = smoothstep(raw);
 
       const value = scrollP.toFixed(4);
       root.style.setProperty("--scroll-p", value);

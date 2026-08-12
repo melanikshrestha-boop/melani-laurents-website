@@ -120,8 +120,6 @@ export function HomeHub() {
         </footer>
       </div>
     </section>
-    {/* Void black under the soft photo edge — pitch-black leave, not cream */}
-    <div className="hero-void-bridge" aria-hidden />
   </>
   );
 }

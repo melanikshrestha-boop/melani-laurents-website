@@ -5348,16 +5348,15 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 }
 
 /*
- * Photo hero — pitch-black leave model.
- * Full viewport still. Bottom of the still soft-dissolves into VOID BLACK
- * (same as the old black hub), never into a cream bar.
- * Cream only after the still has left. No fixed overlays / double exposure.
+ * Photo hero — no knife-edge under the still.
+ * Still soft-dissolves at the bottom into the page (void→cream morph).
+ * No solid black bridge strip. No cream bar. No fixed overlays.
  */
 .hub-page--photo {
-  background: #000000;
+  background: transparent;
 }
 
-/* True full-viewport cover — kill short-svh black strip under the still */
+/* True full-viewport cover */
 .hub-page--photo.hub-page--locked {
   position: relative;
   z-index: 2;
@@ -5378,6 +5377,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   opacity: 1;
   pointer-events: auto;
   isolation: isolate;
+  /* Kill 1px subpixel hairline under the section */
+  margin-bottom: -1px;
 }
 
 .hub-page__photo {
@@ -5386,9 +5387,26 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  /* Full still — no mask fog. Leave is void black after the section, not cream. */
-  -webkit-mask-image: none !important;
-  mask-image: none !important;
+  /*
+   * Long soft dissolve at the bottom — no harsh rule between still and next paint.
+   * Page bg (void black → cream via --scroll-p) shows through the fade.
+   */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 62%,
+    rgba(0, 0, 0, 0.85) 78%,
+    rgba(0, 0, 0, 0.35) 90%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 62%,
+    rgba(0, 0, 0, 0.85) 78%,
+    rgba(0, 0, 0, 0.35) 90%,
+    transparent 100%
+  );
 }
 
 .hub-page__photo-img {
@@ -5492,9 +5510,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 }
 
 /*
- * Void black while the still is on screen (pitch-black era).
- * Cream only after --scroll-p rises (photo fully left).
- * Never paint cream directly under the still → no cream dividing bar.
+ * Page under the still: void black while photo is on screen,
+ * then cream after leave. Soft photo mask blends into this — no hard bar.
  */
 .home-sections:has(.hub-page--photo) {
   background: color-mix(
@@ -5512,16 +5529,10 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   );
 }
 
-/* Black bridge under the soft photo edge — void, not cream */
+/* No solid black bridge — that was the harsh line */
 .hero-void-bridge {
-  display: block;
-  width: 100%;
-  height: 28vh;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: #000000;
-  pointer-events: none;
+  display: none !important;
+  height: 0 !important;
 }
 
 .home-sections .hub-archive,
@@ -5543,14 +5554,28 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 
 .home-sections:has(.hub-page--photo) .hub-archive,
 .home-sections:has(.hub-page--photo) .home-index {
-  margin-top: 0 !important;
-  padding-top: clamp(2.5rem, 6vh, 4rem);
+  /* Pull archive up under the photo’s soft dissolve so the join is continuous */
+  margin-top: -18vh !important;
+  padding-top: calc(18vh + clamp(2.5rem, 6vh, 4rem));
   border: 0 !important;
   box-shadow: none !important;
   outline: none;
   background: #f0ede5;
   opacity: 1;
   z-index: 1;
+  /* Soft top of the cream paper into the photo dissolve */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 14vh,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 14vh,
+    #000 100%
+  );
 }
 
 .home-sections:has(.hub-page--photo) .hub-archive__inner,
