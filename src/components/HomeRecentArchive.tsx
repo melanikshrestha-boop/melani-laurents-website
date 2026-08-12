@@ -3,7 +3,6 @@ import { getRecentBookshelf, BOOKSHELF_KIND_LABEL } from "@/data/bookshelf";
 import { googleScholarUrl } from "@/data/publications";
 import { siteConfig } from "@/config/site";
 import { HomeScrollExperience } from "@/components/HomeScrollExperience";
-import { NewsletterSignup } from "@/components/NewsletterSignup";
 
 const SLOT_COUNT = 3;
 
@@ -194,10 +193,6 @@ export function HomeRecentArchive() {
                 →
               </span>
             </Link>
-          </div>
-
-          <div className="hub-archive__section hub-archive__section--newsletter">
-            <NewsletterSignup variant="footer" className="hub-archive__newsletter" />
           </div>
         </div>
       </section>
