@@ -41,6 +41,7 @@ export const siteConfig = {
   /**
    * Header social row (home top-right). Order is left → right.
    * GitHub · X · YouTube · Instagram · TikTok · Spotify · LinkedIn
+   * hoverNote = personal popup on cursor only (omit until Melani writes one).
    */
   socialLinks: [
     {
@@ -72,6 +73,8 @@ export const siteConfig = {
       id: "spotify",
       label: "Spotify",
       href: "https://open.spotify.com/user/21etydsnbqyqe7ekagfnqbhoq?si=c3c26ede4c8a46a5",
+      hoverNote:
+        "Music has been my best friend since forever. I hope to make at least one song before I die, regardless of it is shitty or not. But for now, I take pride of my music taste. Give it a listen.",
     },
     {
       id: "linkedin",

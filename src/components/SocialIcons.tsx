@@ -61,21 +61,39 @@ export function SocialIcons({
     <div
       className={`social-icons flex flex-nowrap items-center ${gap} ${className}`}
     >
-      {siteConfig.socialLinks.map(({ id, label, href }) => (
-        <a
-          key={id}
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={label}
-          className="social-icons__link"
-          title={label}
-        >
-          <span className={`social-icons__icon ${iconSize}`}>
-            {socialIcons[id]}
-          </span>
-        </a>
-      ))}
+      {siteConfig.socialLinks.map((link) => {
+        const { id, label, href } = link;
+        const hoverNote =
+          "hoverNote" in link && typeof link.hoverNote === "string"
+            ? link.hoverNote
+            : undefined;
+
+        return (
+          <a
+            key={id}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={label}
+            className={
+              hoverNote
+                ? "social-icons__link social-icons__link--tip"
+                : "social-icons__link"
+            }
+            /* Native title only when we have no personal note (avoids double tooltip) */
+            title={hoverNote ? undefined : label}
+          >
+            <span className={`social-icons__icon ${iconSize}`}>
+              {socialIcons[id]}
+            </span>
+            {hoverNote ? (
+              <span className="social-icons__tip" role="tooltip">
+                {hoverNote}
+              </span>
+            ) : null}
+          </a>
+        );
+      })}
     </div>
   );
 }
