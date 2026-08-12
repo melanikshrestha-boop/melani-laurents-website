@@ -5529,7 +5529,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   outline: none;
 }
 
-.home-sections .hub-archive {
+.home-sections .hub-archive,
+.home-sections .home-index {
   margin-top: 0;
   padding-top: 0;
   border: 0;
@@ -5542,10 +5543,11 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   display: none;
 }
 
-.home-sections:has(.hub-page--photo) .hub-archive {
+.home-sections:has(.hub-page--photo) .hub-archive,
+.home-sections:has(.hub-page--photo) .home-index {
   /* Pull paper up under the dissolve so the edge never pops as a line */
   margin-top: -14vh;
-  padding-top: calc(14vh + var(--archive-pad-y, 2.5rem));
+  padding-top: calc(14vh + 3rem);
   border: 0 !important;
   border-top: 0 !important;
   box-shadow: none !important;
@@ -5555,11 +5557,158 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   background: #f0ede5;
 }
 
-.home-sections:has(.hub-page--photo) .hub-archive__inner {
+.home-sections:has(.hub-page--photo) .hub-archive__inner,
+.home-sections:has(.hub-page--photo) .home-index__inner {
   border: 0 !important;
   border-top: 0 !important;
   box-shadow: none !important;
   outline: none;
+}
+
+/* ── Home index (below photo) — editorial directory, no cards ── */
+.home-index {
+  position: relative;
+  z-index: 2;
+  color: #1c1b18;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.home-index__inner {
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 2rem) clamp(4rem, 10vh, 6.5rem);
+  box-sizing: border-box;
+}
+
+.home-index__block {
+  margin: 0;
+  padding: 0 0 clamp(1.75rem, 4vh, 2.5rem);
+}
+
+.home-index__block--last {
+  padding-bottom: 0;
+}
+
+.home-index__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 0 0.65rem;
+}
+
+.home-index__label {
+  margin: 0;
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: #1c1b18;
+}
+
+.home-index__label a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.home-index__label a:hover {
+  opacity: 0.55;
+}
+
+.home-index__all {
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(28, 27, 24, 0.38);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.home-index__all:hover {
+  color: rgba(28, 27, 24, 0.72);
+}
+
+.home-index__all--static {
+  pointer-events: none;
+}
+
+.home-index__rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.home-index__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  column-gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+}
+
+.home-index__primary {
+  min-width: 0;
+  font-family: var(--font-source-serif), "Source Serif 4", Georgia, serif;
+  font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: #1c1b18;
+  text-decoration: none;
+}
+
+.home-index__primary:hover {
+  opacity: 0.62;
+}
+
+.home-index__badge {
+  display: inline-block;
+  margin-left: 0.45em;
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(28, 27, 24, 0.4);
+  vertical-align: middle;
+}
+
+.home-index__meta {
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  color: rgba(28, 27, 24, 0.38);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.home-index__empty {
+  margin: 0;
+  font-family: var(--font-source-serif), Georgia, serif;
+  font-size: 1rem;
+  color: rgba(28, 27, 24, 0.4);
+}
+
+@media (max-width: 540px) {
+  .home-index__row {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+
+  .home-index__meta {
+    text-align: left;
+  }
 }
 
 /* CELINE NOVA — pure white on the still (not cream / morph ink) */
