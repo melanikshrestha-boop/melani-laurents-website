@@ -91,7 +91,7 @@ export const siteConfig = {
     { label: "Builds", href: "/projects", tagline: "Things I make" },
     { label: "Blog", href: "/blog", tagline: "Theses · public opinions" },
     { label: "Bookshelf", href: "/bookshelf", tagline: "Notes · highlights" },
-    { label: "Art", href: "/photography", tagline: "Photography · shot by Celine" },
+    { label: "Art", href: "/photography", tagline: "Photo · sketches · shot by Celine" },
     { label: "Contact", href: "/contact", tagline: "Say hello" },
   ],
   /** HOME first on every page, then BUILDS · BLOG · BOOKSHELF · ART · CONTACT */

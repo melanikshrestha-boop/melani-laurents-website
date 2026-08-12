@@ -277,6 +277,14 @@
           "alt": "Scenery 9"
         }
       ]
+    },
+    {
+      "id": "sketches",
+      "title": "Sketches",
+      "tagline": "line · hand · form",
+      "slug": "sketches",
+      "cover": "/photography/sketches/cover.jpeg",
+      "photos": []
     }
   ]
 }

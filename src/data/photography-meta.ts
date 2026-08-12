@@ -20,8 +20,8 @@ export interface PhotographyData {
 export const photographyIntro = {
   headline: "Shot by Celine",
   subhead:
-    "Portraits and scenery — I see the world through light and feeling.",
-  body: "Photography is how I slow down. While my day job lives in signals and systems, my camera lives in golden hour, honest faces, and places that feel like a dream.",
+    "Portraits, scenery, and sketches — camera and hand.",
+  body: "Photography is how I slow down. While my day job lives in signals and systems, my camera lives in golden hour, honest faces, and places that feel like a dream. Sketches are the same eye, slower, on paper.",
 };
 
 export const photographyVibes = [
@@ -36,7 +36,7 @@ export const photographyBooking = {
   email: "celinenovaa@gmail.com",
   mailtoSubject: "Photoshoot inquiry",
   dmMessage:
-    "Hi Celine! I'd like to book a photoshoot.\n\nPreferred date: \nShoot type: Portraits / Scenery\n",
+    "Hi Celine! I'd like to book a photoshoot.\n\nPreferred date: \nShoot type: Portraits / Scenery / Sketches\n",
   steps: [
     "Share your preferred date, location (or let me choose), and the vibe you want — or note if you'd like to consult first",
     "I'll confirm within 24 hours",

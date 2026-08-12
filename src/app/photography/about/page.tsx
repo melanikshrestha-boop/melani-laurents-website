@@ -26,13 +26,14 @@ export default function PhotographyAboutPage() {
               California with roots in New York City.
             </p>
             <p>
-              My work blends portraits, photojournalism, and scenery photography.
-              Portraits are the foundation of my side business — they let me work
-              directly with clients, understand their vision, and create images
-              that feel true to them. Photojournalism is how I document real
-              issues and bring attention to the stories that often go unseen.
-              Scenery photography is a personal hobby that grounds me and keeps
-              me connected to my surroundings.
+              My work blends portraits, photojournalism, scenery photography, and
+              sketches. Portraits are the foundation of my side business — they
+              let me work directly with clients, understand their vision, and
+              create images that feel true to them. Photojournalism is how I
+              document real issues and bring attention to the stories that often
+              go unseen. Scenery photography is a personal hobby that grounds me
+              and keeps me connected to my surroundings. Sketches are how I work
+              by hand — line, form, and the same eye off the camera.
             </p>
             <p>
               My Gear: I shoot with a Sony A7III and a Godox V860III flash,

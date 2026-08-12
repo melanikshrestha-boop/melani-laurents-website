@@ -40,6 +40,14 @@ export function PortfolioGallery({ photos }: PortfolioGalleryProps) {
     };
   }, [lightboxIndex, close, goPrev, goNext]);
 
+  if (photos.length === 0) {
+    return (
+      <div className="portfolio-gallery portfolio-gallery--empty">
+        <p className="portfolio-gallery-empty">Coming soon.</p>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="portfolio-gallery">

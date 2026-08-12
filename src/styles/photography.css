@@ -223,6 +223,24 @@
   padding-top: clamp(5.5rem, 8vw, 8.25rem);
 }
 
+.portfolio-gallery--empty {
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1.5rem;
+}
+
+.portfolio-gallery-empty {
+  margin: 0;
+  font-family: var(--font-share-tech-mono), var(--font-jetbrains-mono), ui-monospace,
+    monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(20, 18, 16, 0.45);
+}
+
 .portfolio-gallery-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
