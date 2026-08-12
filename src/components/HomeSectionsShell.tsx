@@ -37,14 +37,15 @@ export function HomeSectionsShell({ children }: { children: ReactNode }) {
         const y = Math.max(0, window.scrollY || 0);
         const vh = Math.max(window.innerHeight, 1);
         /*
-         * Whole-screen leave over one viewport of scroll.
-         * Photo stays fully opaque until you move; then still → cream crossfade.
-         * No partial cream bar under the still.
+         * Full-screen leave over exactly one viewport of scroll.
+         * Archive is under the fixed layers until leave completes —
+         * so it can never paint a cream bar over the still.
          */
         const leave = smoothstep(clamp(y / vh, 0, 1));
         const v = leave.toFixed(4);
         root.style.setProperty("--hero-leave", v);
-        root.dataset.left = leave > 0.55 ? "1" : "0";
+        /* Only hand off when still is fully gone */
+        root.dataset.left = leave >= 0.98 ? "1" : "0";
       };
       const schedule = () => {
         cancelAnimationFrame(raf);

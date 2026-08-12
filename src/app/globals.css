@@ -5338,9 +5338,15 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 }
 
 /*
- * Photo hero — clean still, full screen, every device.
- * Leave transition = whole-screen crossfade (photo out · cream in).
- * NO bottom gradient wipe on the still. Ever.
+ * Photo hero leave — FULL-SCREEN crossfade only.
+ *
+ * Bug that caused the cream bar: .hub-archive (cream) had z-index ABOVE the
+ * fixed photo, so as you scrolled it slid up as a hard rectangle over the still.
+ *
+ * Fix: while leaving, ONLY two fixed full-bleed layers paint:
+ *   1) photo (fades out)
+ *   2) solid cream plate (fades in)
+ * Archive stays UNDER them (z-index 0) until leave is done — never a bottom bar.
  */
 .hub-page--photo {
   --hero-leave: 0;
@@ -5350,7 +5356,6 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .home-sections--photo {
   --hero-leave: 0;
   --scroll-p: 1;
-  /* Void under the fixed still — same energy as old pitch-black page */
   background: #000000;
 }
 
@@ -5358,44 +5363,56 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   background: #000000;
 }
 
-/* Solid cream screen — fades in as a full plate, not a bar on the photo */
 .home-leave-cream {
   display: none;
 }
 
+/* Full-bleed solid cream plate (not a gradient, not a bottom wipe) */
 .home-sections--photo > .home-leave-cream {
   display: block;
   position: fixed;
-  inset: 0;
-  z-index: 3;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100dvh;
+  min-height: 100svh;
+  z-index: 30;
   pointer-events: none;
   background: #f0ede5;
   opacity: var(--hero-leave, 0);
+  /* no gradient, no partial height */
 }
 
-/* Fixed full-viewport still — fades out as cream plate comes up */
+/* Fixed full-bleed still */
 .hub-page--photo.hub-page--locked {
-  position: fixed;
-  inset: 0;
-  z-index: 2;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  z-index: 20;
   display: block;
-  width: 100%;
-  height: 100svh;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100dvh;
   min-height: 100svh;
-  max-height: 100svh;
+  max-height: none !important;
   aspect-ratio: auto;
   overflow: hidden;
-  padding: 0;
-  margin: 0;
+  padding: 0 !important;
+  margin: 0 !important;
   border: 0;
   box-shadow: none;
   outline: none;
   isolation: isolate;
   opacity: calc(1 - var(--hero-leave, 0));
   pointer-events: none;
+  background: #050505;
 }
 
-/* Clicks only while the still is still the front screen */
 .home-sections--photo:not([data-left="1"]) .hub-page--photo.hub-page--locked {
   pointer-events: auto;
 }
@@ -5405,14 +5422,16 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   visibility: hidden;
 }
 
-/* Scroll runway for the fixed still (one viewport of leave) */
+/* Leave runway = one viewport; archive starts AFTER this so it can't peek early */
 .hero-scroll-space {
   display: block;
   width: 100%;
   height: 100svh;
+  height: 100dvh;
   min-height: 100svh;
+  min-height: 100dvh;
   pointer-events: none;
-  background: transparent;
+  background: #000000;
 }
 
 .hub-page__photo {
@@ -5421,9 +5440,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  /* No mask. Full still always. */
-  -webkit-mask-image: none;
-  mask-image: none;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
 }
 
 .hub-page__photo-img {
@@ -5448,8 +5466,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   display: block;
   width: 100%;
   height: 100%;
-  min-height: 100svh;
-  max-height: 100svh;
+  min-height: 100%;
+  max-height: none;
   box-sizing: border-box;
   pointer-events: none;
 }
@@ -5469,10 +5487,6 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   margin: 0;
 }
 
-/*
- * CELINE NOVA — true geometric middle of the viewport.
- * Do NOT use `inset: auto` after top/left (shorthand wipes 50%).
- */
 .hub-page--photo .hub-page__center--locked,
 .home-sections .hub-page--photo .hub-page__center--locked {
   position: absolute !important;
@@ -5539,18 +5553,32 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   display: none;
 }
 
-/* Index sits above the leave cream; fades in with the same leave curve */
+/*
+ * Archive STAYS UNDER fixed photo+cream during leave (z-index 0).
+ * Cannot slide up as a cream bar over the still.
+ * After leave: rise above, cream plate drops away.
+ */
 .home-sections--photo .hub-archive,
 .home-sections--photo .home-index {
   position: relative;
-  z-index: 4;
+  z-index: 0;
   margin-top: 0 !important;
   padding-top: 3rem;
   border: 0 !important;
   box-shadow: none !important;
   outline: none;
   background: #f0ede5;
-  opacity: var(--hero-leave, 0);
+  opacity: 1;
+}
+
+.home-sections--photo[data-left="1"] .hub-archive,
+.home-sections--photo[data-left="1"] .home-index {
+  z-index: 40;
+}
+
+.home-sections--photo[data-left="1"] > .home-leave-cream {
+  opacity: 0 !important;
+  visibility: hidden;
 }
 
 .home-sections--photo .hub-archive__inner,
