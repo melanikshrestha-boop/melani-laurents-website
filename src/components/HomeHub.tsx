@@ -1,6 +1,5 @@
 "use client";
 
-import type { CSSProperties } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { InteractiveTitleLetters } from "./InteractiveTitleLetters";
@@ -9,9 +8,8 @@ import { SocialIcons } from "./SocialIcons";
 
 /**
  * Spring St master (Art scenery).
- * First paint: clean full-bleed, no gradient.
- * Extended screens: scroll the full still top→bottom; name sticky center.
- * Exit: brief dissolve only near the end of the photo scroll.
+ * One viewport cover crop only — no full-photo scroll pan when extended.
+ * CELINE NOVA dead-centered over the still.
  */
 export const HUB_HERO_PHOTO = {
   src: "/photography/scenery/DSC01775.jpeg",
@@ -25,12 +23,6 @@ export function HomeHub() {
     <section
       className="hub-page hub-page--locked hub-page--photo"
       aria-label="Celine Nova home"
-      style={
-        {
-          "--hero-ar-w": HUB_HERO_PHOTO.width,
-          "--hero-ar-h": HUB_HERO_PHOTO.height,
-        } as CSSProperties
-      }
     >
       <div className="hub-page__photo" aria-hidden>
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -45,7 +37,7 @@ export function HomeHub() {
         />
       </div>
 
-      {/* Sticky chrome: stays in viewport while photo pans behind on extended scroll */}
+      {/* One-viewport chrome over the cover crop */}
       <div className="hub-page__sticky-ui">
         <header className="hub-page__header hub-page__header--locked">
           <div className="hub-page__brand hub-page__brand--locked">

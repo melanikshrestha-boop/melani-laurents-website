@@ -5333,15 +5333,22 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 }
 
 /*
- * Photo hero
- * - Clean still, no gradient
- * - CELINE NOVA always dead-center of the viewport
- * - Extended: tall full-photo scroll; sticky chrome; name stays centered while pan
+ * Photo hero — one viewport only (no tall scroll pan).
+ * Cropped cover frame (Spring St street crop) · CELINE NOVA dead center.
  */
 .hub-page--photo {
-  --hero-ar-w: 2624;
-  --hero-ar-h: 3936;
   background: #050505;
+}
+
+/* Always one screen — extended windows stay cover-cropped, never full-photo scroll */
+.hub-page--photo.hub-page--locked {
+  display: block;
+  height: 100svh;
+  min-height: 100svh;
+  max-height: 100svh;
+  aspect-ratio: auto;
+  overflow: hidden;
+  padding: 0;
 }
 
 .hub-page__photo {
@@ -5360,7 +5367,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   height: 100%;
   max-width: none;
   object-fit: cover;
-  object-position: 50% 48%;
+  /* Street crop: LOEWE / people / sidewalk — same framing fullscreen or windowed */
+  object-position: 50% 62%;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: high-quality;
   -webkit-backface-visibility: hidden;
@@ -5369,8 +5377,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 }
 
 /*
- * Sticky UI = one viewport frame.
- * Header top / title absolute-center / nav bottom — name never drifts.
+ * Chrome fills the one viewport.
+ * Header top / title absolute-center / nav bottom.
  */
 .hub-page__sticky-ui {
   position: relative;
@@ -5379,6 +5387,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   width: 100%;
   height: 100%;
   min-height: 100svh;
+  max-height: 100svh;
   box-sizing: border-box;
   pointer-events: none;
 }
@@ -5389,7 +5398,6 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   pointer-events: auto;
 }
 
-/* Always: title + tagline in the true center of the sticky frame */
 .hub-page--photo .hub-page__header--locked {
   position: absolute !important;
   top: var(--hub-edge);
@@ -5400,15 +5408,13 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 }
 
 /*
- * CELINE NOVA — true geometric middle of the sticky viewport.
- * IMPORTANT: do NOT use `inset: auto` after top/left — inset is a shorthand
- * and was wiping top/left:50%, so the name sat high/off-center.
- * Tagline hangs below the name and does not shift the name's midpoint.
+ * CELINE NOVA — true geometric middle of the viewport.
+ * Do NOT use `inset: auto` after top/left (shorthand wipes 50%).
+ * Tagline hangs below and does not shift the name midpoint.
  */
 .hub-page--photo .hub-page__center--locked,
 .home-sections .hub-page--photo .hub-page__center--locked {
   position: absolute !important;
-  /* top | right | bottom | left — name block pinned to dead center */
   inset: 50% auto auto 50% !important;
   z-index: 5;
   display: flex !important;
@@ -5426,7 +5432,6 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   transform: translate(-50%, -50%) !important;
 }
 
-/* Tagline below the name — out of the vertical centering math */
 .hub-page--photo .hub-page__center--locked .hub-page__tagline,
 .home-sections .hub-page--photo .hub-page__center--locked .hub-page__tagline {
   position: absolute;
@@ -5446,54 +5451,6 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   right: auto;
   z-index: 6;
   margin: 0;
-}
-
-/*
- * Extended / full-screen: section = full photo height.
- * Scroll pans still top→bottom; sticky UI keeps name centered.
- */
-@media (min-width: 900px), (min-aspect-ratio: 5 / 4) {
-  .hub-page--photo.hub-page--locked {
-    display: block;
-    height: auto;
-    min-height: 100svh;
-    aspect-ratio: var(--hero-ar-w) / var(--hero-ar-h);
-    max-height: none;
-    overflow: visible;
-    padding: 0;
-  }
-
-  .hub-page--photo .hub-page__photo-img {
-    object-fit: cover;
-    object-position: center center;
-  }
-
-  .hub-page--photo .hub-page__sticky-ui {
-    position: sticky;
-    top: 0;
-    height: 100svh;
-    min-height: 100svh;
-    max-height: 100svh;
-    width: 100%;
-  }
-}
-
-/* Phone: one-screen cover */
-@media (max-width: 899px) {
-  .hub-page--photo.hub-page--locked {
-    height: 100svh;
-    min-height: 100svh;
-    padding: 0;
-  }
-
-  .hub-page--photo .hub-page__sticky-ui {
-    height: 100svh;
-    min-height: 100svh;
-  }
-
-  .hub-page--photo .hub-page__photo-img {
-    object-position: 50% 48%;
-  }
 }
 
 /* Never paint a gradient on the photo hero */
