@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import {
   Geist,
   Instrument_Serif,
+  Source_Serif_4,
   IBM_Plex_Mono,
   Share_Tech_Mono,
   Syne,
@@ -23,6 +24,13 @@ const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
   subsets: ["latin"],
   weight: "400",
+});
+
+/* Bookshelf manifesto body — social hover notes use this too */
+const sourceSerif = Source_Serif_4({
+  variable: "--font-source-serif",
+  subsets: ["latin"],
+  weight: ["400", "500"],
 });
 
 const ibmPlexMono = IBM_Plex_Mono({
@@ -105,7 +113,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${instrumentSerif.variable} ${ibmPlexMono.variable} ${shareTechMono.variable} ${syne.variable} ${oswald.variable} ${archivoNarrow.variable} ${jetbrainsMono.variable} h-full`}
+      className={`${geistSans.variable} ${instrumentSerif.variable} ${sourceSerif.variable} ${ibmPlexMono.variable} ${shareTechMono.variable} ${syne.variable} ${oswald.variable} ${archivoNarrow.variable} ${jetbrainsMono.variable} h-full`}
       /* Browser extensions (Grammarly, etc.) inject attrs on <html>/<body>
          and trigger false hydration mismatches without this. */
       suppressHydrationWarning
