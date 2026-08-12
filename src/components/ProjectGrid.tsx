@@ -3,26 +3,12 @@
 import { motion, useReducedMotion } from "framer-motion";
 import type { Project } from "@/data/projects";
 
-/** Builds stage — full-width product bands (not blog rows, not small cards). */
+/**
+ * Tech portfolio project list — type + stack + link.
+ * Inspired by clean engineer sites (clear hierarchy, not blog archive, not void cards).
+ */
 
-const ACCENT: Record<string, string> = {
-  "wonder-os": "#2f6b4f",
-  lensoss: "#7eb8da",
-  "celine-nova": "#c9a962",
-  "dream-life": "#c4a0e0",
-  shotbyceline: "#e0a878",
-  "google-scholar": "#c9a962",
-  "niura-ear-eeg": "#7eb8da",
-};
-
-function statusLabel(project: Project): string {
-  if (project.status === "Active") return "Shipping";
-  if (project.status === "Stealth") return "Stealth";
-  if (project.status === "Open Source") return "Open source";
-  return "Research";
-}
-
-function BuildBand({
+function ProjectRow({
   project,
   index,
 }: {
@@ -30,63 +16,57 @@ function BuildBand({
   index: number;
 }) {
   const reduced = useReducedMotion();
+  const isExternal = Boolean(project.href && !project.href.startsWith("/"));
   const isLink = Boolean(project.href);
-  const accent = ACCENT[project.id] ?? "#c9a962";
-  const n = String(index + 1).padStart(2, "0");
+  const tags = project.tags.slice(0, 4);
 
   const body = (
     <>
-      <div className="build-band__rail" style={{ background: accent }} aria-hidden />
-      <div className="build-band__inner">
-        <span className="build-band__index" aria-hidden>
-          {n}
+      <div className="bp-row__head">
+        <h2 className="bp-row__title">
+          {project.title}
+          {isLink ? (
+            <span className="bp-row__arrow" aria-hidden>
+              {isExternal ? " ↗" : " →"}
+            </span>
+          ) : null}
+        </h2>
+        <span className="bp-row__status">
+          {project.readout || project.status}
         </span>
-        <div className="build-band__main">
-          <div className="build-band__topline">
-            <h2 className="build-band__title">{project.title}</h2>
-            <span className="build-band__status">{statusLabel(project)}</span>
-          </div>
-          {project.readout ? (
-            <p className="build-band__readout">{project.readout}</p>
-          ) : null}
-          {project.description ? (
-            <p className="build-band__desc">{project.description}</p>
-          ) : null}
-        </div>
-        {isLink ? (
-          <span className="build-band__go" aria-hidden>
-            →
-          </span>
-        ) : (
-          <span className="build-band__go build-band__go--mute" aria-hidden>
-            ·
-          </span>
-        )}
       </div>
+      {project.description ? (
+        <p className="bp-row__desc">{project.description}</p>
+      ) : null}
+      {tags.length > 0 ? (
+        <ul className="bp-row__stack" aria-label="Stack">
+          {tags.map((tag) => (
+            <li key={tag}>{tag}</li>
+          ))}
+        </ul>
+      ) : null}
     </>
   );
 
   return (
     <motion.li
-      className="build-band__item"
-      initial={reduced ? false : { opacity: 0, y: 20 }}
+      className="bp-row"
+      initial={reduced ? false : { opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-30px" }}
-      transition={{ duration: 0.5, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
+      viewport={{ once: true, margin: "-24px" }}
+      transition={{ duration: 0.4, delay: index * 0.04, ease: [0.16, 1, 0.3, 1] }}
     >
       {isLink ? (
         <a
           href={project.href}
-          target={project.href?.startsWith("/") ? undefined : "_blank"}
-          rel={
-            project.href?.startsWith("/") ? undefined : "noopener noreferrer"
-          }
-          className="build-band"
+          target={isExternal ? "_blank" : undefined}
+          rel={isExternal ? "noopener noreferrer" : undefined}
+          className="bp-row__link"
         >
           {body}
         </a>
       ) : (
-        <div className="build-band build-band--static">{body}</div>
+        <div className="bp-row__link bp-row__link--static">{body}</div>
       )}
     </motion.li>
   );
@@ -101,10 +81,10 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
   });
 
   return (
-    <ul className="build-band-list" aria-label="Builds">
+    <ol className="bp-list" aria-label="Builds">
       {sorted.map((project, i) => (
-        <BuildBand key={project.id} project={project} index={i} />
+        <ProjectRow key={project.id} project={project} index={i} />
       ))}
-    </ul>
+    </ol>
   );
 }
