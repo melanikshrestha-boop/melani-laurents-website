@@ -1,214 +1,202 @@
 import Link from "next/link";
-import { getRecentBookshelf } from "@/data/bookshelf";
-import { listBlogPosts } from "@/data/blog-posts";
-import { projects } from "@/data/projects";
+import { getRecentBookshelf, BOOKSHELF_KIND_LABEL } from "@/data/bookshelf";
+import { googleScholarUrl } from "@/data/publications";
 import { siteConfig } from "@/config/site";
 import { HomeScrollExperience } from "@/components/HomeScrollExperience";
 
+const SLOT_COUNT = 3;
+
+const GITHUB_URL =
+  siteConfig.socialLinks.find((l) => l.id === "github")?.href ??
+  "https://github.com/melanikshrestha-boop";
+
+/**
+ * Temporary build list: GitHub repos, Pig Latin titles until real names land.
+ * Dates keep the same list rhythm as the old research stack.
+ */
+const BUILD_PLACEHOLDERS = [
+  {
+    id: "repo-1",
+    date: "2026-05-27",
+    title: "Onderway — Eposray Ameworkfray",
+    href: GITHUB_URL,
+  },
+  {
+    id: "repo-2",
+    date: "2026-05-14",
+    title: "Eamdray Ifelay — Ystemsay Uildbay",
+    href: GITHUB_URL,
+  },
+  {
+    id: "repo-3",
+    date: "2026-05-09",
+    title: "Elinacay Ovunay — Ersponalpay Iteway",
+    href: GITHUB_URL,
+  },
+] as const;
+
 function formatDate(date: string): string {
-  return new Date(`${date}T12:00:00`).toLocaleDateString("en-US", {
+  return new Date(date).toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
     year: "numeric",
   });
 }
 
-/** Unique recent titles (bookshelf sometimes logs the same book twice). */
-function uniqueShelf(limit: number) {
-  const seen = new Set<string>();
-  const out: ReturnType<typeof getRecentBookshelf> = [];
-  for (const entry of getRecentBookshelf(12)) {
-    const key = entry.title.trim().toLowerCase();
-    if (seen.has(key)) continue;
-    seen.add(key);
-    out.push(entry);
-    if (out.length >= limit) break;
-  }
-  return out;
+function EmptySlots({ label }: { label: string }) {
+  return (
+    <ul className="hub-archive__list">
+      {Array.from({ length: SLOT_COUNT }, (_, index) => (
+        <li key={index} className="hub-archive__item hub-archive__item--empty">
+          <span className="hub-archive__empty-label">
+            {label} slot {index + 1}
+          </span>
+          <span className="hub-archive__empty-note">coming soon</span>
+        </li>
+      ))}
+    </ul>
+  );
 }
 
-/** Real builds only — no pig-latin placeholders. */
-function homeBuilds() {
-  return [...projects]
-    .filter((p) => p.featured && p.id !== "google-scholar")
-    .sort((a, b) => (a.priority ?? 99) - (b.priority ?? 99))
-    .slice(0, 4);
-}
-
-/**
- * Home index under the photo — editorial directory, not marketing cards.
- * Blog · Builds · Bookshelf · Art · Podcast. No boxes, no walls of lede copy.
- */
+/** Home cream archive — previous layout restored. */
 export function HomeRecentArchive() {
-  const posts = listBlogPosts().slice(0, 3);
-  const builds = homeBuilds();
-  const shelf = uniqueShelf(4);
+  const shelfPreview = getRecentBookshelf(SLOT_COUNT);
 
   return (
     <HomeScrollExperience>
-      <section className="home-index" aria-label="Index">
-        <div className="home-index__inner">
-          {/* Blog */}
-          <section className="home-index__block">
-            <header className="home-index__head">
-              <h2 className="home-index__label">
-                <Link href="/blog">Blog</Link>
-              </h2>
-              <Link href="/blog" className="home-index__all">
-                all
-              </Link>
-            </header>
-            {posts.length === 0 ? (
-              <p className="home-index__empty">Nothing published yet.</p>
-            ) : (
-              <ul className="home-index__rows">
-                {posts.map((post) => (
-                  <li key={post.slug} className="home-index__row">
-                    <Link href={`/blog/${post.slug}`} className="home-index__primary">
-                      {post.title}
-                      {post.draft ? (
-                        <span className="home-index__badge">Draft</span>
-                      ) : null}
-                    </Link>
-                    <time className="home-index__meta" dateTime={post.date}>
-                      {formatDate(post.date)}
-                    </time>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </section>
+      <section className="hub-archive" aria-label="Most recent">
+        <div className="hub-archive__inner">
+          <p className="hub-archive__eyebrow">Most recent</p>
 
-          {/* Builds */}
-          <section className="home-index__block">
-            <header className="home-index__head">
-              <h2 className="home-index__label">
+          <div className="hub-archive__section hub-archive__section--podcast">
+            <header className="hub-archive__header">
+              <h2 className="hub-archive__title hub-archive__podcast-heading">
+                <span className="hub-archive__podcast-label">Podcast:</span>
+                <span className="hub-archive__podcast-name">
+                  {siteConfig.podcastTitle}
+                </span>
+              </h2>
+              <span className="hub-archive__cadence">
+                {siteConfig.podcastCadence}
+              </span>
+            </header>
+            <Link
+              href={siteConfig.podcastUrl}
+              className="hub-archive__callout-card hub-archive__callout-card--podcast"
+            >
+              <p className="hub-archive__callout-body">
+                {siteConfig.podcastDescription}
+              </p>
+              <span className="hub-archive__callout-audience">
+                {siteConfig.podcastAudience}
+              </span>
+              <div className="hub-archive__callout-action">
+                <p className="hub-archive__callout-title">
+                  {siteConfig.podcastSlogan}
+                </p>
+                <span className="hub-archive__callout-arrow" aria-hidden>
+                  →
+                </span>
+              </div>
+            </Link>
+          </div>
+
+          <div className="hub-archive__section hub-archive__section--builds">
+            <header className="hub-archive__header">
+              <h2 className="hub-archive__title">
                 <Link href="/projects">Builds</Link>
               </h2>
-              <Link href="/projects" className="home-index__all">
-                all
-              </Link>
+              <div className="hub-archive__header-links hub-archive__header-links--builds">
+                <a
+                  href={googleScholarUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hub-archive__scholar"
+                >
+                  Google Scholar ↗
+                </a>
+                <Link href="/projects" className="hub-archive__more">
+                  all builds →
+                </Link>
+              </div>
             </header>
-            <ul className="home-index__rows">
-              {builds.map((p) => {
-                const href = p.href ?? "/projects";
-                const external = href.startsWith("http");
-                return (
-                  <li key={p.id} className="home-index__row">
-                    {external ? (
-                      <a
-                        href={href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="home-index__primary"
-                      >
-                        {p.title}
-                      </a>
-                    ) : (
-                      <Link href={href} className="home-index__primary">
-                        {p.title}
-                      </Link>
-                    )}
-                    <span className="home-index__meta">
-                      {p.readout ?? p.status}
-                    </span>
-                  </li>
-                );
-              })}
+            <ul className="hub-archive__list">
+              {BUILD_PLACEHOLDERS.map((repo) => (
+                <li key={repo.id} className="hub-archive__item">
+                  <time className="hub-archive__date" dateTime={repo.date}>
+                    {formatDate(repo.date)}
+                  </time>
+                  <a
+                    href={repo.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hub-archive__link"
+                  >
+                    {repo.title}
+                  </a>
+                </li>
+              ))}
             </ul>
-          </section>
+          </div>
 
-          {/* Bookshelf */}
-          <section className="home-index__block">
-            <header className="home-index__head">
-              <h2 className="home-index__label">
+          <div className="hub-archive__section hub-archive__section--bookshelf hub-archive__section--daily">
+            <header className="hub-archive__header">
+              <h2 className="hub-archive__title">
                 <Link href="/bookshelf">Bookshelf</Link>
               </h2>
-              <Link href="/bookshelf" className="home-index__all">
-                all
+              <Link href="/bookshelf" className="hub-archive__more">
+                all bookshelf →
               </Link>
             </header>
-            {shelf.length === 0 ? (
-              <p className="home-index__empty">Nothing logged yet.</p>
-            ) : (
-              <ul className="home-index__rows">
-                {shelf.map((entry) => (
-                  <li key={entry.id} className="home-index__row">
-                    <Link href="/bookshelf" className="home-index__primary">
-                      {entry.title}
-                    </Link>
+            <Link href="/bookshelf" className="hub-archive__callout-card">
+              <p className="hub-archive__callout-body">
+                {siteConfig.bookshelfDescription}
+              </p>
+            </Link>
+            {shelfPreview.length > 0 ? (
+              <ul className="hub-archive__list">
+                {shelfPreview.map((entry) => (
+                  <li key={entry.id} className="hub-archive__item">
                     <time
-                      className="home-index__meta"
+                      className="hub-archive__date"
                       dateTime={entry.loggedAt}
                     >
                       {formatDate(entry.loggedAt)}
                     </time>
+                    <Link href="/bookshelf" className="hub-archive__link">
+                      <span className="hub-archive__kind-tag">
+                        {BOOKSHELF_KIND_LABEL[entry.kind]}
+                      </span>{" "}
+                      {entry.title}
+                    </Link>
                   </li>
                 ))}
               </ul>
+            ) : (
+              <EmptySlots label="Bookshelf" />
             )}
-          </section>
+          </div>
 
-          {/* Art */}
-          <section className="home-index__block">
-            <header className="home-index__head">
-              <h2 className="home-index__label">
-                <Link href={siteConfig.photographyPath}>Art</Link>
-              </h2>
+          <div className="hub-archive__section hub-archive__section--art">
+            <header className="hub-archive__header">
+              <h2 className="hub-archive__title">Art</h2>
             </header>
-            <ul className="home-index__rows">
-              <li className="home-index__row">
-                <Link
-                  href={siteConfig.photographyPath}
-                  className="home-index__primary"
-                >
-                  Photography
-                </Link>
-                <span className="home-index__meta">shot by Celine Nova</span>
-              </li>
-            </ul>
-          </section>
-
-          {/* Podcast — one row, no novel */}
-          <section className="home-index__block">
-            <header className="home-index__head">
-              <h2 className="home-index__label">
-                <Link href={siteConfig.podcastUrl}>Podcast</Link>
-              </h2>
-              <span className="home-index__all home-index__all--static">
-                {siteConfig.podcastCadence}
+            <Link
+              href={siteConfig.photographyPath}
+              className="hub-archive__art-brand"
+            >
+              <span className="hub-archive__art-brand-label">Photography</span>
+              <span className="hub-archive__art-brand-sep" aria-hidden>
+                ·
               </span>
-            </header>
-            <ul className="home-index__rows">
-              <li className="home-index__row">
-                <Link href={siteConfig.podcastUrl} className="home-index__primary">
-                  {siteConfig.podcastTitle}
-                </Link>
-                <span className="home-index__meta">
-                  {siteConfig.podcastSlogan}
-                </span>
-              </li>
-            </ul>
-          </section>
-
-          {/* Contact */}
-          <section className="home-index__block home-index__block--last">
-            <header className="home-index__head">
-              <h2 className="home-index__label">
-                <Link href="/contact">Contact</Link>
-              </h2>
-            </header>
-            <ul className="home-index__rows">
-              <li className="home-index__row">
-                <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="home-index__primary"
-                >
-                  {siteConfig.email}
-                </a>
-              </li>
-            </ul>
-          </section>
+              <span className="hub-archive__art-brand-name">
+                shot by Celine Nova
+              </span>
+              <span className="hub-archive__art-brand-arrow" aria-hidden>
+                →
+              </span>
+            </Link>
+          </div>
         </div>
       </section>
     </HomeScrollExperience>
