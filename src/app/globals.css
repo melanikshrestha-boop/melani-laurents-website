@@ -5372,8 +5372,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   height: 100%;
   max-width: none;
   object-fit: cover;
-  /* Street crop: LOEWE / people / sidewalk — same framing fullscreen or windowed */
-  object-position: 50% 62%;
+  /* Street crop: slightly higher (more signs/sky, less curb) when extended */
+  object-position: 50% 54%;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: high-quality;
   -webkit-backface-visibility: hidden;
