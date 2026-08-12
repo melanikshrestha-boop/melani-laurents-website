@@ -5348,26 +5348,28 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 }
 
 /*
- * Photo hero — pitch-black era model (normal document scroll).
- * One viewport still in the flow. Scroll = photo leaves, cream archive enters.
- * NO fixed overlays, NO cream plate, NO double-exposure fade.
+ * Photo hero — pitch-black leave model.
+ * Full viewport still. Bottom of the still soft-dissolves into VOID BLACK
+ * (same as the old black hub), never into a cream bar.
+ * Cream only after the still has left. No fixed overlays / double exposure.
  */
 .hub-page--photo {
-  background: #050505;
+  background: #000000;
 }
 
-/* One screen cover crop — in document flow like the old void hub */
+/* True full-viewport cover — kill short-svh black strip under the still */
 .hub-page--photo.hub-page--locked {
   position: relative;
   z-index: 2;
   display: block;
   width: 100%;
-  height: 100svh;
+  height: 100vh;
+  height: 100dvh;
   min-height: 100svh;
-  max-height: 100svh;
+  min-height: 100dvh;
+  max-height: none;
   aspect-ratio: auto;
-  /* visible so social tips aren’t clipped; still crops via .hub-page__photo */
-  overflow: visible;
+  overflow: hidden;
   padding: 0;
   margin: 0;
   border: 0;
@@ -5384,6 +5386,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
+  /* Full still — no mask fog. Leave is void black after the section, not cream. */
   -webkit-mask-image: none !important;
   mask-image: none !important;
 }
@@ -5410,8 +5413,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   display: block;
   width: 100%;
   height: 100%;
-  min-height: 100svh;
-  max-height: 100svh;
+  min-height: 100%;
+  max-height: none;
   box-sizing: border-box;
   pointer-events: none;
   overflow: visible;
@@ -5474,7 +5477,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   margin: 0;
 }
 
-/* No gradients / fog / leave plates on the photo */
+/* Kill cream fog plates / old scrims — void bridge is intentional black */
 .hub-page--photo::after,
 .hub-page__photo-scrim,
 .home-leave-cream,
@@ -5488,7 +5491,11 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   pointer-events: none !important;
 }
 
-/* Stack under photo uses same void→cream morph as pitch-black hub */
+/*
+ * Void black while the still is on screen (pitch-black era).
+ * Cream only after --scroll-p rises (photo fully left).
+ * Never paint cream directly under the still → no cream dividing bar.
+ */
 .home-sections:has(.hub-page--photo) {
   background: color-mix(
     in srgb,
@@ -5505,6 +5512,18 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   );
 }
 
+/* Black bridge under the soft photo edge — void, not cream */
+.hero-void-bridge {
+  display: block;
+  width: 100%;
+  height: 28vh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: #000000;
+  pointer-events: none;
+}
+
 .home-sections .hub-archive,
 .home-sections .home-index {
   position: relative;
@@ -5514,7 +5533,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   border: 0;
   border-top: 0 !important;
   box-shadow: none;
-  background: transparent;
+  background: #f0ede5;
   opacity: 1;
 }
 
@@ -5529,7 +5548,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   border: 0 !important;
   box-shadow: none !important;
   outline: none;
-  background: transparent;
+  background: #f0ede5;
   opacity: 1;
   z-index: 1;
 }

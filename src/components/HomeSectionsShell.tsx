@@ -31,14 +31,17 @@ export function HomeSectionsShell({ children }: { children: ReactNode }) {
       const hubRect = hub.getBoundingClientRect();
       const vh = Math.max(window.innerHeight, 1);
 
-      /* Same leave curve as pitch-black era: morph while the hero exits */
-      const hubBottomDoc = window.scrollY + hubRect.bottom;
-      const transitionStart = hubBottomDoc - vh * 0.85;
-      const transitionEnd = hubBottomDoc + vh * 0.15;
-      const span = Math.max(transitionEnd - transitionStart, 1);
-      const scrollP = smoothstep(
-        clamp((window.scrollY - transitionStart) / span, 0, 1)
-      );
+      /*
+       * Pitch-black leave: stay VOID BLACK while any of the still is on screen.
+       * Only morph to cream after the photo has fully left the viewport —
+       * so cream never peeks under the still as a hard bar.
+       */
+      const hubBottom = hubRect.bottom;
+      let scrollP = 0;
+      if (hubBottom <= 0) {
+        /* Photo fully above the fold — ramp cream over the next ~0.5 viewport */
+        scrollP = smoothstep(clamp((-hubBottom) / (vh * 0.5), 0, 1));
+      }
 
       const value = scrollP.toFixed(4);
       root.style.setProperty("--scroll-p", value);

@@ -20,6 +20,7 @@ export const HUB_HERO_PHOTO = {
 
 export function HomeHub() {
   return (
+    <>
     <section
       className="hub-page hub-page--locked hub-page--photo"
       aria-label="Celine Nova home"
@@ -119,5 +120,8 @@ export function HomeHub() {
         </footer>
       </div>
     </section>
+    {/* Void black under the soft photo edge — pitch-black leave, not cream */}
+    <div className="hero-void-bridge" aria-hidden />
+  </>
   );
 }
