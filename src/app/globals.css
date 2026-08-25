@@ -989,10 +989,17 @@ body {
   left: auto;
   z-index: 200;
   width: min(17.5rem, calc(100vw - 2rem));
-  padding: 0.75rem 0.9rem;
-  border-radius: 0.35rem;
-  background: rgba(12, 12, 12, 0.92);
-  color: rgba(248, 246, 242, 0.94);
+  padding: 0.8rem 0.95rem;
+  /*
+   * No plate. The legibility scrim is ::before — a blurred, translucent cloud
+   * with no edge of its own, so the note reads as text resting on the photo
+   * rather than a slab pasted over it.
+   */
+  border-radius: 0;
+  background: transparent;
+  isolation: isolate;
+  /* Default context is the cream pages — ink on a light cloud */
+  color: rgba(20, 18, 16, 0.94);
   /* Same stack as .bl-public-manifesto / Bookshelf body */
   font-family: var(--font-source-serif), "Source Serif 4", Georgia, "Times New Roman",
     ui-serif, serif;
@@ -1006,7 +1013,7 @@ body {
   font-variant-ligatures: common-ligatures;
   -webkit-font-smoothing: antialiased;
   white-space: normal;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+  box-shadow: none;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -1015,6 +1022,22 @@ body {
     opacity 160ms ease,
     transform 160ms ease,
     visibility 160ms ease;
+}
+
+/*
+ * The scrim. Blurring the element blurs its own edges too, so it has no
+ * boundary — it fades out into the photo instead of ending. Inset is negative
+ * so the soft falloff sits outside the text, never across it.
+ */
+.social-icons__tip::before {
+  content: "";
+  position: absolute;
+  inset: -0.5rem -0.65rem;
+  z-index: -1;
+  border-radius: 1.25rem;
+  background: rgba(243, 241, 235, 0.88);
+  filter: blur(14px);
+  pointer-events: none;
 }
 
 /* Only real hover devices — no sticky “tap trap” on phones */
@@ -1032,13 +1055,19 @@ body {
   }
 }
 
-/* Home photo: tip stays readable over the still */
+/* Home photo: the still is busy and bright, so the scrim carries a little
+   more weight here — still no edge, just a denser cloud. */
 .hub-page--photo .social-icons__tip {
-  background: rgba(8, 8, 8, 0.94);
-  color: rgba(255, 255, 255, 0.95);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.06) inset,
-    0 12px 32px rgba(0, 0, 0, 0.45);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.97);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55);
+  box-shadow: none;
+}
+
+.hub-page--photo .social-icons__tip::before {
+  inset: -0.6rem -0.75rem;
+  background: rgba(6, 6, 8, 0.62);
+  filter: blur(16px);
 }
 
 /* Header socials: don’t clip the popup */
