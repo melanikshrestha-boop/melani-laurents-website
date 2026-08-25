@@ -5359,7 +5359,13 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 /* True full-viewport cover — sharp still, no fog on first paint */
 .hub-page--photo.hub-page--locked {
   position: relative;
-  z-index: 2;
+  /*
+   * Must clear .hub-scroll-exp (15). The archive is opaque cream, so at z-index
+   * 2 it painted straight over the still's dissolve and put the hard line back.
+   * The still is only 100vh and scrolls away, so sitting on top costs nothing —
+   * the strip it overlaps is the archive's own top padding.
+   */
+  z-index: 16;
   display: block;
   width: 100%;
   height: 100vh;
@@ -5386,21 +5392,73 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   overflow: hidden;
   pointer-events: none;
   /*
-   * fade=0 → solid mask (full still, no dissolve).
-   * fade>0 only after scroll — bottom opens into the page.
+   * No mask. The dissolve is .hub-page__dissolve alone.
+   * A mask here faded the photo toward the page's black→cream morph, which is
+   * mid-grey through the whole transition — so the still dissolved through
+   * grey while the plate dissolved toward cream. One veil, one destination.
    */
-  -webkit-mask-image: linear-gradient(
+}
+
+/*
+ * Seam dissolve — the still melting into the cream page.
+ *
+ * Why a painted plate and not a mask: the photo <img> is GPU-promoted
+ * (translateZ + backface-visibility), so it escapes an ancestor mask and
+ * the old mask-image never actually rendered. A gradient plate always paints.
+ *
+ * Bottom stop is exactly #f0ede5 — the archive's colour — so the hero's last
+ * pixel row equals the first row beneath it. The edge cannot be seen because
+ * there is no colour step left to see.
+ *
+ * z-index 7 clears .hub-page__sticky-ui (5) and header (6): photo, title and
+ * nav all dissolve together rather than the nav floating on cream.
+ */
+.hub-page__dissolve {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px; /* overscan past the rounding seam on fractional-DPR screens */
+  z-index: 7;
+  /*
+   * Height-driven, NOT opacity-driven. Fading the whole plate in would scale
+   * its opaque bottom stop too, so the still's last row wouldn't be cream until
+   * the ramp finished — a hard step for the first ~50px of scroll, exactly the
+   * moment you're looking at it. Growing the plate instead keeps the bottom row
+   * at full cream at every scroll position, so there is never a step to see.
+   * 0 at rest → the first paint is the clean photo.
+   */
+  height: 46vh;
+  /*
+   * scaleY from the bottom edge is geometrically identical to animating the
+   * height, but it is a composited transform — no layout, no per-frame repaint
+   * of a 46vh gradient, so the scroll stays smooth.
+   */
+  transform: scaleY(var(--hero-seam, 0));
+  transform-origin: bottom;
+  will-change: transform;
+  pointer-events: none;
+  opacity: 1;
+  /* Eased stops (≈smootherstep) — a linear ramp shows a visible onset line */
+  background: linear-gradient(
     to bottom,
-    #000 0%,
-    #000 calc(100% - var(--hero-fade) * 42%),
-    transparent 100%
+    rgba(240, 237, 229, 0) 0%,
+    rgba(240, 237, 229, 0.02) 12%,
+    rgba(240, 237, 229, 0.08) 24%,
+    rgba(240, 237, 229, 0.19) 36%,
+    rgba(240, 237, 229, 0.34) 48%,
+    rgba(240, 237, 229, 0.53) 60%,
+    rgba(240, 237, 229, 0.72) 72%,
+    rgba(240, 237, 229, 0.88) 82%,
+    rgba(240, 237, 229, 0.97) 92%,
+    rgba(240, 237, 229, 1) 100%
   );
-  mask-image: linear-gradient(
-    to bottom,
-    #000 0%,
-    #000 calc(100% - var(--hero-fade) * 42%),
-    transparent 100%
-  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* No scroll choreography — hold the soft edge open rather than a hard one */
+  .hub-page__dissolve {
+    transform: scaleY(1);
+  }
 }
 
 .hub-page__photo-img {
@@ -5550,7 +5608,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .home-sections:has(.hub-page--photo) .home-index {
   /* Only tuck under the still once scroll fade is active — never at rest */
   margin-top: calc(var(--hero-fade, 0) * -16vh) !important;
-  padding-top: calc(var(--hero-fade, 0) * 16vh + clamp(2.5rem, 6vh, 4rem));
+  /* 16vh cancels the tuck; the remainder is the real breath under the still */
+  padding-top: calc(var(--hero-fade, 0) * 16vh + clamp(1.75rem, 4.5vh, 3rem));
   border: 0 !important;
   box-shadow: none !important;
   outline: none;
@@ -5567,6 +5626,13 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   border-top: 0 !important;
   box-shadow: none !important;
   outline: none;
+  /*
+   * The shared rule opens with clamp(3.5rem, 8vw, 8rem) — a *width*-driven
+   * 115px+ on a wide window, which on a short one is half the screen of empty
+   * cream under the still. Under the photo hero the still's dissolve is the
+   * breathing room, so this only needs a little, measured against height.
+   */
+  padding-top: clamp(1rem, 3vh, 2rem);
 }
 
 /* ── Home index (below photo) — editorial directory, no cards ── */

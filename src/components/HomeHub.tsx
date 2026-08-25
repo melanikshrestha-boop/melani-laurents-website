@@ -119,6 +119,13 @@ export function HomeHub() {
           </nav>
         </footer>
       </div>
+
+      {/*
+       * Seam dissolve. Sits above photo AND ui so the whole still — image,
+       * title, nav — melts into cream as one. Opacity is 0 at rest, so the
+       * first paint is the clean full-bleed photo.
+       */}
+      <div className="hub-page__dissolve" aria-hidden />
     </section>
   </>
   );
