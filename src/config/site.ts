@@ -40,7 +40,7 @@ export const siteConfig = {
     "https://open.spotify.com/user/21etydsnbqyqe7ekagfnqbhoq?si=c3c26ede4c8a46a5",
   /**
    * Header social row (home top-right). Order is left → right.
-   * GitHub · X · LinkedIn · YouTube · Instagram · TikTok · Spotify
+   * GitHub · X · LinkedIn · YouTube · Spotify · Instagram · TikTok
    * hoverNote = personal popup on cursor only (omit until Melani writes one).
    */
   socialLinks: [
@@ -69,6 +69,13 @@ export const siteConfig = {
         "this platform basically raised and taught me everything I know. I want to contribute my creativity as well. Hope you enjoy :)",
     },
     {
+      id: "spotify",
+      label: "Spotify",
+      href: "https://open.spotify.com/user/21etydsnbqyqe7ekagfnqbhoq?si=c3c26ede4c8a46a5",
+      hoverNote:
+        "Music has been my best friend since forever. I hope to make at least 1 song before I die, regardless of it is shitty or not. But for now, I take pride in my music taste. Give it a listen!",
+    },
+    {
       id: "instagram",
       label: "Instagram",
       href: "https://www.instagram.com/melanilaurents/",
@@ -77,13 +84,6 @@ export const siteConfig = {
       id: "tiktok",
       label: "TikTok",
       href: "https://www.tiktok.com/@melanilaurents",
-    },
-    {
-      id: "spotify",
-      label: "Spotify",
-      href: "https://open.spotify.com/user/21etydsnbqyqe7ekagfnqbhoq?si=c3c26ede4c8a46a5",
-      hoverNote:
-        "Music has been my best friend since forever. I hope to make at least 1 song before I die, regardless of it is shitty or not. But for now, I take pride in my music taste. Give it a listen!",
     },
   ],
   /** The single public index shown at the bottom of the home hero. */
