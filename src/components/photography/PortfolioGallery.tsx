@@ -1,8 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, type CSSProperties } from "react";
 import type { Photo } from "@/data/photography-meta";
+
+/** Stable hue per photo so a piece always wears the same colour. */
+function hueFor(key: string): number {
+  let hash = 0;
+  for (let i = 0; i < key.length; i += 1) {
+    hash = (hash * 31 + key.charCodeAt(i)) % 360;
+  }
+  return hash;
+}
 
 interface PortfolioGalleryProps {
   photos: Photo[];
@@ -53,7 +62,17 @@ export function PortfolioGallery({ photos }: PortfolioGalleryProps) {
       <div className="portfolio-gallery">
         <div className="portfolio-gallery-grid">
           {photos.map((photo, i) => (
-            <figure key={photo.id} className="portfolio-gallery-item">
+            <figure
+              key={photo.id}
+              className="portfolio-gallery-item"
+              /* Hue per piece so no two neighbouring washes match — same
+                 stable-hash idea as the bookshelf folder accents. */
+              style={
+                {
+                  "--pg-hue": String(hueFor(photo.id || photo.src)),
+                } as CSSProperties
+              }
+            >
               <button
                 type="button"
                 onClick={() => setLightboxIndex(i)}
@@ -68,6 +87,10 @@ export function PortfolioGallery({ photos }: PortfolioGalleryProps) {
                   className="portfolio-gallery-image"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
+                <span className="portfolio-gallery-wash" aria-hidden />
+                <figcaption className="portfolio-gallery-caption">
+                  {photo.alt}
+                </figcaption>
               </button>
             </figure>
           ))}
