@@ -6726,3 +6726,39 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
     animation: none;
   }
 }
+
+/* ── Display face ─────────────────────────────────────────────────────
+ * johnlennon.com sets its headings in Helvetica LT Std Bold. That file is
+ * licensed and can't be redistributed — but Helvetica ships on macOS and
+ * iOS, so this asks for the real face first and only falls back to Inter
+ * (the closest free grotesque) for everyone without it. Arial is metrically
+ * identical to Helvetica, so the layout never shifts on the last fallback.
+ *
+ * Named --font-grotesk, NOT --font-display: that name is already taken by
+ * Syne elsewhere in this file and silently won.
+ *
+ * Display only. Source Serif body copy and Share Tech Mono labels are left
+ * alone — that contrast is the site's voice.
+ */
+:root {
+  --font-grotesk:
+    "Helvetica Neue", Helvetica, var(--font-inter), Inter, Arial, sans-serif;
+}
+
+/* Specificity has to clear the .hub-page--photo scoped rules, which set the
+   title face at (0,3,0) and beat a bare class selector. */
+.home-sections .hub-page--photo .hub-page__title,
+.home-sections .hub-page--photo .hub-page__title-line,
+.home-sections .hub-page--photo .title-char--hub,
+.hub-page--photo .hub-page__title,
+.hub-page--photo .hub-page__title-line,
+.hub-page--photo .title-char--hub,
+.home-index__title,
+.hub-archive__title,
+.portfolio-index__title,
+.contact-page__title,
+.about-surface__title,
+.pb-root .bl-title {
+  font-family: var(--font-grotesk) !important;
+  letter-spacing: -0.022em;
+}

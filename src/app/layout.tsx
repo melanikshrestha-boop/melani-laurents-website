@@ -9,11 +9,26 @@ import {
   Oswald,
   Archivo_Narrow,
   JetBrains_Mono,
+  Inter,
 } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 import "@/styles/daily-pulse.css";
 import "@/styles/builds-surface.css";
+
+/*
+ * Display face. johnlennon.com sets its headings in Helvetica LT Std Bold,
+ * which is a licensed commercial webfont we can't redistribute — but macOS
+ * and iOS ship Helvetica, so --font-display prefers the real thing locally
+ * and falls back to Inter (loaded here) everywhere else. See --font-display
+ * in globals.css.
+ */
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  display: "swap",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -113,7 +128,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${instrumentSerif.variable} ${sourceSerif.variable} ${ibmPlexMono.variable} ${shareTechMono.variable} ${syne.variable} ${oswald.variable} ${archivoNarrow.variable} ${jetbrainsMono.variable} h-full`}
+      className={`${geistSans.variable} ${instrumentSerif.variable} ${sourceSerif.variable} ${ibmPlexMono.variable} ${shareTechMono.variable} ${syne.variable} ${oswald.variable} ${archivoNarrow.variable} ${jetbrainsMono.variable} ${inter.variable} h-full`}
       /* Browser extensions (Grammarly, etc.) inject attrs on <html>/<body>
          and trigger false hydration mismatches without this. */
       suppressHydrationWarning
