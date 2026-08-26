@@ -4576,7 +4576,7 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   right: 0;
   margin: 0 !important;
   padding: 0 !important;
-  align-items: flex-end !important;
+  align-items: center !important;
 }
 
 /* Chips flush left on the content edge */
@@ -4763,11 +4763,17 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
     box-shadow: 0 0 0 3px rgba(244, 164, 188, 0.85);
   }
 }
+/*
+ * Row, not column. These controls are absolutely positioned, so they add no
+ * height to the quote section — stacked vertically they ran 61px tall and
+ * spilled out of a short quote straight into the "edit page" button below.
+ * In a row they are ~20px and cannot outgrow the section whatever it holds.
+ */
 .pb-root .pb-quote__controls {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 2px;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
 }
 
 /* Greats section header: label left, meta right */
@@ -4845,11 +4851,13 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   line-height: 1.15;
   text-decoration: none;
 }
+/* Row — see the note on the earlier .pb-quote__controls rule. This is the
+   last of three declarations of this selector, so it is the one that wins. */
 .pb-root .pb-quote__controls {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 1px;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
   flex: 0 0 auto;
 }
 .pb-root .pb-quote__refresh {
