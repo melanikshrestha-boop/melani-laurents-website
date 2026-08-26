@@ -142,7 +142,9 @@ export function Navigation() {
               : "flex items-center gap-5"
           }
         >
-          <ul className="hidden items-center gap-4 sm:gap-5 md:flex">
+          {/* Always inline — no Menu toggle. Wraps rather than collapsing so
+              every section stays one click away at any width. */}
+          <ul className="flex flex-wrap items-center justify-end gap-x-3 gap-y-1 sm:gap-x-4 md:gap-5">
             {items.map((item, i) => (
               <li
                 key={item.href}
@@ -163,30 +165,6 @@ export function Navigation() {
             <SocialIcons className="hidden sm:flex" size="sm" />
           ) : null}
 
-          <details className="relative md:hidden">
-            <summary
-              className={`cinema-nav__link cursor-pointer list-none${paper ? " cinema-nav__link--paper" : " cinema-nav__link--cinema"}`}
-            >
-              Menu
-            </summary>
-            <div
-              className={`cinema-hud-panel absolute right-0 top-full mt-2 w-52 py-2 shadow-xl${paper ? " cinema-hud-panel--paper" : ""}`}
-            >
-              {items.map((item, i) => (
-                <div
-                  key={item.href}
-                  className="cinema-nav__item px-4 py-2"
-                  style={{ animationDelay: revealDelay(i) }}
-                >
-                  <NavLink
-                    item={item}
-                    paper={paper}
-                    gold={i === 0 || i === items.length - 1}
-                  />
-                </div>
-              ))}
-            </div>
-          </details>
         </div>
       </nav>
     </header>

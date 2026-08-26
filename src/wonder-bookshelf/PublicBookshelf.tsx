@@ -187,7 +187,6 @@ const SHELF_QUOTES: { text: string; author: string }[] = [
  */
 const HIDDEN_PUBLIC_CATEGORIES = new Set([
   "high school reads",
-  "dostoevsky",
   "uncategorized",
   "unsorted", // legacy dump label
 ]);
@@ -220,7 +219,33 @@ const FOLDER_ACCENT: Record<string, string> = {
   "Music & Culture": "#e58fa3",
   Faves: "#d4bc82",
   "Your intelligence": "#d4bc82",
+  beatles: "#e0803f",
+  "by my heroes": "#cf5f8f",
+  fiction: "#7b8fd4",
+  literature: "#8d6e63",
+  ai: "#3fb6b0",
+  dostoevsky: "#8c5a5a",
+  "high school reads": "#9aa84b",
 };
+
+/**
+ * Fallback accent for any shelf not named above — every folder gets its own
+ * colour instead of all the unlisted ones sharing one grey. Hashing the label
+ * keeps a shelf's colour stable across reloads and reorders, and new shelves
+ * pick one up automatically. Saturation and lightness are fixed so the whole
+ * set stays in the same muted register as the hand-picked accents.
+ */
+function accentForLabel(label: string): string {
+  let hash = 0;
+  for (let i = 0; i < label.length; i += 1) {
+    hash = (hash * 31 + label.charCodeAt(i)) % 360;
+  }
+  return `hsl(${hash} 42% 58%)`;
+}
+
+function folderAccent(label: string): string {
+  return FOLDER_ACCENT[label] || accentForLabel(label);
+}
 
 function isHiddenPublicCategory(label: string): boolean {
   return HIDDEN_PUBLIC_CATEGORIES.has(label.trim().toLowerCase());
@@ -714,7 +739,7 @@ export function PublicBookshelf() {
       out.push({
         id: label,
         label,
-        accent: FOLDER_ACCENT[label] || "#8e98a6",
+        accent: folderAccent(label),
         items,
       });
       map.delete(label);
@@ -724,7 +749,7 @@ export function PublicBookshelf() {
       out.push({
         id: label,
         label,
-        accent: FOLDER_ACCENT[label] || "#8e98a6",
+        accent: folderAccent(label),
         items,
       });
     }
