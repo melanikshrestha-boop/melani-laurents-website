@@ -6489,64 +6489,6 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   min-width: max-content;
 }
 
-/* ── Soccer ball cursor ─────────────────────────────────────────────
- * PNG rather than SVG: Safari's SVG-cursor support is unreliable.
- * 32px art, hotspot at its centre (16 16). image-set serves the @2x on
- * retina; the plain url() before it is the fallback for anything that
- * doesn't parse image-set, so the ball never silently disappears.
- * Text inputs keep a caret — a ball over a text field hides the insertion
- * point and makes the form feel broken.
- */
-html,
-body {
-  cursor: url("/cursor/soccer-ball.png") 16 16, auto;
-  cursor: -webkit-image-set(
-      url("/cursor/soccer-ball.png") 1x,
-      url("/cursor/soccer-ball@2x.png") 2x
-    )
-    16 16, auto;
-  cursor: image-set(
-      url("/cursor/soccer-ball.png") 1x,
-      url("/cursor/soccer-ball@2x.png") 2x
-    )
-    16 16, auto;
-}
-
-a,
-button,
-summary,
-label,
-[role="button"],
-[role="link"],
-.social-icons__link {
-  cursor: url("/cursor/soccer-ball.png") 16 16, pointer;
-  cursor: -webkit-image-set(
-      url("/cursor/soccer-ball.png") 1x,
-      url("/cursor/soccer-ball@2x.png") 2x
-    )
-    16 16, pointer;
-  cursor: image-set(
-      url("/cursor/soccer-ball.png") 1x,
-      url("/cursor/soccer-ball@2x.png") 2x
-    )
-    16 16, pointer;
-}
-
-input,
-textarea,
-select,
-[contenteditable="true"] {
-  cursor: auto;
-}
-
-input[type="checkbox"],
-input[type="radio"],
-input[type="range"],
-input[type="submit"],
-input[type="button"] {
-  cursor: url("/cursor/soccer-ball.png") 16 16, pointer;
-}
-
 /* ── Home still: nav inks over as the dissolve lays cream behind it ──
  * This has to live at the very end of the file. The Art/Contact gold rules
  * are declared later than the white ones, so anything earlier loses to them

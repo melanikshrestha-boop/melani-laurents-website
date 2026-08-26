@@ -8,5 +8,293 @@
     "readAt": "2026-08-06",
     "highlight": "The right goal is to allocate your year optimally, not your day.",
     "take": "Direction beats speed. Compound the right problem — year allocation over productivity porn."
+  },
+  {
+    "id": "pg-prepare",
+    "title": "How Universities Should Prepare Founders",
+    "url": "https://paulgraham.com/prepare.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-earn",
+    "title": "How to Earn a Billion Dollars",
+    "url": "https://paulgraham.com/earn.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-winc",
+    "title": "How to Convert Between Wealth and Income Tax",
+    "url": "https://paulgraham.com/winc.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-brandage",
+    "title": "The Brand Age",
+    "url": "https://paulgraham.com/brandage.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-field",
+    "title": "The Shape of the Essay Field",
+    "url": "https://paulgraham.com/field.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-goodwriting",
+    "title": "Good Writing",
+    "url": "https://paulgraham.com/goodwriting.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-do",
+    "title": "What to Do",
+    "url": "https://paulgraham.com/do.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-woke",
+    "title": "The Origins of Wokeness",
+    "url": "https://paulgraham.com/woke.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-writes",
+    "title": "Writes and Write-Nots",
+    "url": "https://paulgraham.com/writes.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-when",
+    "title": "When To Do What You Love",
+    "url": "https://paulgraham.com/when.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-foundermode",
+    "title": "Founder Mode",
+    "url": "https://paulgraham.com/foundermode.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-persistence",
+    "title": "The Right Kind of Stubborn",
+    "url": "https://paulgraham.com/persistence.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-reddits",
+    "title": "The Reddits",
+    "url": "https://paulgraham.com/reddits.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-google",
+    "title": "How to Start Google",
+    "url": "https://paulgraham.com/google.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-best",
+    "title": "The Best Essay",
+    "url": "https://paulgraham.com/best.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-superlinear",
+    "title": "Superlinear Returns",
+    "url": "https://paulgraham.com/superlinear.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-greatwork",
+    "title": "How to Do Great Work",
+    "url": "https://paulgraham.com/greatwork.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-getideas",
+    "title": "How to Get New Ideas",
+    "url": "https://paulgraham.com/getideas.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-read",
+    "title": "The Need to Read",
+    "url": "https://paulgraham.com/read.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-want",
+    "title": "What You (Want to)* Want",
+    "url": "https://paulgraham.com/want.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-alien",
+    "title": "Alien Truth",
+    "url": "https://paulgraham.com/alien.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-users",
+    "title": "What I've Learned from Users",
+    "url": "https://paulgraham.com/users.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-heresy",
+    "title": "Heresy",
+    "url": "https://paulgraham.com/heresy.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-words",
+    "title": "Putting Ideas into Words",
+    "url": "https://paulgraham.com/words.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-goodtaste",
+    "title": "Is There Such a Thing as Good Taste?",
+    "url": "https://paulgraham.com/goodtaste.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-smart",
+    "title": "Beyond Smart",
+    "url": "https://paulgraham.com/smart.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-weird",
+    "title": "Weird Languages",
+    "url": "https://paulgraham.com/weird.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-hwh",
+    "title": "How to Work Hard",
+    "url": "https://paulgraham.com/hwh.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-own",
+    "title": "A Project of One's Own",
+    "url": "https://paulgraham.com/own.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-fn",
+    "title": "Fierce Nerds",
+    "url": "https://paulgraham.com/fn.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-newideas",
+    "title": "Crazy New Ideas",
+    "url": "https://paulgraham.com/newideas.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
+  },
+  {
+    "id": "pg-nft",
+    "title": "An NFT That Saves Lives",
+    "url": "https://paulgraham.com/nft.html",
+    "author": "Paul Graham",
+    "readAt": "2026-08-26",
+    "highlight": "",
+    "take": ""
   }
 ]

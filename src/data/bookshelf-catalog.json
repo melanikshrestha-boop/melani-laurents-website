@@ -197,7 +197,8 @@
     "loggedAt": "2026-08-06",
     "category": "economics",
     "href": "https://www.amazon.com/dp/1400852382",
-    "asin": "1400852382"
+    "asin": "1400852382",
+    "coverUrl": "https://covers.openlibrary.org/b/id/8354979-L.jpg"
   },
   {
     "id": "book-3f9de11e8409",
@@ -327,7 +328,8 @@
     "loggedAt": "2026-08-06",
     "category": "economics",
     "href": "https://www.amazon.com/dp/0679783369",
-    "asin": "0679783369"
+    "asin": "0679783369",
+    "coverUrl": "https://covers.openlibrary.org/b/id/12816911-L.jpg"
   },
   {
     "id": "book-55954427f3f8",
@@ -338,7 +340,8 @@
     "category": "dostoevsky",
     "asin": "0140447551",
     "href": "https://www.amazon.com/dp/0140447551",
-    "rating": 4
+    "rating": 4,
+    "coverUrl": "https://covers.openlibrary.org/b/id/10556788-L.jpg"
   },
   {
     "id": "book-5388334a3a65",
@@ -382,7 +385,8 @@
     "category": "dostoevsky",
     "asin": "0140446067",
     "href": "https://www.amazon.com/dp/0140446067",
-    "rating": 4
+    "rating": 4,
+    "coverUrl": "https://covers.openlibrary.org/b/id/11257679-L.jpg"
   },
   {
     "id": "book-7dab0ad8c4c2",
@@ -591,7 +595,8 @@
     "category": "high school reads",
     "href": "https://www.amazon.com/dp/1503331703",
     "asin": "1503331703",
-    "rating": 3
+    "rating": 3,
+    "coverUrl": "https://covers.openlibrary.org/b/id/8231790-L.jpg"
   },
   {
     "id": "book-2e0bfc22a414",
@@ -1046,7 +1051,7 @@
     "category": "main characters",
     "href": "https://www.amazon.com/dp/159547871X",
     "asin": "159547871X",
-    "coverUrl": "https://covers.openlibrary.org/b/id/702420-L.jpg",
+    "coverUrl": "https://covers.openlibrary.org/b/id/10455765-L.jpg",
     "rating": 2
   },
   {
@@ -1838,7 +1843,8 @@
     "source": "Andrzej Batko",
     "loggedAt": "2026-07-29",
     "category": "psychology",
-    "rating": 1
+    "rating": 1,
+    "coverUrl": "https://covers.openlibrary.org/b/id/12719675-L.jpg"
   },
   {
     "id": "book-psy-8c03dc3fb4",
@@ -1847,7 +1853,8 @@
     "source": "Chris Murray",
     "loggedAt": "2026-07-29",
     "category": "psychology",
-    "rating": 4
+    "rating": 4,
+    "coverUrl": "https://covers.openlibrary.org/b/id/7247166-L.jpg"
   },
   {
     "id": "book-psy-bb89dc0441",
@@ -1856,7 +1863,8 @@
     "source": "Snapshot Systems",
     "loggedAt": "2026-07-29",
     "category": "psychology",
-    "rating": 2
+    "rating": 2,
+    "coverUrl": "https://covers.openlibrary.org/b/id/14451895-L.jpg"
   },
   {
     "id": "book-psy-7e9d31611d",
@@ -1865,7 +1873,8 @@
     "source": "Niall Cassidy",
     "loggedAt": "2026-07-29",
     "category": "psychology",
-    "rating": 3
+    "rating": 3,
+    "coverUrl": "https://covers.openlibrary.org/b/id/6424160-L.jpg"
   },
   {
     "id": "book-psy-bd459b2f2e",
@@ -1896,7 +1905,8 @@
     "source": "Roy H. Williams",
     "loggedAt": "2026-07-29",
     "category": "psychology",
-    "rating": 2
+    "rating": 2,
+    "coverUrl": "https://covers.openlibrary.org/b/id/1709084-L.jpg"
   },
   {
     "id": "book-psy-ff8716879b",
@@ -1969,7 +1979,8 @@
     "source": "Chris Murray",
     "loggedAt": "2026-07-29",
     "category": "psychology",
-    "rating": 4
+    "rating": 4,
+    "coverUrl": "https://covers.openlibrary.org/b/id/6426475-L.jpg"
   },
   {
     "id": "book-psy-2500b078e0",
@@ -2155,7 +2166,7 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "href": "https://www.amazon.com/s?k=The%20Histories%20Herodotus",
-    "coverUrl": "https://covers.openlibrary.org/b/id/9829028-L.jpg",
+    "coverUrl": "https://covers.openlibrary.org/b/id/6909537-L.jpg",
     "rating": 4
   },
   {
@@ -2287,7 +2298,7 @@
     "loggedAt": "2026-07-29",
     "category": "history",
     "href": "https://www.amazon.com/s?k=The%20Civil%20War%3A%20A%20Narrative%20Shelby%20Foote",
-    "coverUrl": "https://covers.openlibrary.org/b/id/167629-L.jpg",
+    "coverUrl": "https://covers.openlibrary.org/b/id/4723999-L.jpg",
     "rating": 3
   },
   {
@@ -3027,7 +3038,8 @@
     "category": "everything startups",
     "asin": "0316743305",
     "href": "https://www.amazon.com/dp/0316743305",
-    "rating": 4
+    "rating": 4,
+    "coverUrl": "https://covers.openlibrary.org/b/id/7321776-L.jpg"
   },
   {
     "id": "book-sa-e1e3e103d6",
@@ -3071,7 +3083,8 @@
     "category": "psychology",
     "asin": "006135323X",
     "href": "https://www.amazon.com/dp/006135323X",
-    "rating": 0
+    "rating": 0,
+    "coverUrl": "https://covers.openlibrary.org/b/id/2314080-L.jpg"
   },
   {
     "id": "book-psy-def314e22b",
@@ -3104,7 +3117,8 @@
     "category": "psychology",
     "asin": "0307405935",
     "href": "https://www.amazon.com/dp/0307405935",
-    "rating": 0
+    "rating": 0,
+    "coverUrl": "https://covers.openlibrary.org/b/id/6441808-L.jpg"
   },
   {
     "id": "book-psy-ff605501df",
@@ -3160,5 +3174,791 @@
     "asin": "1416595244",
     "href": "https://www.amazon.com/dp/1416595244",
     "rating": 0
+  },
+  {
+    "id": "book-84364129051c",
+    "kind": "book",
+    "title": "Across the Universe: The Magic and Mystery of the Beatles' Creativity",
+    "source": "Steve Taylor",
+    "loggedAt": "2026-08-26",
+    "category": "beatles",
+    "year": 2014,
+    "asin": "0817917888",
+    "href": "https://www.amazon.com/dp/0817917888",
+    "coverUrl": "https://covers.openlibrary.org/b/id/10727178-L.jpg"
+  },
+  {
+    "id": "book-859e52c1a5a6",
+    "kind": "book",
+    "title": "How The Beatles Knew: A Theory of How They Wrote Their Songs",
+    "source": "Ilse Niccolini",
+    "loggedAt": "2026-08-26",
+    "category": "beatles"
+  },
+  {
+    "id": "book-d6aa7351bfbf",
+    "kind": "book",
+    "title": "The Beatles and Philosophy: Nothing You Can Think That Can't Be Thunk",
+    "source": "Michael Baur",
+    "loggedAt": "2026-08-26",
+    "category": "beatles",
+    "year": 2006,
+    "asin": "0812696069",
+    "href": "https://www.amazon.com/dp/0812696069",
+    "coverUrl": "https://covers.openlibrary.org/b/id/12456022-L.jpg"
+  },
+  {
+    "id": "book-2d875d00a0d2",
+    "kind": "book",
+    "title": "The Beatles: The Biography",
+    "source": "Bob Spitz",
+    "loggedAt": "2026-08-26",
+    "category": "beatles",
+    "year": 2005,
+    "asin": "0739469665",
+    "href": "https://www.amazon.com/dp/0739469665",
+    "coverUrl": "https://covers.openlibrary.org/b/id/12842717-L.jpg"
+  },
+  {
+    "id": "book-31b6bdc1ec98",
+    "kind": "book",
+    "title": "The Beatles Anthology",
+    "source": "The Beatles",
+    "loggedAt": "2026-08-26",
+    "category": "beatles",
+    "year": 2000,
+    "asin": "0304356050",
+    "href": "https://www.amazon.com/dp/0304356050",
+    "coverUrl": "https://covers.openlibrary.org/b/id/2356601-L.jpg"
+  },
+  {
+    "id": "book-0ab839b16fd5",
+    "kind": "book",
+    "title": "In His Own Write",
+    "source": "John Lennon",
+    "loggedAt": "2026-08-26",
+    "category": "by my heroes",
+    "year": 1964,
+    "asin": "0451030362",
+    "href": "https://www.amazon.com/dp/0451030362",
+    "coverUrl": "https://covers.openlibrary.org/b/id/428608-L.jpg"
+  },
+  {
+    "id": "book-d4cab8d29e1a",
+    "kind": "book",
+    "title": "A Spaniard in the Works",
+    "source": "John Lennon",
+    "loggedAt": "2026-08-26",
+    "category": "by my heroes",
+    "year": 1965,
+    "asin": "0140059296",
+    "href": "https://www.amazon.com/dp/0140059296",
+    "coverUrl": "https://covers.openlibrary.org/b/id/811534-L.jpg"
+  },
+  {
+    "id": "book-e764f609cc51",
+    "kind": "book",
+    "title": "Skywriting by Word of Mouth",
+    "source": "John Lennon",
+    "loggedAt": "2026-08-26",
+    "category": "by my heroes",
+    "year": 1987,
+    "asin": "0060914440",
+    "href": "https://www.amazon.com/dp/0060914440",
+    "coverUrl": "https://covers.openlibrary.org/b/id/39786-L.jpg"
+  },
+  {
+    "id": "book-79e0dc6b85bc",
+    "kind": "book",
+    "title": "Don Quixote",
+    "source": "Miguel de Cervantes",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 2017,
+    "asin": "1434104443",
+    "href": "https://www.amazon.com/dp/1434104443",
+    "coverUrl": "https://covers.openlibrary.org/b/id/13846974-L.jpg"
+  },
+  {
+    "id": "book-494f14855995",
+    "kind": "book",
+    "title": "A Tale of Two Cities",
+    "source": "Charles Dickens",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 1800,
+    "asin": "1513220950",
+    "href": "https://www.amazon.com/dp/1513220950",
+    "coverUrl": "https://covers.openlibrary.org/b/id/13301713-L.jpg"
+  },
+  {
+    "id": "book-4a0f1893d58d",
+    "kind": "book",
+    "title": "The Little Prince",
+    "source": "Antoine de Saint-Exupery",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 2003,
+    "asin": "0544699580",
+    "href": "https://www.amazon.com/dp/0544699580",
+    "coverUrl": "https://covers.openlibrary.org/b/id/10746692-L.jpg"
+  },
+  {
+    "id": "book-88739b39e3c0",
+    "kind": "book",
+    "title": "The Lord of the Rings",
+    "source": "J.R.R. Tolkien",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 1954,
+    "asin": "8422690306",
+    "href": "https://www.amazon.com/dp/8422690306",
+    "coverUrl": "https://covers.openlibrary.org/b/id/14625765-L.jpg"
+  },
+  {
+    "id": "book-4f7ad15d17e4",
+    "kind": "book",
+    "title": "The Hobbit",
+    "source": "J.R.R. Tolkien",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 1937,
+    "asin": "0582348889",
+    "href": "https://www.amazon.com/dp/0582348889",
+    "coverUrl": "https://covers.openlibrary.org/b/id/14627509-L.jpg"
+  },
+  {
+    "id": "book-8cd28ef8f8ba",
+    "kind": "book",
+    "title": "Moby-Dick",
+    "source": "Herman Melville",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 1851,
+    "asin": "0585382948",
+    "href": "https://www.amazon.com/dp/0585382948",
+    "coverUrl": "https://covers.openlibrary.org/b/id/10544254-L.jpg"
+  },
+  {
+    "id": "book-cbf9b46e7cd6",
+    "kind": "book",
+    "title": "Pride and Prejudice",
+    "source": "Jane Austen",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 1813,
+    "asin": "1080930477",
+    "href": "https://www.amazon.com/dp/1080930477",
+    "coverUrl": "https://covers.openlibrary.org/b/id/14348537-L.jpg"
+  },
+  {
+    "id": "book-fcc01e0079b4",
+    "kind": "book",
+    "title": "Jane Eyre",
+    "source": "Charlotte Bronte",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 1847,
+    "asin": "0007382464",
+    "href": "https://www.amazon.com/dp/0007382464",
+    "coverUrl": "https://covers.openlibrary.org/b/id/8235363-L.jpg"
+  },
+  {
+    "id": "book-3744dfd492f5",
+    "kind": "book",
+    "title": "Wuthering Heights",
+    "source": "Emily Bronte",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 1846,
+    "asin": "1494711710",
+    "href": "https://www.amazon.com/dp/1494711710",
+    "coverUrl": "https://covers.openlibrary.org/b/id/12818862-L.jpg"
+  },
+  {
+    "id": "book-2dfd54e8952c",
+    "kind": "book",
+    "title": "Great Expectations",
+    "source": "Charles Dickens",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 1861,
+    "asin": "1090101678",
+    "href": "https://www.amazon.com/dp/1090101678",
+    "coverUrl": "https://covers.openlibrary.org/b/id/13322313-L.jpg"
+  },
+  {
+    "id": "book-602bbaba76cb",
+    "kind": "book",
+    "title": "War and Peace",
+    "source": "Leo Tolstoy",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 1864,
+    "asin": "1411433718",
+    "href": "https://www.amazon.com/dp/1411433718",
+    "coverUrl": "https://covers.openlibrary.org/b/id/12621906-L.jpg"
+  },
+  {
+    "id": "book-5a60eb8e10f9",
+    "kind": "book",
+    "title": "Madame Bovary",
+    "source": "Gustave Flaubert",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 1856,
+    "asin": "8471666979",
+    "href": "https://www.amazon.com/dp/8471666979",
+    "coverUrl": "https://covers.openlibrary.org/b/id/12993424-L.jpg"
+  },
+  {
+    "id": "book-2f5835035298",
+    "kind": "book",
+    "title": "One Hundred Years of Solitude",
+    "source": "Gabriel Garcia Marquez",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 1971,
+    "coverUrl": "https://covers.openlibrary.org/b/id/15185412-L.jpg"
+  },
+  {
+    "id": "book-cb7025b72449",
+    "kind": "book",
+    "title": "The Count of Monte Cristo",
+    "source": "Alexandre Dumas",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 1964,
+    "coverUrl": "https://covers.openlibrary.org/b/id/14937760-L.jpg"
+  },
+  {
+    "id": "book-5d10caa0bd32",
+    "kind": "book",
+    "title": "Les Miserables",
+    "source": "Victor Hugo",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 1862,
+    "asin": "0141392606",
+    "href": "https://www.amazon.com/dp/0141392606",
+    "coverUrl": "https://covers.openlibrary.org/b/id/12721865-L.jpg"
+  },
+  {
+    "id": "book-1e258cce0197",
+    "kind": "book",
+    "title": "Dracula",
+    "source": "Bram Stoker",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 1897,
+    "asin": "1846373557",
+    "href": "https://www.amazon.com/dp/1846373557",
+    "coverUrl": "https://covers.openlibrary.org/b/id/12216503-L.jpg"
+  },
+  {
+    "id": "book-3cadeb03b638",
+    "kind": "book",
+    "title": "1984",
+    "source": "George Orwell",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 2003,
+    "asin": "1408292467",
+    "href": "https://www.amazon.com/dp/1408292467",
+    "coverUrl": "https://covers.openlibrary.org/b/id/8745958-L.jpg"
+  },
+  {
+    "id": "book-e223eeaef569",
+    "kind": "book",
+    "title": "To Kill a Mockingbird",
+    "source": "Harper Lee",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 1960,
+    "asin": "0062877798",
+    "href": "https://www.amazon.com/dp/0062877798",
+    "coverUrl": "https://covers.openlibrary.org/b/id/14351077-L.jpg"
+  },
+  {
+    "id": "book-c8db212539a2",
+    "kind": "book",
+    "title": "The Catcher in the Rye",
+    "source": "J.D. Salinger",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 1945,
+    "asin": "0140470921",
+    "href": "https://www.amazon.com/dp/0140470921",
+    "coverUrl": "https://covers.openlibrary.org/b/id/9273490-L.jpg"
+  },
+  {
+    "id": "book-cc8dcc01a387",
+    "kind": "book",
+    "title": "Lolita",
+    "source": "Vladimir Nabokov",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 1777,
+    "asin": "3499106353",
+    "href": "https://www.amazon.com/dp/3499106353",
+    "coverUrl": "https://covers.openlibrary.org/b/id/12984540-L.jpg"
+  },
+  {
+    "id": "book-44161677e5fb",
+    "kind": "book",
+    "title": "Heart of Darkness",
+    "source": "Joseph Conrad",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 1899,
+    "asin": "1984321463",
+    "href": "https://www.amazon.com/dp/1984321463",
+    "coverUrl": "https://covers.openlibrary.org/b/id/12307847-L.jpg"
+  },
+  {
+    "id": "book-e7e06bce0b25",
+    "kind": "book",
+    "title": "The Old Man and the Sea",
+    "source": "Ernest Hemingway",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 1952,
+    "asin": "1791335675",
+    "href": "https://www.amazon.com/dp/1791335675",
+    "coverUrl": "https://covers.openlibrary.org/b/id/463307-L.jpg"
+  },
+  {
+    "id": "book-3ea96acb00ab",
+    "kind": "book",
+    "title": "Catch-22",
+    "source": "Joseph Heller",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 1961,
+    "asin": "1446424049",
+    "href": "https://www.amazon.com/dp/1446424049",
+    "coverUrl": "https://covers.openlibrary.org/b/id/6468653-L.jpg"
+  },
+  {
+    "id": "book-b4858eba7008",
+    "kind": "book",
+    "title": "Slaughterhouse-Five",
+    "source": "Kurt Vonnegut",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 1956,
+    "asin": "1439501637",
+    "href": "https://www.amazon.com/dp/1439501637",
+    "coverUrl": "https://covers.openlibrary.org/b/id/12727001-L.jpg"
+  },
+  {
+    "id": "book-4fa7826c5206",
+    "kind": "book",
+    "title": "The Trial",
+    "source": "Franz Kafka",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 1925,
+    "coverUrl": "https://covers.openlibrary.org/b/id/14910748-L.jpg"
+  },
+  {
+    "id": "book-6d6116d1955d",
+    "kind": "book",
+    "title": "The Master and Margarita",
+    "source": "Mikhail Bulgakov",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 1967,
+    "coverUrl": "https://covers.openlibrary.org/b/id/15013644-L.jpg"
+  },
+  {
+    "id": "book-6b0d2682603a",
+    "kind": "book",
+    "title": "Middlemarch",
+    "source": "George Eliot",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 1800,
+    "asin": "1551112337",
+    "href": "https://www.amazon.com/dp/1551112337",
+    "coverUrl": "https://covers.openlibrary.org/b/id/252882-L.jpg"
+  },
+  {
+    "id": "book-3bd4140f3801",
+    "kind": "book",
+    "title": "Fahrenheit 451",
+    "source": "Ray Bradbury",
+    "loggedAt": "2026-08-26",
+    "category": "fiction",
+    "year": 1953,
+    "asin": "1508760861",
+    "href": "https://www.amazon.com/dp/1508760861",
+    "coverUrl": "https://covers.openlibrary.org/b/id/12993656-L.jpg"
+  },
+  {
+    "id": "book-544bde4665b0",
+    "kind": "book",
+    "title": "The Odyssey",
+    "source": "Homer",
+    "loggedAt": "2026-08-26",
+    "category": "literature",
+    "year": 1946,
+    "asin": "1576467902",
+    "href": "https://www.amazon.com/dp/1576467902",
+    "coverUrl": "https://covers.openlibrary.org/b/id/12474938-L.jpg"
+  },
+  {
+    "id": "book-8836b6b0d651",
+    "kind": "book",
+    "title": "The Iliad",
+    "source": "Homer",
+    "loggedAt": "2026-08-26",
+    "category": "literature",
+    "year": 1946,
+    "asin": "1774530228",
+    "href": "https://www.amazon.com/dp/1774530228",
+    "coverUrl": "https://covers.openlibrary.org/b/id/12621988-L.jpg"
+  },
+  {
+    "id": "book-80f045c55fd7",
+    "kind": "book",
+    "title": "Hamlet",
+    "source": "William Shakespeare",
+    "loggedAt": "2026-08-26",
+    "category": "literature",
+    "year": 1603,
+    "asin": "1520894120",
+    "href": "https://www.amazon.com/dp/1520894120",
+    "coverUrl": "https://covers.openlibrary.org/b/id/8281954-L.jpg"
+  },
+  {
+    "id": "book-82cf9cef2265",
+    "kind": "book",
+    "title": "King Lear",
+    "source": "William Shakespeare",
+    "loggedAt": "2026-08-26",
+    "category": "literature",
+    "year": 1608,
+    "asin": "1540718344",
+    "href": "https://www.amazon.com/dp/1540718344",
+    "coverUrl": "https://covers.openlibrary.org/b/id/7420452-L.jpg"
+  },
+  {
+    "id": "book-6e5a0bbb4fe4",
+    "kind": "book",
+    "title": "Romeo and Juliet",
+    "source": "William Shakespeare",
+    "loggedAt": "2026-08-26",
+    "category": "literature",
+    "year": 1597,
+    "asin": "315000005X",
+    "href": "https://www.amazon.com/dp/315000005X",
+    "coverUrl": "https://covers.openlibrary.org/b/id/8257991-L.jpg"
+  },
+  {
+    "id": "book-d2516d9bf07d",
+    "kind": "book",
+    "title": "The Divine Comedy",
+    "source": "Dante Alighieri",
+    "loggedAt": "2026-08-26",
+    "category": "literature",
+    "year": 1893,
+    "asin": "1404348379",
+    "href": "https://www.amazon.com/dp/1404348379",
+    "coverUrl": "https://covers.openlibrary.org/b/id/1994232-L.jpg"
+  },
+  {
+    "id": "book-95673e1d32a8",
+    "kind": "book",
+    "title": "Paradise Lost",
+    "source": "John Milton",
+    "loggedAt": "2026-08-26",
+    "category": "literature",
+    "year": 1667,
+    "asin": "0820703923",
+    "href": "https://www.amazon.com/dp/0820703923",
+    "coverUrl": "https://covers.openlibrary.org/b/id/5992814-L.jpg"
+  },
+  {
+    "id": "book-9f8bceddade6",
+    "kind": "book",
+    "title": "Faust",
+    "source": "Johann Wolfgang von Goethe",
+    "loggedAt": "2026-08-26",
+    "category": "literature",
+    "year": 1800,
+    "asin": "0140440933",
+    "href": "https://www.amazon.com/dp/0140440933",
+    "coverUrl": "https://covers.openlibrary.org/b/id/6499459-L.jpg"
+  },
+  {
+    "id": "book-063168f71308",
+    "kind": "book",
+    "title": "Leaves of Grass",
+    "source": "Walt Whitman",
+    "loggedAt": "2026-08-26",
+    "category": "literature",
+    "year": 1855,
+    "asin": "1556855281",
+    "href": "https://www.amazon.com/dp/1556855281",
+    "coverUrl": "https://covers.openlibrary.org/b/id/9000447-L.jpg"
+  },
+  {
+    "id": "book-f8950ee9c361",
+    "kind": "book",
+    "title": "The Canterbury Tales",
+    "source": "Geoffrey Chaucer",
+    "loggedAt": "2026-08-26",
+    "category": "literature",
+    "year": 1478,
+    "asin": "1360845054",
+    "href": "https://www.amazon.com/dp/1360845054",
+    "coverUrl": "https://covers.openlibrary.org/b/id/5767180-L.jpg"
+  },
+  {
+    "id": "book-e12629817660",
+    "kind": "book",
+    "title": "The Waste Land",
+    "source": "T.S. Eliot",
+    "loggedAt": "2026-08-26",
+    "category": "literature",
+    "year": 1962,
+    "coverUrl": "https://covers.openlibrary.org/b/id/15184471-L.jpg"
+  },
+  {
+    "id": "book-1817f621d3d6",
+    "kind": "book",
+    "title": "Beowulf",
+    "source": "Unknown",
+    "loggedAt": "2026-08-26",
+    "category": "literature",
+    "year": 1992,
+    "asin": "0486272648",
+    "href": "https://www.amazon.com/dp/0486272648",
+    "coverUrl": "https://covers.openlibrary.org/b/id/14653911-L.jpg"
+  },
+  {
+    "id": "book-887d53472a94",
+    "kind": "book",
+    "title": "The Aeneid",
+    "source": "Virgil",
+    "loggedAt": "2026-08-26",
+    "category": "literature",
+    "year": 1990,
+    "asin": "0679729526",
+    "href": "https://www.amazon.com/dp/0679729526",
+    "coverUrl": "https://covers.openlibrary.org/b/id/6715695-L.jpg"
+  },
+  {
+    "id": "book-cb71450e1059",
+    "kind": "book",
+    "title": "Empire of AI: Dreams and Nightmares in Sam Altman's OpenAI",
+    "source": "Karen Hao",
+    "loggedAt": "2026-08-26",
+    "category": "ai",
+    "year": 2025,
+    "asin": "0241678927",
+    "href": "https://www.amazon.com/dp/0241678927",
+    "coverUrl": "https://covers.openlibrary.org/b/id/15204209-L.jpg"
+  },
+  {
+    "id": "book-2a170d8c50b7",
+    "kind": "book",
+    "title": "Atlas of AI: Power, Politics, and the Planetary Costs of Artificial Intelligence",
+    "source": "Kate Crawford",
+    "loggedAt": "2026-08-26",
+    "category": "ai",
+    "year": 2021,
+    "asin": "0300264631",
+    "href": "https://www.amazon.com/dp/0300264631",
+    "coverUrl": "https://covers.openlibrary.org/b/id/14420723-L.jpg"
+  },
+  {
+    "id": "book-b5c97240ec4e",
+    "kind": "book",
+    "title": "The Thinking Machine: Jensen Huang, Nvidia, and the World's Most Coveted Microchip",
+    "source": "Stephen Witt",
+    "loggedAt": "2026-08-26",
+    "category": "ai",
+    "year": 2024,
+    "asin": "1847928285",
+    "href": "https://www.amazon.com/dp/1847928285",
+    "coverUrl": "https://covers.openlibrary.org/b/id/15131358-L.jpg"
+  },
+  {
+    "id": "book-62c1485d6270",
+    "kind": "book",
+    "title": "The Infinity Machine: Demis Hassabis, DeepMind, and the Quest for Superintelligence",
+    "source": "Sebastian Mallaby",
+    "loggedAt": "2026-08-26",
+    "category": "ai",
+    "year": 2026,
+    "asin": "0593831845",
+    "href": "https://www.amazon.com/dp/0593831845",
+    "coverUrl": "https://covers.openlibrary.org/b/id/15203597-L.jpg"
+  },
+  {
+    "id": "book-4cb1e772b07c",
+    "kind": "book",
+    "title": "AI Snake Oil: What Artificial Intelligence Can Do, What It Can't, and How to Tell the Difference",
+    "source": "Arvind Narayanan",
+    "loggedAt": "2026-08-26",
+    "category": "ai"
+  },
+  {
+    "id": "book-3a61cdb68b77",
+    "kind": "book",
+    "title": "Life 3.0: Being Human in the Age of Artificial Intelligence",
+    "source": "Max Tegmark",
+    "loggedAt": "2026-08-26",
+    "category": "ai",
+    "year": 2017,
+    "asin": "024123719X",
+    "href": "https://www.amazon.com/dp/024123719X",
+    "coverUrl": "https://covers.openlibrary.org/b/id/10239283-L.jpg"
+  },
+  {
+    "id": "book-27cd1e1dafdd",
+    "kind": "book",
+    "title": "Superintelligence: Paths, Dangers, Strategies",
+    "source": "Nick Bostrom",
+    "loggedAt": "2026-08-26",
+    "category": "ai",
+    "year": 2014,
+    "asin": "3518586122",
+    "href": "https://www.amazon.com/dp/3518586122",
+    "coverUrl": "https://covers.openlibrary.org/b/id/8039542-L.jpg"
+  },
+  {
+    "id": "book-e968ac8341b9",
+    "kind": "book",
+    "title": "Human Compatible: Artificial Intelligence and the Problem of Control",
+    "source": "Stuart Russell",
+    "loggedAt": "2026-08-26",
+    "category": "ai",
+    "year": 2019,
+    "asin": "0525558616",
+    "href": "https://www.amazon.com/dp/0525558616",
+    "coverUrl": "https://covers.openlibrary.org/b/id/11264186-L.jpg"
+  },
+  {
+    "id": "book-6b0b688a3476",
+    "kind": "book",
+    "title": "The Alignment Problem: Machine Learning and Human Values",
+    "source": "Brian Christian",
+    "loggedAt": "2026-08-26",
+    "category": "ai",
+    "year": 2020,
+    "asin": "1786494337",
+    "href": "https://www.amazon.com/dp/1786494337",
+    "coverUrl": "https://covers.openlibrary.org/b/id/10678431-L.jpg"
+  },
+  {
+    "id": "book-98e2b5b3bfb5",
+    "kind": "book",
+    "title": "Genius Makers: The Mavericks Who Brought AI to Google, Facebook, and the World",
+    "source": "Cade Metz",
+    "loggedAt": "2026-08-26",
+    "category": "ai",
+    "year": 2021,
+    "asin": "1524742678",
+    "href": "https://www.amazon.com/dp/1524742678",
+    "coverUrl": "https://covers.openlibrary.org/b/id/10708874-L.jpg"
+  },
+  {
+    "id": "book-9a595ef926f2",
+    "kind": "book",
+    "title": "The Coming Wave",
+    "source": "Mustafa Suleyman",
+    "loggedAt": "2026-08-26",
+    "category": "ai",
+    "year": 2023,
+    "asin": "1529923832",
+    "href": "https://www.amazon.com/dp/1529923832",
+    "coverUrl": "https://covers.openlibrary.org/b/id/14421031-L.jpg"
+  },
+  {
+    "id": "book-1fb01063cffd",
+    "kind": "book",
+    "title": "Artificial Intelligence: A Modern Approach",
+    "source": "Stuart Russell",
+    "loggedAt": "2026-08-26",
+    "category": "ai",
+    "year": 1994,
+    "asin": "730233109X",
+    "href": "https://www.amazon.com/dp/730233109X",
+    "coverUrl": "https://covers.openlibrary.org/b/id/92018-L.jpg"
+  },
+  {
+    "id": "book-a4ae794cb87d",
+    "kind": "book",
+    "title": "Deep Learning",
+    "source": "Ian Goodfellow",
+    "loggedAt": "2026-08-26",
+    "category": "ai",
+    "year": 2016,
+    "asin": "0262035618",
+    "href": "https://www.amazon.com/dp/0262035618",
+    "coverUrl": "https://covers.openlibrary.org/b/id/8086288-L.jpg"
+  },
+  {
+    "id": "book-0984a92b8812",
+    "kind": "book",
+    "title": "The Master Algorithm",
+    "source": "Pedro Domingos",
+    "loggedAt": "2026-08-26",
+    "category": "ai",
+    "year": 2015,
+    "asin": "0465061923",
+    "href": "https://www.amazon.com/dp/0465061923",
+    "coverUrl": "https://covers.openlibrary.org/b/id/9321915-L.jpg"
+  },
+  {
+    "id": "book-c5da9e8b5112",
+    "kind": "book",
+    "title": "Chip War: The Fight for the World's Most Critical Technology",
+    "source": "Chris Miller",
+    "loggedAt": "2026-08-26",
+    "category": "ai",
+    "year": 2022,
+    "asin": "1398504106",
+    "href": "https://www.amazon.com/dp/1398504106",
+    "coverUrl": "https://covers.openlibrary.org/b/id/12968901-L.jpg"
+  },
+  {
+    "id": "book-9e8032ec5f1d",
+    "kind": "book",
+    "title": "Co-Intelligence: Living and Working with AI",
+    "source": "Ethan Mollick",
+    "loggedAt": "2026-08-26",
+    "category": "ai",
+    "year": 2024,
+    "asin": "0593716728",
+    "href": "https://www.amazon.com/dp/0593716728",
+    "coverUrl": "https://covers.openlibrary.org/b/id/15226155-L.jpg"
+  },
+  {
+    "id": "book-31076016dfc4",
+    "kind": "book",
+    "title": "Nexus: A Brief History of Information Networks from the Stone Age to AI",
+    "source": "Yuval Noah Harari",
+    "loggedAt": "2026-08-26",
+    "category": "ai",
+    "year": 2024,
+    "asin": "1529933617",
+    "href": "https://www.amazon.com/dp/1529933617",
+    "coverUrl": "https://covers.openlibrary.org/b/id/14812834-L.jpg"
+  },
+  {
+    "id": "book-3022a4acba0e",
+    "kind": "book",
+    "title": "The Worlds I See",
+    "source": "Fei-Fei Li",
+    "loggedAt": "2026-08-26",
+    "category": "ai",
+    "year": 2008,
+    "asin": "0743572750",
+    "href": "https://www.amazon.com/dp/0743572750",
+    "coverUrl": "https://covers.openlibrary.org/b/id/8022702-L.jpg"
   }
 ]
