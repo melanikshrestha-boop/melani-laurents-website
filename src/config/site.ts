@@ -6,7 +6,7 @@ export const siteConfig = {
   description:
     "Open sourcing my mind through essays, books, daily inputs, and the things I build.",
   email: "celinenovaa@gmail.com",
-  location: "Mostly LA — sometimes SF or NYC",
+  location: "Mostly LA, sometimes SF or NYC",
   /**
    * Bookshelf manifesto (home callout + /bookshelf).
    * Used to live under Daily — now owns this line.
