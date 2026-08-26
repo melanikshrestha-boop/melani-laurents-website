@@ -287,6 +287,14 @@
       "slug": "sketches",
       "cover": "/photography/sketches/cover.jpeg",
       "photos": []
+    },
+    {
+      "id": "film",
+      "title": "Film",
+      "tagline": "grain · light · patience",
+      "slug": "film",
+      "cover": "/photography/film/cover.jpeg",
+      "photos": []
     }
   ]
 }

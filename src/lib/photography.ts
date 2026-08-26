@@ -8,12 +8,13 @@ import { siteConfig } from "@/config/site";
 
 const photographyData = data as PhotographyData;
 
-const INDEX_COLLECTION_ORDER = ["portraits", "scenery", "sketches"] as const;
+const INDEX_COLLECTION_ORDER = ["portraits", "scenery", "sketches", "film"] as const;
 
 export const INDEX_HERO_IMAGES: Record<string, string> = {
   portraits: "/photography/index/portraits-hero.jpeg",
   scenery: "/photography/index/scenery-hero.jpg",
   sketches: "/photography/index/sketches-hero.jpeg",
+  film: "/photography/film/cover.jpeg",
 };
 
 /** Auto-rotating index hero, beginning with portraits. */
