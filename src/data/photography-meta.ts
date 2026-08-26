@@ -2,6 +2,10 @@ export interface Photo {
   id: string;
   src: string;
   alt: string;
+  /** Where it was shot — shown as the title on the gallery hover placard */
+  place?: string;
+  /** One line of context under the place. Her words, not filler. */
+  note?: string;
 }
 
 export interface PhotoCollection {

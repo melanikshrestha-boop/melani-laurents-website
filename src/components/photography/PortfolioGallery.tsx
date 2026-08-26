@@ -89,7 +89,12 @@ export function PortfolioGallery({ photos }: PortfolioGalleryProps) {
                 />
                 <span className="portfolio-gallery-wash" aria-hidden />
                 <figcaption className="portfolio-gallery-caption">
-                  {photo.alt}
+                  <span className="portfolio-gallery-place">
+                    {photo.place || photo.alt}
+                  </span>
+                  {photo.note ? (
+                    <span className="portfolio-gallery-note">{photo.note}</span>
+                  ) : null}
                 </figcaption>
               </button>
             </figure>

@@ -6569,6 +6569,11 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   right: clamp(0.85rem, 2vw, 1.5rem);
   bottom: clamp(0.8rem, 2vw, 1.35rem);
   z-index: 2;
+  /* Flex column so the place and the note are always separate lines —
+     styling the child spans alone left them running together. */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   text-align: left;
   color: #fff;
   font-family: var(--font-geist-sans), system-ui, sans-serif;
@@ -6621,4 +6626,19 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
     opacity: 1;
     transform: none;
   }
+}
+
+/* Placard lines: place on top, her note under it */
+.portfolio-gallery-place {
+  display: block;
+}
+
+.portfolio-gallery-note {
+  display: block;
+  margin-top: 0.3em;
+  font-size: 0.78em;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  opacity: 0.92;
 }
