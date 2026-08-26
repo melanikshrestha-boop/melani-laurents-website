@@ -6642,3 +6642,87 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   letter-spacing: 0.01em;
   opacity: 0.92;
 }
+
+/* ── Closing wall text ────────────────────────────────────────────────
+ * Museum placard after the last photograph, not a pull-quote.
+ *
+ * Design notes, since the placement is the point:
+ * - Measure is held near 60ch. Wall text is read standing up; a long line
+ *   loses the reader on the return sweep.
+ * - Set at reading size, NOT display size. Blowing it up would make it
+ *   compete with the photographs it is supposed to close.
+ * - Muted ink, no rule, no box, no quotation marks as ornament — it should
+ *   read as found rather than presented, and boxes are not the house style.
+ * - The hanging indent on the opening quote mark keeps the first character
+ *   optically aligned with the block instead of the glyph edge.
+ */
+.portfolio-wall-text {
+  max-width: 60ch;
+  margin: clamp(5rem, 14vh, 9rem) auto clamp(3rem, 8vh, 5rem);
+  padding: 0 clamp(1.25rem, 4vw, 2rem);
+  opacity: 0;
+  transform: translateY(1.1rem);
+  animation: portfolio-wall-text-in 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-timeline: view();
+  animation-range: entry 10% cover 32%;
+}
+
+/* No scroll-driven timeline support: just show it, never leave it invisible */
+@supports not (animation-timeline: view()) {
+  .portfolio-wall-text {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+@keyframes portfolio-wall-text-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.portfolio-wall-text__quote {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  text-indent: -0.42em; /* hang the opening quote mark */
+  color: color-mix(in srgb, currentColor 62%, transparent);
+  font-family: var(--font-source-serif), "Source Serif 4", Georgia, serif;
+  font-size: clamp(1rem, 1.15vw, 1.15rem);
+  font-style: italic;
+  line-height: 1.72;
+  letter-spacing: 0.005em;
+}
+
+.portfolio-wall-text__quote p {
+  margin: 0;
+}
+
+.portfolio-wall-text__quote p::before {
+  content: "\201C";
+}
+.portfolio-wall-text__quote p::after {
+  content: "\201D";
+}
+
+.portfolio-wall-text__cite {
+  display: block;
+  margin-top: 1.4em;
+  text-indent: 0;
+  color: color-mix(in srgb, currentColor 45%, transparent);
+  font-family: var(--font-share-tech-mono), ui-monospace, monospace;
+  font-size: 0.68rem;
+  font-style: normal;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-wall-text {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}

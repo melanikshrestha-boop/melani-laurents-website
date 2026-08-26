@@ -100,6 +100,32 @@ export function PortfolioGallery({ photos }: PortfolioGalleryProps) {
             </figure>
           ))}
         </div>
+
+        {/*
+         * Closing wall text. Placed after the last photograph on purpose: the
+         * quote is about wanting everyone to see the work, so it only lands
+         * once they have. Set quiet and low-contrast — it resolves as you
+         * reach it rather than announcing itself, so it reads as something
+         * found rather than displayed.
+         */}
+        <aside className="portfolio-wall-text">
+          <blockquote className="portfolio-wall-text__quote">
+            <p>
+              I made the decision at sixteen or seventeen that what I did, I
+              wanted everybody to see. I wasn&rsquo;t going after the
+              aestheticism or the monastery or the lone artist who supposedly
+              doesn&rsquo;t care what people think about his work. I care a lot
+              whether people hate it or love it, because it&rsquo;s part of me
+              and it hurts me when they hate it, or hate me, and it&rsquo;s
+              pleasing when they like it. But, as many public figures have said,
+              &lsquo;The praise is never enough, and the criticism always bites
+              deep.&rsquo;
+            </p>
+            <cite className="portfolio-wall-text__cite">
+              John Lennon, 1980
+            </cite>
+          </blockquote>
+        </aside>
       </div>
 
       {lightboxIndex !== null && (
