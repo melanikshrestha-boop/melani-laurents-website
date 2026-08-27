@@ -103,23 +103,27 @@
   -webkit-text-fill-color: #a8842e !important;
 }
 
-/*
- * Art / photography profile — no cream strip over images.
- * Transparent overlay, light type, photo bleeds to the top edge.
- */
+/* Art / photography profile — a responsive row above the sub-site header. */
 .cinema-nav--art {
+  position: relative !important;
   border: 0 !important;
-  background: transparent !important;
+  background: var(--photo-page-bg, #e0e0db) !important;
   background-image: none !important;
   backdrop-filter: none !important;
   box-shadow: none !important;
   padding: 0 !important;
 }
 .cinema-nav--art .cinema-nav__inner--bookshelf {
+  display: grid !important;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
   width: 100%;
   max-width: none;
+  min-height: 3.5rem;
+  height: auto !important;
   margin: 0;
-  padding: 0 10px !important;
+  padding: 0.65rem clamp(0.85rem, 4vw, 4rem) !important;
   box-sizing: border-box;
 }
 .cinema-nav--art .melani-signature-link {
@@ -133,33 +137,53 @@
   display: block;
   height: 2.1rem;
   width: auto;
-  margin: 0 0 0 -0.45rem;
+  margin: 0;
   padding: 0;
-  color: #fff;
-  filter: drop-shadow(0 1px 8px rgba(0, 0, 0, 0.35));
+  color: var(--photo-ink-muted, #253551);
+  filter: none;
 }
 .cinema-nav--art .cinema-nav__end {
+  min-width: 0;
   margin-left: auto;
   margin-right: 0;
   padding: 0;
 }
+.cinema-nav--art .cinema-nav__end > ul {
+  min-width: 0;
+}
 .cinema-nav--art .cinema-nav__link--cinema {
-  color: rgba(255, 255, 255, 0.72);
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
+  color: rgba(37, 53, 81, 0.62);
+  text-shadow: none;
 }
 .cinema-nav--art .cinema-nav__link--cinema:hover,
 .cinema-nav--art .cinema-nav__link--cinema:focus-visible {
-  color: #fff;
+  color: var(--photo-ink-muted, #253551);
 }
 .cinema-nav--art .cinema-nav__link--gold {
-  color: #e8d5a3 !important;
-  -webkit-text-fill-color: #e8d5a3 !important;
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
+  color: #a8842e !important;
+  -webkit-text-fill-color: #a8842e !important;
+  text-shadow: none;
 }
 .cinema-nav--art .cinema-nav__link--gold:hover,
 .cinema-nav--art .cinema-nav__link--gold:focus-visible {
-  color: #f5e6c0 !important;
-  -webkit-text-fill-color: #f5e6c0 !important;
+  color: #7f6420 !important;
+  -webkit-text-fill-color: #7f6420 !important;
+}
+
+@media (max-width: 760px) {
+  .cinema-nav--art .cinema-nav__inner--bookshelf {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+  }
+
+  .cinema-nav--art .cinema-nav__end {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .cinema-nav--art .cinema-nav__end > ul {
+    justify-content: flex-start;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

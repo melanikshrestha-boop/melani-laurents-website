@@ -12,7 +12,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/contact",
     "/publications",
     "/photography",
-    "/photography/about",
   ];
 
   const photographyPages = getPhotoCollectionSlugs().map((slug) => ({

@@ -1,10 +1,8 @@
 import data from "@/data/photography.json";
 import {
-  photographyBooking,
   type PhotoCollection,
   type PhotographyData,
 } from "@/data/photography-meta";
-import { siteConfig } from "@/config/site";
 
 const photographyData = data as PhotographyData;
 
@@ -26,32 +24,7 @@ export const INDEX_HERO_AUTO_CYCLE_SLUGS = [
 export const INDEX_HERO_DEFAULT_SLUG = "portraits";
 export const INDEX_HERO_AUTO_CYCLE_MS = 4500;
 
-export const PHOTOGRAPHY_BOOKING_PATH = "/photography/about#book";
-
-const photographyInstagramHref =
-  siteConfig.socialLinks.find((link) => link.id === "instagram")?.href ??
-  "https://www.instagram.com/melanilaurents/";
-
-export function getPhotographyInstagramHref(): string {
-  return photographyInstagramHref;
-}
-
-export function getPhotographyInstagramHandle(): string {
-  return photographyBooking.instagramHandle;
-}
-
-export function getPhotographyBookingDmUrl(): string {
-  const message = encodeURIComponent(photographyBooking.dmMessage);
-  return `https://ig.me/m/${photographyBooking.instagramHandle}?text=${message}`;
-}
-
-export function getPhotographyBookingMailtoUrl(): string {
-  const subject = encodeURIComponent(photographyBooking.mailtoSubject);
-  const body = encodeURIComponent(photographyBooking.dmMessage);
-  return `mailto:${photographyBooking.email}?subject=${subject}&body=${body}`;
-}
-
-export const ABOUT_PORTRAIT = "/photography/portraits/A28449D9-BAED-4FB1-A26B-FA6C55DFD538.JPG";
+export const PHOTOGRAPHY_BOOKING_PATH = "/contact";
 
 export function getPhotoCollections(): PhotoCollection[] {
   return photographyData.collections;

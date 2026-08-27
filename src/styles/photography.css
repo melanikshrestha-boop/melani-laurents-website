@@ -5,7 +5,6 @@
   --photo-ink: #000;
   --photo-ink-muted: #253551;
   --photo-page-padding: 4vw;
-  --photo-header-pad-y: 2vw;
   --photo-grid-gap: clamp(1rem, 1.75vw, 2.1rem);
   font-family: var(--font-epilogue), system-ui, sans-serif;
   background: var(--photo-page-bg);
@@ -14,23 +13,20 @@
 }
 
 /* ——— Header ——— */
-/* Sits under transparent site nav (3.5rem) — no double cream strip */
 .photography-header {
-  position: absolute;
-  top: 3.5rem;
-  left: 0;
-  right: 0;
-  z-index: 50;
+  position: relative;
+  z-index: 1;
   box-sizing: border-box;
   width: 100%;
-  padding: 0.65rem clamp(0.85rem, 4vw, 4rem) var(--photo-header-pad-y);
+  padding: clamp(0.75rem, 1.5vw, 1.25rem) clamp(0.85rem, 4vw, 4rem);
+  background: var(--photo-page-bg);
 }
 
 .photography-header-inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
   min-width: 0;
 }
 
@@ -43,16 +39,16 @@
   text-transform: uppercase;
   text-decoration: none;
   color: var(--photo-ink-muted);
-}
-
-.photography-header--overlay .photography-logo {
-  color: #fff;
+  white-space: nowrap;
 }
 
 .photography-nav {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: flex-end;
   gap: clamp(0.85rem, 1.5vw, 1.5rem);
+  min-width: 0;
 }
 
 .photography-nav-link {
@@ -61,36 +57,18 @@
   line-height: 1.5;
   color: var(--photo-ink);
   text-decoration: none;
+  white-space: nowrap;
 }
 
-.photography-header--overlay .photography-nav-link {
-  color: #fff;
-}
-
-.photography-nav-link:hover,
-.photography-nav-icon:hover {
+.photography-nav-link:hover {
   opacity: 0.72;
-}
-
-.photography-nav-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.25rem;
-  height: 1.25rem;
-  color: var(--photo-ink);
-  text-decoration: none;
-}
-
-.photography-header--overlay .photography-nav-icon {
-  color: #fff;
 }
 
 .photography-nav-cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 1.2rem 2rem;
+  padding: 0.9rem 1.35rem;
   border-radius: 300px;
   font-family: var(--font-epilogue), sans-serif;
   font-size: 1rem;
@@ -100,11 +78,6 @@
   background: var(--photo-ink-muted);
   color: #fff;
   transition: opacity 0.2s ease;
-}
-
-.photography-header--overlay .photography-nav-cta {
-  background: #fff;
-  color: var(--photo-ink);
 }
 
 .photography-nav-cta:hover {
@@ -224,7 +197,7 @@
 /* ——— Gallery ——— */
 .portfolio-gallery {
   background: var(--photo-page-bg);
-  padding-top: clamp(5.5rem, 8vw, 8.25rem);
+  padding-top: 0;
 }
 
 .portfolio-gallery--empty {
@@ -387,247 +360,6 @@
   text-decoration: underline;
 }
 
-/* ——— About ——— */
-.photography-about {
-  background: var(--photo-page-bg);
-  color: var(--photo-ink);
-  padding: clamp(5.5rem, 8vw, 8.25rem) 0 0;
-  min-height: 100vh;
-}
-
-.photography-about-hero {
-  display: grid;
-  grid-template-columns: 1fr;
-}
-
-@media (min-width: 900px) {
-  .photography-about-hero {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
-    align-items: stretch;
-  }
-}
-
-.photography-about-copy {
-  padding: 0 var(--photo-page-padding) 3rem;
-}
-
-.photography-about-copy h1 {
-  margin: 0 0 2rem;
-  font-family: var(--font-anton), sans-serif;
-  font-size: clamp(2.75rem, 4.44vw, 5.32rem);
-  font-weight: 400;
-  line-height: 1.06;
-}
-
-.photography-about-copy p {
-  margin: 0 0 1.25rem;
-  font-family: var(--font-epilogue), sans-serif;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-.photography-about-copy a {
-  color: inherit;
-}
-
-.photography-about-copy a:hover {
-  text-decoration: underline;
-}
-
-.photography-about-photo {
-  position: relative;
-  min-height: 24rem;
-}
-
-@media (min-width: 900px) {
-  .photography-about-photo {
-    min-height: auto;
-  }
-}
-
-.photography-about-photo-image {
-  object-fit: cover;
-  object-position: center top;
-}
-
-.photography-contact {
-  padding: 3rem var(--photo-page-padding) 4rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
-}
-
-.photography-contact h2 {
-  margin: 0 0 1rem;
-  font-family: var(--font-anton), sans-serif;
-  font-size: clamp(2rem, 3vw, 3.592rem);
-  font-weight: 400;
-  line-height: 1.1;
-}
-
-.photography-contact > p {
-  margin: 0 0 1.5rem;
-  max-width: 42rem;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-.photography-booking-steps {
-  margin: 0 0 2rem;
-  padding: 0;
-  list-style: none;
-  max-width: 42rem;
-  display: grid;
-  gap: 1rem;
-}
-
-.photography-booking-steps li {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.85rem;
-  align-items: start;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-.photography-booking-step-number {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  border-radius: 999px;
-  background: var(--photo-ink-muted);
-  color: #fff;
-  font-family: var(--font-epilogue), sans-serif;
-  font-size: 0.875rem;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.photography-booking-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.85rem;
-}
-
-.photography-booking-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.2rem 2rem;
-  border-radius: 300px;
-  font-family: var(--font-epilogue), sans-serif;
-  font-size: 1rem;
-  line-height: 1;
-  text-decoration: none;
-  transition: opacity 0.2s ease;
-}
-
-.photography-booking-cta--primary {
-  background: var(--photo-ink-muted);
-  color: #fff;
-}
-
-.photography-booking-cta--secondary {
-  border: 1px solid var(--photo-ink);
-  color: var(--photo-ink);
-}
-
-.photography-booking-cta:hover {
-  opacity: 0.88;
-}
-
-.photography-form-row {
-  display: grid;
-  gap: 1rem;
-}
-
-@media (min-width: 640px) {
-  .photography-form-row {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.photography-form {
-  display: grid;
-  gap: 1rem;
-  max-width: 42rem;
-}
-
-.photography-form label {
-  display: block;
-  margin-bottom: 0.35rem;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-.photography-form input,
-.photography-form textarea {
-  width: 100%;
-  padding: 0.85rem 1.15rem;
-  border: 1px solid var(--photo-ink);
-  border-radius: 1.49rem;
-  font-family: var(--font-epilogue), sans-serif;
-  font-size: 1rem;
-  line-height: 1.5;
-  background: transparent;
-  color: var(--photo-ink);
-}
-
-.photography-form textarea {
-  border-radius: 1.25rem;
-  min-height: 7.5rem;
-  resize: vertical;
-}
-
-.photography-form-checkbox {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-}
-
-.photography-form-checkbox input {
-  width: auto;
-  margin: 0;
-}
-
-.photography-form button {
-  justify-self: start;
-  padding: 1.2rem 2rem;
-  border: 0;
-  border-radius: 300px;
-  background: var(--photo-ink-muted);
-  color: #fff;
-  font-family: var(--font-epilogue), sans-serif;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.photography-form button:hover:not(:disabled) {
-  opacity: 0.9;
-}
-
-.photography-form button:disabled {
-  opacity: 0.65;
-  cursor: wait;
-}
-
-.photography-form-success {
-  margin: 0;
-  max-width: 42rem;
-  font-family: var(--font-epilogue), sans-serif;
-  font-size: 1.125rem;
-  line-height: 1.5;
-  color: var(--photo-ink-muted);
-}
-
-.photography-form-error {
-  margin: 0;
-  font-family: var(--font-epilogue), sans-serif;
-  font-size: 0.9375rem;
-  line-height: 1.5;
-  color: #8b1e1e;
-}
-
 /* ——— Lightbox ——— */
 .portfolio-lightbox {
   position: fixed;
@@ -665,25 +397,15 @@
 
 @media (max-width: 640px) {
   .photography-header {
-    top: 3.15rem;
     padding-inline: 0.85rem;
   }
 
-  .photography-header-inner {
-    align-items: flex-start;
-    gap: 0.7rem;
-  }
-
   .photography-logo {
-    flex: 0 1 auto;
     min-width: 0;
     font-size: 1rem;
   }
 
   .photography-nav {
-    min-width: 0;
-    flex: 0 1 auto;
-    justify-content: flex-end;
     gap: clamp(0.42rem, 2.1vw, 0.65rem);
   }
 
@@ -723,14 +445,15 @@
   }
 }
 
-@media (max-width: 410px) {
+@media (max-width: 520px) {
   .photography-header-inner {
-    flex-wrap: wrap;
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
   }
 
   .photography-nav {
     width: 100%;
-    justify-content: space-between;
+    justify-content: flex-start;
   }
 }
 

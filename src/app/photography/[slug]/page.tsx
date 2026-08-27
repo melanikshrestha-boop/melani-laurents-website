@@ -35,7 +35,7 @@ export default async function PhotographyCollectionPage({ params }: PageProps) {
 
   return (
     <>
-      <ShotByMelaniHeader theme="light" />
+      <ShotByMelaniHeader />
       <PortfolioGallery photos={collection.photos} />
       <PortfolioPagination prev={prev} next={next} />
     </>

@@ -7,7 +7,7 @@ export default function PhotographyPage() {
 
   return (
     <>
-      <ShotByMelaniHeader theme="overlay" />
+      <ShotByMelaniHeader />
       <PortfolioIndexField collections={collections} />
     </>
   );
