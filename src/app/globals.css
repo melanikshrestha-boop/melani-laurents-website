@@ -6663,8 +6663,12 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
  *   optically aligned with the block instead of the glyph edge.
  */
 .portfolio-wall-text {
-  max-width: 60ch;
-  margin: clamp(5rem, 14vh, 9rem) auto clamp(3rem, 8vh, 5rem);
+  max-width: 58ch;
+  /* Was clamp(5rem,14vh,9rem) top with auto side margins: on a wide window
+     that stranded the block in a field of nothing. Tightened, and pinned to
+     the grid's left edge so it reads as attached to the work above rather
+     than floating mid-page. */
+  margin: clamp(2.5rem, 6vh, 4rem) 0 clamp(1.5rem, 4vh, 2.5rem);
   padding: 0 clamp(1.25rem, 4vw, 2rem);
   opacity: 0;
   transform: translateY(1.1rem);

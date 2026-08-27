@@ -52,7 +52,7 @@ export function PortfolioGallery({ photos }: PortfolioGalleryProps) {
   if (photos.length === 0) {
     return (
       <div className="portfolio-gallery portfolio-gallery--empty">
-        <p className="portfolio-gallery-empty">Coming soon.</p>
+        <p className="portfolio-gallery-empty">Coming soon</p>
       </div>
     );
   }

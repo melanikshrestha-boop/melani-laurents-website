@@ -24,7 +24,7 @@ export interface PhotographyData {
 export const photographyIntro = {
   headline: "Shot by Celine",
   subhead:
-    "Portraits, scenery, and sketches. Camera and hand.",
+    "Portraits, scenery, and sketches, camera and hand",
   body: "Photography is how I slow down. While my day job lives in signals and systems, my camera lives in golden hour, honest faces, and places that feel like a dream. Sketches are the same eye, slower, on paper.",
 };
 
@@ -46,5 +46,5 @@ export const photographyBooking = {
     "I'll confirm within 24 hours",
   ],
   contactLead:
-    "Ready to book? Send an inquiry below and I'll reply within 24 hours.",
+    "Ready to book? Send an inquiry below and I'll reply within 24 hours",
 } as const;
