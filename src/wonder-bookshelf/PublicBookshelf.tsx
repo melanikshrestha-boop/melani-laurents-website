@@ -12,20 +12,17 @@ import {
   useRef,
   useState,
   type CSSProperties,
-  type KeyboardEvent as ReactKeyboardEvent,
   type MouseEvent as ReactMouseEvent,
 } from "react";
 import {
-  ArrowClockwise,
+  CaretDoubleDown,
+  CaretDoubleUp,
   CaretRight,
   FolderSimple,
   MagicWand,
-  Copy,
-  Check,
 } from "@phosphor-icons/react";
 import {
   bookshelfEntries,
-  isFiveStar,
   isYourIntelligence,
   type BookshelfEntry,
   type BookshelfKind,
@@ -35,7 +32,11 @@ import {
   SPINE_COLORS,
   type Book,
 } from "./booksStore";
-import { coverUrlForBook, storeUrlForBook } from "./amazon";
+import {
+  coverUrlForBook,
+  hasAmazonAssociateTag,
+  storeUrlForBook,
+} from "./amazon";
 import { catalogEntryToBook } from "./publicCatalog";
 import {
   getShelfBlogs,
@@ -64,11 +65,16 @@ import "./books-library.css";
 
 /** Drives she can assign a book to while editing */
 const EDIT_FOLDER_OPTIONS = [
-  "main characters",
+  "autobiographies",
   "everything startups",
   "psychology",
   "history",
   "economics",
+  "technology ethics",
+  "dostoevsky",
+  "high school reads",
+  "fiction",
+  "literature",
 ] as const;
 
 /** Single tap vs double tap (ms). Double = annotations; single = outbound link. */
@@ -85,121 +91,26 @@ type Filter = "all" | "book" | "blog" | "faves";
 const CHIPS: { id: Filter; label: string }[] = [
   { id: "all", label: "All" },
   { id: "book", label: "Books" },
-  { id: "blog", label: "Blogs" },
+  { id: "blog", label: "blogs I've read" },
   { id: "faves", label: "favs" },
 ];
 
-/** Quote rotator — shelf voice + founders + the stack itself */
-const SHELF_QUOTES: { text: string; author: string }[] = [
-  {
-    text: "Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work. And the only way to do great work is to love what you do.",
-    author: "Steve Jobs",
-  },
-  {
-    text: "When we are no longer able to change a situation, we are challenged to change ourselves.",
-    author: "Viktor E. Frankl",
-  },
-  {
-    text: "The people who are crazy enough to think they can change the world are the ones who do.",
-    author: "Steve Jobs",
-  },
-  {
-    text: "I wish I had a second life dedicated to just reading everything written out there.",
-    author: "Celine Nova",
-  },
-  {
-    text: "Zero to one is about creating something new. Copying is one to n.",
-    author: "Peter Thiel",
-  },
-  {
-    text: "The best way to predict the future is to invent it.",
-    author: "Alan Kay",
-  },
-  {
-    text: "Stay hungry. Stay foolish.",
-    author: "Stewart Brand / Steve Jobs",
-  },
-  {
-    text: "Reading is a discount ticket to everywhere.",
-    author: "Mary Schmich",
-  },
-  {
-    text: "Open sourcing my mind is how I stay sharp — and how I leave a trail.",
-    author: "Celine Nova",
-  },
-  {
-    text: "Make something people want.",
-    author: "Paul Graham / YC",
-  },
-  {
-    text: "The obstacle is the way.",
-    author: "Ryan Holiday (via Marcus Aurelius)",
-  },
-  {
-    text: "I don't read to finish. I read to rewire.",
-    author: "Celine Nova",
-  },
-  {
-    text: "The most impressive people I know have strong beliefs about the world, which is rare in the general population. If you find yourself always agreeing with whomever you last spoke with, that's bad. You will of course be wrong sometimes, but develop the confidence to stick with your convictions. It will let you be courageous when you're right about something important that most people don't see.",
-    author: "Sam Altman · Productivity",
-  },
-  {
-    text: "Try to be around smart, productive, happy, and positive people that don't belittle your ambitions. I love being around people who push me and inspire me to be better. To the degree you are able to, avoid the opposite kind of people—the cost of letting them take up your mental cycles is horrific.",
-    author: "Sam Altman · Productivity",
-  },
-  {
-    text: "I highly recommend using lists. I make lists of what I want to accomplish each year, each month, and each day. Lists are very focusing, and they help me with multitasking because I don't have to keep as much in my head. If I'm not in the mood for some particular task, I can always find something else I'm excited to do.",
-    author: "Sam Altman · Productivity",
-  },
-  {
-    text: "I am relentless about getting my most important projects done—I've found that if I really want something to happen and I push hard enough, it usually happens.",
-    author: "Sam Altman · Productivity",
-  },
-  {
-    text: "I generally try to avoid meetings and conferences as I find the time cost to be huge—I get the most value out of time in my office. However, it is critical that you keep enough space in your schedule to allow for chance encounters and exposure to new people and ideas. Having an open network is valuable; though probably 90% of the random meetings I take are a waste of time, the other 10% really make up for it.",
-    author: "Sam Altman · Productivity",
-  },
-  {
-    text: "I find most meetings are best scheduled for 15-20 minutes, or 2 hours. The default of 1 hour is usually wrong, and leads to a lot of wasted time.",
-    author: "Sam Altman · Productivity",
-  },
-  {
-    text: "I have different times of day I try to use for different kinds of work. The first few hours of the morning are definitely my most productive time of the day, so I don't let anyone schedule anything then. I try to do meetings in the afternoon. I take a break, or switch tasks, whenever I feel my attention starting to fade.",
-    author: "Sam Altman · Productivity",
-  },
-  {
-    text: "The right goal is to allocate your year optimally, not your day.",
-    author: "Sam Altman · Productivity",
-  },
-  {
-    text: "I like a cold, dark, quiet room, and a great mattress (I resisted spending a bunch of money on a great mattress for years, which was stupid—it makes a huge difference to my sleep quality. I love this one). Not eating a lot in the few hours before sleep helps. Not drinking alcohol helps a lot, though I'm not willing to do that all the time.",
-    author: "Sam Altman · Productivity",
-  },
-  {
-    text: "Finally, to repeat one more time: productivity in the wrong direction isn't worth anything at all. Think more about what to work on.",
-    author: "Sam Altman · Productivity",
-  },
-];
-
-/**
- * Public folder order — core shelf only.
- * High school / Dostoevsky / uncategorized hidden for now (ugly dump piles).
- */
-const HIDDEN_PUBLIC_CATEGORIES = new Set([
-  "high school reads",
-  "uncategorized",
-  "unsorted", // legacy dump label
-]);
 
 const PUBLIC_FOLDER_ORDER = [
-  "main characters",
+  "autobiographies",
   "everything startups",
+  "technology ethics",
   "psychology",
   "history",
   "economics",
+  "dostoevsky",
+  "high school reads",
+  "fiction",
+  "literature",
 ] as const;
 
 const FOLDER_ACCENT: Record<string, string> = {
+  autobiographies: "#c4a06a",
   "main characters": "#c4a06a",
   "main characters only": "#c4a06a", // legacy catalog key until fully migrated
   "everything startups": "#5b9fd4",
@@ -224,6 +135,7 @@ const FOLDER_ACCENT: Record<string, string> = {
   fiction: "#7b8fd4",
   literature: "#8d6e63",
   ai: "#3fb6b0",
+  "technology ethics": "#3fb6b0",
   dostoevsky: "#8c5a5a",
   "high school reads": "#9aa84b",
 };
@@ -245,10 +157,6 @@ function accentForLabel(label: string): string {
 
 function folderAccent(label: string): string {
   return FOLDER_ACCENT[label] || accentForLabel(label);
-}
-
-function isHiddenPublicCategory(label: string): boolean {
-  return HIDDEN_PUBLIC_CATEGORIES.has(label.trim().toLowerCase());
 }
 
 function buyUrl(entry: BookshelfEntry, book: Book): string {
@@ -275,12 +183,22 @@ function folderLabelFor(entry: BookshelfEntry): string {
   // Explicit catalog folder
   const raw = entry.category?.trim();
   if (raw) {
-    // Rename legacy drive label
-    if (raw === "main characters only") return "main characters";
+    const normalized = raw.toLowerCase();
+    if (
+      normalized === "main characters only" ||
+      normalized === "main characters" ||
+      normalized === "beatles" ||
+      normalized === "by my heroes"
+    ) {
+      return "autobiographies";
+    }
+    if (normalized === "ai") return "technology ethics";
+    if (normalized === "uncategorized" || normalized === "unsorted") {
+      return "history";
+    }
     return raw;
   }
-  // Default public shelf — don't scatter into old subject bins
-  return "main characters";
+  return "autobiographies";
 }
 
 type ShelfItem = { entry: BookshelfEntry; book: Book };
@@ -290,6 +208,12 @@ type ShelfGroup = {
   label: string;
   accent: string;
   items: ShelfItem[];
+};
+
+type BlogAuthorGroup = {
+  id: string;
+  author: string;
+  items: ShelfBlog[];
 };
 
 function BookCover({
@@ -392,6 +316,15 @@ function CatalogCard({
   const { entry, book } = item;
   const href = buyUrl(entry, book);
   const label = openLabel(entry.kind);
+  const associateLink = entry.kind === "book" && hasAmazonAssociateTag();
+  const artifactTitleSize =
+    book.title.length > 110
+      ? "0.72rem"
+      : book.title.length > 80
+        ? "0.82rem"
+        : book.title.length > 55
+          ? "0.95rem"
+          : "1.2rem";
   const tapTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -400,7 +333,7 @@ function CatalogCard({
     };
   }, []);
 
-  const onActivate = (e: ReactMouseEvent | ReactKeyboardEvent) => {
+  const onActivate = (e: ReactMouseEvent) => {
     e.preventDefault();
     if (editMode) return;
     if (tapTimer.current) {
@@ -426,12 +359,39 @@ function CatalogCard({
         type="button"
         className="bl-card pb-card-link pb-card-btn"
         title={editMode ? book.title : `${label} · double-tap for notes`}
+        aria-label={
+          editMode
+            ? book.title
+            : `${entry.kind === "book" ? "Open on Amazon" : label}: ${book.title}${book.author ? ` by ${book.author}` : ""}`
+        }
         onClick={onActivate}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") onActivate(e);
-        }}
       >
-        <BookCover book={book} folderLabel={folderLabel} />
+        <span className="pb-artifact-frame">
+          <BookCover book={book} folderLabel={folderLabel} />
+          {!editMode ? (
+            <span className="pb-artifact-popover" aria-hidden>
+              <span className="pb-artifact-kicker">{entry.kind}</span>
+              <strong
+                className="pb-artifact-title"
+                style={
+                  {
+                    "--pb-artifact-title-size": artifactTitleSize,
+                  } as CSSProperties
+                }
+              >
+                {book.title}
+              </strong>
+              {book.author ? (
+                <span className="pb-artifact-author">{book.author}</span>
+              ) : null}
+              <span className="pb-artifact-cta">
+                {entry.kind === "book"
+                  ? `Amazon${associateLink ? " · paid link" : ""} ↗`
+                  : `${label} ↗`}
+              </span>
+            </span>
+          ) : null}
+        </span>
         <span className="bl-card-title">{book.title}</span>
         {book.author ? (
           <span className="bl-card-author">{book.author}</span>
@@ -485,13 +445,11 @@ function CatalogCard({
 
 export function PublicBookshelf() {
   const [filter, setFilter] = useState<Filter>("all");
-  /**
-   * Start CLOSED — dense drive stack, no empty cover air until tapped.
-   * openFolders[id] === true → open; undefined/false → closed.
-   */
+  /** Start closed so the public shelf reads as one compact, aligned index. */
   const [openFolders, setOpenFolders] = useState<Record<string, boolean>>({});
-  const [quoteIndex, setQuoteIndex] = useState(0);
-  const [quoteCopied, setQuoteCopied] = useState(false);
+  const [openBlogAuthors, setOpenBlogAuthors] = useState<
+    Record<string, boolean>
+  >({});
   /** Ephemeral “Press S again” tip after a random pick (~5s) */
   const [sHint, setSHint] = useState(false);
   /** Pink pick stays until that drive is closed */
@@ -514,8 +472,11 @@ export function PublicBookshelf() {
   const [saveMsg, setSaveMsg] = useState<string | null>(null);
 
   useEffect(() => {
-    setEditor(loadShelfEditor());
-    setBlogStyle(loadBlogStyle());
+    const frame = window.requestAnimationFrame(() => {
+      setEditor(loadShelfEditor());
+      setBlogStyle(loadBlogStyle());
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   const patchEditor = useCallback(
@@ -535,9 +496,7 @@ export function PublicBookshelf() {
       bookshelfEntries.filter((entry) => entry.kind !== "blog"),
       editor
     );
-    return live
-      .filter((entry) => !isHiddenPublicCategory(folderLabelFor(entry)))
-      .map((entry, i) => {
+    return live.map((entry, i) => {
         const book = catalogEntryToBook(entry);
         book.color = SPINE_COLORS[i % SPINE_COLORS.length];
         if (entry.kind === "book") {
@@ -556,7 +515,7 @@ export function PublicBookshelf() {
         }
         book.category = folderLabelFor(entry) as Book["category"];
         return { entry, book };
-      });
+    });
   }, [editor]);
 
   const baseShelfBlogs = useMemo(() => getShelfBlogs(), []);
@@ -564,6 +523,27 @@ export function PublicBookshelf() {
     () => applyBlogOverlay(baseShelfBlogs, editor),
     [baseShelfBlogs, editor]
   );
+  const blogGroups = useMemo<BlogAuthorGroup[]>(() => {
+    const byAuthor = new Map<string, ShelfBlog[]>();
+    for (const blog of shelfBlogs) {
+      const items = byAuthor.get(blog.author) || [];
+      items.push(blog);
+      byAuthor.set(blog.author, items);
+    }
+    return [...byAuthor.entries()]
+      .map(([author, items]) => ({
+        id: author
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/(^-|-$)/g, ""),
+        author,
+        items,
+      }))
+      .sort(
+        (a, b) =>
+          b.items.length - a.items.length || a.author.localeCompare(b.author),
+      );
+  }, [shelfBlogs]);
   const blogCount = shelfBlogs.length;
   const blogCssVars = useMemo(
     () => blogStyleToCssVars(blogStyle) as CSSProperties,
@@ -745,7 +725,6 @@ export function PublicBookshelf() {
       map.delete(label);
     }
     for (const [label, items] of map) {
-      if (isHiddenPublicCategory(label)) continue;
       out.push({
         id: label,
         label,
@@ -764,6 +743,43 @@ export function PublicBookshelf() {
     return 0;
   };
 
+  const visibleBlogGroups = useMemo(
+    () => (showBlogs ? blogGroups : []),
+    [blogGroups, showBlogs],
+  );
+  const visibleFolderCount = groups.length + visibleBlogGroups.length;
+  const allFoldersExpanded =
+    visibleFolderCount > 0 &&
+    groups.every((group) => openFolders[group.id] === true) &&
+    visibleBlogGroups.every(
+      (group) => openBlogAuthors[group.id] === true,
+    );
+
+  const expandAllFolders = useCallback(() => {
+    setOpenFolders(
+      Object.fromEntries(groups.map((group) => [group.id, true])),
+    );
+    setOpenBlogAuthors(
+      Object.fromEntries(visibleBlogGroups.map((group) => [group.id, true])),
+    );
+  }, [groups, visibleBlogGroups]);
+
+  const closeAllFolders = useCallback(() => {
+    setOpenFolders(
+      Object.fromEntries(groups.map((group) => [group.id, false])),
+    );
+    setOpenBlogAuthors(
+      Object.fromEntries(visibleBlogGroups.map((group) => [group.id, false])),
+    );
+    setHighlightId(null);
+    setHighlightFolder(null);
+  }, [groups, visibleBlogGroups]);
+
+  const toggleAllFolders = useCallback(() => {
+    if (allFoldersExpanded) closeAllFolders();
+    else expandAllFolders();
+  }, [allFoldersExpanded, closeAllFolders, expandAllFolders]);
+
   const openAnnotation = useCallback((title: string, body: string) => {
     setAnnotation({ title, body });
   }, []);
@@ -778,12 +794,17 @@ export function PublicBookshelf() {
       if (existing) {
         clearTimeout(existing);
         blogTapTimers.current.delete(blog.id);
-        // Double-tap → full take (also always shown inline under the row)
+        const note = [blog.highlight && `“${blog.highlight}”`, blog.take]
+          .filter(Boolean)
+          .join("\n\n");
+        if (!note) {
+          openExternal(blog.url);
+          return;
+        }
+        // Double-tap opens the reader's notes when that entry has notes.
         openAnnotation(
           blog.title,
-          [blog.highlight && `“${blog.highlight}”`, blog.take]
-            .filter(Boolean)
-            .join("\n\n")
+          note,
         );
         return;
       }
@@ -796,27 +817,17 @@ export function PublicBookshelf() {
     [openAnnotation],
   );
 
-  /** Closed until user opens — denser shelf, less wasted space */
-  const isExpanded = (id: string) => openFolders[id] === true;
+  function isExpanded(id: string): boolean {
+    return openFolders[id] === true;
+  }
 
-  const quote = SHELF_QUOTES[quoteIndex % SHELF_QUOTES.length];
-  const quoteTotal = SHELF_QUOTES.length;
+  function isBlogAuthorExpanded(id: string): boolean {
+    return openBlogAuthors[id] === true;
+  }
 
-  const nextQuote = useCallback(() => {
-    setQuoteIndex((i) => (i + 1) % SHELF_QUOTES.length);
-    setQuoteCopied(false);
+  const toggleBlogAuthor = useCallback((id: string) => {
+    setOpenBlogAuthors((current) => ({ ...current, [id]: !current[id] }));
   }, []);
-
-  const copyQuote = useCallback(async () => {
-    const line = `“${quote.text}” — ${quote.author}`;
-    try {
-      await navigator.clipboard.writeText(line);
-      setQuoteCopied(true);
-      window.setTimeout(() => setQuoteCopied(false), 1600);
-    } catch {
-      /* clipboard may be blocked; ignore */
-    }
-  }, [quote]);
 
   /** Random pick — open drive, pink highlight until that drive closes */
   const surpriseMe = useCallback(() => {
@@ -863,7 +874,7 @@ export function PublicBookshelf() {
     };
   }, []);
 
-  // Keyboard: R = next quote · S = surprise · 1–4 = chips · C = copy quote
+  // Keyboard: S = surprise · V/B = folder controls · 1–4 = chips
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       const t = event.target as HTMLElement | null;
@@ -876,16 +887,15 @@ export function PublicBookshelf() {
         return;
       }
       const k = event.key.toLowerCase();
-      if (k === "r") {
-        event.preventDefault();
-        nextQuote();
-      } else if (k === "s") {
+      if (k === "s") {
         event.preventDefault();
         surpriseMe();
-      } else if (k === "c" && (event.metaKey || event.ctrlKey) === false) {
-        // plain C copies quote (not ⌘C)
+      } else if (k === "v") {
         event.preventDefault();
-        void copyQuote();
+        expandAllFolders();
+      } else if (k === "b") {
+        event.preventDefault();
+        closeAllFolders();
       } else if (k >= "1" && k <= "4") {
         const map: Filter[] = ["all", "book", "blog", "faves"];
         setFilter(map[Number(k) - 1]);
@@ -893,45 +903,10 @@ export function PublicBookshelf() {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [nextQuote, surpriseMe, copyQuote]);
+  }, [surpriseMe, expandAllFolders, closeAllFolders]);
 
   return (
     <div className="bl-public-wrap pb-root">
-      {/* Quote strip above the cream card — same placement as Wonder shell */}
-      <section className="pb-quote" aria-label="Shelf quote">
-        <blockquote className="pb-quote__text">
-          <p>“{quote.text}”</p>
-          <cite className="pb-quote__author">{quote.author}</cite>
-        </blockquote>
-        <div className="pb-quote__controls">
-          <button
-            type="button"
-            className="pb-quote__refresh"
-            aria-label={quoteCopied ? "Copied" : "Copy quote"}
-            title={quoteCopied ? "Copied" : "Copy quote (C)"}
-            onClick={() => void copyQuote()}
-          >
-            {quoteCopied ? (
-              <Check size={14} weight="bold" aria-hidden />
-            ) : (
-              <Copy size={14} weight="bold" aria-hidden />
-            )}
-          </button>
-          <button
-            type="button"
-            className="pb-quote__refresh"
-            aria-label="Next quote"
-            title="Next quote (R)"
-            onClick={nextQuote}
-          >
-            <ArrowClockwise size={14} weight="bold" aria-hidden />
-          </button>
-          <span className="pb-quote__index" aria-live="polite">
-            {(quoteIndex % quoteTotal) + 1}/{quoteTotal}
-          </span>
-        </div>
-      </section>
-
       {/* Wonder light panel — same structure as BooksLibrary list view */}
       <div className="bl" data-books-theme="light">
         <header className="bl-head">
@@ -960,7 +935,7 @@ export function PublicBookshelf() {
                   <b>{counts.book}</b> books
                 </span>
                 <span>
-                  <b>{blogCount}</b> blogs
+                  <b>{blogCount}</b> blogs read
                 </span>
                 <span>
                   <b>{counts.faves}</b> favs
@@ -974,7 +949,7 @@ export function PublicBookshelf() {
                 onClick={() => setPageEdit((v) => !v)}
                 aria-pressed={pageEdit}
               >
-                {pageEdit ? "done" : "edit page"}
+                {pageEdit ? "done" : "organize books"}
               </button>
               {pageEdit ? (
                 <>
@@ -1006,6 +981,32 @@ export function PublicBookshelf() {
               <em>{chipCount(id)}</em>
             </button>
           ))}
+          {visibleFolderCount > 0 ? (
+            <button
+              type="button"
+              className="bl-chip pb-chip-folders"
+              onClick={toggleAllFolders}
+              title={
+                allFoldersExpanded
+                  ? "Close all folders (B)"
+                  : "Expand all folders (V)"
+              }
+              aria-label={
+                allFoldersExpanded
+                  ? "Close all folders"
+                  : "Expand all folders"
+              }
+            >
+              {allFoldersExpanded ? (
+                <CaretDoubleUp size={12} weight="bold" aria-hidden />
+              ) : (
+                <CaretDoubleDown size={12} weight="bold" aria-hidden />
+              )}
+              <span>
+                {allFoldersExpanded ? "close all folders" : "expand all folders"}
+              </span>
+            </button>
+          ) : null}
           <button
             type="button"
             className="bl-chip pb-chip-surprise"
@@ -1235,15 +1236,15 @@ export function PublicBookshelf() {
           );
         })}
 
-        {/* Blogs: finished reads — style studio + always-visible highlight/take */}
+        {/* Finished reading archive, grouped by author. */}
         {showBlogs && shelfBlogs.length > 0 ? (
           <section
             className={`pb-blogs${filter === "all" ? " pb-blogs--after-books" : ""}`}
-            aria-label="Blogs"
+            aria-label="blogs I've read"
             style={blogCssVars}
           >
             <header className="pb-blogs__head">
-              <h2 className="pb-blogs__title">Blogs</h2>
+              <h2 className="pb-blogs__title">blogs I&apos;ve read</h2>
             </header>
 
             {pageEdit ? (
@@ -1433,92 +1434,150 @@ export function PublicBookshelf() {
               </div>
             ) : null}
 
-            <ol className="pb-blogs__list">
-              {shelfBlogs.map((blog, i) => (
-                <li key={blog.id} className="pb-blogs__item">
-                  {pageEdit ? (
-                    <div className="pb-blogs__row">
-                      <span className="pb-blogs__n" aria-hidden>
-                        {i + 1}
-                      </span>
-                      <span className="pb-blogs__body">
-                        <span className="pb-blogs__line">
-                          <span className="pb-blogs__name">{blog.title}</span>
-                          {blog.date ? (
-                            <time
-                              className="pb-blogs__date"
-                              dateTime={blog.date}
-                            >
-                              {shortBlogDate(blog.date)}
-                            </time>
-                          ) : null}
-                          <span className="pb-blogs__by">{blog.author}</span>
-                          <button
-                            type="button"
-                            className="pb-card-edit__delete"
-                            onClick={() => deleteBlog(blog.id)}
-                          >
-                            delete
-                          </button>
-                        </span>
-                        <textarea
-                          className="pb-blogs__field pb-blogs__field--highlight"
-                          rows={2}
-                          value={blog.highlight}
-                          onChange={(e) =>
-                            patchBlogField(
-                              blog.id,
-                              "highlight",
-                              e.target.value
-                            )
-                          }
-                          aria-label="Highlight"
-                        />
-                        <textarea
-                          className="pb-blogs__field pb-blogs__field--take"
-                          rows={2}
-                          value={blog.take}
-                          onChange={(e) =>
-                            patchBlogField(blog.id, "take", e.target.value)
-                          }
-                          aria-label="Your take"
-                        />
-                      </span>
-                    </div>
-                  ) : (
+            <div className="pb-blog-authors">
+              {blogGroups.map((group) => {
+                const expanded = isBlogAuthorExpanded(group.id);
+                return (
+                  <section
+                    key={group.id}
+                    className={`pb-blog-author${expanded ? " is-open" : ""}`}
+                  >
                     <button
                       type="button"
-                      className="pb-blogs__row"
-                      onClick={() => onBlogActivate(blog)}
-                      title="Open essay"
+                      className="pb-blog-author__folder"
+                      aria-expanded={expanded}
+                      onClick={() => toggleBlogAuthor(group.id)}
                     >
-                      <span className="pb-blogs__n" aria-hidden>
-                        {i + 1}
-                      </span>
-                      <span className="pb-blogs__body">
-                        <span className="pb-blogs__line">
-                          <span className="pb-blogs__name">{blog.title}</span>
-                          {blog.date ? (
-                            <time
-                              className="pb-blogs__date"
-                              dateTime={blog.date}
-                            >
-                              {shortBlogDate(blog.date)}
-                            </time>
-                          ) : null}
-                          <span className="pb-blogs__by">{blog.author}</span>
-                        </span>
-                        <span className="pb-blogs__highlight">
-                          {blog.highlight}
-                        </span>
-                        <span className="pb-blogs__take">{blog.take}</span>
+                      <CaretRight
+                        className="pb-blog-author__caret"
+                        size={12}
+                        weight="bold"
+                        aria-hidden
+                      />
+                      <FolderSimple
+                        className="pb-blog-author__icon"
+                        size={16}
+                        weight="fill"
+                        aria-hidden
+                      />
+                      <span className="pb-blog-author__copy">
+                        <strong>{group.author}</strong>
+                        <small>
+                          {group.items.length}{" "}
+                          {group.items.length === 1 ? "essay" : "essays"}
+                        </small>
                       </span>
                     </button>
-                  )}
-                </li>
-              ))}
-            </ol>
+
+                    {expanded ? (
+                      <ol className="pb-blogs__list">
+                        {group.items.map((blog, i) => {
+                          const displayDate = blog.readAt || blog.date;
+                          const displayDateLabel = blog.readAt
+                            ? `read ${shortBlogDate(blog.readAt)}`
+                            : shortBlogDate(blog.date);
+                          return (
+                            <li key={blog.id} className="pb-blogs__item">
+                              {pageEdit ? (
+                                <div className="pb-blogs__row">
+                                  <span className="pb-blogs__n" aria-hidden>
+                                    {String(i + 1).padStart(2, "0")}
+                                  </span>
+                                  <span className="pb-blogs__body">
+                                    <span className="pb-blogs__line">
+                                      <span className="pb-blogs__name">
+                                        {blog.title}
+                                      </span>
+                                      {displayDate ? (
+                                        <time
+                                          className="pb-blogs__date"
+                                          dateTime={displayDate}
+                                        >
+                                          {displayDateLabel}
+                                        </time>
+                                      ) : null}
+                                      <button
+                                        type="button"
+                                        className="pb-card-edit__delete"
+                                        onClick={() => deleteBlog(blog.id)}
+                                      >
+                                        delete
+                                      </button>
+                                    </span>
+                                    <textarea
+                                      className="pb-blogs__field pb-blogs__field--highlight"
+                                      rows={2}
+                                      value={blog.highlight}
+                                      onChange={(e) =>
+                                        patchBlogField(
+                                          blog.id,
+                                          "highlight",
+                                          e.target.value,
+                                        )
+                                      }
+                                      aria-label={`Highlight from ${blog.title}`}
+                                    />
+                                    <textarea
+                                      className="pb-blogs__field pb-blogs__field--take"
+                                      rows={2}
+                                      value={blog.take}
+                                      onChange={(e) =>
+                                        patchBlogField(
+                                          blog.id,
+                                          "take",
+                                          e.target.value,
+                                        )
+                                      }
+                                      aria-label={`Your take on ${blog.title}`}
+                                    />
+                                  </span>
+                                </div>
+                              ) : (
+                                <button
+                                  type="button"
+                                  className="pb-blogs__row"
+                                  onClick={() => onBlogActivate(blog)}
+                                  title="Open essay"
+                                >
+                                  <span className="pb-blogs__n" aria-hidden>
+                                    {String(i + 1).padStart(2, "0")}
+                                  </span>
+                                  <span className="pb-blogs__body">
+                                    <span className="pb-blogs__line">
+                                      <span className="pb-blogs__name">
+                                        {blog.title}
+                                      </span>
+                                      {displayDate ? (
+                                        <time
+                                          className="pb-blogs__date"
+                                          dateTime={displayDate}
+                                        >
+                                          {displayDateLabel}
+                                        </time>
+                                      ) : null}
+                                    </span>
+                                  </span>
+                                  <span className="pb-blogs__open" aria-hidden>
+                                    ↗
+                                  </span>
+                                </button>
+                              )}
+                            </li>
+                          );
+                        })}
+                      </ol>
+                    ) : null}
+                  </section>
+                );
+              })}
+            </div>
           </section>
+        ) : null}
+
+        {hasAmazonAssociateTag() ? (
+          <p className="pb-affiliate-disclosure">
+            As an Amazon Associate I earn from qualifying purchases.
+          </p>
         ) : null}
       </div>
 

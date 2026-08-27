@@ -1,13 +1,1214 @@
 [
   {
+    "id": "sa-2279512",
+    "title": "-",
+    "url": "https://blog.samaltman.com/2279512",
+    "author": "Sam Altman",
+    "date": "2026-04-10",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-sora-update-number-1",
+    "title": "Sora update #1",
+    "url": "https://blog.samaltman.com/sora-update-number-1",
+    "author": "Sam Altman",
+    "date": "2025-10-03",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-sora-2",
+    "title": "Sora 2",
+    "url": "https://blog.samaltman.com/sora-2",
+    "author": "Sam Altman",
+    "date": "2025-09-30",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-abundant-intelligence",
+    "title": "Abundant Intelligence",
+    "url": "https://blog.samaltman.com/abundant-intelligence",
+    "author": "Sam Altman",
+    "date": "2025-09-23",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-jakub-and-szymon",
+    "title": "Jakub and Szymon",
+    "url": "https://blog.samaltman.com/jakub-and-szymon",
+    "author": "Sam Altman",
+    "date": "2025-09-08",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-the-gentle-singularity",
+    "title": "The Gentle Singularity",
+    "url": "https://blog.samaltman.com/the-gentle-singularity",
+    "author": "Sam Altman",
+    "date": "2025-06-10",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-three-observations",
+    "title": "Three Observations",
+    "url": "https://blog.samaltman.com/three-observations",
+    "author": "Sam Altman",
+    "date": "2025-02-09",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-reflections",
+    "title": "Reflections",
+    "url": "https://blog.samaltman.com/reflections",
+    "author": "Sam Altman",
+    "date": "2025-01-05",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-gpt-4o",
+    "title": "GPT-4o",
+    "url": "https://blog.samaltman.com/gpt-4o",
+    "author": "Sam Altman",
+    "date": "2024-05-13",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-what-i-wish-someone-had-told-me",
+    "title": "What I Wish Someone Had Told Me",
+    "url": "https://blog.samaltman.com/what-i-wish-someone-had-told-me",
+    "author": "Sam Altman",
+    "date": "2023-12-21",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-helion-needs-you",
+    "title": "Helion Needs You",
+    "url": "https://blog.samaltman.com/helion-needs-you",
+    "author": "Sam Altman",
+    "date": "2022-07-13",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-dall-star-e-2",
+    "title": "DALL•E 2",
+    "url": "https://blog.samaltman.com/dall-star-e-2",
+    "author": "Sam Altman",
+    "date": "2022-04-06",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-helion",
+    "title": "Helion",
+    "url": "https://blog.samaltman.com/helion",
+    "author": "Sam Altman",
+    "date": "2021-11-05",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-the-strength-of-being-misunderstood",
+    "title": "The Strength of Being Misunderstood",
+    "url": "https://blog.samaltman.com/the-strength-of-being-misunderstood",
+    "author": "Sam Altman",
+    "date": "2020-12-01",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-pg-and-jessica",
+    "title": "PG and Jessica",
+    "url": "https://blog.samaltman.com/pg-and-jessica",
+    "author": "Sam Altman",
+    "date": "2020-09-25",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-researchers-and-founders",
+    "title": "Researchers and Founders",
+    "url": "https://blog.samaltman.com/researchers-and-founders",
+    "author": "Sam Altman",
+    "date": "2020-06-19",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-project-covalence",
+    "title": "Project Covalence",
+    "url": "https://blog.samaltman.com/project-covalence",
+    "author": "Sam Altman",
+    "date": "2020-06-16",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-idea-generation",
+    "title": "Idea Generation",
+    "url": "https://blog.samaltman.com/idea-generation",
+    "author": "Sam Altman",
+    "date": "2020-05-28",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-please-fund-more-science",
+    "title": "Please Fund More Science",
+    "url": "https://blog.samaltman.com/please-fund-more-science",
+    "author": "Sam Altman",
+    "date": "2020-03-30",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-funding-for-covid-19-projects",
+    "title": "Funding for COVID-19 Projects",
+    "url": "https://blog.samaltman.com/funding-for-covid-19-projects",
+    "author": "Sam Altman",
+    "date": "2020-03-15",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-the-virus",
+    "title": "The Virus",
+    "url": "https://blog.samaltman.com/the-virus",
+    "author": "Sam Altman",
+    "date": "2020-03-07",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-hard-startups",
+    "title": "Hard Startups",
+    "url": "https://blog.samaltman.com/hard-startups",
+    "author": "Sam Altman",
+    "date": "2020-02-26",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-how-to-invest-in-startups",
+    "title": "How To Invest In Startups",
+    "url": "https://blog.samaltman.com/how-to-invest-in-startups",
+    "author": "Sam Altman",
+    "date": "2020-01-13",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-how-to-be-successful",
+    "title": "How To Be Successful",
+    "url": "https://blog.samaltman.com/how-to-be-successful",
+    "author": "Sam Altman",
+    "date": "2019-01-24",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-reinforcement-learning-progress",
+    "title": "Reinforcement Learning Progress",
+    "url": "https://blog.samaltman.com/reinforcement-learning-progress",
+    "author": "Sam Altman",
+    "date": "2018-06-25",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-us-digital-currency",
+    "title": "US Digital Currency",
+    "url": "https://blog.samaltman.com/us-digital-currency",
+    "author": "Sam Altman",
+    "date": "2018-05-10",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
     "id": "sa-productivity",
     "title": "Productivity",
     "url": "https://blog.samaltman.com/productivity",
     "author": "Sam Altman",
     "date": "2018-04-10",
-    "readAt": "2026-08-06",
     "highlight": "The right goal is to allocate your year optimally, not your day.",
-    "take": "Direction beats speed. Compound the right problem — year allocation over productivity porn."
+    "take": "Direction beats speed. Compound the right problem — year allocation over productivity porn.",
+    "visible": true,
+    "readAt": "2026-08-06"
+  },
+  {
+    "id": "sa-a-clarification",
+    "title": "A Clarification",
+    "url": "https://blog.samaltman.com/a-clarification",
+    "author": "Sam Altman",
+    "date": "2017-12-16",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-e-pur-si-muove",
+    "title": "E Pur Si Muove",
+    "url": "https://blog.samaltman.com/e-pur-si-muove",
+    "author": "Sam Altman",
+    "date": "2017-12-14",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-the-merge",
+    "title": "The Merge",
+    "url": "https://blog.samaltman.com/the-merge",
+    "author": "Sam Altman",
+    "date": "2017-12-07",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-american-equity",
+    "title": "American Equity",
+    "url": "https://blog.samaltman.com/american-equity",
+    "author": "Sam Altman",
+    "date": "2017-11-27",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-the-united-slate",
+    "title": "The United Slate",
+    "url": "https://blog.samaltman.com/the-united-slate",
+    "author": "Sam Altman",
+    "date": "2017-07-12",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-join-the-yc-software-team",
+    "title": "Join the YC Software Team",
+    "url": "https://blog.samaltman.com/join-the-yc-software-team",
+    "author": "Sam Altman",
+    "date": "2017-05-18",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-quora",
+    "title": "Quora",
+    "url": "https://blog.samaltman.com/quora",
+    "author": "Sam Altman",
+    "date": "2017-04-21",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-tech-workers-values",
+    "title": "Tech Workers' Values",
+    "url": "https://blog.samaltman.com/tech-workers-values",
+    "author": "Sam Altman",
+    "date": "2017-03-31",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-keep-the-internet-open",
+    "title": "Keep the Internet Open",
+    "url": "https://blog.samaltman.com/keep-the-internet-open",
+    "author": "Sam Altman",
+    "date": "2017-03-14",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-greg",
+    "title": "Greg",
+    "url": "https://blog.samaltman.com/greg",
+    "author": "Sam Altman",
+    "date": "2017-03-07",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-what-i-heard-from-trump-supporters",
+    "title": "What I Heard From Trump Supporters",
+    "url": "https://blog.samaltman.com/what-i-heard-from-trump-supporters",
+    "author": "Sam Altman",
+    "date": "2017-02-21",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-2017-yc-annual-letter",
+    "title": "2017 YC Annual Letter",
+    "url": "https://blog.samaltman.com/2017-yc-annual-letter",
+    "author": "Sam Altman",
+    "date": "2017-02-16",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-time-to-take-a-stand",
+    "title": "Time to Take a Stand",
+    "url": "https://blog.samaltman.com/time-to-take-a-stand",
+    "author": "Sam Altman",
+    "date": "2017-01-28",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-affordable-care",
+    "title": "Affordable Care",
+    "url": "https://blog.samaltman.com/affordable-care",
+    "author": "Sam Altman",
+    "date": "2017-01-13",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-the-2016-election",
+    "title": "The 2016 Election",
+    "url": "https://blog.samaltman.com/the-2016-election",
+    "author": "Sam Altman",
+    "date": "2016-10-17",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-1-dollars-million-voteplz-sweepstakes",
+    "title": "$1 Million VotePlz Sweepstakes",
+    "url": "https://blog.samaltman.com/1-dollars-million-voteplz-sweepstakes",
+    "author": "Sam Altman",
+    "date": "2016-09-26",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-dont-read-the-comments",
+    "title": "Don't Read The Comments",
+    "url": "https://blog.samaltman.com/dont-read-the-comments",
+    "author": "Sam Altman",
+    "date": "2016-08-23",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-trump",
+    "title": "Trump",
+    "url": "https://blog.samaltman.com/trump",
+    "author": "Sam Altman",
+    "date": "2016-06-20",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-were-in-a-bubble",
+    "title": "'We're in a Bubble'",
+    "url": "https://blog.samaltman.com/were-in-a-bubble",
+    "author": "Sam Altman",
+    "date": "2016-06-14",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-housing-in-the-bay-area",
+    "title": "Housing in the Bay Area",
+    "url": "https://blog.samaltman.com/housing-in-the-bay-area",
+    "author": "Sam Altman",
+    "date": "2016-05-25",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-cruise",
+    "title": "Cruise",
+    "url": "https://blog.samaltman.com/cruise",
+    "author": "Sam Altman",
+    "date": "2016-04-13",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-asana",
+    "title": "Asana",
+    "url": "https://blog.samaltman.com/asana",
+    "author": "Sam Altman",
+    "date": "2016-03-30",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-hard-tech-is-back",
+    "title": "Hard Tech is Back",
+    "url": "https://blog.samaltman.com/hard-tech-is-back",
+    "author": "Sam Altman",
+    "date": "2016-03-11",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-before-growth",
+    "title": "Before Growth",
+    "url": "https://blog.samaltman.com/before-growth",
+    "author": "Sam Altman",
+    "date": "2016-01-15",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-the-tech-bust-of-2015",
+    "title": "The Tech Bust of 2015",
+    "url": "https://blog.samaltman.com/the-tech-bust-of-2015",
+    "author": "Sam Altman",
+    "date": "2015-11-02",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-airbnb-and-san-francisco",
+    "title": "Airbnb and San Francisco",
+    "url": "https://blog.samaltman.com/airbnb-and-san-francisco",
+    "author": "Sam Altman",
+    "date": "2015-09-28",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-unit-economics",
+    "title": "Unit Economics",
+    "url": "https://blog.samaltman.com/unit-economics",
+    "author": "Sam Altman",
+    "date": "2015-09-21",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-financial-misstatements",
+    "title": "Financial Misstatements",
+    "url": "https://blog.samaltman.com/financial-misstatements",
+    "author": "Sam Altman",
+    "date": "2015-08-21",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-the-post-yc-slump",
+    "title": "The Post-YC Slump",
+    "url": "https://blog.samaltman.com/the-post-yc-slump",
+    "author": "Sam Altman",
+    "date": "2015-08-20",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-the-us-digital-service",
+    "title": "The U.S. Digital Service",
+    "url": "https://blog.samaltman.com/the-us-digital-service",
+    "author": "Sam Altman",
+    "date": "2015-08-14",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-projects-and-companies",
+    "title": "Projects and Companies",
+    "url": "https://blog.samaltman.com/projects-and-companies",
+    "author": "Sam Altman",
+    "date": "2015-08-12",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-energy",
+    "title": "Energy",
+    "url": "https://blog.samaltman.com/energy",
+    "author": "Sam Altman",
+    "date": "2015-06-29",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-the-days-are-long-but-the-decades-are-short",
+    "title": "The days are long but the decades are short",
+    "url": "https://blog.samaltman.com/the-days-are-long-but-the-decades-are-short",
+    "author": "Sam Altman",
+    "date": "2015-04-28",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-bubble-talk",
+    "title": "Bubble talk",
+    "url": "https://blog.samaltman.com/bubble-talk",
+    "author": "Sam Altman",
+    "date": "2015-03-24",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-technology-predictions",
+    "title": "Technology predictions",
+    "url": "https://blog.samaltman.com/technology-predictions",
+    "author": "Sam Altman",
+    "date": "2015-03-03",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-machine-intelligence-part-2",
+    "title": "Machine intelligence, part 2",
+    "url": "https://blog.samaltman.com/machine-intelligence-part-2",
+    "author": "Sam Altman",
+    "date": "2015-03-02",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-machine-intelligence-part-1",
+    "title": "Machine intelligence, part 1",
+    "url": "https://blog.samaltman.com/machine-intelligence-part-1",
+    "author": "Sam Altman",
+    "date": "2015-02-25",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-startup-advice-briefly",
+    "title": "Startup advice, briefly",
+    "url": "https://blog.samaltman.com/startup-advice-briefly",
+    "author": "Sam Altman",
+    "date": "2015-02-20",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-the-software-revolution",
+    "title": "The Software Revolution",
+    "url": "https://blog.samaltman.com/the-software-revolution",
+    "author": "Sam Altman",
+    "date": "2015-02-16",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-china",
+    "title": "China",
+    "url": "https://blog.samaltman.com/china",
+    "author": "Sam Altman",
+    "date": "2015-02-11",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-farmlogs",
+    "title": "FarmLogs",
+    "url": "https://blog.samaltman.com/farmlogs",
+    "author": "Sam Altman",
+    "date": "2015-02-10",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-policy-for-growth-and-innovation",
+    "title": "Policy for Growth and Innovation",
+    "url": "https://blog.samaltman.com/policy-for-growth-and-innovation",
+    "author": "Sam Altman",
+    "date": "2015-01-14",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-a-new-team-at-reddit",
+    "title": "A new team at reddit",
+    "url": "https://blog.samaltman.com/a-new-team-at-reddit",
+    "author": "Sam Altman",
+    "date": "2014-11-13",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-a-question",
+    "title": "A Question",
+    "url": "https://blog.samaltman.com/a-question",
+    "author": "Sam Altman",
+    "date": "2014-11-12",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-board-members",
+    "title": "Board Members",
+    "url": "https://blog.samaltman.com/board-members",
+    "author": "Sam Altman",
+    "date": "2014-11-11",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-why-silicon-valley-works",
+    "title": "Why Silicon Valley Works",
+    "url": "https://blog.samaltman.com/why-silicon-valley-works",
+    "author": "Sam Altman",
+    "date": "2014-11-03",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-reddit",
+    "title": "reddit",
+    "url": "https://blog.samaltman.com/reddit",
+    "author": "Sam Altman",
+    "date": "2014-09-30",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-applying-to-yc",
+    "title": "Applying to YC",
+    "url": "https://blog.samaltman.com/applying-to-yc",
+    "author": "Sam Altman",
+    "date": "2014-09-15",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-stupid-apps-and-changing-the-world",
+    "title": "Stupid Apps and Changing the World",
+    "url": "https://blog.samaltman.com/stupid-apps-and-changing-the-world",
+    "author": "Sam Altman",
+    "date": "2014-08-07",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-uber-vs-car-ownership",
+    "title": "Uber vs Car Ownership",
+    "url": "https://blog.samaltman.com/uber-vs-car-ownership",
+    "author": "Sam Altman",
+    "date": "2014-07-28",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-black-swan-seed-rounds",
+    "title": "Black Swan Seed Rounds",
+    "url": "https://blog.samaltman.com/black-swan-seed-rounds",
+    "author": "Sam Altman",
+    "date": "2014-07-28",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-net-neutrality",
+    "title": "Net neutrality",
+    "url": "https://blog.samaltman.com/net-neutrality",
+    "author": "Sam Altman",
+    "date": "2014-07-14",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-the-economy",
+    "title": "The Economy",
+    "url": "https://blog.samaltman.com/the-economy",
+    "author": "Sam Altman",
+    "date": "2014-06-30",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-you-and-your-research",
+    "title": "You and Your Research, by Richard Hamming",
+    "url": "https://blog.samaltman.com/you-and-your-research",
+    "author": "Sam Altman",
+    "date": "2014-06-29",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-valuations",
+    "title": "Valuations",
+    "url": "https://blog.samaltman.com/valuations",
+    "author": "Sam Altman",
+    "date": "2014-06-20",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-founder-depression",
+    "title": "Founder Depression",
+    "url": "https://blog.samaltman.com/founder-depression",
+    "author": "Sam Altman",
+    "date": "2014-06-13",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-bitcoin-price-pressure",
+    "title": "Bitcoin Price Pressure",
+    "url": "https://blog.samaltman.com/bitcoin-price-pressure",
+    "author": "Sam Altman",
+    "date": "2014-04-30",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-employee-equity",
+    "title": "Employee Equity",
+    "url": "https://blog.samaltman.com/employee-equity",
+    "author": "Sam Altman",
+    "date": "2014-04-18",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-the-worst-part-of-yc",
+    "title": "The Worst Part of YC",
+    "url": "https://blog.samaltman.com/the-worst-part-of-yc",
+    "author": "Sam Altman",
+    "date": "2014-04-15",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-startups-role-models-risk-and-y-combinator",
+    "title": "Startups, Role Models, Risk, and Y Combinator",
+    "url": "https://blog.samaltman.com/startups-role-models-risk-and-y-combinator",
+    "author": "Sam Altman",
+    "date": "2014-03-25",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-what-ive-learned-from-female-founders-so-far",
+    "title": "What I've Learned From Female Founders So Far",
+    "url": "https://blog.samaltman.com/what-ive-learned-from-female-founders-so-far",
+    "author": "Sam Altman",
+    "date": "2014-03-21",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-new-rfs-breakthrough-technologies",
+    "title": "New RFS -- Breakthrough Technologies",
+    "url": "https://blog.samaltman.com/new-rfs-breakthrough-technologies",
+    "author": "Sam Altman",
+    "date": "2014-03-19",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-the-founder-visa-again",
+    "title": "The Founder Visa (again)",
+    "url": "https://blog.samaltman.com/the-founder-visa-again",
+    "author": "Sam Altman",
+    "date": "2014-03-17",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-fundraising-mistakes-founder-make",
+    "title": "Fundraising Mistakes Founders Make",
+    "url": "https://blog.samaltman.com/fundraising-mistakes-founder-make",
+    "author": "Sam Altman",
+    "date": "2014-02-20",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-ai",
+    "title": "AI",
+    "url": "https://blog.samaltman.com/ai",
+    "author": "Sam Altman",
+    "date": "2014-02-19",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-the-engineer-crunch",
+    "title": "The Engineer Crunch",
+    "url": "https://blog.samaltman.com/the-engineer-crunch",
+    "author": "Sam Altman",
+    "date": "2014-02-18",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-anonymity",
+    "title": "Anonymity",
+    "url": "https://blog.samaltman.com/anonymity",
+    "author": "Sam Altman",
+    "date": "2014-02-10",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-technology-and-wealth-inequality",
+    "title": "Technology and wealth inequality",
+    "url": "https://blog.samaltman.com/technology-and-wealth-inequality",
+    "author": "Sam Altman",
+    "date": "2014-01-28",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-value-is-created-by-doing",
+    "title": "Value is created by doing",
+    "url": "https://blog.samaltman.com/value-is-created-by-doing",
+    "author": "Sam Altman",
+    "date": "2014-01-16",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-super-successful-companies",
+    "title": "Super successful companies",
+    "url": "https://blog.samaltman.com/super-successful-companies",
+    "author": "Sam Altman",
+    "date": "2014-01-15",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-h5n1",
+    "title": "H5N1",
+    "url": "https://blog.samaltman.com/h5n1",
+    "author": "Sam Altman",
+    "date": "2013-12-11",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-employee-retention",
+    "title": "Employee Retention",
+    "url": "https://blog.samaltman.com/employee-retention",
+    "author": "Sam Altman",
+    "date": "2013-12-09",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-the-only-way-to-grow-huge",
+    "title": "The Only Way to Grow Huge",
+    "url": "https://blog.samaltman.com/the-only-way-to-grow-huge",
+    "author": "Sam Altman",
+    "date": "2013-12-03",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-thoughts-on-bitcoin",
+    "title": "Thoughts on Bitcoin",
+    "url": "https://blog.samaltman.com/thoughts-on-bitcoin",
+    "author": "Sam Altman",
+    "date": "2013-12-01",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-non-technical-founder-learn-to-hack",
+    "title": "Non-technical founder? Learn to hack",
+    "url": "https://blog.samaltman.com/non-technical-founder-learn-to-hack",
+    "author": "Sam Altman",
+    "date": "2013-10-31",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-the-separation-of-advice-and-money",
+    "title": "The separation of advice and money",
+    "url": "https://blog.samaltman.com/the-separation-of-advice-and-money",
+    "author": "Sam Altman",
+    "date": "2013-10-08",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-what-to-do-if-a-bubble-is-starting",
+    "title": "What to do if a bubble is starting",
+    "url": "https://blog.samaltman.com/what-to-do-if-a-bubble-is-starting",
+    "author": "Sam Altman",
+    "date": "2013-09-24",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-how-to-hire",
+    "title": "How to hire",
+    "url": "https://blog.samaltman.com/how-to-hire",
+    "author": "Sam Altman",
+    "date": "2013-09-23",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-electrons-and-atoms",
+    "title": "Electrons and Atoms",
+    "url": "https://blog.samaltman.com/electrons-and-atoms",
+    "author": "Sam Altman",
+    "date": "2013-08-28",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-how-things-get-done",
+    "title": "How things get done",
+    "url": "https://blog.samaltman.com/how-things-get-done",
+    "author": "Sam Altman",
+    "date": "2013-07-17",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-advice-for-ambitious-19-year-olds",
+    "title": "Advice for ambitious 19 year olds",
+    "url": "https://blog.samaltman.com/advice-for-ambitious-19-year-olds",
+    "author": "Sam Altman",
+    "date": "2013-06-24",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-what-happened-to-innovation-1",
+    "title": "What happened to innovation?",
+    "url": "https://blog.samaltman.com/what-happened-to-innovation-1",
+    "author": "Sam Altman",
+    "date": "2013-06-20",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-premature-optimization",
+    "title": "Premature optimization",
+    "url": "https://blog.samaltman.com/premature-optimization",
+    "author": "Sam Altman",
+    "date": "2013-06-06",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-party-rounds",
+    "title": "Party rounds",
+    "url": "https://blog.samaltman.com/party-rounds",
+    "author": "Sam Altman",
+    "date": "2013-06-05",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-rickover",
+    "title": "Rickover",
+    "url": "https://blog.samaltman.com/rickover",
+    "author": "Sam Altman",
+    "date": "2013-06-04",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-a-founder-friendly-term-sheet",
+    "title": "A founder-friendly term sheet",
+    "url": "https://blog.samaltman.com/a-founder-friendly-term-sheet",
+    "author": "Sam Altman",
+    "date": "2013-06-04",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-startup-advice",
+    "title": "Startup Advice",
+    "url": "https://blog.samaltman.com/startup-advice",
+    "author": "Sam Altman",
+    "date": "2013-06-03",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-by-endurance-we-conquer",
+    "title": "By endurance we conquer",
+    "url": "https://blog.samaltman.com/by-endurance-we-conquer",
+    "author": "Sam Altman",
+    "date": "2013-03-28",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-upside-risk",
+    "title": "Upside risk",
+    "url": "https://blog.samaltman.com/upside-risk",
+    "author": "Sam Altman",
+    "date": "2013-03-25",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-software-to-avoid-the-software-people",
+    "title": "Software to avoid the software people",
+    "url": "https://blog.samaltman.com/software-to-avoid-the-software-people",
+    "author": "Sam Altman",
+    "date": "2013-03-18",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-more-interesting-dinner-conversations",
+    "title": "More interesting dinner conversations",
+    "url": "https://blog.samaltman.com/more-interesting-dinner-conversations",
+    "author": "Sam Altman",
+    "date": "2013-03-10",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-aliens",
+    "title": "Aliens",
+    "url": "https://blog.samaltman.com/aliens",
+    "author": "Sam Altman",
+    "date": "2013-03-10",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-successful-people",
+    "title": "Successful people",
+    "url": "https://blog.samaltman.com/successful-people",
+    "author": "Sam Altman",
+    "date": "2013-03-07",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "sa-growth-and-government",
+    "title": "Growth and Government",
+    "url": "https://blog.samaltman.com/growth-and-government",
+    "author": "Sam Altman",
+    "date": "2013-03-04",
+    "highlight": "",
+    "take": "",
+    "visible": true
   },
   {
     "id": "pg-prepare",
@@ -16,7 +1217,8 @@
     "author": "Paul Graham",
     "readAt": "2026-08-26",
     "highlight": "",
-    "take": ""
+    "take": "",
+    "visible": true
   },
   {
     "id": "pg-earn",
@@ -25,7 +1227,8 @@
     "author": "Paul Graham",
     "readAt": "2026-08-26",
     "highlight": "",
-    "take": ""
+    "take": "",
+    "visible": true
   },
   {
     "id": "pg-winc",
@@ -34,7 +1237,8 @@
     "author": "Paul Graham",
     "readAt": "2026-08-26",
     "highlight": "",
-    "take": ""
+    "take": "",
+    "visible": true
   },
   {
     "id": "pg-brandage",
@@ -43,7 +1247,8 @@
     "author": "Paul Graham",
     "readAt": "2026-08-26",
     "highlight": "",
-    "take": ""
+    "take": "",
+    "visible": true
   },
   {
     "id": "pg-field",
@@ -52,7 +1257,8 @@
     "author": "Paul Graham",
     "readAt": "2026-08-26",
     "highlight": "",
-    "take": ""
+    "take": "",
+    "visible": true
   },
   {
     "id": "pg-goodwriting",
@@ -61,7 +1267,8 @@
     "author": "Paul Graham",
     "readAt": "2026-08-26",
     "highlight": "",
-    "take": ""
+    "take": "",
+    "visible": true
   },
   {
     "id": "pg-do",
@@ -70,7 +1277,8 @@
     "author": "Paul Graham",
     "readAt": "2026-08-26",
     "highlight": "",
-    "take": ""
+    "take": "",
+    "visible": true
   },
   {
     "id": "pg-woke",
@@ -79,7 +1287,8 @@
     "author": "Paul Graham",
     "readAt": "2026-08-26",
     "highlight": "",
-    "take": ""
+    "take": "",
+    "visible": true
   },
   {
     "id": "pg-writes",
@@ -88,7 +1297,8 @@
     "author": "Paul Graham",
     "readAt": "2026-08-26",
     "highlight": "",
-    "take": ""
+    "take": "",
+    "visible": true
   },
   {
     "id": "pg-when",
@@ -97,7 +1307,8 @@
     "author": "Paul Graham",
     "readAt": "2026-08-26",
     "highlight": "",
-    "take": ""
+    "take": "",
+    "visible": true
   },
   {
     "id": "pg-foundermode",

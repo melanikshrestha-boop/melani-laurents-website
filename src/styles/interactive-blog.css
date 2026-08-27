@@ -77,6 +77,34 @@
   user-select: text;
 }
 
+.sa-blog.sa-blog :where(button, input, textarea) {
+  font-family: inherit;
+}
+
+/* Keep the article and its discussion in one Lennon-like editorial voice. */
+.sa-blog.sa-blog :where(
+  .op-thread__eyebrow,
+  .op-thread__title,
+  .op-thread__prompt,
+  .op-form__field span,
+  .op-form__stances legend,
+  .op-form__field input,
+  .op-form__field textarea,
+  .op-stance,
+  .op-form__submit,
+  .op-form__status,
+  .op-list__count,
+  .op-item__meta,
+  .op-item__body,
+  .op-item__link
+) {
+  font-family: inherit;
+}
+
+.sa-blog.sa-blog .op-thread__prompt {
+  font-style: normal;
+}
+
 /* Full width of the main column — no max-width cage */
 .sa-blog-inner {
   box-sizing: border-box;

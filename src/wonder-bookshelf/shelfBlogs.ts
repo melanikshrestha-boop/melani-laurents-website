@@ -1,6 +1,6 @@
 /**
- * Blogs Melani has *finished* reading — public shelf only.
- * Law: no unread placeholders. Every entry needs a highlight + her take (n+1).
+ * Blogs Melani has finished reading — public shelf only.
+ * Reading records can stand alone; highlights and personal takes are optional.
  * Data: src/data/shelf-blogs.json (editable from the page in edit mode).
  */
 
@@ -19,6 +19,8 @@ export type ShelfBlog = {
   highlight: string;
   /** Her contribution / n+1 — always shown on the shelf */
   take: string;
+  /** Explicitly publish a reading record even when notes are still empty. */
+  visible?: boolean;
 };
 
 /** Format 2014-01-28 → 1/28/14 */
@@ -31,9 +33,11 @@ export function shortBlogDate(iso?: string): string {
 
 export const SHELF_BLOGS: ShelfBlog[] = raw as ShelfBlog[];
 
-/** Public list: finished + has contribution (never empty rows) */
+/** Public list: explicitly visible records or entries with completed notes. */
 export function getShelfBlogs(): ShelfBlog[] {
   return SHELF_BLOGS.filter(
-    (b) => b.highlight.trim().length > 0 && b.take.trim().length > 0
+    (b) =>
+      b.visible === true ||
+      (b.highlight.trim().length > 0 && b.take.trim().length > 0),
   );
 }

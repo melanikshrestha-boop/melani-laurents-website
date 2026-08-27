@@ -4439,10 +4439,7 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   user-select: none;
 }
 
-/* Titles, quotes, blog lines, drives, stats — all copyable */
-.bookshelf-page--wonder .pb-quote__text,
-.bookshelf-page--wonder .pb-quote__text p,
-.bookshelf-page--wonder .pb-quote__author,
+/* Titles, blog lines, drives, stats — all copyable */
 .bookshelf-page--wonder .bl-title,
 .bookshelf-page--wonder .bl-stats,
 .bookshelf-page--wonder .pb-blogs,
@@ -4545,40 +4542,6 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   justify-content: flex-start;
 }
 
-/*
- * Quote → Bookshelf gap = Image #2: always ~12px after the last quote line.
- * Controls are absolute so short quotes don’t leave empty air under the text.
- */
-.pb-root > .pb-quote {
-  position: relative;
-  display: block;
-  width: 100% !important;
-  max-width: none !important;
-  box-sizing: border-box;
-  margin: 0 0 8px !important;
-  /* room for copy/refresh controls on the right edge */
-  padding: 0 2.75rem 0 0 !important;
-  min-height: 0 !important;
-  gap: 0 !important;
-}
-.pb-root .pb-quote__text {
-  display: block;
-  width: 100% !important;
-  max-width: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  text-align: left;
-  box-sizing: border-box;
-}
-.pb-root .pb-quote__controls {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0 !important;
-  padding: 0 !important;
-  align-items: center !important;
-}
-
 /* Chips flush left on the content edge */
 .pb-root .bl-filter {
   width: 100%;
@@ -4623,6 +4586,7 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   letter-spacing: 0.01em;
   line-height: 1.35;
   text-transform: none;
+  overflow-wrap: anywhere;
 }
 .pb-root .pb-currently-reading a {
   color: #29251f;
@@ -4763,19 +4727,6 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
     box-shadow: 0 0 0 3px rgba(244, 164, 188, 0.85);
   }
 }
-/*
- * Row, not column. These controls are absolutely positioned, so they add no
- * height to the quote section — stacked vertically they ran 61px tall and
- * spilled out of a short quote straight into the "edit page" button below.
- * In a row they are ~20px and cannot outgrow the section whatever it holds.
- */
-.pb-root .pb-quote__controls {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
-}
-
 /* Greats section header: label left, meta right */
 .pb-root .bl-greats-head {
   display: flex !important;
@@ -4818,72 +4769,6 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 }
 .bookshelf-page--wonder .bookshelf-page__home a:hover {
   color: #29251f;
-}
-
-/* Quote — full width of shelf (fills screen / content column) */
-.pb-root .pb-quote__text {
-  min-width: 0;
-  width: 100%;
-  max-width: none;
-}
-.pb-root .pb-quote__text p {
-  margin: 0;
-  width: 100%;
-  max-width: none;
-  color: #3d3630;
-  font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif;
-  /* Smaller type, still full-width (wraps across the shelf) */
-  font-size: 0.75rem; /* 12px */
-  font-style: italic;
-  font-weight: 400;
-  line-height: 1.3;
-  letter-spacing: 0;
-  text-wrap: pretty;
-}
-.pb-root .pb-quote__author {
-  display: block;
-  margin-top: 2px;
-  color: #3b7ea8;
-  font-family: "Source Serif 4", Georgia, "Times New Roman", ui-serif, serif;
-  font-size: 0.6875rem; /* 11px */
-  font-style: normal;
-  font-weight: 500;
-  line-height: 1.15;
-  text-decoration: none;
-}
-/* Row — see the note on the earlier .pb-quote__controls rule. This is the
-   last of three declarations of this selector, so it is the one that wins. */
-.pb-root .pb-quote__controls {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
-  flex: 0 0 auto;
-}
-.pb-root .pb-quote__refresh {
-  display: grid;
-  place-items: center;
-  width: 24px;
-  height: 24px;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 5px;
-  background: transparent;
-  color: #71695f;
-  cursor: pointer;
-}
-.pb-root .pb-quote__refresh:hover {
-  background: rgba(244, 164, 188, 0.22);
-  color: #1a1214;
-}
-.pb-root .pb-quote__index {
-  color: #9a9084;
-  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
-  font-size: 10px;
-  font-variant-numeric: tabular-nums;
-  line-height: 1.1;
-  user-select: none;
 }
 
 /* Title + stats — page title one step above drives (13–14px), not a hero billboard */
@@ -5664,4 +5549,471 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 .pb-root .pb-note-modal__empty {
   color: #9a9084 !important;
   font-style: italic;
+}
+
+/* ── Public artifact wall ─────────────────────────────────────────────
+ * Five loose columns at gallery width, with the cover itself carrying the
+ * hover information. The coral wash is an interaction state, not another card.
+ */
+.pb-root .bl-folder-row {
+  margin-top: 0 !important;
+}
+
+.pb-root .bl-shelf.is-open .bl-folder-row {
+  margin-top: 0 !important;
+}
+
+.pb-root .bl-shelf:first-of-type .bl-folder-row {
+  margin-top: 0 !important;
+}
+
+.pb-root .bl-folder {
+  padding-block: 0 !important;
+}
+
+.pb-root .pb-chip-folders {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #5f574e !important;
+  white-space: nowrap;
+}
+
+.pb-root .pb-chip-folders:hover,
+.pb-root .pb-chip-folders:focus-visible {
+  color: #29251f !important;
+}
+
+.pb-root .bl-shelf > .bl-grid,
+.pb-root .pb-faves-flat > .bl-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  column-gap: clamp(2rem, 6vw, 7rem) !important;
+  row-gap: clamp(3rem, 7vw, 7.5rem) !important;
+  align-items: start;
+  padding: clamp(1.3rem, 3vw, 2.8rem) clamp(0.5rem, 4vw, 4rem)
+    clamp(3rem, 7vw, 6rem) !important;
+}
+
+.pb-root .bl-card-wrap {
+  min-width: 0;
+}
+
+.pb-root .pb-artifact-frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  background: #fff;
+  container-type: inline-size;
+}
+
+.pb-root .pb-artifact-frame .bl-card-cover {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.pb-root .pb-artifact-frame .bl-cover-image {
+  object-fit: contain;
+  object-position: center;
+}
+
+.pb-root .pb-artifact-popover {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  padding: clamp(0.65rem, 8cqw, 1.35rem);
+  overflow: hidden;
+  background: rgba(231, 82, 62, 0.9);
+  color: #fff;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.35rem);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    visibility 180ms ease;
+  text-align: left;
+  pointer-events: none;
+}
+
+.pb-root .pb-artifact-kicker,
+.pb-root .pb-artifact-cta {
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-size: clamp(0.54rem, 5cqw, 0.7rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.pb-root .pb-artifact-kicker {
+  margin-bottom: auto;
+  opacity: 0.78;
+}
+
+.pb-root .pb-artifact-title {
+  display: block;
+  max-width: 100%;
+  font-family: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--pb-artifact-title-size, 1rem);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+
+.pb-root .pb-artifact-author {
+  display: block;
+  margin-top: 0.65rem;
+  font-family: "Source Serif 4", Georgia, ui-serif, serif;
+  font-size: clamp(0.66rem, 6cqw, 0.84rem);
+  line-height: 1.18;
+  overflow-wrap: anywhere;
+}
+
+.pb-root .pb-artifact-cta {
+  margin-top: 0.9rem;
+}
+
+.pb-root button.bl-card.pb-card-btn:focus-visible {
+  outline: 2px solid #29251f;
+  outline-offset: 5px;
+}
+
+.pb-root .pb-affiliate-disclosure {
+  max-width: 42rem;
+  margin: clamp(2rem, 5vw, 4rem) 0 0;
+  color: #71695f;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  letter-spacing: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pb-root .pb-card-btn:hover .pb-artifact-popover,
+  .pb-root .pb-card-btn:focus-visible .pb-artifact-popover {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .pb-root .pb-card-btn:hover .bl-card-cover,
+  .pb-root .pb-card-btn:focus-visible .bl-card-cover {
+    transform: none;
+  }
+
+  .pb-root .bl-card-wrap:not(.pb-card-wrap--edit) > .pb-card-btn > .bl-card-title,
+  .pb-root .bl-card-wrap:not(.pb-card-wrap--edit) > .pb-card-btn > .bl-card-author,
+  .pb-root .bl-card-wrap:not(.pb-card-wrap--edit) > .pb-card-btn > .pb-card-stars {
+    display: none;
+  }
+}
+
+@media (max-width: 980px) {
+  .pb-root .bl-shelf > .bl-grid,
+  .pb-root .pb-faves-flat > .bl-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: clamp(1.5rem, 7vw, 4rem) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .pb-root .bl-shelf > .bl-grid,
+  .pb-root .pb-faves-flat > .bl-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(1rem, 8vw, 2.25rem) !important;
+    row-gap: clamp(2.2rem, 12vw, 4rem) !important;
+    padding: 1rem 0.35rem 3.5rem !important;
+  }
+}
+
+@media (max-width: 340px) {
+  .pb-root .bl-shelf > .bl-grid,
+  .pb-root .pb-faves-flat > .bl-grid {
+    grid-template-columns: 1fr;
+    padding-inline: 2.5rem !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pb-root .pb-artifact-popover {
+    transition: none;
+  }
+}
+
+/* Author-grouped reading archive */
+.pb-root .pb-blogs {
+  width: 100%;
+  max-width: 64rem;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.pb-root .pb-blogs--after-books {
+  margin-top: var(--pb-blog-section-top) !important;
+}
+
+.pb-root .pb-blogs__head {
+  margin: 0 0 5px;
+}
+
+.pb-root .pb-blogs__title {
+  color: var(--pb-blog-heading-color);
+  font-family: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+  font-size: max(var(--pb-blog-heading-size), 15px);
+  font-weight: 700;
+  line-height: 1;
+  text-transform: lowercase;
+}
+
+.pb-root .pb-blog-authors {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.pb-root .pb-blog-author {
+  margin: 0;
+  padding: 0;
+}
+
+.pb-root .pb-blog-author__folder {
+  display: flex;
+  width: 100%;
+  min-height: 30px;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #29251f;
+  text-align: left;
+  cursor: pointer;
+}
+
+.pb-root .pb-blog-author__folder:focus-visible,
+.pb-root .pb-blogs__row:focus-visible {
+  outline: 0;
+  background: rgba(91, 159, 212, 0.09);
+}
+
+.pb-root .pb-blog-author__caret {
+  flex: 0 0 12px;
+  color: #9a9084;
+  transition: transform 150ms ease;
+}
+
+.pb-root .pb-blog-author.is-open .pb-blog-author__caret {
+  transform: rotate(90deg);
+}
+
+.pb-root .pb-blog-author__icon {
+  flex: 0 0 16px;
+  color: #5b9fd4;
+}
+
+.pb-root .pb-blog-author:nth-child(2n) .pb-blog-author__icon {
+  color: #cb6f90;
+}
+
+.pb-root .pb-blog-author__copy {
+  display: grid;
+  min-width: 0;
+  gap: 0;
+  line-height: 1;
+}
+
+.pb-root .pb-blog-author__copy strong {
+  overflow-wrap: anywhere;
+  font-family: "Source Serif 4", Georgia, ui-serif, serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.pb-root .pb-blog-author__copy small {
+  color: #91887c;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.pb-root .pb-blog-author .pb-blogs__list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0 !important;
+  margin: 1px 0 4px 33px;
+  padding: 0;
+}
+
+.pb-root .pb-blog-author .pb-blogs__row {
+  display: grid;
+  grid-template-columns: 1.35rem minmax(0, 1fr) 0.75rem;
+  align-items: baseline;
+  gap: 0.45rem;
+  width: 100%;
+  min-height: 0;
+  margin: 0;
+  padding: 1px 0;
+  border: 0 !important;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+}
+
+.pb-root .pb-blog-author .pb-blogs__n {
+  padding: 1px 0 0;
+  color: var(--pb-blog-number-color);
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: max(var(--pb-blog-meta-size), 9px);
+  line-height: 1.2;
+}
+
+.pb-root .pb-blog-author .pb-blogs__body {
+  gap: var(--pb-blog-line-gap);
+  min-width: 0;
+}
+
+.pb-root .pb-blog-author .pb-blogs__line {
+  display: flex;
+  min-width: 0;
+  align-items: baseline;
+  gap: 0 0.4rem;
+  line-height: 1.15;
+}
+
+.pb-root .pb-blog-author .pb-blogs__name {
+  color: var(--pb-blog-title-color);
+  font-family: var(--pb-blog-font);
+  font-size: max(var(--pb-blog-title-size), 12px);
+  font-weight: 700;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.pb-root .pb-blog-author .pb-blogs__date {
+  flex: 0 0 auto;
+  color: var(--pb-blog-meta-color);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: max(var(--pb-blog-meta-size), 9px);
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.pb-root .pb-blogs__open {
+  color: #9a9084;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 10px;
+  line-height: 1.15;
+  opacity: 0;
+  transition: opacity 130ms ease;
+}
+
+.pb-root .pb-blogs__row:hover .pb-blogs__open,
+.pb-root .pb-blogs__row:focus-visible .pb-blogs__open {
+  opacity: 1;
+}
+
+.pb-root .pb-blog-author .pb-blogs__highlight,
+.pb-root .pb-blog-author .pb-blogs__take {
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+@media (max-width: 760px) {
+  .pb-root .pb-blog-author .pb-blogs__date {
+    white-space: normal;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pb-root .pb-blog-author__caret,
+  .pb-root .pb-blogs__open {
+    transition: none;
+  }
+}
+
+/* Public bookshelf type hierarchy: page, section, then regular-weight rows. */
+.pb-root .bl-title {
+  color: #29251f !important;
+  font-family: var(--font-syne), ui-sans-serif, system-ui, sans-serif !important;
+  font-size: 24px !important;
+  font-weight: 600 !important;
+  line-height: 1.05 !important;
+  letter-spacing: 0 !important;
+}
+
+.pb-root .bl-title svg,
+.pb-root .bl-title .min-icon {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.pb-root .pb-blogs__title {
+  color: #29251f !important;
+  font-family: var(--font-syne), ui-sans-serif, system-ui, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0 !important;
+}
+
+.pb-root .bl-folder strong,
+.pb-root .pb-blog-author__copy strong {
+  color: #29251f !important;
+  font-family: "Source Serif 4", Georgia, ui-serif, serif !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.05 !important;
+  letter-spacing: 0 !important;
+}
+
+.pb-root .pb-blog-author__folder {
+  min-height: 0;
+  padding: 2px !important;
+  line-height: 1.05;
+}
+
+.pb-root .bl-folder small,
+.pb-root .pb-blog-author__copy small {
+  color: #9a9084 !important;
+  font-family: ui-sans-serif, system-ui, sans-serif !important;
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  line-height: 1 !important;
+}
+
+.pb-root .bl-stats b,
+.pb-root .pb-currently-reading a,
+.pb-root .pb-blog-author .pb-blogs__name {
+  font-weight: 400 !important;
+}
+
+.pb-root .pb-currently-reading a {
+  text-decoration: none;
+}
+
+@media (max-width: 720px) {
+  .pb-root .bl-title {
+    font-size: 22px !important;
+  }
+
+  .pb-root .pb-blogs__title {
+    font-size: 15px !important;
+  }
 }

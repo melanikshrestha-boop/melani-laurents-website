@@ -2,7 +2,7 @@
   "name": "celinenova.com",
   "version": "0.1.0",
   "private": true,
-  "description": "Celine Nova — open sourcing my mind. celinenova.com",
+  "description": "Celine Nova — essays, books, art, and the things I build.",
   "scripts": {
     "dev": "next dev -H 127.0.0.1",
     "build": "next build",

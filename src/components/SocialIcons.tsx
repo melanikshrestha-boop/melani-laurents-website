@@ -1,4 +1,12 @@
+"use client";
+
 import { siteConfig, type SocialId } from "@/config/site";
+import { Allura } from "next/font/google";
+
+const handwriting = Allura({
+  subsets: ["latin"],
+  weight: "400",
+});
 
 const socialIcons: Record<SocialId, React.ReactNode> = {
   instagram: (
@@ -43,6 +51,30 @@ interface SocialIconsProps {
   size?: "sm" | "md" | "hub";
 }
 
+function placeHoverNote(anchor: HTMLAnchorElement) {
+  const note = anchor.querySelector<HTMLElement>(".social-icons__tip");
+  if (!note) return;
+
+  const margin = 12;
+  const gap = 10;
+  const anchorRect = anchor.getBoundingClientRect();
+  const noteRect = note.getBoundingClientRect();
+  const maxLeft = Math.max(margin, window.innerWidth - noteRect.width - margin);
+  const left = Math.min(Math.max(anchorRect.right - noteRect.width, margin), maxLeft);
+
+  let top = anchorRect.bottom + gap;
+  if (top + noteRect.height > window.innerHeight - margin) {
+    top = anchorRect.top - noteRect.height - gap;
+  }
+  top = Math.min(
+    Math.max(top, margin),
+    Math.max(margin, window.innerHeight - noteRect.height - margin),
+  );
+
+  note.style.setProperty("--social-tip-left", `${left}px`);
+  note.style.setProperty("--social-tip-top", `${top}px`);
+}
+
 export function SocialIcons({
   className = "",
   size = "md",
@@ -82,12 +114,22 @@ export function SocialIcons({
             }
             /* Native title only when we have no personal note (avoids double tooltip) */
             title={hoverNote ? undefined : label}
+            onPointerEnter={
+              hoverNote ? (event) => placeHoverNote(event.currentTarget) : undefined
+            }
+            onFocus={
+              hoverNote ? (event) => placeHoverNote(event.currentTarget) : undefined
+            }
           >
             <span className={`social-icons__icon ${iconSize}`}>
               {socialIcons[id]}
             </span>
             {hoverNote ? (
-              <span className="social-icons__tip" role="tooltip">
+              <span
+                className="social-icons__tip"
+                role="tooltip"
+                style={{ fontFamily: handwriting.style.fontFamily }}
+              >
                 {hoverNote}
               </span>
             ) : null}

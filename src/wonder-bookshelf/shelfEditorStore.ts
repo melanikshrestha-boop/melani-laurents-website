@@ -42,7 +42,7 @@ export const DEFAULT_CURRENT_READS: CurrentRead[] = [
 ];
 
 export const DEFAULT_FOLDER_VIEWS: Record<string, string> = {
-  "main characters": "ditch self help books for autobiographies",
+  autobiographies: "ditch self-help books for autobiographies",
 };
 
 export const DEFAULT_EDITOR: ShelfEditorState = {
@@ -131,7 +131,11 @@ export function applyBlogOverlay(
         ),
       } as ShelfBlog;
     })
-    .filter((b) => b.highlight.trim() && b.take.trim());
+    .filter(
+      (b) =>
+        b.visible === true ||
+        (b.highlight.trim().length > 0 && b.take.trim().length > 0),
+    );
 }
 
 /** Merge overlay into full catalog for permanent write */

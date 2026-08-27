@@ -21,7 +21,9 @@
   left: 0;
   right: 0;
   z-index: 50;
-  padding: 0.65rem var(--photo-page-padding) var(--photo-header-pad-y);
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.65rem clamp(0.85rem, 4vw, 4rem) var(--photo-header-pad-y);
 }
 
 .photography-header-inner {
@@ -29,6 +31,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
+  min-width: 0;
 }
 
 .photography-logo {
@@ -117,9 +120,9 @@
 .portfolio-hover {
   position: relative;
   width: 100%;
-  height: 100vh;
-  height: 100svh;
-  overflow: hidden;
+  height: auto;
+  min-height: max(100svh, 42rem);
+  overflow: clip;
   background: #000;
 }
 
@@ -181,9 +184,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  min-height: max(100svh, 42rem);
+  box-sizing: border-box;
   margin: 0;
-  padding: 0;
+  padding: clamp(8.5rem, 18vh, 11rem) 1rem clamp(2rem, 5vh, 4rem);
   list-style: none;
 }
 
@@ -195,7 +199,7 @@
 
 .portfolio-hover-item-title {
   margin: 0;
-  padding: 1rem 0;
+  padding: clamp(0.45rem, 1vh, 1rem) 0;
   font-family: var(--font-anton), sans-serif;
   font-size: clamp(3rem, 4.44vw, 5.32rem);
   font-weight: 400;
@@ -660,17 +664,49 @@
 }
 
 @media (max-width: 640px) {
+  .photography-header {
+    top: 3.15rem;
+    padding-inline: 0.85rem;
+  }
+
+  .photography-header-inner {
+    align-items: flex-start;
+    gap: 0.7rem;
+  }
+
+  .photography-logo {
+    flex: 0 1 auto;
+    min-width: 0;
+    font-size: 1rem;
+  }
+
   .photography-nav {
-    gap: 0.65rem;
+    min-width: 0;
+    flex: 0 1 auto;
+    justify-content: flex-end;
+    gap: clamp(0.42rem, 2.1vw, 0.65rem);
   }
 
   .photography-nav-link {
-    font-size: 0.875rem;
+    font-size: clamp(0.69rem, 2.8vw, 0.82rem);
   }
 
   .photography-nav-cta {
-    padding: 0.85rem 1.15rem;
-    font-size: 0.875rem;
+    padding: 0.7rem clamp(0.72rem, 3vw, 1rem);
+    font-size: clamp(0.69rem, 2.8vw, 0.82rem);
+  }
+
+  .portfolio-hover,
+  .portfolio-hover-items-list {
+    min-height: max(100svh, 34rem);
+  }
+
+  .portfolio-hover-items-list {
+    padding-top: clamp(7.5rem, 18vh, 9rem);
+  }
+
+  .portfolio-hover-item-title {
+    font-size: clamp(2.15rem, 12vw, 3.5rem);
   }
 
   .portfolio-gallery-grid {
@@ -684,6 +720,17 @@
 
   .portfolio-pagination-link--next {
     margin-left: 0;
+  }
+}
+
+@media (max-width: 410px) {
+  .photography-header-inner {
+    flex-wrap: wrap;
+  }
+
+  .photography-nav {
+    width: 100%;
+    justify-content: space-between;
   }
 }
 

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { InteractiveTitleLetters } from "./InteractiveTitleLetters";
-import { MelaniSignature } from "./MelaniSignature";
 import { SocialIcons } from "./SocialIcons";
 
 /**
@@ -40,13 +39,13 @@ export function HomeHub() {
 
       <div className="hub-page__sticky-ui">
         <header className="hub-page__header hub-page__header--locked">
-          <div className="hub-page__brand hub-page__brand--locked">
-            <MelaniSignature variant="light" />
-            <p className="hub-page__brand-loc">
-              <span className="hub-page__dot-inline" aria-hidden />
-              currently in Los Angeles
-            </p>
-          </div>
+          <Link href="/" className="hub-page__identity" aria-label="Celine Nova home">
+            <span className="hub-page__identity-photo" aria-hidden>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={HUB_HERO_PHOTO.src} alt="" />
+            </span>
+            <span className="hub-page__identity-name">CELINE NOVA.</span>
+          </Link>
 
           <nav
             className="hub-page__socials hub-page__socials--locked"
@@ -62,7 +61,6 @@ export function HomeHub() {
             className="hub-page__title"
             lineClassName="hub-page__title-line"
           />
-          <p className="hub-page__tagline">open sourcing my mind.</p>
         </div>
 
         <footer className="hub-page__footer hub-page__footer--locked">

@@ -1,8 +1,23 @@
 /**
  * Amazon product helpers for the public bookshelf.
- * Use product /dp/{ASIN} links (affiliate tag can be added later).
+ * Use product /dp/{ASIN} links and append the configured Associates tag.
  * Cover art is derived from ASIN so it matches the product page.
  */
+
+const AMAZON_ASSOCIATES_TAG = (
+  process.env.NEXT_PUBLIC_AMAZON_ASSOCIATES_TAG || ""
+).trim();
+
+export function hasAmazonAssociateTag(): boolean {
+  return /^[A-Za-z0-9-]{1,64}$/.test(AMAZON_ASSOCIATES_TAG);
+}
+
+function withAssociateTag(url: string): string {
+  if (!hasAmazonAssociateTag()) return url;
+  const tagged = new URL(url);
+  tagged.searchParams.set("tag", AMAZON_ASSOCIATES_TAG);
+  return tagged.toString();
+}
 
 /** Extract ASIN from /dp/ASIN or /gp/product/ASIN URLs. */
 export function extractAsin(url: string | undefined | null): string | null {
@@ -13,9 +28,9 @@ export function extractAsin(url: string | undefined | null): string | null {
   return m ? m[1].toUpperCase() : null;
 }
 
-/** Clean product URL (no tracking junk). Aff tag later. */
+/** Clean product URL with the configured Associates tag, when present. */
 export function amazonProductUrl(asin: string): string {
-  return `https://www.amazon.com/dp/${asin}`;
+  return withAssociateTag(`https://www.amazon.com/dp/${asin}`);
 }
 
 /**
@@ -28,7 +43,7 @@ export function amazonCoverUrl(asin: string): string {
 
 export function amazonSearchUrl(title: string, author = ""): string {
   const q = `${title} ${author}`.trim();
-  return `https://www.amazon.com/s?k=${encodeURIComponent(q)}`;
+  return withAssociateTag(`https://www.amazon.com/s?k=${encodeURIComponent(q)}`);
 }
 
 /** Best store URL: product page if ASIN known, else search. */
@@ -43,7 +58,7 @@ export function storeUrlForBook(opts: {
   if (asin) return amazonProductUrl(asin);
   if (opts.href && opts.href.includes("amazon.com") && opts.href.includes("/dp/")) {
     // already a product URL without parseable ASIN — use cleaned if possible
-    return opts.href.split("?")[0];
+    return withAssociateTag(opts.href.split("?")[0]);
   }
   return amazonSearchUrl(opts.title || "book", opts.author || "");
 }

@@ -4,7 +4,7 @@ export const siteConfig = {
   url: "https://celinenova.com",
   title: "Celine Nova",
   description:
-    "Open sourcing my mind through essays, books, daily inputs, and the things I build.",
+    "Essays, books, daily inputs, art, and the things I build.",
   email: "celinenovaa@gmail.com",
   location: "Mostly LA, sometimes SF or NYC",
   /**

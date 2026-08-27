@@ -27,7 +27,6 @@ export default function YouTubePage() {
           </div>
           <aside className="podcast-index__show-note">
             <p>{siteConfig.youtubeAudience}</p>
-            <span>open sourcing my mind.</span>
           </aside>
         </div>
       </header>

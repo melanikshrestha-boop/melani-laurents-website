@@ -1,12 +1,9 @@
 import { HomeHub } from "@/components/HomeHub";
-import { HomeRecentArchive } from "@/components/HomeRecentArchive";
-import { HomeSectionsShell } from "@/components/HomeSectionsShell";
 
 export default function Home() {
   return (
-    <HomeSectionsShell>
+    <div className="home-sections home-sections--single">
       <HomeHub />
-      <HomeRecentArchive />
-    </HomeSectionsShell>
+    </div>
   );
 }

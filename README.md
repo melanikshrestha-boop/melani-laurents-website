@@ -1,4 +1,4 @@
-# Celine Nova — Open Sourcing My Mind
+# Celine Nova — Open Sourcing My Thoughts
 
 Personal site for [celinenova.com](https://celinenova.com) — BCI research, neurotech, art, photography, and daily writing.
 

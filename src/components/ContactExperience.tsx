@@ -1,140 +1,163 @@
+"use client";
+
+import { type FormEvent, useRef, useState } from "react";
+import { PaperPlaneTilt } from "@phosphor-icons/react";
 import { siteConfig } from "@/config/site";
+import { CONTACT_TOPICS } from "@/lib/contact";
 import "@/styles/contact.css";
 
-/**
- * Contact — Lex Fridman–style: short rules + clear email channels.
- * Cream paper, edge-hug, no gimmick HUD.
- */
-function mail(subject: string, body?: string): string {
-  const q = new URLSearchParams();
-  q.set("subject", subject);
-  if (body) q.set("body", body);
-  return `mailto:${siteConfig.email}?${q.toString()}`;
-}
-
-const CHANNELS: {
-  label: string;
-  blurb: string;
-  subject: string;
-  href?: string;
-}[] = [
-  {
-    label: "Building / collaboration",
-    blurb:
-      "You’re shipping something real and want to work together, partner, or jam on systems.",
-    subject: "Building / collaboration",
-  },
-  {
-    label: "Research",
-    blurb:
-      "Research, papers, patents, signals, or technical deep-dives related to my work.",
-    subject: "Research",
-  },
-  {
-    label: "Business",
-    blurb: "Professional proposals, opportunities, or business introductions.",
-    subject: "Business",
-  },
-  {
-    label: "Personal",
-    blurb: "A personal note, hello, or something that doesn’t fit the other channels.",
-    subject: "Personal",
-  },
-  {
-    label: "Photography",
-    blurb: "Book a shoot or ask about portraits / scenery work.",
-    subject: "Photography",
-    href: siteConfig.photographyPath + "/about#book",
-  },
-  {
-    label: "Speaking / podcast",
-    blurb: "Invite me to speak, guest, or appear on a show.",
-    subject: "Speaking / podcast",
-  },
-  {
-    label: "Bugs",
-    blurb:
-      "Something broken on this site or a product I ship — technical reports help a lot.",
-    subject: "Site bug",
-  },
-];
+type SubmitState =
+  | { kind: "idle"; message: "" }
+  | { kind: "sending"; message: "Sending..." }
+  | { kind: "success"; message: string }
+  | { kind: "error"; message: string; mailFallback?: boolean };
 
 export function ContactExperience() {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [submitState, setSubmitState] = useState<SubmitState>({
+    kind: "idle",
+    message: "",
+  });
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    setSubmitState({ kind: "sending", message: "Sending..." });
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Object.fromEntries(formData.entries())),
+      });
+      const result = (await response.json()) as {
+        ok?: boolean;
+        error?: string;
+        code?: string;
+      };
+
+      if (!response.ok) {
+        setSubmitState({
+          kind: "error",
+          message: result.error ?? "Your message could not be sent.",
+          mailFallback: result.code === "MAIL_NOT_CONFIGURED",
+        });
+        return;
+      }
+
+      formRef.current?.reset();
+      setSubmitState({
+        kind: "success",
+        message: "Sent. Thank you for writing.",
+      });
+    } catch {
+      setSubmitState({
+        kind: "error",
+        message: "Your message could not be sent. Please try again.",
+      });
+    }
+  }
+
   return (
-    <div className="contact-page">
-      <div className="contact-page__inner">
-        <p className="contact-page__kicker">Contact</p>
-        <h1 className="contact-page__title">Contact and email</h1>
-
-        <p className="contact-page__lede">
-          I&apos;m fortunate to get messages from interesting people. To keep
-          the channel useful — and to maximize the chance I actually see yours —
-          please follow these rules:
-        </p>
-
-        <ol className="contact-page__rules">
-          <li>
-            <strong>Pick the most relevant option.</strong> Use only one contact
-            method that fits the nature of your message.
-          </li>
-          <li>
-            <strong>One message.</strong> Send once, to one place — not the same
-            note in five inboxes.
-          </li>
-          <li>
-            <strong>Be clear.</strong> Who you are, what you want, and why it
-            matters. Short beats vague.
-          </li>
-        </ol>
-
-        <p className="contact-page__intro">
-          The following are ways to contact me:
-        </p>
-
-        <section className="contact-page__section" aria-labelledby="contact-email-h">
-          <h2 id="contact-email-h" className="contact-page__h2">
-            Email
-          </h2>
-          <p className="contact-page__note">
-            Please do not spam multiple subjects for the same ask. One clear
-            thread is enough.
+    <main className="contact-page">
+      <div className="contact-page__shell">
+        <header className="contact-page__intro">
+          <p className="contact-page__kicker">Contact · Celine Nova</p>
+          <h1 aria-label="Send me something.">
+            <span>Send me</span>
+            {" "}
+            <em>something.</em>
+          </h1>
+          <p className="contact-page__lede">
+            An idea, collaboration, paper, question, bug, photograph, or hello.
           </p>
+          <a className="contact-page__email" href={`mailto:${siteConfig.email}`}>
+            {siteConfig.email}
+          </a>
+        </header>
 
-          <ul className="contact-page__list">
-            {CHANNELS.map((ch) => (
-              <li key={ch.label} className="contact-page__item">
-                <span className="contact-page__item-label">{ch.label}</span>
-                <p>{ch.blurb}</p>
-                {ch.href ? (
-                  <a href={ch.href}>Open photography booking →</a>
-                ) : (
-                  <a href={mail(ch.subject)}>{siteConfig.email}</a>
-                )}
-              </li>
-            ))}
-          </ul>
+        <section className="contact-page__form-section" aria-label="Send a message">
+          <form ref={formRef} className="contact-page__form" onSubmit={handleSubmit}>
+            <div className="contact-page__honeypot" aria-hidden>
+              <label htmlFor="contact-company">Company</label>
+              <input
+                id="contact-company"
+                name="company"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
+
+            <div className="contact-page__form-row">
+              <label>
+                <span>Name</span>
+                <input name="name" type="text" autoComplete="name" required />
+              </label>
+              <label>
+                <span>Email</span>
+                <input name="email" type="email" autoComplete="email" required />
+              </label>
+            </div>
+
+            <label>
+              <span>What is this about?</span>
+              <select name="topic" defaultValue="" required>
+                <option value="" disabled>
+                  Choose one
+                </option>
+                {CONTACT_TOPICS.map((topic) => (
+                  <option key={topic} value={topic}>
+                    {topic}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label>
+              <span>Subject</span>
+              <input name="subject" type="text" maxLength={160} required />
+            </label>
+
+            <label>
+              <span>Message</span>
+              <textarea name="message" rows={7} maxLength={5000} required />
+            </label>
+
+            <label>
+              <span>Link <small>optional</small></span>
+              <input
+                name="link"
+                type="url"
+                inputMode="url"
+                placeholder="https://"
+              />
+            </label>
+
+            <div className="contact-page__submit-row">
+              <button type="submit" disabled={submitState.kind === "sending"}>
+                <PaperPlaneTilt size={17} weight="bold" aria-hidden />
+                {submitState.kind === "sending" ? "Sending..." : "Send message"}
+              </button>
+              <div
+                className={`contact-page__status contact-page__status--${submitState.kind}`}
+                role="status"
+                aria-live="polite"
+              >
+                {submitState.message}
+                {submitState.kind === "error" && submitState.mailFallback ? (
+                  <>
+                    {" "}
+                    <a href={`mailto:${siteConfig.email}`}>Email me directly.</a>
+                  </>
+                ) : null}
+              </div>
+            </div>
+          </form>
         </section>
-
-        <p className="contact-page__foot">
-          <strong>Please note:</strong> I read what I can. I may not reply to
-          everything — that doesn&apos;t mean it wasn&apos;t appreciated. If
-          you&apos;re building something real, I care more than the silence
-          suggests.
-        </p>
-
-        <nav className="contact-page__socials" aria-label="Social">
-          {siteConfig.socialLinks.map((s) => (
-            <a
-              key={s.id}
-              href={s.href}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {s.label}
-            </a>
-          ))}
-        </nav>
       </div>
-    </div>
+    </main>
   );
 }
