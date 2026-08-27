@@ -1,24 +1,28 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useState, type CSSProperties } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+} from "react";
 import type { Photo } from "@/data/photography-meta";
-
-/** Stable hue per photo so a piece always wears the same colour. */
-function hueFor(key: string): number {
-  let hash = 0;
-  for (let i = 0; i < key.length; i += 1) {
-    hash = (hash * 31 + key.charCodeAt(i)) % 360;
-  }
-  return hash;
-}
 
 interface PortfolioGalleryProps {
   photos: Photo[];
+  layout?: "grid" | "scenery";
+  showStatement?: boolean;
 }
 
-export function PortfolioGallery({ photos }: PortfolioGalleryProps) {
+export function PortfolioGallery({
+  photos,
+  layout = "grid",
+  showStatement = false,
+}: PortfolioGalleryProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
 
   const close = useCallback(() => setLightboxIndex(null), []);
 
@@ -49,6 +53,38 @@ export function PortfolioGallery({ photos }: PortfolioGalleryProps) {
     };
   }, [lightboxIndex, close, goPrev, goNext]);
 
+  useEffect(() => {
+    const root = galleryRef.current;
+    if (!root) return;
+
+    const targets = Array.from(
+      root.querySelectorAll<HTMLElement>("[data-photo-reveal]"),
+    );
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      targets.forEach((target) => target.classList.add("is-visible"));
+      return;
+    }
+
+    root.classList.add("is-reveal-ready");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { rootMargin: "0px 0px -30% 0px", threshold: 0.15 },
+    );
+
+    targets.forEach((target) => observer.observe(target));
+    return () => observer.disconnect();
+  }, [photos.length, showStatement]);
+
   if (photos.length === 0) {
     return (
       <div className="portfolio-gallery portfolio-gallery--empty">
@@ -59,17 +95,21 @@ export function PortfolioGallery({ photos }: PortfolioGalleryProps) {
 
   return (
     <>
-      <div className="portfolio-gallery">
+      <div
+        ref={galleryRef}
+        className={`portfolio-gallery${
+          layout === "scenery" ? " portfolio-gallery--scenery" : ""
+        }`}
+      >
         <div className="portfolio-gallery-grid">
           {photos.map((photo, i) => (
             <figure
               key={photo.id}
               className="portfolio-gallery-item"
-              /* Hue per piece so no two neighbouring washes match — same
-                 stable-hash idea as the bookshelf folder accents. */
+              data-photo-reveal
               style={
                 {
-                  "--pg-hue": String(hueFor(photo.id || photo.src)),
+                  "--pg-delay": `${(i % 3) * 70}ms`,
                 } as CSSProperties
               }
             >
@@ -101,13 +141,23 @@ export function PortfolioGallery({ photos }: PortfolioGalleryProps) {
           ))}
         </div>
 
-        <aside className="portfolio-wall-text" aria-label="Artist statement">
-          <p className="portfolio-wall-text__statement">
-            If I could, I would read all of the books{" "}
-            <span>under the sun.</span>
-          </p>
-          <p className="portfolio-wall-text__signature">Celine Nova</p>
-        </aside>
+        {showStatement ? (
+          <aside
+            className="portfolio-wall-text"
+            aria-label="John Lennon quote"
+            data-photo-reveal
+          >
+            <blockquote>
+              <p className="portfolio-wall-text__statement">
+                “I made the decision at sixteen or seventeen that what I did,
+                I wanted everybody to see.”
+              </p>
+              <cite className="portfolio-wall-text__signature">
+                John Lennon, 1980
+              </cite>
+            </blockquote>
+          </aside>
+        ) : null}
       </div>
 
       {lightboxIndex !== null && (

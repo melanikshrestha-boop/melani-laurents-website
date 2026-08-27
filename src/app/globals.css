@@ -6634,12 +6634,10 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   z-index: 1;
   pointer-events: none;
   opacity: 0;
-  /* Plain alpha, not mix-blend-mode: multiply — multiply silently fails to
-     composite against the promoted <img> layer and the wash never paints. */
   background: linear-gradient(
-    180deg,
-    hsl(var(--pg-hue, 12) 58% 42% / 0.55) 0%,
-    hsl(var(--pg-hue, 12) 64% 30% / 0.88) 100%
+    to top,
+    rgba(18, 17, 15, 0.2),
+    rgba(18, 17, 15, 0) 42%
   );
   transition: opacity 380ms ease;
 }
@@ -6647,8 +6645,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .portfolio-gallery-caption {
   position: absolute;
   left: clamp(0.85rem, 2vw, 1.5rem);
-  right: clamp(0.85rem, 2vw, 1.5rem);
-  bottom: clamp(0.8rem, 2vw, 1.35rem);
+  right: auto;
+  bottom: clamp(0.55rem, 1.2vw, 0.9rem);
   z-index: 2;
   /* Flex column so the place and the note are always separate lines —
      styling the child spans alone left them running together. */
@@ -6656,15 +6654,18 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  color: #fff;
+  max-width: calc(100% - 1.1rem);
+  padding: 0.58rem 0.68rem 0.54rem;
+  background: rgba(244, 241, 234, 0.94);
+  color: #171614;
   font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-size: clamp(0.95rem, 1.5vw, 1.35rem);
-  font-weight: 600;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.45);
+  font-size: clamp(0.72rem, 1vw, 0.9rem);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-shadow: none;
   opacity: 0;
-  transform: translateY(0.6rem);
+  transform: translateY(0.35rem);
   pointer-events: none;
   transition:
     opacity 320ms ease,
@@ -6678,7 +6679,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 
 .portfolio-gallery-trigger:hover .portfolio-gallery-wash,
 .portfolio-gallery-trigger:focus-visible .portfolio-gallery-wash {
-  opacity: 1;
+  opacity: 0.65;
 }
 
 .portfolio-gallery-trigger:hover .portfolio-gallery-caption,
@@ -6701,7 +6702,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 /* Touch: no hover state to reveal it, so the placard just stays up */
 @media (hover: none) {
   .portfolio-gallery-wash {
-    opacity: 0.9;
+    opacity: 0.35;
   }
   .portfolio-gallery-caption {
     opacity: 1;
@@ -6727,44 +6728,39 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   font-weight: 400;
   font-style: normal;
   letter-spacing: 0.015em;
-  opacity: 0.82;
+  opacity: 0.64;
 }
 
-/* Full-screen closing artist statement after the final photograph. */
+/* A compact Lennon interlude after Portraits, never a full-screen quote wall. */
 .portfolio-wall-text {
-  display: flex;
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100svh;
+  display: block;
+  width: calc(100% - 2rem);
+  max-width: 68rem;
+  min-height: 0;
   box-sizing: border-box;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  margin: clamp(2rem, 5vw, 5rem) 0 0;
-  padding: clamp(4rem, 8vw, 9rem);
-  background: #12110f;
-  color: #f4efe6;
+  margin: clamp(3rem, 7vw, 6rem) auto 0;
+  padding: clamp(2rem, 4vw, 3.75rem) 0;
+  background: transparent;
+  color: #171614;
 }
 
 .portfolio-wall-text__statement {
-  max-width: 13ch;
+  max-width: 27ch;
   margin: 0;
-  font-family: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
-  font-size: clamp(3rem, 7.5vw, 8.5rem);
+  font-family: var(--font-grotesk), "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  font-size: clamp(1.75rem, 3.7vw, 3.7rem);
   font-style: normal;
-  font-weight: 600;
-  line-height: 0.96;
+  font-weight: 500;
+  line-height: 1.08;
   letter-spacing: 0;
   text-wrap: balance;
 }
 
-.portfolio-wall-text__statement span {
-  color: #f0cf78;
-}
-
 .portfolio-wall-text__signature {
-  margin: clamp(2rem, 5vh, 4rem) 0 0;
-  color: rgba(244, 239, 230, 0.62);
+  display: block;
+  margin: clamp(1.25rem, 2.5vw, 2rem) 0 0;
+  color: rgba(23, 22, 20, 0.58);
   font-family: var(--font-share-tech-mono), ui-monospace, monospace;
   font-size: clamp(0.75rem, 1vw, 1rem);
   font-weight: 400;
@@ -6775,14 +6771,14 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 
 @media (max-width: 640px) {
   .portfolio-wall-text {
-    min-height: 100dvh;
-    margin-top: 2rem;
-    padding: clamp(2rem, 8vw, 3.5rem);
+    width: calc(100% - 1.5rem);
+    margin-top: 2.5rem;
+    padding: 1.75rem 0 2.5rem;
   }
 
   .portfolio-wall-text__statement {
-    max-width: 11ch;
-    font-size: clamp(2.65rem, 13vw, 4.5rem);
+    max-width: 24ch;
+    font-size: clamp(1.55rem, 7.4vw, 2.35rem);
   }
 }
 

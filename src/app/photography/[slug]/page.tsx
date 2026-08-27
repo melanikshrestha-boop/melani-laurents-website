@@ -36,7 +36,11 @@ export default async function PhotographyCollectionPage({ params }: PageProps) {
   return (
     <>
       <ShotByMelaniHeader />
-      <PortfolioGallery photos={collection.photos} />
+      <PortfolioGallery
+        photos={collection.photos}
+        layout={slug === "scenery" ? "scenery" : "grid"}
+        showStatement={slug === "portraits"}
+      />
       <PortfolioPagination prev={prev} next={next} />
     </>
   );
