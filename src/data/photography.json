@@ -234,7 +234,8 @@
         {
           "id": "scenery-0",
           "src": "/photography/scenery/_DSC1768.jpeg",
-          "alt": "Scenery 1"
+          "alt": "Scenery 1",
+          "place": "99 Greene St, SoHo, New York"
         },
         {
           "id": "scenery-1",
