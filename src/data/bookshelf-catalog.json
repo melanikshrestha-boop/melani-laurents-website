@@ -760,7 +760,7 @@
     "title": "Alexander the Great",
     "source": "Philip Freeman",
     "loggedAt": "2026-07-28",
-    "category": "autobiographies",
+    "category": "history",
     "href": "https://www.amazon.com/dp/1416592806",
     "asin": "1416592806",
     "rating": 4
@@ -771,7 +771,7 @@
     "title": "Hannibal",
     "source": "Philip Freeman",
     "loggedAt": "2026-07-27",
-    "category": "autobiographies",
+    "category": "history",
     "href": "https://www.amazon.com/dp/1639363653",
     "asin": "1639363653",
     "rating": 2
@@ -782,7 +782,7 @@
     "title": "Caesar",
     "source": "Philip Freeman",
     "loggedAt": "2026-07-26",
-    "category": "autobiographies",
+    "category": "history",
     "href": "https://www.amazon.com/dp/0743289544",
     "asin": "0743289544",
     "rating": 3
@@ -793,7 +793,7 @@
     "title": "Napoleon: A Life",
     "source": "Andrew Roberts",
     "loggedAt": "2026-07-25",
-    "category": "autobiographies",
+    "category": "history",
     "href": "https://www.amazon.com/dp/0143127853",
     "asin": "0143127853",
     "rating": 3
@@ -804,7 +804,7 @@
     "title": "Masters of Command: Alexander, Hannibal, Caesar, and the Genius of Leadership",
     "source": "Barry Strauss",
     "loggedAt": "2026-07-24",
-    "category": "autobiographies",
+    "category": "history",
     "href": "https://www.amazon.com/dp/1439164495",
     "asin": "1439164495",
     "rating": 3
@@ -815,7 +815,7 @@
     "title": "Cleopatra: A Life",
     "source": "Stacy Schiff",
     "loggedAt": "2026-07-23",
-    "category": "autobiographies",
+    "category": "history",
     "href": "https://www.amazon.com/dp/0316001945",
     "asin": "0316001945",
     "rating": 1
@@ -826,7 +826,7 @@
     "title": "Philip and Alexander: Kings and Conquerors",
     "source": "Adrian Goldsworthy",
     "loggedAt": "2026-07-22",
-    "category": "autobiographies",
+    "category": "history",
     "href": "https://www.amazon.com/dp/1541602625",
     "asin": "1541602625",
     "rating": 3
@@ -837,7 +837,7 @@
     "title": "Hitler's Charisma: Leading Millions into the Abyss",
     "source": "Laurence Rees",
     "loggedAt": "2026-07-21",
-    "category": "autobiographies",
+    "category": "history",
     "href": "https://www.amazon.com/dp/0307389588",
     "asin": "0307389588",
     "rating": 3
@@ -848,7 +848,7 @@
     "title": "Talleyrand",
     "source": "Duff Cooper",
     "loggedAt": "2026-07-20",
-    "category": "autobiographies",
+    "category": "history",
     "href": "https://www.amazon.com/dp/0802137679",
     "asin": "0802137679",
     "rating": 3
@@ -859,7 +859,7 @@
     "title": "Napoleon's Military Maxims",
     "source": "Napoleon Bonaparte",
     "loggedAt": "2026-07-19",
-    "category": "autobiographies",
+    "category": "history",
     "href": "https://www.amazon.com/dp/0486437302",
     "asin": "0486437302",
     "rating": 2
@@ -1141,7 +1141,7 @@
     "loggedAt": "2026-05-30",
     "href": "https://www.amazon.com/dp/0684825570",
     "asin": "0684825570",
-    "category": "autobiographies",
+    "category": "history",
     "rating": 3
   },
   {
@@ -1152,7 +1152,7 @@
     "loggedAt": "2026-05-29",
     "href": "https://www.amazon.com/dp/0684837714",
     "asin": "0684837714",
-    "category": "autobiographies",
+    "category": "history",
     "rating": 3
   },
   {

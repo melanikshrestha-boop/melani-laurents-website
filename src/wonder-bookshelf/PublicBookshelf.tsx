@@ -107,6 +107,31 @@ const PUBLIC_FOLDER_ORDER = [
   "literature",
 ] as const;
 
+const AUTOBIOGRAPHY_TECH_ORDER = [
+  "book-entrepreneur-jobs",
+  "book-entrepreneur-source-code",
+  "book-entrepreneur-nvidia",
+  "book-isaacson-elon-musk",
+  "book-entrepreneur-musk-vance",
+  "book-entrepreneur-book-of-elon",
+  "book-sv-a5b6547157",
+  "book-isaacson-innovators",
+  "book-isaacson-code-breaker",
+  "book-genius-tesla-auto",
+  "book-genius-tesla-carlson",
+  "book-genius-menlo",
+  "book-genius-feynman-joking",
+  "book-genius-gleick-feynman",
+  "book-genius-einstein",
+  "book-genius-newton",
+  "book-genius-wright",
+  "book-genius-leonardo",
+] as const;
+
+const AUTOBIOGRAPHY_TECH_RANK = new Map<string, number>(
+  AUTOBIOGRAPHY_TECH_ORDER.map((id, index) => [id, index]),
+);
+
 const FOLDER_ACCENT: Record<string, string> = {
   autobiographies: "#c4a06a",
   "main characters": "#c4a06a",
@@ -213,6 +238,19 @@ type BlogAuthorGroup = {
   author: string;
   items: ShelfBlog[];
 };
+
+function orderFolderItems(label: string, items: ShelfItem[]): ShelfItem[] {
+  if (label !== "autobiographies") return items;
+
+  return [...items].sort((a, b) => {
+    const aRank = AUTOBIOGRAPHY_TECH_RANK.get(a.entry.id);
+    const bRank = AUTOBIOGRAPHY_TECH_RANK.get(b.entry.id);
+    if (aRank === undefined && bRank === undefined) return 0;
+    if (aRank === undefined) return 1;
+    if (bRank === undefined) return -1;
+    return aRank - bRank;
+  });
+}
 
 function BookCover({
   book,
@@ -686,7 +724,7 @@ export function PublicBookshelf() {
         id: label,
         label,
         accent: folderAccent(label),
-        items,
+        items: orderFolderItems(label, items),
       });
       map.delete(label);
     }

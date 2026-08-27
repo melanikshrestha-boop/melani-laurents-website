@@ -8,11 +8,7 @@ export const metadata: Metadata = {
   description: "Notes and essays.",
 };
 
-/**
- * Sam Altman archive structure:
- * full-bleed white · blue title links · gray uppercase dates · no side waste.
- * No fake posts. Empty until she writes.
- */
+/** A plain document index: title and date only. */
 export default function BlogIndexPage() {
   const posts = listBlogPosts();
 
@@ -26,12 +22,7 @@ export default function BlogIndexPage() {
             {posts.map((post) => (
               <li key={post.slug} className="sa-blog-item">
                 <h2 className="sa-blog-title">
-                  <Link href={`/blog/${post.slug}`}>
-                    {post.title}
-                    {post.draft ? (
-                      <span className="sa-blog-draft"> Draft</span>
-                    ) : null}
-                  </Link>
+                  <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                 </h2>
                 <p className="sa-blog-date">
                   <time dateTime={post.date}>

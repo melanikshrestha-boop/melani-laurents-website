@@ -32,7 +32,7 @@ export function listBlogPosts(): BlogPost[] {
   return [...blogPosts].sort((a, b) => b.date.localeCompare(a.date));
 }
 
-/** Sam Altman archive date: "SEPTEMBER 8, 2025" */
+/** Plain document date: "September 8, 2025". */
 export function formatBlogArchiveDate(iso: string): string {
   const d = new Date(`${iso}T12:00:00`);
   if (Number.isNaN(d.getTime())) return iso;
@@ -41,8 +41,7 @@ export function formatBlogArchiveDate(iso: string): string {
       month: "long",
       day: "numeric",
       year: "numeric",
-    })
-    .toUpperCase();
+    });
 }
 
 export function consumeForPost(post: BlogPost) {
