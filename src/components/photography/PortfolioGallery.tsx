@@ -128,14 +128,20 @@ export function PortfolioGallery({
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <span className="portfolio-gallery-wash" aria-hidden />
-                <figcaption className="portfolio-gallery-caption">
-                  <span className="portfolio-gallery-place">
-                    {photo.place || photo.alt}
-                  </span>
-                  {photo.note ? (
-                    <span className="portfolio-gallery-note">{photo.note}</span>
-                  ) : null}
-                </figcaption>
+                {photo.place || photo.note ? (
+                  <figcaption className="portfolio-gallery-caption">
+                    {photo.place ? (
+                      <span className="portfolio-gallery-place">
+                        {photo.place}
+                      </span>
+                    ) : null}
+                    {photo.note ? (
+                      <span className="portfolio-gallery-note">
+                        {photo.note}
+                      </span>
+                    ) : null}
+                  </figcaption>
+                ) : null}
               </button>
             </figure>
           ))}

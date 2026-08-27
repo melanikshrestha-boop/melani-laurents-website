@@ -229,30 +229,29 @@
   margin: 0;
 }
 
-/* Scenery is a compact wall rather than a row grid. Columns pack each new
-   photograph directly below the previous one, so portrait images cannot
-   create large empty row tracks. */
+/* Scenery reads in strict row order: one and two share the first row, then
+   the remaining photographs continue left-to-right. */
 .portfolio-gallery--scenery .portfolio-gallery-grid {
-  display: block;
+  display: grid;
   width: calc(100% - 2rem);
-  max-width: 68rem;
+  max-width: 58rem;
   margin-inline: auto;
   padding: 0;
-  columns: 3;
-  column-gap: clamp(0.65rem, 1.1vw, 0.9rem);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.55rem, 1vw, 0.8rem);
 }
 
 .portfolio-gallery--scenery .portfolio-gallery-item {
-  display: inline-block;
+  display: block;
   width: 100%;
-  margin: 0 0 clamp(0.65rem, 1.1vw, 0.9rem);
-  break-inside: avoid;
-  vertical-align: top;
+  margin: 0;
 }
 
-.portfolio-gallery--scenery .portfolio-gallery-item:nth-child(6n) {
-  width: 68%;
-  margin-left: 32%;
+.portfolio-gallery--scenery
+  .portfolio-gallery-item:last-child:nth-child(odd) {
+  grid-column: 2;
+  width: 70%;
+  justify-self: end;
 }
 
 .portfolio-gallery.is-reveal-ready [data-photo-reveal] {
@@ -438,9 +437,6 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .portfolio-gallery--scenery .portfolio-gallery-grid {
-    columns: 2;
-  }
 }
 
 @media (max-width: 640px) {
@@ -484,13 +480,14 @@
   }
 
   .portfolio-gallery--scenery .portfolio-gallery-grid {
-    width: calc(100% - 1.5rem);
-    columns: 1;
+    width: calc(100% - 1rem);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.45rem;
   }
 
-  .portfolio-gallery--scenery .portfolio-gallery-item:nth-child(6n) {
-    width: 74%;
-    margin-left: 26%;
+  .portfolio-gallery--scenery
+    .portfolio-gallery-item:last-child:nth-child(odd) {
+    width: 76%;
   }
 
   .portfolio-pagination {

@@ -6607,12 +6607,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
     0 2px 12px rgba(0, 0, 0, calc(0.4 * (1 - var(--nav-ink, 0))));
 }
 
-/* ── Gallery hover: the museum-placard treatment ──────────────────────
- * Colour wash + title rising in, per piece. The wash is a hue set on the
- * figure (--pg-hue) so neighbouring works never share one.
- * Everything animates opacity/transform only, so a grid of large photos
- * stays composited and doesn't repaint on hover.
- */
+/* ── Gallery hover: translucent violet wash + caption ──────────────── */
 .portfolio-gallery-trigger {
   position: relative;
   display: block;
@@ -6635,9 +6630,9 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   pointer-events: none;
   opacity: 0;
   background: linear-gradient(
-    to top,
-    rgba(18, 17, 15, 0.2),
-    rgba(18, 17, 15, 0) 42%
+    180deg,
+    rgba(112, 75, 175, 0.62),
+    rgba(67, 34, 135, 0.78)
   );
   transition: opacity 380ms ease;
 }
@@ -6645,8 +6640,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .portfolio-gallery-caption {
   position: absolute;
   left: clamp(0.85rem, 2vw, 1.5rem);
-  right: auto;
-  bottom: clamp(0.55rem, 1.2vw, 0.9rem);
+  right: clamp(0.65rem, 1.4vw, 1rem);
+  bottom: clamp(0.65rem, 1.4vw, 1rem);
   z-index: 2;
   /* Flex column so the place and the note are always separate lines —
      styling the child spans alone left them running together. */
@@ -6654,10 +6649,10 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  max-width: calc(100% - 1.1rem);
-  padding: 0.58rem 0.68rem 0.54rem;
-  background: rgba(244, 241, 234, 0.94);
-  color: #171614;
+  max-width: calc(100% - 1.3rem);
+  padding: 0;
+  background: transparent;
+  color: #fff;
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: clamp(0.72rem, 1vw, 0.9rem);
   font-weight: 500;
@@ -6679,7 +6674,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 
 .portfolio-gallery-trigger:hover .portfolio-gallery-wash,
 .portfolio-gallery-trigger:focus-visible .portfolio-gallery-wash {
-  opacity: 0.65;
+  opacity: 1;
 }
 
 .portfolio-gallery-trigger:hover .portfolio-gallery-caption,
@@ -6702,7 +6697,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 /* Touch: no hover state to reveal it, so the placard just stays up */
 @media (hover: none) {
   .portfolio-gallery-wash {
-    opacity: 0.35;
+    opacity: 0.72;
   }
   .portfolio-gallery-caption {
     opacity: 1;
