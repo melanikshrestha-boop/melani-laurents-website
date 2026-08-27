@@ -686,3 +686,76 @@
     margin-left: 0;
   }
 }
+
+/* ── Lightbox: visible prev / next and position ───────────────────────
+ * Arrow keys and Escape were already bound; nothing on screen advertised
+ * them, so the viewer read as a dead end. These expose the same actions.
+ */
+.portfolio-lightbox-nav {
+  position: fixed;
+  top: 50%;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: clamp(2.75rem, 5vw, 3.5rem);
+  height: clamp(2.75rem, 5vw, 3.5rem);
+  transform: translateY(-50%);
+  border: 0;
+  border-radius: 50%;
+  background: rgba(12, 12, 12, 0.42);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 200ms ease,
+    color 200ms ease,
+    opacity 200ms ease;
+}
+
+.portfolio-lightbox-nav:hover,
+.portfolio-lightbox-nav:focus-visible {
+  background: rgba(12, 12, 12, 0.72);
+  color: #fff;
+}
+
+.portfolio-lightbox-nav--prev {
+  left: clamp(0.75rem, 3vw, 2rem);
+}
+.portfolio-lightbox-nav--next {
+  right: clamp(0.75rem, 3vw, 2rem);
+}
+
+.portfolio-lightbox-counter {
+  position: fixed;
+  left: 50%;
+  bottom: clamp(1rem, 3vh, 2rem);
+  z-index: 3;
+  margin: 0;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.62);
+  font-family: var(--font-share-tech-mono), ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+}
+
+/* ── Empty collection: a held space, not a void ───────────────────────
+ * Film ships before its scans do. Left alone the page was a line of type
+ * marooned in a screen and a half of nothing, with Previous / Sketches
+ * stranded far below. Bounding the block keeps the page composed.
+ */
+.portfolio-gallery--empty {
+  display: grid;
+  place-items: center;
+  min-height: clamp(14rem, 34vh, 22rem);
+  padding: clamp(2rem, 6vh, 4rem) 1.25rem;
+}
+
+.portfolio-gallery-empty {
+  margin: 0;
+  color: color-mix(in srgb, currentColor 48%, transparent);
+  font-family: var(--font-share-tech-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}

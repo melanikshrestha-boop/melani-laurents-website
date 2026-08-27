@@ -6635,12 +6635,18 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 
 .portfolio-gallery-note {
   display: block;
-  margin-top: 0.3em;
-  font-size: 0.78em;
+  margin-top: 0.42em;
+  /*
+   * Upright, never italic. Grotesques have no true italic, only a slanted
+   * roman, which reads as tilted rather than emphasised beside the bold
+   * place line. Separation comes from weight, size and opacity instead,
+   * the way a placard caption sits under its title.
+   */
+  font-size: 0.72em;
   font-weight: 400;
-  font-style: italic;
-  letter-spacing: 0.01em;
-  opacity: 0.92;
+  font-style: normal;
+  letter-spacing: 0.015em;
+  opacity: 0.82;
 }
 
 /* ── Closing wall text ────────────────────────────────────────────────

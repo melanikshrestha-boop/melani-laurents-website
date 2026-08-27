@@ -143,6 +143,38 @@ export function PortfolioGallery({ photos }: PortfolioGalleryProps) {
           >
             Close
           </button>
+
+          {/* Arrow keys already drove the lightbox, but nothing on screen said
+              so. These make the same moves visible and give touch a way in. */}
+          {photos.length > 1 ? (
+            <>
+              <button
+                type="button"
+                className="portfolio-lightbox-nav portfolio-lightbox-nav--prev"
+                aria-label="Previous image"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goPrev();
+                }}
+              >
+                &#8249;
+              </button>
+              <button
+                type="button"
+                className="portfolio-lightbox-nav portfolio-lightbox-nav--next"
+                aria-label="Next image"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goNext();
+                }}
+              >
+                &#8250;
+              </button>
+              <p className="portfolio-lightbox-counter" aria-live="polite">
+                {lightboxIndex + 1} / {photos.length}
+              </p>
+            </>
+          ) : null}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={photos[lightboxIndex].src}
