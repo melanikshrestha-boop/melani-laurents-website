@@ -251,11 +251,6 @@
           "alt": "Scenery 3"
         },
         {
-          "id": "scenery-3",
-          "src": "/photography/scenery/_DSC2206.jpeg",
-          "alt": "Scenery 4"
-        },
-        {
           "id": "scenery-4",
           "src": "/photography/scenery/_DSC7309.jpeg",
           "alt": "Scenery 5"
@@ -264,16 +259,6 @@
           "id": "scenery-5",
           "src": "/photography/scenery/DSC01801.jpeg",
           "alt": "Scenery 6"
-        },
-        {
-          "id": "scenery-6",
-          "src": "/photography/scenery/IMG_0708.jpeg",
-          "alt": "Scenery 7"
-        },
-        {
-          "id": "scenery-7",
-          "src": "/photography/scenery/DSC01805.jpeg",
-          "alt": "Scenery 8"
         },
         {
           "id": "scenery-8",
