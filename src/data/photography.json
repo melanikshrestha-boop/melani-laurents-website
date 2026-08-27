@@ -235,14 +235,15 @@
           "id": "scenery-0",
           "src": "/photography/scenery/_DSC1768.jpeg",
           "alt": "Scenery 1",
-          "place": "99 Greene St, SoHo, New York"
+          "place": "99 Greene Street, SoHo, New York City",
+          "note": "My first street photography in New York City, 2023"
         },
         {
           "id": "scenery-1",
           "src": "/photography/scenery/DSC01775.jpeg",
           "alt": "Scenery 2",
-          "place": "Greene St & Spring St, SoHo, New York",
-          "note": "My first street photography in NYC"
+          "place": "Greene Street & Spring Street, SoHo, New York City",
+          "note": "My first street photography in New York City, 2023"
         },
         {
           "id": "scenery-2",

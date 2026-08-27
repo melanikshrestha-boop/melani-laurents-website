@@ -55,8 +55,6 @@ import {
   applyBlogOverlay,
   applyCatalogOverlay,
   loadShelfEditor,
-  materializeBlogs,
-  materializeCatalog,
   saveShelfEditor,
   type ShelfEditorState,
 } from "./shelfEditorStore";
@@ -462,14 +460,13 @@ export function PublicBookshelf() {
     body: string;
   } | null>(null);
 
-  /** Full-page owner edit — delete / move / rewrite / style */
-  const [pageEdit, setPageEdit] = useState(false);
+  /** The owner-edit surface is intentionally disabled on the public shelf. */
+  const pageEdit = false;
   const [editor, setEditor] = useState<ShelfEditorState>(() =>
     typeof window === "undefined" ? loadShelfEditor() : loadShelfEditor()
   );
   const [blogStyle, setBlogStyle] = useState<BlogDisplayStyle>(DEFAULT_BLOG_STYLE);
   const [styleCopied, setStyleCopied] = useState(false);
-  const [saveMsg, setSaveMsg] = useState<string | null>(null);
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
@@ -634,37 +631,6 @@ export function PublicBookshelf() {
       /* ignore */
     }
   }, [blogStyle]);
-
-  const saveToSite = useCallback(async () => {
-    setSaveMsg("saving…");
-    const nextCatalog = materializeCatalog(bookshelfEntries, editor);
-    const nextBlogs = materializeBlogs(baseShelfBlogs, editor);
-    try {
-      const res = await fetch("/api/bookshelf/catalog", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ catalog: nextCatalog, blogs: nextBlogs }),
-      });
-      const data = (await res.json()) as { ok?: boolean; error?: string };
-      if (!res.ok) {
-        setSaveMsg(data.error || "save failed");
-        return;
-      }
-      // Clear delete overlays — disk is source of truth now (reload for full sync)
-      patchEditor((prev) => ({
-        ...prev,
-        deletedBookIds: [],
-        deletedBlogIds: [],
-        categoryById: {},
-        ratingById: {},
-        blogById: {},
-      }));
-      setSaveMsg("saved to disk — refresh");
-      window.setTimeout(() => window.location.reload(), 600);
-    } catch (e) {
-      setSaveMsg(String(e instanceof Error ? e.message : e));
-    }
-  }, [editor, baseShelfBlogs, patchEditor]);
 
   const counts = useMemo(() => {
     const c = {
@@ -941,30 +907,6 @@ export function PublicBookshelf() {
                   <b>{counts.faves}</b> favs
                 </span>
               </div>
-            </div>
-            <div className="pb-page-edit-bar">
-              <button
-                type="button"
-                className={`pb-blogs__edit-toggle${pageEdit ? " is-on" : ""}`}
-                onClick={() => setPageEdit((v) => !v)}
-                aria-pressed={pageEdit}
-              >
-                {pageEdit ? "done" : "organize books"}
-              </button>
-              {pageEdit ? (
-                <>
-                  <button
-                    type="button"
-                    className="pb-blogs__edit-toggle"
-                    onClick={() => void saveToSite()}
-                  >
-                    save to site
-                  </button>
-                  {saveMsg ? (
-                    <span className="pb-save-msg">{saveMsg}</span>
-                  ) : null}
-                </>
-              ) : null}
             </div>
           </div>
         </header>

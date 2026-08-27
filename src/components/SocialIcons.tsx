@@ -60,7 +60,9 @@ function placeHoverNote(anchor: HTMLAnchorElement) {
   const anchorRect = anchor.getBoundingClientRect();
   const noteRect = note.getBoundingClientRect();
   const maxLeft = Math.max(margin, window.innerWidth - noteRect.width - margin);
-  const left = Math.min(Math.max(anchorRect.right - noteRect.width, margin), maxLeft);
+  const centeredLeft =
+    anchorRect.left + anchorRect.width / 2 - noteRect.width / 2;
+  const left = Math.min(Math.max(centeredLeft, margin), maxLeft);
 
   let top = anchorRect.bottom + gap;
   if (top + noteRect.height > window.innerHeight - margin) {
