@@ -58,10 +58,24 @@ function placeHoverNote(anchor: HTMLAnchorElement) {
   const margin = 12;
   const gap = 10;
   const anchorRect = anchor.getBoundingClientRect();
-  const noteRect = note.getBoundingClientRect();
+  const anchorCenter = anchorRect.left + anchorRect.width / 2;
+
+  note.style.removeProperty("--social-tip-width");
+  let noteRect = note.getBoundingClientRect();
+  const centeredWidth =
+    2 *
+    Math.min(
+      anchorCenter - margin,
+      window.innerWidth - margin - anchorCenter,
+    );
+
+  if (centeredWidth >= 208 && centeredWidth < noteRect.width) {
+    note.style.setProperty("--social-tip-width", `${centeredWidth}px`);
+    noteRect = note.getBoundingClientRect();
+  }
+
   const maxLeft = Math.max(margin, window.innerWidth - noteRect.width - margin);
-  const centeredLeft =
-    anchorRect.left + anchorRect.width / 2 - noteRect.width / 2;
+  const centeredLeft = anchorCenter - noteRect.width / 2;
   const left = Math.min(Math.max(centeredLeft, margin), maxLeft);
 
   let top = anchorRect.bottom + gap;
