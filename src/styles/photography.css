@@ -307,6 +307,14 @@
   outline: none;
 }
 
+.portfolio-gallery-print-order svg {
+  display: block;
+  width: 0.9375rem;
+  height: 0.9375rem;
+  flex: 0 0 auto;
+  transform: translateY(1px);
+}
+
 /* Scenery fills the available canvas: three columns on a full desktop, then
    two equal columns as the window narrows. */
 .portfolio-gallery--scenery .portfolio-gallery-grid {
