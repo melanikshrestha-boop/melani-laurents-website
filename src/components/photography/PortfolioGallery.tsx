@@ -156,11 +156,6 @@ export function PortfolioGallery({
                   ) : null}
                   {photo.print ? (
                     <>
-                      <span className="portfolio-gallery-print-meta">
-                        {photo.print.catalogId} · {photo.print.sizes
-                          .map((size) => size.label)
-                          .join(" / ")}
-                      </span>
                       <button
                         type="button"
                         className="portfolio-gallery-print-order"
@@ -169,6 +164,11 @@ export function PortfolioGallery({
                         Order print · $45
                         <ArrowUpRight size={15} weight="bold" aria-hidden />
                       </button>
+                      <span className="portfolio-gallery-print-meta">
+                        {photo.print.catalogId} · {photo.print.sizes
+                          .map((size) => size.label)
+                          .join(" / ")}
+                      </span>
                     </>
                   ) : null}
                 </figcaption>
