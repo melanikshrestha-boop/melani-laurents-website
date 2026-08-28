@@ -1,7 +1,7 @@
 /* Builds: published documents first, products second. */
 
 .builds-surface {
-  --bs-paper: #deded9;
+  --bs-paper: #f7f7f5;
   --bs-ink: #151515;
   --bs-muted: #62625d;
   --bs-faint: #85857f;
@@ -19,9 +19,9 @@
 }
 
 .builds-surface__inner {
-  width: min(100%, 92rem);
+  width: min(100%, 100rem);
   margin: 0 auto;
-  padding: 2.5rem 2rem 5rem;
+  padding: 2.25rem 2rem 4.5rem;
   box-sizing: border-box;
 }
 
@@ -29,7 +29,7 @@
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  margin: 0 0 3.5rem;
+  margin: 0 0 2.5rem;
 }
 
 .builds-surface__kicker,
@@ -42,7 +42,7 @@
 .builds-surface__title {
   margin: 0;
   font-family: var(--font-instrument-serif), Georgia, serif;
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: 400;
   line-height: 0.95;
   letter-spacing: 0;
@@ -58,7 +58,7 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 1.5rem;
-  margin: 0 0 1.5rem;
+  margin: 0 0 1rem;
 }
 
 .bs-scholar__eyebrow {
@@ -75,7 +75,7 @@
 .bs-scholar__name {
   margin: 0;
   font-family: var(--font-oswald), Impact, sans-serif;
-  font-size: 3.75rem;
+  font-size: 2.75rem;
   font-weight: 400;
   line-height: 0.95;
   letter-spacing: 0;
@@ -115,31 +115,42 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 3.25rem 2rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
 }
 
 .bs-scholar__item {
   min-width: 0;
   margin: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(21, 21, 21, 0.13);
+  border-radius: 6px;
+  transition: border-color 160ms ease, transform 160ms ease;
 }
 
 .bs-scholar__document {
   display: block;
+  height: 100%;
   color: inherit;
   text-decoration: none;
 }
 
 .bs-scholar__figure {
   margin: 0;
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
 }
 
 .bs-scholar__page {
   position: relative;
   width: 100%;
-  aspect-ratio: 1280 / 1657;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: #fff;
+  padding: 0.9rem;
+  box-sizing: border-box;
+  background: #d8d1df;
 }
 
 .bs-scholar__preview {
@@ -147,6 +158,11 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+.bs-scholar__item:hover {
+  border-color: rgba(77, 40, 125, 0.46);
+  transform: translateY(-2px);
 }
 
 .bs-scholar__reveal {
@@ -157,7 +173,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.45rem;
-  padding: 2rem;
+  padding: 1rem;
   box-sizing: border-box;
   background: rgba(77, 40, 125, 0.82);
   color: #fff;
@@ -177,7 +193,7 @@
 
 .bs-scholar__reveal strong {
   font-family: var(--font-oswald), Impact, sans-serif;
-  font-size: 2.25rem;
+  font-size: 1.65rem;
   font-weight: 400;
   line-height: 1;
   letter-spacing: 0;
@@ -196,15 +212,15 @@
 
 .bs-scholar__caption {
   display: grid;
-  grid-template-columns: 1.75rem minmax(0, 1fr);
-  gap: 0.5rem;
-  margin-top: 0.85rem;
+  grid-template-columns: 1.4rem minmax(0, 1fr);
+  gap: 0.35rem;
+  padding: 0.85rem 0.8rem 0.9rem;
 }
 
 .bs-scholar__index {
   padding-top: 0.16rem;
   font-family: var(--font-share-tech-mono), ui-monospace, monospace;
-  font-size: 0.65rem;
+  font-size: 0.58rem;
   font-weight: 600;
   letter-spacing: 0.06em;
   line-height: 1.2;
@@ -217,11 +233,11 @@
 
 .bs-scholar__title {
   margin: 0;
-  max-width: 35rem;
+  max-width: none;
   font-family: var(--font-instrument-serif), Georgia, serif;
-  font-size: 1.28rem;
+  font-size: 1.04rem;
   font-weight: 400;
-  line-height: 1.1;
+  line-height: 1.12;
   letter-spacing: 0;
   color: var(--bs-ink);
 }
@@ -230,7 +246,7 @@
 .bs-scholar__authors {
   margin: 0.28rem 0 0;
   font-family: var(--font-share-tech-mono), ui-monospace, monospace;
-  font-size: 0.62rem;
+  font-size: 0.55rem;
   font-weight: 500;
   letter-spacing: 0.04em;
   line-height: 1.2;
@@ -244,7 +260,7 @@
 }
 
 .builds-products {
-  margin-top: 6rem;
+  margin-top: 4.75rem;
 }
 
 .builds-products__title {
@@ -347,6 +363,10 @@
 }
 
 @media (max-width: 64rem) {
+  .bs-scholar__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .bp-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -361,22 +381,13 @@
     margin-bottom: 2.75rem;
   }
 
-  .builds-surface__title {
-    font-size: 3rem;
-  }
+  .builds-surface__title { font-size: 3rem; }
 
   .bs-scholar__profile {
     align-items: flex-start;
   }
 
-  .bs-scholar__name {
-    font-size: 3.1rem;
-  }
-
-  .bs-scholar__list {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 2.75rem;
-  }
+  .bs-scholar__name { font-size: 2.5rem; }
 
   .bs-scholar__title {
     font-size: 1.2rem;
@@ -397,6 +408,10 @@
     gap: 0.9rem;
   }
 
+  .bs-scholar__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .bp-list {
     grid-template-columns: minmax(0, 1fr);
     gap: 1.75rem;
@@ -405,6 +420,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .bs-scholar__reveal,
+  .bs-scholar__item,
   .bp-row__title {
     transition: none;
   }

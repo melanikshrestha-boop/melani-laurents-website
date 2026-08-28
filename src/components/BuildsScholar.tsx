@@ -11,7 +11,7 @@ export function BuildsScholar() {
     <section className="bs-scholar" aria-labelledby="builds-patents-title">
       <div className="bs-scholar__profile">
         <div className="bs-scholar__who">
-          <p className="bs-scholar__eyebrow">Patent folio</p>
+          <p className="bs-scholar__eyebrow">Published work</p>
           <h2 id="builds-patents-title" className="bs-scholar__name">
             Patents
           </h2>
@@ -46,7 +46,7 @@ export function BuildsScholar() {
                         alt={`First page of ${pub.publicationNumber ?? pub.venue}`}
                         width={1280}
                         height={1657}
-                        sizes="(max-width: 720px) 92vw, 46vw"
+                        sizes="(max-width: 560px) calc(100vw - 2rem), (max-width: 1120px) 46vw, 23vw"
                         loading="eager"
                         className="bs-scholar__preview"
                       />
