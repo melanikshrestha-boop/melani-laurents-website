@@ -14,7 +14,7 @@ import {
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 import "@/styles/daily-pulse.css";
-import "@/styles/builds-surface.css";
+import "@/styles/builds-folio.css";
 
 /*
  * Display face. johnlennon.com sets its headings in Helvetica LT Std Bold,

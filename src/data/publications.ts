@@ -7,6 +7,10 @@ export interface Publication {
   venue: string;
   year: number;
   kind: "patent" | "article";
+  publicationNumber?: string;
+  publicationDate?: string;
+  previewImage?: string;
+  documentUrl?: string;
 }
 
 export const publicationProfile = {
@@ -25,6 +29,10 @@ export const publications: Publication[] = [
     venue: "US Patent App. 18/459,379",
     year: 2023,
     kind: "patent",
+    publicationNumber: "US 2023/0417053 A1",
+    publicationDate: "Dec. 28, 2023",
+    previewImage: "/builds/patents/US20230417053A1-page-1.png",
+    documentUrl: "/builds/patents/US20230417053A1.pdf",
   },
   {
     title:
@@ -34,6 +42,10 @@ export const publications: Publication[] = [
     venue: "US Patent App. 18/452,526",
     year: 2024,
     kind: "patent",
+    publicationNumber: "US 2024/0008800 A1",
+    publicationDate: "Jan. 11, 2024",
+    previewImage: "/builds/patents/US20240008800A1-page-1.png",
+    documentUrl: "/builds/patents/US20240008800A1.pdf",
   },
   {
     title:
@@ -43,6 +55,10 @@ export const publications: Publication[] = [
     venue: "US Patent App. 18/454,063",
     year: 2023,
     kind: "patent",
+    publicationNumber: "US 2023/0389847 A1",
+    publicationDate: "Dec. 7, 2023",
+    previewImage: "/builds/patents/US20230389847A1-page-1.png",
+    documentUrl: "/builds/patents/US20230389847A1.pdf",
   },
   {
     title:
@@ -52,5 +68,9 @@ export const publications: Publication[] = [
     venue: "US Patent App. 18/452,561",
     year: 2024,
     kind: "patent",
+    publicationNumber: "US 2024/0206794 A1",
+    publicationDate: "Jun. 27, 2024",
+    previewImage: "/builds/patents/US20240206794A1-page-1.png",
+    documentUrl: "/builds/patents/US20240206794A1.pdf",
   },
 ];
