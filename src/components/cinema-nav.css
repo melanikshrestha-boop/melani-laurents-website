@@ -103,44 +103,46 @@
   -webkit-text-fill-color: #a8842e !important;
 }
 
-/* Art / photography profile — a responsive row above the sub-site header. */
+/* Art / photography profile: one quiet rail over the bottom of the work. */
 .cinema-nav--art {
-  position: relative !important;
+  position: fixed !important;
+  top: auto !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  z-index: 100 !important;
   border: 0 !important;
-  background: var(--photo-page-bg, #e0e0db) !important;
+  background: rgba(12, 12, 12, 0.72) !important;
   background-image: none !important;
-  backdrop-filter: none !important;
+  backdrop-filter: blur(12px) !important;
   box-shadow: none !important;
   padding: 0 !important;
 }
 .cinema-nav--art .cinema-nav__inner--bookshelf {
-  display: grid !important;
-  grid-template-columns: auto minmax(0, 1fr);
+  display: flex !important;
   align-items: center;
+  justify-content: space-between;
   gap: clamp(0.75rem, 2vw, 1.5rem);
   width: 100%;
   max-width: none;
-  min-height: 3.5rem;
-  height: auto !important;
+  min-height: 3rem;
+  height: 3rem !important;
   margin: 0;
-  padding: 0.65rem clamp(0.85rem, 4vw, 4rem) !important;
+  padding: 0 max(0.9rem, env(safe-area-inset-right, 0px))
+    max(env(safe-area-inset-bottom, 0px), 0px)
+    max(0.9rem, env(safe-area-inset-left, 0px)) !important;
   box-sizing: border-box;
 }
-.cinema-nav--art .melani-signature-link {
-  display: flex;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  line-height: 0;
-}
-.cinema-nav--art .melani-signature--nav-edge .melani-signature__mark {
-  display: block;
-  height: 2.1rem;
-  width: auto;
-  margin: 0;
-  padding: 0;
-  color: var(--photo-ink-muted, #253551);
-  filter: none;
+.cinema-nav__art-home {
+  flex: 0 0 auto;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+  text-decoration: none;
+  white-space: nowrap;
 }
 .cinema-nav--art .cinema-nav__end {
   min-width: 0;
@@ -152,28 +154,34 @@
   min-width: 0;
 }
 .cinema-nav--art .cinema-nav__link--cinema {
-  color: rgba(37, 53, 81, 0.62);
+  color: rgba(255, 255, 255, 0.76);
   text-shadow: none;
 }
 .cinema-nav--art .cinema-nav__link--cinema:hover,
 .cinema-nav--art .cinema-nav__link--cinema:focus-visible {
-  color: var(--photo-ink-muted, #253551);
+  color: #fff;
 }
 .cinema-nav--art .cinema-nav__link--gold {
-  color: #a8842e !important;
-  -webkit-text-fill-color: #a8842e !important;
+  color: #f0cf78 !important;
+  -webkit-text-fill-color: #f0cf78 !important;
   text-shadow: none;
 }
 .cinema-nav--art .cinema-nav__link--gold:hover,
 .cinema-nav--art .cinema-nav__link--gold:focus-visible {
-  color: #7f6420 !important;
-  -webkit-text-fill-color: #7f6420 !important;
+  color: #fff0bd !important;
+  -webkit-text-fill-color: #fff0bd !important;
 }
 
 @media (max-width: 760px) {
   .cinema-nav--art .cinema-nav__inner--bookshelf {
-    grid-template-columns: 1fr;
-    gap: 0.55rem;
+    justify-content: center;
+    min-height: calc(2.75rem + env(safe-area-inset-bottom, 0px));
+    height: calc(2.75rem + env(safe-area-inset-bottom, 0px)) !important;
+    padding-inline: max(0.65rem, env(safe-area-inset-left, 0px)) !important;
+  }
+
+  .cinema-nav__art-home {
+    display: none;
   }
 
   .cinema-nav--art .cinema-nav__end {
@@ -182,7 +190,14 @@
   }
 
   .cinema-nav--art .cinema-nav__end > ul {
-    justify-content: flex-start;
+    width: 100%;
+    justify-content: center;
+    gap: clamp(0.65rem, 4vw, 1.2rem) !important;
+  }
+
+  .cinema-nav--art .cinema-nav__link {
+    font-size: clamp(0.58rem, 2.35vw, 0.68rem);
+    letter-spacing: 0.05em;
   }
 }
 

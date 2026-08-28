@@ -105,9 +105,9 @@ export function Navigation() {
       pathname.startsWith("/contact/"));
 
   /** Current page dropped; first + last of what's left go gold */
-  const items = siteConfig.nav.filter(
-    (item) => !isCurrentNavItem(pathname, item),
-  );
+  const items = isArt
+    ? siteConfig.hubPortals
+    : siteConfig.nav.filter((item) => !isCurrentNavItem(pathname, item));
 
   const revealDelay = (i: number) => `${0.12 + i * 0.14}s`;
 
@@ -130,10 +130,16 @@ export function Navigation() {
         }
         aria-label="Primary"
       >
-        <MelaniSignature
-          variant={paper ? "ink" : "light"}
-          className={`melani-signature--nav${edgePaper || isArt ? " melani-signature--nav-edge" : ""}`}
-        />
+        {isArt ? (
+          <Link href="/" className="cinema-nav__art-home">
+            CELINE NOVA.
+          </Link>
+        ) : (
+          <MelaniSignature
+            variant={paper ? "ink" : "light"}
+            className={`melani-signature--nav${edgePaper ? " melani-signature--nav-edge" : ""}`}
+          />
+        )}
 
         <div
           className={

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PortfolioGallery } from "@/components/photography/PortfolioGallery";
 import { PortfolioPagination } from "@/components/photography/PortfolioPagination";
-import { ShotByMelaniHeader } from "@/components/photography/ShotByMelaniHeader";
 import {
   getAdjacentCollections,
   getPhotoCollection,
@@ -35,7 +34,6 @@ export default async function PhotographyCollectionPage({ params }: PageProps) {
 
   return (
     <>
-      <ShotByMelaniHeader />
       <PortfolioGallery
         photos={collection.photos}
         layout={slug === "scenery" ? "scenery" : "grid"}

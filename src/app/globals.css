@@ -6175,9 +6175,9 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .hub-page--locked .hub-page__title-line {
   display: block;
   font-family: var(--font-oswald), var(--font-archivo-narrow), system-ui, sans-serif;
-  font-weight: 700;
-  font-size: clamp(1.85rem, min(5vw, 8vh), 4.25rem);
-  line-height: 0.92;
+  font-weight: 600;
+  font-size: clamp(1.6rem, min(3.6vw, 5.5vh), 3.1rem);
+  line-height: 1;
   letter-spacing: 0;
   text-transform: uppercase;
   white-space: nowrap;

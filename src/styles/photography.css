@@ -1,4 +1,4 @@
-/* Shot by Melani — replica of shotbymelani.com (Squarespace 7.1) */
+/* Celine Nova photography */
 
 .photography-site {
   --photo-page-bg: #e0e0db;
@@ -10,78 +10,6 @@
   background: var(--photo-page-bg);
   color: var(--photo-ink);
   min-height: 100vh;
-}
-
-/* ——— Header ——— */
-.photography-header {
-  position: relative;
-  z-index: 1;
-  box-sizing: border-box;
-  width: 100%;
-  padding: clamp(0.75rem, 1.5vw, 1.25rem) clamp(0.85rem, 4vw, 4rem);
-  background: var(--photo-page-bg);
-}
-
-.photography-header-inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: clamp(0.75rem, 2vw, 1.5rem);
-  min-width: 0;
-}
-
-.photography-logo {
-  font-family: var(--font-anton), sans-serif;
-  font-size: clamp(1.15rem, 1.44vw, 1.72rem);
-  font-weight: 400;
-  line-height: 1.2;
-  letter-spacing: normal;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--photo-ink-muted);
-  white-space: nowrap;
-}
-
-.photography-nav {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-end;
-  gap: clamp(0.85rem, 1.5vw, 1.5rem);
-  min-width: 0;
-}
-
-.photography-nav-link {
-  font-family: var(--font-epilogue), sans-serif;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: var(--photo-ink);
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.photography-nav-link:hover {
-  opacity: 0.72;
-}
-
-.photography-nav-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.9rem 1.35rem;
-  border-radius: 300px;
-  font-family: var(--font-epilogue), sans-serif;
-  font-size: 1rem;
-  line-height: 1;
-  text-decoration: none;
-  white-space: nowrap;
-  background: var(--photo-ink-muted);
-  color: #fff;
-  transition: opacity 0.2s ease;
-}
-
-.photography-nav-cta:hover {
-  opacity: 0.88;
 }
 
 /* ——— Portfolio index (hover backgrounds) ——— */
@@ -160,7 +88,7 @@
   min-height: max(100svh, 42rem);
   box-sizing: border-box;
   margin: 0;
-  padding: clamp(8.5rem, 18vh, 11rem) 1rem clamp(2rem, 5vh, 4rem);
+  padding: clamp(3.5rem, 9vh, 5.5rem) 1rem clamp(4.75rem, 10vh, 6.25rem);
   list-style: none;
 }
 
@@ -217,9 +145,9 @@
 
 .portfolio-hover-item-title {
   margin: 0;
-  padding: clamp(0.45rem, 1vh, 1rem) 0;
+  padding: clamp(0.3rem, 0.7vh, 0.65rem) 0;
   font-family: var(--font-anton), sans-serif;
-  font-size: clamp(3rem, 4.44vw, 5.32rem);
+  font-size: clamp(2.15rem, 3.25vw, 3.9rem);
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: normal;
@@ -868,39 +796,17 @@
 }
 
 @media (max-width: 640px) {
-  .photography-header {
-    padding-inline: 0.85rem;
-  }
-
-  .photography-logo {
-    min-width: 0;
-    font-size: 1rem;
-  }
-
-  .photography-nav {
-    gap: clamp(0.42rem, 2.1vw, 0.65rem);
-  }
-
-  .photography-nav-link {
-    font-size: clamp(0.69rem, 2.8vw, 0.82rem);
-  }
-
-  .photography-nav-cta {
-    padding: 0.7rem clamp(0.72rem, 3vw, 1rem);
-    font-size: clamp(0.69rem, 2.8vw, 0.82rem);
-  }
-
   .portfolio-hover,
   .portfolio-hover-items-list {
     min-height: max(100svh, 34rem);
   }
 
   .portfolio-hover-items-list {
-    padding-top: clamp(7.5rem, 18vh, 9rem);
+    padding: clamp(2.5rem, 7vh, 4rem) 0.75rem 4.5rem;
   }
 
   .portfolio-hover-item-title {
-    font-size: clamp(2.15rem, 12vw, 3.5rem);
+    font-size: clamp(1.8rem, 9vw, 2.55rem);
   }
 
   .portfolio-hover-subcategories {
@@ -940,18 +846,6 @@
     opacity: 1;
     transform: none;
     transition: none;
-  }
-}
-
-@media (max-width: 520px) {
-  .photography-header-inner {
-    grid-template-columns: 1fr;
-    gap: 0.65rem;
-  }
-
-  .photography-nav {
-    width: 100%;
-    justify-content: flex-start;
   }
 }
 
