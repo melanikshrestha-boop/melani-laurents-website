@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState, type FocusEvent } from "react";
 import type { PhotoCollection } from "@/data/photography-meta";
 import {
   getIndexHeroImage,
@@ -14,6 +14,9 @@ import {
 interface PortfolioIndexFieldProps {
   collections: PhotoCollection[];
 }
+
+const PHOTOGRAPHY_SLUGS = ["portraits", "scenery"] as const;
+const PRIMARY_COLLECTION_SLUGS = ["sketches", "film", "poem"] as const;
 
 function resolveCollectionIndex(
   collections: PhotoCollection[],
@@ -44,26 +47,45 @@ export function PortfolioIndexField({ collections }: PortfolioIndexFieldProps) {
   const [autoCycleIndex, setAutoCycleIndex] = useState(() =>
     resolveAutoCycleStartIndex(collections),
   );
-  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
+  const [hoverSlug, setHoverSlug] = useState<string | null>(null);
   const [isAutoPaused, setIsAutoPaused] = useState(false);
-  const listRef = useRef<HTMLUListElement>(null);
 
   const autoSlug = INDEX_HERO_AUTO_CYCLE_SLUGS[autoCycleIndex];
-  const autoCollectionIndex = resolveCollectionIndex(collections, autoSlug);
-  const activeIndex = hoverIndex ?? autoCollectionIndex;
+  const activeSlug = hoverSlug ?? autoSlug;
+  const activeIndex = resolveCollectionIndex(collections, activeSlug);
+  const collectionBySlug = new Map(
+    collections.map((collection) => [collection.slug, collection]),
+  );
+  const photographyCollections = PHOTOGRAPHY_SLUGS.flatMap((slug) => {
+    const collection = collectionBySlug.get(slug);
+    return collection ? [collection] : [];
+  });
+  const primaryCollections = PRIMARY_COLLECTION_SLUGS.flatMap((slug) => {
+    const collection = collectionBySlug.get(slug);
+    return collection ? [collection] : [];
+  });
 
   const defaultHeroIndex = resolveCollectionIndex(
     collections,
     INDEX_HERO_DEFAULT_SLUG,
   );
 
-  const pauseForHover = useCallback((index: number) => {
+  const pauseForCollection = useCallback((slug: string) => {
     setIsAutoPaused(true);
-    setHoverIndex(index);
+    setHoverSlug(slug);
   }, []);
 
+  const pauseForPhotography = useCallback(() => {
+    setIsAutoPaused(true);
+    setHoverSlug((current) =>
+      current && PHOTOGRAPHY_SLUGS.some((slug) => slug === current)
+        ? current
+        : autoSlug,
+    );
+  }, [autoSlug]);
+
   const resumeAutoCycle = useCallback(() => {
-    setHoverIndex(null);
+    setHoverSlug(null);
     setIsAutoPaused(false);
   }, []);
 
@@ -79,32 +101,14 @@ export function PortfolioIndexField({ collections }: PortfolioIndexFieldProps) {
     return () => window.clearInterval(interval);
   }, [isAutoPaused]);
 
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (!listRef.current?.contains(document.activeElement)) return;
-
-      if (event.key === "ArrowDown" || event.key === "ArrowRight") {
-        event.preventDefault();
-        setIsAutoPaused(true);
-        setHoverIndex((current) => {
-          const next = Math.min((current ?? activeIndex) + 1, collections.length - 1);
-          return next;
-        });
+  const resumeWhenFocusLeaves = useCallback(
+    (event: FocusEvent<HTMLUListElement>) => {
+      if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+        resumeAutoCycle();
       }
-
-      if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
-        event.preventDefault();
-        setIsAutoPaused(true);
-        setHoverIndex((current) => {
-          const next = Math.max((current ?? activeIndex) - 1, 0);
-          return next;
-        });
-      }
-    };
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [activeIndex, collections.length]);
+    },
+    [resumeAutoCycle],
+  );
 
   return (
     <section className="portfolio-index-field" aria-label="Portfolio">
@@ -140,15 +144,44 @@ export function PortfolioIndexField({ collections }: PortfolioIndexFieldProps) {
           </div>
 
           <ul
-            ref={listRef}
             className="portfolio-hover-items-list"
             onMouseLeave={resumeAutoCycle}
+            onBlur={resumeWhenFocusLeaves}
           >
-            {collections.map((collection, index) => (
+            <li
+              className="portfolio-hover-item-group"
+              onMouseEnter={pauseForPhotography}
+            >
+              <div className="portfolio-hover-item portfolio-hover-item--group">
+                <h1 className="portfolio-hover-item-title">
+                  <span className="portfolio-hover-item-content">Photography</span>
+                </h1>
+                <nav
+                  className="portfolio-hover-subcategories"
+                  aria-label="Photography collections"
+                >
+                  {photographyCollections.map((collection) => (
+                    <Link
+                      key={collection.slug}
+                      href={`/photography/${collection.slug}`}
+                      className={
+                        collection.slug === activeSlug ? "is-active" : undefined
+                      }
+                      onMouseEnter={() => pauseForCollection(collection.slug)}
+                      onFocus={() => pauseForCollection(collection.slug)}
+                    >
+                      {collection.title}
+                    </Link>
+                  ))}
+                </nav>
+              </div>
+            </li>
+
+            {primaryCollections.map((collection) => (
               <li
                 key={collection.slug}
-                onMouseEnter={() => pauseForHover(index)}
-                onFocus={() => pauseForHover(index)}
+                onMouseEnter={() => pauseForCollection(collection.slug)}
+                onFocus={() => pauseForCollection(collection.slug)}
               >
                 <Link
                   href={`/photography/${collection.slug}`}

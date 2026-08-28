@@ -170,6 +170,51 @@
   color: #fff;
 }
 
+.portfolio-hover-item-group {
+  color: #fff;
+  text-align: center;
+}
+
+.portfolio-hover-item--group .portfolio-hover-item-title {
+  padding-bottom: clamp(0.12rem, 0.35vh, 0.3rem);
+}
+
+.portfolio-hover-subcategories {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.15rem, 2vw, 2rem);
+  margin: 0 0 clamp(0.25rem, 0.7vh, 0.6rem);
+  font-family: var(--font-share-tech-mono), var(--font-jetbrains-mono), ui-monospace,
+    monospace;
+  font-size: clamp(0.78rem, 0.95vw, 1rem);
+  line-height: 1.25;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.portfolio-hover-subcategories a {
+  color: rgba(255, 255, 255, 0.72);
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.28em;
+  transition:
+    color 180ms ease,
+    text-decoration-color 180ms ease;
+}
+
+.portfolio-hover-subcategories a:hover,
+.portfolio-hover-subcategories a:focus-visible,
+.portfolio-hover-subcategories a.is-active {
+  color: #fff;
+  text-decoration-color: currentColor;
+}
+
+.portfolio-hover-subcategories a:focus-visible {
+  outline: none;
+}
+
 .portfolio-hover-item-title {
   margin: 0;
   padding: clamp(0.45rem, 1vh, 1rem) 0;
@@ -856,6 +901,12 @@
 
   .portfolio-hover-item-title {
     font-size: clamp(2.15rem, 12vw, 3.5rem);
+  }
+
+  .portfolio-hover-subcategories {
+    gap: clamp(1rem, 6vw, 1.65rem);
+    margin-bottom: 0.3rem;
+    font-size: clamp(0.7rem, 3vw, 0.82rem);
   }
 
   .portfolio-gallery-grid {

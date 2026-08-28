@@ -6,20 +6,26 @@ import {
 
 const photographyData = data as PhotographyData;
 
-const INDEX_COLLECTION_ORDER = ["portraits", "scenery", "sketches", "film"] as const;
+const INDEX_COLLECTION_ORDER = [
+  "portraits",
+  "scenery",
+  "sketches",
+  "film",
+  "poem",
+] as const;
 
 export const INDEX_HERO_IMAGES: Record<string, string> = {
   portraits: "/photography/index/portraits-hero.jpeg",
   scenery: "/photography/index/scenery-hero.jpg",
   sketches: "/photography/index/sketches-hero.jpeg",
   film: "/photography/film/cover.jpeg",
+  poem: "/photography/sketches/cover.jpeg",
 };
 
-/** Auto-rotating index hero, beginning with portraits. */
+/** The Photography group alternates between its two collections. */
 export const INDEX_HERO_AUTO_CYCLE_SLUGS = [
   "portraits",
   "scenery",
-  "sketches",
 ] as const;
 export const INDEX_HERO_DEFAULT_SLUG = "portraits";
 export const INDEX_HERO_AUTO_CYCLE_MS = 4500;

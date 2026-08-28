@@ -297,6 +297,14 @@
       "slug": "film",
       "cover": "/photography/film/cover.jpeg",
       "photos": []
+    },
+    {
+      "id": "poem",
+      "title": "Poem",
+      "tagline": "words · rhythm · feeling",
+      "slug": "poem",
+      "cover": "/photography/sketches/cover.jpeg",
+      "photos": []
     }
   ]
 }
