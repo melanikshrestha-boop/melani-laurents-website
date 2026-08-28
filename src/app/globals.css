@@ -1056,8 +1056,12 @@ body {
 
 /* Home photo: clean white handwriting, without a dark halo or scrim. */
 .hub-page--photo .social-icons__tip {
+  width: min(var(--social-tip-width, 19rem), calc(100vw - 1.5rem));
+  padding: 0.45rem 0.5rem;
   background: transparent;
   color: #ffffff;
+  font-size: 1.05rem;
+  line-height: 1.28;
   text-shadow: none;
   box-shadow: none;
 }
@@ -6408,7 +6412,14 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
     min-height: 2rem;
     max-height: none;
     gap: 0.5rem;
-    align-items: flex-start;
+    align-items: center;
+  }
+
+  .hub-page--photo .social-icons__tip {
+    width: min(var(--social-tip-width, 17rem), calc(100vw - 1.5rem));
+    padding: 0.35rem 0.4rem;
+    font-size: 0.9rem;
+    line-height: 1.28;
   }
 
   /* Free horizontal room: location collides with socials on ~390px */
@@ -6547,6 +6558,11 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   .hub-page--photo .hub-page__socials--locked .hub-page__social-icons {
     font-size: 15px;
     gap: 7px;
+  }
+
+  .hub-page--photo .social-icons__tip {
+    width: min(var(--social-tip-width, 15.5rem), calc(100vw - 1.5rem));
+    font-size: 0.82rem;
   }
 
   .hub-page--photo .hub-page__title-line,
