@@ -279,18 +279,19 @@
 .portfolio-gallery-print-order {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  min-height: 2rem;
-  margin-top: 0.85rem;
-  padding: 0.38rem 0.55rem;
+  justify-content: center;
+  gap: 0.3rem;
+  min-height: 2.1rem;
+  margin-top: 0.55rem;
+  padding: 0.48rem 0.65rem;
   border: 1px solid rgba(255, 255, 255, 0.72);
   border-radius: 0;
   background: rgba(32, 18, 59, 0.2);
   color: #fff;
-  font-family: var(--font-epilogue), system-ui, sans-serif;
+  font-family: inherit;
   font-size: 0.72rem;
-  font-weight: 650;
-  line-height: 1;
+  font-weight: 600;
+  line-height: 1.2;
   letter-spacing: 0;
   cursor: pointer;
   pointer-events: auto;
@@ -299,13 +300,13 @@
 .portfolio-gallery-print-meta {
   display: block;
   margin-top: 0.75rem;
-  font-family: var(--font-share-tech-mono), ui-monospace, monospace;
-  font-size: 0.67em;
+  font-family: inherit;
+  font-size: 0.58rem;
   font-weight: 600;
   line-height: 1.3;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  opacity: 0.84;
+  opacity: 0.82;
 }
 
 .portfolio-gallery-print-order:hover,
