@@ -111,9 +111,6 @@ export function PortfolioGallery({
               <p>Print collection</p>
               <h1>Scenery prints</h1>
             </div>
-            <p className="portfolio-print-intro__details">
-              {printPhotos.length} open-edition photographs · archival giclée
-            </p>
           </section>
         ) : null}
 
