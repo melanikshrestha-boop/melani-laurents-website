@@ -1,24 +1,26 @@
 import {
   googleScholarUrl,
-  publicationProfile,
   publications,
 } from "@/data/publications";
 
 /**
- * Scholar block inside Builds — profile + patents (LinkedIn-style proof section).
- * No boxes / no hairline dividers; single-spaced density.
+ * Patent record inside Builds. The overview stays compact while the legal titles
+ * and application numbers remain visible without turning into resume copy.
  */
 export function BuildsScholar() {
   const patents = publications.filter((p) => p.kind === "patent");
-  const articles = publications.filter((p) => p.kind === "article");
-  const rows = [...patents, ...articles];
 
   return (
-    <section className="bs-scholar" aria-label="Google Scholar">
+    <section className="bs-scholar" aria-labelledby="builds-patents-title">
       <div className="bs-scholar__profile">
         <div className="bs-scholar__who">
-          <h2 className="bs-scholar__name">{publicationProfile.name}</h2>
-          <p className="bs-scholar__aff">{publicationProfile.affiliation}</p>
+          <p className="bs-scholar__eyebrow">Patents</p>
+          <h2 id="builds-patents-title" className="bs-scholar__name">
+            {patents.length} US patent applications
+          </h2>
+          <p className="bs-scholar__aff">
+            In-ear EEG hardware for sensing, electrodes, and real-time monitoring.
+          </p>
         </div>
         <a
           href={googleScholarUrl}
@@ -26,26 +28,27 @@ export function BuildsScholar() {
           rel="noopener noreferrer"
           className="bs-scholar__link"
         >
-          Google Scholar ↗
+          View on Google Scholar ↗
         </a>
       </div>
 
-      {rows.length > 0 ? (
-        <ul className="bs-scholar__list">
-          {rows.map((pub) => (
+      {patents.length > 0 ? (
+        <ol className="bs-scholar__list">
+          {patents.map((pub, index) => (
             <li key={`${pub.year}-${pub.title.slice(0, 48)}`} className="bs-scholar__item">
-              <p className="bs-scholar__title">{pub.title}</p>
-              <p className="bs-scholar__meta">
-                {[pub.kind === "patent" ? "Patent" : "Article", pub.venue, String(pub.year)]
-                  .filter(Boolean)
-                  .join(" · ")}
-              </p>
-              {pub.authors ? (
-                <p className="bs-scholar__authors">{pub.authors}</p>
-              ) : null}
+              <span className="bs-scholar__index" aria-hidden>
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <h3 className="bs-scholar__title">{pub.title}</h3>
+                <p className="bs-scholar__meta">
+                  {[pub.venue, String(pub.year)].filter(Boolean).join(" · ")}
+                </p>
+                <p className="bs-scholar__authors">M Shrestha · co-inventor</p>
+              </div>
             </li>
           ))}
-        </ul>
+        </ol>
       ) : null}
     </section>
   );

@@ -33,9 +33,9 @@
 }
 
 .builds-surface__inner--folio {
-  max-width: 40rem;
+  max-width: 68rem;
   margin: 0 auto;
-  padding: 1.5rem clamp(1rem, 3vw, 1.5rem) 3.5rem;
+  padding: 2rem clamp(1rem, 3vw, 2rem) 3.5rem;
 }
 
 .builds-surface__head {
@@ -50,7 +50,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 0;
-  margin: 0 0 1.15rem;
+  margin: 0 0 1.8rem;
 }
 
 .builds-surface__kicker,
@@ -71,7 +71,7 @@
 }
 
 .builds-surface__title--folio {
-  font-size: clamp(2rem, 4.5vw, 2.65rem);
+  font-size: clamp(2.65rem, 5vw, 4rem);
 }
 
 /* —— Dense list: no borders, single-space —— */
@@ -79,9 +79,9 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem; /* tight between projects — not double-spaced blocks */
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.1rem 3rem;
 }
 
 .bp-row {
@@ -206,7 +206,7 @@ a.bp-row__link:hover .bp-row__go {
 
 /* —— Google Scholar profile inside Builds (no boxes / no hairlines) —— */
 .bs-scholar {
-  margin-top: 1.75rem;
+  margin-top: 0;
   padding-top: 0;
   border: 0 !important;
   box-shadow: none !important;
@@ -215,27 +215,38 @@ a.bp-row__link:hover .bp-row__go {
 .bs-scholar__profile {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 0.35rem 1rem;
-  margin: 0 0 0.75rem;
+  margin: 0 0 1.25rem;
+}
+
+.bs-scholar__eyebrow {
+  margin: 0 0 0.18rem;
+  font-family: var(--font-share-tech-mono), ui-monospace, monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: #8f681f;
 }
 
 .bs-scholar__name {
   margin: 0;
   font-family: var(--font-instrument-serif), Georgia, serif;
   font-weight: 400;
-  font-size: clamp(1.2rem, 2.4vw, 1.4rem);
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
   letter-spacing: -0.02em;
   line-height: 1.2;
   color: var(--bs-ink);
 }
 
 .bs-scholar__aff {
-  margin: 0.12rem 0 0;
-  max-width: 36rem;
+  margin: 0.28rem 0 0;
+  max-width: 42rem;
   font-family: var(--font-source-serif), "Source Serif 4", Georgia, serif;
-  font-size: 0.92rem;
+  font-size: 1rem;
   line-height: 1.25;
   letter-spacing: -0.01em;
   color: var(--bs-ink-2);
@@ -244,7 +255,7 @@ a.bp-row__link:hover .bp-row__go {
 .bs-scholar__link {
   flex-shrink: 0;
   font-family: var(--font-share-tech-mono), ui-monospace, monospace;
-  font-size: 0.58rem;
+  font-size: 0.63rem;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -261,9 +272,9 @@ a.bp-row__link:hover .bp-row__go {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem; /* single-space stack of pubs */
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem 3rem;
   border: 0 !important;
 }
 
@@ -271,21 +282,36 @@ a.bp-row__link:hover .bp-row__go {
   margin: 0;
   padding: 0;
   border: 0 !important;
+  display: grid;
+  grid-template-columns: 1.55rem minmax(0, 1fr);
+  gap: 0.55rem;
+  align-items: start;
+}
+
+.bs-scholar__index {
+  padding-top: 0.16rem;
+  font-family: var(--font-share-tech-mono), ui-monospace, monospace;
+  font-size: 0.63rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.25;
+  color: #8f681f;
 }
 
 .bs-scholar__title {
   margin: 0;
   font-family: var(--font-source-serif), "Source Serif 4", Georgia, serif;
-  font-size: 0.95rem;
-  line-height: 1.25;
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.2;
   letter-spacing: -0.01em;
   color: var(--bs-ink);
 }
 
 .bs-scholar__meta {
-  margin: 0.1rem 0 0;
+  margin: 0.14rem 0 0;
   font-family: var(--font-share-tech-mono), ui-monospace, monospace;
-  font-size: 0.55rem;
+  font-size: 0.58rem;
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -294,11 +320,50 @@ a.bp-row__link:hover .bp-row__go {
 }
 
 .bs-scholar__authors {
-  margin: 0.08rem 0 0;
-  font-family: var(--font-source-serif), Georgia, serif;
-  font-size: 0.85rem;
+  margin: 0.1rem 0 0;
+  font-family: var(--font-share-tech-mono), ui-monospace, monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
   line-height: 1.25;
   color: var(--bs-muted);
+}
+
+.builds-products {
+  margin-top: 3rem;
+}
+
+.builds-products__title {
+  margin: 0 0 1rem;
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--bs-ink);
+}
+
+@media (max-width: 720px) {
+  .builds-surface__inner--folio {
+    padding-top: 1.5rem;
+  }
+
+  .builds-surface__title--folio {
+    font-size: clamp(2.4rem, 12vw, 3.2rem);
+  }
+
+  .bs-scholar__list,
+  .bp-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .bs-scholar__list {
+    gap: 0.9rem;
+  }
+
+  .builds-products {
+    margin-top: 2.25rem;
+  }
 }
 
 @media (max-width: 540px) {

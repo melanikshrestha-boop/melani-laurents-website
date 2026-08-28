@@ -6,7 +6,7 @@ import { projects } from "@/data/projects";
 export const metadata: Metadata = {
   title: "Builds",
   description:
-    "What I’m shipping — systems, tools, products, and research. Founder builds plus Scholar.",
+    "Patented in-ear EEG research and the products, systems, and tools I’m building.",
 };
 
 /** Founder products on the page — clean tech portfolio set. */
@@ -30,10 +30,14 @@ export default function ProjectsPage() {
           </h1>
         </header>
 
-        <ProjectGrid projects={stage} />
-
-        {/* Scholar profile + patents — LinkedIn-style proof inside Builds */}
         <BuildsScholar />
+
+        <section className="builds-products" aria-labelledby="builds-products-title">
+          <h2 id="builds-products-title" className="builds-products__title">
+            Products
+          </h2>
+          <ProjectGrid projects={stage} />
+        </section>
       </div>
     </div>
   );
