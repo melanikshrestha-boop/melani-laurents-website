@@ -6667,18 +6667,18 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
     transform 460ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.portfolio-gallery-trigger:hover .portfolio-gallery-image,
-.portfolio-gallery-trigger:focus-visible .portfolio-gallery-image {
+.portfolio-gallery-item:hover .portfolio-gallery-image,
+.portfolio-gallery-item:focus-within .portfolio-gallery-image {
   transform: scale(1.045);
 }
 
-.portfolio-gallery-trigger:hover .portfolio-gallery-wash,
-.portfolio-gallery-trigger:focus-visible .portfolio-gallery-wash {
+.portfolio-gallery-item:hover .portfolio-gallery-wash,
+.portfolio-gallery-item:focus-within .portfolio-gallery-wash {
   opacity: 1;
 }
 
-.portfolio-gallery-trigger:hover .portfolio-gallery-caption,
-.portfolio-gallery-trigger:focus-visible .portfolio-gallery-caption {
+.portfolio-gallery-item:hover .portfolio-gallery-caption,
+.portfolio-gallery-item:focus-within .portfolio-gallery-caption {
   opacity: 1;
   transform: translateY(0);
 }
@@ -6689,7 +6689,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   .portfolio-gallery-caption {
     transition-duration: 1ms;
   }
-  .portfolio-gallery-trigger:hover .portfolio-gallery-image {
+  .portfolio-gallery-item:hover .portfolio-gallery-image {
     transform: none;
   }
 }

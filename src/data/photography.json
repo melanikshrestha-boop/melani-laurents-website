@@ -237,7 +237,7 @@
         "title": "99 Greene Street",
         "sizes": [
           { "label": "6 × 9 in", "priceUsd": 45 },
-          { "label": "8 × 12 in", "priceUsd": 75 }
+          { "label": "8 × 12 in", "priceUsd": 45 }
         ]
       }
         },
@@ -251,8 +251,8 @@
         "catalogId": "CN-SC-02",
         "title": "Greene & Spring",
         "sizes": [
-          { "label": "8 × 12 in", "priceUsd": 75 },
-          { "label": "12 × 18 in", "priceUsd": 135 }
+          { "label": "8 × 12 in", "priceUsd": 45 },
+          { "label": "12 × 18 in", "priceUsd": 45 }
         ]
       }
         },
@@ -265,7 +265,7 @@
         "title": "Afterlight",
         "sizes": [
           { "label": "6 × 9 in", "priceUsd": 45 },
-          { "label": "8 × 12 in", "priceUsd": 75 }
+          { "label": "8 × 12 in", "priceUsd": 45 }
         ]
       }
         },

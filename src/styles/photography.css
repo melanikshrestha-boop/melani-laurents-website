@@ -271,71 +271,48 @@
 }
 
 .portfolio-gallery-item {
+  position: relative;
   margin: 0;
+  overflow: hidden;
 }
 
-.portfolio-print-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.75rem;
-  padding: 0.65rem 0.1rem 0.35rem;
-}
-
-.portfolio-print-row p,
-.portfolio-print-row span {
-  margin: 0;
-}
-
-.portfolio-print-row p {
-  font-family: var(--font-epilogue), system-ui, sans-serif;
-  font-size: 0.82rem;
-  font-weight: 600;
-  line-height: 1.25;
-}
-
-.portfolio-print-row span {
-  display: block;
-  margin-top: 0.15rem;
-  font-family: var(--font-share-tech-mono), ui-monospace, monospace;
-  font-size: 0.54rem;
-  line-height: 1.25;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: rgba(0, 0, 0, 0.52);
-}
-
-.portfolio-print-row button {
+.portfolio-gallery-print-order {
   display: inline-flex;
-  flex: 0 0 auto;
   align-items: center;
-  gap: 0.25rem;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: #111;
+  gap: 0.35rem;
+  min-height: 2rem;
+  margin-top: 0.85rem;
+  padding: 0.38rem 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 0;
+  background: rgba(32, 18, 59, 0.2);
+  color: #fff;
   font-family: var(--font-epilogue), system-ui, sans-serif;
   font-size: 0.72rem;
-  font-weight: 600;
-  line-height: 1.2;
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: 0;
   cursor: pointer;
+  pointer-events: auto;
 }
 
-.portfolio-print-row button:hover,
-.portfolio-print-row button:focus-visible {
-  color: #4d2e82;
-}
-
-.portfolio-gallery-print-caption {
+.portfolio-gallery-print-meta {
   display: block;
-  margin-top: 0.65em;
+  margin-top: 0.75rem;
   font-family: var(--font-share-tech-mono), ui-monospace, monospace;
-  font-size: 0.68em;
+  font-size: 0.67em;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  line-height: 1.2;
+  line-height: 1.3;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
-  opacity: 0.92;
+  opacity: 0.84;
+}
+
+.portfolio-gallery-print-order:hover,
+.portfolio-gallery-print-order:focus-visible {
+  background: #fff;
+  color: #3f2473;
+  outline: none;
 }
 
 /* Scenery reads in strict row order: one and two share the first row, then
@@ -900,16 +877,6 @@
 
   .portfolio-print-intro__details {
     text-align: left;
-  }
-
-  .portfolio-print-row {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 0.45rem;
-  }
-
-  .portfolio-print-row button {
-    min-height: 1.8rem;
   }
 
   .portfolio-gallery--scenery

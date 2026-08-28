@@ -112,7 +112,7 @@ export function PortfolioGallery({
               <h1>Scenery prints</h1>
             </div>
             <p className="portfolio-print-intro__details">
-              {printPhotos.length} open-edition photographs · archival giclée · from $45
+              {printPhotos.length} open-edition photographs · archival giclée
             </p>
           </section>
         ) : null}
@@ -145,42 +145,36 @@ export function PortfolioGallery({
                   loading={i < 2 ? "eager" : "lazy"}
                 />
                 <span className="portfolio-gallery-wash" aria-hidden />
-                {photo.place || photo.note || photo.print ? (
-                  <figcaption className="portfolio-gallery-caption">
-                    {photo.place ? (
-                      <span className="portfolio-gallery-place">
-                        {photo.place}
-                      </span>
-                    ) : null}
-                    {photo.note ? (
-                      <span className="portfolio-gallery-note">
-                        {photo.note}
-                      </span>
-                    ) : null}
-                    {photo.print ? (
-                      <span className="portfolio-gallery-print-caption">
-                        Prints from ${Math.min(...photo.print.sizes.map((size) => size.priceUsd))}
-                      </span>
-                    ) : null}
-                  </figcaption>
-                ) : null}
               </button>
 
-              {photo.print ? (
-                <div className="portfolio-print-row">
-                  <div>
-                    <p>{photo.print.title}</p>
-                    <span>
-                      {photo.print.catalogId} · {photo.print.sizes.map((size) => size.label).join(" / ")}
+              {photo.place || photo.note || photo.print ? (
+                <figcaption className="portfolio-gallery-caption">
+                  {photo.place || photo.print ? (
+                    <span className="portfolio-gallery-place">
+                      {photo.place ?? photo.print?.title}
                     </span>
-                  </div>
-                  <button type="button" onClick={() => setPrintPhoto(photo)}>
-                    Order print · from ${Math.min(
-                      ...photo.print.sizes.map((size) => size.priceUsd),
-                    )}
-                    <ArrowUpRight size={15} weight="bold" aria-hidden />
-                  </button>
-                </div>
+                  ) : null}
+                  {photo.note ? (
+                    <span className="portfolio-gallery-note">{photo.note}</span>
+                  ) : null}
+                  {photo.print ? (
+                    <>
+                      <span className="portfolio-gallery-print-meta">
+                        {photo.print.catalogId} · {photo.print.sizes
+                          .map((size) => size.label)
+                          .join(" / ")}
+                      </span>
+                      <button
+                        type="button"
+                        className="portfolio-gallery-print-order"
+                        onClick={() => setPrintPhoto(photo)}
+                      >
+                        Order print · $45
+                        <ArrowUpRight size={15} weight="bold" aria-hidden />
+                      </button>
+                    </>
+                  ) : null}
+                </figcaption>
               ) : null}
             </figure>
           ))}
