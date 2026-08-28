@@ -200,6 +200,51 @@
   padding-top: 0;
 }
 
+.portfolio-print-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 1rem 2rem;
+  width: calc(100% - 2rem);
+  max-width: 58rem;
+  margin: 0 auto;
+  padding: clamp(1.3rem, 3vw, 2.4rem) 0 clamp(1rem, 2vw, 1.65rem);
+}
+
+.portfolio-print-intro p,
+.portfolio-print-intro h1 {
+  margin: 0;
+}
+
+.portfolio-print-intro > div > p {
+  margin-bottom: 0.2rem;
+  font-family: var(--font-share-tech-mono), ui-monospace, monospace;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.56);
+}
+
+.portfolio-print-intro h1 {
+  font-family: var(--font-anton), sans-serif;
+  font-size: clamp(1.75rem, 3vw, 2.6rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.portfolio-print-intro__details {
+  max-width: 32rem;
+  padding-bottom: 0.15rem;
+  font-family: var(--font-epilogue), system-ui, sans-serif;
+  font-size: clamp(0.72rem, 1vw, 0.86rem);
+  line-height: 1.35;
+  text-align: right;
+  color: rgba(0, 0, 0, 0.64);
+}
+
 .portfolio-gallery--empty {
   min-height: 40vh;
   display: flex;
@@ -227,6 +272,70 @@
 
 .portfolio-gallery-item {
   margin: 0;
+}
+
+.portfolio-print-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 0.1rem 0.35rem;
+}
+
+.portfolio-print-row p,
+.portfolio-print-row span {
+  margin: 0;
+}
+
+.portfolio-print-row p {
+  font-family: var(--font-epilogue), system-ui, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.portfolio-print-row span {
+  display: block;
+  margin-top: 0.15rem;
+  font-family: var(--font-share-tech-mono), ui-monospace, monospace;
+  font-size: 0.54rem;
+  line-height: 1.25;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.52);
+}
+
+.portfolio-print-row button {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #111;
+  font-family: var(--font-epilogue), system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.portfolio-print-row button:hover,
+.portfolio-print-row button:focus-visible {
+  color: #4d2e82;
+}
+
+.portfolio-gallery-print-caption {
+  display: block;
+  margin-top: 0.65em;
+  font-family: var(--font-share-tech-mono), ui-monospace, monospace;
+  font-size: 0.68em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  opacity: 0.92;
 }
 
 /* Scenery reads in strict row order: one and two share the first row, then
@@ -420,6 +529,276 @@
   object-fit: contain;
 }
 
+.portfolio-lightbox-print {
+  position: fixed;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  min-height: 2.55rem;
+  padding: 0 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 2px;
+  background: rgba(10, 10, 10, 0.62);
+  color: #fff;
+  font-family: var(--font-epilogue), system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ——— Print request ——— */
+.print-order-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(12, 11, 10, 0.82);
+}
+
+.print-order-dialog {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.82fr) minmax(20rem, 1.18fr);
+  width: min(55rem, 100%);
+  max-height: min(44rem, calc(100svh - 2rem));
+  overflow: hidden;
+  border-radius: 4px;
+  background: #f1efe9;
+  color: #171614;
+}
+
+.print-order-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(241, 239, 233, 0.9);
+  color: #171614;
+  cursor: pointer;
+}
+
+.print-order-preview {
+  position: relative;
+  min-height: 34rem;
+  overflow: hidden;
+  background: #c9c6bf;
+}
+
+.print-order-preview img {
+  object-fit: cover;
+}
+
+.print-order-content {
+  overflow-y: auto;
+  padding: clamp(2rem, 4vw, 3.25rem);
+}
+
+.print-order-kicker,
+.print-order-content h2,
+.print-order-material,
+.print-order-shipping,
+.print-order-status {
+  margin: 0;
+}
+
+.print-order-kicker {
+  font-family: var(--font-share-tech-mono), ui-monospace, monospace;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: #65489b;
+}
+
+.print-order-content h2 {
+  margin-top: 0.3rem;
+  font-family: var(--font-anton), sans-serif;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.print-order-material {
+  margin-top: 0.55rem;
+  font-family: var(--font-epilogue), system-ui, sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: rgba(23, 22, 20, 0.66);
+}
+
+.print-order-form {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.print-order-form fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.print-order-form legend,
+.print-order-form label > span {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-family: var(--font-share-tech-mono), ui-monospace, monospace;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: rgba(23, 22, 20, 0.64);
+}
+
+.print-order-sizes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+
+.print-order-sizes label {
+  position: relative;
+}
+
+.print-order-sizes input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.print-order-sizes label > span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 2.85rem;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0 0.7rem;
+  border: 1px solid rgba(23, 22, 20, 0.22);
+  border-radius: 2px;
+  color: #171614;
+  cursor: pointer;
+}
+
+.print-order-sizes label > span strong {
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.print-order-sizes input:checked + span {
+  border-color: #171614;
+  background: #171614;
+  color: #fff;
+}
+
+.print-order-sizes input:focus-visible + span {
+  outline: 2px solid #65489b;
+  outline-offset: 2px;
+}
+
+.print-order-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.print-order-form input:not([type="radio"]) {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0.55rem 0;
+  border: 0;
+  border-bottom: 1px solid rgba(23, 22, 20, 0.3);
+  border-radius: 0;
+  background: transparent;
+  color: #171614;
+  font-family: var(--font-epilogue), system-ui, sans-serif;
+  font-size: 0.86rem;
+}
+
+.print-order-form input:focus {
+  outline: 0;
+  border-bottom-color: #65489b;
+}
+
+.print-order-honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.print-order-shipping {
+  font-family: var(--font-epilogue), system-ui, sans-serif;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: rgba(23, 22, 20, 0.58);
+}
+
+.print-order-submit {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.print-order-submit > button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 2.9rem;
+  padding: 0 1rem;
+  border: 0;
+  border-radius: 2px;
+  background: #171614;
+  color: #fff;
+  font-family: var(--font-epilogue), system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.print-order-submit > button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+.print-order-status {
+  min-height: 1.1rem;
+  font-family: var(--font-epilogue), system-ui, sans-serif;
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.print-order-status--success {
+  color: #21633c;
+}
+
+.print-order-status--error {
+  color: #922f2f;
+}
+
+.print-order-status a {
+  color: inherit;
+  font-weight: 600;
+}
+
 .portfolio-lightbox-close {
   position: absolute;
   top: 1rem;
@@ -437,6 +816,34 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+}
+
+@media (max-width: 700px) {
+  .print-order-backdrop {
+    padding: 0;
+  }
+
+  .print-order-dialog {
+    grid-template-columns: 1fr;
+    width: 100%;
+    height: 100svh;
+    max-height: none;
+    border-radius: 0;
+    overflow-y: auto;
+  }
+
+  .print-order-preview {
+    min-height: 34svh;
+  }
+
+  .print-order-content {
+    overflow: visible;
+    padding: 1.5rem 1rem 2.25rem;
+  }
+
+  .print-order-fields {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 640px) {
@@ -483,6 +890,26 @@
     width: calc(100% - 1rem);
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.45rem;
+  }
+
+  .portfolio-print-intro {
+    grid-template-columns: 1fr;
+    width: calc(100% - 1rem);
+    gap: 0.45rem;
+  }
+
+  .portfolio-print-intro__details {
+    text-align: left;
+  }
+
+  .portfolio-print-row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .portfolio-print-row button {
+    min-height: 1.8rem;
   }
 
   .portfolio-gallery--scenery

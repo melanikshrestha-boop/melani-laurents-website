@@ -3,6 +3,7 @@ import { PHOTOGRAPHY_BOOKING_PATH } from "@/lib/photography";
 
 const nav = [
   { label: "Portfolio", href: "/photography" },
+  { label: "Prints", href: "/photography/scenery#prints" },
 ];
 
 export function ShotByMelaniHeader() {

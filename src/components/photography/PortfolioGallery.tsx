@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { ArrowUpRight, ShoppingBagOpen } from "@phosphor-icons/react";
 import {
   useCallback,
   useEffect,
@@ -9,6 +10,7 @@ import {
   type CSSProperties,
 } from "react";
 import type { Photo } from "@/data/photography-meta";
+import { PrintOrderDialog } from "@/components/photography/PrintOrderDialog";
 
 interface PortfolioGalleryProps {
   photos: Photo[];
@@ -22,7 +24,9 @@ export function PortfolioGallery({
   showStatement = false,
 }: PortfolioGalleryProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [printPhoto, setPrintPhoto] = useState<Photo | null>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
+  const printPhotos = layout === "scenery" ? photos.filter((photo) => photo.print) : [];
 
   const close = useCallback(() => setLightboxIndex(null), []);
 
@@ -101,6 +105,18 @@ export function PortfolioGallery({
           layout === "scenery" ? " portfolio-gallery--scenery" : ""
         }`}
       >
+        {printPhotos.length > 0 ? (
+          <section id="prints" className="portfolio-print-intro" data-photo-reveal>
+            <div>
+              <p>Print collection</p>
+              <h1>Scenery prints</h1>
+            </div>
+            <p className="portfolio-print-intro__details">
+              {printPhotos.length} open-edition photographs · archival giclée · from $45
+            </p>
+          </section>
+        ) : null}
+
         <div className="portfolio-gallery-grid">
           {photos.map((photo, i) => (
             <figure
@@ -126,9 +142,10 @@ export function PortfolioGallery({
                   height={1800}
                   className="portfolio-gallery-image"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  loading={i < 2 ? "eager" : "lazy"}
                 />
                 <span className="portfolio-gallery-wash" aria-hidden />
-                {photo.place || photo.note ? (
+                {photo.place || photo.note || photo.print ? (
                   <figcaption className="portfolio-gallery-caption">
                     {photo.place ? (
                       <span className="portfolio-gallery-place">
@@ -140,9 +157,31 @@ export function PortfolioGallery({
                         {photo.note}
                       </span>
                     ) : null}
+                    {photo.print ? (
+                      <span className="portfolio-gallery-print-caption">
+                        Prints from ${Math.min(...photo.print.sizes.map((size) => size.priceUsd))}
+                      </span>
+                    ) : null}
                   </figcaption>
                 ) : null}
               </button>
+
+              {photo.print ? (
+                <div className="portfolio-print-row">
+                  <div>
+                    <p>{photo.print.title}</p>
+                    <span>
+                      {photo.print.catalogId} · {photo.print.sizes.map((size) => size.label).join(" / ")}
+                    </span>
+                  </div>
+                  <button type="button" onClick={() => setPrintPhoto(photo)}>
+                    Order print · from ${Math.min(
+                      ...photo.print.sizes.map((size) => size.priceUsd),
+                    )}
+                    <ArrowUpRight size={15} weight="bold" aria-hidden />
+                  </button>
+                </div>
+              ) : null}
             </figure>
           ))}
         </div>
@@ -219,8 +258,27 @@ export function PortfolioGallery({
             alt={photos[lightboxIndex].alt}
             onClick={(e) => e.stopPropagation()}
           />
+          {photos[lightboxIndex].print ? (
+            <button
+              type="button"
+              className="portfolio-lightbox-print"
+              onClick={(event) => {
+                event.stopPropagation();
+                const photo = photos[lightboxIndex];
+                setLightboxIndex(null);
+                setPrintPhoto(photo);
+              }}
+            >
+              <ShoppingBagOpen size={17} weight="bold" aria-hidden />
+              Order print
+            </button>
+          ) : null}
         </div>
       )}
+
+      {printPhoto ? (
+        <PrintOrderDialog photo={printPhoto} onClose={() => setPrintPhoto(null)} />
+      ) : null}
     </>
   );
 }

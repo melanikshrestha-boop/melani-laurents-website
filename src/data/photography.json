@@ -229,21 +229,45 @@
         {
           "id": "scenery-0",
           "src": "/photography/scenery/_DSC1768.jpeg",
-          "alt": "Scenery 1",
-          "place": "99 Greene Street, SoHo, New York City",
-          "note": "My first street photography in New York City, 2023"
+      "alt": "Scenery 1",
+      "place": "99 Greene Street, SoHo, New York City",
+      "note": "My first street photography in New York City, 2023",
+      "print": {
+        "catalogId": "CN-SC-01",
+        "title": "99 Greene Street",
+        "sizes": [
+          { "label": "6 × 9 in", "priceUsd": 45 },
+          { "label": "8 × 12 in", "priceUsd": 75 }
+        ]
+      }
         },
         {
           "id": "scenery-1",
           "src": "/photography/scenery/DSC01775.jpeg",
-          "alt": "Scenery 2",
-          "place": "Greene Street & Spring Street, SoHo, New York City",
-          "note": "My first street photography in New York City, 2023"
+      "alt": "Scenery 2",
+      "place": "Greene Street & Spring Street, SoHo, New York City",
+      "note": "My first street photography in New York City, 2023",
+      "print": {
+        "catalogId": "CN-SC-02",
+        "title": "Greene & Spring",
+        "sizes": [
+          { "label": "8 × 12 in", "priceUsd": 75 },
+          { "label": "12 × 18 in", "priceUsd": 135 }
+        ]
+      }
         },
         {
-          "id": "scenery-2",
-          "src": "/photography/scenery/_DSC2205.jpeg",
-          "alt": "Scenery 3"
+      "id": "scenery-2",
+      "src": "/photography/scenery/_DSC2205.jpeg",
+      "alt": "Scenery 3",
+      "print": {
+        "catalogId": "CN-SC-03",
+        "title": "Afterlight",
+        "sizes": [
+          { "label": "6 × 9 in", "priceUsd": 45 },
+          { "label": "8 × 12 in", "priceUsd": 75 }
+        ]
+      }
         },
         {
           "id": "scenery-4",
