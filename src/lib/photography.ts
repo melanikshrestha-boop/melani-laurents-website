@@ -8,8 +8,9 @@ const photographyData = data as PhotographyData;
 
 const INDEX_COLLECTION_ORDER = [
   "scenery",
-  "sketches",
+  "film",
   "poem",
+  "sketches",
 ] as const;
 
 export const INDEX_HERO_IMAGES: Record<string, string> = {

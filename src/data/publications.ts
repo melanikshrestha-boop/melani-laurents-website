@@ -40,7 +40,7 @@ export const publications: Publication[] = [
     previewImage: "/builds/patents/US20230417053A1-page-1.png",
     documentUrl: "/builds/patents/US20230417053A1.pdf",
     nameHighlights: [
-      { top: "51.3%", left: "27.1%", width: "10.6%", height: "2%" },
+      { top: "51.98%", left: "27.27%", width: "10.55%", height: "1.35%" },
     ],
   },
   {
@@ -56,7 +56,7 @@ export const publications: Publication[] = [
     previewImage: "/builds/patents/US20240008800A1-page-1.png",
     documentUrl: "/builds/patents/US20240008800A1.pdf",
     nameHighlights: [
-      { top: "55%", left: "27.1%", width: "10.6%", height: "2%" },
+      { top: "55%", left: "27.27%", width: "10.55%", height: "1.35%" },
     ],
   },
   {
@@ -72,7 +72,7 @@ export const publications: Publication[] = [
     previewImage: "/builds/patents/US20230389847A1-page-1.png",
     documentUrl: "/builds/patents/US20230389847A1.pdf",
     nameHighlights: [
-      { top: "55%", left: "27.1%", width: "10.6%", height: "2%" },
+      { top: "55%", left: "27.27%", width: "10.55%", height: "1.35%" },
     ],
   },
   {
@@ -88,8 +88,8 @@ export const publications: Publication[] = [
     previewImage: "/builds/patents/US20240206794A1-page-1.png",
     documentUrl: "/builds/patents/US20240206794A1.pdf",
     nameHighlights: [
-      { top: "42.4%", left: "27.1%", width: "10.6%", height: "2%" },
-      { top: "28.4%", left: "65.2%", width: "10.6%", height: "2%" },
+      { top: "43.96%", left: "27.27%", width: "10.55%", height: "1.35%" },
+      { top: "28.54%", left: "65.39%", width: "10.55%", height: "1.35%" },
     ],
   },
 ];

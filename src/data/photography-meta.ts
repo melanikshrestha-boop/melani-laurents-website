@@ -27,6 +27,7 @@ export interface PhotoCollection {
   tagline: string;
   slug: string;
   cover: string;
+  story?: string;
   photos: Photo[];
 }
 

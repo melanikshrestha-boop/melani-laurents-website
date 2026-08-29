@@ -14,7 +14,7 @@ import { PrintOrderDialog } from "@/components/photography/PrintOrderDialog";
 
 interface PortfolioGalleryProps {
   photos: Photo[];
-  layout?: "grid" | "scenery";
+  layout?: "grid" | "scenery" | "sketches";
   showStatement?: boolean;
 }
 
@@ -100,9 +100,7 @@ export function PortfolioGallery({
     <>
       <div
         ref={galleryRef}
-        className={`portfolio-gallery${
-          layout === "scenery" ? " portfolio-gallery--scenery" : ""
-        }`}
+        className={`portfolio-gallery portfolio-gallery--${layout}`}
       >
         <div id={layout === "scenery" ? "prints" : undefined} className="portfolio-gallery-grid">
           {photos.map((photo, i) => (

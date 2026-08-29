@@ -12,9 +12,14 @@ interface PortfolioIndexFieldProps {
 
 const ART_CATEGORIES = [
   {
-    label: "Photo / Film",
+    label: "Photo",
     href: "/photography/scenery",
     heroSlug: "scenery",
+  },
+  {
+    label: "Film",
+    href: "/photography/film",
+    heroSlug: "film",
   },
   {
     label: "Writing",

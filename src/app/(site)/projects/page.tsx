@@ -12,36 +12,26 @@ export const metadata: Metadata = {
 const STAGE_IDS = new Set([
   "wonder-os",
   "lensoss",
-  "celine-nova",
-  "dream-life",
   "shotbyceline",
 ]);
 
 const BUILD_PRESENTATION: Record<
   string,
-  { href?: string; readout: string; description: string }
+  { title?: string; href?: string; readout: string; description: string }
 > = {
   "wonder-os": {
+    title: "Wonder for daily agentic control",
     href: "https://github.com/melanikshrestha-boop/wonder",
     readout: "view Wonder",
     description:
-      "A private operating system for my books, finances, health, agents, and wardrobe.",
+      "One place for my books, finances, health, agents, and wardrobe.",
   },
   lensoss: {
+    title: "LensOS for smartculling and editing",
     href: "https://github.com/melanikshrestha-boop/LensOSS",
     readout: "view Lens",
     description:
-      "A photographer workflow for importing, selecting, editing, and delivering work.",
-  },
-  "celine-nova": {
-    href: "/",
-    readout: "visit Celine Nova",
-    description: "This website: my writing, bookshelf, art, and builds in one place.",
-  },
-  "dream-life": {
-    readout: "in development",
-    description:
-      "A 3D life simulation set between Los Angeles and San Francisco.",
+      "A faster photography workflow from import through final delivery.",
   },
   shotbyceline: {
     href: "/photography",
