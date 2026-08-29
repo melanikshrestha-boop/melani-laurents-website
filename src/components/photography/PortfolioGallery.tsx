@@ -129,7 +129,11 @@ export function PortfolioGallery({
                   height={1800}
                   className="portfolio-gallery-image"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  loading={i < (layout === "scenery" ? 3 : 2) ? "eager" : "lazy"}
+                  loading={
+                    i < (layout === "scenery" || layout === "sketches" ? 3 : 2)
+                      ? "eager"
+                      : "lazy"
+                  }
                 />
                 <span className="portfolio-gallery-wash" aria-hidden />
               </button>
