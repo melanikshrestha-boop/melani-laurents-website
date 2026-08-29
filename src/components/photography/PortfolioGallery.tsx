@@ -104,7 +104,19 @@ export function PortfolioGallery({
         ref={galleryRef}
         className={`portfolio-gallery portfolio-gallery--${layout}`}
       >
-        <div id={layout === "scenery" ? "prints" : undefined} className="portfolio-gallery-grid">
+        <div
+          id={layout === "scenery" ? "prints" : undefined}
+          className="portfolio-gallery-grid"
+          style={
+            layout === "sketches"
+              ? ({
+                  "--pg-sketch-columns": String(
+                    Math.max(1, Math.min(photos.length, 3)),
+                  ),
+                } as CSSProperties)
+              : undefined
+          }
+        >
           {photos.map((photo, i) => (
             <figure
               key={photo.id}
@@ -128,7 +140,15 @@ export function PortfolioGallery({
                   width={1200}
                   height={1800}
                   className="portfolio-gallery-image"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  sizes={
+                    layout === "sketches"
+                      ? photos.length === 1
+                        ? "100vw"
+                        : photos.length === 2
+                          ? "50vw"
+                          : "33vw"
+                      : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  }
                   loading={
                     i < (layout === "scenery" || layout === "sketches" ? 3 : 2)
                       ? "eager"

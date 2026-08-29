@@ -220,6 +220,37 @@
   text-decoration: underline;
 }
 
+.portfolio-sketch-quote {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 0.55rem max(0.5rem, 1vw) clamp(1.15rem, 2vw, 1.75rem);
+  color: rgba(0, 0, 0, 0.78);
+}
+
+.portfolio-sketch-quote p {
+  width: 100%;
+  margin: 0;
+  font-family: var(--font-epilogue), system-ui, sans-serif;
+  font-size: clamp(0.78rem, 1vw, 1rem);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+.portfolio-sketch-quote cite {
+  display: block;
+  margin-top: 0.5rem;
+  color: rgba(0, 0, 0, 0.5);
+  font-family: var(--font-share-tech-mono), ui-monospace, monospace;
+  font-size: clamp(0.58rem, 0.65vw, 0.68rem);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  text-align: right;
+}
+
 .portfolio-hover-item:hover .portfolio-hover-item-title,
 .portfolio-hover-item:focus-visible .portfolio-hover-item-title {
   opacity: 0.88;
@@ -291,7 +322,7 @@
 
 .portfolio-gallery-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--pg-sketch-columns, 3), minmax(0, 1fr));
   gap: var(--photo-grid-gap);
   padding: 1rem var(--photo-grid-gap) calc(3.5rem + env(safe-area-inset-bottom, 0px));
 }
@@ -426,7 +457,7 @@
   margin-inline: auto;
   margin-bottom: calc(3rem + env(safe-area-inset-bottom, 0px));
   padding: 0;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--pg-sketch-columns, 3), minmax(0, 1fr));
   gap: clamp(0.65rem, 1vw, 1rem);
 }
 
