@@ -6,11 +6,9 @@ import { googleScholarUrl } from "@/data/publications";
 
 export const metadata: Metadata = {
   title: "Builds",
-  description:
-    "Patented in-ear EEG research and the products, systems, and tools I’m building.",
+  description: "Four in-ear EEG patents and selected builds by Melani Shrestha.",
 };
 
-/** Founder products on the page: clean tech portfolio set. */
 const STAGE_IDS = new Set([
   "wonder-os",
   "lensoss",
@@ -19,12 +17,37 @@ const STAGE_IDS = new Set([
   "shotbyceline",
 ]);
 
-const PRODUCT_GITHUB: Record<string, string> = {
-  "wonder-os": "https://github.com/melanikshrestha-boop/wonder",
-  lensoss: "https://github.com/melanikshrestha-boop/LensOSS",
-  "celine-nova": "https://github.com/melanikshrestha-boop/melani-laurents-website",
-  "dream-life": "https://github.com/melanikshrestha-boop",
-  shotbyceline: "https://github.com/melanikshrestha-boop/melani-laurents-website",
+const BUILD_PRESENTATION: Record<
+  string,
+  { href?: string; readout: string; description: string }
+> = {
+  "wonder-os": {
+    href: "https://github.com/melanikshrestha-boop/wonder",
+    readout: "view Wonder",
+    description:
+      "A private operating system for my books, finances, health, agents, and wardrobe.",
+  },
+  lensoss: {
+    href: "https://github.com/melanikshrestha-boop/LensOSS",
+    readout: "view Lens",
+    description:
+      "A photographer workflow for importing, selecting, editing, and delivering work.",
+  },
+  "celine-nova": {
+    href: "/",
+    readout: "visit Celine Nova",
+    description: "This website: my writing, bookshelf, art, and builds in one place.",
+  },
+  "dream-life": {
+    readout: "in development",
+    description:
+      "A 3D life simulation set between Los Angeles and San Francisco.",
+  },
+  shotbyceline: {
+    href: "/photography",
+    readout: "view photography",
+    description: "My photography portfolio, print collection, and booking space.",
+  },
 };
 
 export default function ProjectsPage() {
@@ -32,8 +55,7 @@ export default function ProjectsPage() {
     .filter((p) => STAGE_IDS.has(p.id))
     .map((project) => ({
       ...project,
-      href: PRODUCT_GITHUB[project.id] ?? project.href,
-      readout: "GitHub",
+      ...BUILD_PRESENTATION[project.id],
     }));
 
   return (
@@ -63,7 +85,7 @@ export default function ProjectsPage() {
 
         <section className="builds-products" aria-labelledby="builds-products-title">
           <h2 id="builds-products-title" className="builds-products__title">
-            Products
+            Builds
           </h2>
           <ProjectGrid projects={stage} />
         </section>

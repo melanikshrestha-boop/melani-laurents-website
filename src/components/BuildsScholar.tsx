@@ -27,9 +27,11 @@ export function BuildsScholar() {
                         height={1657}
                         sizes="(max-width: 560px) calc(100vw - 2rem), (max-width: 1120px) 46vw, 23vw"
                         loading="eager"
+                        unoptimized
                         className="bs-scholar__preview"
                       />
                     ) : null}
+                    <span className="bs-scholar__name-marker" aria-hidden="true" />
                     <span className="bs-scholar__reveal">
                       <span className="bs-scholar__reveal-index" aria-hidden>
                         {String(index + 1).padStart(2, "0")}
@@ -43,7 +45,8 @@ export function BuildsScholar() {
                           {pub.publicationDate ? ` · ${pub.publicationDate}` : ""}
                         </span>
                         <span className="bs-scholar__reveal-role">
-                          Co-Author · Melani Shrestha
+                          <span>Co-author</span>
+                          <strong>Melani Shrestha</strong>
                         </span>
                       </span>
                     </span>

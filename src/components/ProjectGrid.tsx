@@ -1,35 +1,23 @@
 "use client";
 
-import { GithubLogo } from "@phosphor-icons/react";
 import type { Project } from "@/data/projects";
 
-/**
- * Builds list: single-spaced, no dividers, no boxes.
- * Dense tech folio: title · status · one-line desc · stack as plain text.
- */
-
-function ProjectRow({ project }: { project: Project }) {
+function ProjectRow({ project, index }: { project: Project; index: number }) {
   const isExternal = Boolean(project.href && !project.href.startsWith("/"));
   const isLink = Boolean(project.href);
-  const tags = project.tags.slice(0, 4);
-  const meta = [project.readout || project.status, ...tags]
-    .filter(Boolean)
-    .join(" · ");
 
   const body = (
     <>
-      <div className="bp-row__line">
-        <h2 className="bp-row__title">{project.title}</h2>
-        {isLink ? (
-          <span className="bp-row__go" aria-hidden>
-            {isExternal ? <GithubLogo weight="fill" /> : "→"}
-          </span>
-        ) : null}
-      </div>
+      <span className="bp-row__number" aria-hidden>
+        {String(index + 1).padStart(2, "0")}
+      </span>
+      <h3 className="bp-row__title">
+        {project.title}
+        {isLink ? <span className="bp-row__go" aria-hidden>↗</span> : null}
+      </h3>
       {project.description ? (
         <p className="bp-row__desc">{project.description}</p>
       ) : null}
-      {meta ? <p className="bp-row__meta">{meta}</p> : null}
     </>
   );
 
@@ -41,6 +29,7 @@ function ProjectRow({ project }: { project: Project }) {
           target={isExternal ? "_blank" : undefined}
           rel={isExternal ? "noopener noreferrer" : undefined}
           className="bp-row__link"
+          aria-label={`${project.title}: ${project.readout || "open project"}`}
         >
           {body}
         </a>
@@ -61,8 +50,12 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
 
   return (
     <ul className="bp-list" aria-label="Builds">
-      {sorted.map((project) => (
-        <ProjectRow key={project.id} project={project} />
+      {sorted.map((project, index) => (
+        <ProjectRow
+          key={project.id}
+          project={project}
+          index={index}
+        />
       ))}
     </ul>
   );
