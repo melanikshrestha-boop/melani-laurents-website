@@ -33,39 +33,9 @@
           "alt": "Portraits 5"
         },
         {
-          "id": "portraits-5",
-          "src": "/photography/portraits/A28449D9-BAED-4FB1-A26B-FA6C55DFD538.JPG",
-          "alt": "Portraits 6"
-        },
-        {
-          "id": "portraits-7",
-          "src": "/photography/portraits/_DSC2689.JPG",
-          "alt": "Portraits 8"
-        },
-        {
-          "id": "portraits-8",
-          "src": "/photography/portraits/_DSC2728.jpeg",
-          "alt": "Portraits 9"
-        },
-        {
-          "id": "portraits-9",
-          "src": "/photography/portraits/_DSC2478.jpeg",
-          "alt": "Portraits 10"
-        },
-        {
-          "id": "portraits-10",
-          "src": "/photography/portraits/_DSC2512.jpeg",
-          "alt": "Portraits 11"
-        },
-        {
           "id": "portraits-11",
           "src": "/photography/portraits/_DSC2292.jpeg",
           "alt": "Portraits 12"
-        },
-        {
-          "id": "portraits-12",
-          "src": "/photography/portraits/_DSC2329.jpeg",
-          "alt": "Portraits 13"
         },
         {
           "id": "portraits-13",
@@ -173,49 +143,9 @@
           "alt": "Portraits 34"
         },
         {
-          "id": "portraits-34",
-          "src": "/photography/portraits/_DSC2228.jpeg",
-          "alt": "Portraits 35"
-        },
-        {
-          "id": "portraits-35",
-          "src": "/photography/portraits/_DSC1799.jpeg",
-          "alt": "Portraits 36"
-        },
-        {
-          "id": "portraits-36",
-          "src": "/photography/portraits/_DSC1808.jpeg",
-          "alt": "Portraits 37"
-        },
-        {
-          "id": "portraits-37",
-          "src": "/photography/portraits/DSC01903.jpeg",
-          "alt": "Portraits 38"
-        },
-        {
-          "id": "portraits-38",
-          "src": "/photography/portraits/_DSC2417.JPG",
-          "alt": "Portraits 39"
-        },
-        {
           "id": "portraits-39",
           "src": "/photography/portraits/_DSC2497.JPG",
           "alt": "Portraits 40"
-        },
-        {
-          "id": "portraits-40",
-          "src": "/photography/portraits/_DSC2683.JPG",
-          "alt": "Portraits 41"
-        },
-        {
-          "id": "portraits-41",
-          "src": "/photography/portraits/_DSC2684.JPG",
-          "alt": "Portraits 42"
-        },
-        {
-          "id": "portraits-42",
-          "src": "/photography/portraits/_DSC2685.JPG",
-          "alt": "Portraits 43"
         }
       ]
     },
@@ -302,7 +232,7 @@
     },
     {
       "id": "poem",
-      "title": "Writing / Poetry",
+      "title": "Writing",
       "tagline": "words · rhythm · feeling",
       "slug": "poem",
       "cover": "/photography/sketches/cover.jpeg",

@@ -88,7 +88,7 @@
   min-height: max(100svh, 42rem);
   box-sizing: border-box;
   margin: 0;
-  padding: clamp(3.5rem, 9vh, 5.5rem) 1rem clamp(4.75rem, 10vh, 6.25rem);
+  padding: clamp(4.5rem, 10vh, 6rem) 1rem clamp(3.5rem, 8vh, 5rem);
   list-style: none;
 }
 
@@ -156,9 +156,9 @@
 
 .portfolio-hover-item-title {
   margin: 0;
-  padding: clamp(0.3rem, 0.7vh, 0.65rem) 0;
+  padding: clamp(0.18rem, 0.45vh, 0.38rem) 0;
   font-family: var(--font-anton), sans-serif;
-  font-size: clamp(2.15rem, 3.25vw, 3.9rem);
+  font-size: clamp(2rem, 3vw, 3.45rem);
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: normal;
@@ -166,6 +166,60 @@
   text-transform: none;
   color: #fff;
   transition: opacity 0.25s ease;
+}
+
+.portfolio-collection-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: clamp(13rem, 30vh, 19rem);
+  padding: clamp(6.5rem, 15vh, 9rem) max(1rem, 2vw) clamp(2rem, 5vh, 3.25rem);
+  box-sizing: border-box;
+  background: var(--photo-page-bg);
+  color: var(--photo-ink);
+}
+
+.portfolio-collection-header__copy,
+.portfolio-collection-header__copy p,
+.portfolio-collection-header__copy h1 {
+  margin: 0;
+}
+
+.portfolio-collection-header__kicker,
+.portfolio-collection-header__peer {
+  font-family: var(--font-share-tech-mono), ui-monospace, monospace;
+  font-size: clamp(0.62rem, 0.75vw, 0.72rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.portfolio-collection-header__kicker {
+  margin-bottom: 0.5rem !important;
+  color: rgba(20, 18, 16, 0.52);
+}
+
+.portfolio-collection-header h1 {
+  font-family: var(--font-anton), sans-serif;
+  font-size: clamp(3.6rem, 8vw, 8rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: 0;
+}
+
+.portfolio-collection-header__peer {
+  flex: 0 0 auto;
+  color: var(--photo-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.28em;
+}
+
+.portfolio-collection-header__peer:hover,
+.portfolio-collection-header__peer:focus-visible {
+  color: #4d287d;
 }
 
 .portfolio-hover-item:hover .portfolio-hover-item-title,
@@ -829,11 +883,24 @@
   }
 
   .portfolio-hover-items-list {
-    padding: clamp(2.5rem, 7vh, 4rem) 0.75rem 4.5rem;
+    padding: clamp(4rem, 9vh, 5rem) 0.75rem 2.5rem;
   }
 
   .portfolio-hover-item-title {
     font-size: clamp(1.8rem, 9vw, 2.55rem);
+  }
+
+  .portfolio-collection-header {
+    min-height: 13rem;
+    padding: 5.75rem 0.75rem 1.75rem;
+  }
+
+  .portfolio-collection-header h1 {
+    font-size: clamp(3.3rem, 18vw, 5.2rem);
+  }
+
+  .portfolio-collection-header__peer {
+    padding-bottom: 0.2rem;
   }
 
   .portfolio-hover-subcategories {

@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PortfolioGallery } from "@/components/photography/PortfolioGallery";
-import { PortfolioPagination } from "@/components/photography/PortfolioPagination";
 import {
-  getAdjacentCollections,
   getPhotoCollection,
   getPhotoCollectionSlugs,
 } from "@/lib/photography";
@@ -21,7 +20,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const collection = getPhotoCollection(slug);
   if (!collection) return { title: "shotbyceline" };
   return {
-    title: `${collection.title} — shotbyceline`,
+    title: `${collection.title} | shotbyceline`,
   };
 }
 
@@ -30,16 +29,38 @@ export default async function PhotographyCollectionPage({ params }: PageProps) {
   const collection = getPhotoCollection(slug);
   if (!collection) notFound();
 
-  const { prev, next } = getAdjacentCollections(slug);
+  const isScenery = slug === "scenery";
+  const isPortraits = slug === "portraits";
+  const peer = isScenery
+    ? { href: "/photography/portraits", label: "Portraits" }
+    : isPortraits
+      ? { href: "/photography/scenery", label: "Scenery" }
+      : null;
 
   return (
     <>
+      <header className="portfolio-collection-header">
+        <div className="portfolio-collection-header__copy">
+          <p className="portfolio-collection-header__kicker">
+            {isScenery
+              ? "Scenery prints"
+              : isPortraits
+                ? "Portrait archive"
+                : "Celine Nova"}
+          </p>
+          <h1>{collection.title}</h1>
+        </div>
+        {peer ? (
+          <Link href={peer.href} className="portfolio-collection-header__peer">
+            {peer.label} ↗
+          </Link>
+        ) : null}
+      </header>
       <PortfolioGallery
         photos={collection.photos}
-        layout={slug === "scenery" ? "scenery" : "grid"}
-        showStatement={slug === "portraits"}
+        layout={isScenery ? "scenery" : "grid"}
+        showStatement={isPortraits}
       />
-      <PortfolioPagination prev={prev} next={next} />
     </>
   );
 }

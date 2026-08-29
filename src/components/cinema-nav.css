@@ -103,18 +103,21 @@
   -webkit-text-fill-color: #a8842e !important;
 }
 
-/* Art / photography profile: one quiet rail over the bottom of the work. */
+/* Art / photography profile: a quiet overlay at the top of the work. */
 .cinema-nav--art {
   position: fixed !important;
-  top: auto !important;
+  top: 0 !important;
   right: 0 !important;
-  bottom: 0 !important;
+  bottom: auto !important;
   left: 0 !important;
   z-index: 100 !important;
   border: 0 !important;
-  background: rgba(12, 12, 12, 0.72) !important;
-  background-image: none !important;
-  backdrop-filter: blur(12px) !important;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.7),
+    rgba(10, 10, 10, 0)
+  ) !important;
+  backdrop-filter: none !important;
   box-shadow: none !important;
   padding: 0 !important;
 }
@@ -132,6 +135,37 @@
     max(env(safe-area-inset-bottom, 0px), 0px)
     max(0.9rem, env(safe-area-inset-left, 0px)) !important;
   box-sizing: border-box;
+}
+
+.cinema-nav--art-gallery {
+  background: linear-gradient(
+    to bottom,
+    rgba(224, 224, 219, 1),
+    rgba(224, 224, 219, 0)
+  ) !important;
+}
+
+.cinema-nav--art-gallery .cinema-nav__art-home,
+.cinema-nav--art-gallery .cinema-nav__link--cinema {
+  color: rgba(20, 18, 16, 0.72) !important;
+  -webkit-text-fill-color: rgba(20, 18, 16, 0.72) !important;
+}
+
+.cinema-nav--art-gallery .cinema-nav__link--cinema:hover,
+.cinema-nav--art-gallery .cinema-nav__link--cinema:focus-visible {
+  color: #141210 !important;
+  -webkit-text-fill-color: #141210 !important;
+}
+
+.cinema-nav--art.cinema-nav--art-gallery .cinema-nav__link--gold {
+  color: #4d287d !important;
+  -webkit-text-fill-color: #4d287d !important;
+}
+
+.cinema-nav--art.cinema-nav--art-gallery .cinema-nav__link--gold:hover,
+.cinema-nav--art.cinema-nav--art-gallery .cinema-nav__link--gold:focus-visible {
+  color: #2f174e !important;
+  -webkit-text-fill-color: #2f174e !important;
 }
 .cinema-nav__art-home {
   flex: 0 0 auto;

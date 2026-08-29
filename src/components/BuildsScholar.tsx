@@ -42,7 +42,9 @@ export function BuildsScholar() {
                           {pub.publicationNumber ?? pub.venue}
                           {pub.publicationDate ? ` · ${pub.publicationDate}` : ""}
                         </span>
-                        <span className="bs-scholar__reveal-role">Co-Author</span>
+                        <span className="bs-scholar__reveal-role">
+                          Co-Author · Melani Shrestha
+                        </span>
                       </span>
                     </span>
                   </div>

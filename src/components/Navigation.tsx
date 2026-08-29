@@ -65,6 +65,7 @@ export function Navigation() {
   /** Art / photography — full-bleed profile, not cream paper product */
   const isArt =
     pathname === "/photography" || pathname.startsWith("/photography/");
+  const isArtGallery = isArt && pathname !== "/photography";
   const isBuilds =
     pathname === "/projects" || pathname.startsWith("/projects/");
 
@@ -119,6 +120,7 @@ export function Navigation() {
     edgePaper ? "cinema-nav--bookshelf" : "",
     isBuilds ? "cinema-nav--builds" : "",
     isArt ? "cinema-nav--art" : "",
+    isArtGallery ? "cinema-nav--art-gallery" : "",
   ]
     .filter(Boolean)
     .join(" ");

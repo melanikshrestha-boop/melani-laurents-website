@@ -13,13 +13,13 @@ export interface Project {
   featured?: boolean;
   readout?: string;
   createdAt: string;
-  /** Lower = higher on Builds (1 = first). Array order alone is not enough — grid sorts. */
+  /** Lower = higher on Builds (1 = first). Array order alone is not enough; grid sorts. */
   priority?: number;
 }
 
 /**
  * Builds copy: short, human, scannable.
- * No patent-brochure walls. One idea per card — why it exists.
+ * No patent-brochure walls. One idea per card: why it exists.
  */
 export const projects: Project[] = [
   {
@@ -28,7 +28,7 @@ export const projects: Project[] = [
     role: "Researcher & Inventor",
     status: "Research",
     description:
-      "The public record of work I actually did — brain signals, deep learning, and gear people can wear. Not a résumé dump. Proof.",
+      "The public record of work I actually did: brain signals, deep learning, and gear people can wear. Not a résumé dump. Proof.",
     tags: ["research", "EEG", "patents"],
     href: googleScholarUrl,
     featured: true,
@@ -42,7 +42,7 @@ export const projects: Project[] = [
     role: "Inventor",
     status: "Research",
     description:
-      "Brain signal from earbuds — not a lab helmet. Hardware for real ears, real life.",
+      "Brain signal from earbuds, not a lab helmet. Hardware for real ears, real life.",
     tags: ["hardware", "EEG"],
     href: googleScholarUrl,
     featured: true,
@@ -56,7 +56,7 @@ export const projects: Project[] = [
     role: "Founder & Builder",
     status: "Active",
     description:
-      "My personal OS. Books, money, agents, wardrobe — one app, local-first, built for me first.",
+      "My personal OS. Books, money, agents, wardrobe. One app, local-first, built for me first.",
     tags: ["product", "systems"],
     featured: true,
     priority: 3,
@@ -69,7 +69,7 @@ export const projects: Project[] = [
     role: "Founder & Builder",
     status: "Active",
     description:
-      "Photographer product — import, pick, Lightroom, send. Built to beat slow gallery turnaround.",
+      "Photographer product. Import, pick, Lightroom, send. Built to beat slow gallery turnaround.",
     tags: ["product", "photo", "saas"],
     featured: true,
     priority: 4,
@@ -82,7 +82,7 @@ export const projects: Project[] = [
     role: "Founder & Builder",
     status: "Active",
     description:
-      "This site. How I think in public — builds, bookshelf, opinions. Not a template portfolio.",
+      "This site. How I think in public: builds, bookshelf, opinions. Not a template portfolio.",
     tags: ["web", "brand"],
     href: "https://celinenova.com",
     featured: true,
@@ -96,7 +96,7 @@ export const projects: Project[] = [
     role: "Creator",
     status: "Stealth",
     description:
-      "3D life sim — LA rooftop, jet, SF. Beautiful enough to want. Playable enough to stay.",
+      "3D life sim across Los Angeles and San Francisco. Beautiful enough to want. Playable enough to stay.",
     tags: ["3d", "game"],
     featured: true,
     priority: 6,
@@ -109,7 +109,7 @@ export const projects: Project[] = [
     role: "Photographer",
     status: "Active",
     description:
-      "Photography as a real product — portraits, scenery, booking. Not a forgotten gallery tab.",
+      "Photography as a real product: portraits, scenery, booking. Not a forgotten gallery tab.",
     tags: ["photo", "art"],
     href: "https://celinenova.com/photography",
     featured: true,
@@ -137,7 +137,7 @@ export const projects: Project[] = [
     role: "Author",
     status: "Research",
     description:
-      "How I keep research honest over years — versioned, git-native, no bloated ELN.",
+      "How I keep research honest over years: versioned, git-native, no bloated ELN.",
     tags: ["research", "tools"],
     href: "/research",
     featured: true,
@@ -165,7 +165,7 @@ export const projects: Project[] = [
     role: "Research lead",
     status: "Research",
     description:
-      "Civic + social infrastructure research — how community signal becomes something institutions can act on.",
+      "Civic and social infrastructure research: how community signal becomes something institutions can act on.",
     tags: ["research", "civic"],
     href: "/research",
     featured: true,
@@ -179,7 +179,7 @@ export const projects: Project[] = [
     role: "Founder & Builder",
     status: "Active",
     description:
-      "Agents that ship and protect this product — design law, shelf UI, push. So nothing relearns bad habits.",
+      "Agents that ship and protect this product: design law, shelf UI, push. So nothing relearns bad habits.",
     tags: ["ai", "agents"],
     featured: true,
     priority: 11,
@@ -192,7 +192,7 @@ export const projects: Project[] = [
     role: "Operator",
     status: "Active",
     description:
-      "Frontier models as leverage for real engineering — Wonder, this site, Dream Life. Not demo cosplay.",
+      "Frontier models as leverage for real engineering: Wonder, this site, Dream Life. Not demo cosplay.",
     tags: ["ai", "ops"],
     featured: true,
     priority: 12,

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "Patented in-ear EEG research and the products, systems, and tools I’m building.",
 };
 
-/** Founder products on the page — clean tech portfolio set. */
+/** Founder products on the page: clean tech portfolio set. */
 const STAGE_IDS = new Set([
   "wonder-os",
   "lensoss",

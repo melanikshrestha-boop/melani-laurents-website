@@ -1,16 +1,5 @@
-import type { Metadata } from "next";
-import { PortfolioIndexField } from "@/components/photography/PortfolioIndexField";
-import { getPhotoCollection } from "@/lib/photography";
-
-export const metadata: Metadata = {
-  title: "Photography — shotbyceline",
-};
+import { redirect } from "next/navigation";
 
 export default function PhotographyCollectionsPage() {
-  const collections = ["portraits", "scenery"].flatMap((slug) => {
-    const collection = getPhotoCollection(slug);
-    return collection ? [collection] : [];
-  });
-
-  return <PortfolioIndexField collections={collections} mode="photography" />;
+  redirect("/photography/scenery");
 }

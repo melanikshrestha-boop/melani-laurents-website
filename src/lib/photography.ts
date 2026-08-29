@@ -7,10 +7,8 @@ import {
 const photographyData = data as PhotographyData;
 
 const INDEX_COLLECTION_ORDER = [
-  "portraits",
   "scenery",
   "sketches",
-  "film",
   "poem",
 ] as const;
 
@@ -21,14 +19,6 @@ export const INDEX_HERO_IMAGES: Record<string, string> = {
   film: "/photography/film/cover.jpeg",
   poem: "/photography/sketches/cover.jpeg",
 };
-
-/** The Photography group alternates between its two collections. */
-export const INDEX_HERO_AUTO_CYCLE_SLUGS = [
-  "portraits",
-  "scenery",
-] as const;
-export const INDEX_HERO_DEFAULT_SLUG = "portraits";
-export const INDEX_HERO_AUTO_CYCLE_MS = 4500;
 
 export const PHOTOGRAPHY_BOOKING_PATH = "/contact";
 
@@ -53,16 +43,6 @@ export function getPhotoCollection(slug: string): PhotoCollection | undefined {
 
 export function getPhotoCollectionSlugs(): string[] {
   return photographyData.collections.map((c) => c.slug);
-}
-
-export function getAdjacentCollections(slug: string) {
-  const collections = getIndexCollections();
-  const index = collections.findIndex((c) => c.slug === slug);
-  if (index === -1) return { prev: undefined, next: undefined };
-  return {
-    prev: index > 0 ? collections[index - 1] : undefined,
-    next: index < collections.length - 1 ? collections[index + 1] : undefined,
-  };
 }
 
 export function getIndexHeroImage(slug: string, fallback: string): string {

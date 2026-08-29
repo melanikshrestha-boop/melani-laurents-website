@@ -4,7 +4,7 @@ import { GithubLogo } from "@phosphor-icons/react";
 import type { Project } from "@/data/projects";
 
 /**
- * Builds list — single-spaced, no dividers, no boxes.
+ * Builds list: single-spaced, no dividers, no boxes.
  * Dense tech folio: title · status · one-line desc · stack as plain text.
  */
 
@@ -19,7 +19,6 @@ function ProjectRow({ project }: { project: Project }) {
   const body = (
     <>
       <div className="bp-row__line">
-        <span className="bp-row__live" aria-hidden />
         <h2 className="bp-row__title">{project.title}</h2>
         {isLink ? (
           <span className="bp-row__go" aria-hidden>
