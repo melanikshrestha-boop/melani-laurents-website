@@ -5961,22 +5961,8 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   }
 }
 
-/* Public bookshelf type hierarchy: page, section, then regular-weight rows. */
-.pb-root .bl-title {
-  color: #29251f !important;
-  font-family: var(--font-syne), ui-sans-serif, system-ui, sans-serif !important;
-  font-size: 24px !important;
-  font-weight: 600 !important;
-  line-height: 1.05 !important;
-  letter-spacing: 0 !important;
-}
-
-.pb-root .bl-title svg,
-.pb-root .bl-title .min-icon {
-  width: 20px !important;
-  height: 20px !important;
-}
-
+/* Public bookshelf type hierarchy: page and archive share one compact heading. */
+.pb-root .bl-title,
 .pb-root .pb-blogs__title {
   color: #29251f !important;
   font-family: var(--font-syne), ui-sans-serif, system-ui, sans-serif !important;
@@ -5984,6 +5970,13 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   font-weight: 600 !important;
   line-height: 1.1 !important;
   letter-spacing: 0 !important;
+  text-transform: lowercase;
+}
+
+.pb-root .bl-title svg,
+.pb-root .bl-title .min-icon {
+  width: 16px !important;
+  height: 16px !important;
 }
 
 .pb-root .bl-folder strong,
@@ -6022,10 +6015,7 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 }
 
 @media (max-width: 720px) {
-  .pb-root .bl-title {
-    font-size: 22px !important;
-  }
-
+  .pb-root .bl-title,
   .pb-root .pb-blogs__title {
     font-size: 15px !important;
   }
@@ -6079,11 +6069,29 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 }
 
 .pb-root .bl-folder-copy {
-  gap: 1px;
+  grid-template-rows: auto auto;
+  align-content: center;
+  gap: 2px !important;
   line-height: 1;
 }
 
 .pb-root .bl-folder strong,
 .pb-root .bl-folder small {
   line-height: 1 !important;
+}
+
+.pb-root .bl-folder small.bl-folder-count {
+  display: grid !important;
+  grid-template-columns: 0.72em 0.72em auto;
+  column-gap: 0.18em;
+  align-items: baseline;
+  width: max-content !important;
+  margin: 0 !important;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.pb-root .bl-folder-count span {
+  display: block;
+  text-align: left;
 }

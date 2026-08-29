@@ -53,7 +53,7 @@ export const DEFAULT_EDITOR: ShelfEditorState = {
   blogById: {},
   currentReads: DEFAULT_CURRENT_READS,
   folderViews: DEFAULT_FOLDER_VIEWS,
-  pageTitle: "My Bookshelf",
+  pageTitle: "my bookshelf",
 };
 
 export function loadShelfEditor(): ShelfEditorState {

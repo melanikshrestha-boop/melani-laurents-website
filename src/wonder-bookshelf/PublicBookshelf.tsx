@@ -84,8 +84,8 @@ function openExternal(href: string) {
 type Filter = "all" | "book" | "blog" | "faves";
 
 const CHIPS: { id: Filter; label: string }[] = [
-  { id: "all", label: "All" },
-  { id: "book", label: "Books" },
+  { id: "all", label: "all" },
+  { id: "book", label: "books" },
   { id: "blog", label: "blogs I've read" },
   { id: "faves", label: "favs" },
 ];
@@ -938,7 +938,7 @@ export function PublicBookshelf() {
                     aria-label="Page title"
                   />
                 ) : (
-                  editor.pageTitle
+                  editor.pageTitle.toLocaleLowerCase()
                 )}
               </h1>
               <div className="bl-stats" aria-label="Shelf totals">
@@ -1173,7 +1173,11 @@ export function PublicBookshelf() {
                   />
                   <span className="bl-folder-copy">
                     <strong>{group.label}</strong>
-                    <small>n = {n}</small>
+                    <small className="bl-folder-count" aria-label={`n = ${n}`}>
+                      <span aria-hidden="true">n</span>
+                      <span aria-hidden="true">=</span>
+                      <span aria-hidden="true">{n}</span>
+                    </small>
                   </span>
                 </button>
               </div>
@@ -1229,7 +1233,7 @@ export function PublicBookshelf() {
             style={blogCssVars}
           >
             <header className="pb-blogs__head">
-              <h2 className="pb-blogs__title">blogs I&apos;ve read</h2>
+              <h2 className="pb-blogs__title">blogs i&apos;ve read</h2>
             </header>
 
             {pageEdit ? (
