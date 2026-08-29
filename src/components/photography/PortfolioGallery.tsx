@@ -16,12 +16,14 @@ interface PortfolioGalleryProps {
   photos: Photo[];
   layout?: "grid" | "scenery" | "sketches";
   showStatement?: boolean;
+  story?: string;
 }
 
 export function PortfolioGallery({
   photos,
   layout = "grid",
   showStatement = false,
+  story,
 }: PortfolioGalleryProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [printPhoto, setPrintPhoto] = useState<Photo | null>(null);
@@ -165,6 +167,14 @@ export function PortfolioGallery({
               ) : null}
             </figure>
           ))}
+          {layout === "sketches" && story ? (
+            <aside
+              className="portfolio-sketch-story"
+              aria-label="Story behind the sketches"
+            >
+              <p>{story}</p>
+            </aside>
+          ) : null}
         </div>
 
         {showStatement ? (

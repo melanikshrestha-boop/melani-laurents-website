@@ -77,15 +77,13 @@ export default async function PhotographyCollectionPage({ params }: PageProps) {
           </h1>
         )}
       </header>
-      {collection.story ? (
-        <p className="portfolio-collection-story">{collection.story}</p>
-      ) : null}
       <PortfolioGallery
         photos={collection.photos}
         layout={
           isScenery ? "scenery" : slug === "sketches" ? "sketches" : "grid"
         }
         showStatement={isPortraits}
+        story={slug === "sketches" ? collection.story : undefined}
       />
     </>
   );
