@@ -6180,7 +6180,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   display: block;
   font-family: var(--font-oswald), var(--font-archivo-narrow), system-ui, sans-serif;
   font-weight: 600;
-  font-size: clamp(1.6rem, min(3.6vw, 5.5vh), 3.1rem);
+  font-size: clamp(2.25rem, min(4.6vw, 7vh), 4rem);
   line-height: 1;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -6477,7 +6477,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   .hub-page--photo .hub-page__title,
   .hub-page--photo .hub-page__title-line,
   .hub-page--locked .hub-page__title-line {
-    font-size: clamp(1.45rem, 7.5vw, 1.9rem) !important;
+    font-size: clamp(2.3rem, 10.8vw, 3.1rem) !important;
     letter-spacing: 0;
     max-width: 100%;
     overflow: hidden;
@@ -6571,7 +6571,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 
   .hub-page--photo .hub-page__title-line,
   .hub-page--locked .hub-page__title-line {
-    font-size: clamp(1.35rem, 7.25vw, 1.72rem) !important;
+    font-size: clamp(2.2rem, 10.8vw, 2.9rem) !important;
   }
 
   .hub-page--photo .hub-page__nav--locked {
