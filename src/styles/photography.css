@@ -209,6 +209,11 @@
   letter-spacing: 0;
 }
 
+.portfolio-collection-header.portfolio-collection-header--editorial h1 {
+  font-size: clamp(2.6rem, 3.8vw, 4rem);
+  line-height: 1;
+}
+
 .portfolio-collection-header__peer {
   flex: 0 0 auto;
   color: var(--photo-ink);

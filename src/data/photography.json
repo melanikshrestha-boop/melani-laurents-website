@@ -220,7 +220,23 @@
       "tagline": "line · hand · form",
       "slug": "sketches",
       "cover": "/photography/sketches/cover.jpeg",
-      "photos": []
+      "photos": [
+        {
+          "id": "starman-doodle-01",
+          "src": "/photography/sketches/starman-doodle-01.jpg",
+          "alt": "Notebook doodles with a rocket, stars, handwritten lines, and two figures looking upward"
+        },
+        {
+          "id": "starman-doodle-02",
+          "src": "/photography/sketches/starman-doodle-02.jpg",
+          "alt": "Notebook doodles of two men, a computer, an Apple logo, and handwritten notes"
+        },
+        {
+          "id": "starman-doodle-03",
+          "src": "/photography/sketches/starman-doodle-03.jpg",
+          "alt": "Close pen portrait of a woman surrounded by handwritten notes"
+        }
+      ]
     },
     {
       "id": "film",

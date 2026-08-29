@@ -31,6 +31,7 @@ export default async function PhotographyCollectionPage({ params }: PageProps) {
 
   const isScenery = slug === "scenery";
   const isPortraits = slug === "portraits";
+  const isEditorialArchive = ["sketches", "film", "poem"].includes(slug);
   const peer = isScenery
     ? { href: "/photography/portraits", label: "Portraits" }
     : isPortraits
@@ -39,14 +40,22 @@ export default async function PhotographyCollectionPage({ params }: PageProps) {
 
   return (
     <>
-      <header className="portfolio-collection-header">
+      <header
+        className={`portfolio-collection-header${
+          isEditorialArchive ? " portfolio-collection-header--editorial" : ""
+        }`}
+      >
         <div className="portfolio-collection-header__copy">
           <p className="portfolio-collection-header__kicker">
             {isScenery
               ? "Scenery prints"
               : isPortraits
                 ? "Portrait archive"
-                : "Celine Nova"}
+                : slug === "sketches"
+                  ? "Doodle archive"
+                  : slug === "film"
+                    ? "Film archive"
+                    : "Writing archive"}
           </p>
           <h1>{collection.title}</h1>
         </div>
