@@ -5157,9 +5157,10 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 
 /* Product covers */
 .pb-root .pb-cover-photo {
-  background: #e8e2d6 !important;
+  background: transparent !important;
   background-image: none !important;
   overflow: hidden;
+  box-shadow: none !important;
 }
 .pb-root .pb-cover-photo .bl-cover-image {
   width: 100%;
@@ -5605,7 +5606,8 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   width: 100%;
   aspect-ratio: 2 / 3;
   overflow: hidden;
-  background: #fff;
+  background: transparent;
+  box-shadow: none;
   container-type: inline-size;
 }
 

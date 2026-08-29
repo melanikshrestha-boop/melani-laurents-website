@@ -108,6 +108,7 @@ const AUTOBIOGRAPHY_TECH_ORDER = [
   "book-isaacson-elon-musk",
   "book-entrepreneur-musk-vance",
   "book-entrepreneur-book-of-elon",
+  "book-creator-nolan-variations",
   "book-sv-a5b6547157",
   "book-isaacson-innovators",
   "book-isaacson-code-breaker",

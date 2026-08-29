@@ -956,6 +956,16 @@
     "rating": 4
   },
   {
+    "id": "book-creator-nolan-variations",
+    "kind": "book",
+    "title": "The Nolan Variations: The Movies, Mysteries, and Marvels of Christopher Nolan",
+    "source": "Tom Shone",
+    "loggedAt": "2026-08-28",
+    "category": "autobiographies",
+    "href": "https://www.amazon.com/dp/0525655328",
+    "asin": "0525655328"
+  },
+  {
     "id": "book-entrepreneur-poor-charlie",
     "kind": "book",
     "title": "Poor Charlie's Almanack",
