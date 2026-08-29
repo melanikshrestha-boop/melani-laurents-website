@@ -32,11 +32,7 @@ export default async function PhotographyCollectionPage({ params }: PageProps) {
   const isScenery = slug === "scenery";
   const isPortraits = slug === "portraits";
   const isEditorialArchive = ["sketches", "film", "poem"].includes(slug);
-  const peer = isScenery
-    ? { href: "/photography/portraits", label: "Portraits" }
-    : isPortraits
-      ? { href: "/photography/scenery", label: "Scenery" }
-      : null;
+  const isPhotographyCollection = isScenery || isPortraits;
 
   return (
     <>
@@ -45,25 +41,41 @@ export default async function PhotographyCollectionPage({ params }: PageProps) {
           isEditorialArchive ? " portfolio-collection-header--editorial" : ""
         }`}
       >
-        <div className="portfolio-collection-header__copy">
-          <p className="portfolio-collection-header__kicker">
-            {isScenery
-              ? "Scenery prints"
-              : isPortraits
-                ? "Portrait archive"
-                : slug === "sketches"
-                  ? "Doodle archive"
-                  : slug === "film"
-                    ? "Film archive"
-                    : "Writing archive"}
-          </p>
-          <h1>{collection.title}</h1>
-        </div>
-        {peer ? (
-          <Link href={peer.href} className="portfolio-collection-header__peer">
-            {peer.label} ↗
-          </Link>
-        ) : null}
+        {isPhotographyCollection ? (
+          <nav
+            className="portfolio-collection-header__pager"
+            aria-label="Photography collections"
+          >
+            {isScenery ? (
+              <h1 className="portfolio-collection-header__current">
+                <span aria-hidden>←</span> Scenery
+              </h1>
+            ) : (
+              <Link
+                href="/photography/scenery"
+                className="portfolio-collection-header__peer"
+              >
+                <span aria-hidden>←</span> Scenery
+              </Link>
+            )}
+            {isPortraits ? (
+              <h1 className="portfolio-collection-header__current">
+                Portraits <span aria-hidden>→</span>
+              </h1>
+            ) : (
+              <Link
+                href="/photography/portraits"
+                className="portfolio-collection-header__peer"
+              >
+                Portraits <span aria-hidden>→</span>
+              </Link>
+            )}
+          </nav>
+        ) : (
+          <h1 className="portfolio-collection-header__current">
+            {collection.title}
+          </h1>
+        )}
       </header>
       <PortfolioGallery
         photos={collection.photos}
