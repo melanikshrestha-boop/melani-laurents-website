@@ -12,9 +12,11 @@ import {
   Inter,
 } from "next/font/google";
 import { siteConfig } from "@/config/site";
+import { LayoutEditor } from "@/components/LayoutEditor";
 import "./globals.css";
 import "@/styles/daily-pulse.css";
 import "@/styles/builds-folio.css";
+import "@/styles/layout-editor.css";
 
 /*
  * Display face. johnlennon.com sets its headings in Helvetica LT Std Bold,
@@ -138,6 +140,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         {children}
+        <LayoutEditor />
       </body>
     </html>
   );
