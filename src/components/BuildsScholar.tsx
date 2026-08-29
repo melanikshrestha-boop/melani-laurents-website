@@ -37,11 +37,13 @@ export function BuildsScholar() {
                       <strong className="bs-scholar__reveal-title">
                         {pub.title} <span aria-hidden>↗</span>
                       </strong>
-                      <span className="bs-scholar__reveal-meta">
-                        {pub.publicationNumber ?? pub.venue}
-                        {pub.publicationDate ? ` · ${pub.publicationDate}` : ""}
+                      <span className="bs-scholar__reveal-footer">
+                        <span className="bs-scholar__reveal-meta">
+                          {pub.publicationNumber ?? pub.venue}
+                          {pub.publicationDate ? ` · ${pub.publicationDate}` : ""}
+                        </span>
+                        <span className="bs-scholar__reveal-role">Co-Author</span>
                       </span>
-                      <span className="bs-scholar__reveal-role">Co-Author</span>
                     </span>
                   </div>
                 </figure>

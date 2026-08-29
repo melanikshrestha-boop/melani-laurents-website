@@ -40,12 +40,15 @@ export default function ProjectsPage() {
     <div className="builds-surface builds-surface--folio">
       <div className="builds-surface__inner builds-surface__inner--folio">
         <header className="builds-surface__head builds-surface__head--folio">
-          <h1
-            id="builds-patents-title"
-            className="builds-surface__title builds-surface__title--folio"
-          >
-            Four Patents
-          </h1>
+          <div className="builds-surface__heading-copy">
+            <p className="builds-surface__eyebrow">Patent Folio</p>
+            <h1
+              id="builds-patents-title"
+              className="builds-surface__title builds-surface__title--folio"
+            >
+              4 Patents
+            </h1>
+          </div>
           <a
             href={googleScholarUrl}
             target="_blank"
