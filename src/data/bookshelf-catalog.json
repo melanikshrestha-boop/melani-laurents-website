@@ -337,7 +337,7 @@
     "title": "A Gentle Creature",
     "source": "Fyodor Dostoevsky",
     "loggedAt": "2026-07-30",
-    "category": "dostoevsky",
+    "category": "literature",
     "asin": "0140447551",
     "href": "https://www.amazon.com/dp/0140447551",
     "rating": 4,
@@ -349,7 +349,7 @@
     "title": "The Eternal Husband",
     "source": "Fyodor Dostoevsky",
     "loggedAt": "2026-07-30",
-    "category": "dostoevsky",
+    "category": "literature",
     "asin": "0486465896",
     "href": "https://www.amazon.com/dp/0486465896",
     "rating": 4
@@ -360,7 +360,7 @@
     "title": "The House of the Dead",
     "source": "Fyodor Dostoevsky",
     "loggedAt": "2026-07-30",
-    "category": "dostoevsky",
+    "category": "literature",
     "asin": "0486434095",
     "href": "https://www.amazon.com/dp/0486434095",
     "rating": 4
@@ -371,7 +371,7 @@
     "title": "Poor Folk",
     "source": "Fyodor Dostoevsky",
     "loggedAt": "2026-07-30",
-    "category": "dostoevsky",
+    "category": "literature",
     "asin": "0486457230",
     "href": "https://www.amazon.com/dp/0486457230",
     "rating": 4
@@ -382,7 +382,7 @@
     "title": "The Double",
     "source": "Fyodor Dostoevsky",
     "loggedAt": "2026-07-30",
-    "category": "dostoevsky",
+    "category": "literature",
     "asin": "0140446067",
     "href": "https://www.amazon.com/dp/0140446067",
     "rating": 4,
@@ -394,7 +394,7 @@
     "title": "The Gambler",
     "source": "Fyodor Dostoevsky",
     "loggedAt": "2026-07-30",
-    "category": "dostoevsky",
+    "category": "literature",
     "asin": "0486290816",
     "href": "https://www.amazon.com/dp/0486290816",
     "rating": 4
@@ -405,7 +405,7 @@
     "title": "Notes from Underground",
     "source": "Fyodor Dostoevsky",
     "loggedAt": "2026-07-30",
-    "category": "dostoevsky",
+    "category": "literature",
     "asin": "067973452X",
     "href": "https://www.amazon.com/dp/067973452X",
     "rating": 4
@@ -416,7 +416,7 @@
     "title": "Demons",
     "source": "Fyodor Dostoevsky",
     "loggedAt": "2026-07-30",
-    "category": "dostoevsky",
+    "category": "literature",
     "asin": "0679734511",
     "href": "https://www.amazon.com/dp/0679734511",
     "rating": 4
@@ -427,7 +427,7 @@
     "title": "The Idiot",
     "source": "Fyodor Dostoevsky",
     "loggedAt": "2026-07-30",
-    "category": "dostoevsky",
+    "category": "literature",
     "asin": "0375702245",
     "href": "https://www.amazon.com/dp/0375702245",
     "rating": 4
@@ -438,7 +438,7 @@
     "title": "Crime and Punishment",
     "source": "Fyodor Dostoevsky",
     "loggedAt": "2026-07-30",
-    "category": "dostoevsky",
+    "category": "literature",
     "asin": "0486415872",
     "href": "https://www.amazon.com/dp/0486415872",
     "rating": 4
@@ -449,7 +449,7 @@
     "title": "The Brothers Karamazov",
     "source": "Fyodor Dostoevsky",
     "loggedAt": "2026-07-30",
-    "category": "dostoevsky",
+    "category": "literature",
     "asin": "0374528373",
     "href": "https://www.amazon.com/dp/0374528373",
     "rating": 4
@@ -460,7 +460,7 @@
     "title": "The 1619 Project: A New Origin Story",
     "source": "Nikole Hannah-Jones",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "asin": "0593230574",
     "href": "https://www.amazon.com/dp/0593230574",
     "rating": 4
@@ -471,10 +471,11 @@
     "title": "The Stranger",
     "source": "Albert Camus",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/0679720200",
     "asin": "0679720200",
-    "rating": 4
+    "rating": 4,
+    "summary": "We read this in twelfth grade."
   },
   {
     "id": "book-9d533306fe8c",
@@ -482,7 +483,7 @@
     "title": "The Metamorphosis",
     "source": "Franz Kafka",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/0553213695",
     "asin": "0553213695",
     "rating": 4
@@ -493,7 +494,7 @@
     "title": "Othello",
     "source": "William Shakespeare",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/0743477553",
     "asin": "0743477553",
     "rating": 3
@@ -504,7 +505,7 @@
     "title": "Their Eyes Were Watching God",
     "source": "Zora Neale Hurston",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/0061120065",
     "asin": "0061120065",
     "rating": 4
@@ -515,7 +516,7 @@
     "title": "Angels in America",
     "source": "Tony Kushner",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/1559360984",
     "asin": "1559360984",
     "rating": 3
@@ -526,7 +527,7 @@
     "title": "The Laramie Project",
     "source": "Moisés Kaufman",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/8416876940",
     "asin": "8416876940",
     "rating": 3
@@ -537,7 +538,7 @@
     "title": "Up from Slavery",
     "source": "Booker T. Washington",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/1533144273",
     "asin": "1533144273",
     "rating": 3
@@ -548,7 +549,7 @@
     "title": "The Souls of Black Folk",
     "source": "W.E.B. Du Bois",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/0486280411",
     "asin": "0486280411",
     "rating": 4
@@ -559,7 +560,7 @@
     "title": "The Theory of the Leisure Class",
     "source": "Thorstein Veblen",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/6056522458",
     "asin": "6056522458",
     "rating": 3
@@ -570,7 +571,7 @@
     "title": "How the other half lives",
     "source": "Jacob A. Riis",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/8484282155",
     "asin": "8484282155",
     "rating": 3
@@ -581,7 +582,7 @@
     "title": "Passing",
     "source": "Nella Larsen",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/0142437271",
     "asin": "0142437271",
     "rating": 3
@@ -592,7 +593,7 @@
     "title": "The Jungle",
     "source": "Upton Sinclair",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/1503331703",
     "asin": "1503331703",
     "rating": 3,
@@ -604,7 +605,7 @@
     "title": "The Awakening",
     "source": "Kate Chopin",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/0486277860",
     "asin": "0486277860",
     "rating": 3
@@ -615,7 +616,7 @@
     "title": "Declaration of Independence",
     "source": "Thomas Jefferson",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/1483798615",
     "asin": "1483798615",
     "rating": 3
@@ -626,7 +627,7 @@
     "title": "Sinners in the hands of an angry God.",
     "source": "Jonathan Edwards",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/030014038X",
     "asin": "030014038X",
     "rating": 2
@@ -637,7 +638,7 @@
     "title": "Self-reliance",
     "source": "Ralph Waldo Emerson",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/841337474X",
     "asin": "841337474X",
     "rating": 3
@@ -648,7 +649,7 @@
     "title": "The Things They Carried",
     "source": "Tim O'Brien",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/0618706410",
     "asin": "0618706410",
     "rating": 4
@@ -659,7 +660,7 @@
     "title": "The Great Gatsby",
     "source": "F. Scott Fitzgerald",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/0743273567",
     "asin": "0743273567",
     "rating": 4
@@ -670,7 +671,7 @@
     "title": "Uncle Tom's Cabin",
     "source": "Harriet Beecher Stowe",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/0486440281",
     "asin": "0486440281",
     "rating": 3
@@ -681,7 +682,7 @@
     "title": "Incidents in the Life of a Slave Girl",
     "source": "Harriet A. Jacobs",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/6580309679",
     "asin": "6580309679",
     "rating": 3
@@ -692,7 +693,7 @@
     "title": "Beloved",
     "source": "Toni Morrison",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/1400033411",
     "asin": "1400033411",
     "rating": 4
@@ -703,7 +704,7 @@
     "title": "Narrative of the Life of Frederick Douglass",
     "source": "Frederick Douglass",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/0486284999",
     "asin": "0486284999",
     "rating": 4
@@ -714,7 +715,7 @@
     "title": "The Scarlet Letter",
     "source": "Nathaniel Hawthorne",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/0486280489",
     "asin": "0486280489",
     "rating": 3
@@ -725,7 +726,7 @@
     "title": "Macbeth",
     "source": "William Shakespeare",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/0743477103",
     "asin": "0743477103",
     "rating": 3
@@ -736,7 +737,7 @@
     "title": "The Bluest Eye",
     "source": "Toni Morrison",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/0307278441",
     "asin": "0307278441",
     "rating": 5,
@@ -749,7 +750,7 @@
     "title": "Frankenstein",
     "source": "Mary Shelley",
     "loggedAt": "2026-07-30",
-    "category": "high school reads",
+    "category": "literature",
     "href": "https://www.amazon.com/dp/0486282112",
     "asin": "0486282112",
     "rating": 3
@@ -1262,6 +1263,7 @@
     "loggedAt": "2026-07-21",
     "category": "autobiographies",
     "coverUrl": "https://covers.openlibrary.org/b/id/14578444-L.jpg",
+    "asin": "B0CHR1L7BM",
     "href": "https://www.amazon.com/dp/B0CHR1L7BM",
     "rating": 4
   },
@@ -1789,8 +1791,9 @@
     "loggedAt": "2026-07-30",
     "category": "psychology",
     "coverUrl": "https://covers.openlibrary.org/b/id/13209292-L.jpg",
-    "href": "https://www.amazon.com/s?k=The%20Public%20Speaking%20Bible%3A%20A%20Survival%20Guide%20for%20Standing%20on%20Stage%20Marcus%20Alexander",
-    "rating": 4
+    "href": "https://www.amazon.com/dp/0955891213",
+    "rating": 4,
+    "asin": "0955891213"
   },
   {
     "id": "book-psy-566baa3d22",
@@ -1845,7 +1848,8 @@
     "category": "psychology",
     "rating": 1,
     "coverUrl": "https://covers.openlibrary.org/b/id/12719675-L.jpg",
-    "href": "https://www.amazon.com/s?k=The%20Art%20of%20Persuasion%3A%20The%20Language%20of%20Influence%20and%20Manipulation%20Andrzej%20Batko"
+    "href": "https://www.amazon.com/dp/B0CXFC8YX1",
+    "asin": "B0CXFC8YX1"
   },
   {
     "id": "book-psy-8c03dc3fb4",
@@ -1856,7 +1860,8 @@
     "category": "psychology",
     "rating": 4,
     "coverUrl": "https://covers.openlibrary.org/b/id/7247166-L.jpg",
-    "href": "https://www.amazon.com/s?k=The%20Extremely%20Successful%20Salesman's%20Club%20Chris%20Murray"
+    "href": "https://www.amazon.com/dp/B00JZV1HN4",
+    "asin": "B00JZV1HN4"
   },
   {
     "id": "book-psy-bb89dc0441",
@@ -1867,7 +1872,8 @@
     "category": "psychology",
     "rating": 2,
     "coverUrl": "https://covers.openlibrary.org/b/id/14451895-L.jpg",
-    "href": "https://www.amazon.com/s?k=Closing%20Deals%3A%20Make%20an%20Offer%20Snapshot%20Systems"
+    "href": "https://www.amazon.com/dp/B0858WJTSC",
+    "asin": "B0858WJTSC"
   },
   {
     "id": "book-psy-7e9d31611d",
@@ -1878,7 +1884,8 @@
     "category": "psychology",
     "rating": 3,
     "coverUrl": "https://covers.openlibrary.org/b/id/6424160-L.jpg",
-    "href": "https://www.amazon.com/s?k=The%20Art%20of%20Influencing%20Anyone%20Niall%20Cassidy"
+    "href": "https://www.amazon.com/dp/B00BEB2R96",
+    "asin": "B00BEB2R96"
   },
   {
     "id": "book-psy-bd459b2f2e",
@@ -1911,7 +1918,8 @@
     "category": "psychology",
     "rating": 2,
     "coverUrl": "https://covers.openlibrary.org/b/id/1709084-L.jpg",
-    "href": "https://www.amazon.com/s?k=Magical%20Worlds%20of%20The%20Wizard%20of%20Ads%3A%20Tools%20and%20Techniques%20for%20Profitable%20Persuasion%20Roy%20H.%20Williams"
+    "href": "https://www.amazon.com/dp/1885167520",
+    "asin": "1885167520"
   },
   {
     "id": "book-psy-ff8716879b",
@@ -1932,7 +1940,8 @@
     "loggedAt": "2026-07-29",
     "category": "psychology",
     "rating": 3,
-    "href": "https://www.amazon.com/s?k=MindHub%3A%20Personality%20Profiler%20Snapshot%20Systems"
+    "href": "https://www.amazon.com/dp/B0BS8KTXG6",
+    "asin": "B0BS8KTXG6"
   },
   {
     "id": "book-psy-54b2b2b5ad",
@@ -1953,8 +1962,9 @@
     "loggedAt": "2026-07-29",
     "category": "psychology",
     "coverUrl": "https://covers.openlibrary.org/b/id/561872-L.jpg",
-    "href": "https://www.amazon.com/s?k=Zig%20Ziglar's%20Secrets%20of%20Closing%20the%20Sale%20Zig%20Ziglar",
-    "rating": 4
+    "href": "https://www.amazon.com/dp/0425081028",
+    "rating": 4,
+    "asin": "0425081028"
   },
   {
     "id": "book-psy-987da6c073",
@@ -1987,7 +1997,8 @@
     "category": "psychology",
     "rating": 4,
     "coverUrl": "https://covers.openlibrary.org/b/id/6426475-L.jpg",
-    "href": "https://www.amazon.com/s?k=Selling%20with%20EASE%3A%20The%20Four%20Step%20Sales%20Cycle%20Found%20in%20Every%20Successful%20Business%20Transaction%20Chris%20Murray"
+    "href": "https://www.amazon.com/dp/B01B9KG7L0",
+    "asin": "B01B9KG7L0"
   },
   {
     "id": "book-psy-2500b078e0",
@@ -1997,8 +2008,9 @@
     "loggedAt": "2026-07-30",
     "category": "psychology",
     "coverUrl": "https://covers.openlibrary.org/b/id/3729638-L.jpg",
-    "href": "https://www.amazon.com/s?k=The%20Wizard%20of%20Ads%20Roy%20H.%20Williams",
-    "rating": 4
+    "href": "https://www.amazon.com/dp/1885167296",
+    "rating": 4,
+    "asin": "1885167296"
   },
   {
     "id": "book-hist-07dd7424fb",
@@ -2160,7 +2172,7 @@
     "title": "White Nights",
     "source": "Fyodor Dostoevsky",
     "loggedAt": "2026-07-30",
-    "category": "dostoevsky",
+    "category": "literature",
     "asin": "0241252083",
     "href": "https://www.amazon.com/dp/0241252083",
     "rating": 4
@@ -2172,9 +2184,10 @@
     "source": "Herodotus",
     "loggedAt": "2026-07-29",
     "category": "history",
-    "href": "https://www.amazon.com/s?k=The%20Histories%20Herodotus",
+    "href": "https://www.amazon.com/dp/0140449086",
     "coverUrl": "https://covers.openlibrary.org/b/id/6909537-L.jpg",
-    "rating": 4
+    "rating": 4,
+    "asin": "0140449086"
   },
   {
     "id": "book-hist-9086349b76",
@@ -2304,9 +2317,10 @@
     "source": "Shelby Foote",
     "loggedAt": "2026-07-29",
     "category": "history",
-    "href": "https://www.amazon.com/s?k=The%20Civil%20War%3A%20A%20Narrative%20Shelby%20Foote",
+    "href": "https://www.amazon.com/dp/0394749138",
     "coverUrl": "https://covers.openlibrary.org/b/id/4723999-L.jpg",
-    "rating": 3
+    "rating": 3,
+    "asin": "0394749138"
   },
   {
     "id": "book-hist-d550669a6e",
@@ -2425,9 +2439,10 @@
     "source": "Nathaniel Philbrick",
     "loggedAt": "2026-07-28",
     "category": "history",
-    "href": "https://www.amazon.com/s?k=In%20the%20Heart%20of%20the%20Sea%3A%20The%20Tragedy%20of%20the%20Whaleship%20Essex%20Nathaniel%20Philbrick",
+    "href": "https://www.amazon.com/dp/0141001828",
     "coverUrl": "https://covers.openlibrary.org/b/id/402602-L.jpg",
-    "rating": 3
+    "rating": 3,
+    "asin": "0141001828"
   },
   {
     "id": "book-hist-abfae9193e",
@@ -3201,7 +3216,8 @@
     "source": "Ilse Niccolini",
     "loggedAt": "2026-08-26",
     "category": "autobiographies",
-    "href": "https://www.amazon.com/s?k=How%20The%20Beatles%20Knew%3A%20A%20Theory%20of%20How%20They%20Wrote%20Their%20Songs%20Ilse%20Niccolini"
+    "href": "https://www.amazon.com/dp/1736517120",
+    "asin": "1736517120"
   },
   {
     "id": "book-d6aa7351bfbf",
@@ -3428,7 +3444,8 @@
     "category": "fiction",
     "year": 1971,
     "coverUrl": "https://covers.openlibrary.org/b/id/15185412-L.jpg",
-    "href": "https://www.amazon.com/s?k=One%20Hundred%20Years%20of%20Solitude%20Gabriel%20Garcia%20Marquez"
+    "href": "https://www.amazon.com/dp/0060883286",
+    "asin": "0060883286"
   },
   {
     "id": "book-cb7025b72449",
@@ -3439,7 +3456,8 @@
     "category": "fiction",
     "year": 1964,
     "coverUrl": "https://covers.openlibrary.org/b/id/14937760-L.jpg",
-    "href": "https://www.amazon.com/s?k=The%20Count%20of%20Monte%20Cristo%20Alexandre%20Dumas"
+    "href": "https://www.amazon.com/dp/0140449264",
+    "asin": "0140449264"
   },
   {
     "id": "book-5d10caa0bd32",
@@ -3570,7 +3588,8 @@
     "category": "fiction",
     "year": 1925,
     "coverUrl": "https://covers.openlibrary.org/b/id/14910748-L.jpg",
-    "href": "https://www.amazon.com/s?k=The%20Trial%20Franz%20Kafka"
+    "href": "https://www.amazon.com/dp/0805209999",
+    "asin": "0805209999"
   },
   {
     "id": "book-6d6116d1955d",
@@ -3581,7 +3600,8 @@
     "category": "fiction",
     "year": 1967,
     "coverUrl": "https://covers.openlibrary.org/b/id/15013644-L.jpg",
-    "href": "https://www.amazon.com/s?k=The%20Master%20and%20Margarita%20Mikhail%20Bulgakov"
+    "href": "https://www.amazon.com/dp/0143108271",
+    "asin": "0143108271"
   },
   {
     "id": "book-6b0d2682603a",
@@ -3736,7 +3756,8 @@
     "category": "literature",
     "year": 1962,
     "coverUrl": "https://covers.openlibrary.org/b/id/15184471-L.jpg",
-    "href": "https://www.amazon.com/s?k=The%20Waste%20Land%20T.S.%20Eliot"
+    "href": "https://www.amazon.com/dp/0593313348",
+    "asin": "0593313348"
   },
   {
     "id": "book-1817f621d3d6",
@@ -3761,218 +3782,5 @@
     "asin": "0679729526",
     "href": "https://www.amazon.com/dp/0679729526",
     "coverUrl": "https://covers.openlibrary.org/b/id/6715695-L.jpg"
-  },
-  {
-    "id": "book-cb71450e1059",
-    "kind": "book",
-    "title": "Empire of AI: Dreams and Nightmares in Sam Altman's OpenAI",
-    "source": "Karen Hao",
-    "loggedAt": "2026-08-26",
-    "category": "technology ethics",
-    "year": 2025,
-    "asin": "0241678927",
-    "href": "https://www.amazon.com/dp/0241678927",
-    "coverUrl": "https://covers.openlibrary.org/b/id/15204209-L.jpg"
-  },
-  {
-    "id": "book-2a170d8c50b7",
-    "kind": "book",
-    "title": "Atlas of AI: Power, Politics, and the Planetary Costs of Artificial Intelligence",
-    "source": "Kate Crawford",
-    "loggedAt": "2026-08-26",
-    "category": "technology ethics",
-    "year": 2021,
-    "asin": "0300264631",
-    "href": "https://www.amazon.com/dp/0300264631",
-    "coverUrl": "https://covers.openlibrary.org/b/id/14420723-L.jpg"
-  },
-  {
-    "id": "book-b5c97240ec4e",
-    "kind": "book",
-    "title": "The Thinking Machine: Jensen Huang, Nvidia, and the World's Most Coveted Microchip",
-    "source": "Stephen Witt",
-    "loggedAt": "2026-08-26",
-    "category": "technology ethics",
-    "year": 2024,
-    "asin": "1847928285",
-    "href": "https://www.amazon.com/dp/1847928285",
-    "coverUrl": "https://covers.openlibrary.org/b/id/15131358-L.jpg"
-  },
-  {
-    "id": "book-62c1485d6270",
-    "kind": "book",
-    "title": "The Infinity Machine: Demis Hassabis, DeepMind, and the Quest for Superintelligence",
-    "source": "Sebastian Mallaby",
-    "loggedAt": "2026-08-26",
-    "category": "technology ethics",
-    "year": 2026,
-    "asin": "0593831845",
-    "href": "https://www.amazon.com/dp/0593831845",
-    "coverUrl": "https://covers.openlibrary.org/b/id/15203597-L.jpg"
-  },
-  {
-    "id": "book-4cb1e772b07c",
-    "kind": "book",
-    "title": "AI Snake Oil: What Artificial Intelligence Can Do, What It Can't, and How to Tell the Difference",
-    "source": "Arvind Narayanan",
-    "loggedAt": "2026-08-26",
-    "category": "technology ethics",
-    "href": "https://www.amazon.com/s?k=AI%20Snake%20Oil%3A%20What%20Artificial%20Intelligence%20Can%20Do%2C%20What%20It%20Can't%2C%20and%20How%20to%20Tell%20the%20Difference%20Arvind%20Narayanan"
-  },
-  {
-    "id": "book-3a61cdb68b77",
-    "kind": "book",
-    "title": "Life 3.0: Being Human in the Age of Artificial Intelligence",
-    "source": "Max Tegmark",
-    "loggedAt": "2026-08-26",
-    "category": "technology ethics",
-    "year": 2017,
-    "asin": "024123719X",
-    "href": "https://www.amazon.com/dp/024123719X",
-    "coverUrl": "https://covers.openlibrary.org/b/id/10239283-L.jpg"
-  },
-  {
-    "id": "book-27cd1e1dafdd",
-    "kind": "book",
-    "title": "Superintelligence: Paths, Dangers, Strategies",
-    "source": "Nick Bostrom",
-    "loggedAt": "2026-08-26",
-    "category": "technology ethics",
-    "year": 2014,
-    "asin": "3518586122",
-    "href": "https://www.amazon.com/dp/3518586122",
-    "coverUrl": "https://covers.openlibrary.org/b/id/8039542-L.jpg"
-  },
-  {
-    "id": "book-e968ac8341b9",
-    "kind": "book",
-    "title": "Human Compatible: Artificial Intelligence and the Problem of Control",
-    "source": "Stuart Russell",
-    "loggedAt": "2026-08-26",
-    "category": "technology ethics",
-    "year": 2019,
-    "asin": "0525558616",
-    "href": "https://www.amazon.com/dp/0525558616",
-    "coverUrl": "https://covers.openlibrary.org/b/id/11264186-L.jpg"
-  },
-  {
-    "id": "book-6b0b688a3476",
-    "kind": "book",
-    "title": "The Alignment Problem: Machine Learning and Human Values",
-    "source": "Brian Christian",
-    "loggedAt": "2026-08-26",
-    "category": "technology ethics",
-    "year": 2020,
-    "asin": "1786494337",
-    "href": "https://www.amazon.com/dp/1786494337",
-    "coverUrl": "https://covers.openlibrary.org/b/id/10678431-L.jpg"
-  },
-  {
-    "id": "book-98e2b5b3bfb5",
-    "kind": "book",
-    "title": "Genius Makers: The Mavericks Who Brought AI to Google, Facebook, and the World",
-    "source": "Cade Metz",
-    "loggedAt": "2026-08-26",
-    "category": "technology ethics",
-    "year": 2021,
-    "asin": "1524742678",
-    "href": "https://www.amazon.com/dp/1524742678",
-    "coverUrl": "https://covers.openlibrary.org/b/id/10708874-L.jpg"
-  },
-  {
-    "id": "book-9a595ef926f2",
-    "kind": "book",
-    "title": "The Coming Wave",
-    "source": "Mustafa Suleyman",
-    "loggedAt": "2026-08-26",
-    "category": "technology ethics",
-    "year": 2023,
-    "asin": "1529923832",
-    "href": "https://www.amazon.com/dp/1529923832",
-    "coverUrl": "https://covers.openlibrary.org/b/id/14421031-L.jpg"
-  },
-  {
-    "id": "book-1fb01063cffd",
-    "kind": "book",
-    "title": "Artificial Intelligence: A Modern Approach",
-    "source": "Stuart Russell",
-    "loggedAt": "2026-08-26",
-    "category": "technology ethics",
-    "year": 1994,
-    "asin": "730233109X",
-    "href": "https://www.amazon.com/dp/730233109X",
-    "coverUrl": "https://covers.openlibrary.org/b/id/92018-L.jpg"
-  },
-  {
-    "id": "book-a4ae794cb87d",
-    "kind": "book",
-    "title": "Deep Learning",
-    "source": "Ian Goodfellow",
-    "loggedAt": "2026-08-26",
-    "category": "technology ethics",
-    "year": 2016,
-    "asin": "0262035618",
-    "href": "https://www.amazon.com/dp/0262035618",
-    "coverUrl": "https://covers.openlibrary.org/b/id/8086288-L.jpg"
-  },
-  {
-    "id": "book-0984a92b8812",
-    "kind": "book",
-    "title": "The Master Algorithm",
-    "source": "Pedro Domingos",
-    "loggedAt": "2026-08-26",
-    "category": "technology ethics",
-    "year": 2015,
-    "asin": "0465061923",
-    "href": "https://www.amazon.com/dp/0465061923",
-    "coverUrl": "https://covers.openlibrary.org/b/id/9321915-L.jpg"
-  },
-  {
-    "id": "book-c5da9e8b5112",
-    "kind": "book",
-    "title": "Chip War: The Fight for the World's Most Critical Technology",
-    "source": "Chris Miller",
-    "loggedAt": "2026-08-26",
-    "category": "technology ethics",
-    "year": 2022,
-    "asin": "1398504106",
-    "href": "https://www.amazon.com/dp/1398504106",
-    "coverUrl": "https://covers.openlibrary.org/b/id/12968901-L.jpg"
-  },
-  {
-    "id": "book-9e8032ec5f1d",
-    "kind": "book",
-    "title": "Co-Intelligence: Living and Working with AI",
-    "source": "Ethan Mollick",
-    "loggedAt": "2026-08-26",
-    "category": "technology ethics",
-    "year": 2024,
-    "asin": "0593716728",
-    "href": "https://www.amazon.com/dp/0593716728",
-    "coverUrl": "https://covers.openlibrary.org/b/id/15226155-L.jpg"
-  },
-  {
-    "id": "book-31076016dfc4",
-    "kind": "book",
-    "title": "Nexus: A Brief History of Information Networks from the Stone Age to AI",
-    "source": "Yuval Noah Harari",
-    "loggedAt": "2026-08-26",
-    "category": "technology ethics",
-    "year": 2024,
-    "asin": "1529933617",
-    "href": "https://www.amazon.com/dp/1529933617",
-    "coverUrl": "https://covers.openlibrary.org/b/id/14812834-L.jpg"
-  },
-  {
-    "id": "book-3022a4acba0e",
-    "kind": "book",
-    "title": "The Worlds I See",
-    "source": "Fei-Fei Li",
-    "loggedAt": "2026-08-26",
-    "category": "technology ethics",
-    "year": 2008,
-    "asin": "0743572750",
-    "href": "https://www.amazon.com/dp/0743572750",
-    "coverUrl": "https://covers.openlibrary.org/b/id/8022702-L.jpg"
   }
 ]

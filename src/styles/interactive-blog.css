@@ -370,6 +370,45 @@
   }
 }
 
+/* Archive index: one compact document row directly below the site header. */
+.sa-blog.sa-blog--index {
+  min-height: calc(100dvh - 3.5rem);
+  padding: 0.75rem 10px 3rem;
+}
+
+.sa-blog--index .sa-blog-inner,
+.sa-blog--index .sa-blog-list {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.sa-blog--index .sa-blog-item {
+  display: grid;
+  grid-template-columns: minmax(0, auto) auto;
+  justify-content: start;
+  align-items: baseline;
+  gap: 2rem;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.sa-blog--index .sa-blog-title,
+.sa-blog--index .sa-blog-date {
+  line-height: 1.2;
+}
+
+@media (max-width: 520px) {
+  .sa-blog.sa-blog--index {
+    padding: 0.65rem 10px 2.5rem;
+  }
+
+  .sa-blog--index .sa-blog-item {
+    grid-template-columns: 1fr;
+    gap: 0.1rem;
+  }
+}
+
 .ib-page ::selection {
   background: var(--notes-select);
   color: #1a1214;

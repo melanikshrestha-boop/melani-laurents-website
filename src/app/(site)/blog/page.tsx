@@ -13,7 +13,7 @@ export default function BlogIndexPage() {
   const posts = listBlogPosts();
 
   return (
-    <div className="sa-blog">
+    <div className="sa-blog sa-blog--index">
       <div className="sa-blog-inner">
         {posts.length === 0 ? (
           <p className="sa-blog-empty">Nothing published yet.</p>

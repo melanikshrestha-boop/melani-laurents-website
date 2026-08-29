@@ -68,9 +68,6 @@ const EDIT_FOLDER_OPTIONS = [
   "psychology",
   "history",
   "economics",
-  "technology ethics",
-  "dostoevsky",
-  "high school reads",
   "fiction",
   "literature",
 ] as const;
@@ -97,12 +94,9 @@ const CHIPS: { id: Filter; label: string }[] = [
 const PUBLIC_FOLDER_ORDER = [
   "autobiographies",
   "everything startups",
-  "technology ethics",
   "psychology",
   "history",
   "economics",
-  "dostoevsky",
-  "high school reads",
   "fiction",
   "literature",
 ] as const;
@@ -215,7 +209,9 @@ function folderLabelFor(entry: BookshelfEntry): string {
     ) {
       return "autobiographies";
     }
-    if (normalized === "ai") return "technology ethics";
+    if (normalized === "dostoevsky" || normalized === "high school reads") {
+      return "literature";
+    }
     if (normalized === "uncategorized" || normalized === "unsorted") {
       return "history";
     }
@@ -353,14 +349,17 @@ function CatalogCard({
   const href = buyUrl(entry, book);
   const label = openLabel(entry.kind);
   const associateLink = entry.kind === "book" && hasAmazonAssociateTag();
+  const hoverNote = (entry.thoughts || entry.summary || "").trim();
   const artifactTitleSize =
     book.title.length > 110
-      ? "0.72rem"
+      ? "clamp(0.5rem, 3.8cqw, 0.72rem)"
       : book.title.length > 80
-        ? "0.82rem"
+        ? "clamp(0.56rem, 4.4cqw, 0.8rem)"
         : book.title.length > 55
-          ? "0.95rem"
-          : "1.2rem";
+          ? "clamp(0.62rem, 5cqw, 0.9rem)"
+          : book.title.length > 30
+            ? "clamp(0.68rem, 5.8cqw, 1rem)"
+            : "clamp(0.72rem, 8cqw, 1.2rem)";
   const tapTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -425,6 +424,9 @@ function CatalogCard({
                   ? `Amazon${associateLink ? " · paid link" : ""} ↗`
                   : `${label} ↗`}
               </span>
+              {hoverNote ? (
+                <span className="pb-artifact-note">{hoverNote}</span>
+              ) : null}
             </span>
           ) : null}
         </span>
@@ -528,7 +530,11 @@ export function PublicBookshelf() {
   /** Books / papers / podcasts only — never fake blog "book" covers */
   const catalog = useMemo<ShelfItem[]>(() => {
     const live = applyCatalogOverlay(
-      bookshelfEntries.filter((entry) => entry.kind !== "blog"),
+      bookshelfEntries.filter(
+        (entry) =>
+          entry.kind !== "blog" &&
+          entry.category?.trim().toLowerCase() !== "technology ethics",
+      ),
       editor
     );
     return live.map((entry, i) => {
@@ -1166,9 +1172,7 @@ export function PublicBookshelf() {
                   />
                   <span className="bl-folder-copy">
                     <strong>{group.label}</strong>
-                    <small>
-                      {n} {n === 1 ? "book" : "books"}
-                    </small>
+                    <small>n = {n}</small>
                   </span>
                 </button>
               </div>

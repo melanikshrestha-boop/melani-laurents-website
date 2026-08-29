@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "bookshelf:add": "node scripts/add-bookshelf-book.mjs"
+    "bookshelf:add": "node scripts/add-bookshelf-book.mjs",
+    "bookshelf:audit": "node scripts/audit-bookshelf-links.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
