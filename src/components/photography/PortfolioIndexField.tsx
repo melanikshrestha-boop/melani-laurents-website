@@ -13,10 +13,31 @@ import {
 
 interface PortfolioIndexFieldProps {
   collections: PhotoCollection[];
+  mode?: "art" | "photography";
 }
 
-const PHOTOGRAPHY_SLUGS = ["portraits", "scenery"] as const;
-const PRIMARY_COLLECTION_SLUGS = ["sketches", "film", "poem"] as const;
+const ART_CATEGORIES = [
+  {
+    label: "Photography",
+    href: "/photography/photography",
+    heroSlug: null,
+  },
+  {
+    label: "Cinematography",
+    href: "/photography/film",
+    heroSlug: "film",
+  },
+  {
+    label: "Writing / Poetry",
+    href: "/photography/poem",
+    heroSlug: "poem",
+  },
+  {
+    label: "Sketches",
+    href: "/photography/sketches",
+    heroSlug: "sketches",
+  },
+] as const;
 
 function resolveCollectionIndex(
   collections: PhotoCollection[],
@@ -43,7 +64,10 @@ function resolveAutoCycleStartIndex(collections: PhotoCollection[]): number {
   return 0;
 }
 
-export function PortfolioIndexField({ collections }: PortfolioIndexFieldProps) {
+export function PortfolioIndexField({
+  collections,
+  mode = "art",
+}: PortfolioIndexFieldProps) {
   const [autoCycleIndex, setAutoCycleIndex] = useState(() =>
     resolveAutoCycleStartIndex(collections),
   );
@@ -53,18 +77,6 @@ export function PortfolioIndexField({ collections }: PortfolioIndexFieldProps) {
   const autoSlug = INDEX_HERO_AUTO_CYCLE_SLUGS[autoCycleIndex];
   const activeSlug = hoverSlug ?? autoSlug;
   const activeIndex = resolveCollectionIndex(collections, activeSlug);
-  const collectionBySlug = new Map(
-    collections.map((collection) => [collection.slug, collection]),
-  );
-  const photographyCollections = PHOTOGRAPHY_SLUGS.flatMap((slug) => {
-    const collection = collectionBySlug.get(slug);
-    return collection ? [collection] : [];
-  });
-  const primaryCollections = PRIMARY_COLLECTION_SLUGS.flatMap((slug) => {
-    const collection = collectionBySlug.get(slug);
-    return collection ? [collection] : [];
-  });
-
   const defaultHeroIndex = resolveCollectionIndex(
     collections,
     INDEX_HERO_DEFAULT_SLUG,
@@ -77,11 +89,7 @@ export function PortfolioIndexField({ collections }: PortfolioIndexFieldProps) {
 
   const pauseForPhotography = useCallback(() => {
     setIsAutoPaused(true);
-    setHoverSlug((current) =>
-      current && PHOTOGRAPHY_SLUGS.some((slug) => slug === current)
-        ? current
-        : autoSlug,
-    );
+    setHoverSlug(autoSlug);
   }, [autoSlug]);
 
   const resumeAutoCycle = useCallback(() => {
@@ -111,7 +119,10 @@ export function PortfolioIndexField({ collections }: PortfolioIndexFieldProps) {
   );
 
   return (
-    <section className="portfolio-index-field" aria-label="Portfolio">
+    <section
+      className={`portfolio-index-field portfolio-index-field--${mode}`}
+      aria-label={mode === "photography" ? "Photography collections" : "Art"}
+    >
       <div className="portfolio-index-field-sticky">
         <div className="portfolio-hover">
           <div className="portfolio-hover-backgrounds" aria-hidden>
@@ -148,53 +159,56 @@ export function PortfolioIndexField({ collections }: PortfolioIndexFieldProps) {
             onMouseLeave={resumeAutoCycle}
             onBlur={resumeWhenFocusLeaves}
           >
-            <li
-              className="portfolio-hover-item-group"
-              onMouseEnter={pauseForPhotography}
-            >
-              <div className="portfolio-hover-item portfolio-hover-item--group">
-                <h1 className="portfolio-hover-item-title">
-                  <span className="portfolio-hover-item-content">Photography</span>
-                </h1>
-                <nav
-                  className="portfolio-hover-subcategories"
-                  aria-label="Photography collections"
-                >
-                  {photographyCollections.map((collection) => (
+            {mode === "photography" ? (
+              <>
+                <li className="portfolio-hover-parent-title">Photography</li>
+                {collections.map((collection) => (
+                  <li
+                    key={collection.slug}
+                    onMouseEnter={() => pauseForCollection(collection.slug)}
+                    onFocus={() => pauseForCollection(collection.slug)}
+                  >
                     <Link
-                      key={collection.slug}
                       href={`/photography/${collection.slug}`}
-                      className={
-                        collection.slug === activeSlug ? "is-active" : undefined
-                      }
-                      onMouseEnter={() => pauseForCollection(collection.slug)}
-                      onFocus={() => pauseForCollection(collection.slug)}
+                      className="portfolio-hover-item"
                     >
-                      {collection.title}
+                      <h1 className="portfolio-hover-item-title">
+                        <span className="portfolio-hover-item-content">
+                          {collection.title}
+                        </span>
+                      </h1>
                     </Link>
-                  ))}
-                </nav>
-              </div>
-            </li>
-
-            {primaryCollections.map((collection) => (
-              <li
-                key={collection.slug}
-                onMouseEnter={() => pauseForCollection(collection.slug)}
-                onFocus={() => pauseForCollection(collection.slug)}
-              >
-                <Link
-                  href={`/photography/${collection.slug}`}
-                  className="portfolio-hover-item"
-                >
-                  <h1 className="portfolio-hover-item-title">
-                    <span className="portfolio-hover-item-content">
-                      {collection.title}
-                    </span>
-                  </h1>
-                </Link>
-              </li>
-            ))}
+                  </li>
+                ))}
+              </>
+            ) : (
+              ART_CATEGORIES.map((category) => {
+                const heroSlug = category.heroSlug ?? autoSlug;
+                return (
+                  <li
+                    key={category.href}
+                    onMouseEnter={
+                      category.heroSlug
+                        ? () => pauseForCollection(heroSlug)
+                        : pauseForPhotography
+                    }
+                    onFocus={
+                      category.heroSlug
+                        ? () => pauseForCollection(heroSlug)
+                        : pauseForPhotography
+                    }
+                  >
+                    <Link href={category.href} className="portfolio-hover-item">
+                      <h1 className="portfolio-hover-item-title">
+                        <span className="portfolio-hover-item-content">
+                          {category.label}
+                        </span>
+                      </h1>
+                    </Link>
+                  </li>
+                );
+              })
+            )}
           </ul>
         </div>
       </div>

@@ -26,7 +26,6 @@ export function PortfolioGallery({
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [printPhoto, setPrintPhoto] = useState<Photo | null>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
-  const printPhotos = layout === "scenery" ? photos.filter((photo) => photo.print) : [];
 
   const close = useCallback(() => setLightboxIndex(null), []);
 
@@ -105,16 +104,7 @@ export function PortfolioGallery({
           layout === "scenery" ? " portfolio-gallery--scenery" : ""
         }`}
       >
-        {printPhotos.length > 0 ? (
-          <section id="prints" className="portfolio-print-intro" data-photo-reveal>
-            <div>
-              <p>Print collection</p>
-              <h1>Scenery prints</h1>
-            </div>
-          </section>
-        ) : null}
-
-        <div className="portfolio-gallery-grid">
+        <div id={layout === "scenery" ? "prints" : undefined} className="portfolio-gallery-grid">
           {photos.map((photo, i) => (
             <figure
               key={photo.id}
@@ -160,15 +150,17 @@ export function PortfolioGallery({
                         type="button"
                         className="portfolio-gallery-print-order"
                         onClick={() => setPrintPhoto(photo)}
+                        aria-label={`Order a print of ${photo.print.title} for $45`}
                       >
-                        Order print · $45
+                        <span className="portfolio-gallery-print-label">Order Print</span>
+                        <span className="portfolio-gallery-print-price">$45</span>
                         <ArrowUpRight size={15} weight="bold" aria-hidden />
+                        <span className="portfolio-gallery-print-meta">
+                          {photo.print.catalogId} · {photo.print.sizes
+                            .map((size) => size.label)
+                            .join(" / ")}
+                        </span>
                       </button>
-                      <span className="portfolio-gallery-print-meta">
-                        {photo.print.catalogId} · {photo.print.sizes
-                          .map((size) => size.label)
-                          .join(" / ")}
-                      </span>
                     </>
                   ) : null}
                 </figcaption>
@@ -261,7 +253,7 @@ export function PortfolioGallery({
               }}
             >
               <ShoppingBagOpen size={17} weight="bold" aria-hidden />
-              Order print
+              Order Print
             </button>
           ) : null}
         </div>

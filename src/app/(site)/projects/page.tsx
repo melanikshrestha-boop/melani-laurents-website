@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ProjectGrid } from "@/components/ProjectGrid";
 import { BuildsScholar } from "@/components/BuildsScholar";
 import { projects } from "@/data/projects";
+import { googleScholarUrl } from "@/data/publications";
 
 export const metadata: Metadata = {
   title: "Builds",
@@ -18,16 +19,41 @@ const STAGE_IDS = new Set([
   "shotbyceline",
 ]);
 
+const PRODUCT_GITHUB: Record<string, string> = {
+  "wonder-os": "https://github.com/melanikshrestha-boop/wonder",
+  lensoss: "https://github.com/melanikshrestha-boop/LensOSS",
+  "celine-nova": "https://github.com/melanikshrestha-boop/melani-laurents-website",
+  "dream-life": "https://github.com/melanikshrestha-boop",
+  shotbyceline: "https://github.com/melanikshrestha-boop/melani-laurents-website",
+};
+
 export default function ProjectsPage() {
-  const stage = projects.filter((p) => STAGE_IDS.has(p.id));
+  const stage = projects
+    .filter((p) => STAGE_IDS.has(p.id))
+    .map((project) => ({
+      ...project,
+      href: PRODUCT_GITHUB[project.id] ?? project.href,
+      readout: "GitHub",
+    }));
 
   return (
     <div className="builds-surface builds-surface--folio">
       <div className="builds-surface__inner builds-surface__inner--folio">
         <header className="builds-surface__head builds-surface__head--folio">
-          <h1 className="builds-surface__title builds-surface__title--folio">
-            Builds
+          <h1
+            id="builds-patents-title"
+            className="builds-surface__title builds-surface__title--folio"
+          >
+            Four Patents
           </h1>
+          <a
+            href={googleScholarUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="builds-surface__scholar"
+          >
+            Google Scholar ↗
+          </a>
         </header>
 
         <BuildsScholar />

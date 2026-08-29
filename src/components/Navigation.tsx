@@ -65,6 +65,8 @@ export function Navigation() {
   /** Art / photography — full-bleed profile, not cream paper product */
   const isArt =
     pathname === "/photography" || pathname.startsWith("/photography/");
+  const isBuilds =
+    pathname === "/projects" || pathname.startsWith("/projects/");
 
   const paper =
     !isArt &&
@@ -115,6 +117,7 @@ export function Navigation() {
     "cinema-nav fixed top-0 left-0 right-0 z-[100]",
     paper ? "cinema-nav--paper" : "",
     edgePaper ? "cinema-nav--bookshelf" : "",
+    isBuilds ? "cinema-nav--builds" : "",
     isArt ? "cinema-nav--art" : "",
   ]
     .filter(Boolean)

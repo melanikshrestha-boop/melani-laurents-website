@@ -1,5 +1,6 @@
 "use client";
 
+import { GithubLogo } from "@phosphor-icons/react";
 import type { Project } from "@/data/projects";
 
 /**
@@ -18,10 +19,11 @@ function ProjectRow({ project }: { project: Project }) {
   const body = (
     <>
       <div className="bp-row__line">
+        <span className="bp-row__live" aria-hidden />
         <h2 className="bp-row__title">{project.title}</h2>
         {isLink ? (
           <span className="bp-row__go" aria-hidden>
-            {isExternal ? "↗" : "→"}
+            {isExternal ? <GithubLogo weight="fill" /> : "→"}
           </span>
         ) : null}
       </div>

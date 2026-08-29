@@ -259,7 +259,8 @@
         {
       "id": "scenery-2",
       "src": "/photography/scenery/_DSC2205.jpeg",
-      "alt": "Scenery 3",
+      "alt": "Beach at sunset in Santa Monica, California",
+      "place": "Santa Monica, California",
       "print": {
         "catalogId": "CN-SC-03",
         "title": "Afterlight",
@@ -272,7 +273,8 @@
         {
           "id": "scenery-4",
           "src": "/photography/scenery/_DSC7309.jpeg",
-          "alt": "Scenery 5"
+          "alt": "Montauk Point Lighthouse in New York",
+          "place": "Montauk Point Lighthouse, New York"
         },
         {
           "id": "scenery-5",
@@ -292,7 +294,7 @@
     },
     {
       "id": "film",
-      "title": "Film",
+      "title": "Cinematography",
       "tagline": "grain · light · patience",
       "slug": "film",
       "cover": "/photography/film/cover.jpeg",
@@ -300,7 +302,7 @@
     },
     {
       "id": "poem",
-      "title": "Poem",
+      "title": "Writing / Poetry",
       "tagline": "words · rhythm · feeling",
       "slug": "poem",
       "cover": "/photography/sketches/cover.jpeg",
