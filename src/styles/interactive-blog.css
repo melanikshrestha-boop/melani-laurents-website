@@ -373,7 +373,7 @@
 /* Archive index: one compact document row directly below the site header. */
 .sa-blog.sa-blog--index {
   min-height: calc(100dvh - 3.5rem);
-  padding: 0.75rem 10px 3rem;
+  padding: 0.25rem 10px 3rem;
 }
 
 .sa-blog--index .sa-blog-inner,
@@ -395,12 +395,17 @@
 
 .sa-blog--index .sa-blog-title,
 .sa-blog--index .sa-blog-date {
+  font-family: var(--font-geist-sans), "Helvetica Neue", Arial, sans-serif;
   line-height: 1.2;
+}
+
+.sa-blog--index .sa-blog-title {
+  font-weight: 500;
 }
 
 @media (max-width: 520px) {
   .sa-blog.sa-blog--index {
-    padding: 0.65rem 10px 2.5rem;
+    padding: 0.25rem 10px 2.5rem;
   }
 
   .sa-blog--index .sa-blog-item {
