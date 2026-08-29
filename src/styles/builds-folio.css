@@ -124,11 +124,7 @@
 .bs-scholar__name-marker {
   position: absolute;
   z-index: 1;
-  top: 51%;
-  left: 31.2%;
-  width: 13.5%;
-  height: 2.4%;
-  background: rgba(238, 203, 79, 0.5);
+  background: rgba(238, 203, 79, 0.46);
   mix-blend-mode: multiply;
   pointer-events: none;
   transition: opacity 180ms ease;

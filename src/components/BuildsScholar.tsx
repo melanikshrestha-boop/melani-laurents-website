@@ -31,7 +31,14 @@ export function BuildsScholar() {
                         className="bs-scholar__preview"
                       />
                     ) : null}
-                    <span className="bs-scholar__name-marker" aria-hidden="true" />
+                    {pub.nameHighlights?.map((highlight, highlightIndex) => (
+                      <span
+                        key={highlightIndex}
+                        className="bs-scholar__name-marker"
+                        aria-hidden="true"
+                        style={highlight}
+                      />
+                    ))}
                     <span className="bs-scholar__reveal">
                       <span className="bs-scholar__reveal-index" aria-hidden>
                         {String(index + 1).padStart(2, "0")}

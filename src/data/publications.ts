@@ -11,6 +11,12 @@ export interface Publication {
   publicationDate?: string;
   previewImage?: string;
   documentUrl?: string;
+  nameHighlights?: Array<{
+    top: string;
+    left: string;
+    width: string;
+    height: string;
+  }>;
 }
 
 export const publicationProfile = {
@@ -33,6 +39,9 @@ export const publications: Publication[] = [
     publicationDate: "Dec. 28, 2023",
     previewImage: "/builds/patents/US20230417053A1-page-1.png",
     documentUrl: "/builds/patents/US20230417053A1.pdf",
+    nameHighlights: [
+      { top: "51.3%", left: "27.1%", width: "10.6%", height: "2%" },
+    ],
   },
   {
     title:
@@ -46,6 +55,9 @@ export const publications: Publication[] = [
     publicationDate: "Jan. 11, 2024",
     previewImage: "/builds/patents/US20240008800A1-page-1.png",
     documentUrl: "/builds/patents/US20240008800A1.pdf",
+    nameHighlights: [
+      { top: "55%", left: "27.1%", width: "10.6%", height: "2%" },
+    ],
   },
   {
     title:
@@ -59,6 +71,9 @@ export const publications: Publication[] = [
     publicationDate: "Dec. 7, 2023",
     previewImage: "/builds/patents/US20230389847A1-page-1.png",
     documentUrl: "/builds/patents/US20230389847A1.pdf",
+    nameHighlights: [
+      { top: "55%", left: "27.1%", width: "10.6%", height: "2%" },
+    ],
   },
   {
     title:
@@ -72,5 +87,9 @@ export const publications: Publication[] = [
     publicationDate: "Jun. 27, 2024",
     previewImage: "/builds/patents/US20240206794A1-page-1.png",
     documentUrl: "/builds/patents/US20240206794A1.pdf",
+    nameHighlights: [
+      { top: "42.4%", left: "27.1%", width: "10.6%", height: "2%" },
+      { top: "28.4%", left: "65.2%", width: "10.6%", height: "2%" },
+    ],
   },
 ];
