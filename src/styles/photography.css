@@ -221,29 +221,71 @@
 }
 
 .portfolio-sketch-quote {
+  position: relative;
   box-sizing: border-box;
-  width: 100%;
-  margin: 0;
-  padding: 0.55rem max(0.5rem, 1vw) clamp(1.15rem, 2vw, 1.75rem);
+  width: calc(100% - 2rem);
+  margin: 0 auto clamp(1rem, 1.8vw, 1.5rem);
+  padding: clamp(0.85rem, 1.5vw, 1.2rem) 0;
   color: rgba(0, 0, 0, 0.78);
+  border-top: 1px solid rgba(77, 40, 125, 0.38);
+  border-bottom: 1px solid rgba(77, 40, 125, 0.38);
+}
+
+.portfolio-sketch-quote__mark {
+  position: absolute;
+  top: clamp(0.45rem, 1vw, 0.8rem);
+  left: 0;
+  color: #4d287d;
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-size: clamp(3rem, 5vw, 5.5rem);
+  font-weight: 400;
+  line-height: 0.72;
 }
 
 .portfolio-sketch-quote p {
   width: 100%;
   margin: 0;
-  font-family: var(--font-epilogue), system-ui, sans-serif;
-  font-size: clamp(0.78rem, 1vw, 1rem);
-  font-weight: 400;
-  line-height: 1.5;
+  padding-left: clamp(2.2rem, 5.2vw, 5.8rem);
+  box-sizing: border-box;
   letter-spacing: 0;
 }
 
-.portfolio-sketch-quote cite {
+.portfolio-sketch-quote__lead {
   display: block;
-  margin-top: 0.5rem;
+  color: rgba(0, 0, 0, 0.92);
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-size: clamp(1.18rem, 1.55vw, 1.55rem);
+  font-weight: 400;
+  line-height: 1.18;
+}
+
+.portfolio-sketch-quote__body {
+  display: block;
+  margin-top: 0.3rem;
+  font-family: var(--font-epilogue), system-ui, sans-serif;
+  font-size: clamp(0.72rem, 0.82vw, 0.88rem);
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.portfolio-sketch-quote__credit {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.65rem;
+  margin-top: 0.65rem;
+}
+
+.portfolio-sketch-quote__credit > span {
+  width: clamp(2.5rem, 6vw, 5rem);
+  height: 1px;
+  background: rgba(77, 40, 125, 0.55);
+}
+
+.portfolio-sketch-quote__credit cite {
   color: rgba(0, 0, 0, 0.5);
   font-family: var(--font-share-tech-mono), ui-monospace, monospace;
-  font-size: clamp(0.58rem, 0.65vw, 0.68rem);
+  font-size: clamp(0.56rem, 0.62vw, 0.65rem);
   font-style: normal;
   font-weight: 400;
   line-height: 1.2;
@@ -453,7 +495,7 @@
 
 .portfolio-gallery--sketches .portfolio-gallery-grid {
   position: relative;
-  width: calc(100% - 2rem);
+  width: min(calc(100% - 2rem), 60rem);
   margin-inline: auto;
   margin-bottom: calc(3rem + env(safe-area-inset-bottom, 0px));
   padding: 0;
