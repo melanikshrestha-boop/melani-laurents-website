@@ -138,8 +138,8 @@
   align-items: start;
   padding: clamp(0.8rem, 1.5vw, 1.2rem);
   box-sizing: border-box;
-  background: rgba(77, 40, 125, 0.84);
-  color: #fff;
+  background: rgba(255, 214, 10, 0.92);
+  color: #171614;
   z-index: 2;
   opacity: 0;
   transform: translateY(0.35rem);

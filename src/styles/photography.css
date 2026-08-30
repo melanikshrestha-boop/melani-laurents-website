@@ -413,7 +413,7 @@
   padding: 0;
   border: 0;
   background: transparent;
-  color: #fff;
+  color: inherit;
   font-family: inherit;
   font-size: 0.7rem;
   font-weight: 500;
@@ -448,7 +448,7 @@
 
 .portfolio-gallery-print-order:hover,
 .portfolio-gallery-print-order:focus-visible {
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(23, 22, 20, 0.72);
   outline: none;
 }
 
@@ -1205,4 +1205,18 @@
   font-size: 0.72rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
+}
+
+.portfolio-gallery-wash {
+  background: linear-gradient(
+    180deg,
+    transparent 38%,
+    rgba(255, 212, 0, 0.42) 66%,
+    rgba(255, 196, 0, 0.9) 100%
+  );
+}
+
+.portfolio-gallery-caption {
+  color: #171614;
+  text-shadow: none;
 }
