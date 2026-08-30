@@ -128,69 +128,71 @@ export function PortfolioGallery({
                 } as CSSProperties
               }
             >
-              <button
-                type="button"
-                onClick={() => setLightboxIndex(i)}
-                className="portfolio-gallery-trigger"
-                aria-label="View fullsize"
-              >
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  width={1200}
-                  height={1800}
-                  className="portfolio-gallery-image"
-                  sizes={
-                    layout === "sketches"
-                      ? photos.length === 1
-                        ? "100vw"
-                        : photos.length === 2
-                          ? "50vw"
-                          : "33vw"
-                      : layout === "portraits" || layout === "scenery"
-                        ? "33vw"
-                        : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  }
-                  loading={
-                    i < (layout === "scenery" || layout === "sketches" ? 3 : 2)
-                      ? "eager"
-                      : "lazy"
-                  }
-                />
+              <div className="portfolio-gallery-frame">
+                <button
+                  type="button"
+                  onClick={() => setLightboxIndex(i)}
+                  className="portfolio-gallery-trigger"
+                  aria-label="View fullsize"
+                >
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    width={1200}
+                    height={1800}
+                    className="portfolio-gallery-image"
+                    sizes={
+                      layout === "sketches"
+                        ? photos.length === 1
+                          ? "100vw"
+                          : photos.length === 2
+                            ? "50vw"
+                            : "33vw"
+                        : layout === "portraits" || layout === "scenery"
+                          ? "33vw"
+                          : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    }
+                    loading={
+                      i < (layout === "scenery" || layout === "sketches" ? 3 : 2)
+                        ? "eager"
+                        : "lazy"
+                    }
+                  />
+                </button>
                 <span className="portfolio-gallery-wash" aria-hidden />
-              </button>
-
-              {photo.place || photo.note || photo.print ? (
-                <figcaption className="portfolio-gallery-caption">
-                  {photo.place || photo.print ? (
-                    <span className="portfolio-gallery-place">
-                      {photo.place ?? photo.print?.title}
-                    </span>
-                  ) : null}
-                  {photo.note ? (
-                    <span className="portfolio-gallery-note">{photo.note}</span>
-                  ) : null}
-                  {photo.print ? (
-                    <>
+                {photo.place || photo.note || photo.print ? (
+                  <figcaption className="portfolio-gallery-caption">
+                    {photo.place || photo.print ? (
+                      <span className="portfolio-gallery-place">
+                        {photo.place ?? photo.print?.title}
+                      </span>
+                    ) : null}
+                    {photo.note ? (
+                      <span className="portfolio-gallery-note">{photo.note}</span>
+                    ) : null}
+                    {photo.print ? (
                       <button
                         type="button"
                         className="portfolio-gallery-print-order"
                         onClick={() => setPrintPhoto(photo)}
                         aria-label={`Order a print of ${photo.print.title} for $45`}
                       >
-                        <span className="portfolio-gallery-print-label">Order Print</span>
+                        <span className="portfolio-gallery-print-label">
+                          Order Print
+                        </span>
                         <span className="portfolio-gallery-print-price">$45</span>
                         <ArrowUpRight size={15} weight="bold" aria-hidden />
                         <span className="portfolio-gallery-print-meta">
-                          {photo.print.catalogId} · {photo.print.sizes
+                          {photo.print.catalogId} ·{" "}
+                          {photo.print.sizes
                             .map((size) => size.label)
                             .join(" / ")}
                         </span>
                       </button>
-                    </>
-                  ) : null}
-                </figcaption>
-              ) : null}
+                    ) : null}
+                  </figcaption>
+                ) : null}
+              </div>
             </figure>
           ))}
           {layout === "sketches" && story ? (
