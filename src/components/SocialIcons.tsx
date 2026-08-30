@@ -84,6 +84,23 @@ function placeHoverNote(anchor: HTMLAnchorElement) {
   if (top + noteRect.height > window.innerHeight - margin) {
     top = anchorRect.top - noteRect.height - gap;
   }
+
+  /* Photo HUD: stay on the icon rail. Never cover the centered name. */
+  const photoHub = anchor.closest(".hub-page--photo");
+  if (photoHub) {
+    const title = photoHub.querySelector<HTMLElement>(".hub-page__center");
+    const titleRect = title?.getBoundingClientRect();
+    const overlapsTitle = titleRect
+      ? left < titleRect.right &&
+        left + noteRect.width > titleRect.left &&
+        top < titleRect.bottom &&
+        top + noteRect.height > titleRect.top
+      : false;
+    if (overlapsTitle || top + noteRect.height > window.innerHeight * 0.28) {
+      top = Math.max(margin, anchorRect.top - noteRect.height - gap);
+    }
+  }
+
   top = Math.min(
     Math.max(top, margin),
     Math.max(margin, window.innerHeight - noteRect.height - margin),
