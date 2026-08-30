@@ -1063,31 +1063,32 @@ body {
  * disappears on brick — keep handwriting, add a dark cloud + stroke so it reads.
  */
 .hub-page--photo .social-icons__tip {
-  width: min(var(--social-tip-width, 22rem), calc(100vw - 1.5rem));
-  padding: 0.7rem 0.85rem;
+  width: min(var(--social-tip-width, 220px), calc(100vw - 48px));
+  max-width: 220px;
+  padding: 8px;
   background: transparent;
   color: #ffffff;
-  font-size: clamp(1.4rem, 2.1vw, 1.75rem);
-  line-height: 1.22;
-  -webkit-text-stroke: 0.35px rgba(0, 0, 0, 0.45);
+  font-size: 11px;
+  line-height: 1.25;
+  -webkit-text-stroke: 0;
   text-shadow:
     0 0 1px rgba(0, 0, 0, 0.95),
     0 1px 2px rgba(0, 0, 0, 0.85),
-    0 4px 16px rgba(0, 0, 0, 0.6);
+    0 4px 12px rgba(0, 0, 0, 0.55);
   box-shadow: none;
 }
 
 .hub-page--photo .social-icons__tip::before {
   display: block;
-  inset: -1.6rem -2.1rem;
+  inset: -6px -8px;
   border-radius: 50%;
   background: radial-gradient(
-    ellipse 68% 58% at 50% 50%,
-    rgba(0, 0, 0, 0.72) 0%,
-    rgba(0, 0, 0, 0.32) 48%,
+    ellipse 70% 60% at 50% 50%,
+    rgba(0, 0, 0, 0.62) 0%,
+    rgba(0, 0, 0, 0.22) 52%,
     transparent 74%
   );
-  filter: blur(10px);
+  filter: blur(8px);
 }
 
 .hub-page__social-icons .social-icons__link--tip:hover,
@@ -5448,8 +5449,14 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 
 .hub-page--photo .hub-page__hud-scrim--bottom {
   bottom: 0;
-  height: 100px;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.48), transparent);
+  height: 120px;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.5) 22%,
+    rgba(0, 0, 0, 0.22) 55%,
+    transparent 100%
+  );
 }
 
 /* True full-viewport cover — sharp still, no fog on first paint */
@@ -5646,6 +5653,17 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   left: var(--hub-edge);
   bottom: var(--hub-edge);
   right: auto;
+  padding: 0.4rem 1rem 0.4rem 0.55rem;
+  margin-left: -0.55rem;
+  /* Frosted HUD strip — contrast on bright pavement, not bigger type. */
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.28) 58%,
+    transparent 100%
+  );
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   /*
    * Above .hub-page__dissolve (7). The nav sits at the bottom of the still, so
    * the dissolve reaches it first — underneath the plate it just washed out to
@@ -6215,9 +6233,10 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 }
 
 .hub-page--photo.hub-page--locked .hub-page__title-line {
-  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-size: 28px;
   font-weight: 500;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
+  opacity: 0.82;
 }
 
 .hub-page--locked .hub-page__tagline {
@@ -6457,10 +6476,11 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   }
 
   .hub-page--photo .social-icons__tip {
-    width: min(var(--social-tip-width, 19rem), calc(100vw - 1.5rem));
-    padding: 0.55rem 0.65rem;
-    font-size: 1.28rem;
-    line-height: 1.22;
+    width: min(var(--social-tip-width, 160px), calc(100vw - 48px));
+    max-width: 160px;
+    padding: 8px;
+    font-size: 11px;
+    line-height: 1.25;
   }
 
   /* Free horizontal room: location collides with socials on ~390px */
@@ -6513,9 +6533,9 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 
   .hub-page--photo .hub-page__title,
   .hub-page--photo .hub-page__title-line,
-  .hub-page--locked .hub-page__title-line {
-    font-size: clamp(2.3rem, 10.8vw, 3.1rem) !important;
-    letter-spacing: 0;
+  .hub-page--photo.hub-page--locked .hub-page__title-line {
+    font-size: 24px !important;
+    letter-spacing: 0.04em;
     max-width: 100%;
     overflow: hidden;
     text-overflow: clip;
@@ -6602,13 +6622,14 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   }
 
   .hub-page--photo .social-icons__tip {
-    width: min(var(--social-tip-width, 17.5rem), calc(100vw - 1.5rem));
-    font-size: 1.18rem;
+    width: min(var(--social-tip-width, 160px), calc(100vw - 48px));
+    max-width: 160px;
+    font-size: 11px;
   }
 
   .hub-page--photo .hub-page__title-line,
-  .hub-page--locked .hub-page__title-line {
-    font-size: clamp(2.2rem, 10.8vw, 2.9rem) !important;
+  .hub-page--photo.hub-page--locked .hub-page__title-line {
+    font-size: 24px !important;
   }
 
   .hub-page--photo .hub-page__nav--locked {
@@ -6693,19 +6714,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 }
 
 .portfolio-gallery-wash {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
+  display: none;
   pointer-events: none;
-  opacity: 0;
-  /* Bright yellow rising from the bottom of the still. */
-  background: linear-gradient(
-    180deg,
-    transparent 38%,
-    rgba(255, 212, 0, 0.42) 66%,
-    rgba(255, 196, 0, 0.9) 100%
-  );
-  transition: opacity 380ms ease;
 }
 
 .portfolio-gallery-caption {
@@ -6895,8 +6905,13 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   letter-spacing: 0 !important;
 }
 
-/* Quiet HUD on photography — overlay stays thin, photo stays the hero. */
-.hub-page.hub-page--photo {
+/*
+ * Quiet HUD on photography.
+ * Photograph stays the hero. Overlay is thin, shared 28px inset, no vw type.
+ * Selectors include .home-sections so this block beats earlier title clamps.
+ */
+.hub-page.hub-page--photo,
+.home-sections .hub-page.hub-page--photo {
   --hub-edge: 28px;
 }
 
@@ -6916,11 +6931,18 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 
 .hub-page__hud-scrim--bottom {
   bottom: 0;
-  height: 100px;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.48), transparent);
+  height: 120px;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.5) 22%,
+    rgba(0, 0, 0, 0.22) 55%,
+    transparent 100%
+  );
 }
 
-.hub-page--photo .hub-page__identity-name {
+.hub-page--photo .hub-page__identity-name,
+.home-sections .hub-page--photo .hub-page__identity-name {
   font-size: 13px !important;
   font-weight: 500;
   letter-spacing: 0.04em;
@@ -6933,13 +6955,16 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .home-sections .hub-page--photo .hub-page__title,
 .home-sections .hub-page--photo .title-char--hub,
 .home-sections .hub-page--photo.hub-page--locked .hub-page__title-line {
-  font-size: clamp(1.75rem, 3vw, 2.25rem) !important;
+  font-size: 28px !important;
   font-weight: 500 !important;
-  letter-spacing: 0.02em !important;
+  letter-spacing: 0.04em !important;
   line-height: 1.05 !important;
+  opacity: 0.82;
 }
 
-.hub-page--photo .hub-page__nav--locked {
+.hub-page--photo .hub-page__nav--locked,
+.home-sections .hub-page--photo .hub-page__nav--locked {
+  position: relative;
   font-size: 12px !important;
   font-weight: 500;
   letter-spacing: 0.14em;
@@ -6951,8 +6976,29 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .home-sections .hub-page--photo .hub-page__nav--locked a,
 .home-sections .hub-page--photo .hub-page__nav--locked .hub-page__nav-item:first-child a,
 .home-sections .hub-page--photo .hub-page__nav--locked .hub-page__nav-contact {
-  color: rgba(255, 255, 255, 0.9) !important;
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55);
+  color: #ffffff !important;
+  text-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.95),
+    0 0 8px rgba(0, 0, 0, 0.8),
+    0 2px 16px rgba(0, 0, 0, 0.7);
+}
+
+.hub-page--photo .hub-page__nav--locked a::after,
+.home-sections .hub-page--photo .hub-page__nav--locked a::after {
+  display: none;
+}
+
+/* Builds: yellow chip on hover — small label, never a wash over the street. */
+.hub-page--photo .hub-page__nav--locked .hub-page__nav-item:first-child a:hover,
+.hub-page--photo .hub-page__nav--locked .hub-page__nav-item:first-child a:focus-visible,
+.home-sections .hub-page--photo .hub-page__nav--locked .hub-page__nav-item:first-child a:hover,
+.home-sections .hub-page--photo .hub-page__nav--locked .hub-page__nav-item:first-child a:focus-visible {
+  --nav-rest: #171614;
+  background: #ffd60a;
+  color: #171614 !important;
+  text-shadow: none !important;
+  padding: 0.14em 0.42em;
+  margin: -0.14em -0.42em;
 }
 
 .hub-page--photo .social-icons__tip {
@@ -6966,11 +7012,12 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 
 .hub-page--photo .social-icons__tip::before {
   inset: -6px -8px !important;
-  filter: blur(10px) !important;
+  filter: blur(8px) !important;
 }
 
 @media (max-width: 900px) {
-  .hub-page.hub-page--photo {
+  .hub-page.hub-page--photo,
+  .home-sections .hub-page.hub-page--photo {
     --hub-edge: 24px;
   }
 
@@ -6978,11 +7025,15 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   .hub-page--photo .hub-page__title,
   .hub-page--photo .title-char--hub,
   .home-sections .hub-page--photo .hub-page__title-line,
-  .home-sections .hub-page--photo .title-char--hub {
-    font-size: 1.5rem !important;
+  .home-sections .hub-page--photo .hub-page__title,
+  .home-sections .hub-page--photo .title-char--hub,
+  .home-sections .hub-page--photo.hub-page--locked .hub-page__title-line {
+    font-size: 24px !important;
+    opacity: 0.78;
   }
 
   .hub-page--photo .social-icons__tip {
     max-width: 160px !important;
+    width: min(var(--social-tip-width, 160px), calc(100vw - 48px)) !important;
   }
 }

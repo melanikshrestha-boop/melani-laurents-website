@@ -479,17 +479,20 @@
     aspect-ratio: 16 / 11;
   }
 
-  .bs-scholar__reveal {
-    padding: 1rem;
-  }
-
-  .bs-scholar__reveal-title {
-    font-size: clamp(1.05rem, 5.2vw, 1.45rem);
-  }
-
   .bp-list {
     grid-template-columns: minmax(0, 1fr);
     gap: 0.65rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .bs-scholar__reveal {
+    padding: 8px;
+    max-width: min(200px, calc(100% - 0.9rem));
+  }
+
+  .bs-scholar__reveal-title {
+    font-size: 11px;
   }
 }
 

@@ -8,7 +8,7 @@ import { SocialIcons } from "./SocialIcons";
 /**
  * Spring St master (Art scenery).
  * One viewport cover crop only — no full-photo scroll pan when extended.
- * CELINE NOVA dead-centered over the still.
+ * Quiet HUD on photography: the still is the hero; type is a thin overlay.
  */
 export const HUB_HERO_PHOTO = {
   src: "/photography/scenery/DSC01775.jpeg",

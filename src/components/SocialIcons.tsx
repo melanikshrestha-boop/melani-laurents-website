@@ -57,7 +57,7 @@ function placeHoverNote(anchor: HTMLAnchorElement) {
 
   const margin = 24;
   const gap = 8;
-  const cap = 220;
+  const cap = window.innerWidth <= 900 ? 160 : 220;
   const anchorRect = anchor.getBoundingClientRect();
   const anchorCenter = anchorRect.left + anchorRect.width / 2;
 
