@@ -6022,24 +6022,13 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   height: 1.55rem;
 }
 
-.hub-page__identity-photo::after {
-  content: "";
-  position: absolute;
-  inset: -0.15rem -0.12rem -0.11rem -0.17rem;
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  border-radius: 53% 47% 58% 42% / 45% 58% 42% 55%;
-  transform: rotate(-5deg);
-  pointer-events: none;
-}
-
 .hub-page__identity-photo img {
   display: block;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
+  border-radius: 0;
   object-fit: cover;
-  object-position: center 67%;
-  filter: grayscale(1) contrast(1.12);
+  object-position: center;
 }
 
 .hub-page__identity-name {

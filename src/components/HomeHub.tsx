@@ -42,7 +42,7 @@ export function HomeHub() {
           <Link href="/" className="hub-page__identity" aria-label="Celine Nova home">
             <span className="hub-page__identity-photo" aria-hidden>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={HUB_HERO_PHOTO.src} alt="" />
+              <img src="/icon-eren.png" alt="" />
             </span>
             <span className="hub-page__identity-name">CELINE NOVA.</span>
           </Link>
