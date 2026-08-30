@@ -5,7 +5,7 @@ import { BuildsGithub } from "@/components/BuildsGithub";
 import { projects } from "@/data/projects";
 import { googleScholarUrl } from "@/data/publications";
 
-export const revalidate = 300;
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Builds",

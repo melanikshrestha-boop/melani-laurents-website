@@ -383,6 +383,8 @@
 
 .builds-github__months span {
   grid-row: 1;
+  width: max-content;
+  overflow: visible;
   white-space: nowrap;
 }
 

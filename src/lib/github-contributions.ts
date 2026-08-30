@@ -2,8 +2,8 @@
 export const GITHUB_LOGIN = "melanikshrestha-boop";
 export const GITHUB_PROFILE_URL = `https://github.com/${GITHUB_LOGIN}`;
 
-/** Near-real-time: refresh at least every 5 minutes (GitHub’s own graph also lags). */
-const REVALIDATE_SECONDS = 300;
+/** Refresh every minute. GitHub’s own graph can still lag a bit behind pushes. */
+const REVALIDATE_SECONDS = 60;
 
 const GRAPHQL_URL = "https://api.github.com/graphql";
 const CONTRIBUTIONS_HTML_URL = `https://github.com/users/${GITHUB_LOGIN}/contributions`;
@@ -112,16 +112,27 @@ function mapGraphqlDay(day: GraphqlDay): ContributionDay {
   };
 }
 
+/** GitHub’s HTML table is row-major (all Sundays, then Mondays…). Always sort. */
+export function chronologicalDays(days: ContributionDay[]): ContributionDay[] {
+  const byDate = new Map<string, ContributionDay>();
+  for (const day of days) {
+    if (!day.date) continue;
+    byDate.set(day.date, day);
+  }
+  return [...byDate.values()].sort((a, b) => a.date.localeCompare(b.date));
+}
+
 /** Pack a year of days into GitHub-style weeks (Sun → Sat columns). */
-function weeksFromDays(days: ContributionDay[]): ContributionDay[][] {
-  if (days.length === 0) return [];
+export function weeksFromDays(days: ContributionDay[]): ContributionDay[][] {
+  const ordered = chronologicalDays(days);
+  if (ordered.length === 0) return [];
   const weeks: ContributionDay[][] = [];
   let week: ContributionDay[] = [];
-  const firstWeekday = new Date(`${days[0].date}T12:00:00Z`).getUTCDay();
+  const firstWeekday = new Date(`${ordered[0].date}T12:00:00Z`).getUTCDay();
   for (let i = 0; i < firstWeekday; i += 1) {
     week.push({ date: "", count: 0, level: 0 });
   }
-  for (const day of days) {
+  for (const day of ordered) {
     week.push(day);
     if (week.length === 7) {
       weeks.push(week);
