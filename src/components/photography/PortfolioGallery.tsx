@@ -15,7 +15,7 @@ import { LennonQuote } from "@/components/photography/LennonQuote";
 
 interface PortfolioGalleryProps {
   photos: Photo[];
-  layout?: "grid" | "scenery" | "sketches";
+  layout?: "grid" | "scenery" | "sketches" | "portraits";
   showStatement?: boolean;
   story?: string;
 }
