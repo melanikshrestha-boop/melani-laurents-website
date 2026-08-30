@@ -159,9 +159,7 @@
   min-height: 3rem;
   height: 3rem !important;
   margin: 0;
-  padding: 0 max(0.9rem, env(safe-area-inset-right, 0px))
-    max(env(safe-area-inset-bottom, 0px), 0px)
-    max(0.9rem, env(safe-area-inset-left, 0px)) !important;
+  padding: 0 10px !important;
   box-sizing: border-box;
 }
 
@@ -214,6 +212,10 @@
 }
 .cinema-nav--art .cinema-nav__end > ul {
   min-width: 0;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  margin: 0;
+  padding: 0;
 }
 .cinema-nav--art .cinema-nav__link--cinema {
   color: rgba(255, 255, 255, 0.76);
@@ -236,10 +238,10 @@
 
 @media (max-width: 760px) {
   .cinema-nav--art .cinema-nav__inner--bookshelf {
-    justify-content: center;
-    min-height: calc(2.75rem + env(safe-area-inset-bottom, 0px));
-    height: calc(2.75rem + env(safe-area-inset-bottom, 0px)) !important;
-    padding-inline: max(0.65rem, env(safe-area-inset-left, 0px)) !important;
+    justify-content: flex-end;
+    min-height: 2.75rem;
+    height: 2.75rem !important;
+    padding: 0 10px !important;
   }
 
   .cinema-nav__art-home {
@@ -247,14 +249,16 @@
   }
 
   .cinema-nav--art .cinema-nav__end {
-    width: 100%;
-    margin-left: 0;
+    width: auto;
+    margin-left: auto;
+    margin-right: 0;
   }
 
   .cinema-nav--art .cinema-nav__end > ul {
-    width: 100%;
-    justify-content: center;
-    gap: clamp(0.65rem, 4vw, 1.2rem) !important;
+    width: auto;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    gap: clamp(0.65rem, 3vw, 1.1rem) !important;
   }
 
   .cinema-nav--art .cinema-nav__link {
