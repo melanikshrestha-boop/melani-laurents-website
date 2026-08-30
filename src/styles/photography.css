@@ -1208,15 +1208,17 @@
 }
 
 .portfolio-gallery-wash {
-  background: linear-gradient(
-    180deg,
-    transparent 38%,
-    rgba(255, 212, 0, 0.42) 66%,
-    rgba(255, 196, 0, 0.9) 100%
-  );
+  display: none;
 }
 
 .portfolio-gallery-caption {
+  left: 0.55rem;
+  right: auto;
+  bottom: 0.55rem;
+  max-width: min(240px, calc(100% - 1.1rem));
+  padding: 8px 10px;
+  background: #ffd60a;
   color: #171614;
   text-shadow: none;
+  gap: 0.12rem;
 }

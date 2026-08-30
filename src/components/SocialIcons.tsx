@@ -55,22 +55,24 @@ function placeHoverNote(anchor: HTMLAnchorElement) {
   const note = anchor.querySelector<HTMLElement>(".social-icons__tip");
   if (!note) return;
 
-  const margin = 12;
-  const gap = 10;
+  const margin = 24;
+  const gap = 8;
+  const cap = 220;
   const anchorRect = anchor.getBoundingClientRect();
   const anchorCenter = anchorRect.left + anchorRect.width / 2;
 
   note.style.removeProperty("--social-tip-width");
   let noteRect = note.getBoundingClientRect();
-  const centeredWidth =
+  const room =
     2 *
     Math.min(
       anchorCenter - margin,
       window.innerWidth - margin - anchorCenter,
     );
+  const nextWidth = Math.min(cap, Math.max(0, room));
 
-  if (centeredWidth >= 208 && centeredWidth < noteRect.width) {
-    note.style.setProperty("--social-tip-width", `${centeredWidth}px`);
+  if (nextWidth >= 120 && nextWidth < noteRect.width) {
+    note.style.setProperty("--social-tip-width", `${nextWidth}px`);
     noteRect = note.getBoundingClientRect();
   }
 
