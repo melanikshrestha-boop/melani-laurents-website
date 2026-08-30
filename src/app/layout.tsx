@@ -96,18 +96,18 @@ export const metadata: Metadata = {
   applicationName: siteConfig.name,
   icons: {
     icon: [
-      { url: "/favicon.ico?v=eren2", sizes: "any" },
-      { url: "/icon.png?v=eren2", type: "image/png", sizes: "32x32" },
-      { url: "/icon-192.png?v=eren2", type: "image/png", sizes: "192x192" },
+      { url: "/favicon.ico?v=cgold1", sizes: "any" },
+      { url: "/icon.png?v=cgold1", type: "image/png", sizes: "32x32" },
+      { url: "/icon-192.png?v=cgold1", type: "image/png", sizes: "192x192" },
     ],
     apple: [
       {
-        url: "/apple-icon.png?v=eren2",
+        url: "/apple-icon.png?v=cgold1",
         sizes: "180x180",
         type: "image/png",
       },
     ],
-    shortcut: [{ url: "/favicon.ico?v=eren2" }],
+    shortcut: [{ url: "/favicon.ico?v=cgold1" }],
   },
   openGraph: {
     title: siteConfig.title,
