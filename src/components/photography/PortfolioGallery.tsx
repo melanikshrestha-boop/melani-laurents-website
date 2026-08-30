@@ -11,6 +11,7 @@ import {
 } from "react";
 import type { Photo } from "@/data/photography-meta";
 import { PrintOrderDialog } from "@/components/photography/PrintOrderDialog";
+import { LennonQuote } from "@/components/photography/LennonQuote";
 
 interface PortfolioGalleryProps {
   photos: Photo[];
@@ -206,21 +207,7 @@ export function PortfolioGallery({
         </div>
 
         {showStatement ? (
-          <aside
-            className="portfolio-wall-text"
-            aria-label="John Lennon quote"
-            data-photo-reveal
-          >
-            <blockquote>
-              <p className="portfolio-wall-text__statement">
-                “I made the decision at sixteen or seventeen that what I did,
-                I wanted everybody to see.”
-              </p>
-              <cite className="portfolio-wall-text__signature">
-                John Lennon, 1980
-              </cite>
-            </blockquote>
-          </aside>
+          <LennonQuote className="portfolio-sketch-quote--end" />
         ) : null}
       </div>
 
