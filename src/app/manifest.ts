@@ -8,8 +8,8 @@ export default function manifest(): MetadataRoute.Manifest {
       "Essays, reading notes, daily inputs, art, and the things I build.",
     start_url: "/",
     display: "standalone",
-    background_color: "#050505",
-    theme_color: "#050505",
+    background_color: "#f7f1e7",
+    theme_color: "#f7f1e7",
     icons: [
       {
         src: "/icon.svg",
