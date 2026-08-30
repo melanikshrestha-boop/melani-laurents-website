@@ -197,19 +197,23 @@
   text-align: right;
 }
 
+.bs-scholar__reveal-role span,
+.bs-scholar__reveal-role strong {
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+}
+
 .bs-scholar__reveal-role span {
+  font-weight: 500;
   opacity: 0.72;
 }
 
 .bs-scholar__reveal-role strong {
   display: inline;
-  padding-bottom: 0.12rem;
-  border-bottom: 2px solid #efcf58;
-  font-family: var(--font-grotesk), "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(0.68rem, 0.85vw, 0.9rem);
-  font-weight: 600;
-  line-height: 1.05;
-  letter-spacing: 0;
+  font-weight: 700;
+  opacity: 1;
   text-transform: none;
 }
 
