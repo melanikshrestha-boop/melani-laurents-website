@@ -1,73 +1,57 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import type { PhotoCollection } from "@/data/photography-meta";
-import { getIndexHeroImage } from "@/lib/photography";
-
-interface PortfolioIndexFieldProps {
-  collections: PhotoCollection[];
-}
 
 const ART_CATEGORIES = [
   {
     label: "Photo",
     href: "/photography/scenery",
-    heroSlug: "scenery",
   },
   {
     label: "Film",
     href: "/photography/film",
-    heroSlug: "film",
   },
   {
     label: "Writing",
     href: "/photography/poem",
-    heroSlug: "poem",
   },
   {
     label: "Sketches",
     href: "/photography/sketches",
-    heroSlug: "sketches",
   },
 ] as const;
 
-function resolveCollectionIndex(
-  collections: PhotoCollection[],
-  slug: string,
-): number {
-  const index = collections.findIndex((collection) => collection.slug === slug);
-  return index === -1 ? 0 : index;
-}
+/** Greene St Fendi / Spring St Loewe — the only Art index backgrounds. */
+const INDEX_BACKGROUNDS = [
+  {
+    src: "/photography/index/scenery-hero.jpg",
+    className: "portfolio-hover-bg--scenery",
+  },
+  {
+    src: "/photography/scenery/DSC01775.jpeg",
+    className: "portfolio-hover-bg--spring",
+  },
+] as const;
 
-export function PortfolioIndexField({ collections }: PortfolioIndexFieldProps) {
-  const [hoverSlug, setHoverSlug] = useState<string | null>(null);
-  const activeSlug = hoverSlug ?? "scenery";
-  const activeIndex = resolveCollectionIndex(collections, activeSlug);
-  const defaultHeroIndex = resolveCollectionIndex(collections, "scenery");
-
+export function PortfolioIndexField() {
   return (
     <section className="portfolio-index-field" aria-label="Art">
       <div className="portfolio-index-field-sticky">
         <div className="portfolio-hover">
           <div className="portfolio-hover-backgrounds" aria-hidden>
-            {collections.map((collection, index) => (
+            {INDEX_BACKGROUNDS.map((background, index) => (
               <div
-                key={collection.slug}
+                key={background.src}
                 className={[
                   "portfolio-hover-bg",
-                  `portfolio-hover-bg--${collection.slug}`,
-                  index === activeIndex ? "is-active" : "",
-                ]
-                  .filter(Boolean)
-                  .join(" ")}
+                  background.className,
+                  index === 0 ? "is-active" : "portfolio-hover-bg--cycle",
+                ].join(" ")}
               >
                 <Image
-                  src={getIndexHeroImage(collection.slug, collection.cover)}
+                  src={background.src}
                   alt=""
                   fill
-                  priority={index === defaultHeroIndex}
+                  priority={index === 0}
                   sizes="100vw"
                   className="portfolio-hover-bg-image"
                 />
@@ -76,23 +60,9 @@ export function PortfolioIndexField({ collections }: PortfolioIndexFieldProps) {
             ))}
           </div>
 
-          <ul
-            className="portfolio-hover-items-list"
-            onMouseLeave={() => setHoverSlug(null)}
-            onBlur={(event) => {
-              if (
-                !event.currentTarget.contains(event.relatedTarget as Node | null)
-              ) {
-                setHoverSlug(null);
-              }
-            }}
-          >
+          <ul className="portfolio-hover-items-list">
             {ART_CATEGORIES.map((category) => (
-              <li
-                key={category.href}
-                onMouseEnter={() => setHoverSlug(category.heroSlug)}
-                onFocus={() => setHoverSlug(category.heroSlug)}
-              >
+              <li key={category.href}>
                 <Link href={category.href} className="portfolio-hover-item">
                   <h1 className="portfolio-hover-item-title">
                     <span className="portfolio-hover-item-content">

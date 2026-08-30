@@ -72,9 +72,37 @@
   object-position: center 67%;
 }
 
+.portfolio-hover-bg--spring .portfolio-hover-bg-image {
+  object-position: center 42%;
+}
+
+/* Second street photo sits on top and fades in/out. First photo stays put. */
+.portfolio-hover-bg--cycle {
+  animation: portfolio-bg-cycle 14s ease-in-out infinite;
+}
+
+@keyframes portfolio-bg-cycle {
+  0%,
+  40% {
+    opacity: 0;
+  }
+  48%,
+  92% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .portfolio-hover-bg {
     transition: none;
+  }
+
+  .portfolio-hover-bg--cycle {
+    animation: none;
+    opacity: 0;
   }
 }
 
