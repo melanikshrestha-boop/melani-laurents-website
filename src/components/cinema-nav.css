@@ -150,16 +150,14 @@
   padding: 0 !important;
 }
 .cinema-nav--art .cinema-nav__inner--bookshelf {
-  display: flex !important;
-  align-items: center;
-  justify-content: space-between;
-  gap: clamp(0.75rem, 2vw, 1.5rem);
+  position: relative;
+  display: block !important;
   width: 100%;
   max-width: none;
   min-height: 3rem;
   height: 3rem !important;
   margin: 0;
-  padding: 0 10px !important;
+  padding: 0 !important;
   box-sizing: border-box;
 }
 
@@ -194,7 +192,13 @@
   -webkit-text-fill-color: #2f174e !important;
 }
 .cinema-nav__art-home {
-  flex: 0 0 auto;
+  position: absolute;
+  top: 0;
+  left: 10px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  height: 3rem;
   color: rgba(255, 255, 255, 0.9);
   font-family: var(--font-syne), system-ui, sans-serif;
   font-size: 0.72rem;
@@ -204,18 +208,32 @@
   text-decoration: none;
   white-space: nowrap;
 }
+.cinema-nav--art .cinema-nav__end--art,
 .cinema-nav--art .cinema-nav__end {
-  min-width: 0;
-  margin-left: auto;
-  margin-right: 0;
-  padding: 0;
+  position: absolute !important;
+  top: 0;
+  right: 10px;
+  bottom: 0;
+  left: auto;
+  z-index: 2;
+  display: flex !important;
+  align-items: center;
+  width: auto !important;
+  max-width: calc(100% - 20px);
+  margin: 0 !important;
+  padding: 0 !important;
 }
+.cinema-nav__art-links,
 .cinema-nav--art .cinema-nav__end > ul {
-  min-width: 0;
-  justify-content: flex-end;
-  flex-wrap: nowrap;
-  margin: 0;
-  padding: 0;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center;
+  justify-content: flex-end !important;
+  gap: 1.15rem !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none;
 }
 .cinema-nav--art .cinema-nav__link--cinema {
   color: rgba(255, 255, 255, 0.76);
@@ -238,32 +256,28 @@
 
 @media (max-width: 760px) {
   .cinema-nav--art .cinema-nav__inner--bookshelf {
-    justify-content: flex-end;
     min-height: 2.75rem;
     height: 2.75rem !important;
-    padding: 0 10px !important;
   }
 
   .cinema-nav__art-home {
     display: none;
   }
 
+  .cinema-nav--art .cinema-nav__end--art,
   .cinema-nav--art .cinema-nav__end {
-    width: auto;
-    margin-left: auto;
-    margin-right: 0;
+    right: 10px;
+    height: 2.75rem;
   }
 
+  .cinema-nav__art-links,
   .cinema-nav--art .cinema-nav__end > ul {
-    width: auto;
-    justify-content: flex-end;
-    flex-wrap: nowrap;
-    gap: clamp(0.65rem, 3vw, 1.1rem) !important;
+    gap: 0.85rem !important;
   }
 
   .cinema-nav--art .cinema-nav__link {
-    font-size: clamp(0.58rem, 2.35vw, 0.68rem);
-    letter-spacing: 0.05em;
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
   }
 }
 

@@ -151,14 +151,22 @@ export function Navigation() {
 
         <div
           className={
-            edgePaper || isArt
-              ? "cinema-nav__end flex items-center gap-4 sm:gap-5"
-              : "flex items-center gap-5"
+            isArt
+              ? "cinema-nav__end cinema-nav__end--art"
+              : edgePaper
+                ? "cinema-nav__end flex items-center gap-4 sm:gap-5"
+                : "flex items-center gap-5"
           }
         >
           {/* Always inline — no Menu toggle. Wraps rather than collapsing so
               every section stays one click away at any width. */}
-          <ul className="flex flex-wrap items-center justify-end gap-x-3 gap-y-1 sm:gap-x-4 md:gap-5">
+          <ul
+            className={
+              isArt
+                ? "cinema-nav__art-links"
+                : "flex flex-wrap items-center justify-end gap-x-3 gap-y-1 sm:gap-x-4 md:gap-5"
+            }
+          >
             {items.map((item, i) => (
               <li
                 key={item.href}
