@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { formatBlogArchiveDate, listBlogPosts } from "@/data/blog-posts";
+import { WATCH_LIST } from "@/data/watch-list";
 import "@/styles/interactive-blog.css";
 
 export const metadata: Metadata = {
@@ -33,6 +34,17 @@ export default function BlogIndexPage() {
             ))}
           </ul>
         )}
+        <section className="sa-watch" aria-labelledby="sa-watch-title">
+          <h2 id="sa-watch-title" className="sa-watch-title">
+            Watch List
+          </h2>
+          <p className="sa-watch-note">always updated</p>
+          <ul className="sa-watch-list">
+            {WATCH_LIST.map((title) => (
+              <li key={title}>{title}</li>
+            ))}
+          </ul>
+        </section>
       </div>
     </div>
   );
