@@ -98,7 +98,6 @@ export default async function PhotographyCollectionPage({ params }: PageProps) {
             </span>
           </p>
           <footer className="portfolio-sketch-quote__credit">
-            <span aria-hidden />
             <cite>John Lennon, 1980</cite>
           </footer>
         </blockquote>

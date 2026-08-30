@@ -227,8 +227,6 @@
   margin: 0 auto clamp(1rem, 1.8vw, 1.5rem);
   padding: clamp(0.85rem, 1.5vw, 1.2rem) 0;
   color: rgba(0, 0, 0, 0.78);
-  border-top: 1px solid rgba(77, 40, 125, 0.38);
-  border-bottom: 1px solid rgba(77, 40, 125, 0.38);
 }
 
 .portfolio-sketch-quote__mark {
@@ -272,14 +270,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 0.65rem;
   margin-top: 0.65rem;
-}
-
-.portfolio-sketch-quote__credit > span {
-  width: clamp(2.5rem, 6vw, 5rem);
-  height: 1px;
-  background: rgba(77, 40, 125, 0.55);
 }
 
 .portfolio-sketch-quote__credit cite {
@@ -495,11 +486,12 @@
 
 .portfolio-gallery--sketches .portfolio-gallery-grid {
   position: relative;
-  width: min(calc(100% - 2rem), 60rem);
+  width: min(calc(100% - 2rem), 78rem);
   margin-inline: auto;
   margin-bottom: calc(3rem + env(safe-area-inset-bottom, 0px));
   padding: 0;
-  grid-template-columns: repeat(var(--pg-sketch-columns, 3), minmax(0, 1fr));
+  grid-template-columns: repeat(var(--pg-sketch-columns, 3), minmax(0, 19rem));
+  justify-content: space-between;
   gap: clamp(0.65rem, 1vw, 1rem);
 }
 
