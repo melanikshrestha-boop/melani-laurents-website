@@ -138,16 +138,10 @@ export function Navigation() {
         }
         aria-label="Primary"
       >
-        {isArt ? (
-          <Link href="/" className="cinema-nav__art-home">
-            CELINE NOVA.
-          </Link>
-        ) : (
-          <MelaniSignature
-            variant={paper ? "ink" : "light"}
-            className={`melani-signature--nav${edgePaper ? " melani-signature--nav-edge" : ""}`}
-          />
-        )}
+        <MelaniSignature
+          variant={paper || isArt ? "ink" : "light"}
+          className={`melani-signature--nav${edgePaper || isArt ? " melani-signature--nav-edge" : ""}`}
+        />
 
         <div
           className={

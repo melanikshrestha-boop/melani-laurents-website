@@ -169,7 +169,6 @@
   ) !important;
 }
 
-.cinema-nav--art-gallery .cinema-nav__art-home,
 .cinema-nav--art-gallery .cinema-nav__link--cinema {
   color: rgba(20, 18, 16, 0.72) !important;
   -webkit-text-fill-color: rgba(20, 18, 16, 0.72) !important;
@@ -191,7 +190,7 @@
   color: #2f174e !important;
   -webkit-text-fill-color: #2f174e !important;
 }
-.cinema-nav__art-home {
+.cinema-nav--art .melani-signature-link {
   position: absolute;
   top: 0;
   left: 10px;
@@ -199,14 +198,14 @@
   display: flex;
   align-items: center;
   height: 3rem;
-  color: rgba(255, 255, 255, 0.9);
-  font-family: var(--font-syne), system-ui, sans-serif;
-  font-size: 0.72rem;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 0;
-  text-decoration: none;
-  white-space: nowrap;
+  color: #000;
+}
+.cinema-nav--art .melani-signature--ink {
+  color: #000 !important;
+}
+.cinema-nav--art .melani-signature__mark {
+  height: 2.1rem;
+  width: auto;
 }
 .cinema-nav--art .cinema-nav__end--art,
 .cinema-nav--art .cinema-nav__end {
@@ -260,8 +259,8 @@
     height: 2.75rem !important;
   }
 
-  .cinema-nav__art-home {
-    display: none;
+  .cinema-nav--art .melani-signature-link {
+    height: 2.75rem;
   }
 
   .cinema-nav--art .cinema-nav__end--art,
