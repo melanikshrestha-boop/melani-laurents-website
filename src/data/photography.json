@@ -189,8 +189,8 @@
         {
       "id": "scenery-2",
       "src": "/photography/scenery/_DSC2205.jpeg",
-      "alt": "Beach at sunset in Santa Monica, California",
-      "place": "Santa Monica, California",
+      "alt": "Sunset on Will Rogers State Beach in Pacific Palisades, Los Angeles",
+      "place": "Will Rogers State Beach, Pacific Palisades",
       "print": {
         "catalogId": "CN-SC-03",
         "title": "Afterlight",
@@ -204,13 +204,29 @@
           "id": "scenery-4",
           "src": "/photography/scenery/_DSC7309.jpeg",
           "alt": "Montauk Point Lighthouse in New York",
-          "place": "Montauk Point Lighthouse, New York"
+          "place": "Montauk Point Lighthouse, New York",
+          "print": {
+            "catalogId": "CN-SC-04",
+            "title": "Montauk Point",
+            "sizes": [
+              { "label": "6 × 9 in", "priceUsd": 45 },
+              { "label": "8 × 12 in", "priceUsd": 45 }
+            ]
+          }
         },
         {
           "id": "scenery-5",
           "src": "/photography/scenery/DSC01801.jpeg",
           "alt": "Fire escapes on a brick building in SoHo, New York City",
-          "place": "SoHo, New York City"
+          "place": "SoHo, New York City",
+          "print": {
+            "catalogId": "CN-SC-05",
+            "title": "SoHo Fire Escapes",
+            "sizes": [
+              { "label": "6 × 9 in", "priceUsd": 45 },
+              { "label": "8 × 12 in", "priceUsd": 45 }
+            ]
+          }
         }
       ]
     },
