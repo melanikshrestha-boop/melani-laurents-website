@@ -103,6 +103,20 @@
   -webkit-text-fill-color: #a8842e !important;
 }
 
+/* Builds folio: first + last (Home, Contact) use the page violet, not gold. */
+.cinema-nav--builds {
+  --bs-violet: #4d287d;
+}
+.cinema-nav--bookshelf.cinema-nav--builds .cinema-nav__link--gold {
+  color: var(--bs-violet) !important;
+  -webkit-text-fill-color: var(--bs-violet) !important;
+}
+.cinema-nav--bookshelf.cinema-nav--builds .cinema-nav__link--gold:hover,
+.cinema-nav--bookshelf.cinema-nav--builds .cinema-nav__link--gold:focus-visible {
+  color: #3a1c62 !important;
+  -webkit-text-fill-color: #3a1c62 !important;
+}
+
 /* Art / photography profile: a quiet overlay at the top of the work. */
 .cinema-nav--art {
   position: fixed !important;
