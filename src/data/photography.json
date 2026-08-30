@@ -78,41 +78,6 @@
           "alt": "Portraits 21"
         },
         {
-          "id": "portraits-21",
-          "src": "/photography/portraits/_DSC5327.jpeg",
-          "alt": "Portraits 22"
-        },
-        {
-          "id": "portraits-22",
-          "src": "/photography/portraits/_DSC5338.jpeg",
-          "alt": "Portraits 23"
-        },
-        {
-          "id": "portraits-23",
-          "src": "/photography/portraits/_DSC5501.jpeg",
-          "alt": "Portraits 24"
-        },
-        {
-          "id": "portraits-24",
-          "src": "/photography/portraits/_DSC5489.jpeg",
-          "alt": "Portraits 25"
-        },
-        {
-          "id": "portraits-25",
-          "src": "/photography/portraits/_DSC1696.jpeg",
-          "alt": "Portraits 26"
-        },
-        {
-          "id": "portraits-26",
-          "src": "/photography/portraits/_DSC1684.jpeg",
-          "alt": "Portraits 27"
-        },
-        {
-          "id": "portraits-27",
-          "src": "/photography/portraits/_DSC1687.JPG",
-          "alt": "Portraits 28"
-        },
-        {
           "id": "portraits-28",
           "src": "/photography/portraits/_DSC2417.JPG",
           "alt": "Portraits 29"
@@ -159,46 +124,64 @@
         {
           "id": "scenery-0",
           "src": "/photography/scenery/_DSC1768.jpeg",
-      "alt": "Scenery 1",
-      "place": "99 Greene Street, SoHo, New York City",
-      "note": "My first street photography in New York City, 2023",
-      "print": {
-        "catalogId": "CN-SC-01",
-        "title": "99 Greene Street",
-        "sizes": [
-          { "label": "6 × 9 in", "priceUsd": 45 },
-          { "label": "8 × 12 in", "priceUsd": 45 }
-        ]
-      }
+          "alt": "Scenery 1",
+          "place": "99 Greene Street, SoHo, New York City",
+          "note": "My first street photography in New York City, 2023",
+          "print": {
+            "catalogId": "CN-SC-01",
+            "title": "99 Greene Street",
+            "sizes": [
+              {
+                "label": "6 \u00d7 9 in",
+                "priceUsd": 45
+              },
+              {
+                "label": "8 \u00d7 12 in",
+                "priceUsd": 45
+              }
+            ]
+          }
         },
         {
           "id": "scenery-1",
           "src": "/photography/scenery/DSC01775.jpeg",
-      "alt": "Scenery 2",
-      "place": "Greene Street & Spring Street, SoHo, New York City",
-      "note": "My first street photography in New York City, 2023",
-      "print": {
-        "catalogId": "CN-SC-02",
-        "title": "Greene & Spring",
-        "sizes": [
-          { "label": "8 × 12 in", "priceUsd": 45 },
-          { "label": "12 × 18 in", "priceUsd": 45 }
-        ]
-      }
+          "alt": "Scenery 2",
+          "place": "Greene Street & Spring Street, SoHo, New York City",
+          "note": "My first street photography in New York City, 2023",
+          "print": {
+            "catalogId": "CN-SC-02",
+            "title": "Greene & Spring",
+            "sizes": [
+              {
+                "label": "8 \u00d7 12 in",
+                "priceUsd": 45
+              },
+              {
+                "label": "12 \u00d7 18 in",
+                "priceUsd": 45
+              }
+            ]
+          }
         },
         {
-      "id": "scenery-2",
-      "src": "/photography/scenery/_DSC2205.jpeg",
-      "alt": "Sunset on Will Rogers State Beach in Pacific Palisades, Los Angeles",
-      "place": "Will Rogers State Beach, Pacific Palisades",
-      "print": {
-        "catalogId": "CN-SC-03",
-        "title": "Afterlight",
-        "sizes": [
-          { "label": "6 × 9 in", "priceUsd": 45 },
-          { "label": "8 × 12 in", "priceUsd": 45 }
-        ]
-      }
+          "id": "scenery-2",
+          "src": "/photography/scenery/_DSC2205.jpeg",
+          "alt": "Sunset on Will Rogers State Beach in Pacific Palisades, Los Angeles",
+          "place": "Will Rogers State Beach, Pacific Palisades",
+          "print": {
+            "catalogId": "CN-SC-03",
+            "title": "Afterlight",
+            "sizes": [
+              {
+                "label": "6 \u00d7 9 in",
+                "priceUsd": 45
+              },
+              {
+                "label": "8 \u00d7 12 in",
+                "priceUsd": 45
+              }
+            ]
+          }
         },
         {
           "id": "scenery-4",
@@ -209,8 +192,14 @@
             "catalogId": "CN-SC-04",
             "title": "Montauk Point",
             "sizes": [
-              { "label": "6 × 9 in", "priceUsd": 45 },
-              { "label": "8 × 12 in", "priceUsd": 45 }
+              {
+                "label": "6 \u00d7 9 in",
+                "priceUsd": 45
+              },
+              {
+                "label": "8 \u00d7 12 in",
+                "priceUsd": 45
+              }
             ]
           }
         },
@@ -223,8 +212,14 @@
             "catalogId": "CN-SC-05",
             "title": "SoHo Fire Escapes",
             "sizes": [
-              { "label": "6 × 9 in", "priceUsd": 45 },
-              { "label": "8 × 12 in", "priceUsd": 45 }
+              {
+                "label": "6 \u00d7 9 in",
+                "priceUsd": 45
+              },
+              {
+                "label": "8 \u00d7 12 in",
+                "priceUsd": 45
+              }
             ]
           }
         }
@@ -233,7 +228,7 @@
     {
       "id": "sketches",
       "title": "Sketches",
-      "tagline": "line · hand · form",
+      "tagline": "line \u00b7 hand \u00b7 form",
       "slug": "sketches",
       "cover": "/photography/sketches/cover.jpeg",
       "story": "On a six-hour flight from L.A. to New York, after a hard summer I felt I had failed to live fully, I could not sleep. I drew anything that felt hopeful while David Bowie's \"Heroes\" played again and again. The lyric fragments stayed in the pages.",
@@ -253,7 +248,7 @@
     {
       "id": "film",
       "title": "Cinematography",
-      "tagline": "grain · light · patience",
+      "tagline": "grain \u00b7 light \u00b7 patience",
       "slug": "film",
       "cover": "/photography/film/cover.jpeg",
       "photos": []
@@ -261,7 +256,7 @@
     {
       "id": "poem",
       "title": "Writing",
-      "tagline": "words · rhythm · feeling",
+      "tagline": "words \u00b7 rhythm \u00b7 feeling",
       "slug": "poem",
       "cover": "/photography/sketches/cover.jpeg",
       "photos": []

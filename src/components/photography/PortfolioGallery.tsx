@@ -147,7 +147,9 @@ export function PortfolioGallery({
                         : photos.length === 2
                           ? "50vw"
                           : "33vw"
-                      : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      : layout === "portraits" || layout === "scenery"
+                        ? "33vw"
+                        : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   }
                   loading={
                     i < (layout === "scenery" || layout === "sketches" ? 3 : 2)

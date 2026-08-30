@@ -105,7 +105,13 @@ export default async function PhotographyCollectionPage({ params }: PageProps) {
       <PortfolioGallery
         photos={collection.photos}
         layout={
-          isScenery ? "scenery" : slug === "sketches" ? "sketches" : "grid"
+          isScenery
+            ? "scenery"
+            : isPortraits
+              ? "portraits"
+              : slug === "sketches"
+                ? "sketches"
+                : "grid"
         }
         showStatement={isPortraits}
         story={slug === "sketches" ? collection.story : undefined}
