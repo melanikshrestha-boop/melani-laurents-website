@@ -68,6 +68,8 @@ export function Navigation() {
   const isArtGallery = isArt && pathname !== "/photography";
   const isBuilds =
     pathname === "/projects" || pathname.startsWith("/projects/");
+  const isBookshelf =
+    pathname === "/bookshelf" || pathname.startsWith("/bookshelf/");
 
   const paper =
     !isArt &&
@@ -119,6 +121,7 @@ export function Navigation() {
     paper ? "cinema-nav--paper" : "",
     edgePaper ? "cinema-nav--bookshelf" : "",
     isBuilds ? "cinema-nav--builds" : "",
+    isBookshelf ? "cinema-nav--shelf" : "",
     isArt ? "cinema-nav--art" : "",
     isArtGallery ? "cinema-nav--art-gallery" : "",
   ]

@@ -117,6 +117,20 @@
   -webkit-text-fill-color: #3a1c62 !important;
 }
 
+/* Bookshelf: first + last (Home, Contact) use shelf orange, not gold. */
+.cinema-nav--shelf {
+  --shelf-orange: #e07a5f;
+}
+.cinema-nav--bookshelf.cinema-nav--shelf .cinema-nav__link--gold {
+  color: var(--shelf-orange) !important;
+  -webkit-text-fill-color: var(--shelf-orange) !important;
+}
+.cinema-nav--bookshelf.cinema-nav--shelf .cinema-nav__link--gold:hover,
+.cinema-nav--bookshelf.cinema-nav--shelf .cinema-nav__link--gold:focus-visible {
+  color: #c45c3a !important;
+  -webkit-text-fill-color: #c45c3a !important;
+}
+
 /* Art / photography profile: a quiet overlay at the top of the work. */
 .cinema-nav--art {
   position: fixed !important;
