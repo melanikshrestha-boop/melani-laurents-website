@@ -32,19 +32,17 @@ export default function BlogIndexPage() {
                 </p>
               </li>
             ))}
-          </ul>
-        )}
-        <section className="sa-watch" aria-labelledby="sa-watch-title">
-          <h2 id="sa-watch-title" className="sa-watch-title">
-            Watch List
-          </h2>
-          <p className="sa-watch-note">always updated</p>
-          <ul className="sa-watch-list">
+            <li className="sa-blog-item sa-blog-item--watch-head">
+              <h2 className="sa-blog-title">Watch List</h2>
+              <p className="sa-blog-date">Updating...</p>
+            </li>
             {WATCH_LIST.map((title) => (
-              <li key={title}>{title}</li>
+              <li key={title} className="sa-blog-item">
+                <span className="sa-blog-title">{title}</span>
+              </li>
             ))}
           </ul>
-        </section>
+        )}
       </div>
     </div>
   );
