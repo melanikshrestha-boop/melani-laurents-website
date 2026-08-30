@@ -94,14 +94,15 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
-  // Custom C monogram — never the default Vercel triangle
   icons: {
     icon: [
-      { url: "/icon.svg", type: "image/svg+xml", sizes: "any" },
-      { url: "/icon", type: "image/png", sizes: "32x32" },
+      { url: "/icon.png?v=eren", type: "image/png", sizes: "32x32" },
+      { url: "/icon-192.png?v=eren", type: "image/png", sizes: "192x192" },
     ],
-    apple: [{ url: "/apple-icon", sizes: "180x180", type: "image/png" }],
-    shortcut: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    apple: [
+      { url: "/apple-icon.png?v=eren", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: [{ url: "/icon.png?v=eren", type: "image/png" }],
   },
   openGraph: {
     title: siteConfig.title,
