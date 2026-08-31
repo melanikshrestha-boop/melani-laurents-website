@@ -642,6 +642,16 @@
   gap: clamp(0.65rem, 1vw, 1rem);
 }
 
+/* Two pieces (Writing): sit next to each other. space-between on a 78rem
+   track shoved Home and We'll Meet Again to opposite edges. */
+.portfolio-gallery--sketches .portfolio-gallery-grid--pack {
+  width: min(calc(100% - 2rem), 39.25rem);
+  margin-inline: max(1rem, 2vw) auto;
+  justify-content: start;
+  gap: 1.25rem;
+  grid-template-columns: repeat(2, minmax(0, 19rem));
+}
+
 .portfolio-sketch-story {
   position: absolute;
   z-index: 2;

@@ -107,7 +107,14 @@ export function PortfolioGallery({
       >
         <div
           id={layout === "scenery" ? "prints" : undefined}
-          className="portfolio-gallery-grid"
+          className={[
+            "portfolio-gallery-grid",
+            layout === "sketches" && photos.length <= 2
+              ? "portfolio-gallery-grid--pack"
+              : "",
+          ]
+            .filter(Boolean)
+            .join(" ")}
           style={
             layout === "sketches"
               ? ({
