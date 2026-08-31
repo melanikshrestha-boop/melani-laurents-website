@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import {
+  GITHUB_PROFILE_URL,
   githubDayTitle,
   type ContributionCalendar,
   type ContributionDay,
@@ -75,7 +76,20 @@ export function BuildsGithubCalendar({
   const labels = monthLabels(calendar.weeks);
 
   return (
-    <div className="builds-github">
+    <section className="builds-github" aria-labelledby="builds-github-title">
+      <header className="builds-github__head">
+        <h2 id="builds-github-title" className="builds-github__title">
+          GitHub
+        </h2>
+        <a
+          href={GITHUB_PROFILE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="builds-surface__scholar"
+        >
+          melanikshrestha-boop ↗
+        </a>
+      </header>
       <p className="builds-github__count">
         {calendar.total.toLocaleString("en-US")} contributions in the last year
       </p>
@@ -127,6 +141,6 @@ export function BuildsGithubCalendar({
         <span className="builds-github__day builds-github__day--4" />
         More
       </p>
-    </div>
+    </section>
   );
 }

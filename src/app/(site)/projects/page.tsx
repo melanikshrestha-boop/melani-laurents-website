@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { ProjectGrid } from "@/components/ProjectGrid";
 import { BuildsScholar } from "@/components/BuildsScholar";
-import { BuildsPresence } from "@/components/BuildsPresence";
+import { BuildsGithub } from "@/components/BuildsGithub";
 import { projects } from "@/data/projects";
+import { googleScholarUrl } from "@/data/publications";
 
 export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
@@ -64,6 +65,14 @@ export default function ProjectsPage() {
               4 Patents
             </h1>
           </div>
+          <a
+            href={googleScholarUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="builds-surface__scholar"
+          >
+            Google Scholar ↗
+          </a>
         </header>
 
         <BuildsScholar />
@@ -75,7 +84,7 @@ export default function ProjectsPage() {
           <ProjectGrid projects={stage} />
         </section>
 
-        <BuildsPresence />
+        <BuildsGithub />
       </div>
     </div>
   );
