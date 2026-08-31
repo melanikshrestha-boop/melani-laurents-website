@@ -5460,11 +5460,11 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   z-index: 16;
   display: block;
   width: 100%;
-  height: 100vh;
-  height: 100dvh;
+  /* svh = visible viewport. dvh includes hidden browser chrome and was
+     clipping Builds · Blog · Bookshelf · Art · Contact off the bottom. */
+  height: 100svh;
   min-height: 100svh;
-  min-height: 100dvh;
-  max-height: none;
+  max-height: 100svh;
   aspect-ratio: auto;
   overflow: hidden;
   padding: 0;
@@ -5647,7 +5647,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   background: none;
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
-  z-index: 8;
+  z-index: 20;
+  pointer-events: auto;
   opacity: var(--nav-out, 1);
 }
 
@@ -6972,6 +6973,14 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .hub-page--photo .hub-page__nav--locked a::after,
 .home-sections .hub-page--photo .hub-page__nav--locked a::after {
   display: none;
+}
+
+/* Builds + Contact stay gold on the still (Quiet HUD law). */
+.hub-page--photo .hub-page__nav--locked .hub-page__nav-item:first-child a,
+.hub-page--photo .hub-page__nav--locked .hub-page__nav-contact,
+.home-sections .hub-page--photo .hub-page__nav--locked .hub-page__nav-item:first-child a,
+.home-sections .hub-page--photo .hub-page__nav--locked .hub-page__nav-contact {
+  color: #f0cf78 !important;
 }
 
 /* Builds: yellow chip on hover — small label, never a wash over the street. */
