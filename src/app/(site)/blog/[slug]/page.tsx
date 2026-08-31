@@ -5,7 +5,9 @@ import {
   formatBlogArchiveDate,
   getBlogPost,
   listBlogPosts,
+  threadIdForBlog,
 } from "@/data/blog-posts";
+import { OpinionChips } from "@/components/discussion/OpinionChips";
 import "@/styles/interactive-blog.css";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -24,11 +26,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-/** A blog post is just a document: title, date, and Celine's writing. */
+/** A blog post is a document, then a quiet stance row. */
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   const post = getBlogPost(slug);
   if (!post) notFound();
+
+  const threadId = post.threadId || threadIdForBlog(post.slug);
+  const subject = post.thesis?.trim() || post.title;
 
   return (
     <div className="sa-blog">
@@ -47,6 +52,8 @@ export default async function BlogPostPage({ params }: Props) {
             <p key={para.slice(0, 72)}>{para}</p>
           ))}
         </div>
+
+        <OpinionChips threadId={threadId} subject={subject} />
       </article>
     </div>
   );
