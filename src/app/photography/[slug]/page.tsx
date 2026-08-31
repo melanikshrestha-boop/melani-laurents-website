@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PortfolioGallery } from "@/components/photography/PortfolioGallery";
-import { LennonQuote } from "@/components/photography/LennonQuote";
 import {
   getPhotoCollection,
   getPhotoCollectionSlugs,
@@ -78,7 +77,6 @@ export default async function PhotographyCollectionPage({ params }: PageProps) {
           </h1>
         )}
       </header>
-      {slug === "sketches" ? <LennonQuote /> : null}
       <PortfolioGallery
         photos={collection.photos}
         layout={

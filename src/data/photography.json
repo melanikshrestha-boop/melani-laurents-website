@@ -261,6 +261,14 @@
       "cover": "/photography/sketches/cover.jpeg",
       "photos": [
         {
+          "id": "home-pre-9th",
+          "src": "/writing/home-cover.png",
+          "alt": "Home",
+          "place": "Home",
+          "note": "This is from a summer class before 9th grade. We had to pick an image and write a story from it. I listened to Home by Edward Sharpe while writing this, and it greatly inspired the story.",
+          "href": "/writing/home.pdf"
+        },
+        {
           "id": "science-fiction-9th-grade",
           "src": "/writing/science-fiction-9th-grade.png",
           "alt": "We'll Meet Again",

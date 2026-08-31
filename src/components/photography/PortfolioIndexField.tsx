@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { LennonQuote } from "@/components/photography/LennonQuote";
 
 const ART_CATEGORIES = [
   {
@@ -73,6 +74,8 @@ export function PortfolioIndexField() {
               </li>
             ))}
           </ul>
+
+          <LennonQuote variant="ticker" />
         </div>
       </div>
     </section>
