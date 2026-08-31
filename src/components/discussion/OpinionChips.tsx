@@ -6,6 +6,7 @@
  */
 import { useCallback, useEffect, useId, useMemo, useState } from "react";
 import type { PublicOpinion, Stance } from "@/data/consume-types";
+import "@/styles/opinion-chips.css";
 
 const NAME_KEY = "celine-opinion-name";
 
