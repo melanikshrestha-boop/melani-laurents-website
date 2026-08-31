@@ -1,0 +1,33 @@
+name: Refresh GitHub calendar
+
+on:
+  schedule:
+    - cron: "20 * * * *"
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/refresh-github-calendar.mjs"
+      - ".github/workflows/github-calendar.yml"
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Rebuild calendar from authored commits
+        env:
+          GH_CONTRIBUTIONS_TOKEN: ${{ secrets.GH_CONTRIBUTIONS_TOKEN }}
+        run: node scripts/refresh-github-calendar.mjs
+      - name: Commit if the year moved
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/github-calendar.json
+          git diff --cached --quiet && echo "unchanged" && exit 0
+          git commit -m "Refresh Builds GitHub calendar from live commits"
+          git push

@@ -1,3 +1,5 @@
+import snapshot from "@/data/github-calendar.json";
+
 /** Live contribution calendar for Builds. Login matches siteConfig GitHub. */
 export const GITHUB_LOGIN = "melanikshrestha-boop";
 export const GITHUB_PROFILE_URL = `https://github.com/${GITHUB_LOGIN}`;
@@ -299,7 +301,192 @@ export function githubDayTitle(day: ContributionDay): string | undefined {
   return `${day.count} contributions on ${when}.`;
 }
 
+function ymdUTC(date: Date): string {
+  return date.toISOString().slice(0, 10);
+}
+
+/** Sunday-aligned last ~53 weeks, same window github.com uses. */
+function lastYearDates(): string[] {
+  const end = new Date();
+  const start = new Date(
+    Date.UTC(end.getUTCFullYear(), end.getUTCMonth(), end.getUTCDate()),
+  );
+  start.setUTCDate(start.getUTCDate() - 365);
+  start.setUTCDate(start.getUTCDate() - start.getUTCDay());
+  const dates: string[] = [];
+  for (const cursor = new Date(start); cursor <= end; cursor.setUTCDate(cursor.getUTCDate() + 1)) {
+    dates.push(ymdUTC(cursor));
+  }
+  return dates;
+}
+
+function levelFromQuartiles(
+  count: number,
+  q1: number,
+  q2: number,
+  q3: number,
+): ContributionDay["level"] {
+  if (count <= 0) return 0;
+  if (count <= q1) return 1;
+  if (count <= q2) return 2;
+  if (count <= q3) return 3;
+  return 4;
+}
+
+export function calendarFromCounts(
+  counts: Record<string, number>,
+): ContributionCalendar {
+  const dates = lastYearDates();
+  const nonzero = dates
+    .map((date) => counts[date] ?? 0)
+    .filter((n) => n > 0)
+    .sort((a, b) => a - b);
+  const at = (p: number) =>
+    nonzero.length === 0
+      ? 1
+      : nonzero[Math.min(nonzero.length - 1, Math.floor(p * (nonzero.length - 1)))] ?? 1;
+  const q1 = Math.max(1, at(0.25));
+  const q2 = Math.max(q1, at(0.5));
+  const q3 = Math.max(q2, at(0.75));
+  const days: ContributionDay[] = dates.map((date) => {
+    const count = counts[date] ?? 0;
+    return { date, count, level: levelFromQuartiles(count, q1, q2, q3) };
+  });
+  return {
+    total: days.reduce((n, day) => n + day.count, 0),
+    weeks: weeksFromDays(days),
+  };
+}
+
+type RepoNode = { name: string; fork?: boolean };
+
+async function githubJson<T>(
+  url: string,
+  token: string,
+  init?: RequestInit,
+): Promise<T | null> {
+  const response = await fetch(url, {
+    ...init,
+    cache: "no-store",
+    headers: {
+      accept: "application/json",
+      authorization: `Bearer ${token}`,
+      "user-agent": "celine-nova-builds",
+      ...(init?.headers ?? {}),
+    },
+  });
+  if (!response.ok) return null;
+  return (await response.json()) as T;
+}
+
+/** Authored commits on owned repos — includes private work the public graph hides. */
+async function fetchCommitCalendar(): Promise<ContributionCalendar | null> {
+  const token = githubToken();
+  if (!token) return null;
+
+  const me = await githubJson<{ login?: string; node_id?: string }>(
+    "https://api.github.com/user",
+    token,
+  );
+  if (me?.login !== GITHUB_LOGIN || !me.node_id) return null;
+
+  const repos =
+    (await githubJson<RepoNode[]>(
+      "https://api.github.com/user/repos?per_page=100&affiliation=owner&sort=updated",
+      token,
+    )) ?? [];
+
+  const since = `${lastYearDates()[0] ?? ymdUTC(new Date())}T00:00:00Z`;
+  const counts: Record<string, number> = {};
+  const query = /* GraphQL */ `
+    query ($owner: String!, $name: String!, $since: GitTimestamp!, $authorId: ID!, $after: String) {
+      repository(owner: $owner, name: $name) {
+        defaultBranchRef {
+          target {
+            ... on Commit {
+              history(first: 100, since: $since, author: { id: $authorId }, after: $after) {
+                pageInfo { hasNextPage endCursor }
+                nodes { committedDate }
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  type CommitHistory = {
+    pageInfo?: { hasNextPage?: boolean; endCursor?: string };
+    nodes?: Array<{ committedDate?: string } | null>;
+  };
+  type HistoryPayload = {
+    data?: {
+      repository?: {
+        defaultBranchRef?: {
+          target?: {
+            history?: CommitHistory;
+          };
+        };
+      };
+    };
+  };
+
+  for (const repo of repos) {
+    if (!repo.name || repo.fork) continue;
+    let after: string | null = null;
+    for (let page = 0; page < 20; page += 1) {
+      const payload: HistoryPayload | null = await githubJson<HistoryPayload>(GRAPHQL_URL, token, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          query,
+          variables: {
+            owner: GITHUB_LOGIN,
+            name: repo.name,
+            since,
+            authorId: me.node_id,
+            after,
+          },
+        }),
+      });
+      const history: CommitHistory | undefined =
+        payload?.data?.repository?.defaultBranchRef?.target?.history;
+      if (!history) break;
+      const nodes: Array<{ committedDate?: string } | null> = history.nodes ?? [];
+      for (const node of nodes) {
+        const date = node?.committedDate?.slice(0, 10);
+        if (!date) continue;
+        counts[date] = (counts[date] ?? 0) + 1;
+      }
+      if (!history.pageInfo?.hasNextPage || !history.pageInfo.endCursor) break;
+      after = history.pageInfo.endCursor;
+    }
+  }
+
+  const calendar = calendarFromCounts(counts);
+  return calendar.total > 0 ? calendar : null;
+}
+
+function snapshotCalendar(): ContributionCalendar | null {
+  if (snapshot?.weeks?.length && snapshot.total > 0) {
+    return snapshot as ContributionCalendar;
+  }
+  return null;
+}
+
+export async function getGithubContributionsLive(): Promise<ContributionCalendar | null> {
+  try {
+    const fromCommits = await fetchCommitCalendar();
+    if (fromCommits) return fromCommits;
+  } catch {
+    /* fall through */
+  }
+  return getGithubContributions();
+}
+
 export async function getGithubContributions(): Promise<ContributionCalendar | null> {
+  const cached = snapshotCalendar();
+  if (cached) return cached;
   try {
     const fromGithub = await fetchGraphqlCalendar();
     if (fromGithub) return fromGithub;

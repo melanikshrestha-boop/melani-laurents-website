@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
-import { getGithubContributions } from "@/lib/github-contributions";
+import { getGithubContributionsLive } from "@/lib/github-contributions";
 
 export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
+export const maxDuration = 60;
 
 export async function GET() {
-  const calendar = await getGithubContributions();
+  const calendar = await getGithubContributionsLive();
   if (!calendar) {
     return NextResponse.json({ error: "unavailable" }, { status: 502 });
   }
