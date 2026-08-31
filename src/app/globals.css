@@ -6789,6 +6789,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .portfolio-gallery-note {
   display: block;
   margin-top: 0.25rem;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 0.72rem;
   font-weight: 400;
   font-style: normal;
