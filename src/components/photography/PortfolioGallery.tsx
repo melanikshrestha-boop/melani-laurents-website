@@ -194,7 +194,13 @@ export function PortfolioGallery({
                 {photo.place || photo.note || photo.print ? (
                   <figcaption className="portfolio-gallery-caption">
                     {photo.place || photo.print ? (
-                      <span className="portfolio-gallery-place">
+                      <span
+                        className={
+                          photo.href
+                            ? "portfolio-gallery-place portfolio-gallery-place--essay"
+                            : "portfolio-gallery-place"
+                        }
+                      >
                         {photo.place ?? photo.print?.title}
                       </span>
                     ) : null}

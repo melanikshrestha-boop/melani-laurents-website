@@ -6777,6 +6777,15 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   letter-spacing: 0;
 }
 
+.portfolio-gallery-place--essay {
+  font-family: var(--font-instrument-serif), Georgia, "Times New Roman", serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
 .portfolio-gallery-note {
   display: block;
   margin-top: 0.25rem;
