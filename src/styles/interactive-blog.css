@@ -393,10 +393,6 @@
   line-height: 1.2;
 }
 
-.sa-blog--index .sa-blog-item--watch-head {
-  margin-top: 1.2em;
-}
-
 .sa-blog--index .sa-blog-title,
 .sa-blog--index .sa-blog-date {
   font-family: var(--font-geist-sans), "Helvetica Neue", Arial, sans-serif;
