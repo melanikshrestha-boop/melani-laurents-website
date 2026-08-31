@@ -75,7 +75,7 @@ export function PortfolioIndexField() {
             ))}
           </ul>
 
-          <LennonQuote variant="ticker" />
+          <LennonQuote variant="captions" />
         </div>
       </div>
     </section>

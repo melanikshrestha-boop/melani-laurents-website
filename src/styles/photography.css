@@ -340,58 +340,55 @@
   text-align: right;
 }
 
-.portfolio-art-ticker {
+/* Burned-in movie subtitles on the still — no bar, no ticker. */
+.portfolio-art-subs {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  left: 50%;
+  bottom: calc(1.15rem + env(safe-area-inset-bottom, 0px));
   z-index: 3;
-  pointer-events: none;
-  padding: 1.15rem 1.35rem calc(0.9rem + env(safe-area-inset-bottom, 0px));
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.52) 0%,
-    rgba(0, 0, 0, 0.18) 62%,
-    transparent 100%
-  );
-}
-
-.portfolio-art-ticker__copy {
-  display: block;
-  box-sizing: border-box;
-  width: min(46rem, 100%);
-  margin: 0 auto;
+  width: min(44rem, calc(100% - 2.4rem));
+  margin: 0;
   padding: 0;
-  color: rgba(247, 241, 231, 0.92);
-  font-family: var(--font-instrument-serif), Georgia, serif;
-  font-size: 0.72rem;
-  font-weight: 400;
-  font-style: italic;
-  line-height: 1.45;
-  letter-spacing: 0.01em;
+  transform: translateX(-50%);
+  pointer-events: none;
   text-align: center;
-  white-space: normal;
 }
 
-.portfolio-art-ticker__mark {
-  color: #4d287d;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 1.15rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 0.8;
-  margin-right: 0.2rem;
-}
-
-.portfolio-art-ticker__credit {
-  margin-left: 0.45rem;
-  color: #c9b3e3;
-  font-family: var(--font-instrument-serif), Georgia, serif;
-  font-size: 0.72rem;
-  font-style: italic;
+.portfolio-art-subs__line,
+.portfolio-art-subs__credit {
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-instrument-serif), Georgia, "Times New Roman", serif;
   font-weight: 400;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  text-wrap: pretty;
+  text-shadow:
+    0 0 1px #000,
+    1px 0 0 #000,
+    -1px 0 0 #000,
+    0 1px 0 #000,
+    0 -1px 0 #000,
+    1px 1px 0 #000,
+    -1px 1px 0 #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000,
+    0 2px 8px rgba(0, 0, 0, 0.55);
+}
+
+.portfolio-art-subs__line {
+  font-size: clamp(0.92rem, 1.55vw, 1.18rem);
+  line-height: 1.32;
+}
+
+.portfolio-art-subs__line + .portfolio-art-subs__line {
+  margin-top: 0.35rem;
+}
+
+.portfolio-art-subs__credit {
+  margin-top: 0.45rem;
+  font-size: clamp(0.72rem, 1.1vw, 0.86rem);
+  letter-spacing: 0.04em;
 }
 
 .portfolio-hover-item:hover .portfolio-hover-item-title,

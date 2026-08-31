@@ -4,32 +4,22 @@ const LENNON_LEAD =
 const LENNON_BODY =
   "I wasn’t going after the aestheticism or the monastery or the lone artist who supposedly doesn’t care what people think about his work. I care a lot whether people hate it or love it, because it’s part of me and it hurts me when they hate it, or hate me, and it’s pleasing when they like it. But, as many public figures have said, “The praise is never enough, and the criticism always bites deep.”";
 
-function TickerCopy() {
-  return (
-    <p className="portfolio-art-ticker__copy">
-      <span className="portfolio-art-ticker__mark" aria-hidden>
-        “
-      </span>
-      {LENNON_LEAD} {LENNON_BODY}
-      <cite className="portfolio-art-ticker__credit">John Lennon, 1980</cite>
-    </p>
-  );
-}
-
 export function LennonQuote({
   className = "",
   variant = "block",
 }: {
   className?: string;
-  variant?: "block" | "ticker";
+  variant?: "block" | "captions";
 }) {
-  if (variant === "ticker") {
+  if (variant === "captions") {
     return (
       <div
-        className={`portfolio-art-ticker ${className}`.trim()}
+        className={`portfolio-art-subs ${className}`.trim()}
         aria-label="John Lennon, 1980"
       >
-        <TickerCopy />
+        <p className="portfolio-art-subs__line">{LENNON_LEAD}</p>
+        <p className="portfolio-art-subs__line">{LENNON_BODY}</p>
+        <p className="portfolio-art-subs__credit">John Lennon, 1980</p>
       </div>
     );
   }
