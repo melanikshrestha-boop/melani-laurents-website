@@ -11,13 +11,6 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: projectRoot,
   },
-  async redirects() {
-    return [
-      { source: "/link", destination: "/links", permanent: true },
-      { source: "/linktree", destination: "/links", permanent: true },
-      { source: "/bio", destination: "/links", permanent: true },
-    ];
-  },
 };
 
 export default nextConfig;

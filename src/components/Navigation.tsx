@@ -92,9 +92,7 @@ export function Navigation() {
       pathname === "/consume" ||
       pathname.startsWith("/consume/") ||
       pathname === "/contact" ||
-      pathname.startsWith("/contact/") ||
-      pathname === "/links" ||
-      pathname.startsWith("/links/"));
+      pathname.startsWith("/contact/"));
 
   const edgePaper =
     !isArt &&
@@ -109,9 +107,7 @@ export function Navigation() {
       pathname === "/daily" ||
       pathname.startsWith("/daily/") ||
       pathname === "/contact" ||
-      pathname.startsWith("/contact/") ||
-      pathname === "/links" ||
-      pathname.startsWith("/links/"));
+      pathname.startsWith("/contact/"));
 
   /** Current page dropped; first + last of what's left go gold */
   const items = isArt

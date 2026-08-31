@@ -111,19 +111,5 @@ export type NavItem = (typeof siteConfig.nav)[number];
 
 export type HubPortal = (typeof siteConfig.hubPortals)[number];
 
-/**
- * Instagram bio page (`/links`). Labels only — no taglines, no invented bio.
- * Site destinations first, then the header socials.
- */
-export const bioLinks = [
-  { label: "Home", href: "/" },
-  ...siteConfig.hubPortals.map(({ label, href }) => ({ label, href })),
-  ...siteConfig.socialLinks.map(({ label, href }) => ({
-    label,
-    href,
-    external: true as const,
-  })),
-];
-
 export const deadPoetsQuote =
   "We don't read and write poetry because it's cute. We read and write poetry because we are members of the human race, and the human race is filled with passion.";

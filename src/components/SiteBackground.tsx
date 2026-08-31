@@ -24,9 +24,7 @@ export function SiteBackground() {
     pathname === "/consume" ||
     pathname.startsWith("/consume/") ||
     pathname === "/blog" ||
-    pathname.startsWith("/blog/") ||
-    pathname === "/links" ||
-    pathname.startsWith("/links/");
+    pathname.startsWith("/blog/");
   if (quiet) return null;
   return <InterstellarField enabled />;
 }
