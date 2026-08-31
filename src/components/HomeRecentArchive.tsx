@@ -3,12 +3,11 @@ import { getRecentBookshelf, BOOKSHELF_KIND_LABEL } from "@/data/bookshelf";
 import { googleScholarUrl } from "@/data/publications";
 import { siteConfig } from "@/config/site";
 import { HomeScrollExperience } from "@/components/HomeScrollExperience";
+import { GITHUB_PROFILE_URL } from "@/lib/github-contributions";
 
 const SLOT_COUNT = 3;
 
-const GITHUB_URL =
-  siteConfig.socialLinks.find((l) => l.id === "github")?.href ??
-  "https://github.com/melanikshrestha-boop";
+const GITHUB_URL = GITHUB_PROFILE_URL;
 
 /**
  * Temporary build list: GitHub repos, Pig Latin titles until real names land.

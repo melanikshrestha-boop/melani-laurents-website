@@ -308,26 +308,69 @@
   outline-offset: 0.35rem;
 }
 
-.builds-github {
+.builds-presence {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.35rem, 2.4vw, 2.1rem);
   margin-top: clamp(2rem, 4vw, 3.25rem);
 }
 
-.builds-github__head {
+.builds-presence__link {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 1rem;
-  margin: 0 0 0.45rem;
-}
-
-.builds-github__title {
+  align-items: center;
+  gap: 0.42em;
+  width: max-content;
+  max-width: 100%;
   margin: 0;
+  color: var(--bs-ink);
   font-family: inherit;
   font-size: clamp(2rem, 3.5vw, 3.4rem);
   font-weight: 600;
   line-height: 1;
   letter-spacing: 0;
+  text-decoration: none;
+}
+
+.builds-presence__link:hover,
+.builds-presence__link:focus-visible {
   color: var(--bs-ink);
+}
+
+.builds-presence__link:focus-visible {
+  outline: 1px solid var(--bs-violet);
+  outline-offset: 0.35rem;
+}
+
+.builds-presence__mark {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 0.78em;
+  height: 0.78em;
+}
+
+.builds-presence__mark img,
+.builds-presence__mark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.builds-presence__name {
+  min-width: 0;
+}
+
+.builds-presence__github {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.builds-github {
+  margin-top: 0;
 }
 
 .builds-github__count {

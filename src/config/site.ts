@@ -39,27 +39,15 @@ export const siteConfig = {
   spotifyUrl:
     "https://open.spotify.com/user/21etydsnbqyqe7ekagfnqbhoq?si=c3c26ede4c8a46a5",
   /**
-   * Header social row (home top-right). Order is left → right.
-   * GitHub · X · LinkedIn · YouTube · Spotify · Instagram · TikTok
+   * Header social row (home top-right). Fun stuff only — GitHub / LinkedIn / Scholar live on Builds.
+   * X · YouTube · Spotify · Instagram · TikTok
    * hoverNote = personal popup on cursor only (omit until Melani writes one).
    */
   socialLinks: [
     {
-      id: "github",
-      label: "GitHub",
-      href: "https://github.com/melanikshrestha-boop",
-      hoverNote:
-        "I'm very specific about how I want things to exist, so I just bring my versions to life. It's pretty fun, check em out.",
-    },
-    {
       id: "x",
       label: "X",
       href: "https://x.com/melanilaurents",
-    },
-    {
-      id: "linkedin",
-      label: "LinkedIn",
-      href: "https://www.linkedin.com/in/melanilaurents/",
     },
     {
       id: "youtube",
