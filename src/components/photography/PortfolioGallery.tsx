@@ -143,7 +143,11 @@ export function PortfolioGallery({
                       alt={photo.alt}
                       width={1200}
                       height={1800}
-                      className="portfolio-gallery-image"
+                      className={
+                        photo.href
+                          ? "portfolio-gallery-image portfolio-gallery-image--essay"
+                          : "portfolio-gallery-image"
+                      }
                       sizes={
                         layout === "sketches"
                           ? photos.length === 1

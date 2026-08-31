@@ -698,6 +698,11 @@
   object-position: center 34%;
 }
 
+/* PDF covers: titled first page, not a mid-page crop. */
+.portfolio-gallery--sketches .portfolio-gallery-image--essay {
+  object-position: center top;
+}
+
 /* ——— Pagination ——— */
 .portfolio-pagination {
   display: flex;
