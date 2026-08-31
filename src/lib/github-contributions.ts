@@ -5,13 +5,14 @@ export const GITHUB_PROFILE_URL = `https://github.com/${GITHUB_LOGIN}`;
 const GRAPHQL_URL = "https://api.github.com/graphql";
 const CONTRIBUTIONS_HTML_URL = `https://github.com/users/${GITHUB_LOGIN}/contributions`;
 
+/** GitHub profile “last year” — omit from/to so the window matches github.com. */
 const CALENDAR_QUERY = /* GraphQL */ `
-  query ($login: String!, $from: DateTime!, $to: DateTime!) {
+  query ($login: String!) {
     viewer {
       login
     }
     user(login: $login) {
-      contributionsCollection(from: $from, to: $to) {
+      contributionsCollection {
         contributionCalendar {
           totalContributions
           weeks {
@@ -28,10 +29,10 @@ const CALENDAR_QUERY = /* GraphQL */ `
 `;
 
 const VIEWER_CALENDAR_QUERY = /* GraphQL */ `
-  query ($from: DateTime!, $to: DateTime!) {
+  query {
     viewer {
       login
-      contributionsCollection(from: $from, to: $to) {
+      contributionsCollection {
         contributionCalendar {
           totalContributions
           weeks {
@@ -46,12 +47,6 @@ const VIEWER_CALENDAR_QUERY = /* GraphQL */ `
     }
   }
 `;
-
-function lastYearWindow(): { from: string; to: string } {
-  const to = new Date();
-  const from = new Date(to.getTime() - 365 * 24 * 60 * 60 * 1000);
-  return { from: from.toISOString(), to: to.toISOString() };
-}
 
 export type ContributionDay = {
   date: string;
@@ -173,14 +168,10 @@ async function fetchGraphqlCalendar(): Promise<ContributionCalendar | null> {
     "user-agent": "celine-nova-builds",
   };
 
-  const window = lastYearWindow();
   const viewerResponse = await fetch(GRAPHQL_URL, {
     method: "POST",
     headers,
-    body: JSON.stringify({
-      query: VIEWER_CALENDAR_QUERY,
-      variables: window,
-    }),
+    body: JSON.stringify({ query: VIEWER_CALENDAR_QUERY }),
     cache: "no-store",
   });
   if (viewerResponse.ok) {
@@ -204,7 +195,7 @@ async function fetchGraphqlCalendar(): Promise<ContributionCalendar | null> {
     headers,
     body: JSON.stringify({
       query: CALENDAR_QUERY,
-      variables: { login: GITHUB_LOGIN, ...window },
+      variables: { login: GITHUB_LOGIN },
     }),
     cache: "no-store",
   });
@@ -237,12 +228,11 @@ function parseContributionsHtml(html: string): ContributionCalendar | null {
     if (!date) continue;
     const level = toLevel(Number(attrs.match(/data-level="(\d)"/)?.[1] ?? 0));
     const after = html.slice(match.index ?? 0, (match.index ?? 0) + 900);
-    const tip = after.match(
-      /<tool-tip\b[^>]*>\s*(\d+)\s+contribution/i,
-    );
+    const tip = after.match(/<tool-tip\b[^>]*>([^<]*)<\/tool-tip>/i)?.[1] ?? "";
+    const counted = tip.match(/(\d+)\s+contribution/i);
     days.push({
       date,
-      count: tip ? Number(tip[1]) : 0,
+      count: counted ? Number(counted[1]) : 0,
       level,
     });
   }
@@ -265,6 +255,48 @@ async function fetchHtmlCalendar(): Promise<ContributionCalendar | null> {
   });
   if (!response.ok) return null;
   return parseContributionsHtml(await response.text());
+}
+
+const MONTH_LONG = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+function ordinal(n: number): string {
+  const v = n % 100;
+  if (v >= 11 && v <= 13) return `${n}th`;
+  switch (n % 10) {
+    case 1:
+      return `${n}st`;
+    case 2:
+      return `${n}nd`;
+    case 3:
+      return `${n}rd`;
+    default:
+      return `${n}th`;
+  }
+}
+
+/** Same tooltip copy GitHub puts on each calendar day. */
+export function githubDayTitle(day: ContributionDay): string | undefined {
+  if (!day.date) return undefined;
+  const parts = day.date.split("-").map(Number);
+  const month = MONTH_LONG[(parts[1] ?? 1) - 1];
+  const dayNum = parts[2] ?? 1;
+  const when = `${month} ${ordinal(dayNum)}`;
+  if (day.count <= 0) return `No contributions on ${when}.`;
+  if (day.count === 1) return `1 contribution on ${when}.`;
+  return `${day.count} contributions on ${when}.`;
 }
 
 export async function getGithubContributions(): Promise<ContributionCalendar | null> {

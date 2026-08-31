@@ -371,16 +371,28 @@
 }
 
 .builds-github__calendar {
-  --gh-size: 0.72rem;
-  --gh-gap: 0.18rem;
-  min-width: calc(var(--gh-weeks, 53) * (var(--gh-size) + var(--gh-gap)));
+  /* GitHub.com contribution greens (light theme). */
+  --gh-size: 11px;
+  --gh-gap: 3px;
+  --gh-l0: #ebedf0;
+  --gh-l1: #9be9a8;
+  --gh-l2: #40c463;
+  --gh-l3: #30a14e;
+  --gh-l4: #216e39;
+  display: grid;
+  grid-template-columns: 1.7rem max-content;
+  grid-template-rows: auto auto;
+  column-gap: 0.2rem;
+  width: max-content;
 }
 
 .builds-github__months {
+  grid-column: 2;
+  grid-row: 1;
   display: grid;
   grid-template-columns: repeat(var(--gh-weeks, 53), var(--gh-size));
   column-gap: var(--gh-gap);
-  margin: 0 0 0.35rem;
+  margin: 0 0 0.28rem;
   color: var(--bs-faint);
   font-family: var(--font-share-tech-mono), ui-monospace, monospace;
   font-size: 0.58rem;
@@ -395,7 +407,24 @@
   white-space: nowrap;
 }
 
+.builds-github__wdays {
+  grid-column: 1;
+  grid-row: 2;
+  display: grid;
+  grid-template-rows: repeat(7, var(--gh-size));
+  gap: var(--gh-gap);
+  color: var(--bs-faint);
+  font-family: var(--font-share-tech-mono), ui-monospace, monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.02em;
+  line-height: var(--gh-size);
+  text-align: right;
+  padding-right: 0.15rem;
+}
+
 .builds-github__grid {
+  grid-column: 2;
+  grid-row: 2;
   display: flex;
   gap: var(--gh-gap);
 }
@@ -410,28 +439,28 @@
   display: block;
   width: var(--gh-size);
   height: var(--gh-size);
-  border-radius: 0.12rem;
-  background: rgba(23, 23, 23, 0.08);
+  border-radius: 2px;
+  background: var(--gh-l0);
 }
 
 .builds-github__day--0 {
-  background: rgba(23, 23, 23, 0.08);
+  background: var(--gh-l0);
 }
 
 .builds-github__day--1 {
-  background: color-mix(in srgb, var(--bs-violet) 28%, var(--bs-paper));
+  background: var(--gh-l1);
 }
 
 .builds-github__day--2 {
-  background: color-mix(in srgb, var(--bs-violet) 48%, var(--bs-paper));
+  background: var(--gh-l2);
 }
 
 .builds-github__day--3 {
-  background: color-mix(in srgb, var(--bs-violet) 72%, var(--bs-paper));
+  background: var(--gh-l3);
 }
 
 .builds-github__day--4 {
-  background: var(--bs-violet);
+  background: var(--gh-l4);
 }
 
 .builds-github__day.is-pad {
@@ -452,7 +481,7 @@
 }
 
 .builds-github__legend .builds-github__day {
-  flex: 0 0 var(--gh-size, 0.72rem);
+  flex: 0 0 var(--gh-size, 11px);
 }
 
 @media (max-width: 64rem) {

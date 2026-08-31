@@ -6,6 +6,7 @@ import { projects } from "@/data/projects";
 import { googleScholarUrl } from "@/data/publications";
 
 export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
 
 export const metadata: Metadata = {
   title: "Builds",
