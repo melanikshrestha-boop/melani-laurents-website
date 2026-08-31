@@ -27,17 +27,24 @@ function icoFrames(buf) {
   return buf.readUInt16LE(4);
 }
 
-for (const rel of ["public/favicon.ico", "src/app/favicon.ico"]) {
+const icoPaths = ["public/favicon.ico"];
+if (fs.existsSync(path.join(root, "src/app/favicon.ico"))) {
+  icoPaths.push("src/app/favicon.ico");
+} else if (!fs.existsSync(path.join(root, "src/app/icon.png"))) {
+  fail("missing src/app/favicon.ico and src/app/icon.png — tab will become a C");
+}
+
+for (const rel of icoPaths) {
   const buf = fs.readFileSync(path.join(root, rel));
   if (buf.length < 4000) {
     fail(
-      `${rel} is ${buf.length} bytes (C / 32px face-crop). Need full square Eren ICO (>4000, 16+32+48).`,
+      `${rel} is ${buf.length} bytes (C / 32px face-crop). Need full square Eren ICO (>4000, 32+48).`,
     );
   }
   const n = icoFrames(buf);
   if (n < 2) {
     fail(
-      `${rel} has ${n} ICO frame(s). Chrome's 32px crop reads as ©. Need 16+32+48 from full Eren.`,
+      `${rel} has ${n} ICO frame(s). Chrome's 16px crop reads as ©. Need 32+48 from full Eren.`,
     );
   }
 }
