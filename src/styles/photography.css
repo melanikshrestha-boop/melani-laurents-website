@@ -114,7 +114,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.08rem;
   min-height: max(100svh, 42rem);
   box-sizing: border-box;
   margin: 0;
@@ -186,11 +185,11 @@
 
 .portfolio-hover-item-title {
   margin: 0;
-  padding: 0;
+  padding: clamp(0.18rem, 0.45vh, 0.38rem) 0;
   font-family: var(--font-anton), sans-serif;
   font-size: clamp(2rem, 3vw, 3.45rem);
   font-weight: 400;
-  line-height: 1.02;
+  line-height: 1.2;
   letter-spacing: normal;
   text-align: center;
   text-transform: none;
