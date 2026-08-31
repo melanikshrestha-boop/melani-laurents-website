@@ -12,25 +12,19 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: "#f7f1e7",
     icons: [
       {
-        src: "/stay-eren.png?v=stay1",
+        src: "/eren-lock.png?v=lock2",
         sizes: "256x256",
         type: "image/png",
         purpose: "any",
       },
       {
-        src: "/icon.png?v=stay1",
-        sizes: "32x32",
-        type: "image/png",
-        purpose: "any",
-      },
-      {
-        src: "/icon-192.png?v=stay1",
+        src: "/eren-lock.png?v=lock2",
         sizes: "192x192",
         type: "image/png",
         purpose: "any",
       },
       {
-        src: "/apple-icon.png?v=stay1",
+        src: "/eren-lock.png?v=lock2",
         sizes: "180x180",
         type: "image/png",
         purpose: "any",
