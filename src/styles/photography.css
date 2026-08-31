@@ -1209,12 +1209,7 @@
 
 .portfolio-gallery-wash {
   display: block;
-  background: linear-gradient(
-    180deg,
-    transparent 42%,
-    rgba(92, 68, 118, 0.22) 68%,
-    rgba(62, 42, 88, 0.46) 100%
-  );
+  background: rgba(77, 40, 125, 0.72);
 }
 
 .portfolio-gallery-caption {
@@ -1225,7 +1220,7 @@
   padding: 0;
   background: transparent;
   color: #fff;
-  font-family: var(--font-epilogue), system-ui, sans-serif;
+  font-family: var(--font-grotesk), "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-shadow: 0 1px 8px rgba(20, 12, 28, 0.35);
   gap: 0.28rem;
 }
