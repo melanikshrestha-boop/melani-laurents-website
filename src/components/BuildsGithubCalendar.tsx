@@ -48,6 +48,16 @@ export function BuildsGithubCalendar({
   initial: ContributionCalendar | null;
 }) {
   const [calendar, setCalendar] = useState(initial);
+  const [tip, setTip] = useState<{ text: string; x: number; y: number } | null>(
+    null,
+  );
+
+  function showDayTip(day: ContributionDay, node: HTMLElement) {
+    const text = githubDayTitle(day);
+    if (!text) return;
+    const box = node.getBoundingClientRect();
+    setTip({ text, x: box.left + box.width / 2, y: box.top });
+  }
 
   useEffect(() => {
     let cancelled = false;
@@ -124,7 +134,13 @@ export function BuildsGithubCalendar({
                   <span
                     key={`${weekIndex}-${dayIndex}`}
                     className={`builds-github__day builds-github__day--${day.level}${day.date ? "" : " is-pad"}`}
-                    title={githubDayTitle(day)}
+                    aria-label={githubDayTitle(day)}
+                    onPointerEnter={
+                      day.date
+                        ? (event) => showDayTip(day, event.currentTarget)
+                        : undefined
+                    }
+                    onPointerLeave={day.date ? () => setTip(null) : undefined}
                   />
                 ))}
               </div>
@@ -132,6 +148,15 @@ export function BuildsGithubCalendar({
           </div>
         </div>
       </div>
+      {tip ? (
+        <div
+          className="builds-github__tip"
+          style={{ left: tip.x, top: tip.y }}
+          role="tooltip"
+        >
+          {tip.text}
+        </div>
+      ) : null}
       <p className="builds-github__legend" aria-hidden>
         Less
         <span className="builds-github__day builds-github__day--0" />
