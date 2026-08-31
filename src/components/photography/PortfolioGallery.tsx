@@ -130,6 +130,35 @@ export function PortfolioGallery({
               }
             >
               <div className="portfolio-gallery-frame">
+                {photo.href ? (
+                  <a
+                    href={photo.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="portfolio-gallery-trigger"
+                    aria-label={photo.alt}
+                  >
+                    <Image
+                      src={photo.src}
+                      alt={photo.alt}
+                      width={1200}
+                      height={1800}
+                      className="portfolio-gallery-image"
+                      sizes={
+                        layout === "sketches"
+                          ? photos.length === 1
+                            ? "100vw"
+                            : photos.length === 2
+                              ? "50vw"
+                              : "33vw"
+                          : layout === "portraits" || layout === "scenery"
+                            ? "33vw"
+                            : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      }
+                      loading={i < 2 ? "eager" : "lazy"}
+                    />
+                  </a>
+                ) : (
                 <button
                   type="button"
                   onClick={() => setLightboxIndex(i)}
@@ -160,6 +189,7 @@ export function PortfolioGallery({
                     }
                   />
                 </button>
+                )}
                 <span className="portfolio-gallery-wash" aria-hidden />
                 {photo.place || photo.note || photo.print ? (
                   <figcaption className="portfolio-gallery-caption">

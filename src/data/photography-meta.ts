@@ -17,6 +17,8 @@ export interface Photo {
   place?: string;
   /** One line of context under the place. Her words, not filler. */
   note?: string;
+  /** Optional document to open instead of the photo lightbox (PDFs). */
+  href?: string;
   /** Present only when Celine owns and offers the photograph as a print. */
   print?: PhotoPrint;
 }

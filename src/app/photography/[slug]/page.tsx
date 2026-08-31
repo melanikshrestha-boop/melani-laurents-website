@@ -86,7 +86,7 @@ export default async function PhotographyCollectionPage({ params }: PageProps) {
             ? "scenery"
             : isPortraits
               ? "portraits"
-              : slug === "sketches"
+              : slug === "sketches" || slug === "poem"
                 ? "sketches"
                 : "grid"
         }

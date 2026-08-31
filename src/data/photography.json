@@ -259,7 +259,15 @@
       "tagline": "words \u00b7 rhythm \u00b7 feeling",
       "slug": "poem",
       "cover": "/photography/sketches/cover.jpeg",
-      "photos": []
+      "photos": [
+        {
+          "id": "science-fiction-9th-grade",
+          "src": "/writing/science-fiction-9th-grade.png",
+          "alt": "Science Fiction, 9th grade writing assignment",
+          "note": "science fiction writing assignment in 9th grade after we first read fahrenheit 451. I took heavy inspiration from Attack on Titan.",
+          "href": "/writing/science-fiction-9th-grade.pdf"
+        }
+      ]
     }
   ]
 }
