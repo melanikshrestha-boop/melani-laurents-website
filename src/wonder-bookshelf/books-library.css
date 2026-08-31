@@ -5633,7 +5633,7 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   flex-direction: column;
   justify-content: flex-end;
   box-sizing: border-box;
-  padding: clamp(0.65rem, 8cqw, 1.35rem);
+  padding: clamp(0.65rem, 8cqw, 1.35rem) clamp(0.48rem, 5cqw, 0.85rem);
   overflow: hidden;
   background: rgba(231, 82, 62, 0.9);
   color: #fff;
@@ -5665,16 +5665,19 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 
 .pb-root .pb-artifact-title {
   display: block;
+  min-width: 0;
+  width: 100%;
   max-width: 100%;
+  box-sizing: border-box;
   font-family: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
-  font-size: var(--pb-artifact-title-size, 1rem);
+  font-size: min(var(--pb-artifact-title-size, 1rem), 7.2cqw);
   font-weight: 800;
-  line-height: 0.98;
-  letter-spacing: 0;
-  overflow-wrap: normal;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  overflow-wrap: break-word;
   word-break: normal;
   hyphens: none;
-  text-wrap: balance;
+  text-wrap: wrap;
 }
 
 .pb-root .pb-artifact-author {

@@ -352,16 +352,20 @@ function CatalogCard({
   const label = openLabel(entry.kind);
   const associateLink = entry.kind === "book" && hasAmazonAssociateTag();
   const hoverNote = (entry.thoughts || entry.summary || "").trim();
+  const longestWord = book.title
+    .trim()
+    .split(/\s+/)
+    .reduce((n, word) => Math.max(n, word.length), 0);
   const artifactTitleSize =
-    book.title.length > 110
-      ? "clamp(0.5rem, 3.8cqw, 0.72rem)"
-      : book.title.length > 80
-        ? "clamp(0.56rem, 4.4cqw, 0.8rem)"
-        : book.title.length > 55
-          ? "clamp(0.62rem, 5cqw, 0.9rem)"
+    longestWord >= 16 || book.title.length > 110
+      ? "clamp(0.52rem, 5.2cqw, 0.78rem)"
+      : longestWord >= 13 || book.title.length > 80
+        ? "clamp(0.56rem, 6cqw, 0.86rem)"
+        : longestWord >= 11 || book.title.length > 55
+          ? "clamp(0.6rem, 6.5cqw, 0.94rem)"
           : book.title.length > 30
-            ? "clamp(0.68rem, 5.8cqw, 1rem)"
-            : "clamp(0.72rem, 8cqw, 1.2rem)";
+            ? "clamp(0.64rem, 6.8cqw, 1rem)"
+            : "clamp(0.66rem, 7.2cqw, 1.05rem)";
   const tapTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -395,7 +399,7 @@ function CatalogCard({
       <button
         type="button"
         className="bl-card pb-card-link pb-card-btn"
-        title={editMode ? book.title : `${label} · double-tap for notes`}
+        title={editMode ? book.title : undefined}
         aria-label={
           editMode
             ? book.title
