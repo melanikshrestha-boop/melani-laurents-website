@@ -2,9 +2,6 @@
 export const GITHUB_LOGIN = "melanikshrestha-boop";
 export const GITHUB_PROFILE_URL = `https://github.com/${GITHUB_LOGIN}`;
 
-/** Refresh every minute. GitHub’s own graph can still lag a bit behind pushes. */
-const REVALIDATE_SECONDS = 60;
-
 const GRAPHQL_URL = "https://api.github.com/graphql";
 const CONTRIBUTIONS_HTML_URL = `https://github.com/users/${GITHUB_LOGIN}/contributions`;
 
@@ -184,7 +181,7 @@ async function fetchGraphqlCalendar(): Promise<ContributionCalendar | null> {
       query: VIEWER_CALENDAR_QUERY,
       variables: window,
     }),
-    next: { revalidate: REVALIDATE_SECONDS, tags: ["github-contributions"] },
+    cache: "no-store",
   });
   if (viewerResponse.ok) {
     const payload = (await viewerResponse.json()) as {
@@ -209,7 +206,7 @@ async function fetchGraphqlCalendar(): Promise<ContributionCalendar | null> {
       query: CALENDAR_QUERY,
       variables: { login: GITHUB_LOGIN, ...window },
     }),
-    next: { revalidate: REVALIDATE_SECONDS, tags: ["github-contributions"] },
+    cache: "no-store",
   });
   if (!userResponse.ok) return null;
   const payload = (await userResponse.json()) as {
@@ -258,8 +255,8 @@ function parseContributionsHtml(html: string): ContributionCalendar | null {
 }
 
 async function fetchHtmlCalendar(): Promise<ContributionCalendar | null> {
-  const response = await fetch(CONTRIBUTIONS_HTML_URL, {
-    next: { revalidate: REVALIDATE_SECONDS, tags: ["github-contributions"] },
+  const response = await fetch(`${CONTRIBUTIONS_HTML_URL}?t=${Date.now()}`, {
+    cache: "no-store",
     headers: {
       accept: "text/html",
       "user-agent":

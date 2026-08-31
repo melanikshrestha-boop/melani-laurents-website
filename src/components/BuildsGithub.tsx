@@ -1,3 +1,4 @@
+import { connection } from "next/server";
 import {
   GITHUB_PROFILE_URL,
   getGithubContributions,
@@ -36,6 +37,7 @@ function monthLabels(weeks: ContributionDay[][]): { index: number; label: string
 }
 
 export async function BuildsGithub() {
+  await connection();
   const calendar = await getGithubContributions();
   if (!calendar) return null;
 

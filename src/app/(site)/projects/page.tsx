@@ -2,11 +2,9 @@ import type { Metadata } from "next";
 import { ProjectGrid } from "@/components/ProjectGrid";
 import { BuildsScholar } from "@/components/BuildsScholar";
 import { BuildsGithub } from "@/components/BuildsGithub";
-import { BuildsDesigns } from "@/components/BuildsDesigns";
 import { projects } from "@/data/projects";
 import { googleScholarUrl } from "@/data/publications";
 
-export const revalidate = 60;
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
@@ -84,8 +82,6 @@ export default function ProjectsPage() {
           </h2>
           <ProjectGrid projects={stage} />
         </section>
-
-        <BuildsDesigns />
 
         <BuildsGithub />
       </div>
