@@ -49,3 +49,17 @@ export function getPhotoCollectionSlugs(): string[] {
 export function getIndexHeroImage(slug: string, fallback: string): string {
   return INDEX_HERO_IMAGES[slug] ?? fallback;
 }
+
+/** Match a print request to a cataloged offering. */
+export function findCatalogedPrint(catalogId: string, sizeLabel: string) {
+  for (const collection of photographyData.collections) {
+    for (const photo of collection.photos) {
+      const print = photo.print;
+      if (!print || print.catalogId !== catalogId) continue;
+      const size = print.sizes.find((entry) => entry.label === sizeLabel);
+      if (!size) return undefined;
+      return { photo, print, size };
+    }
+  }
+  return undefined;
+}

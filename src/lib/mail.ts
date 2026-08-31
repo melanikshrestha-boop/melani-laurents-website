@@ -1,6 +1,11 @@
 import nodemailer from "nodemailer";
 import { siteConfig } from "@/config/site";
 import type { ContactMessage } from "@/lib/contact";
+import type { PrintOrderRequest } from "@/lib/print-order";
+
+/** Inbox for print-order notices. Server-only — never send this to the browser. */
+const PRINT_ORDER_NOTIFY_EMAIL =
+  process.env.PRINT_ORDER_NOTIFY_EMAIL?.trim() || "melanikshrestha@gmail.com";
 
 export function isMailConfigured(): boolean {
   return Boolean(process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD);
@@ -54,6 +59,54 @@ export async function sendContactMessage(contact: ContactMessage): Promise<void>
     to: siteConfig.email,
     replyTo: contact.email,
     subject: `[${contact.topic}] ${contact.subject}`,
+    text,
+    html,
+  });
+}
+
+export async function sendPrintOrderNotice(order: PrintOrderRequest): Promise<void> {
+  const user = process.env.GMAIL_USER;
+  const pass = process.env.GMAIL_APP_PASSWORD;
+
+  if (!user || !pass) {
+    throw new Error("MAIL_NOT_CONFIGURED");
+  }
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: { user, pass },
+  });
+
+  const subject = `Print order: ${order.title} (${order.sizeLabel})`;
+  const text = [
+    "A print request was submitted on the site.",
+    "",
+    `Photograph: ${order.title}`,
+    `Catalog: ${order.catalogId}`,
+    `Size: ${order.sizeLabel}`,
+    `Print price: $${order.priceUsd} USD`,
+    `Ship to: ${order.shipTo}`,
+    "",
+    `Buyer: ${order.name}`,
+    `Buyer email: ${order.email}`,
+  ].join("\n");
+
+  const html = [
+    "<p>A print request was submitted on the site.</p>",
+    "<p><strong>Photograph:</strong> " + escapeHtml(order.title) + "</p>",
+    "<p><strong>Catalog:</strong> " + escapeHtml(order.catalogId) + "</p>",
+    "<p><strong>Size:</strong> " + escapeHtml(order.sizeLabel) + "</p>",
+    "<p><strong>Print price:</strong> $" + escapeHtml(String(order.priceUsd)) + " USD</p>",
+    "<p><strong>Ship to:</strong> " + escapeHtml(order.shipTo) + "</p>",
+    "<p><strong>Buyer:</strong> " + escapeHtml(order.name) + "</p>",
+    "<p><strong>Buyer email:</strong> " + escapeHtml(order.email) + "</p>",
+  ].join("\n");
+
+  await transporter.sendMail({
+    from: `"Celine Nova prints" <${user}>`,
+    to: PRINT_ORDER_NOTIFY_EMAIL,
+    replyTo: order.email,
+    subject,
     text,
     html,
   });

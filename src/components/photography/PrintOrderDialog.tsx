@@ -2,15 +2,14 @@
 
 import Image from "next/image";
 import { PaperPlaneTilt, X } from "@phosphor-icons/react";
-import { type FormEvent, useEffect, useMemo, useState } from "react";
-import { siteConfig } from "@/config/site";
+import { type FormEvent, useEffect, useState } from "react";
 import type { Photo } from "@/data/photography-meta";
 
 type SubmitState =
   | { kind: "idle"; message: "" }
   | { kind: "sending"; message: "Sending..." }
   | { kind: "success"; message: string }
-  | { kind: "error"; message: string; mailFallback?: boolean };
+  | { kind: "error"; message: string };
 
 interface PrintOrderDialogProps {
   photo: Photo;
@@ -26,17 +25,6 @@ export function PrintOrderDialog({ photo, onClose }: PrintOrderDialogProps) {
   });
 
   const selected = print?.sizes.find((size) => size.label === selectedSize);
-  const mailto = useMemo(() => {
-    if (!print || !selected) return `mailto:${siteConfig.email}`;
-    const subject = `Print request: ${print.title} (${selected.label})`;
-    const body = [
-      `I would like to order ${print.title}.`,
-      `Catalog: ${print.catalogId}`,
-      `Size: ${selected.label}`,
-      `Price: $${selected.priceUsd} USD plus shipping`,
-    ].join("\n");
-    return `mailto:${siteConfig.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  }, [print, selected]);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -61,36 +49,28 @@ export function PrintOrderDialog({ photo, onClose }: PrintOrderDialogProps) {
     setSubmitState({ kind: "sending", message: "Sending..." });
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("/api/photography/print-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: formData.get("name"),
           email: formData.get("email"),
           company: formData.get("company"),
-          topic: "Photography",
-          subject: `Print request: ${print.title} (${selected.label})`,
-          message: [
-            "Scenery print order request",
-            `Photograph: ${print.title}`,
-            `Catalog: ${print.catalogId}`,
-            `Size: ${selected.label}`,
-            `Print price: $${selected.priceUsd} USD`,
-            `Shipping destination: ${shipTo}`,
-          ].join("\n"),
+          catalogId: print.catalogId,
+          title: print.title,
+          size: selected.label,
+          shipTo,
         }),
       });
       const result = (await response.json()) as {
         ok?: boolean;
         error?: string;
-        code?: string;
       };
 
       if (!response.ok) {
         setSubmitState({
           kind: "error",
           message: result.error ?? "Your request could not be sent.",
-          mailFallback: result.code === "MAIL_NOT_CONFIGURED",
         });
         return;
       }
@@ -103,7 +83,6 @@ export function PrintOrderDialog({ photo, onClose }: PrintOrderDialogProps) {
       setSubmitState({
         kind: "error",
         message: "Your request could not be sent. Please try again.",
-        mailFallback: true,
       });
     }
   }
@@ -218,12 +197,6 @@ export function PrintOrderDialog({ photo, onClose }: PrintOrderDialogProps) {
                 aria-live="polite"
               >
                 {submitState.message}
-                {submitState.kind === "error" && submitState.mailFallback ? (
-                  <>
-                    {" "}
-                    <a href={mailto}>Email the request.</a>
-                  </>
-                ) : null}
               </p>
             </div>
           </form>
