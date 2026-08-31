@@ -5642,25 +5642,12 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   left: var(--hub-edge);
   bottom: var(--hub-edge);
   right: auto;
-  padding: 0.4rem 1rem 0.4rem 0.55rem;
-  margin-left: -0.55rem;
-  /* Frosted HUD strip — contrast on bright pavement, not bigger type. */
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.55) 0%,
-    rgba(0, 0, 0, 0.28) 58%,
-    transparent 100%
-  );
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  /*
-   * Above .hub-page__dissolve (7). The nav sits at the bottom of the still, so
-   * the dissolve reaches it first — underneath the plate it just washed out to
-   * nothing. On top of it, it can turn dark and stay readable on the cream,
-   * then leave on its own terms as the archive arrives.
-   */
-  z-index: 8;
+  padding: 0;
   margin: 0;
+  background: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  z-index: 8;
   opacity: var(--nav-out, 1);
 }
 
@@ -6891,16 +6878,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   letter-spacing: -0.022em;
 }
 
-/* Geometric but personal: inspired by era display lettering, not its logo. */
-.home-sections .hub-page--photo .hub-page__title,
-.home-sections .hub-page--photo .hub-page__title-line,
-.home-sections .hub-page--photo .title-char--hub,
-.hub-page--photo .hub-page__title,
-.hub-page--photo .hub-page__title-line,
-.hub-page--photo .title-char--hub {
-  font-family: var(--font-syne), var(--font-display), system-ui, sans-serif !important;
-  letter-spacing: 0 !important;
-}
+/* Home nameplate: johnlennon.com display face (Helvetica Bold). */
 
 /*
  * Quiet HUD on photography.
@@ -6946,18 +6924,28 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .home-sections .hub-page--photo .hub-page__title,
 .home-sections .hub-page--photo .title-char--hub,
 .home-sections .hub-page--photo.hub-page--locked .hub-page__title-line {
+  font-family: var(--font-grotesk), "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   font-size: 36px !important;
-  font-weight: 400 !important;
-  letter-spacing: 0.04em !important;
-  line-height: 1.05 !important;
-  color: rgba(255, 255, 255, 0.88) !important;
-  -webkit-text-fill-color: rgba(255, 255, 255, 0.88) !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.022em !important;
+  line-height: 1 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.45),
+    0 4px 18px rgba(0, 0, 0, 0.3) !important;
 }
 
 .hub-page--photo .hub-page__title,
 .home-sections .hub-page--photo .hub-page__title {
-  opacity: 0.86;
+  opacity: 1;
+  text-align: center;
+}
+
+/* Per-letter spans must stay inline so Helvetica kerning/centering hold. */
+.hub-page--photo .title-char--hub,
+.home-sections .hub-page--photo .title-char--hub {
+  display: inline;
 }
 
 .hub-page--photo .hub-page__nav--locked,
@@ -7044,7 +7032,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 
   .hub-page--photo .hub-page__title,
   .home-sections .hub-page--photo .hub-page__title {
-    opacity: 0.8;
+    opacity: 1;
   }
 
   .hub-page--photo .hub-page__quote,
