@@ -340,18 +340,18 @@
   text-align: right;
 }
 
-/* Film burned-in captions: one size, even line-height, no outline, no bar. */
+/* Film burned-in captions: small, left-to-right, even line-height. */
 .portfolio-art-subs {
   position: absolute;
-  left: 50%;
-  bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  left: 1.15rem;
+  right: auto;
+  bottom: calc(0.85rem + env(safe-area-inset-bottom, 0px));
   z-index: 3;
-  width: min(54rem, calc(100% - 2.5rem));
+  width: min(28rem, calc(100% - 2.3rem));
   margin: 0;
   padding: 0;
-  transform: translateX(-50%);
   pointer-events: none;
-  text-align: center;
+  text-align: left;
   font-family: "Courier New", Courier, ui-monospace, monospace;
   font-weight: 400;
   font-style: normal;
@@ -362,12 +362,13 @@
   margin: 0;
   color: #fff;
   font-family: "Courier New", Courier, ui-monospace, monospace;
-  font-size: 15px;
+  font-size: 11px;
   font-weight: 400;
   font-style: normal;
   font-synthesis: none;
-  line-height: 1.7;
+  line-height: 1.45;
   letter-spacing: 0;
+  text-align: left;
   text-shadow:
     1px 0 0 #000,
     -1px 0 0 #000,
