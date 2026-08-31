@@ -48,16 +48,19 @@ export function HomeHub() {
             </span>
             <span className="hub-page__identity-name">CELINE NOVA.</span>
           </Link>
-
-          <nav
-            className="hub-page__socials hub-page__socials--locked"
-            aria-label="Social links"
-          >
-            <SocialIcons size="hub" className="hub-page__social-icons" />
-          </nav>
         </header>
 
         <div className="hub-page__center hub-page__center--locked">
+          <nav
+            className="hub-page__socials hub-page__socials--wordmark"
+            aria-label="Social links"
+          >
+            <SocialIcons
+              size="hub"
+              appearance="labels"
+              className="hub-page__social-icons"
+            />
+          </nav>
           <InteractiveTitleLetters
             variant="hub"
             className="hub-page__title"

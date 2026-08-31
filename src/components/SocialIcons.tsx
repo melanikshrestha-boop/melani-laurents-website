@@ -39,6 +39,8 @@ const socialIcons: Record<SocialId, React.ReactNode> = {
 interface SocialIconsProps {
   className?: string;
   size?: "sm" | "md" | "hub";
+  /** icons = SVG marks. labels = same words as the CELINE NOVA wordmark. */
+  appearance?: "icons" | "labels";
 }
 
 function placeHoverNote(anchor: HTMLAnchorElement) {
@@ -70,15 +72,18 @@ function placeHoverNote(anchor: HTMLAnchorElement) {
   const centeredLeft = anchorCenter - noteRect.width / 2;
   const left = Math.min(Math.max(centeredLeft, margin), maxLeft);
 
-  let top = anchorRect.bottom + gap;
-  if (top + noteRect.height > window.innerHeight - margin) {
+  const onWordmark = Boolean(anchor.closest(".hub-page__socials--wordmark"));
+  let top = onWordmark
+    ? anchorRect.top - noteRect.height - gap
+    : anchorRect.bottom + gap;
+  if (!onWordmark && top + noteRect.height > window.innerHeight - margin) {
     top = anchorRect.top - noteRect.height - gap;
   }
 
-  /* Photo HUD: stay on the icon rail. Never cover the centered name. */
+  /* Photo HUD: never cover the centered name. */
   const photoHub = anchor.closest(".hub-page--photo");
-  if (photoHub) {
-    const title = photoHub.querySelector<HTMLElement>(".hub-page__center");
+  if (photoHub && !onWordmark) {
+    const title = photoHub.querySelector<HTMLElement>(".hub-page__title");
     const titleRect = title?.getBoundingClientRect();
     const overlapsTitle = titleRect
       ? left < titleRect.right &&
@@ -91,10 +96,15 @@ function placeHoverNote(anchor: HTMLAnchorElement) {
     }
   }
 
-  top = Math.min(
-    Math.max(top, margin),
-    Math.max(margin, window.innerHeight - noteRect.height - margin),
-  );
+  if (onWordmark) {
+    /* Stay above the labels even if the note is tall — don't shove it onto CELINE NOVA. */
+    top = Math.max(8, Math.min(top, anchorRect.top - noteRect.height - gap));
+  } else {
+    top = Math.min(
+      Math.max(top, margin),
+      Math.max(margin, window.innerHeight - noteRect.height - margin),
+    );
+  }
 
   note.style.setProperty("--social-tip-left", `${left}px`);
   note.style.setProperty("--social-tip-top", `${top}px`);
@@ -103,7 +113,9 @@ function placeHoverNote(anchor: HTMLAnchorElement) {
 export function SocialIcons({
   className = "",
   size = "md",
+  appearance = "icons",
 }: SocialIconsProps) {
+  const isLabels = appearance === "labels";
   /* hub: em-based so piece scale + canvas scale both apply (no fixed rem) */
   const iconSize =
     size === "hub"
@@ -111,8 +123,13 @@ export function SocialIcons({
       : size === "sm"
         ? "h-3.5 w-3.5"
         : "h-4 w-4";
-  const gap =
-    size === "hub" ? "gap-[0.7em]" : size === "sm" ? "gap-2.5" : "gap-3";
+  const gap = isLabels
+    ? "gap-[0.95em]"
+    : size === "hub"
+      ? "gap-[0.7em]"
+      : size === "sm"
+        ? "gap-2.5"
+        : "gap-3";
 
   return (
     <div
@@ -131,14 +148,14 @@ export function SocialIcons({
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={label}
+            aria-label={isLabels ? undefined : label}
             className={
               hoverNote
                 ? "social-icons__link social-icons__link--tip"
                 : "social-icons__link"
             }
             /* Native title only when we have no personal note (avoids double tooltip) */
-            title={hoverNote ? undefined : label}
+            title={hoverNote || isLabels ? undefined : label}
             onPointerEnter={
               hoverNote ? (event) => placeHoverNote(event.currentTarget) : undefined
             }
@@ -146,9 +163,13 @@ export function SocialIcons({
               hoverNote ? (event) => placeHoverNote(event.currentTarget) : undefined
             }
           >
-            <span className={`social-icons__icon ${iconSize}`}>
-              {socialIcons[id]}
-            </span>
+            {isLabels ? (
+              <span className="social-icons__label">{label}</span>
+            ) : (
+              <span className={`social-icons__icon ${iconSize}`}>
+                {socialIcons[id]}
+              </span>
+            )}
             {hoverNote ? (
               <span
                 className="social-icons__tip"

@@ -6201,7 +6201,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   display: block;
   font-family: var(--font-oswald), var(--font-archivo-narrow), system-ui, sans-serif;
   font-weight: 600;
-  font-size: clamp(2.25rem, min(4.6vw, 7vh), 4rem);
+  font-size: clamp(3.6rem, min(8.8vw, 12.5vh), 7rem);
   line-height: 1;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -6341,6 +6341,26 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   );
 }
 
+.home-sections .hub-page--photo .hub-page__socials--wordmark .social-icons__link {
+  color: color-mix(
+    in srgb,
+    #ffffff calc((1 - var(--scroll-p, 0)) * 100%),
+    #14120f
+  ) !important;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, calc(0.45 * (1 - var(--scroll-p, 0)))),
+    0 4px 18px rgba(0, 0, 0, calc(0.3 * (1 - var(--scroll-p, 0))));
+}
+
+.home-sections .hub-page--photo .hub-page__socials--wordmark .social-icons__link:hover {
+  color: color-mix(
+    in srgb,
+    #ffffff calc((1 - var(--scroll-p, 0)) * 100%),
+    #14120f
+  ) !important;
+  opacity: 0.72;
+}
+
 .home-sections .hub-page--locked .hub-page__title-line {
   color: var(--hub-title-morph, #e8e6e3);
 }
@@ -6414,8 +6434,12 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   }
 
   .hub-page--locked .hub-page__title-line {
-    font-size: clamp(1.8rem, 9.5vw, 3rem);
+    font-size: clamp(2.45rem, 11.5vw, 4.4rem);
     letter-spacing: 0;
+  }
+
+  .hub-page--photo.hub-page--locked .hub-page__title-line {
+    letter-spacing: 0.04em;
   }
 
   .hub-page--locked .hub-page__tagline {
@@ -6598,11 +6622,6 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
     width: min(var(--social-tip-width, 160px), calc(100vw - 48px));
     max-width: 160px;
     font-size: 11px;
-  }
-
-  .hub-page--photo .hub-page__title-line,
-  .hub-page--photo.hub-page--locked .hub-page__title-line {
-    font-size: 28px !important;
   }
 
   .hub-page--photo .hub-page__nav--locked {
@@ -6931,7 +6950,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .home-sections .hub-page--photo .title-char--hub,
 .home-sections .hub-page--photo.hub-page--locked .hub-page__title-line {
   font-family: var(--font-grotesk), "Helvetica Neue", Helvetica, Arial, sans-serif !important;
-  font-size: 36px !important;
+  font-size: 64px !important;
   font-weight: 700 !important;
   letter-spacing: -0.022em !important;
   line-height: 1 !important;
@@ -7041,7 +7060,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   .home-sections .hub-page--photo .hub-page__title,
   .home-sections .hub-page--photo .title-char--hub,
   .home-sections .hub-page--photo.hub-page--locked .hub-page__title-line {
-    font-size: 28px !important;
+    font-size: 42px !important;
   }
 
   .hub-page--photo .hub-page__title,
@@ -7065,5 +7084,87 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
     width: min(var(--social-tip-width, 160px), calc(100vw - 48px)) !important;
     padding: 8px !important;
     font-size: 11px !important;
+  }
+}
+
+/*
+ * Fun socials on the wordmark — last so Helvetica + size beat icon-rail rules.
+ * Same face as CELINE NOVA (Helvetica Neue Bold), smaller.
+ */
+.hub-page__socials--wordmark {
+  position: relative;
+  z-index: 6;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  justify-content: center;
+  width: 100%;
+  margin: 0 0 0.55rem;
+  padding: 0;
+  pointer-events: auto;
+}
+
+.hub-page--photo .hub-page__socials--wordmark .hub-page__social-icons,
+.hub-page__socials--wordmark .hub-page__social-icons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap !important;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.85em;
+  font-size: 13px;
+}
+
+.hub-page--photo .hub-page__socials--wordmark .social-icons__link,
+.home-sections .hub-page--photo .hub-page__socials--wordmark .social-icons__link,
+.hub-page__socials--wordmark .social-icons__link {
+  display: inline-flex !important;
+  align-items: baseline;
+  justify-content: center;
+  width: auto !important;
+  height: auto !important;
+  margin: 0;
+  padding: 0;
+  line-height: 1 !important;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-family: var(--font-grotesk), "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.022em !important;
+  text-transform: uppercase;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.45),
+    0 4px 18px rgba(0, 0, 0, 0.3);
+  transform: none !important;
+}
+
+.hub-page--photo .hub-page__socials--wordmark .social-icons__link:hover,
+.home-sections .hub-page--photo .hub-page__socials--wordmark .social-icons__link:hover,
+.hub-page__socials--wordmark .social-icons__link:hover {
+  color: #ffffff !important;
+  opacity: 0.7;
+  transform: none !important;
+}
+
+.hub-page__socials--wordmark .social-icons__label {
+  display: block;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .hub-page--photo .hub-page__socials--wordmark .social-icons__link,
+  .hub-page__socials--wordmark .social-icons__link {
+    font-size: 11px !important;
+  }
+
+  .hub-page__socials--wordmark {
+    margin-bottom: 0.42rem;
+  }
+
+  .hub-page__socials--wordmark .hub-page__social-icons {
+    gap: 0.65em;
   }
 }
