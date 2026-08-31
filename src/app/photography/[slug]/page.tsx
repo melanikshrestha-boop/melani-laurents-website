@@ -72,9 +72,16 @@ export default async function PhotographyCollectionPage({ params }: PageProps) {
             )}
           </nav>
         ) : (
-          <h1 className="portfolio-collection-header__current">
-            {collection.title}
-          </h1>
+          <div className="portfolio-collection-header__copy">
+            {slug === "poem" ? (
+              <p className="portfolio-collection-header__category">
+                Short Stories
+              </p>
+            ) : null}
+            <h1 className="portfolio-collection-header__current">
+              {collection.title}
+            </h1>
+          </div>
         )}
       </header>
       <PortfolioGallery
