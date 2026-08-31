@@ -4,9 +4,8 @@ export function BuildsDesigns() {
   return (
     <section className="builds-designs" aria-labelledby="builds-designs-title">
       <h2 id="builds-designs-title" className="builds-products__title">
-        Designs
+        Have designed, built like that.
       </h2>
-      <p className="builds-designs__line">Have designed, built like that.</p>
       <ul className="builds-designs__list">
         {designWorks.map((work) => {
           const inner = (
@@ -17,7 +16,9 @@ export function BuildsDesigns() {
               </span>
               <span className="builds-designs__copy">
                 <span className="builds-designs__name">{work.title}</span>
-                <span className="builds-designs__note">{work.note}</span>
+                {work.note ? (
+                  <span className="builds-designs__note">{work.note}</span>
+                ) : null}
               </span>
             </>
           );
