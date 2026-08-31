@@ -95,20 +95,20 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   applicationName: siteConfig.name,
   icons: {
-    // Square Eren only. Never a C. Never a gold ring. New path so Chrome drops the C cache.
+    // Square Eren only. Never a C. Never a gold ring. Path changes when Chrome caches a C.
     icon: [
-      { url: "/tab-eren.png?v=lock3", type: "image/png", sizes: "256x256" },
-      { url: "/tab-eren.png?v=lock3", type: "image/png", sizes: "32x32" },
-      { url: "/tab-eren.png?v=lock3", type: "image/png", sizes: "192x192" },
+      { url: "/never-c.png?v=lock4", type: "image/png", sizes: "256x256" },
+      { url: "/never-c.png?v=lock4", type: "image/png", sizes: "32x32" },
+      { url: "/never-c.png?v=lock4", type: "image/png", sizes: "192x192" },
     ],
     apple: [
       {
-        url: "/tab-eren.png?v=lock3",
+        url: "/never-c.png?v=lock4",
         sizes: "180x180",
         type: "image/png",
       },
     ],
-    shortcut: [{ url: "/tab-eren.png?v=lock3", type: "image/png" }],
+    shortcut: [{ url: "/never-c.png?v=lock4", type: "image/png" }],
   },
   openGraph: {
     title: siteConfig.title,
