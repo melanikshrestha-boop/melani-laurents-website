@@ -8,7 +8,7 @@ export function BuildsScholar() {
     <section className="bs-scholar" aria-labelledby="builds-patents-title">
       {patents.length > 0 ? (
         <ol className="bs-scholar__list">
-          {patents.map((pub, index) => (
+          {patents.map((pub) => (
             <li key={`${pub.year}-${pub.title.slice(0, 48)}`} className="bs-scholar__item">
               <a
                 href={pub.documentUrl}
@@ -40,21 +40,12 @@ export function BuildsScholar() {
                       />
                     ))}
                     <span className="bs-scholar__reveal">
-                      <span className="bs-scholar__reveal-index" aria-hidden>
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
                       <strong className="bs-scholar__reveal-title">
                         {pub.title} <span aria-hidden>↗</span>
                       </strong>
-                      <span className="bs-scholar__reveal-footer">
-                        <span className="bs-scholar__reveal-meta">
-                          {pub.publicationNumber ?? pub.venue}
-                          {pub.publicationDate ? ` · ${pub.publicationDate}` : ""}
-                        </span>
-                        <span className="bs-scholar__reveal-role">
-                          <span>Co-author</span>
-                          <strong>Melani Shrestha</strong>
-                        </span>
+                      <span className="bs-scholar__reveal-role">
+                        <span>Co-author</span>
+                        <strong>Melani Shrestha</strong>
                       </span>
                     </span>
                   </div>
