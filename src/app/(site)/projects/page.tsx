@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ProjectGrid } from "@/components/ProjectGrid";
 import { BuildsScholar } from "@/components/BuildsScholar";
 import { BuildsGithub } from "@/components/BuildsGithub";
+import { BuildsDesigns } from "@/components/BuildsDesigns";
 import { projects } from "@/data/projects";
 import { googleScholarUrl } from "@/data/publications";
 
@@ -83,6 +84,8 @@ export default function ProjectsPage() {
           </h2>
           <ProjectGrid projects={stage} />
         </section>
+
+        <BuildsDesigns />
 
         <BuildsGithub />
       </div>
