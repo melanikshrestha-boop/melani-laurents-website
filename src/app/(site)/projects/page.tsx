@@ -6,6 +6,7 @@ import { projects } from "@/data/projects";
 import { googleScholarUrl } from "@/data/publications";
 
 export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Builds",

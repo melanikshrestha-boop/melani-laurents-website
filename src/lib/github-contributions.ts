@@ -9,12 +9,12 @@ const GRAPHQL_URL = "https://api.github.com/graphql";
 const CONTRIBUTIONS_HTML_URL = `https://github.com/users/${GITHUB_LOGIN}/contributions`;
 
 const CALENDAR_QUERY = /* GraphQL */ `
-  query ($login: String!) {
+  query ($login: String!, $from: DateTime!, $to: DateTime!) {
     viewer {
       login
     }
     user(login: $login) {
-      contributionsCollection {
+      contributionsCollection(from: $from, to: $to) {
         contributionCalendar {
           totalContributions
           weeks {
@@ -31,10 +31,10 @@ const CALENDAR_QUERY = /* GraphQL */ `
 `;
 
 const VIEWER_CALENDAR_QUERY = /* GraphQL */ `
-  query {
+  query ($from: DateTime!, $to: DateTime!) {
     viewer {
       login
-      contributionsCollection {
+      contributionsCollection(from: $from, to: $to) {
         contributionCalendar {
           totalContributions
           weeks {
@@ -49,6 +49,12 @@ const VIEWER_CALENDAR_QUERY = /* GraphQL */ `
     }
   }
 `;
+
+function lastYearWindow(): { from: string; to: string } {
+  const to = new Date();
+  const from = new Date(to.getTime() - 365 * 24 * 60 * 60 * 1000);
+  return { from: from.toISOString(), to: to.toISOString() };
+}
 
 export type ContributionDay = {
   date: string;
@@ -170,10 +176,14 @@ async function fetchGraphqlCalendar(): Promise<ContributionCalendar | null> {
     "user-agent": "celine-nova-builds",
   };
 
+  const window = lastYearWindow();
   const viewerResponse = await fetch(GRAPHQL_URL, {
     method: "POST",
     headers,
-    body: JSON.stringify({ query: VIEWER_CALENDAR_QUERY }),
+    body: JSON.stringify({
+      query: VIEWER_CALENDAR_QUERY,
+      variables: window,
+    }),
     next: { revalidate: REVALIDATE_SECONDS, tags: ["github-contributions"] },
   });
   if (viewerResponse.ok) {
@@ -197,7 +207,7 @@ async function fetchGraphqlCalendar(): Promise<ContributionCalendar | null> {
     headers,
     body: JSON.stringify({
       query: CALENDAR_QUERY,
-      variables: { login: GITHUB_LOGIN },
+      variables: { login: GITHUB_LOGIN, ...window },
     }),
     next: { revalidate: REVALIDATE_SECONDS, tags: ["github-contributions"] },
   });
