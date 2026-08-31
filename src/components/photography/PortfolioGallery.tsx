@@ -109,7 +109,7 @@ export function PortfolioGallery({
           id={layout === "scenery" ? "prints" : undefined}
           className={[
             "portfolio-gallery-grid",
-            layout === "sketches" && photos.length <= 2
+            layout === "sketches" && photos.length <= 3
               ? "portfolio-gallery-grid--pack"
               : "",
           ]

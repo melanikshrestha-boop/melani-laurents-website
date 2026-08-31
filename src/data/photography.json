@@ -275,6 +275,14 @@
           "place": "We'll Meet Again",
           "note": "Written in ninth grade after reading Fahrenheit 451, this science-fiction piece draws heavily from Attack on Titan. It is entirely my own work, created without AI assistance.",
           "href": "/writing/science-fiction-9th-grade.pdf?v=original"
+        },
+        {
+          "id": "akira-creation-myth-9th",
+          "src": "/writing/akira-front.png",
+          "alt": "Akira",
+          "place": "Akira",
+          "note": "This was for Global History Class in 9th grade and the assignment was to create a story myth project. Got a 100 🥱",
+          "href": "/writing/akira.pdf"
         }
       ]
     }
