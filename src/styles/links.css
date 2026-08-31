@@ -1,0 +1,84 @@
+/* Instagram bio list. Same cream paper as Bookshelf / Blog. No boxes, no copy. */
+
+.bio-links {
+  --bio-paper: #f7f1e7;
+  --bio-ink: #141210;
+  --bio-hover: #4d287d;
+  --bio-gutter: 10px;
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: calc(100dvh - 3.5rem);
+  margin: 0;
+  padding: 1.25rem var(--bio-gutter) max(4rem, env(safe-area-inset-bottom));
+  background: var(--bio-paper);
+  color: var(--bio-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.bio-links ::selection {
+  background: #e8e4dc;
+  color: var(--bio-ink);
+}
+
+.bio-links__mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.56rem;
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.bio-links__photo {
+  position: relative;
+  display: block;
+  flex: 0 0 auto;
+  width: 1.55rem;
+  height: 1.55rem;
+}
+
+.bio-links__photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  object-fit: cover;
+  object-position: center;
+}
+
+.bio-links__name {
+  margin: 0;
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.bio-links__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-width: 42rem;
+  margin: 1.35rem 0 0;
+}
+
+.bio-links__list a {
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
+  color: inherit;
+  text-decoration: none;
+  font-family: var(--font-inter), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.bio-links__list a:hover,
+.bio-links__list a:focus-visible {
+  color: var(--bio-hover);
+}

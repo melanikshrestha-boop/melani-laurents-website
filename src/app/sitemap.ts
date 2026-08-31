@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/projects",
     "/youtube",
     "/contact",
+    "/links",
     "/publications",
     "/photography",
   ];
