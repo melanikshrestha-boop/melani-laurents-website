@@ -1,5 +1,45 @@
 [
   {
+    "id": "book-get-scalable-deiss",
+    "kind": "book",
+    "title": "Get Scalable: The Operating System Your Business Needs To Run and Scale Without You",
+    "source": "Ryan Deiss",
+    "loggedAt": "2026-08-31",
+    "category": "everything startups",
+    "asin": "B0CC46VY9R",
+    "href": "https://www.amazon.com/dp/B0CC46VY9R"
+  },
+  {
+    "id": "book-f42fefd8b7a4",
+    "kind": "book",
+    "title": "High Output Management",
+    "source": "Andrew S. Grove",
+    "loggedAt": "2026-08-31",
+    "href": "https://www.amazon.com/dp/0679762884",
+    "asin": "0679762884",
+    "category": "everything startups"
+  },
+  {
+    "id": "book-7ce739748d03",
+    "kind": "book",
+    "title": "Hooked: How to Build Habit-Forming Products",
+    "source": "Nir Eyal",
+    "loggedAt": "2026-08-31",
+    "href": "https://www.amazon.com/dp/0615978622",
+    "asin": "0615978622",
+    "category": "everything startups"
+  },
+  {
+    "id": "book-f12d643d0191",
+    "kind": "book",
+    "title": "High Growth Handbook",
+    "source": "Elad Gil",
+    "loggedAt": "2026-08-31",
+    "href": "https://www.amazon.com/dp/1732265100",
+    "asin": "1732265100",
+    "category": "everything startups"
+  },
+  {
     "id": "book-2abedb704ee5",
     "kind": "book",
     "title": "Macroeconomics",
@@ -23,7 +63,7 @@
     "id": "book-e106004683b5",
     "kind": "book",
     "title": "The Power of Creative Destruction",
-    "source": "Philippe Aghion, Céline Antonin, and Simon Bunel",
+    "source": "Philippe Aghion, C\u00e9line Antonin, and Simon Bunel",
     "loggedAt": "2026-08-06",
     "category": "economics",
     "asin": "0674971167",
@@ -152,7 +192,7 @@
   {
     "id": "book-4a27f105bc26",
     "kind": "book",
-    "title": "A Monetary History of the United States, 1867–1960",
+    "title": "A Monetary History of the United States, 1867\u20131960",
     "source": "Milton Friedman",
     "loggedAt": "2026-08-06",
     "category": "economics",
@@ -525,7 +565,7 @@
     "id": "book-b4b8095d01fc",
     "kind": "book",
     "title": "The Laramie Project",
-    "source": "Moisés Kaufman",
+    "source": "Mois\u00e9s Kaufman",
     "loggedAt": "2026-07-30",
     "category": "literature",
     "href": "https://www.amazon.com/dp/8416876940",
@@ -742,7 +782,7 @@
     "asin": "0307278441",
     "rating": 5,
     "favorite": true,
-    "favoriteWhy": "High school — reread for fun. 5★."
+    "favoriteWhy": "High school \u2014 reread for fun. 5\u2605."
   },
   {
     "id": "book-4cd734f3a4c9",
@@ -919,7 +959,7 @@
     "href": "https://www.amazon.com/dp/1451648537",
     "asin": "1451648537",
     "favorite": true,
-    "favoriteWhy": "Isaacson — main character energy.",
+    "favoriteWhy": "Isaacson \u2014 main character energy.",
     "rating": 5
   },
   {
@@ -1108,7 +1148,7 @@
     "asin": "1982181281",
     "category": "autobiographies",
     "favorite": true,
-    "favoriteWhy": "Isaacson — main character energy.",
+    "favoriteWhy": "Isaacson \u2014 main character energy.",
     "rating": 5
   },
   {
@@ -1293,7 +1333,7 @@
     "id": "book-sv-9b30042c09",
     "kind": "book",
     "title": "Chaos Monkeys",
-    "source": "Antonio García Martínez",
+    "source": "Antonio Garc\u00eda Mart\u00ednez",
     "loggedAt": "2026-07-30",
     "category": "everything startups",
     "year": 2016,
@@ -2279,7 +2319,7 @@
   {
     "id": "book-hist-3b5504ead0",
     "kind": "book",
-    "title": "Stalingrad: The Fateful Siege, 1942–1943",
+    "title": "Stalingrad: The Fateful Siege, 1942\u20131943",
     "source": "Antony Beevor",
     "loggedAt": "2026-07-29",
     "category": "history",
@@ -2434,7 +2474,7 @@
   {
     "id": "book-hist-5286808c2f",
     "kind": "book",
-    "title": "The Gulag Archipelago 1918–1956",
+    "title": "The Gulag Archipelago 1918\u20131956",
     "source": "Aleksandr Solzhenitsyn",
     "loggedAt": "2026-07-28",
     "category": "history",
@@ -2673,7 +2713,7 @@
     "href": "https://www.amazon.com/dp/0807014273",
     "asin": "0807014273",
     "favorite": true,
-    "favoriteWhy": "Rare fave — meaning under pressure.",
+    "favoriteWhy": "Rare fave \u2014 meaning under pressure.",
     "rating": 5
   },
   {
@@ -3077,7 +3117,7 @@
     "id": "book-sa-e1e3e103d6",
     "kind": "book",
     "title": "Hunger of Memory",
-    "source": "Richard Rodríguez",
+    "source": "Richard Rodr\u00edguez",
     "loggedAt": "2026-07-28",
     "category": "everything startups",
     "asin": "0553382519",
@@ -3199,7 +3239,7 @@
   {
     "id": "book-psy-2afc6e2fd7",
     "kind": "book",
-    "title": "Why We Buy: The Science of Shopping — Updated and Revised for the Internet, the Global Consumer, and Beyond",
+    "title": "Why We Buy: The Science of Shopping \u2014 Updated and Revised for the Internet, the Global Consumer, and Beyond",
     "source": "Paco Underhill",
     "loggedAt": "2026-08-01",
     "category": "psychology",

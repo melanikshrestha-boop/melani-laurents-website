@@ -39,6 +39,26 @@ export const DEFAULT_CURRENT_READS: CurrentRead[] = [
     author: "viktor e. frankl",
     href: "https://www.amazon.com/dp/0807014273",
   },
+  {
+    title: "high growth handbook",
+    author: "elad gil",
+    href: "https://www.amazon.com/dp/1732265100",
+  },
+  {
+    title: "hooked",
+    author: "nir eyal",
+    href: "https://www.amazon.com/dp/0615978622",
+  },
+  {
+    title: "high output management",
+    author: "andrew s. grove",
+    href: "https://www.amazon.com/dp/0679762884",
+  },
+  {
+    title: "get scalable",
+    author: "ryan deiss",
+    href: "https://www.amazon.com/dp/B0CC46VY9R",
+  },
 ];
 
 export const DEFAULT_FOLDER_VIEWS: Record<string, string> = {
