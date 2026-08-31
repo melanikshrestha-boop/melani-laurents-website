@@ -11,12 +11,12 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: projectRoot,
   },
-  // Chrome hard-requests /favicon.ico and keeps a C if that path stays an ICO.
-  // Serve the square Eren PNG on that URL before static files.
+  // Chrome hard-requests /favicon.ico. Serve square Eren PNG there too.
+  // src/app/favicon.ico is still a 16+32+48 ICO of the full still.
   async rewrites() {
     return {
       beforeFiles: [
-        { source: "/favicon.ico", destination: "/eren-jaeger.png" },
+        { source: "/favicon.ico", destination: "/eren-stay9.png" },
       ],
     };
   },
@@ -29,7 +29,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/eren-jaeger.png",
+        source: "/eren-stay9.png",
         headers: [
           { key: "Cache-Control", value: "public, max-age=0, must-revalidate" },
         ],
