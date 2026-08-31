@@ -56,6 +56,7 @@ import {
   applyCatalogOverlay,
   loadShelfEditor,
   saveShelfEditor,
+  DEFAULT_NEXT_ON_THE_LIST,
   type ShelfEditorState,
 } from "./shelfEditorStore";
 import { MinimalIcon } from "./MinimalIcon";
@@ -1099,6 +1100,20 @@ export function PublicBookshelf() {
             ))}
           </p>
         )}
+        <p className="pb-currently-reading">
+          next on the list:{" "}
+          {DEFAULT_NEXT_ON_THE_LIST.map((r, i) => (
+            <span key={`${r.title}-${i}`}>
+              {i > 0 ? (
+                <span className="pb-currently-reading__sep"> · </span>
+              ) : null}
+              <a href={r.href} target="_blank" rel="noopener noreferrer">
+                {r.title}
+              </a>{" "}
+              by {r.author}
+            </span>
+          ))}
+        </p>
 
         {sHint ? (
           <div className="pb-s-popup" role="status" aria-live="polite">

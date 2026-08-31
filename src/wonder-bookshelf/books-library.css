@@ -4576,7 +4576,7 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 
 /* current reads (plural) — small roman; titles = Amazon links */
 .pb-root .pb-currently-reading {
-  margin: 2px 0 6px !important;
+  margin: 2px 0 2px !important;
   padding: 0;
   color: #71695f;
   font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;

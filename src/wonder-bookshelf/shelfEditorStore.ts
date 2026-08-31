@@ -39,6 +39,10 @@ export const DEFAULT_CURRENT_READS: CurrentRead[] = [
     author: "viktor e. frankl",
     href: "https://www.amazon.com/dp/0807014273",
   },
+];
+
+/** Sibling line under current reads — not a drive, not current. */
+export const DEFAULT_NEXT_ON_THE_LIST: CurrentRead[] = [
   {
     title: "high growth handbook",
     author: "elad gil",
@@ -47,7 +51,7 @@ export const DEFAULT_CURRENT_READS: CurrentRead[] = [
   {
     title: "hooked",
     author: "nir eyal",
-    href: "https://www.amazon.com/dp/0615978622",
+    href: "https://www.amazon.com/dp/1591847788",
   },
   {
     title: "high output management",
@@ -57,7 +61,7 @@ export const DEFAULT_CURRENT_READS: CurrentRead[] = [
   {
     title: "get scalable",
     author: "ryan deiss",
-    href: "https://www.amazon.com/dp/B0CC46VY9R",
+    href: "https://www.amazon.com/dp/B0CG2QFZMZ",
   },
 ];
 
