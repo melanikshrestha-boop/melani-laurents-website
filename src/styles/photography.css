@@ -340,13 +340,13 @@
   text-align: right;
 }
 
-/* Burned-in movie subtitles on the still — no bar, no ticker. */
+/* Film burned-in captions: one size, even line-height, no outline, no bar. */
 .portfolio-art-subs {
   position: absolute;
   left: 50%;
-  bottom: calc(1.15rem + env(safe-area-inset-bottom, 0px));
+  bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
   z-index: 3;
-  width: min(44rem, calc(100% - 2.4rem));
+  width: min(54rem, calc(100% - 2.5rem));
   margin: 0;
   padding: 0;
   transform: translateX(-50%);
@@ -354,41 +354,16 @@
   text-align: center;
 }
 
-.portfolio-art-subs__line,
-.portfolio-art-subs__credit {
+.portfolio-art-subs__line {
   margin: 0;
   color: #fff;
-  font-family: var(--font-instrument-serif), Georgia, "Times New Roman", serif;
-  font-weight: 400;
-  font-style: italic;
-  letter-spacing: 0.01em;
-  text-wrap: pretty;
-  text-shadow:
-    0 0 1px #000,
-    1px 0 0 #000,
-    -1px 0 0 #000,
-    0 1px 0 #000,
-    0 -1px 0 #000,
-    1px 1px 0 #000,
-    -1px 1px 0 #000,
-    1px -1px 0 #000,
-    -1px -1px 0 #000,
-    0 2px 8px rgba(0, 0, 0, 0.55);
-}
-
-.portfolio-art-subs__line {
-  font-size: clamp(0.92rem, 1.55vw, 1.18rem);
-  line-height: 1.32;
-}
-
-.portfolio-art-subs__line + .portfolio-art-subs__line {
-  margin-top: 0.35rem;
-}
-
-.portfolio-art-subs__credit {
-  margin-top: 0.45rem;
-  font-size: clamp(0.72rem, 1.1vw, 0.86rem);
-  letter-spacing: 0.04em;
+  font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85), 0 0 14px rgba(0, 0, 0, 0.45);
 }
 
 .portfolio-hover-item:hover .portfolio-hover-item-title,
