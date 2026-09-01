@@ -382,7 +382,8 @@
 .portfolio-art-subs__credit {
   display: inline-block;
   margin-top: 0.15em;
-  color: #d8c7a4;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
 }
 
 .portfolio-hover-item:hover .portfolio-hover-item-title,
