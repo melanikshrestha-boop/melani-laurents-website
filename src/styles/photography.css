@@ -340,18 +340,22 @@
   text-align: right;
 }
 
-/* Closed captions: centered, white type, thin gray bar on each wrap. */
+/*
+ * One caption plate, full width, at every viewport.
+ * Per-line clone bars looked even on a wide window and stubby when split.
+ */
 .portfolio-art-subs {
   position: absolute;
-  left: 1rem;
-  right: 1rem;
-  bottom: calc(0.85rem + env(safe-area-inset-bottom, 0px));
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 3;
   width: auto;
   margin: 0;
-  padding: 0;
+  padding: 0.65rem 1.15rem calc(0.8rem + env(safe-area-inset-bottom, 0px));
   pointer-events: none;
   text-align: center;
+  background: rgba(22, 22, 22, 0.38);
   font-family: "Courier New", Courier, ui-monospace, monospace;
   font-weight: 400;
   font-style: normal;
@@ -359,29 +363,29 @@
 }
 
 .portfolio-art-subs__line {
-  margin: 0;
+  margin: 0 auto;
+  max-width: 72rem;
   color: #fff;
   font-family: "Courier New", Courier, ui-monospace, monospace;
-  font-size: 11px;
+  font-size: clamp(10px, 0.95vw, 11px);
   font-weight: 400;
   font-style: normal;
   font-synthesis: none;
-  line-height: 1.7;
+  line-height: 1.65;
   letter-spacing: 0;
   text-align: center;
+  text-wrap: pretty;
   text-shadow: none;
 }
 
 .portfolio-art-subs__line span {
-  background: rgba(22, 22, 22, 0.38);
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-  padding: 0.1em 0.35em;
+  background: none;
+  padding: 0;
 }
 
 .portfolio-art-subs__credit {
-  display: inline-block;
-  margin-top: 0.15em;
+  display: block;
+  margin-top: 0.28em;
   color: #fff;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
 }
