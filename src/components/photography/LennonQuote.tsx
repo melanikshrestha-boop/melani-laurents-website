@@ -22,7 +22,7 @@ export function LennonQuote({
             {LENNON_LEAD} {LENNON_BODY}
           </span>
           <br />
-          <span>John Lennon, 1980</span>
+          <span className="portfolio-art-subs__credit">John Lennon, 1980.</span>
         </p>
       </div>
     );
@@ -39,7 +39,7 @@ export function LennonQuote({
           <span className="portfolio-sketch-quote__body">{LENNON_BODY}</span>
         </p>
         <footer className="portfolio-sketch-quote__credit">
-          <cite>John Lennon, 1980</cite>
+          <cite>John Lennon, 1980.</cite>
         </footer>
       </div>
     </blockquote>

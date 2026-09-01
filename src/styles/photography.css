@@ -340,7 +340,7 @@
   text-align: right;
 }
 
-/* Closed captions: full width, white type, gray bar on each line. */
+/* Closed captions: centered, white type, thin gray bar on each wrap. */
 .portfolio-art-subs {
   position: absolute;
   left: 1rem;
@@ -351,7 +351,7 @@
   margin: 0;
   padding: 0;
   pointer-events: none;
-  text-align: left;
+  text-align: center;
   font-family: "Courier New", Courier, ui-monospace, monospace;
   font-weight: 400;
   font-style: normal;
@@ -368,15 +368,21 @@
   font-synthesis: none;
   line-height: 1.7;
   letter-spacing: 0;
-  text-align: left;
+  text-align: center;
   text-shadow: none;
 }
 
 .portfolio-art-subs__line span {
-  background: rgba(22, 22, 22, 0.72);
+  background: rgba(22, 22, 22, 0.38);
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
   padding: 0.1em 0.35em;
+}
+
+.portfolio-art-subs__credit {
+  display: inline-block;
+  margin-top: 0.15em;
+  color: #d8c7a4;
 }
 
 .portfolio-hover-item:hover .portfolio-hover-item-title,
