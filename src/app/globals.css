@@ -5425,6 +5425,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .hub-page--photo {
   --hero-fade: 0;
   --hub-edge: 28px;
+  --hub-header-top: 12px;
   background: #050505;
 }
 
@@ -5590,7 +5591,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 
 .hub-page--photo .hub-page__header--locked {
   position: absolute !important;
-  top: var(--hub-edge);
+  top: var(--hub-header-top, 12px);
   left: var(--hub-edge);
   right: var(--hub-edge);
   /*
@@ -6463,7 +6464,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   }
 
   .hub-page--photo .hub-page__header--locked {
-    top: max(var(--hub-edge), env(safe-area-inset-top, 0px));
+    top: max(var(--hub-header-top, 12px), env(safe-area-inset-top, 0px));
     left: max(var(--hub-edge), env(safe-area-inset-left, 0px));
     right: max(var(--hub-edge), env(safe-area-inset-right, 0px));
     height: auto;
@@ -6631,8 +6632,10 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 }
 
 /* Desktop/tablet: don’t let the icon rail overflow-hide Spotify */
-.hub-page--photo .hub-page__header--locked {
+.hub-page--photo .hub-page__header--locked,
+.home-sections .hub-page--photo .hub-page__header--locked {
   overflow: visible;
+  top: 12px;
 }
 
 .hub-page--photo .hub-page__socials--locked {
@@ -6913,6 +6916,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .hub-page.hub-page--photo,
 .home-sections .hub-page.hub-page--photo {
   --hub-edge: 28px;
+  --hub-header-top: 12px;
 }
 
 .hub-page__hud-scrim {
@@ -7043,7 +7047,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   }
 
   .hub-page--photo .hub-page__header--locked {
-    top: max(var(--hub-edge), env(safe-area-inset-top, 0px));
+    top: max(var(--hub-header-top, 12px), env(safe-area-inset-top, 0px));
     left: max(var(--hub-edge), env(safe-area-inset-left, 0px));
     right: max(var(--hub-edge), env(safe-area-inset-right, 0px));
   }
