@@ -14,11 +14,7 @@ export const metadata: Metadata = {
   description: "Four in-ear EEG patents and selected builds by Melani Shrestha.",
 };
 
-const STAGE_IDS = new Set([
-  "wonder-os",
-  "lensoss",
-  "shotbyceline",
-]);
+const STAGE_IDS = new Set(["wonder-os", "lensoss"]);
 
 const BUILD_PRESENTATION: Record<
   string,
@@ -37,11 +33,6 @@ const BUILD_PRESENTATION: Record<
     readout: "view Lens",
     description:
       "A faster photography workflow from import through final delivery.",
-  },
-  shotbyceline: {
-    href: "/photography",
-    readout: "view photography",
-    description: "My photography portfolio, print collection, and booking space.",
   },
 };
 
