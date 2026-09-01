@@ -226,6 +226,38 @@
   aspect-ratio: 16 / 10;
 }
 
+.bs-scholar__peek {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  --peek-x: 0%;
+  --peek-y: 0%;
+}
+
+.bs-scholar__preview--peek {
+  width: 124%;
+  height: 124%;
+  max-width: none;
+  object-fit: cover;
+  object-position: top center;
+  transform: translate3d(var(--peek-x), var(--peek-y), 0);
+  transition: transform 160ms ease-out;
+  will-change: transform;
+}
+
+.bs-scholar__page--live .bs-scholar__reveal {
+  inset: auto 0 0 0;
+  justify-content: flex-end;
+  padding: 0.55rem 0.7rem 0.6rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bs-scholar__preview--peek {
+    transform: none;
+    transition: none;
+  }
+}
+
 .builds-products__title,
 .builds-github__title,
 .builds-designs__title {

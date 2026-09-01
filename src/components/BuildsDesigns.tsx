@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { DesignPeek } from "@/components/DesignPeek";
 import { designs } from "@/data/designs";
 
 export function BuildsDesigns() {
@@ -16,22 +16,8 @@ export function BuildsDesigns() {
             aria-label={site.title}
           >
             <figure className="bs-scholar__figure">
-              <div className="bs-scholar__page bs-scholar__page--site">
-                <Image
-                  src={site.previewImage}
-                  alt=""
-                  width={1440}
-                  height={900}
-                  sizes="(max-width: 560px) calc(100vw - 2rem), (max-width: 1120px) 46vw, 23vw"
-                  loading="eager"
-                  unoptimized
-                  className="bs-scholar__preview"
-                />
-                <span className="bs-scholar__reveal">
-                  <strong className="bs-scholar__reveal-title">
-                    {site.title} <span aria-hidden>↗</span>
-                  </strong>
-                </span>
+              <div className="bs-scholar__page bs-scholar__page--site bs-scholar__page--live">
+                <DesignPeek src={site.previewImage} title={site.title} />
               </div>
             </figure>
           </a>
