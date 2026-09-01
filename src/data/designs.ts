@@ -16,4 +16,11 @@ export const designs: DesignSite[] = [
     previewImage: "/builds/designs/lunar-glow-dev.png",
     live: true,
   },
+  {
+    id: "celine-nova",
+    title: "Celine Nova.",
+    href: "https://celinenova.vercel.app",
+    previewImage: "/builds/designs/celine-nova.jpg",
+    live: true,
+  },
 ];
