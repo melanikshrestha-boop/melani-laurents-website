@@ -365,7 +365,8 @@
 .portfolio-art-subs__line {
   margin: 0 auto;
   max-width: 72rem;
-  color: #fff;
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
   font-family: "Courier New", Courier, ui-monospace, monospace;
   font-size: clamp(10px, 0.95vw, 11px);
   font-weight: 400;
@@ -376,11 +377,14 @@
   text-align: center;
   text-wrap: pretty;
   text-shadow: none;
+  opacity: 1;
 }
 
 .portfolio-art-subs__line span {
   padding: 0.12em 0.45em;
-  background: rgba(22, 22, 22, 0.38);
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+  background: rgba(0, 0, 0, 0.52);
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
@@ -388,7 +392,8 @@
 .portfolio-art-subs__credit {
   display: inline;
   margin-top: 0;
-  color: #fff;
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
   text-shadow: none;
 }
 
