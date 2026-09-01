@@ -12,11 +12,12 @@ const nextConfig: NextConfig = {
     root: projectRoot,
   },
   // Chrome hard-requests /favicon.ico. Serve square Eren PNG there too.
-  // src/app/favicon.ico is still a 16+32+48 ICO of the full still.
+  // Do not add src/app/favicon.ico — Next hashes it and Chrome caches a C.
+  // public/favicon.ico is a 16+32+48 ICO of the full still (fallback only).
   async rewrites() {
     return {
       beforeFiles: [
-        { source: "/favicon.ico", destination: "/eren-stay9.png" },
+        { source: "/favicon.ico", destination: "/eren-stay10.png" },
       ],
     };
   },
@@ -29,7 +30,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/eren-stay9.png",
+        source: "/eren-stay10.png",
         headers: [
           { key: "Cache-Control", value: "public, max-age=0, must-revalidate" },
         ],
