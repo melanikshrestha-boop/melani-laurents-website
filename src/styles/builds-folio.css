@@ -226,6 +226,57 @@
   aspect-ratio: 16 / 10;
 }
 
+.bs-scholar__item--live {
+  grid-column: 1 / -1;
+  scroll-margin-top: 3.5rem;
+}
+
+.bs-scholar__window {
+  position: absolute;
+  inset: 0;
+}
+
+.bs-scholar__preview--fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  pointer-events: none;
+}
+
+.bs-scholar__live {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  pointer-events: auto;
+}
+
+.bs-scholar__page--live {
+  min-height: 28rem;
+}
+
+.bs-scholar__open {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0.35rem 0 0;
+  color: var(--bs-ink);
+  font-size: 1rem;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.bs-scholar__open:focus-visible {
+  outline: 2px solid var(--bs-violet);
+  outline-offset: 3px;
+}
+
 .bs-scholar__peek {
   position: absolute;
   inset: 0;
@@ -243,12 +294,6 @@
   transform: translate3d(var(--peek-x), var(--peek-y), 0);
   transition: transform 160ms ease-out;
   will-change: transform;
-}
-
-.bs-scholar__page--live .bs-scholar__reveal {
-  inset: auto 0 0 0;
-  justify-content: flex-end;
-  padding: 0.55rem 0.7rem 0.6rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -535,6 +580,16 @@
 
   .bs-scholar__page {
     aspect-ratio: 16 / 11;
+  }
+
+  .bs-scholar__page--site {
+    aspect-ratio: 16 / 10;
+  }
+
+  .bs-scholar__page--live {
+    aspect-ratio: auto;
+    height: 72svh;
+    min-height: 24rem;
   }
 
   .bp-list {
