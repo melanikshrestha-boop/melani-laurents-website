@@ -12,6 +12,8 @@ interface MelaniSignatureProps {
   linked?: boolean;
   /** ink = pitch black on cream hub; light = white on cinema nav; gold = glowing gold treatment */
   variant?: "ink" | "light" | "gold";
+  /** Art nav: quoted autograph, slightly heavier stroke. */
+  quoted?: boolean;
 }
 
 const variantClass: Record<NonNullable<MelaniSignatureProps["variant"]>, string> = {
@@ -25,6 +27,7 @@ export function MelaniSignature({
   className = "",
   linked = true,
   variant = "ink",
+  quoted = false,
 }: MelaniSignatureProps) {
   const signature = (
     <span
@@ -36,7 +39,7 @@ export function MelaniSignature({
       {!linked ? <span className="sr-only">Celine Nova</span> : null}
       <svg
         className="melani-signature__mark"
-        viewBox="0 0 460 130"
+        viewBox={quoted ? "0 0 540 130" : "0 0 460 130"}
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden
@@ -44,14 +47,17 @@ export function MelaniSignature({
       >
         <title>Celine Nova</title>
         <text
-          x="18"
+          x={quoted ? 10 : 18}
           y="94"
           className={allura.className}
           fontFamily={allura.style.fontFamily}
           fontSize="92"
           fill="currentColor"
+          stroke={quoted ? "currentColor" : undefined}
+          strokeWidth={quoted ? "2.1" : undefined}
+          paintOrder={quoted ? "stroke fill" : undefined}
         >
-          Celine Nova
+          {quoted ? "\u201CCeline Nova\u201D" : "Celine Nova"}
         </text>
       </svg>
     </span>

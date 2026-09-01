@@ -140,6 +140,7 @@ export function Navigation() {
       >
         <MelaniSignature
           variant={paper || isArt ? "ink" : "light"}
+          quoted={isArt}
           className={`melani-signature--nav${edgePaper || isArt ? " melani-signature--nav-edge" : ""}`}
         />
 
