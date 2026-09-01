@@ -3,6 +3,7 @@ import { ProjectGrid } from "@/components/ProjectGrid";
 import { BuildsScholar } from "@/components/BuildsScholar";
 import { BuildsGithub } from "@/components/BuildsGithub";
 import { projects } from "@/data/projects";
+import { designs } from "@/data/designs";
 import { googleScholarUrl } from "@/data/publications";
 
 export const dynamic = "force-dynamic";
@@ -85,6 +86,52 @@ export default function ProjectsPage() {
         </section>
 
         <BuildsGithub />
+
+        <section className="builds-designs" aria-labelledby="builds-designs-title">
+          <h2 id="builds-designs-title" className="builds-designs__title">
+            Designs
+          </h2>
+          <ul className="bp-list" aria-label="Designs">
+            {designs.map((site, index) => {
+              const isExternal = Boolean(site.href && !site.href.startsWith("/"));
+              const number = String(index + 1).padStart(2, "0");
+              const title = (
+                <h3 className="bp-row__title">
+                  {site.title}
+                  {site.href ? (
+                    <span className="bp-row__go" aria-hidden>
+                      ↗
+                    </span>
+                  ) : null}
+                </h3>
+              );
+              return (
+                <li key={site.id} className="bp-row">
+                  {site.href ? (
+                    <a
+                      href={site.href}
+                      target={isExternal ? "_blank" : undefined}
+                      rel={isExternal ? "noopener noreferrer" : undefined}
+                      className="bp-row__link"
+                    >
+                      <span className="bp-row__number" aria-hidden>
+                        {number}
+                      </span>
+                      {title}
+                    </a>
+                  ) : (
+                    <div className="bp-row__link bp-row__link--static">
+                      <span className="bp-row__number" aria-hidden>
+                        {number}
+                      </span>
+                      {title}
+                    </div>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </section>
       </div>
     </div>
   );
