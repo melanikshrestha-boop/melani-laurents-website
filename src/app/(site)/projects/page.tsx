@@ -41,7 +41,7 @@ const BUILD_PRESENTATION: Record<
     github: "https://github.com/melanikshrestha-boop/LensOSS",
     readout: "GitHub",
     description:
-      "A faster photography workflow from import through final delivery.",
+      "sports photographers workflow system",
   },
 };
 
