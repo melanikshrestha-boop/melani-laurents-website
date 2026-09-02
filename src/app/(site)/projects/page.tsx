@@ -18,7 +18,13 @@ const STAGE_IDS = new Set(["wonder-os", "lensoss"]);
 
 const BUILD_PRESENTATION: Record<
   string,
-  { title?: string; href?: string; readout: string; description: string }
+  {
+    title?: string;
+    href?: string;
+    github?: string;
+    readout: string;
+    description: string;
+  }
 > = {
   "wonder-os": {
     title: "Wonder for daily agentic control",
@@ -28,9 +34,10 @@ const BUILD_PRESENTATION: Record<
       "One place for my books, finances, health, agents, and wardrobe.",
   },
   lensoss: {
-    title: "LensOS for smartculling and editing",
-    href: "https://github.com/melanikshrestha-boop/LensOSS",
-    readout: "view Lens",
+    title: "LensLab for smartculling and editing",
+    href: "https://lenslab.dev",
+    github: "https://github.com/melanikshrestha-boop/LensOSS",
+    readout: "GitHub",
     description:
       "A faster photography workflow from import through final delivery.",
   },

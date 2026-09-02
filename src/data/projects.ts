@@ -10,6 +10,8 @@ export interface Project {
   description: string;
   tags: string[];
   href?: string;
+  /** Optional second link, shown as GitHub on Builds. */
+  github?: string;
   featured?: boolean;
   readout?: string;
   createdAt: string;
@@ -65,15 +67,17 @@ export const projects: Project[] = [
   },
   {
     id: "lensoss",
-    title: "Lens",
+    title: "LensLab",
     role: "Founder & Builder",
     status: "Active",
     description:
       "Photographer product. Import, pick, Lightroom, send. Built to beat slow gallery turnaround.",
     tags: ["product", "photo", "saas"],
+    href: "https://lenslab.dev",
+    github: "https://github.com/melanikshrestha-boop/LensOSS",
     featured: true,
     priority: 4,
-    readout: "company build",
+    readout: "GitHub",
     createdAt: "2026-06-01",
   },
   {

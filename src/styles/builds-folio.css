@@ -332,7 +332,7 @@
 
 .bp-row__link {
   display: grid;
-  grid-template-columns: 2rem minmax(0, 1fr);
+  grid-template-columns: 2rem minmax(0, 1fr) auto;
   align-items: baseline;
   color: inherit;
   text-decoration: none;
@@ -349,6 +349,7 @@
 }
 
 .bp-row__title {
+  grid-column: 2 / -1;
   margin: 0;
   font-family: inherit;
   font-size: clamp(1.1rem, 1.55vw, 1.45rem);
@@ -356,6 +357,28 @@
   line-height: 1.1;
   letter-spacing: 0;
   color: var(--bs-ink);
+}
+
+.bp-row:has(.bp-row__github) .bp-row__title {
+  grid-column: 2;
+}
+
+.bp-row__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.bp-row__github {
+  grid-column: 3;
+  grid-row: 1;
+  color: var(--bs-ink);
+  font-family: var(--font-share-tech-mono), ui-monospace, monospace;
+  font-size: 0.62rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
 }
 
 .bp-row__go {
@@ -378,15 +401,24 @@
   letter-spacing: 0;
 }
 
-.bp-row__link:hover .bp-row__title,
-.bp-row__link:focus-visible .bp-row__title {
+a.bp-row__link:hover .bp-row__title,
+a.bp-row__link:focus-visible .bp-row__title,
+.bp-row__title a:hover,
+.bp-row__title a:focus-visible {
   color: var(--bs-violet);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.14em;
 }
 
-.bp-row__link:focus-visible {
+.bp-row__github:hover,
+.bp-row__github:focus-visible {
+  color: var(--bs-violet);
+}
+
+a.bp-row__link:focus-visible,
+.bp-row__title a:focus-visible,
+.bp-row__github:focus-visible {
   outline: 1px solid var(--bs-violet);
   outline-offset: 0.35rem;
 }

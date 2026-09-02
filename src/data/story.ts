@@ -42,7 +42,7 @@ export const storyChapters: StoryChapter[] = [
     title: "04 — Building in the open",
     subtitle: "Operator mode",
     body: [
-      "I build my own stack first — Wonder (personal OS), this site, Lens for photographers, Dream Life for the long game. Founder work, not homework demos.",
+      "I build my own stack first — Wonder (personal OS), this site, LensLab for photographers, Dream Life for the long game. Founder work, not homework demos.",
       "Entrepreneurship isn’t a costume. It’s noticing a painful process and choosing to fix it until it works every day.",
     ],
   },

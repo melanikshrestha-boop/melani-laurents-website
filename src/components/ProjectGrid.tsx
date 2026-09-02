@@ -5,19 +5,61 @@ import type { Project } from "@/data/projects";
 function ProjectRow({ project, index }: { project: Project; index: number }) {
   const isExternal = Boolean(project.href && !project.href.startsWith("/"));
   const isLink = Boolean(project.href);
+  const github = project.github;
+
+  const number = (
+    <span className="bp-row__number" aria-hidden>
+      {String(index + 1).padStart(2, "0")}
+    </span>
+  );
+
+  const description = project.description ? (
+    <p className="bp-row__desc">{project.description}</p>
+  ) : null;
+
+  if (isLink && github) {
+    return (
+      <li className="bp-row">
+        <div className="bp-row__link">
+          {number}
+          <h3 className="bp-row__title">
+            <a
+              href={project.href}
+              target={isExternal ? "_blank" : undefined}
+              rel={isExternal ? "noopener noreferrer" : undefined}
+            >
+              {project.title}
+              <span className="bp-row__go" aria-hidden>
+                ↗
+              </span>
+            </a>
+          </h3>
+          <a
+            className="bp-row__github"
+            href={github}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
+          {description}
+        </div>
+      </li>
+    );
+  }
 
   const body = (
     <>
-      <span className="bp-row__number" aria-hidden>
-        {String(index + 1).padStart(2, "0")}
-      </span>
+      {number}
       <h3 className="bp-row__title">
         {project.title}
-        {isLink ? <span className="bp-row__go" aria-hidden>↗</span> : null}
+        {isLink ? (
+          <span className="bp-row__go" aria-hidden>
+            ↗
+          </span>
+        ) : null}
       </h3>
-      {project.description ? (
-        <p className="bp-row__desc">{project.description}</p>
-      ) : null}
+      {description}
     </>
   );
 
