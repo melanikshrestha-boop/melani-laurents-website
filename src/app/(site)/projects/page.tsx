@@ -89,8 +89,8 @@ export default function ProjectsPage() {
             Designs
           </h2>
           <p className="builds-designs__note">
-            I designed this personal website from scratch using TypeScript,
-            React, HTML, and CSS.
+            P.S. I designed melanilaurents.com (my personal website) from
+            scratch using TypeScript, React, HTML, and CSS.
           </p>
           <BuildsDesigns />
         </section>
