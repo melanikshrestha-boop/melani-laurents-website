@@ -61,7 +61,7 @@ export const siteConfig = {
       label: "Spotify",
       href: "https://open.spotify.com/user/21etydsnbqyqe7ekagfnqbhoq?si=c3c26ede4c8a46a5",
       hoverNote:
-        "Music has been my best friend since forever. I hope to make at least 1 song before I die, regardless of it is shitty or not. But for now, I take pride in my music taste. Give it a listen!",
+        "I rarely make music, but listen to a lot. I listen and make podcasts simultaneously. Check it out.",
     },
     {
       id: "instagram",
