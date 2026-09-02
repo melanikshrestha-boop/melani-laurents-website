@@ -1,0 +1,55 @@
+[2026-08-31T03:42:22.629Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-08-31T03:42:22.672Z] [log] [HMR] connected
+[2026-08-31T03:42:25.702Z] [warning] The resource http://127.0.0.1:3001/_next/static/chunks/%5Bnext%5D_internal_font_google_allura_ad48dcea_module_0a6f5b9.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[2026-08-31T03:42:32.900Z] [warning] The resource http://127.0.0.1:3001/_next/static/chunks/%5Bnext%5D_internal_font_google_allura_ad48dcea_module_0a6f5b9.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[2026-08-31T03:44:13.513Z] [log] [Fast Refresh] rebuilding
+[2026-08-31T03:44:13.848Z] [log] [Fast Refresh] done in 369ms
+[2026-08-31T03:44:14.044Z] [log] [Fast Refresh] rebuilding
+[2026-08-31T03:44:14.085Z] [log] [Fast Refresh] done in 140ms
+[2026-08-31T03:44:14.194Z] [log] [Fast Refresh] rebuilding
+[2026-08-31T03:44:14.194Z] [log] [Fast Refresh] done in 108ms
+[2026-08-31T03:44:14.342Z] [log] [Fast Refresh] rebuilding
+[2026-08-31T03:44:14.477Z] [log] [Fast Refresh] done in 240ms
+[2026-08-31T03:44:14.593Z] [log] [Fast Refresh] rebuilding
+[2026-08-31T03:44:14.652Z] [log] [Fast Refresh] done in 160ms
+[2026-08-31T03:44:14.768Z] [log] [Fast Refresh] rebuilding
+[2026-08-31T03:44:14.803Z] [log] [Fast Refresh] done in 135ms
+[2026-08-31T03:44:14.909Z] [log] [Fast Refresh] rebuilding
+[2026-08-31T03:44:15.127Z] [log] [Fast Refresh] done in 325ms
+[2026-08-31T03:44:15.243Z] [log] [Fast Refresh] rebuilding
+[2026-08-31T03:44:15.310Z] [log] [Fast Refresh] done in 174ms
+[2026-08-31T03:44:15.418Z] [log] [Fast Refresh] rebuilding
+[2026-08-31T03:44:15.420Z] [log] [Fast Refresh] done in 110ms
+[2026-08-31T03:44:15.611Z] [log] [Fast Refresh] rebuilding
+[2026-08-31T03:44:15.669Z] [log] [Fast Refresh] done in 158ms
+[2026-08-31T03:44:15.784Z] [log] [Fast Refresh] rebuilding
+[2026-08-31T03:44:16.262Z] [log] [Fast Refresh] done in 578ms
+[2026-08-31T03:44:19.237Z] [warning] The resource http://127.0.0.1:3001/_next/static/chunks/%5Bnext%5D_internal_font_google_allura_ad48dcea_module_0a6f5b9.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[2026-08-31T03:44:26.817Z] [error] Failed to load resource: net::ERR_EMPTY_RESPONSE
+[2026-08-31T03:44:26.842Z] [log] [Fast Refresh] rebuilding
+[2026-08-31T03:44:27.830Z] [log] [HMR] connected
+[2026-08-31T03:44:28.436Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-08-31T03:44:28.452Z] [log] [HMR] connected
+[2026-08-31T03:44:31.476Z] [warning] The resource http://127.0.0.1:3001/_next/static/chunks/%5Bnext%5D_internal_font_google_allura_ad48dcea_module_0a6f5b9.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[2026-08-31T03:44:38.684Z] [warning] The resource http://127.0.0.1:3001/_next/static/chunks/%5Bnext%5D_internal_font_google_allura_ad48dcea_module_0a6f5b9.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[2026-08-31T03:44:48.451Z] [log] [Fast Refresh] rebuilding
+[2026-08-31T03:44:48.709Z] [log] [Fast Refresh] done in 358ms
+[2026-08-31T03:46:13.884Z] [log] [Fast Refresh] rebuilding
+[2026-08-31T03:46:14.850Z] [log] [HMR] connected
+[2026-08-31T03:46:15.450Z] [info] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[2026-08-31T03:46:15.471Z] [log] [HMR] connected
+[2026-08-31T03:46:18.491Z] [warning] The resource http://127.0.0.1:3001/_next/static/chunks/%5Bnext%5D_internal_font_google_allura_ad48dcea_module_0a6f5b9.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[2026-08-31T03:46:25.990Z] [warning] The resource http://127.0.0.1:3001/_next/static/chunks/%5Bnext%5D_internal_font_google_allura_ad48dcea_module_0a6f5b9.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[2026-08-31T03:48:27.242Z] [warning] The resource http://127.0.0.1:3001/_next/static/chunks/%5Bnext%5D_internal_font_google_allura_ad48dcea_module_0a6f5b9.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[2026-08-31T03:50:25.974Z] [warning] The resource http://127.0.0.1:3001/_next/static/chunks/%5Bnext%5D_internal_font_google_allura_ad48dcea_module_0a6f5b9.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[2026-08-31T03:52:25.499Z] [warning] The resource http://127.0.0.1:3001/_next/static/chunks/%5Bnext%5D_internal_font_google_allura_ad48dcea_module_0a6f5b9.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[2026-08-31T03:54:25.580Z] [warning] The resource http://127.0.0.1:3001/_next/static/chunks/%5Bnext%5D_internal_font_google_allura_ad48dcea_module_0a6f5b9.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[2026-08-31T03:56:25.462Z] [warning] The resource http://127.0.0.1:3001/_next/static/chunks/%5Bnext%5D_internal_font_google_allura_ad48dcea_module_0a6f5b9.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[2026-08-31T03:58:25.538Z] [warning] The resource http://127.0.0.1:3001/_next/static/chunks/%5Bnext%5D_internal_font_google_allura_ad48dcea_module_0a6f5b9.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[2026-08-31T04:00:25.570Z] [warning] The resource http://127.0.0.1:3001/_next/static/chunks/%5Bnext%5D_internal_font_google_allura_ad48dcea_module_0a6f5b9.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[2026-08-31T04:02:25.670Z] [warning] The resource http://127.0.0.1:3001/_next/static/chunks/%5Bnext%5D_internal_font_google_allura_ad48dcea_module_0a6f5b9.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[2026-08-31T04:04:25.228Z] [warning] The resource http://127.0.0.1:3001/_next/static/chunks/%5Bnext%5D_internal_font_google_allura_ad48dcea_module_0a6f5b9.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[2026-08-31T04:06:25.270Z] [warning] The resource http://127.0.0.1:3001/_next/static/chunks/%5Bnext%5D_internal_font_google_allura_ad48dcea_module_0a6f5b9.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[2026-08-31T04:08:25.261Z] [warning] The resource http://127.0.0.1:3001/_next/static/chunks/%5Bnext%5D_internal_font_google_allura_ad48dcea_module_0a6f5b9.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[2026-08-31T04:10:25.861Z] [warning] The resource http://127.0.0.1:3001/_next/static/chunks/%5Bnext%5D_internal_font_google_allura_ad48dcea_module_0a6f5b9.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.
+[2026-08-31T04:12:25.861Z] [warning] The resource http://127.0.0.1:3001/_next/static/chunks/%5Bnext%5D_internal_font_google_allura_ad48dcea_module_0a6f5b9.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.

@@ -4,9 +4,10 @@
 Scale only — never face-crop. A 16px face crop reads as ©.
 Source: public/icon-eren.png (shoulders + bun).
 
-Write BOTH public/favicon.ico and src/app/favicon.ico as 16+32+48 RGBA
-PNG-in-ICO. Next injects src/app/favicon.ico as rel=icon sizes=32x32;
-Chrome prefers that over the PNG. RGB PNG-in-ICO 500s Turbopack — keep RGBA.
+public/favicon.ico only (16+32+48 RGBA PNG-in-ICO).
+Do NOT write src/app/favicon.ico — Next hashes it (`?favicon.*.ico`) and
+Chrome prefers that 48px ICO, which is how the gold C comes back.
+RGB PNG-in-ICO 500s Turbopack — keep RGBA.
 """
 import io
 import struct
@@ -16,7 +17,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "public" / "icon-eren.png"
-STAY = "eren-keep15.png"
+STAY = "eren-hold16.png"
 
 if not SRC.is_file():
     raise SystemExit(f"missing {SRC}")
@@ -68,12 +69,12 @@ save_png(scaled(192), ROOT / "public" / "icon-192.png")
 save_png(scaled(180), ROOT / "public" / "apple-icon.png")
 save_png(scaled(180), ROOT / "src" / "app" / "apple-icon.png")
 
-# 16+32+48 from the same full square. Both locations — Chrome uses app ICO.
-ico_sizes = (16, 32, 48)
-write_ico(ROOT / "public" / "favicon.ico", ico_sizes)
-write_ico(ROOT / "src" / "app" / "favicon.ico", ico_sizes)
+# 16+32+48 from the same full square. Public only — never src/app.
+write_ico(ROOT / "public" / "favicon.ico", (16, 32, 48))
+app_ico = ROOT / "src" / "app" / "favicon.ico"
+if app_ico.exists():
+    app_ico.unlink()
 
 print("stay", STAY, (ROOT / "public" / STAY).stat().st_size)
 print("public.ico", (ROOT / "public" / "favicon.ico").stat().st_size)
-print("app.ico", (ROOT / "src" / "app" / "favicon.ico").stat().st_size)
 print("icon.png", (ROOT / "src" / "app" / "icon.png").stat().st_size)

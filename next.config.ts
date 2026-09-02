@@ -11,15 +11,13 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: projectRoot,
   },
-  // Chrome hard-requests /favicon.ico. Serve the square Eren PNG there too.
-  // src/app/favicon.ico MUST exist (16+32+48 RGBA of the FULL still). Next
-  // injects it as rel=icon sizes=32x32; Chrome prefers that over the PNG.
-  // Never a 32px face-crop (~2287 bytes) — that reads as ©. RGB PNG-in-ICO
-  // 500s Turbopack — keep RGBA.
+  // Chrome hard-requests /favicon.ico. Rewrite it to the square Eren PNG.
+  // Do NOT add src/app/favicon.ico — Next hashes it (?favicon.*.ico) and
+  // Chrome prefers that 48px ICO, which is how the gold C comes back.
   async rewrites() {
     return {
       beforeFiles: [
-        { source: "/favicon.ico", destination: "/eren-keep15.png" },
+        { source: "/favicon.ico", destination: "/eren-hold16.png" },
       ],
     };
   },
@@ -32,7 +30,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/eren-keep15.png",
+        source: "/eren-hold16.png",
         headers: [
           { key: "Cache-Control", value: "public, max-age=0, must-revalidate" },
         ],

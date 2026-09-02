@@ -27,10 +27,16 @@ function icoFrames(buf) {
   return buf.readUInt16LE(4);
 }
 
-const icoPaths = ["public/favicon.ico", "src/app/favicon.ico"];
+if (fs.existsSync(path.join(root, "src/app/favicon.ico"))) {
+  fail(
+    "delete src/app/favicon.ico — Next hashes it (?favicon.*.ico) and Chrome shows the gold C",
+  );
+}
+
+const icoPaths = ["public/favicon.ico"];
 for (const rel of icoPaths) {
   if (!fs.existsSync(path.join(root, rel))) {
-    fail(`missing ${rel} — Next injects app ICO as 32x32; tab will become a C`);
+    fail(`missing ${rel}`);
   }
 }
 
