@@ -6132,8 +6132,45 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   width: 1.15em;
   height: 1.15em;
   color: rgba(232, 230, 227, 0.72);
-  transition: color 160ms ease, opacity 160ms ease;
+  opacity: 0;
+  animation: hub-social-fade 1.15s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transition: color 160ms ease, transform 160ms ease;
   line-height: 0;
+}
+
+.hub-page__socials--locked .social-icons__link:nth-child(1) {
+  animation-delay: 0.12s;
+}
+.hub-page__socials--locked .social-icons__link:nth-child(2) {
+  animation-delay: 0.24s;
+}
+.hub-page__socials--locked .social-icons__link:nth-child(3) {
+  animation-delay: 0.36s;
+}
+.hub-page__socials--locked .social-icons__link:nth-child(4) {
+  animation-delay: 0.48s;
+}
+.hub-page__socials--locked .social-icons__link:nth-child(5) {
+  animation-delay: 0.6s;
+}
+.hub-page__socials--locked .social-icons__link:nth-child(6) {
+  animation-delay: 0.72s;
+}
+
+@keyframes hub-social-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hub-page__socials--locked .social-icons__link {
+    animation: none;
+    opacity: 1;
+  }
 }
 
 .hub-page__socials--locked .social-icons__link:hover {
