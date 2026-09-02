@@ -19,13 +19,6 @@ export const designs: DesignSite[] = [
     live: true,
   },
   {
-    id: "celine-nova",
-    title: "Celine Nova.",
-    href: "https://celinenova.vercel.app",
-    previewImage: "/builds/designs/celine-nova.jpg",
-    live: true,
-  },
-  {
     id: "celinenovalinks",
     title: "celinenovalinks",
     href: "https://celinenovalinks.vercel.app",

@@ -88,6 +88,10 @@ export default function ProjectsPage() {
           <h2 id="builds-designs-title" className="builds-designs__title">
             Designs
           </h2>
+          <p className="builds-designs__note">
+            I designed this personal website from scratch using TypeScript,
+            React, HTML, and CSS.
+          </p>
           <BuildsDesigns />
         </section>
       </div>

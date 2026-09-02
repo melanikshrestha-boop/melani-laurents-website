@@ -325,6 +325,17 @@
   color: var(--bs-ink);
 }
 
+.builds-designs__note {
+  max-width: 36rem;
+  margin: 0 0 0.9rem;
+  color: var(--bs-muted);
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0;
+}
+
 .bp-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -429,11 +440,17 @@ a.bp-row__link:focus-visible,
 
 .builds-designs__list {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(0.55rem, 1vw, 0.9rem);
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.builds-designs .bs-scholar__page--live {
+  aspect-ratio: auto;
+  height: min(70svh, 36rem);
+  min-height: 28rem;
 }
 
 .builds-designs__item {
