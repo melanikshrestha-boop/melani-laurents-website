@@ -10,20 +10,14 @@ export function BuildsDesigns() {
       {designs.map((site) => (
         <li key={site.id} className="builds-designs__item">
           <figure className="bs-scholar__figure">
-            <div
-              className={
-                site.live
-                  ? "bs-scholar__page bs-scholar__page--site bs-scholar__page--live"
-                  : "bs-scholar__page bs-scholar__page--site"
-              }
-            >
-              {site.live ? (
-                <DesignLive
-                  src={site.href}
-                  title={site.title}
-                  previewImage={site.previewImage}
-                />
-              ) : (
+            {site.live ? (
+              <DesignLive
+                src={site.href}
+                title={site.title}
+                previewImage={site.previewImage}
+              />
+            ) : (
+              <div className="bs-scholar__page bs-scholar__page--site">
                 <a
                   href={site.href}
                   target="_blank"
@@ -37,19 +31,8 @@ export function BuildsDesigns() {
                     story={site.story}
                   />
                 </a>
-              )}
-            </div>
-            {site.live ? (
-              <a
-                href={site.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bs-scholar__open"
-                aria-label={`${site.title} ↗`}
-              >
-                ↗
-              </a>
-            ) : null}
+              </div>
+            )}
           </figure>
         </li>
       ))}
