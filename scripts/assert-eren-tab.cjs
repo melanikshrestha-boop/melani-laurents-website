@@ -15,9 +15,12 @@ for (const rel of [
   "src/app/apple-icon.tsx",
   "src/app/icon.svg",
   "src/app/apple-icon.svg",
+  "src/app/favicon.ico",
+  "src/app/icon.png",
+  "src/app/apple-icon.png",
 ]) {
   if (fs.existsSync(path.join(root, rel))) {
-    fail(`delete ${rel} — Next will generate a cream C`);
+    fail(`delete ${rel} — Next file icons inject IconMark / hashed ICO (gold C)`);
   }
 }
 
@@ -25,12 +28,6 @@ function icoFrames(buf) {
   if (buf.length < 6) return 0;
   if (buf.readUInt16LE(0) !== 0 || buf.readUInt16LE(2) !== 1) return 0;
   return buf.readUInt16LE(4);
-}
-
-if (fs.existsSync(path.join(root, "src/app/favicon.ico"))) {
-  fail(
-    "delete src/app/favicon.ico — Next hashes it (?favicon.*.ico) and Chrome shows the gold C",
-  );
 }
 
 const icoPaths = ["public/favicon.ico"];
@@ -55,7 +52,7 @@ for (const rel of icoPaths) {
   }
 }
 
-for (const rel of ["src/app/icon.png", "public/icon.png"]) {
+for (const rel of ["public/icon.png", "public/eren-forever.png"]) {
   const size = fs.statSync(path.join(root, rel)).size;
   if (size < 10000) {
     fail(`${rel} is ${size} bytes — face crop / C. Need full manga square.`);

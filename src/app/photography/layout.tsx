@@ -1,6 +1,7 @@
 import { Anton, Epilogue } from "next/font/google";
 import { PhotographyMode } from "@/components/photography/PhotographyMode";
 import { Navigation } from "@/components/Navigation";
+import { erenTabIcons } from "@/lib/eren-tab";
 import "@/styles/photography.css";
 
 export const metadata = {
@@ -8,14 +9,7 @@ export const metadata = {
     default: "shotbyceline",
     template: "%s",
   },
-  // Square Eren on Scenery / Portraits too. Never a gold C.
-  icons: {
-    icon: [
-      { url: "/eren-hold16.png?v=hold16", type: "image/png", sizes: "256x256" },
-      { url: "/eren-hold16.png?v=hold16", type: "image/png", sizes: "32x32" },
-    ],
-    shortcut: [{ url: "/eren-hold16.png?v=hold16", type: "image/png" }],
-  },
+  icons: erenTabIcons,
 };
 
 const anton = Anton({

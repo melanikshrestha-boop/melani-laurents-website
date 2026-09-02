@@ -17,7 +17,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "public" / "icon-eren.png"
-STAY = "eren-hold16.png"
+STAY = "eren-forever.png"
 
 if not SRC.is_file():
     raise SystemExit(f"missing {SRC}")
@@ -62,19 +62,24 @@ def write_ico(path: Path, sizes: tuple[int, ...]) -> None:
 stay = scaled(256)
 save_png(stay, ROOT / "public" / STAY)
 save_png(stay, ROOT / "public" / "icon.png")
-save_png(stay, ROOT / "src" / "app" / "icon.png")
 save_png(stay, ROOT / "public" / "tab-eren.png")
 save_png(stay, ROOT / "public" / "stay-eren.png")
 save_png(scaled(192), ROOT / "public" / "icon-192.png")
 save_png(scaled(180), ROOT / "public" / "apple-icon.png")
-save_png(scaled(180), ROOT / "src" / "app" / "apple-icon.png")
 
-# 16+32+48 from the same full square. Public only — never src/app.
+# Never put icons in src/app — Next file conventions inject IconMark / hashed ICO (gold C).
+for rel in (
+    ROOT / "src" / "app" / "favicon.ico",
+    ROOT / "src" / "app" / "icon.png",
+    ROOT / "src" / "app" / "apple-icon.png",
+    ROOT / "src" / "app" / "icon.tsx",
+    ROOT / "src" / "app" / "apple-icon.tsx",
+):
+    if rel.exists():
+        rel.unlink()
+
 write_ico(ROOT / "public" / "favicon.ico", (16, 32, 48))
-app_ico = ROOT / "src" / "app" / "favicon.ico"
-if app_ico.exists():
-    app_ico.unlink()
 
 print("stay", STAY, (ROOT / "public" / STAY).stat().st_size)
 print("public.ico", (ROOT / "public" / "favicon.ico").stat().st_size)
-print("icon.png", (ROOT / "src" / "app" / "icon.png").stat().st_size)
+print("public icon.png", (ROOT / "public" / "icon.png").stat().st_size)

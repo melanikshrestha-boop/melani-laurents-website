@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { EREN_TAB_SRC } from "@/lib/eren-tab";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
@@ -12,19 +13,19 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: "#f7f1e7",
     icons: [
       {
-        src: "/eren-hold16.png?v=hold16",
+        src: EREN_TAB_SRC,
         sizes: "256x256",
         type: "image/png",
         purpose: "any",
       },
       {
-        src: "/eren-hold16.png?v=hold16",
+        src: EREN_TAB_SRC,
         sizes: "192x192",
         type: "image/png",
         purpose: "any",
       },
       {
-        src: "/eren-hold16.png?v=hold16",
+        src: EREN_TAB_SRC,
         sizes: "180x180",
         type: "image/png",
         purpose: "any",
