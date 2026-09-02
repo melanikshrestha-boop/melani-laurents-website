@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { siteConfig, type SocialId } from "@/config/site";
 
 const socialIcons: Record<SocialId, React.ReactNode> = {
@@ -42,28 +43,35 @@ interface SocialIconsProps {
   appearance?: "icons" | "labels";
 }
 
+/** Phone / tablet only — never laptop trackpads. */
+function isPhoneSocialTap() {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+}
+
 function placeHoverNote(anchor: HTMLAnchorElement) {
   const note = anchor.querySelector<HTMLElement>(".social-icons__tip");
   if (!note) return;
 
   const margin = 24;
   const gap = 8;
-  const cap = window.innerWidth <= 900 ? 160 : 220;
+  const social = anchor.dataset.social ?? "";
+  const vw = window.innerWidth;
+  const maxFit = Math.max(120, vw - margin * 2);
   const anchorRect = anchor.getBoundingClientRect();
   const anchorCenter = anchorRect.left + anchorRect.width / 2;
 
+  /* Shift the box, don't shrink it to stay centered — that was wrapping X. */
   note.style.removeProperty("--social-tip-width");
-  let noteRect = note.getBoundingClientRect();
-  const room =
-    2 *
-    Math.min(
-      anchorCenter - margin,
-      window.innerWidth - margin - anchorCenter,
-    );
-  const nextWidth = Math.min(cap, Math.max(0, room));
+  if (social === "youtube") {
+    note.style.setProperty("--social-tip-width", `${Math.min(296, maxFit)}px`);
+  } else if (social !== "x") {
+    note.style.setProperty("--social-tip-width", `${Math.min(240, maxFit)}px`);
+  }
 
-  if (nextWidth >= 120 && nextWidth < noteRect.width) {
-    note.style.setProperty("--social-tip-width", `${nextWidth}px`);
+  let noteRect = note.getBoundingClientRect();
+  if (noteRect.width > maxFit) {
+    note.style.setProperty("--social-tip-width", `${maxFit}px`);
     noteRect = note.getBoundingClientRect();
   }
 
@@ -115,6 +123,33 @@ export function SocialIcons({
   appearance = "icons",
 }: SocialIconsProps) {
   const isLabels = appearance === "labels";
+  const rootRef = useRef<HTMLDivElement>(null);
+  const openTipRef = useRef<SocialId | null>(null);
+  const [openTip, setOpenTip] = useState<SocialId | null>(null);
+  openTipRef.current = openTip;
+
+  useEffect(() => {
+    if (openTip == null) return;
+    const root = rootRef.current;
+    const anchor = root?.querySelector<HTMLAnchorElement>(
+      `[data-social="${openTip}"]`,
+    );
+    if (anchor) placeHoverNote(anchor);
+
+    const closeIfOutside = (event: PointerEvent) => {
+      const target = event.target;
+      if (
+        target instanceof Element &&
+        target.closest(`[data-social="${openTip}"]`)
+      ) {
+        return;
+      }
+      setOpenTip(null);
+    };
+    document.addEventListener("pointerdown", closeIfOutside);
+    return () => document.removeEventListener("pointerdown", closeIfOutside);
+  }, [openTip]);
+
   /* hub: em-based so piece scale + canvas scale both apply (no fixed rem) */
   const iconSize =
     size === "hub"
@@ -132,6 +167,7 @@ export function SocialIcons({
 
   return (
     <div
+      ref={rootRef}
       className={`social-icons flex flex-nowrap items-center ${gap} ${className}`}
     >
       {siteConfig.socialLinks.map((link) => {
@@ -141,26 +177,52 @@ export function SocialIcons({
             ? link.hoverNote
             : undefined;
         const isMail = href.startsWith("mailto:");
+        const tipOpen = openTip === id;
 
         return (
           <a
             key={id}
             href={href}
+            data-social={id}
             target={isMail ? undefined : "_blank"}
             rel={isMail ? undefined : "noopener noreferrer"}
             aria-label={isLabels ? undefined : label}
             className={
               hoverNote
-                ? "social-icons__link social-icons__link--tip"
+                ? `social-icons__link social-icons__link--tip${
+                    tipOpen ? " is-tip-open" : ""
+                  }`
                 : "social-icons__link"
             }
             /* Native title only when we have no personal note (avoids double tooltip) */
             title={hoverNote || isLabels ? undefined : label}
             onPointerEnter={
-              hoverNote ? (event) => placeHoverNote(event.currentTarget) : undefined
+              hoverNote
+                ? (event) => {
+                    if (isPhoneSocialTap()) return;
+                    placeHoverNote(event.currentTarget);
+                  }
+                : undefined
             }
             onFocus={
-              hoverNote ? (event) => placeHoverNote(event.currentTarget) : undefined
+              hoverNote
+                ? (event) => {
+                    if (isPhoneSocialTap()) return;
+                    placeHoverNote(event.currentTarget);
+                  }
+                : undefined
+            }
+            onClick={
+              hoverNote
+                ? (event) => {
+                    /* Laptop keeps hover → click-through. Phone: tap once, then Tap again. */
+                    if (!isPhoneSocialTap()) return;
+                    if (openTipRef.current === id) return;
+                    event.preventDefault();
+                    setOpenTip(id);
+                    placeHoverNote(event.currentTarget);
+                  }
+                : undefined
             }
           >
             {isLabels ? (
@@ -172,7 +234,8 @@ export function SocialIcons({
             )}
             {hoverNote ? (
               <span className="social-icons__tip" role="tooltip">
-                {hoverNote}
+                <span className="social-icons__tip-copy">{hoverNote}</span>
+                <span className="social-icons__tip-again">Tap again</span>
               </span>
             ) : null}
           </a>

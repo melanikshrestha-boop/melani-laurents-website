@@ -5870,12 +5870,26 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 }
 
 .pb-root .pb-blog-author__note {
-  max-width: 42rem;
-  margin: 0.35rem 0 0.45rem 33px;
-  font-size: 13px;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+  margin: 0.35rem 0 0.55rem;
+  color: var(--pb-blog-title-color);
+  font-family: var(--pb-blog-font);
+  font-size: max(var(--pb-blog-title-size), 12px);
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.35;
   letter-spacing: 0;
+  overflow-wrap: break-word;
+}
+
+.pb-root .pb-blog-author__note p {
+  margin: 0 0 0.7em;
+  max-width: none;
+}
+
+.pb-root .pb-blog-author__note p:last-child {
+  margin-bottom: 0;
 }
 
 .pb-root .pb-blog-author .pb-blogs__list {
@@ -6020,6 +6034,14 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
 .pb-root .pb-currently-reading a,
 .pb-root .pb-blog-author .pb-blogs__name {
   font-weight: 400 !important;
+}
+
+.pb-root .pb-blog-author__note,
+.pb-root .pb-blog-author__note p {
+  color: var(--pb-blog-title-color);
+  font-family: var(--pb-blog-font);
+  font-size: max(var(--pb-blog-title-size), 12px);
+  font-weight: 400;
 }
 
 .pb-root .pb-currently-reading a {

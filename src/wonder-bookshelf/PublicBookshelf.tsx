@@ -1480,10 +1480,12 @@ export function PublicBookshelf() {
 
                     {expanded ? (
                       <>
-                        {BLOG_AUTHOR_OPEN[group.id]?.note ? (
-                          <p className="pb-blog-author__note">
-                            {BLOG_AUTHOR_OPEN[group.id].note}
-                          </p>
+                        {BLOG_AUTHOR_OPEN[group.id]?.note?.length ? (
+                          <div className="pb-blog-author__note">
+                            {BLOG_AUTHOR_OPEN[group.id].note.map((para) => (
+                              <p key={para}>{para}</p>
+                            ))}
+                          </div>
                         ) : null}
                       <ol className="pb-blogs__list">
                         {visibleBlogItems(

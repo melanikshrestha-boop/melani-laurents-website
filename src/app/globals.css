@@ -970,7 +970,7 @@ body {
   color: var(--hub-ink);
 }
 
-/* Personal social hover notes — cursor only, never click-gated. */
+/* Personal social notes: hover on laptop. Phone: tap once, then Tap again. */
 .social-icons__link--tip {
   position: relative;
   z-index: 8;
@@ -983,8 +983,8 @@ body {
   left: var(--social-tip-left, 0.75rem);
   z-index: 200;
   box-sizing: border-box;
-  width: min(var(--social-tip-width, 220px), calc(100vw - 1.5rem));
-  max-width: 220px;
+  width: min(var(--social-tip-width, 15rem), calc(100vw - 1.5rem));
+  max-width: min(var(--social-tip-width, 15rem), calc(100vw - 1.5rem));
   max-height: calc(100dvh - 1.5rem);
   overflow-x: hidden;
   overflow-y: auto;
@@ -1011,7 +1011,7 @@ body {
   font-variant-ligatures: common-ligatures;
   -webkit-font-smoothing: antialiased;
   white-space: normal;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
   box-shadow: none;
   opacity: 0;
   visibility: hidden;
@@ -1039,6 +1039,30 @@ body {
   pointer-events: none;
 }
 
+.social-icons__tip-copy {
+  display: block;
+}
+
+.social-icons__tip-again {
+  display: none;
+  margin-top: 0.4em;
+}
+
+/* X: one line. YouTube: a slightly wider box, at most ~3 lines. */
+.social-icons__link[data-social="x"] .social-icons__tip {
+  width: max-content;
+  max-width: calc(100vw - 1.5rem);
+}
+
+.social-icons__link[data-social="x"] .social-icons__tip-copy {
+  white-space: nowrap;
+}
+
+.social-icons__link[data-social="youtube"] .social-icons__tip {
+  width: min(var(--social-tip-width, 18.5rem), calc(100vw - 1.5rem));
+  max-width: min(18.5rem, calc(100vw - 1.5rem));
+}
+
 /* Only real hover devices — no sticky “tap trap” on phones */
 @media (hover: hover) and (pointer: fine) {
   .social-icons__link--tip:hover,
@@ -1052,6 +1076,31 @@ body {
     visibility: visible;
     transform: translateY(0);
   }
+
+  .social-icons__tip-again {
+    display: none !important;
+  }
+}
+
+/* Phone: tap once → note + “Tap again”. Laptop never sees this. */
+@media (hover: none) and (pointer: coarse) {
+  .social-icons__link--tip {
+    touch-action: manipulation;
+  }
+
+  .social-icons__link--tip.is-tip-open {
+    z-index: 210;
+  }
+
+  .social-icons__link--tip.is-tip-open .social-icons__tip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .social-icons__link--tip.is-tip-open .social-icons__tip-again {
+    display: block;
+  }
 }
 
 /*
@@ -1059,8 +1108,8 @@ body {
  * Never Allura — script was illegible on the Spotify note.
  */
 .hub-page--photo .social-icons__tip {
-  width: min(var(--social-tip-width, 220px), calc(100vw - 48px));
-  max-width: 220px;
+  width: min(var(--social-tip-width, 15rem), calc(100vw - 48px));
+  max-width: min(var(--social-tip-width, 15rem), calc(100vw - 48px));
   padding: 8px;
   background: transparent;
   color: #ffffff;
@@ -6510,12 +6559,22 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   }
 
   .hub-page--photo .social-icons__tip {
-    width: min(var(--social-tip-width, 160px), calc(100vw - 48px));
-    max-width: 160px;
+    width: min(var(--social-tip-width, 15rem), calc(100vw - 48px));
+    max-width: min(var(--social-tip-width, 15rem), calc(100vw - 48px));
     padding: 8px;
     font-family: "Courier New", Courier, ui-monospace, monospace;
     font-size: 11px;
     line-height: 1.25;
+  }
+
+  .hub-page--photo .social-icons__link[data-social="x"] .social-icons__tip {
+    width: max-content;
+    max-width: calc(100vw - 48px);
+  }
+
+  .hub-page--photo .social-icons__link[data-social="youtube"] .social-icons__tip {
+    width: min(var(--social-tip-width, 18.5rem), calc(100vw - 48px));
+    max-width: min(18.5rem, calc(100vw - 48px));
   }
 
   /* Free horizontal room: location collides with socials on ~390px */
@@ -6656,10 +6715,20 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   }
 
   .hub-page--photo .social-icons__tip {
-    width: min(var(--social-tip-width, 160px), calc(100vw - 48px));
-    max-width: 160px;
+    width: min(var(--social-tip-width, 15rem), calc(100vw - 48px));
+    max-width: min(var(--social-tip-width, 15rem), calc(100vw - 48px));
     font-family: "Courier New", Courier, ui-monospace, monospace;
     font-size: 11px;
+  }
+
+  .hub-page--photo .social-icons__link[data-social="x"] .social-icons__tip {
+    width: max-content;
+    max-width: calc(100vw - 48px);
+  }
+
+  .hub-page--photo .social-icons__link[data-social="youtube"] .social-icons__tip {
+    width: min(var(--social-tip-width, 18.5rem), calc(100vw - 48px));
+    max-width: min(18.5rem, calc(100vw - 48px));
   }
 
   .hub-page--photo .hub-page__nav--locked {
@@ -7113,13 +7182,27 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 }
 
 .hub-page--photo .social-icons__tip {
-  width: min(var(--social-tip-width, 220px), calc(100vw - 48px)) !important;
-  max-width: 220px !important;
+  width: min(var(--social-tip-width, 15rem), calc(100vw - 48px)) !important;
+  max-width: min(var(--social-tip-width, 15rem), calc(100vw - 48px)) !important;
   padding: 8px !important;
   font-family: "Courier New", Courier, ui-monospace, monospace !important;
   font-size: 11px !important;
   line-height: 1.25 !important;
   -webkit-text-stroke: 0 !important;
+}
+
+.hub-page--photo .social-icons__link[data-social="x"] .social-icons__tip {
+  width: max-content !important;
+  max-width: calc(100vw - 48px) !important;
+}
+
+.hub-page--photo .social-icons__link[data-social="x"] .social-icons__tip-copy {
+  white-space: nowrap !important;
+}
+
+.hub-page--photo .social-icons__link[data-social="youtube"] .social-icons__tip {
+  width: min(var(--social-tip-width, 18.5rem), calc(100vw - 48px)) !important;
+  max-width: min(18.5rem, calc(100vw - 48px)) !important;
 }
 
 .hub-page--photo .social-icons__tip::before {
@@ -7173,11 +7256,21 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   }
 
   .hub-page--photo .social-icons__tip {
-    max-width: 160px !important;
-    width: min(var(--social-tip-width, 160px), calc(100vw - 48px)) !important;
+    max-width: min(var(--social-tip-width, 15rem), calc(100vw - 48px)) !important;
+    width: min(var(--social-tip-width, 15rem), calc(100vw - 48px)) !important;
     padding: 8px !important;
     font-family: "Courier New", Courier, ui-monospace, monospace !important;
     font-size: 11px !important;
+  }
+
+  .hub-page--photo .social-icons__link[data-social="x"] .social-icons__tip {
+    width: max-content !important;
+    max-width: calc(100vw - 48px) !important;
+  }
+
+  .hub-page--photo .social-icons__link[data-social="youtube"] .social-icons__tip {
+    width: min(var(--social-tip-width, 18.5rem), calc(100vw - 48px)) !important;
+    max-width: min(18.5rem, calc(100vw - 48px)) !important;
   }
 }
 
