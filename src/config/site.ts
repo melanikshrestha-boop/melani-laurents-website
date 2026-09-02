@@ -40,7 +40,7 @@ export const siteConfig = {
     "https://open.spotify.com/user/21etydsnbqyqe7ekagfnqbhoq?si=c3c26ede4c8a46a5",
   /**
    * Header social row (home top-right). Fun stuff only — GitHub / LinkedIn / Scholar live on Builds.
-   * X · YouTube · Spotify · Instagram · TikTok
+   * X · YouTube · Spotify · Instagram · TikTok · Gmail
    * hoverNote = personal popup on cursor only (omit until Melani writes one).
    */
   socialLinks: [
@@ -73,6 +73,11 @@ export const siteConfig = {
       id: "tiktok",
       label: "TikTok",
       href: "https://www.tiktok.com/@melanilaurents",
+    },
+    {
+      id: "gmail",
+      label: "Gmail",
+      href: "mailto:mshresth@usc.edu",
     },
   ],
   /** The single public index shown at the bottom of the home hero. */
