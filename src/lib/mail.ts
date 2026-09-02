@@ -1,5 +1,7 @@
 import nodemailer from "nodemailer";
 import { siteConfig } from "@/config/site";
+import type { PortraitBooking } from "@/lib/booking";
+import { BOOKING_INBOX } from "@/lib/booking";
 import type { ContactMessage } from "@/lib/contact";
 import type { PrintOrderRequest } from "@/lib/print-order";
 
@@ -106,6 +108,62 @@ export async function sendPrintOrderNotice(order: PrintOrderRequest): Promise<vo
     from: `"Celine Nova prints" <${user}>`,
     to: PRINT_ORDER_NOTIFY_EMAIL,
     replyTo: order.email,
+    subject,
+    text,
+    html,
+  });
+}
+
+export async function sendPortraitBookingNotice(
+  booking: PortraitBooking,
+): Promise<void> {
+  const user = process.env.GMAIL_USER;
+  const pass = process.env.GMAIL_APP_PASSWORD;
+
+  if (!user || !pass) {
+    throw new Error("MAIL_NOT_CONFIGURED");
+  }
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: { user, pass },
+  });
+
+  const notify =
+    process.env.BOOKING_NOTIFY_EMAIL?.trim() ||
+    process.env.PRINT_ORDER_NOTIFY_EMAIL?.trim() ||
+    BOOKING_INBOX;
+
+  const subject = `Portrait booking: ${booking.name} · ${booking.city}`;
+  const text = [
+    "A portrait booking was submitted on the site.",
+    "",
+    `Name: ${booking.name}`,
+    `Email: ${booking.email}`,
+    `City: ${booking.city}`,
+    booking.date ? `Date: ${booking.date}` : "Date: (none)",
+    "",
+    booking.message,
+  ].join("\n");
+
+  const html = [
+    "<p>A portrait booking was submitted on the site.</p>",
+    "<p><strong>Name:</strong> " + escapeHtml(booking.name) + "</p>",
+    "<p><strong>Email:</strong> " + escapeHtml(booking.email) + "</p>",
+    "<p><strong>City:</strong> " + escapeHtml(booking.city) + "</p>",
+    booking.date
+      ? "<p><strong>Date:</strong> " + escapeHtml(booking.date) + "</p>"
+      : "",
+    "<p><strong>Message:</strong></p>",
+    "<p>" + escapeHtml(booking.message).replace(/\n/g, "<br>") + "</p>",
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  await transporter.sendMail({
+    from: `"Celine Nova booking" <${user}>`,
+    to: notify,
+    replyTo: booking.email,
     subject,
     text,
     html,

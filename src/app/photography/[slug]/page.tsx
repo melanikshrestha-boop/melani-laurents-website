@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PortfolioGallery } from "@/components/photography/PortfolioGallery";
+import { PortraitBooker } from "@/components/photography/PortraitBooker";
 import {
   getPhotoCollection,
   getPhotoCollectionSlugs,
@@ -59,9 +60,12 @@ export default async function PhotographyCollectionPage({ params }: PageProps) {
               </Link>
             )}
             {isPortraits ? (
-              <h1 className="portfolio-collection-header__current">
-                Portraits <span aria-hidden>→</span>
-              </h1>
+              <div className="portfolio-collection-header__end">
+                <h1 className="portfolio-collection-header__current">
+                  Portraits <span aria-hidden>→</span>
+                </h1>
+                <PortraitBooker />
+              </div>
             ) : (
               <Link
                 href="/photography/portraits"

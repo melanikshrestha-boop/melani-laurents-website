@@ -269,6 +269,69 @@
   text-decoration: underline;
 }
 
+.portfolio-collection-header__end {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+}
+
+.portfolio-book-me {
+  margin: 0;
+  padding: 0.2rem 0 0.15rem 0.45rem;
+  border: 0;
+  background: none;
+  color: var(--photo-ink);
+  font-family: var(--font-share-tech-mono), ui-monospace, monospace;
+  font-size: clamp(0.58rem, 0.68vw, 0.68rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.portfolio-book-me:hover,
+.portfolio-book-me:focus-visible {
+  color: #4d287d;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.28em;
+}
+
+.print-order-dialog.portrait-book-dialog {
+  grid-template-columns: minmax(0, 1fr);
+  width: min(28rem, 100%);
+  height: auto;
+  max-height: min(44rem, calc(100svh - 2rem));
+}
+
+.print-order-dialog.portrait-book-dialog .print-order-content {
+  padding: 2.1rem 1.4rem 1.4rem;
+}
+
+.print-order-dialog.portrait-book-dialog textarea {
+  display: block;
+  width: 100%;
+  min-height: 7rem;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.55rem 0;
+  border: 0;
+  border-bottom: 1px solid rgba(23, 22, 20, 0.3);
+  border-radius: 0;
+  background: transparent;
+  color: #171614;
+  font-family: var(--font-epilogue), system-ui, sans-serif;
+  font-size: 0.86rem;
+  resize: vertical;
+}
+
+.print-order-dialog.portrait-book-dialog textarea:focus {
+  outline: 0;
+  border-bottom-color: #65489b;
+}
+
 .portfolio-sketch-quote {
   display: grid;
   grid-template-columns: auto minmax(0, 40rem);
