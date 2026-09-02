@@ -1430,6 +1430,20 @@
   letter-spacing: 0;
 }
 
+.portfolio-gallery--sketches .portfolio-gallery-caption {
+  top: 0.9rem;
+  bottom: 0.9rem;
+  max-height: none;
+  overflow: auto;
+  justify-content: flex-end;
+}
+
+.portfolio-gallery--sketches .portfolio-gallery-note {
+  margin-top: 0;
+  font-size: clamp(12px, 1.2vw, 13px);
+  line-height: 1.4;
+}
+
 .portfolio-gallery-note {
   display: block;
   margin-top: 0.25rem;

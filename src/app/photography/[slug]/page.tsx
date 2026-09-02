@@ -103,7 +103,6 @@ export default async function PhotographyCollectionPage({ params }: PageProps) {
                 ? "sketches"
                 : "grid"
         }
-        story={slug === "sketches" ? collection.story : undefined}
       />
     </>
   );

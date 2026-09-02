@@ -231,17 +231,18 @@
       "tagline": "line \u00b7 hand \u00b7 form",
       "slug": "sketches",
       "cover": "/photography/sketches/cover.jpeg",
-      "story": "On a six-hour flight from L.A. to New York, after a hard summer I felt I had failed to live fully, I could not sleep. I drew anything that felt hopeful while David Bowie's \"Heroes\" played again and again. The lyric fragments stayed in the pages.",
       "photos": [
         {
           "id": "starman-doodle-02",
           "src": "/photography/sketches/starman-doodle-02.jpg",
-          "alt": "Notebook doodles of two men, a computer, an Apple logo, and handwritten notes"
+          "alt": "Notebook doodles of two men, a computer, an Apple logo, and handwritten notes",
+          "note": "I drew this on a six-hour flight from L.A. to New York, blasting \"Heroes\" by David Bowie. I was overwhelmed with life and reading Steve Jobs by Walter Isaacson, so I drew one of their iconic photos: Steve in that pose, with Steve Wozniak in the background. It was sketched poorly in my journal."
         },
         {
           "id": "starman-doodle-03",
           "src": "/photography/sketches/starman-doodle-03.jpg",
-          "alt": "Close pen portrait of a woman surrounded by handwritten notes"
+          "alt": "Close pen portrait of a woman surrounded by handwritten notes",
+          "note": "I drew this on the same six-hour flight from L.A. to New York, blasting \"Heroes\" by David Bowie, right after the Steve Jobs sketch. I just went off. I didn't think of anything. I just started drawing. I don't know who this girl is."
         }
       ]
     },
