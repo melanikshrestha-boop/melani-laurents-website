@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { MelaniSignature } from "@/components/MelaniSignature";
+import { erenTabIcons } from "@/lib/eren-tab";
+
+export const metadata: Metadata = {
+  title: "Not found",
+  icons: erenTabIcons,
+};
 
 export default function NotFound() {
   return (

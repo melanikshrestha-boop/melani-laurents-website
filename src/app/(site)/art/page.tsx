@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { siteConfig, deadPoetsQuote } from "@/config/site";
 import type { Metadata } from "next";
+import { erenTabIcons } from "@/lib/eren-tab";
 
 export const metadata: Metadata = {
   title: "Art",
   description: "Photography, cinema, and visual work by Celine Nova.",
+  icons: erenTabIcons,
 };
 
 export default function ArtPage() {

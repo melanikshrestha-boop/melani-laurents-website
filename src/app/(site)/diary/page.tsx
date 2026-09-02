@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { listConsume } from "@/data/consume-log";
+import { erenTabIcons } from "@/lib/eren-tab";
 import { MEDIUM_LABEL, STANCE_LABEL } from "@/data/consume-types";
 import "@/styles/interactive-blog.css";
 
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
   title: "Diary",
   description:
     "A private-public diary of time spent — what Melani took in, what she thinks, why it mattered.",
+  icons: erenTabIcons,
 };
 
 export default function DiaryPage() {

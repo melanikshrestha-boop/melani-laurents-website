@@ -1,11 +1,13 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { formatBlogArchiveDate, listBlogPosts } from "@/data/blog-posts";
+import { erenTabIcons } from "@/lib/eren-tab";
 import "@/styles/interactive-blog.css";
 
 export const metadata: Metadata = {
   title: "Blog",
   description: "Notes and essays.",
+  icons: erenTabIcons,
 };
 
 /** A plain document index: title and date only. */

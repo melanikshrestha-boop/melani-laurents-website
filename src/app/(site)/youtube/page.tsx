@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/config/site";
+import { erenTabIcons } from "@/lib/eren-tab";
 
 export const metadata: Metadata = {
   title: "YouTube",
   description: siteConfig.youtubeDescription,
+  icons: erenTabIcons,
 };
 
 const youtubeUrl =

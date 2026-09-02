@@ -8,6 +8,7 @@ import {
   getPhotoCollection,
   getPhotoCollectionSlugs,
 } from "@/lib/photography";
+import { erenTabIcons } from "@/lib/eren-tab";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -20,9 +21,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const collection = getPhotoCollection(slug);
-  if (!collection) return { title: "shotbyceline" };
+  if (!collection) return { title: "shotbyceline", icons: erenTabIcons };
   return {
     title: `${collection.title} | shotbyceline`,
+    icons: erenTabIcons,
   };
 }
 

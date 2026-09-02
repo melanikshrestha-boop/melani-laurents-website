@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { siteConfig } from "@/config/site";
+import { erenTabIcons } from "@/lib/eren-tab";
 import { listConsume } from "@/data/consume-log";
 import { listBlogPosts } from "@/data/blog-posts";
 import { MEDIUM_LABEL, STANCE_LABEL } from "@/data/consume-types";
@@ -10,6 +11,7 @@ import "@/styles/daily-pulse.css";
 export const metadata: Metadata = {
   title: "Daily",
   description: "Daily — Melani Laurents / Celine Nova.",
+  icons: erenTabIcons,
 };
 
 /**

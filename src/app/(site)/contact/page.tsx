@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/config/site";
+import { erenTabIcons } from "@/lib/eren-tab";
 import "@/styles/contact.css";
 
 export const metadata: Metadata = {
   title: "Contact",
+  icons: erenTabIcons,
 };
 
 const EMAIL = "mshresth@usc.edu";

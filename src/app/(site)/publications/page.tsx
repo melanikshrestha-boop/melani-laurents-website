@@ -4,11 +4,13 @@ import {
   publicationProfile,
   publications,
 } from "@/data/publications";
+import { erenTabIcons } from "@/lib/eren-tab";
 
 export const metadata: Metadata = {
   title: "Publications",
   description:
     "Patents and publications by Celine Nova — in-ear EEG and neurotech work.",
+  icons: erenTabIcons,
 };
 
 export default function PublicationsPage() {

@@ -6,6 +6,7 @@ import {
   getBlogPost,
   listBlogPosts,
 } from "@/data/blog-posts";
+import { erenTabIcons } from "@/lib/eren-tab";
 import "@/styles/interactive-blog.css";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -17,10 +18,11 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = getBlogPost(slug);
-  if (!post) return { title: "Post" };
+  if (!post) return { title: "Post", icons: erenTabIcons };
   return {
     title: post.title,
     description: post.lede,
+    icons: erenTabIcons,
   };
 }
 

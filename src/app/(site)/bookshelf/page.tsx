@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { WonderBookshelfClient } from "@/wonder-bookshelf/WonderBookshelfClient";
 import { siteConfig } from "@/config/site";
+import { erenTabIcons } from "@/lib/eren-tab";
 
 export const metadata: Metadata = {
   title: "Bookshelf",
   description: siteConfig.bookshelfDescription,
+  icons: erenTabIcons,
 };
 
 export default function BookshelfPage() {

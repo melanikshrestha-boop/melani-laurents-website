@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { NeuroplasticityRemodel } from "@/components/NeuroplasticityRemodel";
 import { ResearchTimeline } from "@/components/ResearchTimeline";
+import { erenTabIcons } from "@/lib/eren-tab";
 
 export const metadata: Metadata = {
   title: "Builds",
   description:
     "Build notes on biomedical engineering, neural interfaces, brain-computer interfaces, biotechnology, and neurotechnology.",
+  icons: erenTabIcons,
 };
 
 export default function ResearchPage() {

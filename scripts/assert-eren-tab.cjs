@@ -52,11 +52,36 @@ for (const rel of icoPaths) {
   }
 }
 
-for (const rel of ["public/icon.png", "public/eren-forever.png"]) {
+for (const rel of ["public/icon.png", "public/eren-every18.png", "public/icon-eren.png"]) {
   const size = fs.statSync(path.join(root, rel)).size;
   if (size < 10000) {
     fail(`${rel} is ${size} bytes — face crop / C. Need full manga square.`);
   }
+}
+
+const mustPin = [
+  "src/app/layout.tsx",
+  "src/app/(site)/layout.tsx",
+  "src/app/photography/layout.tsx",
+  "src/app/kids-book/layout.tsx",
+  "src/app/not-found.tsx",
+  "src/app/(site)/bookshelf/page.tsx",
+  "src/lib/eren-tab.ts",
+  "src/app/manifest.ts",
+];
+for (const rel of mustPin) {
+  const text = fs.readFileSync(path.join(root, rel), "utf8");
+  if (!text.includes("erenTabIcons") && !text.includes("EREN_TAB_SRC")) {
+    fail(`${rel} does not pin Eren icons — nested metadata can drop a C into the tab`);
+  }
+  if (/eren-hold16|eren-keep15|\?v=hold16|\?v=keep15|\?v=forever1/.test(text)) {
+    fail(`${rel} still uses a burned cache-bust`);
+  }
+}
+
+const tab = fs.readFileSync(path.join(root, "src/lib/eren-tab.ts"), "utf8");
+if (!tab.includes("/eren-every18.png") || !tab.includes("?v=every18")) {
+  fail("src/lib/eren-tab.ts must point at /eren-every18.png?v=every18");
 }
 
 console.log("Eren intact");

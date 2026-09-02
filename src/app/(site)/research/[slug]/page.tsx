@@ -5,6 +5,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { ReadingProgress } from "@/components/ReadingProgress";
 import { mdxComponents } from "@/components/mdx-components";
 import { getResearchPost, getResearchSlugs } from "@/lib/research";
+import { erenTabIcons } from "@/lib/eren-tab";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -19,11 +20,12 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = getResearchPost(slug);
-  if (!post) return { title: "Not Found" };
+  if (!post) return { title: "Not Found", icons: erenTabIcons };
 
   return {
     title: post.title,
     description: post.summary,
+    icons: erenTabIcons,
     openGraph: {
       title: post.title,
       description: post.summary,
