@@ -1,12 +1,6 @@
 "use client";
 
 import { siteConfig, type SocialId } from "@/config/site";
-import { Allura } from "next/font/google";
-
-const handwriting = Allura({
-  subsets: ["latin"],
-  weight: "400",
-});
 
 const socialIcons: Record<SocialId, React.ReactNode> = {
   instagram: (
@@ -171,11 +165,7 @@ export function SocialIcons({
               </span>
             )}
             {hoverNote ? (
-              <span
-                className="social-icons__tip"
-                role="tooltip"
-                style={{ fontFamily: handwriting.style.fontFamily }}
-              >
+              <span className="social-icons__tip" role="tooltip">
                 {hoverNote}
               </span>
             ) : null}

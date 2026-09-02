@@ -1005,10 +1005,11 @@ body {
   isolation: isolate;
   /* Default context is the cream pages — ink on a light cloud */
   color: rgba(20, 18, 16, 0.94);
-  font-size: clamp(1.35rem, 1.8vw, 1.65rem);
+  font-family: "Courier New", Courier, ui-monospace, monospace;
+  font-size: 0.8125rem;
   font-weight: 400;
   font-style: normal;
-  line-height: 1.2;
+  line-height: 1.35;
   letter-spacing: 0;
   text-align: left;
   text-transform: none;
@@ -1059,8 +1060,7 @@ body {
 }
 
 /*
- * Home photo: white Allura over mixed stills. Thin script without a halo
- * disappears on brick — keep handwriting, add a dark cloud + stroke so it reads.
+ * Home photo: white Courier over mixed stills. Dark cloud so it reads on brick.
  */
 .hub-page--photo .social-icons__tip {
   width: min(var(--social-tip-width, 220px), calc(100vw - 48px));
@@ -1068,8 +1068,9 @@ body {
   padding: 8px;
   background: transparent;
   color: #ffffff;
-  font-size: 11px;
-  line-height: 1.25;
+  font-family: "Courier New", Courier, ui-monospace, monospace;
+  font-size: 12px;
+  line-height: 1.35;
   -webkit-text-stroke: 0;
   text-shadow:
     0 0 1px rgba(0, 0, 0, 0.95),
@@ -6478,8 +6479,9 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
     width: min(var(--social-tip-width, 160px), calc(100vw - 48px));
     max-width: 160px;
     padding: 8px;
-    font-size: 11px;
-    line-height: 1.25;
+    font-family: "Courier New", Courier, ui-monospace, monospace;
+    font-size: 12px;
+    line-height: 1.35;
   }
 
   /* Free horizontal room: location collides with socials on ~390px */
@@ -6622,7 +6624,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   .hub-page--photo .social-icons__tip {
     width: min(var(--social-tip-width, 160px), calc(100vw - 48px));
     max-width: 160px;
-    font-size: 11px;
+    font-family: "Courier New", Courier, ui-monospace, monospace;
+    font-size: 12px;
   }
 
   .hub-page--photo .hub-page__nav--locked {
@@ -7035,8 +7038,9 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   width: min(var(--social-tip-width, 220px), calc(100vw - 48px)) !important;
   max-width: 220px !important;
   padding: 8px !important;
-  font-size: 11px !important;
-  line-height: 1.25 !important;
+  font-family: "Courier New", Courier, ui-monospace, monospace !important;
+  font-size: 12px !important;
+  line-height: 1.35 !important;
   -webkit-text-stroke: 0 !important;
 }
 
@@ -7094,7 +7098,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
     max-width: 160px !important;
     width: min(var(--social-tip-width, 160px), calc(100vw - 48px)) !important;
     padding: 8px !important;
-    font-size: 11px !important;
+    font-family: "Courier New", Courier, ui-monospace, monospace !important;
+    font-size: 12px !important;
   }
 }
 
