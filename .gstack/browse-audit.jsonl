@@ -1,5 +1,0 @@
-{"ts":"2026-08-31T03:42:22.667Z","cmd":"goto","args":"http://127.0.0.1:3001/projects","origin":"http://127.0.0.1:3001/projects","durationMs":288,"status":"ok","hasCookies":false,"mode":"launched"}
-{"ts":"2026-08-31T03:42:22.779Z","cmd":"wait","args":".builds-github__calendar","origin":"http://127.0.0.1:3001/projects","durationMs":44,"status":"ok","hasCookies":false,"mode":"launched"}
-{"ts":"2026-08-31T03:42:22.820Z","cmd":"js","args":"window.scrollTo(0, document.body.scrollHeight)","origin":"http://127.0.0.1:3001/projects","durationMs":2,"status":"ok","hasCookies":false,"mode":"launched"}
-{"ts":"2026-08-31T03:42:23.251Z","cmd":"screenshot","args":"/tmp/gh-849.png --selector .builds-github","origin":"http://127.0.0.1:3001/projects","durationMs":91,"status":"ok","hasCookies":false,"mode":"launched"}
-{"ts":"2026-08-31T03:42:23.285Z","cmd":"js","args":"document.querySelector('.builds-github__count')?.textContent","origin":"http://127.0.0.1:3001/projects","durationMs":1,"status":"ok","hasCookies":false,"mode":"launched"}

@@ -46,3 +46,4 @@ data/newsletter-subscribers.json
 
 # newsletter subscribers (local MVP storage)
 /data/newsletter-subscribers.json
+.gstack/
