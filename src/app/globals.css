@@ -6965,6 +6965,13 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
     0 4px 18px rgba(0, 0, 0, 0.3) !important;
 }
 
+/* Period is light; half its advance on the left puts CELINE NOVA on true center. */
+.hub-page--photo .hub-page__title-line,
+.home-sections .hub-page--photo .hub-page__title-line,
+.home-sections .hub-page--photo.hub-page--locked .hub-page__title-line {
+  padding-left: 0.256em !important;
+}
+
 .hub-page--photo .hub-page__title,
 .home-sections .hub-page--photo .hub-page__title {
   opacity: 1;
