@@ -433,8 +433,8 @@
 .portfolio-art-subs__line {
   margin: 0 auto;
   max-width: 72rem;
-  color: #ffffff;
-  -webkit-text-fill-color: #ffffff;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
   font-family: "Courier New", Courier, ui-monospace, monospace;
   font-size: clamp(10px, 0.95vw, 11px);
   font-weight: 400;
@@ -444,16 +444,17 @@
   letter-spacing: 0;
   text-align: center;
   text-wrap: pretty;
-  text-shadow: none;
+  /* Dark halo so white reads as white on the bright street still. */
+  text-shadow: 0 0 0.45em rgba(0, 0, 0, 0.9);
   opacity: 1;
 }
 
 .portfolio-art-subs__line span {
   padding: 0.12em 0.45em;
-  color: #ffffff;
-  -webkit-text-fill-color: #ffffff;
-  /* Gray line film — Fendi still is too bright for a white wash. */
-  background: rgba(28, 28, 28, 0.5);
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  /* Line film only — darker so the type stays #fff, not gray. */
+  background: rgba(0, 0, 0, 0.62);
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
@@ -461,9 +462,8 @@
 .portfolio-art-subs__credit {
   display: inline;
   margin-top: 0;
-  color: #ffffff;
-  -webkit-text-fill-color: #ffffff;
-  text-shadow: none;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
 }
 
 .portfolio-hover-item:hover .portfolio-hover-item-title,
