@@ -12,9 +12,9 @@ const nextConfig: NextConfig = {
     root: projectRoot,
   },
   // Chrome hard-requests /favicon.ico. Serve the square Eren PNG there too.
-  // src/app/favicon.ico + public/favicon.ico are 16+32+48 of the FULL still
-  // (never a 32px face-crop — that reads as ©). Next may inject the app ICO
-  // as rel=icon sizes=32x32; keep those bytes as square Eren, not a C.
+  // Do not add src/app/favicon.ico — Next hashes it (Chrome caches a C) and
+  // Turbopack 500s on RGB PNG-in-ICO. public/favicon.ico is 16+32+48 RGBA
+  // of the FULL still (never a 32px face-crop — that reads as ©).
   async rewrites() {
     return {
       beforeFiles: [

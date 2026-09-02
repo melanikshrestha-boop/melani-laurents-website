@@ -384,8 +384,8 @@
   padding: 0.12em 0.45em;
   color: #ffffff;
   -webkit-text-fill-color: #ffffff;
-  /* Light wash — photo stays visible through the bar. */
-  background: rgba(255, 255, 255, 0.08);
+  /* Gray line film — Fendi still is too bright for a white wash. */
+  background: rgba(28, 28, 28, 0.5);
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
