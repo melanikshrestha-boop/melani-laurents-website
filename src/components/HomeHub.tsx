@@ -46,7 +46,7 @@ export function HomeHub() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/icon-eren.png" alt="" />
             </span>
-            <span className="hub-page__identity-name">CELINE NOVA.</span>
+            <span className="hub-page__identity-name">Celine Nova.</span>
           </Link>
 
           <nav

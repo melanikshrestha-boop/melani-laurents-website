@@ -661,28 +661,21 @@ body {
   background: #dededb !important;
 }
 
-/* True extremities: logo at left pad, CONTACT at right pad (shared 10px gutter) */
+/* True extremities: Eren at left pad, CONTACT at right pad (shared 10px gutter) */
 .cinema-nav--bookshelf .cinema-nav__inner--bookshelf {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
   max-width: none;
   margin: 0;
   padding: 0 10px !important;
   box-sizing: border-box;
 }
-.cinema-nav--bookshelf .melani-signature-link {
-  display: flex;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  line-height: 0;
-}
-/* SVG text starts at x=18/460 — pull ink to the gutter edge */
-.cinema-nav--bookshelf .melani-signature--nav-edge .melani-signature__mark {
-  display: block;
-  height: 2.1rem;
-  width: auto;
-  margin: 0 0 0 -0.45rem;
-  padding: 0;
+.cinema-nav--bookshelf .cinema-nav__identity {
+  color: #171614;
 }
 .cinema-nav--bookshelf .cinema-nav__end {
   margin-left: auto;
@@ -6056,10 +6049,11 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   min-width: 0;
   font-family: var(--font-syne), var(--font-display), system-ui, sans-serif;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1;
   letter-spacing: 0.04em;
   white-space: nowrap;
+  text-transform: none;
 }
 
 .hub-page__brand--locked .melani-signature-link {
@@ -6984,8 +6978,9 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .hub-page--photo .hub-page__identity-name,
 .home-sections .hub-page--photo .hub-page__identity-name {
   font-size: 13px !important;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0.04em;
+  text-transform: none;
 }
 
 .hub-page--photo .hub-page__title-line,

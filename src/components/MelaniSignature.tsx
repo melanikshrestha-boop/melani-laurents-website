@@ -40,9 +40,7 @@ export function MelaniSignature({
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden
-        role="img"
       >
-        <title>Celine Nova</title>
         <text
           x="18"
           y="94"

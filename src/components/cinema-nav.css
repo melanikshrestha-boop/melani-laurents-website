@@ -5,6 +5,49 @@
   z-index: 100;
 }
 
+/* Square Eren + Celine Nova. — one midline with the section links. */
+.cinema-nav__identity {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.5rem;
+  height: 100%;
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+.cinema-nav__identity-photo {
+  display: block;
+  flex: 0 0 auto;
+  width: 1.55rem;
+  height: 1.55rem;
+}
+.cinema-nav__identity-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  object-fit: cover;
+  object-position: center;
+}
+.cinema-nav__identity-name {
+  min-width: 0;
+  font-family: var(--font-syne), var(--font-display), system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  text-transform: none;
+}
+.cinema-nav:not(.cinema-nav--paper):not(.cinema-nav--bookshelf) .cinema-nav__identity {
+  color: #fff;
+}
+.cinema-nav--paper .cinema-nav__identity {
+  color: #171614;
+}
+
 .cinema-nav a,
 .cinema-nav button,
 .cinema-nav summary {
@@ -151,13 +194,17 @@
 }
 .cinema-nav--art .cinema-nav__inner--bookshelf {
   position: relative;
-  display: block !important;
+  display: flex !important;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
   max-width: none;
   min-height: 3rem;
   height: 3rem !important;
   margin: 0;
-  padding: 0 !important;
+  padding: 0 10px !important;
   box-sizing: border-box;
 }
 
@@ -190,35 +237,30 @@
   color: #2f174e !important;
   -webkit-text-fill-color: #2f174e !important;
 }
-.cinema-nav--art .melani-signature-link {
-  position: absolute;
-  top: 0;
-  left: 10px;
+.cinema-nav--art .cinema-nav__identity {
+  position: relative;
   z-index: 1;
-  display: flex;
-  align-items: center;
   height: 3rem;
-  color: #000;
+  color: #fff;
 }
-.cinema-nav--art .melani-signature--ink {
-  color: #000 !important;
+.cinema-nav--art .cinema-nav__identity-name {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
 }
-.cinema-nav--art .melani-signature__mark {
-  height: 2.35rem;
-  width: auto;
+.cinema-nav--art-gallery .cinema-nav__identity {
+  color: #141210;
 }
 .cinema-nav--art .cinema-nav__end--art,
 .cinema-nav--art .cinema-nav__end {
-  position: absolute !important;
-  top: 0;
-  right: 10px;
-  bottom: 0;
+  position: relative !important;
+  top: auto;
+  right: auto;
+  bottom: auto;
   left: auto;
   z-index: 2;
   display: flex !important;
   align-items: center;
   width: auto !important;
-  max-width: calc(100% - 20px);
+  max-width: none;
   margin: 0 !important;
   padding: 0 !important;
 }
@@ -259,13 +301,12 @@
     height: 2.75rem !important;
   }
 
-  .cinema-nav--art .melani-signature-link {
+  .cinema-nav--art .cinema-nav__identity {
     height: 2.75rem;
   }
 
   .cinema-nav--art .cinema-nav__end--art,
   .cinema-nav--art .cinema-nav__end {
-    right: 10px;
     height: 2.75rem;
   }
 

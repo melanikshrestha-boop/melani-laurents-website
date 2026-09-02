@@ -11,13 +11,14 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: projectRoot,
   },
-  // Chrome hard-requests /favicon.ico. Serve square Eren PNG there too.
-  // Do not add src/app/favicon.ico — Next hashes it and Chrome caches a C.
-  // public/favicon.ico is a 16+32+48 ICO of the full still (fallback only).
+  // Chrome hard-requests /favicon.ico. Serve the square Eren PNG there too.
+  // src/app/favicon.ico + public/favicon.ico are 16+32+48 of the FULL still
+  // (never a 32px face-crop — that reads as ©). Next may inject the app ICO
+  // as rel=icon sizes=32x32; keep those bytes as square Eren, not a C.
   async rewrites() {
     return {
       beforeFiles: [
-        { source: "/favicon.ico", destination: "/eren-stay12.png" },
+        { source: "/favicon.ico", destination: "/eren-stay13.png" },
       ],
     };
   },
@@ -30,7 +31,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/eren-stay12.png",
+        source: "/eren-stay13.png",
         headers: [
           { key: "Cache-Control", value: "public, max-age=0, must-revalidate" },
         ],

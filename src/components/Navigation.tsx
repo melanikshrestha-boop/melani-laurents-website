@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { siteConfig, type NavItem } from "@/config/site";
-import { MelaniSignature } from "./MelaniSignature";
 import { SocialIcons } from "./SocialIcons";
 import "./cinema-nav.css";
 
@@ -138,10 +137,17 @@ export function Navigation() {
         }
         aria-label="Primary"
       >
-        <MelaniSignature
-          variant={paper || isArt ? "ink" : "light"}
-          className={`melani-signature--nav${edgePaper || isArt ? " melani-signature--nav-edge" : ""}`}
-        />
+        <Link
+          href="/"
+          className="cinema-nav__identity"
+          aria-label="Celine Nova home"
+        >
+          <span className="cinema-nav__identity-photo" aria-hidden>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/icon-eren.png" alt="" />
+          </span>
+          <span className="cinema-nav__identity-name">Celine Nova.</span>
+        </Link>
 
         <div
           className={
