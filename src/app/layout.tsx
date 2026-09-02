@@ -43,7 +43,7 @@ const instrumentSerif = Instrument_Serif({
   weight: "400",
 });
 
-/* Bookshelf manifesto body — social hover notes use this too */
+/* Bookshelf manifesto body. Social hover notes are Courier, not this face. */
 const sourceSerif = Source_Serif_4({
   variable: "--font-source-serif",
   subsets: ["latin"],
