@@ -18,6 +18,7 @@ const nextConfig: NextConfig = {
     return {
       beforeFiles: [
         { source: "/favicon.ico", destination: "/eren-now.png" },
+        { source: "/icon.svg", destination: "/eren-now.png" },
       ],
     };
   },
@@ -37,6 +38,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/never-c.png",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=0, must-revalidate" },
+        ],
+      },
+      {
+        source: "/icon.svg",
         headers: [
           { key: "Cache-Control", value: "public, max-age=0, must-revalidate" },
         ],

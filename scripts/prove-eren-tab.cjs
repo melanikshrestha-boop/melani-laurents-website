@@ -87,6 +87,13 @@ function get(url) {
   if (png.body[0] !== 0x89 || png.body[1] !== 0x50) fail("/eren-now.png is not a PNG");
   console.log("ok eren-now.png", png.body.length);
 
+  const svg = await get(base + "/icon.svg");
+  if (svg.status >= 400) fail("/icon.svg status " + svg.status);
+  const svgText = svg.body.toString("utf8");
+  if (svgText.includes("<!DOCTYPE html>")) fail("/icon.svg is HTML 404 — Chrome will keep a cached C");
+  if (svg.body.length < 2000) fail("/icon.svg too small: " + svg.body.length);
+  console.log("ok icon.svg", svg.body.length, svg.type);
+
   console.log("Eren proved on", base);
 })().catch((err) => {
   fail(String(err && err.message ? err.message : err));
