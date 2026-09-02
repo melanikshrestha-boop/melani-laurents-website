@@ -384,7 +384,8 @@
   padding: 0.12em 0.45em;
   color: #ffffff;
   -webkit-text-fill-color: #ffffff;
-  background: rgba(0, 0, 0, 0.52);
+  /* Light wash — photo stays visible through the bar. */
+  background: rgba(255, 255, 255, 0.08);
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
