@@ -11,12 +11,10 @@ import {
 } from "react";
 import type { Photo } from "@/data/photography-meta";
 import { PrintOrderDialog } from "@/components/photography/PrintOrderDialog";
-import { LennonQuote } from "@/components/photography/LennonQuote";
 
 interface PortfolioGalleryProps {
   photos: Photo[];
   layout?: "grid" | "scenery" | "sketches" | "portraits";
-  showStatement?: boolean;
   story?: string;
 }
 
@@ -26,7 +24,6 @@ const TAP_MS = 280;
 export function PortfolioGallery({
   photos,
   layout = "grid",
-  showStatement = false,
   story,
 }: PortfolioGalleryProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -172,7 +169,7 @@ export function PortfolioGallery({
 
     targets.forEach((target) => observer.observe(target));
     return () => observer.disconnect();
-  }, [photos.length, showStatement]);
+  }, [photos.length]);
 
   if (photos.length === 0) {
     return (
@@ -346,10 +343,6 @@ export function PortfolioGallery({
             </aside>
           ) : null}
         </div>
-
-        {showStatement ? (
-          <LennonQuote className="portfolio-sketch-quote--end" />
-        ) : null}
       </div>
 
       {lightboxIndex !== null && (

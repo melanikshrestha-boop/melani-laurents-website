@@ -89,7 +89,7 @@ export function PortraitBooker() {
           setOpen(true);
         }}
       >
-        Book me
+        Book a shoot
       </button>
 
       {open ? (
@@ -116,7 +116,7 @@ export function PortraitBooker() {
             </button>
 
             <div className="print-order-content">
-              <h2 id="portrait-book-title">Book me</h2>
+              <h2 id="portrait-book-title">Book a shoot</h2>
               <form className="print-order-form" onSubmit={handleSubmit}>
                 <div className="print-order-honeypot" aria-hidden>
                   <label htmlFor="book-company">Company</label>
@@ -163,7 +163,9 @@ export function PortraitBooker() {
 
                 <div className="print-order-submit">
                   <button type="submit" disabled={submitState.kind === "sending"}>
-                    {submitState.kind === "sending" ? "Sending..." : "Book me"}
+                    {submitState.kind === "sending"
+                      ? "Sending..."
+                      : "Book a shoot"}
                   </button>
                   <p
                     className={`print-order-status print-order-status--${submitState.kind}`}

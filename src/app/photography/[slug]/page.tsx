@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PortfolioGallery } from "@/components/photography/PortfolioGallery";
 import { PortraitBooker } from "@/components/photography/PortraitBooker";
+import { SceneryPrints } from "@/components/photography/SceneryPrints";
 import {
   getPhotoCollection,
   getPhotoCollectionSlugs,
@@ -59,13 +60,14 @@ export default async function PhotographyCollectionPage({ params }: PageProps) {
                 <span aria-hidden>←</span> Scenery
               </Link>
             )}
+            <div className="portfolio-collection-header__mid">
+              {isPortraits ? <PortraitBooker /> : null}
+              {isScenery ? <SceneryPrints /> : null}
+            </div>
             {isPortraits ? (
-              <div className="portfolio-collection-header__end">
-                <h1 className="portfolio-collection-header__current">
-                  Portraits <span aria-hidden>→</span>
-                </h1>
-                <PortraitBooker />
-              </div>
+              <h1 className="portfolio-collection-header__current">
+                Portraits <span aria-hidden>→</span>
+              </h1>
             ) : (
               <Link
                 href="/photography/portraits"
@@ -99,7 +101,6 @@ export default async function PhotographyCollectionPage({ params }: PageProps) {
                 ? "sketches"
                 : "grid"
         }
-        showStatement={isPortraits}
         story={slug === "sketches" ? collection.story : undefined}
       />
     </>
