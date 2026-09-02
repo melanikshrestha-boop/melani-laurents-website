@@ -97,18 +97,18 @@ export const metadata: Metadata = {
   icons: {
     // Square Eren only. Never a C. Never a gold ring. Path changes when Chrome caches a C.
     icon: [
-      { url: "/eren-stay13.png?v=stay13", type: "image/png", sizes: "256x256" },
-      { url: "/eren-stay13.png?v=stay13", type: "image/png", sizes: "48x48" },
-      { url: "/eren-stay13.png?v=stay13", type: "image/png", sizes: "32x32" },
+      { url: "/eren-stay14.png?v=stay14", type: "image/png", sizes: "256x256" },
+      { url: "/eren-stay14.png?v=stay14", type: "image/png", sizes: "48x48" },
+      { url: "/eren-stay14.png?v=stay14", type: "image/png", sizes: "32x32" },
     ],
     apple: [
       {
-        url: "/eren-stay13.png?v=stay13",
+        url: "/eren-stay14.png?v=stay14",
         sizes: "180x180",
         type: "image/png",
       },
     ],
-    shortcut: [{ url: "/eren-stay13.png?v=stay13", type: "image/png" }],
+    shortcut: [{ url: "/eren-stay14.png?v=stay14", type: "image/png" }],
   },
   openGraph: {
     title: siteConfig.title,
