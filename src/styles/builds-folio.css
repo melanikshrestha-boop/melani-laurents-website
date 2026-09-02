@@ -399,6 +399,46 @@
   margin-top: clamp(2rem, 4vw, 3.25rem);
 }
 
+.builds-designs__list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.55rem, 1vw, 0.9rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.builds-designs__item {
+  min-width: 0;
+  margin: 0;
+}
+
+.builds-designs__peek {
+  --peek-mx: 0.5;
+  --peek-my: 0.5;
+}
+
+.builds-designs__peek .bs-scholar__preview--peek {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 132%;
+  height: 132%;
+  /* Center the oversized still, then pan with --peek-x/--peek-y (percent of the image). */
+  transform: translate3d(calc(-50% + var(--peek-x)), var(--peek-y), 0);
+  transition: transform 90ms linear;
+}
+
+.builds-designs__peek .bs-scholar__reveal {
+  background:
+    radial-gradient(
+      120% 90% at calc(var(--peek-mx) * 100%) calc(var(--peek-my) * 100%),
+      rgba(231, 82, 62, 0.94),
+      rgba(231, 82, 62, 0.78) 42%,
+      rgba(231, 82, 62, 0.9)
+    );
+}
+
 .builds-github__head {
   display: flex;
   align-items: flex-end;
@@ -562,6 +602,10 @@
   .bs-scholar__list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .builds-designs__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 40rem) {
@@ -573,7 +617,8 @@
     align-items: flex-end;
   }
 
-  .bs-scholar__list {
+  .bs-scholar__list,
+  .builds-designs__list {
     grid-template-columns: minmax(0, 1fr);
     gap: 0.85rem;
   }
@@ -606,7 +651,12 @@
 
 @media (prefers-reduced-motion: reduce) {
   .bs-scholar__preview,
-  .bs-scholar__reveal {
+  .bs-scholar__reveal,
+  .builds-designs__peek .bs-scholar__preview--peek {
     transition: none;
+  }
+
+  .builds-designs__peek .bs-scholar__preview--peek {
+    transform: translate3d(-50%, 0, 0);
   }
 }
