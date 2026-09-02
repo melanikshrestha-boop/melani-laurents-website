@@ -667,14 +667,26 @@
   text-align: center;
 }
 
-.portfolio-gallery--sketches .portfolio-gallery-grid:hover .portfolio-sketch-story,
-.portfolio-gallery--sketches .portfolio-gallery-grid:focus-within .portfolio-sketch-story {
+/* Desktop hover only. Phone used to stick :hover/:focus-within and
+   paint the grid purple the moment Sketches opened. */
+@media (hover: hover) and (pointer: fine) {
+  .portfolio-gallery--sketches .portfolio-gallery-grid:hover .portfolio-sketch-story,
+  .portfolio-gallery--sketches .portfolio-gallery-grid:focus-within .portfolio-sketch-story {
+    opacity: 1;
+  }
+}
+
+.portfolio-gallery--sketches .portfolio-gallery-grid.is-story-open .portfolio-sketch-story {
   opacity: 1;
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 .portfolio-gallery--sketches .portfolio-gallery-trigger {
   aspect-ratio: 4 / 5;
   overflow: hidden;
+  /* Stop iOS double-tap-zoom from eating the double-tap → full view. */
+  touch-action: manipulation;
 }
 
 .portfolio-gallery--sketches .portfolio-gallery-image {

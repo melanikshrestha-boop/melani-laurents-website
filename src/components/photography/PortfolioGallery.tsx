@@ -20,6 +20,9 @@ interface PortfolioGalleryProps {
   story?: string;
 }
 
+/** Single tap vs double tap on touch. Same window as the public bookshelf. */
+const TAP_MS = 280;
+
 export function PortfolioGallery({
   photos,
   layout = "grid",
@@ -28,9 +31,85 @@ export function PortfolioGallery({
 }: PortfolioGalleryProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [printPhoto, setPrintPhoto] = useState<Photo | null>(null);
+  const [storyOpen, setStoryOpen] = useState(false);
   const galleryRef = useRef<HTMLDivElement>(null);
+  const tapTimerRef = useRef<number | null>(null);
+  const tapIndexRef = useRef<number | null>(null);
+  const pointerTypeRef = useRef<string>("mouse");
+  const coarseRef = useRef(false);
+  const [coarse, setCoarse] = useState(false);
 
   const close = useCallback(() => setLightboxIndex(null), []);
+
+  const clearTapTimer = useCallback(() => {
+    if (tapTimerRef.current == null) return;
+    window.clearTimeout(tapTimerRef.current);
+    tapTimerRef.current = null;
+  }, []);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(hover: none)");
+    const sync = () => {
+      coarseRef.current = mq.matches;
+      setCoarse(mq.matches);
+    };
+    sync();
+    mq.addEventListener("change", sync);
+    return () => {
+      mq.removeEventListener("change", sync);
+      clearTapTimer();
+    };
+  }, [clearTapTimer]);
+
+  const openLightbox = useCallback(
+    (index: number) => {
+      clearTapTimer();
+      setStoryOpen(false);
+      setLightboxIndex(index);
+    },
+    [clearTapTimer],
+  );
+
+  const onSketchTouchTap = useCallback(
+    (index: number) => {
+      // Second tap in the window → full still. First tap waits, then story.
+      if (tapTimerRef.current != null && tapIndexRef.current === index) {
+        clearTapTimer();
+        tapIndexRef.current = index;
+        openLightbox(index);
+        return;
+      }
+      clearTapTimer();
+      tapIndexRef.current = index;
+      if (!story) {
+        openLightbox(index);
+        return;
+      }
+      tapTimerRef.current = window.setTimeout(() => {
+        tapTimerRef.current = null;
+        setStoryOpen(true);
+      }, TAP_MS);
+    },
+    [clearTapTimer, openLightbox, story],
+  );
+
+  const onStorySurface = useCallback(() => {
+    clearTapTimer();
+    setStoryOpen(false);
+  }, [clearTapTimer]);
+
+  const onPhotoActivate = useCallback(
+    (index: number) => {
+      const touch =
+        pointerTypeRef.current === "touch" || coarseRef.current;
+      if (layout === "sketches" && touch) {
+        onSketchTouchTap(index);
+        return;
+      }
+      openLightbox(index);
+    },
+    [layout, onSketchTouchTap, openLightbox],
+  );
 
   const goPrev = useCallback(() => {
     setLightboxIndex((i) =>
@@ -45,19 +124,23 @@ export function PortfolioGallery({
   }, [photos.length]);
 
   useEffect(() => {
-    if (lightboxIndex === null) return;
+    if (lightboxIndex === null && !storyOpen) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
+      if (e.key === "Escape") {
+        if (lightboxIndex !== null) close();
+        else setStoryOpen(false);
+      }
+      if (lightboxIndex === null) return;
       if (e.key === "ArrowLeft") goPrev();
       if (e.key === "ArrowRight") goNext();
     };
-    document.body.style.overflow = "hidden";
+    if (lightboxIndex !== null) document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKey);
     };
-  }, [lightboxIndex, close, goPrev, goNext]);
+  }, [lightboxIndex, storyOpen, close, goPrev, goNext]);
 
   useEffect(() => {
     const root = galleryRef.current;
@@ -103,7 +186,7 @@ export function PortfolioGallery({
     <>
       <div
         ref={galleryRef}
-        className={`portfolio-gallery portfolio-gallery--${layout}`}
+        className={`portfolio-gallery portfolio-gallery--${layout}${coarse ? " is-coarse" : ""}`}
       >
         <div
           id={layout === "scenery" ? "prints" : undefined}
@@ -112,6 +195,7 @@ export function PortfolioGallery({
             layout === "sketches" && photos.length <= 3
               ? "portfolio-gallery-grid--pack"
               : "",
+            storyOpen ? "is-story-open" : "",
           ]
             .filter(Boolean)
             .join(" ")}
@@ -172,7 +256,13 @@ export function PortfolioGallery({
                 ) : (
                 <button
                   type="button"
-                  onClick={() => setLightboxIndex(i)}
+                  onPointerDown={(event) => {
+                    pointerTypeRef.current = event.pointerType;
+                  }}
+                  onClick={(event) => {
+                    event.currentTarget.blur();
+                    onPhotoActivate(i);
+                  }}
                   className="portfolio-gallery-trigger"
                   aria-label="View fullsize"
                 >
@@ -247,6 +337,10 @@ export function PortfolioGallery({
             <aside
               className="portfolio-sketch-story"
               aria-label="Story behind the sketches"
+              onClick={(event) => {
+                event.stopPropagation();
+                onStorySurface();
+              }}
             >
               <p>{story}</p>
             </aside>

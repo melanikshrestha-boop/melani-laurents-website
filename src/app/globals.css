@@ -6783,7 +6783,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   }
 }
 
-/* Touch: no hover state to reveal it, so the placard just stays up */
+/* Touch: no hover state to reveal it, so the placard just stays up.
+   Sketches have no placard — don't leave a purple plate on every still. */
 @media (hover: none) {
   .portfolio-gallery-wash {
     opacity: 0.72;
@@ -6792,6 +6793,30 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
     opacity: 1;
     transform: none;
   }
+
+  .portfolio-gallery--sketches
+    .portfolio-gallery-item:not(:has(.portfolio-gallery-caption))
+    .portfolio-gallery-wash,
+  .portfolio-gallery--sketches
+    .portfolio-gallery-item:not(:has(.portfolio-gallery-caption)):hover
+    .portfolio-gallery-wash,
+  .portfolio-gallery--sketches
+    .portfolio-gallery-item:not(:has(.portfolio-gallery-caption)):focus-within
+    .portfolio-gallery-wash {
+    opacity: 0;
+  }
+}
+
+.portfolio-gallery--sketches.is-coarse
+  .portfolio-gallery-item:not(:has(.portfolio-gallery-caption))
+  .portfolio-gallery-wash,
+.portfolio-gallery--sketches.is-coarse
+  .portfolio-gallery-item:not(:has(.portfolio-gallery-caption)):hover
+  .portfolio-gallery-wash,
+.portfolio-gallery--sketches.is-coarse
+  .portfolio-gallery-item:not(:has(.portfolio-gallery-caption)):focus-within
+  .portfolio-gallery-wash {
+  opacity: 0;
 }
 
 /* Placard lines: place on top, her note under it */
