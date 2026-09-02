@@ -5878,7 +5878,7 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   font-family: var(--pb-blog-font);
   font-size: max(var(--pb-blog-title-size), 12px);
   font-weight: 400;
-  line-height: 1.35;
+  line-height: 1.15;
   letter-spacing: 0;
   overflow-wrap: break-word;
 }
@@ -6032,6 +6032,7 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   font-family: var(--pb-blog-font);
   font-size: max(var(--pb-blog-title-size), 12px);
   font-weight: 400;
+  line-height: 1.15;
 }
 
 .pb-root .pb-currently-reading a {

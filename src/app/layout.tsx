@@ -17,6 +17,7 @@ import {
   EREN_TAB_SRC,
   erenTabIcons,
 } from "@/lib/eren-tab";
+import { LaMusica } from "@/components/LaMusica";
 import { LayoutEditor } from "@/components/LayoutEditor";
 import "./globals.css";
 import "@/styles/daily-pulse.css";
@@ -143,6 +144,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         {children}
+        <LaMusica />
         <LayoutEditor />
       </body>
     </html>
