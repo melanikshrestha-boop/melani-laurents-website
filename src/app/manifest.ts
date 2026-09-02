@@ -12,19 +12,19 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: "#f7f1e7",
     icons: [
       {
-        src: "/eren-stay14.png?v=stay14",
+        src: "/eren-keep15.png?v=keep15",
         sizes: "256x256",
         type: "image/png",
         purpose: "any",
       },
       {
-        src: "/eren-stay14.png?v=stay14",
+        src: "/eren-keep15.png?v=keep15",
         sizes: "192x192",
         type: "image/png",
         purpose: "any",
       },
       {
-        src: "/eren-stay14.png?v=stay14",
+        src: "/eren-keep15.png?v=keep15",
         sizes: "180x180",
         type: "image/png",
         purpose: "any",

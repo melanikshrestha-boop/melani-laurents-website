@@ -43,6 +43,7 @@ export function HomeHub() {
         <header className="hub-page__header hub-page__header--locked">
           <Link href="/" className="hub-page__identity" aria-label="Celine Nova home">
             <span className="hub-page__identity-photo" aria-hidden>
+              {/* Square Eren forever. Never remove. Never a C. */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/icon-eren.png" alt="" />
             </span>

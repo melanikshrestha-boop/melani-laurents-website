@@ -4,8 +4,9 @@
 Scale only — never face-crop. A 16px face crop reads as ©.
 Source: public/icon-eren.png (shoulders + bun).
 
-Do not write src/app/favicon.ico — Next hashes it, Chrome caches a C,
-and Turbopack 500s if the ICO PNG frames are RGB instead of RGBA.
+Write BOTH public/favicon.ico and src/app/favicon.ico as 16+32+48 RGBA
+PNG-in-ICO. Next injects src/app/favicon.ico as rel=icon sizes=32x32;
+Chrome prefers that over the PNG. RGB PNG-in-ICO 500s Turbopack — keep RGBA.
 """
 import io
 import struct
@@ -15,6 +16,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "public" / "icon-eren.png"
+STAY = "eren-keep15.png"
 
 if not SRC.is_file():
     raise SystemExit(f"missing {SRC}")
@@ -52,11 +54,12 @@ def write_ico(path: Path, sizes: tuple[int, ...]) -> None:
         directory += struct.pack("<BBBBHHII", w, w, 0, 0, 1, 32, len(data), offset)
         body += data
         offset += len(data)
+    path.parent.mkdir(parents=True, exist_ok=True)
     path.write_bytes(header + directory + body)
 
 
 stay = scaled(256)
-save_png(stay, ROOT / "public" / "eren-stay14.png")
+save_png(stay, ROOT / "public" / STAY)
 save_png(stay, ROOT / "public" / "icon.png")
 save_png(stay, ROOT / "src" / "app" / "icon.png")
 save_png(stay, ROOT / "public" / "tab-eren.png")
@@ -65,12 +68,12 @@ save_png(scaled(192), ROOT / "public" / "icon-192.png")
 save_png(scaled(180), ROOT / "public" / "apple-icon.png")
 save_png(scaled(180), ROOT / "src" / "app" / "apple-icon.png")
 
-# 16+32+48 from the same full square. Public only — not src/app.
-write_ico(ROOT / "public" / "favicon.ico", (16, 32, 48))
-app_ico = ROOT / "src" / "app" / "favicon.ico"
-if app_ico.exists():
-    app_ico.unlink()
+# 16+32+48 from the same full square. Both locations — Chrome uses app ICO.
+ico_sizes = (16, 32, 48)
+write_ico(ROOT / "public" / "favicon.ico", ico_sizes)
+write_ico(ROOT / "src" / "app" / "favicon.ico", ico_sizes)
 
-print("stay14", (ROOT / "public" / "eren-stay14.png").stat().st_size)
-print("ico", (ROOT / "public" / "favicon.ico").stat().st_size)
+print("stay", STAY, (ROOT / "public" / STAY).stat().st_size)
+print("public.ico", (ROOT / "public" / "favicon.ico").stat().st_size)
+print("app.ico", (ROOT / "src" / "app" / "favicon.ico").stat().st_size)
 print("icon.png", (ROOT / "src" / "app" / "icon.png").stat().st_size)

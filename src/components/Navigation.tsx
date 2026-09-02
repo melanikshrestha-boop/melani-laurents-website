@@ -143,6 +143,7 @@ export function Navigation() {
           aria-label="Celine Nova home"
         >
           <span className="cinema-nav__identity-photo" aria-hidden>
+            {/* Square Eren forever. Never remove. Never a C. */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/icon-eren.png" alt="" />
           </span>
