@@ -12,7 +12,11 @@ import {
   Inter,
 } from "next/font/google";
 import { siteConfig } from "@/config/site";
-import { EREN_TAB_SRC, erenTabIcons } from "@/lib/eren-tab";
+import {
+  EREN_TAB_DATA_32,
+  EREN_TAB_SRC,
+  erenTabIcons,
+} from "@/lib/eren-tab";
 import { LayoutEditor } from "@/components/LayoutEditor";
 import "./globals.css";
 import "@/styles/daily-pulse.css";
@@ -129,8 +133,8 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        {/* Hard links so nested metadata cannot leave Chrome with only /favicon.ico (cached C). */}
-        <link rel="icon" href={EREN_TAB_SRC} type="image/png" sizes="32x32" />
+        {/* Data URI first: Chrome cannot keep a cached cream C over inline Eren bytes. */}
+        <link rel="icon" href={EREN_TAB_DATA_32} type="image/png" sizes="32x32" />
         <link rel="icon" href={EREN_TAB_SRC} type="image/png" sizes="48x48" />
         <link rel="apple-touch-icon" href={EREN_TAB_SRC} sizes="180x180" />
       </head>

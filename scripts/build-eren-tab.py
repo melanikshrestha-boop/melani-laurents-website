@@ -17,7 +17,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "public" / "icon-eren.png"
-STAY = "eren-all.png"
+STAY = "eren-now.png"
 
 if not SRC.is_file():
     raise SystemExit(f"missing {SRC}")
