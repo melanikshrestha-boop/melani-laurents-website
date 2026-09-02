@@ -43,6 +43,7 @@ import {
   shortBlogDate,
   type ShelfBlog,
 } from "./shelfBlogs";
+import { BLOG_AUTHOR_OPEN, visibleBlogItems } from "./blogAuthorOpen";
 import {
   BLOG_FONT_OPTIONS,
   DEFAULT_BLOG_STYLE,
@@ -1478,8 +1479,18 @@ export function PublicBookshelf() {
                     </button>
 
                     {expanded ? (
+                      <>
+                        {BLOG_AUTHOR_OPEN[group.id]?.note ? (
+                          <p className="pb-blog-author__note">
+                            {BLOG_AUTHOR_OPEN[group.id].note}
+                          </p>
+                        ) : null}
                       <ol className="pb-blogs__list">
-                        {group.items.map((blog, i) => {
+                        {visibleBlogItems(
+                          group.id,
+                          group.items,
+                          pageEdit,
+                        ).map(({ blog, n }) => {
                           const displayDate = blog.readAt || blog.date;
                           const displayDateLabel = blog.readAt
                             ? `read ${shortBlogDate(blog.readAt)}`
@@ -1489,7 +1500,7 @@ export function PublicBookshelf() {
                               {pageEdit ? (
                                 <div className="pb-blogs__row">
                                   <span className="pb-blogs__n" aria-hidden>
-                                    {String(i + 1).padStart(2, "0")}
+                                    {String(n).padStart(2, "0")}
                                   </span>
                                   <span className="pb-blogs__body">
                                     <span className="pb-blogs__line">
@@ -1548,7 +1559,7 @@ export function PublicBookshelf() {
                                   title="Open essay"
                                 >
                                   <span className="pb-blogs__n" aria-hidden>
-                                    {String(i + 1).padStart(2, "0")}
+                                    {String(n).padStart(2, "0")}
                                   </span>
                                   <span className="pb-blogs__body">
                                     <span className="pb-blogs__line">
@@ -1574,6 +1585,7 @@ export function PublicBookshelf() {
                           );
                         })}
                       </ol>
+                      </>
                     ) : null}
                   </section>
                 );

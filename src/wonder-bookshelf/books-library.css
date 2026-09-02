@@ -5869,6 +5869,15 @@ html.theme-light .bl-reader[data-reader-theme="light"] {
   line-height: 1;
 }
 
+.pb-root .pb-blog-author__note {
+  max-width: 42rem;
+  margin: 0.35rem 0 0.45rem 33px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
 .pb-root .pb-blog-author .pb-blogs__list {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
