@@ -1423,9 +1423,9 @@
 .portfolio-gallery-place--essay {
   font-family: "Courier New", Courier, ui-monospace, monospace;
   font-size: clamp(15px, 1.7vw, 17px);
-  font-weight: 400;
+  font-weight: 700;
   font-style: normal;
-  font-synthesis: none;
+  font-synthesis: weight;
   line-height: 1.25;
   letter-spacing: 0;
 }
@@ -1445,4 +1445,10 @@
   opacity: 1;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+}
+
+/* Story hover: title is the headline; her note sits smaller under it. */
+.portfolio-gallery-place--essay + .portfolio-gallery-note {
+  font-size: clamp(11px, 1.15vw, 12px);
+  line-height: 1.4;
 }
