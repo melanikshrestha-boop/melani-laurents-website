@@ -17,7 +17,11 @@ export function BuildsDesigns() {
           >
             <figure className="bs-scholar__figure">
               <div className="bs-scholar__page bs-scholar__page--site">
-                <DesignPeek src={site.previewImage} title={site.title} />
+                <DesignPeek
+                  src={site.previewImage}
+                  title={site.title}
+                  story={site.story}
+                />
               </div>
             </figure>
           </a>

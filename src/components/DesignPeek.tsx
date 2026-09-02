@@ -6,11 +6,12 @@ import { useCallback, useRef, type PointerEvent } from "react";
 type DesignPeekProps = {
   src: string;
   title: string;
+  story?: string;
 };
 
 /** Pointer pans a larger still so the card is a window, not a frozen shot.
  *  --peek-mx/--peek-my (0–1) also drive the hover wash toward the cursor. */
-export function DesignPeek({ src, title }: DesignPeekProps) {
+export function DesignPeek({ src, title, story }: DesignPeekProps) {
   const frameRef = useRef<HTMLDivElement>(null);
 
   const onMove = useCallback((event: PointerEvent<HTMLDivElement>) => {
@@ -58,6 +59,7 @@ export function DesignPeek({ src, title }: DesignPeekProps) {
         <strong className="bs-scholar__reveal-title">
           {title} <span aria-hidden>↗</span>
         </strong>
+        {story ? <span className="bs-scholar__reveal-note">{story}</span> : null}
       </span>
     </div>
   );

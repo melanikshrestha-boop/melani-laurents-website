@@ -3,6 +3,8 @@ export type DesignSite = {
   title: string;
   href: string;
   previewImage: string;
+  /** Hover line she dictated. Never invent one. */
+  story?: string;
   /** Live iframe in the card — scroll and click the real site. */
   live?: boolean;
 };
@@ -28,6 +30,8 @@ export const designs: DesignSite[] = [
     title: "celinenovalinks",
     href: "https://celinenovalinks.vercel.app",
     previewImage: "/builds/designs/celinenovalinks.jpg",
+    story:
+      "I didn't understand the exact point of linktree aside from just stacking links from top of each other so I just created my own version of it for free to add under social handles.",
     live: true,
   },
 ];

@@ -193,6 +193,16 @@
   opacity: 1;
 }
 
+.bs-scholar__reveal-note {
+  max-width: 36em;
+  margin: 0;
+  font-family: inherit;
+  font-size: clamp(0.68rem, 5.4cqw, 0.82rem);
+  font-weight: 500;
+  line-height: 1.28;
+  letter-spacing: 0;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .bs-scholar__document:hover .bs-scholar__reveal,
   .bs-scholar__document:focus-visible .bs-scholar__reveal {
