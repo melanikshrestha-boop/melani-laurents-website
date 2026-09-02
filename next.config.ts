@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return {
       beforeFiles: [
-        { source: "/favicon.ico", destination: "/eren-every18.png" },
+        { source: "/favicon.ico", destination: "/eren-all.png" },
       ],
     };
   },
@@ -30,7 +30,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/eren-every18.png",
+        source: "/eren-all.png",
         headers: [
           { key: "Cache-Control", value: "public, max-age=0, must-revalidate" },
         ],

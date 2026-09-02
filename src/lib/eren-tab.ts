@@ -5,10 +5,10 @@ import type { Metadata } from "next";
  * Never a cream/gold C. Never icon.tsx. Never src/app/favicon.ico
  * (Next hashes that ICO and Chrome prefers the C).
  * New filename when Chrome burns the last one.
- * hold16 / keep15 / forever1 are burned.
+ * hold16 / keep15 / forever1 / every18 are burned.
  */
-export const EREN_TAB_FILE = "/eren-every18.png";
-export const EREN_TAB_SRC = `${EREN_TAB_FILE}?v=every18`;
+export const EREN_TAB_FILE = "/eren-all.png";
+export const EREN_TAB_SRC = `${EREN_TAB_FILE}?v=all1`;
 
 export const erenTabIcons: NonNullable<Metadata["icons"]> = {
   icon: [
