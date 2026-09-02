@@ -2,16 +2,10 @@
 
 import type { Project } from "@/data/projects";
 
-function ProjectRow({ project, index }: { project: Project; index: number }) {
+function ProjectRow({ project }: { project: Project; index: number }) {
   const isExternal = Boolean(project.href && !project.href.startsWith("/"));
   const isLink = Boolean(project.href);
   const github = project.github;
-
-  const number = (
-    <span className="bp-row__number" aria-hidden>
-      {String(index + 1).padStart(2, "0")}
-    </span>
-  );
 
   const description = project.description ? (
     <p className="bp-row__desc">{project.description}</p>
@@ -21,7 +15,6 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
     return (
       <li className="bp-row">
         <div className="bp-row__link">
-          {number}
           <h3 className="bp-row__title">
             <a
               href={project.href}
@@ -50,7 +43,6 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
 
   const body = (
     <>
-      {number}
       <h3 className="bp-row__title">
         {project.title}
         {isLink ? (

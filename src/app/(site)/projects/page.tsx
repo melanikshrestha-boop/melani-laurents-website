@@ -29,14 +29,14 @@ const BUILD_PRESENTATION: Record<
   }
 > = {
   "wonder-os": {
-    title: "Wonder for daily agentic control",
+    title: "01. Wonder",
     href: "https://github.com/melanikshrestha-boop/wonder",
     readout: "view Wonder",
     description:
       "One place for my books, finances, health, agents, and wardrobe.",
   },
   lensoss: {
-    title: "LensLab for smartculling and editing",
+    title: "LensLab",
     href: "https://lenslab.dev",
     github: "https://github.com/melanikshrestha-boop/LensOSS",
     readout: "GitHub",
