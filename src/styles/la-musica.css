@@ -24,19 +24,55 @@ html.la-musica-open body {
   letter-spacing: 0.04em;
   line-height: 1;
   writing-mode: vertical-rl;
-  transform: translateY(-50%);
+  /* Closed: cream tongue only. Hover / open slides the word out. */
+  transform: translateY(-50%) translateX(calc(100% - 10px));
   cursor: pointer;
-  box-shadow: -4px 0 18px rgba(20, 18, 16, 0.12);
+  box-shadow: none;
+  transition:
+    transform 0.55s cubic-bezier(0.22, 1, 0.32, 1),
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Extra grab on the peek so 10px of paper is still hittable. */
+.la-musica-tab::before {
+  content: "";
+  position: absolute;
+  top: -24px;
+  bottom: -24px;
+  left: -20px;
+  width: 40px;
 }
 
 .la-musica-tab:hover,
+.la-musica-tab:focus-visible,
 .la-musica-tab.is-open {
+  transform: translateY(-50%) translateX(0);
   background: #f0cf78;
   color: #171614;
+  box-shadow: -4px 0 18px rgba(20, 18, 16, 0.12);
 }
 
 body:has(.hub-page--photo) .la-musica-tab {
   background: rgba(247, 241, 231, 0.92);
+}
+
+body:has(.hub-page--photo) .la-musica-tab:hover,
+body:has(.hub-page--photo) .la-musica-tab:focus-visible,
+body:has(.hub-page--photo) .la-musica-tab.is-open {
+  background: #f0cf78;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .la-musica-tab {
+    transform: translateY(-50%) translateX(calc(100% - 14px));
+  }
+
+  .la-musica-tab.is-open,
+  .la-musica-tab:focus-visible {
+    transform: translateY(-50%) translateX(0);
+  }
 }
 
 .la-musica {
@@ -1043,6 +1079,7 @@ body:has(.hub-page--photo) .la-musica-tab {
 
 @media (prefers-reduced-motion: reduce) {
   .la-musica,
+  .la-musica-tab,
   .la-musica-arm__swing {
     transition: none;
   }
