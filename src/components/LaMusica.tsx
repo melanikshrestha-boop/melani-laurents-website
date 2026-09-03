@@ -14,13 +14,25 @@ import "@/styles/la-musica.css";
 export function LaMusica() {
   const pathname = usePathname();
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const platterRef = useRef<HTMLDivElement | null>(null);
+  const sleeveRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const timers = useRef<number[]>([]);
   const [open, setOpen] = useState(false);
   const [on, setOn] = useState(false);
   const [index, setIndex] = useState(0);
   const [volume, setVolume] = useState(0.55);
   const [tempo, setTempo] = useState(1);
+  const [flight, setFlight] = useState<null | {
+    i: number;
+    cover?: string;
+    x: number;
+    y: number;
+    size: number;
+    phase: "out" | "fly";
+  }>(null);
   const tracks = MUSICA_TRACKS;
   const track: MusicaTrack | undefined = tracks[index];
+  const onPlatter = !flight;
 
   const hide = pathname.startsWith("/kids-book");
 
@@ -29,14 +41,14 @@ export function LaMusica() {
     if (!audio) return;
     audio.volume = volume;
     audio.playbackRate = tempo;
-    if (on && track?.src) {
+    if (on && onPlatter && track?.src) {
       void audio.play().catch(() => {
         setOn(false);
       });
     } else {
       audio.pause();
     }
-  }, [on, tempo, track?.src, volume]);
+  }, [on, onPlatter, tempo, track?.src, volume]);
 
   useEffect(() => {
     applyAudio();
@@ -47,9 +59,9 @@ export function LaMusica() {
     if (!audio || !track?.src) return;
     if (audio.src !== new URL(track.src, window.location.href).href) {
       audio.src = track.src;
-      if (on) void audio.play().catch(() => setOn(false));
+      if (on && onPlatter) void audio.play().catch(() => setOn(false));
     }
-  }, [index, on, track?.src]);
+  }, [index, on, onPlatter, track?.src]);
 
   useEffect(() => {
     if (!open) return;
@@ -64,11 +76,60 @@ export function LaMusica() {
     };
   }, [open]);
 
+  useEffect(() => {
+    return () => {
+      timers.current.forEach((id) => window.clearTimeout(id));
+    };
+  }, []);
+
+  const placeAlbum = (next: number) => {
+    if (tracks.length === 0 || flight) return;
+    const i = (next + tracks.length) % tracks.length;
+    if (i === index && !flight) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const sleeve = sleeveRefs.current[i];
+    const platter = platterRef.current;
+    const from = sleeve?.getBoundingClientRect();
+    const to = platter?.getBoundingClientRect();
+    setIndex(i);
+    if (reduce || !from || !to) return;
+    timers.current.forEach((id) => window.clearTimeout(id));
+    timers.current = [];
+    setFlight({
+      i,
+      cover: tracks[i].cover,
+      x: from.left + from.width * 0.08,
+      y: from.top + from.height * 0.04,
+      size: Math.min(from.width, from.height) * 0.86,
+      phase: "out",
+    });
+    timers.current.push(
+      window.setTimeout(() => {
+        setFlight((current) =>
+          current
+            ? {
+                ...current,
+                phase: "fly",
+                x: to.left,
+                y: to.top,
+                size: to.width,
+              }
+            : current,
+        );
+      }, 480),
+    );
+    timers.current.push(
+      window.setTimeout(() => {
+        setFlight(null);
+      }, 1320),
+    );
+  };
+
   if (hide) return null;
 
   const skip = (dir: -1 | 1) => {
     if (tracks.length === 0) return;
-    setIndex((i) => (i + dir + tracks.length) % tracks.length);
+    placeAlbum(index + dir);
   };
 
   return (
@@ -95,14 +156,17 @@ export function LaMusica() {
             <div className="la-musica-deck">
               <div className="la-musica-deck__platter-wrap">
                 <div
-                  className={`la-musica-platter${on ? " is-spinning" : ""}`}
+                  ref={platterRef}
+                  className={`la-musica-platter${
+                    on && onPlatter ? " is-spinning" : ""
+                  }${onPlatter ? "" : " is-waiting"}`}
                   aria-hidden
                 >
                   <span className="la-musica-platter__grooves" />
                   <span
                     className="la-musica-platter__label"
                     style={
-                      track?.cover
+                      onPlatter && track?.cover
                         ? { backgroundImage: `url(${track.cover})` }
                         : undefined
                     }
@@ -110,7 +174,9 @@ export function LaMusica() {
                   <span className="la-musica-platter__spindle" />
                 </div>
                 <div
-                  className={`la-musica-arm${on ? " is-down" : ""}`}
+                  className={`la-musica-arm${
+                    on && onPlatter ? " is-down" : ""
+                  }`}
                   aria-hidden
                 >
                   <span className="la-musica-arm__pivot" />
@@ -167,32 +233,36 @@ export function LaMusica() {
                       style={{
                         transform:
                           offset === 0
-                            ? "translateX(0) rotateY(0deg)"
-                            : `translateX(${offset * 7.2}rem) rotateY(${
-                                offset > 0 ? -52 : 52
-                              }deg)`,
+                            ? "translateX(0) rotateY(0deg) translateZ(24px)"
+                            : `translateX(${offset * 8.4}rem) rotateY(${
+                                offset > 0 ? -62 : 62
+                              }deg) translateZ(${-36 * Math.abs(offset)}px)`,
                         zIndex: 30 - Math.abs(offset),
                         opacity: Math.abs(offset) > 3 ? 0 : 1,
-                        pointerEvents: Math.abs(offset) > 3 ? "none" : "auto",
+                        pointerEvents:
+                          Math.abs(offset) > 3 || flight ? "none" : "auto",
                       }}
                     >
                       <button
                         type="button"
+                        ref={(node) => {
+                          sleeveRefs.current[i] = node;
+                        }}
                         className={`la-musica-disc${
                           i === index ? " is-current" : ""
-                        }`}
-                        onClick={() => setIndex(i)}
+                        }${flight?.i === i ? " is-opening" : ""}`}
+                        onClick={() => placeAlbum(i)}
                       >
-                        <span className="la-musica-disc__vinyl" aria-hidden>
-                          <span className="la-musica-disc__grooves" />
+                        <span className="la-musica-sleeve" aria-hidden>
                           <span
-                            className="la-musica-disc__label"
+                            className="la-musica-sleeve__art"
                             style={
                               item.cover
                                 ? { backgroundImage: `url(${item.cover})` }
                                 : undefined
                             }
                           />
+                          <span className="la-musica-sleeve__peek" />
                         </span>
                         <span className="la-musica-disc__name">
                           {item.title}
@@ -207,6 +277,28 @@ export function LaMusica() {
               </ul>
             ) : null}
           </div>
+          {flight ? (
+            <span
+              className={`la-musica-fly la-musica-fly--${flight.phase}`}
+              style={{
+                left: flight.x,
+                top: flight.y,
+                width: flight.size,
+                height: flight.size,
+              }}
+              aria-hidden
+            >
+              <span className="la-musica-fly__grooves" />
+              <span
+                className="la-musica-fly__label"
+                style={
+                  flight.cover
+                    ? { backgroundImage: `url(${flight.cover})` }
+                    : undefined
+                }
+              />
+            </span>
+          ) : null}
           <audio ref={audioRef} src={track?.src} preload="metadata" />
         </div>
       ) : null}
