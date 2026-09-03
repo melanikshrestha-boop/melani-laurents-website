@@ -69,25 +69,32 @@ export function LaMusica() {
 
   useEffect(() => {
     const audio = audioRef.current;
+    if (!audio || !track?.src) return;
+    const next = new URL(track.src, window.location.href).href;
+    if (audio.src !== next) {
+      audio.src = next;
+    }
+  }, [platterIndex, track?.src]);
+
+  /* Volume / pitch / power never rewind. play() only if already paused. */
+  useEffect(() => {
+    const audio = audioRef.current;
     if (!audio) return;
-    audio.volume = volume * 0.5;
-    audio.playbackRate = rate;
     audio.loop = true;
+    audio.volume = volume;
+    try {
+      if (Math.abs(audio.playbackRate - rate) > 0.001) {
+        audio.playbackRate = rate;
+      }
+    } catch {
+      /* some AAC previews reject rate */
+    }
     if (on && discOn && track?.src) {
-      void audio.play().catch(() => setOn(false));
-    } else {
+      if (audio.paused) void audio.play().catch(() => setOn(false));
+    } else if (!audio.paused) {
       audio.pause();
     }
   }, [discOn, on, rate, track?.src, volume]);
-
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio || !track?.src) return;
-    if (audio.src !== new URL(track.src, window.location.href).href) {
-      audio.src = track.src;
-      audio.load();
-    }
-  }, [platterIndex, track?.src]);
 
   useEffect(() => {
     if (!on) {
@@ -134,10 +141,7 @@ export function LaMusica() {
   useEffect(() => () => clearTimers(), []);
 
   const loadTrack = (i: number) => {
-    if (i !== platterIndex) {
-      setPitch(0);
-      setPlatterIndex(i);
-    }
+    if (i !== platterIndex) setPlatterIndex(i);
   };
 
   const insertDisc = () => {
@@ -163,6 +167,10 @@ export function LaMusica() {
   const onCoverClick = (i: number) => {
     if (i !== focus) {
       setFocus(i);
+      return;
+    }
+    if (i === platterIndex && discOn) {
+      if (!on) setOn(true);
       return;
     }
     loadTrack(i);
@@ -207,8 +215,12 @@ export function LaMusica() {
           role="dialog"
           aria-label="la musica"
         >
-          <h2 className="la-musica__title">the top 10 everchanging</h2>
+          <div className="la-musica__head">
+            <h2 className="la-musica__title">Top 10</h2>
+            <p className="la-musica__kicker">the top 10 everchanging</p>
+          </div>
           <div className="la-musica__stage">
+            <div className="la-musica-deck-slot">
             <div className="la-musica-deck">
               <div className={`la-musica-deck__platter-wrap${on ? " is-live" : ""}`}>
                 <span className="la-musica-mat-ring la-musica-mat-ring--a" />
@@ -241,12 +253,12 @@ export function LaMusica() {
                     }}
                   />
                 </div>
+                <Tonearm down={on && discOn} />
                 <TrackCurve
                   onPrev={() => skip(-1)}
                   onNext={() => skip(1)}
                 />
               </div>
-              <Tonearm down={on && discOn} />
 
               <div className="la-musica-deck__left">
                 <button
@@ -267,6 +279,7 @@ export function LaMusica() {
                 <VolumeKnob value={volume} onChange={setVolume} />
                 <TempoFader value={pitch} onChange={setPitch} />
               </div>
+            </div>
             </div>
 
             {tracks.length > 0 ? (
@@ -324,9 +337,9 @@ export function LaMusica() {
               </div>
             ) : null}
           </div>
-          <audio ref={audioRef} src={track?.src} preload="auto" loop />
         </div>
       ) : null}
+      <audio ref={audioRef} preload="auto" loop />
     </>
   );
 }
