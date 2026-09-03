@@ -24,7 +24,7 @@
   height: auto;
   min-height: max(100svh, 42rem);
   overflow: clip;
-  background: #000;
+  background: transparent;
 }
 
 .portfolio-hover-backgrounds {
@@ -53,16 +53,7 @@
 }
 
 .portfolio-hover-bg-overlay {
-  position: absolute;
-  inset: 0;
-  /* No bottom film — the quote carries its own line bars. */
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.1) 0%,
-    rgba(0, 0, 0, 0.08) 55%,
-    transparent 100%
-  );
-  pointer-events: none;
+  display: none;
 }
 
 .portfolio-hover-bg-image {
@@ -71,7 +62,7 @@
 }
 
 .portfolio-hover-bg--scenery .portfolio-hover-bg-image {
-  object-position: center 67%;
+  object-position: center 74%;
 }
 
 .portfolio-hover-bg--spring .portfolio-hover-bg-image {
@@ -114,11 +105,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   min-height: max(100svh, 42rem);
   box-sizing: border-box;
   margin: 0;
-  padding: clamp(4.5rem, 10vh, 6rem) 1rem 5.5rem;
+  padding: clamp(7.5rem, 18vh, 11rem) 1rem 34vh;
   list-style: none;
 }
 
@@ -420,7 +411,7 @@
   z-index: 3;
   width: auto;
   margin: 0;
-  padding: 0.65rem 1.15rem calc(0.8rem + env(safe-area-inset-bottom, 0px));
+  padding: 0 8vw calc(1rem + env(safe-area-inset-bottom, 0px));
   pointer-events: none;
   text-align: center;
   background: transparent;
@@ -432,38 +423,28 @@
 
 .portfolio-art-subs__line {
   margin: 0 auto;
-  max-width: 72rem;
+  max-width: 32rem;
   color: #fff;
   -webkit-text-fill-color: #fff;
   font-family: "Courier New", Courier, ui-monospace, monospace;
-  font-size: clamp(10px, 0.95vw, 11px);
+  font-size: clamp(10px, 0.9vw, 12px);
   font-weight: 400;
   font-style: normal;
   font-synthesis: none;
-  line-height: 1.65;
+  line-height: 1.55;
   letter-spacing: 0;
   text-align: center;
-  text-wrap: pretty;
-  /* Dark halo so white reads as white on the bright street still. */
-  text-shadow: 0 0 0.45em rgba(0, 0, 0, 0.9);
-  opacity: 1;
 }
 
-.portfolio-art-subs__line span {
-  padding: 0.12em 0.45em;
-  color: #fff;
-  -webkit-text-fill-color: #fff;
-  /* Line film only — darker so the type stays #fff, not gray. */
-  background: rgba(0, 0, 0, 0.62);
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
-}
-
+.portfolio-art-subs__cap,
 .portfolio-art-subs__credit {
-  display: inline;
-  margin-top: 0;
+  padding: 0;
   color: #fff;
   -webkit-text-fill-color: #fff;
+  background: none;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.9),
+    0 0 14px rgba(0, 0, 0, 0.75);
 }
 
 .portfolio-hover-item:hover .portfolio-hover-item-title,

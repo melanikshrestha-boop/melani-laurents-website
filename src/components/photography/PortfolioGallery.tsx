@@ -156,6 +156,7 @@ export function PortfolioGallery({
     }
 
     root.classList.add("is-reveal-ready");
+    targets.slice(0, 9).forEach((target) => target.classList.add("is-visible"));
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -164,7 +165,7 @@ export function PortfolioGallery({
           observer.unobserve(entry.target);
         });
       },
-      { rootMargin: "0px 0px -30% 0px", threshold: 0.15 },
+      { rootMargin: "80px 0px 80px 0px", threshold: 0.01 },
     );
 
     targets.forEach((target) => observer.observe(target));
