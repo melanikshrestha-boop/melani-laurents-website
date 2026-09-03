@@ -11,6 +11,17 @@ import {
 } from "react";
 import "@/styles/la-musica.css";
 
+/* Coverflow math from aayushkapoor.me/vinyl: current at Z 300; left +45°, right −45°. */
+function coverTransform(i: number, current: number) {
+  if (i === current) {
+    return "translateX(0px) translateZ(300px) rotateY(0deg)";
+  }
+  if (i < current) {
+    return `translateX(${(i - current) * 120 - 50}px) translateZ(0px) rotateY(45deg)`;
+  }
+  return `translateX(${(i - current) * 120 + 50}px) translateZ(0px) rotateY(-45deg)`;
+}
+
 export function LaMusica() {
   const pathname = usePathname();
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -59,9 +70,8 @@ export function LaMusica() {
     if (!audio || !track?.src) return;
     if (audio.src !== new URL(track.src, window.location.href).href) {
       audio.src = track.src;
-      if (on && onPlatter) void audio.play().catch(() => setOn(false));
     }
-  }, [index, on, onPlatter, track?.src]);
+  }, [index, track?.src]);
 
   useEffect(() => {
     if (!open) return;
@@ -153,68 +163,6 @@ export function LaMusica() {
         >
           <h2 className="la-musica__title">the top 10 everchanging</h2>
           <div className="la-musica__stage">
-            {tracks.length > 0 ? (
-              <div
-                className="la-musica-coverflow"
-                aria-label="albums"
-                onWheel={(event) => {
-                  event.preventDefault();
-                  skip(event.deltaY > 0 ? 1 : -1);
-                }}
-              >
-                <div className="la-musica-coverflow__scene">
-                  {tracks.map((item, i) => {
-                    const rel =
-                      (i - index + tracks.length) % tracks.length;
-                    return (
-                      <button
-                        key={`${item.title}-${item.artist}`}
-                        type="button"
-                        ref={(node) => {
-                          sleeveRefs.current[i] = node;
-                        }}
-                        className={`la-musica-cover${
-                          rel === 0 ? " is-current" : ""
-                        }${flight?.i === i ? " is-opening" : ""}`}
-                        style={{
-                          transform:
-                            rel === 0
-                              ? "translateX(0px) translateZ(300px) rotateY(0deg)"
-                              : `translateX(${170 + (rel - 1) * 120}px) translateZ(0px) rotateY(-45deg)`,
-                          zIndex: rel === 0 ? 50 : 10,
-                        }}
-                        onClick={() => placeAlbum(i)}
-                      >
-                        <span className="la-musica-cover__face">
-                          <span
-                            className="la-musica-cover__art"
-                            style={
-                              item.cover
-                                ? { backgroundImage: `url(${item.cover})` }
-                                : undefined
-                            }
-                          />
-                          {rel === 0 ? (
-                            <span className="la-musica-cover__note" aria-hidden>
-                              ♪
-                            </span>
-                          ) : null}
-                        </span>
-                        <span className="la-musica-cover__info">
-                          <span className="la-musica-cover__name">
-                            {item.title}
-                          </span>
-                          <span className="la-musica-cover__artist">
-                            {item.artist}
-                          </span>
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            ) : null}
-
             <div className="la-musica-deck">
               <div className="la-musica-deck__platter-wrap">
                 <div
@@ -241,42 +189,93 @@ export function LaMusica() {
                   }`}
                   aria-hidden
                 >
+                  <span className="la-musica-arm__counter" />
                   <span className="la-musica-arm__pivot" />
                   <span className="la-musica-arm__bar" />
                   <span className="la-musica-arm__head" />
                 </div>
+                <div className="la-musica-arm-rest" aria-hidden />
+                <TrackCurve
+                  onPrev={() => skip(-1)}
+                  onNext={() => skip(1)}
+                />
               </div>
 
-              <div className="la-musica-deck__controls">
+              <div className="la-musica-deck__left">
                 <button
                   type="button"
                   className={`la-musica-power${on ? " is-on" : ""}`}
                   aria-pressed={on}
                   aria-label={on ? "power off" : "power on"}
+                  disabled={!onPlatter}
                   onClick={() => setOn((v) => !v)}
-                />
+                >
+                  <span className="la-musica-power__well" />
+                  <span className="la-musica-power__rocker" />
+                  <span className="la-musica-power__led" />
+                </button>
+              </div>
 
-                <div className="la-musica-track">
-                  <button
-                    type="button"
-                    className="la-musica-track__prev"
-                    aria-label="previous"
-                    onClick={() => skip(-1)}
-                  />
-                  <span>TRACK</span>
-                  <button
-                    type="button"
-                    className="la-musica-track__next"
-                    aria-label="next"
-                    onClick={() => skip(1)}
-                  />
-                </div>
-
+              <div className="la-musica-deck__right">
                 <VolumeKnob value={volume} onChange={setVolume} />
-
                 <TempoFader value={tempo} onChange={setTempo} />
               </div>
             </div>
+
+            {tracks.length > 0 ? (
+              <div
+                className="la-musica-coverflow"
+                aria-label="albums"
+                onWheel={(event) => {
+                  event.preventDefault();
+                  skip(event.deltaY > 0 ? 1 : -1);
+                }}
+              >
+                <div className="la-musica-coverflow__scene">
+                  {tracks.map((item, i) => (
+                    <button
+                      key={`${item.title}-${item.artist}`}
+                      type="button"
+                      ref={(node) => {
+                        sleeveRefs.current[i] = node;
+                      }}
+                      className={`la-musica-cover${
+                        i === index ? " is-current" : ""
+                      }${flight?.i === i ? " is-opening" : ""}`}
+                      style={{
+                        transform: coverTransform(i, index),
+                        zIndex: i === index ? 50 : 10,
+                      }}
+                      onClick={() => placeAlbum(i)}
+                    >
+                      <span className="la-musica-cover__face">
+                        <span
+                          className="la-musica-cover__art"
+                          style={
+                            item.cover
+                              ? { backgroundImage: `url(${item.cover})` }
+                              : undefined
+                          }
+                        />
+                        {i === index ? (
+                          <span className="la-musica-cover__note" aria-hidden>
+                            ♪
+                          </span>
+                        ) : null}
+                      </span>
+                      <span className="la-musica-cover__info">
+                        <span className="la-musica-cover__name">
+                          {item.title}
+                        </span>
+                        <span className="la-musica-cover__artist">
+                          {item.artist}
+                        </span>
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : null}
           </div>
           {flight ? (
             <span
@@ -307,6 +306,48 @@ export function LaMusica() {
   );
 }
 
+function TrackCurve({
+  onPrev,
+  onNext,
+}: {
+  onPrev: () => void;
+  onNext: () => void;
+}) {
+  return (
+    <div className="la-musica-track">
+      <svg
+        width="140"
+        height="80"
+        viewBox="0 0 140 80"
+        className="la-musica-track__svg"
+        aria-hidden
+      >
+        <defs>
+          <path id="la-musica-track-curve" d="M 20 40 Q 70 80 120 40" fill="none" />
+          <path id="la-musica-track-text" d="M 35 40 Q 70 55 105 37" fill="none" />
+        </defs>
+        <text className="la-musica-track__label">
+          <textPath href="#la-musica-track-text" startOffset="50%" textAnchor="middle">
+            TRACK
+          </textPath>
+        </text>
+      </svg>
+      <button
+        type="button"
+        className="la-musica-track__prev"
+        aria-label="previous"
+        onClick={onPrev}
+      />
+      <button
+        type="button"
+        className="la-musica-track__next"
+        aria-label="next"
+        onClick={onNext}
+      />
+    </div>
+  );
+}
+
 function VolumeKnob({
   value,
   onChange,
@@ -315,13 +356,23 @@ function VolumeKnob({
   onChange: (v: number) => void;
 }) {
   const rotating = useRef(false);
+  const ticks = Array.from({ length: 101 }, (_, i) => {
+    const deg = -135 + 2.7 * i;
+    const rad = (deg * Math.PI) / 180;
+    return {
+      i,
+      deg,
+      major: i % 10 === 0,
+      left: 64 + 58 * Math.cos(rad),
+      top: 64 + 58 * Math.sin(rad),
+    };
+  });
 
   const fromPointer = (event: ReactPointerEvent<HTMLButtonElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
     const angle = Math.atan2(event.clientY - cy, event.clientX - cx);
-    /* Map -135°…+135° to 0…1 */
     let deg = (angle * 180) / Math.PI + 90;
     if (deg < -135) deg = -135;
     if (deg > 135) deg = 135;
@@ -330,25 +381,40 @@ function VolumeKnob({
 
   return (
     <label className="la-musica-volume">
-      <button
-        type="button"
-        className="la-musica-knob"
-        aria-label="volume"
-        style={{ transform: `rotate(${value * 270 - 135}deg)` }}
-        onPointerDown={(event) => {
-          rotating.current = true;
-          event.currentTarget.setPointerCapture(event.pointerId);
-          fromPointer(event);
-        }}
-        onPointerMove={(event) => {
-          if (!rotating.current) return;
-          fromPointer(event);
-        }}
-        onPointerUp={() => {
-          rotating.current = false;
-        }}
-      />
-      <span>VOLUME</span>
+      <span className="la-musica-volume__dial">
+        <span className="la-musica-volume__ticks" aria-hidden>
+          {ticks.map((tick) => (
+            <span
+              key={tick.i}
+              className={`la-musica-tick${tick.major ? " is-major" : ""}`}
+              style={{
+                left: tick.left,
+                top: tick.top,
+                transform: `translate(-50%, -50%) rotate(${tick.deg}deg)`,
+              }}
+            />
+          ))}
+        </span>
+        <button
+          type="button"
+          className="la-musica-knob"
+          aria-label="volume"
+          style={{ transform: `rotate(${value * 270 - 135}deg)` }}
+          onPointerDown={(event) => {
+            rotating.current = true;
+            event.currentTarget.setPointerCapture(event.pointerId);
+            fromPointer(event);
+          }}
+          onPointerMove={(event) => {
+            if (!rotating.current) return;
+            fromPointer(event);
+          }}
+          onPointerUp={() => {
+            rotating.current = false;
+          }}
+        />
+      </span>
+      <span className="la-musica-volume__name">VOLUME</span>
     </label>
   );
 }
@@ -373,27 +439,44 @@ function TempoFader({
 
   return (
     <label className="la-musica-tempo">
-      <div
-        className="la-musica-fader"
-        onPointerDown={(event) => {
-          dragging.current = true;
-          event.currentTarget.setPointerCapture(event.pointerId);
-          fromPointer(event);
-        }}
-        onPointerMove={(event) => {
-          if (!dragging.current) return;
-          fromPointer(event);
-        }}
-        onPointerUp={() => {
-          dragging.current = false;
-        }}
-      >
-        <span
-          className="la-musica-fader__cap"
-          style={{ top: `${((max - value) / (max - min)) * 100}%` }}
-        />
-      </div>
-      <span>TEMPO</span>
+      <span className="la-musica-tempo__row">
+        <span className="la-musica-tempo__scale" aria-hidden>
+          <span>+</span>
+          <span>0</span>
+          <span>−</span>
+        </span>
+        <span className="la-musica-tempo__marks" aria-hidden>
+          {Array.from({ length: 17 }, (_, i) => (
+            <span
+              key={i}
+              className={i % 2 === 0 ? "is-major" : undefined}
+              style={{ top: `${(i / 16) * 100}%` }}
+            />
+          ))}
+        </span>
+        <div
+          className="la-musica-fader"
+          onPointerDown={(event) => {
+            dragging.current = true;
+            event.currentTarget.setPointerCapture(event.pointerId);
+            fromPointer(event);
+          }}
+          onPointerMove={(event) => {
+            if (!dragging.current) return;
+            fromPointer(event);
+          }}
+          onPointerUp={() => {
+            dragging.current = false;
+          }}
+        >
+          <span className="la-musica-fader__groove" />
+          <span
+            className="la-musica-fader__cap"
+            style={{ top: `${((max - value) / (max - min)) * 100}%` }}
+          />
+        </div>
+      </span>
+      <span className="la-musica-tempo__name">TEMPO</span>
     </label>
   );
 }
