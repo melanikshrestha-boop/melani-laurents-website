@@ -3,7 +3,6 @@
 import { MUSICA_TRACKS, type MusicaTrack } from "@/data/musica";
 import { usePathname } from "next/navigation";
 import {
-  useCallback,
   useEffect,
   useRef,
   useState,
@@ -11,7 +10,7 @@ import {
 } from "react";
 import "@/styles/la-musica.css";
 
-/* Coverflow math from aayushkapoor.me/vinyl: current at Z 300; left +45°, right −45°. */
+/* Coverflow math from aayushkapoor.me/vinyl. */
 function coverTransform(i: number, current: number) {
   if (i === current) {
     return "translateX(0px) translateZ(300px) rotateY(0deg)";
@@ -22,125 +21,172 @@ function coverTransform(i: number, current: number) {
   return `translateX(${(i - current) * 120 + 50}px) translateZ(0px) rotateY(-45deg)`;
 }
 
+function clickTick() {
+  try {
+    const ctx = new AudioContext();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = "square";
+    osc.frequency.value = 190;
+    gain.gain.setValueAtTime(0.05, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.04);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + 0.05);
+    window.setTimeout(() => void ctx.close(), 80);
+  } catch {
+    /* ignore */
+  }
+}
+
 export function LaMusica() {
   const pathname = usePathname();
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const platterRef = useRef<HTMLDivElement | null>(null);
-  const sleeveRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const spinRef = useRef<number | null>(null);
+  const spinStamp = useRef<number | null>(null);
   const timers = useRef<number[]>([]);
   const [open, setOpen] = useState(false);
+  const [entered, setEntered] = useState(false);
   const [on, setOn] = useState(false);
-  const [index, setIndex] = useState(0);
-  const [volume, setVolume] = useState(0.55);
-  const [tempo, setTempo] = useState(1);
-  const [flight, setFlight] = useState<null | {
-    i: number;
-    cover?: string;
-    x: number;
-    y: number;
-    size: number;
-    phase: "out" | "fly";
-  }>(null);
+  const [focus, setFocus] = useState(0);
+  const [platterIndex, setPlatterIndex] = useState(0);
+  const [discOn, setDiscOn] = useState(true);
+  const [removing, setRemoving] = useState(false);
+  const [inserting, setInserting] = useState(false);
+  const [volume, setVolume] = useState(0.5);
+  const [pitch, setPitch] = useState(0);
+  const [spin, setSpin] = useState(0);
   const tracks = MUSICA_TRACKS;
-  const track: MusicaTrack | undefined = tracks[index];
-  const onPlatter = !flight;
-
+  const track: MusicaTrack | undefined = tracks[platterIndex];
   const hide = pathname.startsWith("/kids-book");
+  const rate = 1 + pitch / 100;
 
-  const applyAudio = useCallback(() => {
+  const clearTimers = () => {
+    timers.current.forEach((id) => window.clearTimeout(id));
+    timers.current = [];
+  };
+
+  useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
-    audio.volume = volume;
-    audio.playbackRate = tempo;
-    if (on && onPlatter && track?.src) {
-      void audio.play().catch(() => {
-        setOn(false);
-      });
+    audio.volume = volume * 0.5;
+    audio.playbackRate = rate;
+    audio.loop = true;
+    if (on && discOn && track?.src) {
+      void audio.play().catch(() => setOn(false));
     } else {
       audio.pause();
     }
-  }, [on, onPlatter, tempo, track?.src, volume]);
-
-  useEffect(() => {
-    applyAudio();
-  }, [applyAudio]);
+  }, [discOn, on, rate, track?.src, volume]);
 
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio || !track?.src) return;
     if (audio.src !== new URL(track.src, window.location.href).href) {
       audio.src = track.src;
+      audio.load();
     }
-  }, [index, track?.src]);
+  }, [platterIndex, track?.src]);
 
   useEffect(() => {
-    if (!open) return;
+    if (!on) {
+      if (spinRef.current) cancelAnimationFrame(spinRef.current);
+      spinRef.current = null;
+      spinStamp.current = null;
+      return;
+    }
+    const tick = (now: number) => {
+      const last = spinStamp.current ?? now;
+      spinStamp.current = now;
+      setSpin((deg) => (deg + ((now - last) / 30000) * 360) % 360);
+      spinRef.current = requestAnimationFrame(tick);
+    };
+    spinRef.current = requestAnimationFrame(tick);
+    return () => {
+      if (spinRef.current) cancelAnimationFrame(spinRef.current);
+    };
+  }, [on]);
+
+  useEffect(() => {
+    if (!open) {
+      setEntered(false);
+      setOn(false);
+      return;
+    }
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") setOpen(false);
     };
     document.addEventListener("keydown", onKey);
     document.documentElement.classList.add("la-musica-open");
+    const id = window.setTimeout(() => setEntered(true), 30);
     return () => {
       document.removeEventListener("keydown", onKey);
       document.documentElement.classList.remove("la-musica-open");
+      window.clearTimeout(id);
     };
   }, [open]);
 
   useEffect(() => {
-    return () => {
-      timers.current.forEach((id) => window.clearTimeout(id));
-    };
-  }, []);
+    if (!discOn && on) setOn(false);
+  }, [discOn, on]);
 
-  const placeAlbum = (next: number) => {
-    if (tracks.length === 0 || flight) return;
-    const i = (next + tracks.length) % tracks.length;
-    if (i === index && !flight) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const sleeve = sleeveRefs.current[i];
-    const platter = platterRef.current;
-    const from = sleeve?.getBoundingClientRect();
-    const to = platter?.getBoundingClientRect();
-    setIndex(i);
-    if (reduce || !from || !to) return;
-    timers.current.forEach((id) => window.clearTimeout(id));
-    timers.current = [];
-    setFlight({
-      i,
-      cover: tracks[i].cover,
-      x: from.left + from.width * 0.08,
-      y: from.top + from.height * 0.04,
-      size: Math.min(from.width, from.height) * 0.86,
-      phase: "out",
-    });
+  useEffect(() => () => clearTimers(), []);
+
+  const loadTrack = (i: number) => {
+    if (i !== platterIndex) {
+      setPitch(0);
+      setPlatterIndex(i);
+    }
+  };
+
+  const insertDisc = () => {
+    clearTimers();
+    setInserting(true);
+    setDiscOn(true);
+    timers.current.push(window.setTimeout(() => setInserting(false), 2000));
+  };
+
+  const removeDisc = () => {
+    if (on || !discOn || removing) return;
+    clearTimers();
+    setRemoving(true);
     timers.current.push(
       window.setTimeout(() => {
-        setFlight((current) =>
-          current
-            ? {
-                ...current,
-                phase: "fly",
-                x: to.left,
-                y: to.top,
-                size: to.width,
-              }
-            : current,
-        );
-      }, 480),
-    );
-    timers.current.push(
-      window.setTimeout(() => {
-        setFlight(null);
-      }, 1320),
+        setDiscOn(false);
+        setRemoving(false);
+      }, 2000),
     );
   };
 
-  if (hide) return null;
+  /* First click focuses the jacket. Second click on the facing jacket loads it / plays. */
+  const onCoverClick = (i: number) => {
+    if (i !== focus) {
+      setFocus(i);
+      return;
+    }
+    loadTrack(i);
+    if (discOn) {
+      if (!on) setOn(true);
+    } else {
+      insertDisc();
+    }
+  };
 
   const skip = (dir: -1 | 1) => {
     if (tracks.length === 0) return;
-    placeAlbum(index + dir);
+    const i = (focus + dir + tracks.length) % tracks.length;
+    setFocus(i);
+    loadTrack(i);
   };
+
+  const togglePower = () => {
+    if (!discOn) return;
+    clickTick();
+    setOn((v) => !v);
+  };
+
+  if (hide) return null;
 
   return (
     <>
@@ -156,7 +202,7 @@ export function LaMusica() {
 
       {open ? (
         <div
-          className="la-musica"
+          className={`la-musica${entered ? " is-in" : ""}`}
           id="la-musica-deck"
           role="dialog"
           aria-label="la musica"
@@ -164,42 +210,43 @@ export function LaMusica() {
           <h2 className="la-musica__title">the top 10 everchanging</h2>
           <div className="la-musica__stage">
             <div className="la-musica-deck">
-              <div className="la-musica-deck__platter-wrap">
+              <div className={`la-musica-deck__platter-wrap${on ? " is-live" : ""}`}>
+                <span className="la-musica-mat-ring la-musica-mat-ring--a" />
+                <span className="la-musica-mat-ring la-musica-mat-ring--b" />
+                <span className="la-musica-mat-ring la-musica-mat-ring--c" />
                 <div
-                  ref={platterRef}
-                  className={`la-musica-platter${
-                    on && onPlatter ? " is-spinning" : ""
-                  }${onPlatter ? "" : " is-waiting"}`}
+                  className={`la-musica-platter${removing ? " is-removing" : ""}${
+                    inserting ? " is-inserting" : ""
+                  }${discOn ? "" : " is-off"}`}
+                  onClick={removeDisc}
                   aria-hidden
                 >
-                  <span className="la-musica-platter__grooves" />
+                  {Array.from({ length: 15 }, (_, ring) => (
+                    <span
+                      key={ring}
+                      className="la-musica-platter__ring"
+                      style={{
+                        inset: `${8 + 5.5 * ring}%`,
+                        borderWidth: ring % 3 === 0 ? 1 : 0.5,
+                      }}
+                    />
+                  ))}
                   <span
                     className="la-musica-platter__label"
-                    style={
-                      onPlatter && track?.cover
-                        ? { backgroundImage: `url(${track.cover})` }
-                        : undefined
-                    }
+                    style={{
+                      transform: `translate(-50%, -50%) rotate(${spin}deg)`,
+                      backgroundImage: track?.cover
+                        ? `url(${track.cover})`
+                        : undefined,
+                    }}
                   />
-                  <span className="la-musica-platter__spindle" />
                 </div>
-                <div
-                  className={`la-musica-arm${
-                    on && onPlatter ? " is-down" : ""
-                  }`}
-                  aria-hidden
-                >
-                  <span className="la-musica-arm__counter" />
-                  <span className="la-musica-arm__pivot" />
-                  <span className="la-musica-arm__bar" />
-                  <span className="la-musica-arm__head" />
-                </div>
-                <div className="la-musica-arm-rest" aria-hidden />
                 <TrackCurve
                   onPrev={() => skip(-1)}
                   onNext={() => skip(1)}
                 />
               </div>
+              <Tonearm down={on && discOn} />
 
               <div className="la-musica-deck__left">
                 <button
@@ -207,8 +254,8 @@ export function LaMusica() {
                   className={`la-musica-power${on ? " is-on" : ""}`}
                   aria-pressed={on}
                   aria-label={on ? "power off" : "power on"}
-                  disabled={!onPlatter}
-                  onClick={() => setOn((v) => !v)}
+                  disabled={!discOn}
+                  onClick={togglePower}
                 >
                   <span className="la-musica-power__well" />
                   <span className="la-musica-power__rocker" />
@@ -218,7 +265,7 @@ export function LaMusica() {
 
               <div className="la-musica-deck__right">
                 <VolumeKnob value={volume} onChange={setVolume} />
-                <TempoFader value={tempo} onChange={setTempo} />
+                <TempoFader value={pitch} onChange={setPitch} />
               </div>
             </div>
 
@@ -228,7 +275,10 @@ export function LaMusica() {
                 aria-label="albums"
                 onWheel={(event) => {
                   event.preventDefault();
-                  skip(event.deltaY > 0 ? 1 : -1);
+                  const next =
+                    (focus + (event.deltaY > 0 ? 1 : -1) + tracks.length) %
+                    tracks.length;
+                  setFocus(next);
                 }}
               >
                 <div className="la-musica-coverflow__scene">
@@ -236,17 +286,14 @@ export function LaMusica() {
                     <button
                       key={`${item.title}-${item.artist}`}
                       type="button"
-                      ref={(node) => {
-                        sleeveRefs.current[i] = node;
-                      }}
                       className={`la-musica-cover${
-                        i === index ? " is-current" : ""
-                      }${flight?.i === i ? " is-opening" : ""}`}
+                        i === focus ? " is-current" : ""
+                      }`}
                       style={{
-                        transform: coverTransform(i, index),
-                        zIndex: i === index ? 50 : 10,
+                        transform: coverTransform(i, focus),
+                        zIndex: i === focus ? 50 : 10,
                       }}
-                      onClick={() => placeAlbum(i)}
+                      onClick={() => onCoverClick(i)}
                     >
                       <span className="la-musica-cover__face">
                         <span
@@ -257,9 +304,9 @@ export function LaMusica() {
                               : undefined
                           }
                         />
-                        {i === index ? (
+                        {i === focus ? (
                           <span className="la-musica-cover__note" aria-hidden>
-                            ♪
+                            {discOn ? "♪" : "+"}
                           </span>
                         ) : null}
                       </span>
@@ -277,32 +324,28 @@ export function LaMusica() {
               </div>
             ) : null}
           </div>
-          {flight ? (
-            <span
-              className={`la-musica-fly la-musica-fly--${flight.phase}`}
-              style={{
-                left: flight.x,
-                top: flight.y,
-                width: flight.size,
-                height: flight.size,
-              }}
-              aria-hidden
-            >
-              <span className="la-musica-fly__grooves" />
-              <span
-                className="la-musica-fly__label"
-                style={
-                  flight.cover
-                    ? { backgroundImage: `url(${flight.cover})` }
-                    : undefined
-                }
-              />
-            </span>
-          ) : null}
-          <audio ref={audioRef} src={track?.src} preload="metadata" />
+          <audio ref={audioRef} src={track?.src} preload="auto" loop />
         </div>
       ) : null}
     </>
+  );
+}
+
+function Tonearm({ down }: { down: boolean }) {
+  return (
+    <div className="la-musica-arm" aria-hidden>
+      <div
+        className={`la-musica-arm__swing${down ? " is-down" : ""}`}
+        style={{ transform: `rotate(${down ? -45 : -90}deg)` }}
+      >
+        <span className="la-musica-arm__counter" />
+        <span className={`la-musica-arm__bar${down ? " is-down" : ""}`}>
+          <span className={`la-musica-arm__head${down ? " is-down" : ""}`} />
+          <span className={`la-musica-arm__needle${down ? " is-down" : ""}`} />
+        </span>
+        <span className="la-musica-arm__pivot" />
+      </div>
+    </div>
   );
 }
 
@@ -323,7 +366,6 @@ function TrackCurve({
         aria-hidden
       >
         <defs>
-          <path id="la-musica-track-curve" d="M 20 40 Q 70 80 120 40" fill="none" />
           <path id="la-musica-track-text" d="M 35 40 Q 70 55 105 37" fill="none" />
         </defs>
         <text className="la-musica-track__label">
@@ -427,14 +469,14 @@ function TempoFader({
   onChange: (v: number) => void;
 }) {
   const dragging = useRef(false);
-  const min = 0.7;
-  const max = 1.3;
+  const min = -30;
+  const max = 30;
 
   const fromPointer = (event: ReactPointerEvent<HTMLDivElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
     const t = 1 - (event.clientY - rect.top) / rect.height;
     const next = min + Math.min(1, Math.max(0, t)) * (max - min);
-    onChange(Number(next.toFixed(3)));
+    onChange(Number(next.toFixed(1)));
   };
 
   return (
