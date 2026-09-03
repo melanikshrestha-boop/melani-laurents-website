@@ -153,6 +153,68 @@ export function LaMusica() {
         >
           <h2 className="la-musica__title">the top 10 everchanging</h2>
           <div className="la-musica__stage">
+            {tracks.length > 0 ? (
+              <div
+                className="la-musica-coverflow"
+                aria-label="albums"
+                onWheel={(event) => {
+                  event.preventDefault();
+                  skip(event.deltaY > 0 ? 1 : -1);
+                }}
+              >
+                <div className="la-musica-coverflow__scene">
+                  {tracks.map((item, i) => {
+                    const rel =
+                      (i - index + tracks.length) % tracks.length;
+                    return (
+                      <button
+                        key={`${item.title}-${item.artist}`}
+                        type="button"
+                        ref={(node) => {
+                          sleeveRefs.current[i] = node;
+                        }}
+                        className={`la-musica-cover${
+                          rel === 0 ? " is-current" : ""
+                        }${flight?.i === i ? " is-opening" : ""}`}
+                        style={{
+                          transform:
+                            rel === 0
+                              ? "translateX(0px) translateZ(300px) rotateY(0deg)"
+                              : `translateX(${170 + (rel - 1) * 120}px) translateZ(0px) rotateY(-45deg)`,
+                          zIndex: rel === 0 ? 50 : 10,
+                        }}
+                        onClick={() => placeAlbum(i)}
+                      >
+                        <span className="la-musica-cover__face">
+                          <span
+                            className="la-musica-cover__art"
+                            style={
+                              item.cover
+                                ? { backgroundImage: `url(${item.cover})` }
+                                : undefined
+                            }
+                          />
+                          {rel === 0 ? (
+                            <span className="la-musica-cover__note" aria-hidden>
+                              ♪
+                            </span>
+                          ) : null}
+                        </span>
+                        <span className="la-musica-cover__info">
+                          <span className="la-musica-cover__name">
+                            {item.title}
+                          </span>
+                          <span className="la-musica-cover__artist">
+                            {item.artist}
+                          </span>
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            ) : null}
+
             <div className="la-musica-deck">
               <div className="la-musica-deck__platter-wrap">
                 <div
@@ -215,68 +277,6 @@ export function LaMusica() {
                 <TempoFader value={tempo} onChange={setTempo} />
               </div>
             </div>
-
-            {tracks.length > 0 ? (
-              <div
-                className="la-musica-coverflow"
-                aria-label="albums"
-                onWheel={(event) => {
-                  event.preventDefault();
-                  skip(event.deltaY > 0 ? 1 : -1);
-                }}
-              >
-                <div className="la-musica-coverflow__scene">
-                  {tracks.map((item, i) => {
-                    const rel =
-                      (i - index + tracks.length) % tracks.length;
-                    return (
-                      <button
-                        key={`${item.title}-${item.artist}`}
-                        type="button"
-                        ref={(node) => {
-                          sleeveRefs.current[i] = node;
-                        }}
-                        className={`la-musica-cover${
-                          rel === 0 ? " is-current" : ""
-                        }${flight?.i === i ? " is-opening" : ""}`}
-                        style={{
-                          transform:
-                            rel === 0
-                              ? "translateX(0px) translateZ(300px) rotateY(0deg)"
-                              : `translateX(${170 + (rel - 1) * 120}px) translateZ(0px) rotateY(-45deg)`,
-                          zIndex: rel === 0 ? 50 : 10,
-                        }}
-                        onClick={() => placeAlbum(i)}
-                      >
-                        <span className="la-musica-cover__face">
-                          <span
-                            className="la-musica-cover__art"
-                            style={
-                              item.cover
-                                ? { backgroundImage: `url(${item.cover})` }
-                                : undefined
-                            }
-                          />
-                          {rel === 0 ? (
-                            <span className="la-musica-cover__note" aria-hidden>
-                              ♪
-                            </span>
-                          ) : null}
-                        </span>
-                        <span className="la-musica-cover__info">
-                          <span className="la-musica-cover__name">
-                            {item.title}
-                          </span>
-                          <span className="la-musica-cover__artist">
-                            {item.artist}
-                          </span>
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            ) : null}
           </div>
           {flight ? (
             <span
