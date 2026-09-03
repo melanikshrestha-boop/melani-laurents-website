@@ -178,7 +178,7 @@ export function LaMusica() {
     window.setTimeout(() => {
       setSheet(false);
       setOpen(false);
-    }, 920);
+    }, 2300);
   };
 
   const toggleSheet = () => {
