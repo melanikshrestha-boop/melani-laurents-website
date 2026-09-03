@@ -151,31 +151,59 @@ export function LaMusica() {
             </div>
 
             {tracks.length > 0 ? (
-              <ul className="la-musica-stack" aria-label="records">
-                {tracks.map((item, i) => (
-                  <li key={`${item.title}-${item.artist}`}>
-                    <button
-                      type="button"
-                      className={`la-musica-disc${
-                        i === index ? " is-current" : ""
-                      }`}
-                      onClick={() => setIndex(i)}
+              <ul
+                className="la-musica-stack"
+                aria-label="albums"
+                onWheel={(event) => {
+                  event.preventDefault();
+                  skip(event.deltaY > 0 ? 1 : -1);
+                }}
+              >
+                {tracks.map((item, i) => {
+                  const offset = i - index;
+                  return (
+                    <li
+                      key={`${item.title}-${item.artist}`}
+                      style={{
+                        transform:
+                          offset === 0
+                            ? "translateX(0) rotateY(0deg)"
+                            : `translateX(${offset * 7.2}rem) rotateY(${
+                                offset > 0 ? -52 : 52
+                              }deg)`,
+                        zIndex: 30 - Math.abs(offset),
+                        opacity: Math.abs(offset) > 3 ? 0 : 1,
+                        pointerEvents: Math.abs(offset) > 3 ? "none" : "auto",
+                      }}
                     >
-                      <span
-                        className="la-musica-disc__art"
-                        style={
-                          item.cover
-                            ? { backgroundImage: `url(${item.cover})` }
-                            : undefined
-                        }
-                      />
-                      <span className="la-musica-disc__name">{item.title}</span>
-                      <span className="la-musica-disc__artist">
-                        {item.artist}
-                      </span>
-                    </button>
-                  </li>
-                ))}
+                      <button
+                        type="button"
+                        className={`la-musica-disc${
+                          i === index ? " is-current" : ""
+                        }`}
+                        onClick={() => setIndex(i)}
+                      >
+                        <span className="la-musica-disc__vinyl" aria-hidden>
+                          <span className="la-musica-disc__grooves" />
+                          <span
+                            className="la-musica-disc__label"
+                            style={
+                              item.cover
+                                ? { backgroundImage: `url(${item.cover})` }
+                                : undefined
+                            }
+                          />
+                        </span>
+                        <span className="la-musica-disc__name">
+                          {item.title}
+                        </span>
+                        <span className="la-musica-disc__artist">
+                          {item.artist}
+                        </span>
+                      </button>
+                    </li>
+                  );
+                })}
               </ul>
             ) : null}
           </div>

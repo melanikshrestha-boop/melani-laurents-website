@@ -23,7 +23,7 @@ html.la-musica-open body {
   letter-spacing: 0.04em;
   line-height: 1;
   writing-mode: vertical-rl;
-  transform: translateY(-50%) rotate(180deg);
+  transform: translateY(-50%);
   cursor: pointer;
   box-shadow: -4px 0 18px rgba(20, 18, 16, 0.12);
 }
@@ -46,7 +46,7 @@ body:has(.hub-page--photo) .la-musica-tab {
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-  padding: 1rem 2.5rem 2rem;
+  padding: 1rem 3.4rem 2rem 1.4rem;
   background: #f7f1e7;
   color: #29251f;
 }
@@ -66,10 +66,11 @@ body:has(.hub-page--photo) .la-musica-tab {
   display: flex;
   flex: 1 1 auto;
   align-items: center;
-  justify-content: flex-start;
-  gap: 2.4rem;
-  width: min(1100px, 100%);
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: 100%;
   margin-top: 1.2rem;
+  min-height: 0;
 }
 
 .la-musica-deck {
@@ -325,21 +326,32 @@ body:has(.hub-page--photo) .la-musica-tab {
 }
 
 .la-musica-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
+  position: relative;
+  flex: 0 0 auto;
+  width: min(22rem, 42vw);
+  height: 16.5rem;
   margin: 0;
   padding: 0;
   list-style: none;
-  max-height: min(70vh, 520px);
-  overflow: auto;
+  perspective: 920px;
+}
+
+.la-musica-stack li {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  transform-style: preserve-3d;
+  transition:
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 280ms ease;
 }
 
 .la-musica-disc {
   display: grid;
   justify-items: center;
-  gap: 0.2rem;
-  width: 112px;
+  gap: 0.35rem;
+  width: 11.5rem;
   margin: 0;
   padding: 0;
   border: 0;
@@ -348,26 +360,49 @@ body:has(.hub-page--photo) .la-musica-tab {
   cursor: pointer;
 }
 
-.la-musica-disc__art {
-  width: 92px;
-  height: 92px;
+.la-musica-disc__vinyl {
+  position: relative;
+  width: 11.5rem;
+  height: 11.5rem;
   border-radius: 50%;
-  background:
-    repeating-radial-gradient(circle at 50% 50%, #1a1917 0 1px, #2a2825 2px)
-      center / cover;
-  box-shadow: 0 8px 16px rgba(20, 18, 16, 0.2);
+  background: #141312;
+  box-shadow:
+    0 0 0 3px #2c2b28,
+    0 14px 28px rgba(20, 18, 16, 0.28);
 }
 
-.la-musica-disc.is-current .la-musica-disc__art {
-  box-shadow: 0 0 0 2px #f0cf78, 0 8px 16px rgba(20, 18, 16, 0.2);
+.la-musica-disc__grooves {
+  position: absolute;
+  inset: 6%;
+  border-radius: 50%;
+  background: repeating-radial-gradient(
+    circle at 50% 50%,
+    #1a1917 0 1px,
+    #2a2825 2px,
+    #161514 3px
+  );
+}
+
+.la-musica-disc__label {
+  position: absolute;
+  inset: 31%;
+  border-radius: 50%;
+  background: #8a2a28 center / cover no-repeat;
+  box-shadow: 0 0 0 3px #1a1917;
+}
+
+.la-musica-disc.is-current .la-musica-disc__vinyl {
+  box-shadow:
+    0 0 0 2px #f0cf78,
+    0 14px 28px rgba(20, 18, 16, 0.28);
 }
 
 .la-musica-disc__name,
 .la-musica-disc__artist {
-  max-width: 112px;
+  max-width: 11.5rem;
   overflow: hidden;
   font-family: "Source Serif 4", Georgia, ui-serif, serif;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 400;
   line-height: 1.2;
   text-overflow: ellipsis;
@@ -376,7 +411,7 @@ body:has(.hub-page--photo) .la-musica-tab {
 
 .la-musica-disc__artist {
   color: #6b645c;
-  font-size: 10px;
+  font-size: 11px;
 }
 
 @media (max-width: 820px) {
@@ -396,9 +431,8 @@ body:has(.hub-page--photo) .la-musica-tab {
   }
 
   .la-musica-stack {
-    flex-direction: row;
-    max-height: none;
     width: 100%;
+    height: 15rem;
   }
 }
 
