@@ -66,8 +66,8 @@ body:has(.hub-page--photo) .la-musica-tab {
   display: flex;
   flex: 1 1 auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
+  justify-content: flex-start;
+  gap: 0;
   width: 100%;
   margin-top: 1.2rem;
   min-height: 0;
@@ -330,84 +330,114 @@ body:has(.hub-page--photo) .la-musica-tab {
   pointer-events: none;
 }
 
-.la-musica-stack {
+.la-musica-coverflow {
   position: relative;
   flex: 0 0 auto;
-  width: min(26rem, 46vw);
-  height: 18rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  perspective: 1100px;
-}
-
-.la-musica-stack li {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: 0;
+  width: min(550px, 46vw);
+  height: 400px;
+  margin: -60px 0 0 -2.5rem;
+  overflow: hidden;
+  perspective: 1000px;
+  perspective-origin: 50% 50%;
   transform-style: preserve-3d;
-  transition:
-    transform 480ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 280ms ease;
 }
 
-.la-musica-disc {
-  display: grid;
-  justify-items: start;
-  gap: 0.4rem;
-  width: 13rem;
+.la-musica-coverflow__scene {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: scale(0.7) translateZ(-240px);
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  cursor: pointer;
+}
+
+.la-musica-cover {
+  position: absolute;
+  top: -120px;
+  left: -115px;
+  width: 270px;
+  height: 270px;
   margin: 0;
   padding: 0;
   border: 0;
   background: transparent;
   color: #29251f;
   cursor: pointer;
+  transform-origin: 50% 50%;
+  transform-style: preserve-3d;
+  backface-visibility: visible;
+  box-shadow: 0 10px 27px -1px rgba(0, 0, 0, 0.7);
+  transition: transform 1.25s cubic-bezier(0.17, 0.75, 0.58, 0.95);
 }
 
-.la-musica-sleeve {
+.la-musica-cover__face {
   position: relative;
-  width: 13rem;
-  height: 13rem;
-  overflow: visible;
-}
-
-.la-musica-sleeve__art {
   display: block;
   width: 100%;
   height: 100%;
-  border-radius: 0.55rem;
-  background: #1c1a17 center / cover no-repeat;
+  overflow: hidden;
+  border: 2px solid #333;
+  border-radius: 8px;
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.16) inset,
-    0 16px 34px rgba(20, 18, 16, 0.24);
+    0 8px 25px rgba(0, 0, 0, 0.4),
+    0 1px 2px rgba(255, 255, 255, 0.05) inset,
+    0 -1px 2px rgba(0, 0, 0, 0.6) inset;
 }
 
-.la-musica-sleeve__peek {
+.la-musica-cover__art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #111 center / cover no-repeat;
+}
+
+.la-musica-cover__note {
   position: absolute;
-  top: 9%;
-  right: -0.55rem;
-  z-index: -1;
-  width: 1.15rem;
-  height: 82%;
-  border-radius: 0 50% 50% 0;
-  background:
-    repeating-radial-gradient(
-      circle at 0 50%,
-      #1a1917 0 1px,
-      #2a2825 2px,
-      #141312 3px
-    );
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.25);
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
 }
 
-.la-musica-disc.is-current .la-musica-sleeve__art {
-  box-shadow:
-    0 0 0 2px #f0cf78,
-    0 16px 34px rgba(20, 18, 16, 0.24);
+.la-musica-cover__info {
+  position: absolute;
+  bottom: -70px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #29251f;
+  font-family: "Source Serif 4", Georgia, ui-serif, serif;
+  text-align: center;
+  pointer-events: none;
+  white-space: nowrap;
 }
 
-.la-musica-disc.is-opening .la-musica-sleeve {
+.la-musica-cover__name {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.la-musica-cover__artist {
+  display: block;
+  color: #6b645c;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.la-musica-cover.is-opening .la-musica-cover__face {
   animation: la-musica-sleeve-kick 0.48s ease;
 }
 
@@ -421,23 +451,6 @@ body:has(.hub-page--photo) .la-musica-tab {
   100% {
     transform: rotate(0deg);
   }
-}
-
-.la-musica-disc__name,
-.la-musica-disc__artist {
-  max-width: 13rem;
-  overflow: hidden;
-  font-family: "Source Serif 4", Georgia, ui-serif, serif;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.2;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.la-musica-disc__artist {
-  color: #6b645c;
-  font-size: 11px;
 }
 
 .la-musica-fly {
@@ -527,9 +540,48 @@ body:has(.hub-page--photo) .la-musica-tab {
     width: 100%;
   }
 
-  .la-musica-stack {
+  .la-musica-coverflow {
     width: 100%;
-    height: 15rem;
+    max-width: 400px;
+    height: 220px;
+    margin-top: -20px;
+  }
+
+  .la-musica-coverflow__scene {
+    transform: scale(0.5) translateZ(-150px);
+  }
+
+  .la-musica-cover {
+    top: -80px;
+    left: -75px;
+    width: 180px;
+    height: 180px;
+  }
+
+  .la-musica-cover__face {
+    border-width: 1px;
+    border-radius: 6px;
+  }
+
+  .la-musica-cover__note {
+    top: 6px;
+    right: 6px;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+  }
+
+  .la-musica-cover__info {
+    bottom: -60px;
+  }
+
+  .la-musica-cover__name {
+    font-size: 11px;
+    margin-bottom: 2px;
+  }
+
+  .la-musica-cover__artist {
+    font-size: 9px;
   }
 }
 
@@ -537,7 +589,7 @@ body:has(.hub-page--photo) .la-musica-tab {
   .la-musica-platter.is-spinning,
   .la-musica-fly--out,
   .la-musica-fly--fly,
-  .la-musica-disc.is-opening .la-musica-sleeve {
+  .la-musica-cover.is-opening .la-musica-cover__face {
     animation: none;
   }
 
