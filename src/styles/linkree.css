@@ -261,8 +261,6 @@
   letter-spacing: var(--track-label);
   line-height: 1;
   text-align: center;
-  opacity: 0;
-  animation: link-fade 2.2s cubic-bezier(0.16, 1, 0.3, 1) 0.08s forwards;
 }
 
 .linkree .icons {
@@ -279,25 +277,7 @@
   width: var(--icon);
   height: var(--icon);
   color: #fff;
-  opacity: 0;
-  animation: link-fade 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   transition: transform 0.22s ease;
-}
-
-.linkree .icons a:nth-child(1) {
-  animation-delay: 0.2s;
-}
-
-.linkree .icons a:nth-child(2) {
-  animation-delay: 0.42s;
-}
-
-.linkree .icons a:nth-child(3) {
-  animation-delay: 0.64s;
-}
-
-.linkree .icons a:nth-child(4) {
-  animation-delay: 0.86s;
 }
 
 .linkree .icons a:hover,
@@ -342,8 +322,6 @@
   letter-spacing: 0;
   line-height: 1;
   white-space: nowrap;
-  opacity: 0;
-  animation: link-fade 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Specular band. Slow glide while the cursor is on the pill. */
@@ -372,22 +350,6 @@
 .linkree .buttons a:hover::after,
 .linkree .buttons a:focus-visible::after {
   animation: pill-shine 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-.linkree .buttons > a:first-of-type {
-  animation-delay: 1.05s;
-}
-
-.linkree .buttons-split a:nth-child(1) {
-  animation-delay: 1.28s;
-}
-
-.linkree .buttons-split a:nth-child(2) {
-  animation-delay: 1.5s;
-}
-
-.linkree .buttons > a:last-of-type {
-  animation-delay: 1.72s;
 }
 
 .linkree .buttons .mark {
@@ -479,8 +441,6 @@
   color: var(--ink);
   background: var(--paper);
   border-radius: var(--radius);
-  opacity: 0;
-  animation: link-fade 2.2s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
 }
 
 .linkree .yt-latest::after {
@@ -629,15 +589,6 @@
   }
 }
 
-@keyframes link-fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 @keyframes pill-shine {
   0% {
     transform: translateX(-180%) skewX(-20deg);
@@ -659,22 +610,11 @@
 
 @media (prefers-reduced-motion: reduce) {
   .linkree .yt-shimmer,
-  .linkree .icons a,
-  .linkree .buttons a,
-  .linkree .socials-label,
-  .linkree .yt-latest,
   .linkree .buttons a:hover::after,
   .linkree .buttons a:focus-visible::after,
   .linkree .yt-latest:hover::after,
   .linkree .yt-latest:focus-visible::after {
     animation: none;
-  }
-
-  .linkree .icons a,
-  .linkree .buttons a,
-  .linkree .socials-label,
-  .linkree .yt-latest {
-    opacity: 1;
   }
 
   .linkree .icons a:hover,
