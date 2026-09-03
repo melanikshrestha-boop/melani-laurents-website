@@ -60,7 +60,7 @@ export function LaMusica() {
   const [progress, setProgress] = useState(0);
   const tracks = MUSICA_TRACKS;
   const track: MusicaTrack | undefined = tracks[platterIndex];
-  const hide = pathname.startsWith("/kids-book");
+  const hide = pathname.startsWith("/kids-book") || pathname.startsWith("/links");
   const rate = 1 + pitch / 100;
   /* Vinyl 45: one turn every 1.3s (Aayush). Angle locked to audio.currentTime. */
   const REV_SECS = 1.3;

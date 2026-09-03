@@ -1,0 +1,670 @@
+.linkree {
+  --paper: #f5f2eb;
+  --ink: #141210;
+  --font: var(--font-syne), Syne, system-ui, sans-serif;
+  --type-header: 20px;
+  --type-label: 14px;
+  --type-button: 18px;
+  --weight-header: 600;
+  --weight-body: 500;
+  --track-label: 0.12em;
+  --space: 24px;
+  --space-tight: 12px;
+  --inset: 20px;
+  --icon: 28px;
+  --radius: 8px;
+  --pad-y: 12px;
+  --pad-x: 16px;
+}
+
+.linkree,
+.linkree *,
+.linkree *::before,
+.linkree *::after {
+  box-sizing: border-box;
+}
+
+/* Next CSS is global — keep every rule under .linkree. */
+.linkree {
+  margin: 0;
+  min-height: 100dvh;
+  height: 100%;
+  background: #2c261c;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+.linkree .poster {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100svh;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #2c261c;
+}
+
+.linkree .stage {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100svh;
+  margin-inline: auto;
+  overflow: hidden;
+}
+
+.linkree .bg,
+.linkree .bg img,
+.linkree .field,
+.linkree .field img {
+  position: absolute;
+  inset: 0;
+}
+
+.linkree .bg,
+.linkree .field {
+  z-index: 0;
+  pointer-events: none;
+}
+
+.linkree .bg img,
+.linkree .field img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.linkree .bg img:first-child,
+.linkree .field img:first-child {
+  /* Fendi / BMW — keep the car in frame on wide screens */
+  object-position: 50% 82%;
+}
+
+.linkree .bg img:last-child,
+.linkree .field img:last-child {
+  /* Spring St — same crop as the Celine home still */
+  object-position: 50% 54%;
+  animation: still-cycle 14s ease-in-out infinite;
+}
+
+.linkree .field {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .linkree .bg img:first-child,
+  .linkree .field img:first-child {
+    object-position: 50% 52%;
+  }
+}
+
+@keyframes still-cycle {
+  0%,
+  40% {
+    opacity: 0;
+  }
+  48%,
+  92% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .linkree .bg img:last-child,
+  .linkree .field img:last-child {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+.linkree .veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.22) 0%,
+    rgba(0, 0, 0, 0.06) 28%,
+    rgba(0, 0, 0, 0.06) 72%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+}
+
+.linkree .sheet {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 0 0 auto;
+  gap: var(--space);
+  width: 100%;
+  max-width: 22rem;
+  margin-inline: auto;
+  padding: 1rem var(--inset) 2rem;
+  font-family: var(--font);
+  max-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+@media (min-width: 640px) {
+  .linkree .poster {
+    justify-content: flex-end;
+    align-items: center;
+    background: #2c261c;
+  }
+
+  /* Same stills as the phone, light blur — field should still read as the photo. */
+  .linkree .field {
+    display: block;
+    overflow: hidden;
+  }
+
+  .linkree .field img {
+    transform: scale(1.06);
+    filter: blur(14px) saturate(1.06) brightness(1);
+  }
+
+  .linkree .field::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(28, 22, 16, 0.05);
+  }
+
+  /* Gap at the top only. Card runs to the bottom edge. */
+  .linkree .stage {
+    justify-content: flex-start;
+    align-items: center;
+    width: min(36.25rem, calc(100% - 2.5rem));
+    height: calc(100svh - 1.25rem);
+    margin: 0;
+    border-radius: 1.5rem 1.5rem 0 0;
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.1),
+      -12px 0 40px rgba(0, 0, 0, 0.22),
+      12px 0 40px rgba(0, 0, 0, 0.22);
+  }
+
+  .linkree .sheet {
+    width: 100%;
+    max-width: none;
+    margin-inline: auto;
+    padding: 1rem var(--inset) 2rem;
+    justify-content: flex-start;
+    align-items: center;
+  }
+}
+
+.linkree .head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: var(--space);
+  margin: 0;
+}
+
+.linkree .stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-tight);
+}
+
+.linkree .identity {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-tight);
+  margin: 0;
+  color: #fff;
+  text-decoration: none;
+}
+
+.linkree .identity img {
+  display: block;
+  width: var(--icon);
+  height: var(--icon);
+  border-radius: 0;
+  object-fit: cover;
+}
+
+.linkree .identity span {
+  font-family: var(--font);
+  font-size: var(--type-header);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.linkree .socials-label {
+  margin: 0;
+  color: #fff;
+  font-family: var(--font);
+  font-size: var(--type-label);
+  font-weight: var(--weight-body);
+  letter-spacing: var(--track-label);
+  line-height: 1;
+  text-align: center;
+  opacity: 0;
+  animation: link-fade 2.2s cubic-bezier(0.16, 1, 0.3, 1) 0.08s forwards;
+}
+
+.linkree .icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-tight);
+}
+
+.linkree .icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon);
+  height: var(--icon);
+  color: #fff;
+  opacity: 0;
+  animation: link-fade 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: transform 0.22s ease;
+}
+
+.linkree .icons a:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.linkree .icons a:nth-child(2) {
+  animation-delay: 0.42s;
+}
+
+.linkree .icons a:nth-child(3) {
+  animation-delay: 0.64s;
+}
+
+.linkree .icons a:nth-child(4) {
+  animation-delay: 0.86s;
+}
+
+.linkree .icons a:hover,
+.linkree .icons a:focus-visible {
+  color: #fff;
+  transform: translateY(-4px) scale(1.08);
+}
+
+.linkree .icons svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.linkree .buttons {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-tight);
+  width: max-content;
+  max-width: calc(100% - 2 * var(--inset));
+}
+
+.linkree .buttons a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-tight);
+  width: 100%;
+  min-height: 0;
+  padding: var(--pad-y) var(--pad-x);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  text-decoration: none;
+  font-family: var(--font);
+  font-size: var(--type-button);
+  font-weight: var(--weight-body);
+  letter-spacing: 0;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  animation: link-fade 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Specular band. Skew + overflow clip is the left-to-right shine. */
+.linkree .buttons a::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: 0;
+  width: 42%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 28%,
+    rgba(255, 255, 255, 0.92) 50%,
+    rgba(255, 255, 255, 0.15) 72%,
+    transparent 100%
+  );
+  box-shadow: 0 0 18px 4px rgba(255, 255, 255, 0.35);
+  transform: translateX(-160%) skewX(-16deg);
+  pointer-events: none;
+}
+
+.linkree .buttons a:hover::after,
+.linkree .buttons a:focus-visible::after {
+  animation: pill-shine 0.85s ease;
+}
+
+.linkree .buttons > a:first-of-type {
+  animation-delay: 1.05s;
+}
+
+.linkree .buttons-split a:nth-child(1) {
+  animation-delay: 1.28s;
+}
+
+.linkree .buttons-split a:nth-child(2) {
+  animation-delay: 1.5s;
+}
+
+.linkree .buttons > a:last-of-type {
+  animation-delay: 1.72s;
+}
+
+.linkree .buttons .mark {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+}
+
+.linkree .buttons .mark img,
+.linkree .buttons .mark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.linkree .buttons a:hover,
+.linkree .buttons a:focus-visible {
+  background: #fbf8f2;
+}
+
+/* GitHub / LinkedIn / Builds — one compact column, width of the longest label. */
+.linkree .buttons-split {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-tight);
+  width: 100%;
+}
+
+.linkree .buttons-split a {
+  flex: 0 0 auto;
+  width: 100%;
+}
+
+.linkree .buttons[data-tuned] {
+  width: var(--tune-w);
+  max-width: calc(100% - 2 * var(--inset));
+}
+
+.linkree .buttons[data-tuned] a {
+  height: var(--tune-h);
+  min-height: var(--tune-h);
+  box-sizing: border-box;
+}
+
+.linkree .button-tune {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 8px);
+  z-index: 4;
+  margin: 0;
+  transform: translateX(-50%);
+}
+
+.linkree .button-tune input {
+  width: 7.5rem;
+  margin: 0;
+  padding: 0.35rem 0.5rem;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--type-label);
+  font-weight: var(--weight-body);
+  letter-spacing: 0;
+  line-height: 1;
+  text-align: center;
+}
+
+.linkree .button-tune input:focus {
+  outline: 1px solid #fff;
+}
+
+/* latest youtube card — em off .sheet */
+.linkree .yt-latest {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--paper);
+  border-radius: var(--radius);
+  opacity: 0;
+  animation: link-fade 2.2s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
+}
+
+.linkree .yt-latest::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: 0;
+  z-index: 2;
+  width: 38%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.12) 28%,
+    rgba(255, 255, 255, 0.75) 50%,
+    rgba(255, 255, 255, 0.12) 72%,
+    transparent 100%
+  );
+  transform: translateX(-160%) skewX(-16deg);
+  pointer-events: none;
+}
+
+.linkree .yt-latest:hover::after,
+.linkree .yt-latest:focus-visible::after {
+  animation: pill-shine 0.85s ease;
+}
+
+.linkree .yt-latest:hover,
+.linkree .yt-latest:focus-visible {
+  background: #fff;
+}
+
+.linkree .yt-latest-thumb {
+  position: relative;
+  flex: 0 0 38%;
+  width: 38%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #1a1814;
+}
+
+.linkree .yt-latest-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 16 / 9;
+}
+
+.linkree .yt-latest-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0.38em 0 0.38em 0.64em;
+  border-color: transparent transparent transparent #fff;
+  opacity: 0.85;
+  transform: translate(-30%, -50%);
+  pointer-events: none;
+}
+
+.linkree .yt-latest-copy {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-tight);
+  padding: var(--pad-y) var(--pad-x);
+}
+
+.linkree .yt-latest-label {
+  color: rgba(20, 18, 16, 0.55);
+  font-family: var(--font);
+  font-size: var(--type-label);
+  font-weight: var(--weight-body);
+  letter-spacing: var(--track-label);
+  line-height: 1;
+  text-transform: lowercase;
+}
+
+.linkree .yt-latest-title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  font-family: var(--font);
+  font-size: var(--type-button);
+  font-weight: var(--weight-body);
+  letter-spacing: 0;
+  line-height: 1.25;
+}
+
+.linkree .yt-latest-date {
+  color: rgba(20, 18, 16, 0.5);
+  font-family: var(--font);
+  font-size: var(--type-label);
+  font-weight: var(--weight-body);
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.linkree .yt-shimmer {
+  background: linear-gradient(
+    90deg,
+    #ece7dc 0%,
+    #f7f4ee 45%,
+    #ece7dc 100%
+  );
+  background-size: 200% 100%;
+  animation: yt-shimmer 1.2s ease-in-out infinite;
+}
+
+.linkree .yt-skel-line {
+  display: block;
+  border-radius: 0.15em;
+  height: 0.55em;
+}
+
+.linkree .yt-skel-line--label {
+  width: 42%;
+  height: 0.45em;
+}
+
+.linkree .yt-skel-line--title {
+  width: 88%;
+  height: 0.7em;
+}
+
+.linkree .yt-skel-line--meta {
+  width: 28%;
+  height: 0.45em;
+}
+
+@keyframes yt-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+@keyframes link-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pill-shine {
+  from {
+    transform: translateX(-160%) skewX(-16deg);
+  }
+  to {
+    transform: translateX(320%) skewX(-16deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .linkree .yt-shimmer,
+  .linkree .icons a,
+  .linkree .buttons a,
+  .linkree .socials-label,
+  .linkree .yt-latest,
+  .linkree .buttons a:hover::after,
+  .linkree .buttons a:focus-visible::after,
+  .linkree .yt-latest:hover::after,
+  .linkree .yt-latest:focus-visible::after {
+    animation: none;
+  }
+
+  .linkree .icons a,
+  .linkree .buttons a,
+  .linkree .socials-label,
+  .linkree .yt-latest {
+    opacity: 1;
+  }
+
+  .linkree .icons a:hover,
+  .linkree .icons a:focus-visible {
+    transform: none;
+  }
+}
+

@@ -21,7 +21,7 @@ export const designs: DesignSite[] = [
   {
     id: "celinenovalinks",
     title: "celinenovalinks",
-    href: "https://celinenovalinks.vercel.app",
+    href: "/links",
     previewImage: "/builds/designs/celinenovalinks.jpg",
     story:
       "I didn't understand the exact point of linktree aside from just stacking links from top of each other so I just created my own version of it for free to add under social handles.",
