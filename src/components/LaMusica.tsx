@@ -46,6 +46,7 @@ export function LaMusica() {
   const spinRef = useRef<number | null>(null);
   const timers = useRef<number[]>([]);
   const [open, setOpen] = useState(false);
+  const [sheet, setSheet] = useState(false);
   const [entered, setEntered] = useState(false);
   const [on, setOn] = useState(false);
   const [focus, setFocus] = useState(0);
@@ -158,24 +159,44 @@ export function LaMusica() {
     };
   }, [on]);
 
+  const closeSheet = () => {
+    setEntered(false);
+    setOn(false);
+    window.setTimeout(() => {
+      setSheet(false);
+      setOpen(false);
+    }, 840);
+  };
+
+  const toggleSheet = () => {
+    if (open) {
+      closeSheet();
+      return;
+    }
+    setOpen(true);
+    setSheet(true);
+  };
+
   useEffect(() => {
-    if (!open) {
-      setEntered(false);
-      setOn(false);
+    if (!sheet) {
+      document.documentElement.classList.remove("la-musica-open");
       return;
     }
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") closeSheet();
     };
     document.addEventListener("keydown", onKey);
     document.documentElement.classList.add("la-musica-open");
-    const id = window.setTimeout(() => setEntered(true), 30);
+    let inner = 0;
+    const outer = window.requestAnimationFrame(() => {
+      inner = window.requestAnimationFrame(() => setEntered(true));
+    });
     return () => {
       document.removeEventListener("keydown", onKey);
-      document.documentElement.classList.remove("la-musica-open");
-      window.clearTimeout(id);
+      window.cancelAnimationFrame(outer);
+      window.cancelAnimationFrame(inner);
     };
-  }, [open]);
+  }, [sheet]);
 
   useEffect(() => {
     if (!discOn && on) setOn(false);
@@ -213,10 +234,14 @@ export function LaMusica() {
       return;
     }
     if (i === platterIndex && discOn) {
-      if (!on) setOn(true);
+      if (!on) {
+        cueStart();
+        setOn(true);
+      }
       return;
     }
     loadTrack(i);
+    cueStart();
     if (discOn) {
       if (!on) setOn(true);
     } else {
@@ -234,7 +259,10 @@ export function LaMusica() {
   const togglePower = () => {
     if (!discOn) return;
     clickTick();
-    setOn((v) => !v);
+    setOn((v) => {
+      if (!v) cueStart();
+      return !v;
+    });
   };
 
   if (hide) return null;
@@ -246,12 +274,12 @@ export function LaMusica() {
         className={`la-musica-tab${open ? " is-open" : ""}`}
         aria-expanded={open}
         aria-controls="la-musica-deck"
-        onClick={() => setOpen((v) => !v)}
+        onClick={toggleSheet}
       >
         la musica
       </button>
 
-      {open ? (
+      {sheet ? (
         <div
           className={`la-musica${entered ? " is-in" : ""}`}
           id="la-musica-deck"
@@ -296,6 +324,12 @@ export function LaMusica() {
                         backgroundImage: track?.cover
                           ? `url(${track.cover})`
                           : undefined,
+                      }}
+                    />
+                    <span
+                      className="la-musica-platter__playhead"
+                      style={{
+                        inset: `${7 + progress * 30}%`,
                       }}
                     />
                   </div>
@@ -392,9 +426,9 @@ export function LaMusica() {
 }
 
 function Tonearm({ down, progress }: { down: boolean; progress: number }) {
-  /* Rest off the record. Playing: outer groove → inner as the file runs 0→1. */
+  /* Rest off the record (−90). Song start = outer groove. End = inner label. */
   const p = Math.min(1, Math.max(0, progress));
-  const deg = down ? -32 - p * 26 : -90;
+  const deg = down ? -72 + p * 34 : -90;
   return (
     <div className="la-musica-arm" aria-hidden>
       <div

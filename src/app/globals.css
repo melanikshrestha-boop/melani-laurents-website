@@ -2312,11 +2312,11 @@ body:has(.home-sections--single) {
   height: 100dvh;
   min-height: 100svh;
   overflow: hidden;
-  background: #000;
+  background: transparent;
 }
 
 .home-sections--single::before {
-  background: #000;
+  background: transparent;
 }
 
 .home-sections::before {
@@ -5472,27 +5472,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   --hero-fade: 0;
   --hub-edge: 28px;
   --hub-header-top: 12px;
-  background: #050505;
-}
-
-.hub-page--photo .hub-page__hud-scrim {
-  position: absolute;
-  left: 0;
-  right: 0;
-  z-index: 3;
-  pointer-events: none;
-}
-
-.hub-page--photo .hub-page__hud-scrim--top {
-  top: 0;
-  height: 80px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.38), transparent);
-}
-
-.hub-page--photo .hub-page__hud-scrim--bottom {
-  bottom: 0;
-  height: 100px;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.48), transparent);
+  background: transparent;
 }
 
 /* True full-viewport cover — sharp still, no fog on first paint */
@@ -5718,19 +5698,11 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
  * then cream after leave. Soft photo mask blends into this — no hard bar.
  */
 .home-sections:has(.hub-page--photo) {
-  background: color-mix(
-    in srgb,
-    #000000 calc((1 - var(--scroll-p, 0)) * 100%),
-    #f0ede5
-  );
+  background: transparent;
 }
 
 .home-sections:has(.hub-page--photo)::before {
-  background: color-mix(
-    in srgb,
-    #000000 calc((1 - var(--scroll-p, 0)) * 100%),
-    #f0ede5
-  );
+  display: none;
 }
 
 /* No solid black bridge — that was the harsh line */
@@ -7067,24 +7039,10 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   --hub-header-top: 12px;
 }
 
-.hub-page__hud-scrim {
-  position: absolute;
-  left: 0;
-  right: 0;
-  z-index: 3;
-  pointer-events: none;
-}
-
-.hub-page__hud-scrim--top {
-  top: 0;
-  height: 80px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.38), transparent);
-}
-
+.hub-page__hud-scrim,
+.hub-page__hud-scrim--top,
 .hub-page__hud-scrim--bottom {
-  bottom: 0;
-  height: 100px;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.48), transparent);
+  display: none;
 }
 
 .hub-page--photo .hub-page__identity-name,

@@ -36,8 +36,6 @@ export function HomeHub() {
           height={HUB_HERO_PHOTO.height}
         />
       </div>
-      <div className="hub-page__hud-scrim hub-page__hud-scrim--top" aria-hidden />
-      <div className="hub-page__hud-scrim hub-page__hud-scrim--bottom" aria-hidden />
 
       <div className="hub-page__sticky-ui">
         <header className="hub-page__header hub-page__header--locked">
