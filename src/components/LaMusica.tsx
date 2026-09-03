@@ -44,7 +44,6 @@ export function LaMusica() {
   const pathname = usePathname();
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const spinRef = useRef<number | null>(null);
-  const spinStamp = useRef<number | null>(null);
   const timers = useRef<number[]>([]);
   const [open, setOpen] = useState(false);
   const [entered, setEntered] = useState(false);
@@ -57,10 +56,13 @@ export function LaMusica() {
   const [volume, setVolume] = useState(0.5);
   const [pitch, setPitch] = useState(0);
   const [spin, setSpin] = useState(0);
+  const [progress, setProgress] = useState(0);
   const tracks = MUSICA_TRACKS;
   const track: MusicaTrack | undefined = tracks[platterIndex];
   const hide = pathname.startsWith("/kids-book");
   const rate = 1 + pitch / 100;
+  /* Vinyl 45: one turn every 1.3s (Aayush). Angle locked to audio.currentTime. */
+  const REV_SECS = 1.3;
 
   const clearTimers = () => {
     timers.current.forEach((id) => window.clearTimeout(id));
@@ -73,14 +75,18 @@ export function LaMusica() {
     const next = new URL(track.src, window.location.href).href;
     if (audio.src !== next) {
       audio.src = next;
+      audio.currentTime = 0;
+      setProgress(0);
+      setSpin(0);
     }
   }, [platterIndex, track?.src]);
 
-  /* Volume / pitch / power never rewind. play() only if already paused. */
+  /* Volume / pitch / power never rewind. play() only if already paused.
+     New track (src change above) starts at 0 and runs to ended — no loop. */
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
-    audio.loop = true;
+    audio.loop = false;
     audio.volume = volume;
     try {
       if (Math.abs(audio.playbackRate - rate) > 0.001) {
@@ -90,6 +96,11 @@ export function LaMusica() {
       /* some AAC previews reject rate */
     }
     if (on && discOn && track?.src) {
+      const next = new URL(track.src, window.location.href).href;
+      if (audio.src !== next) {
+        audio.src = next;
+        audio.currentTime = 0;
+      }
       if (audio.paused) void audio.play().catch(() => setOn(false));
     } else if (!audio.paused) {
       audio.pause();
@@ -97,16 +108,48 @@ export function LaMusica() {
   }, [discOn, on, rate, track?.src, volume]);
 
   useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    const syncVinyl = () => {
+      const dur = audio.duration;
+      const t = audio.currentTime;
+      if (dur > 0 && Number.isFinite(dur)) {
+        setProgress(Math.min(1, Math.max(0, t / dur)));
+        setSpin(((t * (audio.playbackRate || 1)) / REV_SECS) * 360);
+      }
+    };
+    const onEnded = () => {
+      setOn(false);
+      setProgress(1);
+    };
+    audio.addEventListener("timeupdate", syncVinyl);
+    audio.addEventListener("loadedmetadata", syncVinyl);
+    audio.addEventListener("ended", onEnded);
+    return () => {
+      audio.removeEventListener("timeupdate", syncVinyl);
+      audio.removeEventListener("loadedmetadata", syncVinyl);
+      audio.removeEventListener("ended", onEnded);
+    };
+  }, []);
+
+  /* Real-time platter: sample the element every frame so grooves + arm
+     track the file from 0:00 to the last sample, not a fake RPM clock. */
+  useEffect(() => {
     if (!on) {
       if (spinRef.current) cancelAnimationFrame(spinRef.current);
       spinRef.current = null;
-      spinStamp.current = null;
       return;
     }
-    const tick = (now: number) => {
-      const last = spinStamp.current ?? now;
-      spinStamp.current = now;
-      setSpin((deg) => (deg + ((now - last) / 30000) * 360) % 360);
+    const tick = () => {
+      const audio = audioRef.current;
+      if (audio) {
+        const dur = audio.duration;
+        const t = audio.currentTime;
+        if (dur > 0 && Number.isFinite(dur)) {
+          setProgress(Math.min(1, Math.max(0, t / dur)));
+          setSpin(((t * (audio.playbackRate || 1)) / REV_SECS) * 360);
+        }
+      }
       spinRef.current = requestAnimationFrame(tick);
     };
     spinRef.current = requestAnimationFrame(tick);
@@ -233,27 +276,31 @@ export function LaMusica() {
                   onClick={removeDisc}
                   aria-hidden
                 >
-                  {Array.from({ length: 15 }, (_, ring) => (
+                  <div
+                    className="la-musica-platter__rotor"
+                    style={{ transform: `rotate(${spin}deg)` }}
+                  >
+                    {Array.from({ length: 15 }, (_, ring) => (
+                      <span
+                        key={ring}
+                        className="la-musica-platter__ring"
+                        style={{
+                          inset: `${8 + 5.5 * ring}%`,
+                          borderWidth: ring % 3 === 0 ? 1 : 0.5,
+                        }}
+                      />
+                    ))}
                     <span
-                      key={ring}
-                      className="la-musica-platter__ring"
+                      className="la-musica-platter__label"
                       style={{
-                        inset: `${8 + 5.5 * ring}%`,
-                        borderWidth: ring % 3 === 0 ? 1 : 0.5,
+                        backgroundImage: track?.cover
+                          ? `url(${track.cover})`
+                          : undefined,
                       }}
                     />
-                  ))}
-                  <span
-                    className="la-musica-platter__label"
-                    style={{
-                      transform: `translate(-50%, -50%) rotate(${spin}deg)`,
-                      backgroundImage: track?.cover
-                        ? `url(${track.cover})`
-                        : undefined,
-                    }}
-                  />
+                  </div>
                 </div>
-                <Tonearm down={on && discOn} />
+                <Tonearm down={on && discOn} progress={progress} />
                 <TrackCurve
                   onPrev={() => skip(-1)}
                   onNext={() => skip(1)}
@@ -339,17 +386,23 @@ export function LaMusica() {
           </div>
         </div>
       ) : null}
-      <audio ref={audioRef} preload="auto" loop />
+      <audio ref={audioRef} preload="auto" />
     </>
   );
 }
 
-function Tonearm({ down }: { down: boolean }) {
+function Tonearm({ down, progress }: { down: boolean; progress: number }) {
+  /* Rest off the record. Playing: outer groove → inner as the file runs 0→1. */
+  const p = Math.min(1, Math.max(0, progress));
+  const deg = down ? -32 - p * 26 : -90;
   return (
     <div className="la-musica-arm" aria-hidden>
       <div
         className={`la-musica-arm__swing${down ? " is-down" : ""}`}
-        style={{ transform: `rotate(${down ? -45 : -90}deg)` }}
+        style={{
+          transform: `rotate(${deg}deg)`,
+          transition: down ? "none" : "transform 1000ms ease-in-out",
+        }}
       >
         <span className="la-musica-arm__counter" />
         <span className={`la-musica-arm__bar${down ? " is-down" : ""}`}>
