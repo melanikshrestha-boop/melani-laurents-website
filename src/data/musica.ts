@@ -8,4 +8,12 @@ export type MusicaTrack = {
   src?: string;
 };
 
-export const MUSICA_TRACKS: MusicaTrack[] = [];
+export const MUSICA_TRACKS: MusicaTrack[] = [
+  {
+    title: "Heroes",
+    artist: "David Bowie",
+    cover:
+      "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e2/65/b2/e265b2ae-48d5-9dd8-0251-6cd6c6c4eb53/190295842826.jpg/600x600bb.jpg",
+    src: "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/1f/f3/12/1ff3122a-eb3e-373d-d524-cfe00de9b19a/mzaf_8446634475827049231.plus.aac.p.m4a",
+  },
+];

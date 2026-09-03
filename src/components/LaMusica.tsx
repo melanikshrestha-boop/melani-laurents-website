@@ -90,6 +90,7 @@ export function LaMusica() {
           role="dialog"
           aria-label="la musica"
         >
+          <h2 className="la-musica__title">the top 10 everchanging</h2>
           <div className="la-musica__stage">
             <div className="la-musica-deck">
               <div className="la-musica-deck__platter-wrap">
@@ -178,7 +179,7 @@ export function LaMusica() {
               </ul>
             ) : null}
           </div>
-          <audio ref={audioRef} preload="none" />
+          <audio ref={audioRef} src={track?.src} preload="metadata" />
         </div>
       ) : null}
     </>
