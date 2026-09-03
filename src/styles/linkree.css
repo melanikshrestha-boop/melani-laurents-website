@@ -346,30 +346,32 @@
   animation: link-fade 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Specular band. Skew + overflow clip is the left-to-right shine. */
+/* Specular band. Slow glide while the cursor is on the pill. */
 .linkree .buttons a::after {
   content: "";
   position: absolute;
-  top: -20%;
-  bottom: -20%;
+  top: -30%;
+  bottom: -30%;
   left: 0;
-  width: 42%;
+  width: 28%;
   background: linear-gradient(
-    90deg,
+    105deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.15) 28%,
-    rgba(255, 255, 255, 0.92) 50%,
-    rgba(255, 255, 255, 0.15) 72%,
+    rgba(255, 255, 255, 0.08) 38%,
+    rgba(255, 255, 255, 0.55) 48%,
+    rgba(255, 252, 245, 0.92) 50%,
+    rgba(255, 255, 255, 0.55) 52%,
+    rgba(255, 255, 255, 0.08) 62%,
     transparent 100%
   );
-  box-shadow: 0 0 18px 4px rgba(255, 255, 255, 0.35);
-  transform: translateX(-160%) skewX(-16deg);
+  transform: translateX(-180%) skewX(-20deg);
+  opacity: 0;
   pointer-events: none;
 }
 
 .linkree .buttons a:hover::after,
 .linkree .buttons a:focus-visible::after {
-  animation: pill-shine 0.85s ease;
+  animation: pill-shine 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 .linkree .buttons > a:first-of-type {
@@ -484,26 +486,29 @@
 .linkree .yt-latest::after {
   content: "";
   position: absolute;
-  top: -20%;
-  bottom: -20%;
+  top: -30%;
+  bottom: -30%;
   left: 0;
   z-index: 2;
-  width: 38%;
+  width: 28%;
   background: linear-gradient(
-    90deg,
+    105deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.12) 28%,
-    rgba(255, 255, 255, 0.75) 50%,
-    rgba(255, 255, 255, 0.12) 72%,
+    rgba(255, 255, 255, 0.08) 38%,
+    rgba(255, 255, 255, 0.55) 48%,
+    rgba(255, 252, 245, 0.92) 50%,
+    rgba(255, 255, 255, 0.55) 52%,
+    rgba(255, 255, 255, 0.08) 62%,
     transparent 100%
   );
-  transform: translateX(-160%) skewX(-16deg);
+  transform: translateX(-180%) skewX(-20deg);
+  opacity: 0;
   pointer-events: none;
 }
 
 .linkree .yt-latest:hover::after,
 .linkree .yt-latest:focus-visible::after {
-  animation: pill-shine 0.85s ease;
+  animation: pill-shine 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 .linkree .yt-latest:hover,
@@ -634,11 +639,21 @@
 }
 
 @keyframes pill-shine {
-  from {
-    transform: translateX(-160%) skewX(-16deg);
+  0% {
+    transform: translateX(-180%) skewX(-20deg);
+    opacity: 0;
   }
-  to {
-    transform: translateX(320%) skewX(-16deg);
+  8% {
+    opacity: 1;
+  }
+  62% {
+    transform: translateX(320%) skewX(-20deg);
+    opacity: 1;
+  }
+  72%,
+  100% {
+    transform: translateX(320%) skewX(-20deg);
+    opacity: 0;
   }
 }
 
