@@ -2304,6 +2304,7 @@ body:has(.home-sections--single) {
   height: 100%;
   overflow: hidden;
   overscroll-behavior: none;
+  background: transparent;
 }
 
 .home-sections--single {

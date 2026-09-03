@@ -70,6 +70,19 @@ export function LaMusica() {
     timers.current = [];
   };
 
+  const cueStart = () => {
+    const audio = audioRef.current;
+    if (audio) {
+      try {
+        audio.currentTime = 0;
+      } catch {
+        /* ignore */
+      }
+    }
+    setProgress(0);
+    setSpin(0);
+  };
+
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio || !track?.src) return;
@@ -165,7 +178,7 @@ export function LaMusica() {
     window.setTimeout(() => {
       setSheet(false);
       setOpen(false);
-    }, 840);
+    }, 920);
   };
 
   const toggleSheet = () => {
@@ -254,6 +267,7 @@ export function LaMusica() {
     const i = (focus + dir + tracks.length) % tracks.length;
     setFocus(i);
     loadTrack(i);
+    cueStart();
   };
 
   const togglePower = () => {
@@ -428,7 +442,7 @@ export function LaMusica() {
 function Tonearm({ down, progress }: { down: boolean; progress: number }) {
   /* Rest off the record (−90). Song start = outer groove. End = inner label. */
   const p = Math.min(1, Math.max(0, progress));
-  const deg = down ? -72 + p * 34 : -90;
+  const deg = down ? -80 + p * 38 : -90;
   return (
     <div className="la-musica-arm" aria-hidden>
       <div
