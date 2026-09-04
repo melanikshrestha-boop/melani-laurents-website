@@ -52,7 +52,7 @@ for (const rel of icoPaths) {
   }
 }
 
-for (const rel of ["public/icon.png", "public/eren-go.png", "public/icon-eren.png"]) {
+for (const rel of ["public/icon.png", "public/icon-eren.png"]) {
   const size = fs.statSync(path.join(root, rel)).size;
   if (size < 10000) {
     fail(`${rel} is ${size} bytes — face crop / C. Need full manga square.`);
@@ -84,8 +84,8 @@ for (const rel of mustPin) {
 }
 
 const tab = fs.readFileSync(path.join(root, "src/lib/eren-tab.ts"), "utf8");
-if (!tab.includes("/eren-go.png") || !tab.includes("?v=go3")) {
-  fail("src/lib/eren-tab.ts must point at /eren-go.png?v=go3");
+if (!tab.includes("/icon-eren.png") || !tab.includes("?v=see1")) {
+  fail("src/lib/eren-tab.ts must point at /icon-eren.png?v=see1");
 }
 if (!tab.includes("EREN_TAB_DATA_32") || !tab.includes("data:image/png;base64,iVBOR")) {
   fail("src/lib/eren-tab.ts must inline a PNG data URI of Eren (32px)");

@@ -59,8 +59,8 @@ function get(url) {
     if (!html.includes("data:image/png;base64,iVBOR")) {
       fail(`${url} HTML has no inline Eren PNG data URI — Chrome can keep a C`);
     }
-    if (!html.includes("/eren-go.png")) {
-      fail(`${url} HTML missing /eren-go.png`);
+    if (!html.includes("/icon-eren.png")) {
+      fail(`${url} HTML missing /icon-eren.png`);
     }
     if (/icon\.tsx|apple-icon\.tsx|\?favicon\.[^"']+\.ico/.test(html)) {
       fail(`${url} HTML still has a Next hashed ICO / icon.tsx (cream C)`);
@@ -81,11 +81,11 @@ function get(url) {
   if (ico.body.length < 4000) fail("/favicon.ico too small: " + ico.body.length);
   console.log("ok favicon.ico", ico.body.length, ico.type);
 
-  const png = await get(base + "/eren-go.png?v=go3");
-  if (png.status >= 400) fail("/eren-go.png status " + png.status);
-  if (png.body.length < 10000) fail("/eren-go.png too small: " + png.body.length);
-  if (png.body[0] !== 0x89 || png.body[1] !== 0x50) fail("/eren-go.png is not a PNG");
-  console.log("ok eren-go.png", png.body.length);
+  const png = await get(base + "/icon-eren.png?v=see1");
+  if (png.status >= 400) fail("/icon-eren.png status " + png.status);
+  if (png.body.length < 10000) fail("/icon-eren.png too small: " + png.body.length);
+  if (png.body[0] !== 0x89 || png.body[1] !== 0x50) fail("/icon-eren.png is not a PNG");
+  console.log("ok icon-eren.png", png.body.length);
 
   const svg = await get(base + "/icon.svg");
   if (svg.status >= 400) fail("/icon.svg status " + svg.status);
