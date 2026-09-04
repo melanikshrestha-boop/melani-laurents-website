@@ -5935,6 +5935,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   -webkit-text-fill-color: #ffffff !important;
   background: none !important;
   filter: none !important;
+  text-shadow: none !important;
 }
 
 .hub-page--photo .hub-page__tagline,
@@ -5986,8 +5987,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .home-sections .hub-page--photo .hub-page__nav--locked a:hover,
 .home-sections .hub-page--photo .hub-page__nav--locked .hub-page__nav-item:first-child a:hover,
 .home-sections .hub-page--photo .hub-page__nav--locked .hub-page__nav-contact:hover {
-  color: #ffffff !important;
   opacity: 0.9;
+  text-shadow: none !important;
 }
 
 .hub-page--photo .hub-page__nav--locked .hub-page__sep {
@@ -7118,11 +7119,15 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .home-sections .hub-page--photo .hub-page__nav--locked a,
 .home-sections .hub-page--photo .hub-page__nav--locked .hub-page__nav-item:first-child a,
 .home-sections .hub-page--photo .hub-page__nav--locked .hub-page__nav-contact {
-  color: #ffffff !important;
+  color: color-mix(
+    in srgb,
+    #14120f calc(var(--nav-ink, 0) * 100%),
+    var(--nav-rest, #ffffff)
+  ) !important;
   text-shadow:
-    0 1px 1px rgba(0, 0, 0, 0.95),
-    0 0 8px rgba(0, 0, 0, 0.8),
-    0 2px 16px rgba(0, 0, 0, 0.7);
+    0 1px 1px rgba(0, 0, 0, calc(0.95 * (1 - var(--nav-ink, 0)))),
+    0 0 8px rgba(0, 0, 0, calc(0.8 * (1 - var(--nav-ink, 0)))),
+    0 2px 16px rgba(0, 0, 0, calc(0.7 * (1 - var(--nav-ink, 0))));
 }
 
 .hub-page--photo .hub-page__nav--locked a::after,
@@ -7307,6 +7312,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   color: #ffffff !important;
   opacity: 0.7;
   transform: none !important;
+  text-shadow: none !important;
 }
 
 .hub-page__socials--wordmark .social-icons__label {
@@ -7351,4 +7357,14 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
     0 1px 2px rgba(0, 0, 0, 0.95),
     0 0 10px rgba(0, 0, 0, 0.88),
     0 2px 18px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* White type: no gray halo while the cursor is on it. */
+.hub-page--photo .hub-page__nav--locked a:hover,
+.hub-page--photo .hub-page__nav--locked a:focus-visible,
+.home-sections .hub-page--photo .hub-page__nav--locked a:hover,
+.home-sections .hub-page--photo .hub-page__nav--locked a:focus-visible,
+.hub-page--photo .hub-page__identity:hover .hub-page__identity-name,
+.home-sections .hub-page--photo .hub-page__identity:hover .hub-page__identity-name {
+  text-shadow: none !important;
 }
