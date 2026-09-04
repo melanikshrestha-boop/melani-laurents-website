@@ -90,7 +90,7 @@ body:has(.hub-page--photo) .la-musica-tab.is-open {
   height: 100%;
   height: 100dvh;
   margin: 0;
-  padding: 10px 3.4rem 10px 10px;
+  padding: 10px 4.2rem 10px 10px;
   background: #f7f1e7;
   color: #29251f;
   transform: translateX(100%);
@@ -815,7 +815,6 @@ body:has(.hub-page--photo) .la-musica-tab.is-open {
   overflow: hidden;
   perspective: 1000px;
   perspective-origin: 50% 50%;
-  transform-style: preserve-3d;
 }
 
 .la-musica-coverflow__scene {
@@ -1001,9 +1000,20 @@ body:has(.hub-page--photo) .la-musica-tab.is-open {
 }
 
 @media (max-width: 1180px) {
+  .la-musica {
+    padding: 10px 3.2rem 10px 10px;
+    overflow: auto;
+  }
+
+  .la-musica__stage {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1.25rem;
+  }
+
   .la-musica-deck-slot {
-    width: 520px;
-    height: 352px;
+    width: min(520px, 100%);
+    height: calc(min(520px, 100%) * 474 / 700);
   }
 
   .la-musica-deck {
