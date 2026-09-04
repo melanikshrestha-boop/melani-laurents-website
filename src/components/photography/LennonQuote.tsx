@@ -18,7 +18,9 @@ export function LennonQuote({
         aria-label="John Lennon, 1980"
       >
         <p className="portfolio-art-subs__line">
-          <span className="portfolio-art-subs__cap">{LENNON_LEAD}</span>
+          <span className="portfolio-art-subs__cap">
+            {LENNON_LEAD} {LENNON_BODY}
+          </span>
           <br />
           <span className="portfolio-art-subs__credit">John Lennon, 1980.</span>
         </p>
