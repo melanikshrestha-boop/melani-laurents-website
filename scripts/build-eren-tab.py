@@ -17,7 +17,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "public" / "icon-eren.png"
-STAY = "eren-here.png"
+STAY = "eren-go.png"
 
 if not SRC.is_file():
     raise SystemExit(f"missing {SRC}")
@@ -29,7 +29,9 @@ if full.size[0] != full.size[1]:
 
 
 def scaled(size: int) -> Image.Image:
-    return full.resize((size, size), Image.Resampling.LANCZOS)
+    # BOX keeps bun + shoulders at tab size. LANCZOS 32px collapsed to a C.
+    how = Image.Resampling.BOX if size <= 96 else Image.Resampling.LANCZOS
+    return full.resize((size, size), how)
 
 
 def save_png(img: Image.Image, dest: Path) -> None:
@@ -81,8 +83,8 @@ for rel in (
     if rel.exists():
         rel.unlink()
 
-# 16px ICO frame is what Chrome puts in the tab — Eren at 16px reads as ©.
-write_ico(ROOT / "public" / "favicon.ico", (32, 48))
+# 16/32px ICO frames read as a cream C in the Chrome tab. 48+96 stay Eren.
+write_ico(ROOT / "public" / "favicon.ico", (48, 96))
 
 print("stay", STAY, (ROOT / "public" / STAY).stat().st_size)
 print("public.ico", (ROOT / "public" / "favicon.ico").stat().st_size)

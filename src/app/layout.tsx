@@ -13,7 +13,7 @@ import {
 } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import {
-  EREN_TAB_DATA_32,
+  EREN_TAB_DATA_48,
   EREN_TAB_SRC,
   erenTabIcons,
 } from "@/lib/eren-tab";
@@ -134,9 +134,9 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        {/* Data URI first: Chrome cannot keep a cached cream C over inline Eren bytes. */}
-        <link rel="icon" href={EREN_TAB_DATA_32} type="image/png" sizes="32x32" />
-        <link rel="icon" href={EREN_TAB_SRC} type="image/png" sizes="48x48" />
+        {/* 48px data URI first. 32px of this still reads as a cream C in the tab. */}
+        <link rel="icon" href={EREN_TAB_DATA_48} type="image/png" sizes="48x48" />
+        <link rel="icon" href={EREN_TAB_SRC} type="image/png" sizes="256x256" />
         <link rel="apple-touch-icon" href={EREN_TAB_SRC} sizes="180x180" />
       </head>
       <body
