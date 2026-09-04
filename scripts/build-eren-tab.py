@@ -17,7 +17,7 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "public" / "icon-eren.png"
-STAY = "eren-now.png"
+STAY = "eren-here.png"
 
 if not SRC.is_file():
     raise SystemExit(f"missing {SRC}")
@@ -66,6 +66,9 @@ save_png(stay, ROOT / "public" / "tab-eren.png")
 save_png(stay, ROOT / "public" / "stay-eren.png")
 save_png(scaled(192), ROOT / "public" / "icon-192.png")
 save_png(scaled(180), ROOT / "public" / "apple-icon.png")
+# Tab-size PNGs must be the full square scaled down — never a face crop.
+save_png(scaled(32), ROOT / "public" / "eren-tab32.png")
+save_png(scaled(48), ROOT / "public" / "eren-tab48.png")
 
 # Never put icons in src/app — Next file conventions inject IconMark / hashed ICO (gold C).
 for rel in (
@@ -78,7 +81,8 @@ for rel in (
     if rel.exists():
         rel.unlink()
 
-write_ico(ROOT / "public" / "favicon.ico", (16, 32, 48))
+# 16px ICO frame is what Chrome puts in the tab — Eren at 16px reads as ©.
+write_ico(ROOT / "public" / "favicon.ico", (32, 48))
 
 print("stay", STAY, (ROOT / "public" / STAY).stat().st_size)
 print("public.ico", (ROOT / "public" / "favicon.ico").stat().st_size)

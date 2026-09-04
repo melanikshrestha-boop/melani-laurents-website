@@ -7127,13 +7127,17 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   color: #f0cf78 !important;
 }
 
-/* Builds: yellow chip on hover — small label, never a wash over the street. */
+/* Builds + Contact: yellow chip on hover — small label, never a wash over the street. */
 .hub-page--photo .hub-page__nav--locked .hub-page__nav-item:first-child a:hover,
 .hub-page--photo .hub-page__nav--locked .hub-page__nav-item:first-child a:focus-visible,
+.hub-page--photo .hub-page__nav--locked .hub-page__nav-item--contact a:hover,
+.hub-page--photo .hub-page__nav--locked .hub-page__nav-item--contact a:focus-visible,
 .home-sections .hub-page--photo .hub-page__nav--locked .hub-page__nav-item:first-child a:hover,
-.home-sections .hub-page--photo .hub-page__nav--locked .hub-page__nav-item:first-child a:focus-visible {
+.home-sections .hub-page--photo .hub-page__nav--locked .hub-page__nav-item:first-child a:focus-visible,
+.home-sections .hub-page--photo .hub-page__nav--locked .hub-page__nav-item--contact a:hover,
+.home-sections .hub-page--photo .hub-page__nav--locked .hub-page__nav-item--contact a:focus-visible {
   --nav-rest: #171614;
-  background: #ffd60a;
+  background: #ffd60a !important;
   color: #171614 !important;
   text-shadow: none !important;
   padding: 0.14em 0.42em;
@@ -7313,4 +7317,15 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   .hub-page__socials--wordmark .hub-page__social-icons {
     gap: 0.65em;
   }
+}
+
+/* Last: yellow chip ink must beat the scroll color-mix on Builds + Contact. */
+.home-sections .hub-page--photo .hub-page__nav--locked .hub-page__nav-item:first-child a:hover,
+.home-sections .hub-page--photo .hub-page__nav--locked .hub-page__nav-item:first-child a:focus-visible,
+.home-sections .hub-page--photo .hub-page__nav--locked .hub-page__nav-item--contact a:hover,
+.home-sections .hub-page--photo .hub-page__nav--locked .hub-page__nav-item--contact a:focus-visible {
+  background: #ffd60a !important;
+  color: #171614 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
 }
