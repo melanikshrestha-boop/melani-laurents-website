@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { siteConfig } from "@/config/site";
 import {
-  GITHUB_PROFILE_URL,
   githubDayTitle,
   type ContributionCalendar,
   type ContributionDay,
@@ -47,7 +47,8 @@ export function BuildsGithubCalendar({
 }: {
   initial: ContributionCalendar | null;
 }) {
-  const [calendar, setCalendar] = useState(initial);
+  /* Server snapshot only — a client live-swap was jumping the graph. */
+  const calendar = initial;
   const [tip, setTip] = useState<{ text: string; x: number; y: number } | null>(
     null,
   );
@@ -59,28 +60,6 @@ export function BuildsGithubCalendar({
     setTip({ text, x: box.left + box.width / 2, y: box.top });
   }
 
-  useEffect(() => {
-    let cancelled = false;
-    const load = async () => {
-      try {
-        const response = await fetch("/api/github-contributions", {
-          cache: "no-store",
-        });
-        if (!response.ok || cancelled) return;
-        const next = (await response.json()) as ContributionCalendar;
-        if (!cancelled && next?.weeks?.length) setCalendar(next);
-      } catch {
-        /* keep the server snapshot */
-      }
-    };
-    void load();
-    const id = window.setInterval(load, 120_000);
-    return () => {
-      cancelled = true;
-      window.clearInterval(id);
-    };
-  }, []);
-
   if (!calendar) return null;
 
   const labels = monthLabels(calendar.weeks);
@@ -89,16 +68,14 @@ export function BuildsGithubCalendar({
     <section className="builds-github" aria-labelledby="builds-github-title">
       <header className="builds-github__head">
         <h2 id="builds-github-title" className="builds-github__title">
-          GitHub
+          <a
+            href={siteConfig.linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
         </h2>
-        <a
-          href={GITHUB_PROFILE_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="builds-surface__scholar"
-        >
-          melanikshrestha-boop ↗
-        </a>
       </header>
       <p className="builds-github__count">
         {calendar.total.toLocaleString("en-US")} contributions in the last year

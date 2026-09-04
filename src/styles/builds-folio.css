@@ -514,6 +514,16 @@ a.bp-row__link:focus-visible,
   margin: 0;
 }
 
+.builds-github__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.builds-github__title a:hover,
+.builds-github__title a:focus-visible {
+  color: var(--bs-violet);
+}
+
 .builds-github__count {
   margin: 0 0 0.85rem;
   color: var(--bs-muted);

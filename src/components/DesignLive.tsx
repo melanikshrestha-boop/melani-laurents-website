@@ -36,7 +36,7 @@ export function DesignLive({ src, title, previewImage }: DesignLiveProps) {
           className="bs-scholar__live"
           src={src}
           title={title}
-          loading="eager"
+          loading="lazy"
           referrerPolicy="strict-origin-when-cross-origin"
         />
       </div>

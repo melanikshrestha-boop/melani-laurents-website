@@ -14,6 +14,11 @@ const nextConfig: NextConfig = {
   // Chrome hard-requests /favicon.ico. Rewrite it to the square Eren PNG.
   // Do NOT add src/app/favicon.ico — Next hashes it (?favicon.*.ico) and
   // Chrome prefers that 48px ICO, which is how the gold C comes back.
+  async redirects() {
+    return [
+      { source: "/builds", destination: "/projects", permanent: false },
+    ];
+  },
   async rewrites() {
     return {
       beforeFiles: [
