@@ -104,26 +104,16 @@
   position: relative;
   z-index: 2;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
   justify-content: center;
+  gap: clamp(1rem, 3.2vw, 3.75rem);
   min-height: max(100svh, 42rem);
   box-sizing: border-box;
   margin: 0;
-  padding: clamp(4.5rem, 10vh, 6rem) 1rem 5.5rem;
+  padding: clamp(5.25rem, 11vh, 6.5rem) 1.25rem 32vh;
   list-style: none;
-}
-
-/* Desktop: one row, off the BMW. The still is the page. */
-@media (min-width: 900px) {
-  .portfolio-hover-items-list {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    gap: clamp(1.75rem, 3.2vw, 3.75rem);
-    padding: clamp(5.25rem, 11vh, 6.5rem) 2.5rem 32vh;
-  }
 }
 
 .portfolio-hover-item {
@@ -190,24 +180,17 @@
 
 .portfolio-hover-item-title {
   margin: 0;
-  padding: clamp(0.18rem, 0.45vh, 0.38rem) 0;
+  padding: 0.15rem 0;
   font-family: var(--font-anton), sans-serif;
-  font-size: clamp(2rem, 3vw, 3.45rem);
+  font-size: clamp(1.05rem, 1.55vw, 1.7rem);
   font-weight: 400;
-  line-height: 1.2;
+  line-height: 1;
   letter-spacing: normal;
   text-align: center;
   text-transform: none;
   color: #fff;
+  white-space: nowrap;
   transition: opacity 0.25s ease;
-}
-
-@media (min-width: 900px) {
-  .portfolio-hover-item-title {
-    font-size: clamp(1.2rem, 1.55vw, 1.7rem);
-    line-height: 1;
-    padding: 0.15rem 0;
-  }
 }
 
 .portfolio-collection-header {
@@ -444,7 +427,7 @@
 
 .portfolio-art-subs__line {
   margin: 0 auto;
-  max-width: min(46rem, 86vw);
+  max-width: min(46rem, calc(100vw - 2rem));
   color: #fff;
   -webkit-text-fill-color: #fff;
   font-family: "Courier New", Courier, ui-monospace, monospace;
@@ -456,6 +439,7 @@
   letter-spacing: 0;
   text-align: center;
   text-wrap: pretty;
+  overflow-wrap: break-word;
 }
 
 .portfolio-art-subs__cap,
@@ -1258,11 +1242,14 @@
   }
 
   .portfolio-hover-items-list {
-    padding: clamp(4rem, 9vh, 5rem) 0.75rem 4.75rem;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: clamp(0.7rem, 3.5vw, 1.4rem);
+    padding: clamp(4.5rem, 10vh, 5.5rem) 0.6rem 28vh;
   }
 
   .portfolio-hover-item-title {
-    font-size: clamp(1.8rem, 9vw, 2.55rem);
+    font-size: clamp(0.92rem, 4vw, 1.2rem);
   }
 
   .portfolio-collection-header {
