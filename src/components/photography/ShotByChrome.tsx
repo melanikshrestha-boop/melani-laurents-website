@@ -68,9 +68,9 @@ export function ShotByChrome({
             <circle cx="17.2" cy="6.8" r="1" fill="currentColor" />
           </svg>
         </a>
-        <a href={`mailto:${SHOTBY_EMAIL}`} className="shotby-bar__book">
+        <Link href="/photography/book" className="shotby-bar__book">
           BOOK NOW
-        </a>
+        </Link>
       </nav>
     </header>
   );
