@@ -17,6 +17,8 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: "/builds", destination: "/projects", permanent: false },
+      { source: "/book", destination: "/photography/book", permanent: false },
+      { source: "/book-now", destination: "/photography/book", permanent: false },
     ];
   },
   async rewrites() {

@@ -21,7 +21,7 @@ export const INDEX_HERO_IMAGES: Record<string, string> = {
   poem: "/photography/sketches/cover.jpeg",
 };
 
-export const PHOTOGRAPHY_BOOKING_PATH = "/contact";
+export const PHOTOGRAPHY_BOOKING_PATH = "/photography/book";
 
 export function getPhotoCollections(): PhotoCollection[] {
   return photographyData.collections;

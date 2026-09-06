@@ -60,6 +60,10 @@ export function Navigation() {
 
   // Home keeps its own hub nav
   if (pathname === "/") return null;
+  // Shot by Melani photo replica has its own SHOTBYMELANI bar.
+  if (pathname === "/photography/photo" || pathname.startsWith("/photography/photo/")) {
+    return null;
+  }
 
   /** Art / photography — full-bleed profile, not cream paper product */
   const isArt =
