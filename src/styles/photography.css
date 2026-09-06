@@ -437,10 +437,11 @@
   font-weight: 400;
   font-style: normal;
   font-synthesis: none;
-  line-height: 1.5;
+  line-height: 1.28;
   letter-spacing: 0;
   text-align: center;
   text-wrap: pretty;
+  text-wrap: balance;
   overflow-wrap: break-word;
 }
 
@@ -453,6 +454,11 @@
   text-shadow:
     0 1px 2px rgba(0, 0, 0, 0.9),
     0 0 14px rgba(0, 0, 0, 0.75);
+}
+
+.portfolio-art-subs__credit {
+  display: block;
+  margin-top: 0.4em;
 }
 
 .portfolio-hover-item:hover .portfolio-hover-item-title,
@@ -1465,4 +1471,16 @@
   flex-wrap: nowrap !important;
   align-items: center !important;
   gap: 0 !important;
+}
+
+/* Lennon caption: even lines, tight leading. No centered rag / fake indent. */
+.portfolio-art-subs__line {
+  line-height: 1.28 !important;
+  text-wrap: pretty;
+  text-wrap: balance !important;
+}
+
+.portfolio-art-subs__credit {
+  display: block !important;
+  margin-top: 0.4em !important;
 }

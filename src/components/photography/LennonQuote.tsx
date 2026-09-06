@@ -21,7 +21,6 @@ export function LennonQuote({
           <span className="portfolio-art-subs__cap">
             {LENNON_LEAD} {LENNON_BODY}
           </span>
-          <br />
           <span className="portfolio-art-subs__credit">John Lennon, 1980.</span>
         </p>
       </div>
