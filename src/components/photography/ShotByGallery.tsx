@@ -95,14 +95,11 @@ export function ShotByGallery({ id }: { id: ShotByGalleryId }) {
           <button type="button" className="shotby-lite__nav is-prev" onClick={goPrev}>
             Previous
           </button>
-          <Image
+          {/* Native img — next/image wraps a span that collapsed the full-size still. */}
+          <img
             src={gallery.photos[open]}
             alt=""
-            width={1600}
-            height={2400}
             className="shotby-lite__img"
-            sizes="100vw"
-            priority
           />
           <button type="button" className="shotby-lite__nav is-next" onClick={goNext}>
             Next

@@ -14,6 +14,7 @@ export function ShotByHome() {
           priority
           sizes="100vw"
           className="shotby-home__still"
+          style={{ objectFit: "cover", objectPosition: "center 58%" }}
         />
         <ShotByChrome overlay />
         <ul className="shotby-home__list">

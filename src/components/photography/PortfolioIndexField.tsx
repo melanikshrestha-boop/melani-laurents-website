@@ -19,6 +19,10 @@ const ART_CATEGORIES = [
     label: "Sketches",
     href: "/photography/sketches",
   },
+  {
+    label: "Book",
+    href: "/photography/book",
+  },
 ] as const;
 
 /** Greene St Fendi / Spring St Loewe — the only Art index backgrounds. */
