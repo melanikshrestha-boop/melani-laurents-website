@@ -60,8 +60,13 @@ export function Navigation() {
 
   // Home keeps its own hub nav
   if (pathname === "/") return null;
-  // Shot by Melani photo replica has its own SHOTBYMELANI bar.
-  if (pathname === "/photography/photo" || pathname.startsWith("/photography/photo/")) {
+  // Shot by Celine photography has its own SHOTBYCELINE bar.
+  if (
+    pathname === "/shotbyCeline" ||
+    pathname.startsWith("/shotbyCeline/") ||
+    pathname === "/photography/photo" ||
+    pathname.startsWith("/photography/photo/")
+  ) {
     return null;
   }
 

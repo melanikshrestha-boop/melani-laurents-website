@@ -1,4 +1,5 @@
-/** Shot by Melani — replica of shotbymelani.com Photo section. Her photos. */
+/** Shot by Celine — photography section. Her photos. */
+export const SHOTBY_BASE = "/shotbyCeline";
 
 export type ShotByGalleryId = "portraits" | "vision" | "scenery";
 
@@ -78,7 +79,7 @@ export const SHOTBY_SCENERY: string[] = [
 ];
 
 export const SHOTBY_GALLERIES: { id: ShotByGalleryId; label: string; href: string; photos: string[] }[] = [
-  { id: "portraits", label: "Portraits", href: "/photography/photo/portraits", photos: SHOTBY_PORTRAITS },
-  { id: "vision", label: "Vision", href: "/photography/photo/vision", photos: SHOTBY_VISION },
-  { id: "scenery", label: "Scenery", href: "/photography/photo/scenery", photos: SHOTBY_SCENERY },
+  { id: "portraits", label: "Portraits", href: `${SHOTBY_BASE}/portraits`, photos: SHOTBY_PORTRAITS },
+  { id: "vision", label: "Vision", href: `${SHOTBY_BASE}/vision`, photos: SHOTBY_VISION },
+  { id: "scenery", label: "Scenery", href: `${SHOTBY_BASE}/scenery`, photos: SHOTBY_SCENERY },
 ];

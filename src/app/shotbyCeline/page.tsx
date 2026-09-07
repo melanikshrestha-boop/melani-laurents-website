@@ -3,10 +3,10 @@ import { erenTabIcons } from "@/lib/eren-tab";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "shotbymelani",
+  title: "shotbyCeline",
   icons: erenTabIcons,
 };
 
-export default function ShotByPhotoPage() {
+export default function ShotByCelinePage() {
   return <ShotByHome />;
 }

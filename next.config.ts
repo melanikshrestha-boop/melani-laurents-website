@@ -19,6 +19,10 @@ const nextConfig: NextConfig = {
       { source: "/builds", destination: "/projects", permanent: false },
       { source: "/book", destination: "/photography/book", permanent: false },
       { source: "/book-now", destination: "/photography/book", permanent: false },
+      { source: "/shopbyCeline", destination: "/shotbyCeline", permanent: false },
+      { source: "/shopbyCeline/:path*", destination: "/shotbyCeline/:path*", permanent: false },
+      { source: "/photography/photo", destination: "/shotbyCeline", permanent: false },
+      { source: "/photography/photo/:path*", destination: "/shotbyCeline/:path*", permanent: false },
     ];
   },
   async rewrites() {

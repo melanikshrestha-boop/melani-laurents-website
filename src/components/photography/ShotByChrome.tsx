@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
+  SHOTBY_BASE,
   SHOTBY_EMAIL,
   SHOTBY_INSTAGRAM,
   SHOTBY_PHONE,
@@ -15,26 +16,26 @@ export function ShotByChrome({
 }) {
   const pathname = usePathname();
   const onPortfolio =
-    pathname === "/photography/photo" ||
-    pathname.startsWith("/photography/photo/portraits") ||
-    pathname.startsWith("/photography/photo/vision") ||
-    pathname.startsWith("/photography/photo/scenery");
-  const onAbout = pathname.startsWith("/photography/photo/about");
+    pathname === SHOTBY_BASE ||
+    pathname.startsWith(`${SHOTBY_BASE}/portraits`) ||
+    pathname.startsWith(`${SHOTBY_BASE}/vision`) ||
+    pathname.startsWith(`${SHOTBY_BASE}/scenery`);
+  const onAbout = pathname.startsWith(`${SHOTBY_BASE}/about`);
 
   return (
     <header className={`shotby-bar${overlay ? " shotby-bar--overlay" : ""}`}>
-      <Link href="/photography/photo" className="shotby-bar__logo">
-        SHOTBYMELANI
+      <Link href={SHOTBY_BASE} className="shotby-bar__logo">
+        SHOTBYCELINE
       </Link>
       <nav className="shotby-bar__nav" aria-label="Photography">
         <Link
-          href="/photography/photo"
+          href={SHOTBY_BASE}
           className={`shotby-bar__link${onPortfolio && !onAbout ? " is-current" : ""}`}
         >
           Portfolio
         </Link>
         <Link
-          href="/photography/photo/about"
+          href={`${SHOTBY_BASE}/about`}
           className={`shotby-bar__link${onAbout ? " is-current" : ""}`}
         >
           About
@@ -79,7 +80,7 @@ export function ShotByChrome({
 export function ShotByFooter() {
   return (
     <footer className="shotby-foot">
-      <p className="shotby-foot__handle">@SHOTBYMELANI</p>
+      <p className="shotby-foot__handle">@SHOTBYCELINE</p>
       <div className="shotby-foot__col">
         <p className="shotby-foot__label">LOCATION</p>
         <p>Based in Los Angeles, California</p>

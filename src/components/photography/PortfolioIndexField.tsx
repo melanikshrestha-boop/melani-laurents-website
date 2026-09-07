@@ -5,7 +5,7 @@ import { LennonQuote } from "@/components/photography/LennonQuote";
 const ART_CATEGORIES = [
   {
     label: "Photo",
-    href: "/photography/photo",
+    href: "/shotbyCeline",
   },
   {
     label: "Film",

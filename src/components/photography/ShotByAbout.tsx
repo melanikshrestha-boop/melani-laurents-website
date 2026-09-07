@@ -8,9 +8,9 @@ export function ShotByAbout() {
       <ShotByChrome />
       <section className="shotby-about">
         <div className="shotby-about__copy">
-          <h1 className="shotby-about__name">MELANI SHRESTHA</h1>
+          <h1 className="shotby-about__name">CELINE NOVA</h1>
           <p>
-            I&apos;m Melani Shrestha, a photographer based in{" "}
+            I&apos;m Celine Nova, a photographer based in{" "}
             <strong>Los Angeles, California</strong> with roots in New York
             City.
           </p>

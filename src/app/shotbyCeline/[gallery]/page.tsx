@@ -17,11 +17,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { gallery } = await params;
   const found = SHOTBY_GALLERIES.find((g) => g.id === gallery);
-  if (!found) return { title: "shotbymelani", icons: erenTabIcons };
-  return { title: `${found.label} — shotbymelani`, icons: erenTabIcons };
+  if (!found) return { title: "shotbyCeline", icons: erenTabIcons };
+  return { title: `${found.label} — shotbyCeline`, icons: erenTabIcons };
 }
 
-export default async function ShotByGalleryPage({
+export default async function ShotByCelineGalleryPage({
   params,
 }: {
   params: Promise<{ gallery: string }>;
