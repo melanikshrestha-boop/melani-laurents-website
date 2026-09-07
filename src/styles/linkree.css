@@ -233,6 +233,7 @@
   margin: 0;
   color: #fff;
   text-decoration: none;
+  animation: link-fade 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .linkree .identity img {
@@ -261,6 +262,7 @@
   letter-spacing: var(--track-label);
   line-height: 1;
   text-align: center;
+  animation: link-fade 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .linkree .icons {
@@ -278,6 +280,7 @@
   height: var(--icon);
   color: #fff;
   transition: transform 0.22s ease;
+  animation: link-fade 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .linkree .icons a:hover,
@@ -322,6 +325,7 @@
   letter-spacing: 0;
   line-height: 1;
   white-space: nowrap;
+  animation: link-fade 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* Specular band. Slow glide while the cursor is on the pill. */
@@ -441,6 +445,7 @@
   color: var(--ink);
   background: var(--paper);
   border-radius: var(--radius);
+  animation: link-fade 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .linkree .yt-latest::after {
@@ -589,6 +594,15 @@
   }
 }
 
+@keyframes link-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @keyframes pill-shine {
   0% {
     transform: translateX(-180%) skewX(-20deg);
@@ -609,12 +623,25 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .linkree .identity,
+  .linkree .socials-label,
+  .linkree .icons a,
+  .linkree .buttons a,
+  .linkree .yt-latest,
   .linkree .yt-shimmer,
   .linkree .buttons a:hover::after,
   .linkree .buttons a:focus-visible::after,
   .linkree .yt-latest:hover::after,
   .linkree .yt-latest:focus-visible::after {
     animation: none;
+  }
+
+  .linkree .identity,
+  .linkree .socials-label,
+  .linkree .icons a,
+  .linkree .buttons a,
+  .linkree .yt-latest {
+    opacity: 1;
   }
 
   .linkree .icons a:hover,
