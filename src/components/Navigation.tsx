@@ -60,15 +60,6 @@ export function Navigation() {
 
   // Home keeps its own hub nav
   if (pathname === "/") return null;
-  // Shot by Celine photography has its own SHOTBYCELINE bar.
-  if (
-    pathname === "/shotbyCeline" ||
-    pathname.startsWith("/shotbyCeline/") ||
-    pathname === "/photography/photo" ||
-    pathname.startsWith("/photography/photo/")
-  ) {
-    return null;
-  }
 
   /** Art / photography — full-bleed profile, not cream paper product */
   const isArt =

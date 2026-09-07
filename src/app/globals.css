@@ -6777,8 +6777,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   z-index: 1;
   pointer-events: none;
   opacity: 0;
-  /* Folio violet film — full still, #4d287d. */
-  background: rgba(77, 40, 125, 0.72);
+  /* Full-cover print hover — same red as bookshelf covers. */
+  background: rgba(231, 82, 62, 0.9);
   transition: opacity 380ms ease;
 }
 
