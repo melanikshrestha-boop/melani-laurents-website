@@ -19,12 +19,12 @@ const nextConfig: NextConfig = {
       { source: "/builds", destination: "/projects", permanent: false },
       { source: "/book", destination: "/photography/book", permanent: false },
       { source: "/book-now", destination: "/photography/book", permanent: false },
-      { source: "/shotbyCeline", destination: "/photography/scenery", permanent: false },
-      { source: "/shotbyCeline/:path*", destination: "/photography/scenery", permanent: false },
-      { source: "/shopbyCeline", destination: "/photography/scenery", permanent: false },
-      { source: "/shopbyCeline/:path*", destination: "/photography/scenery", permanent: false },
-      { source: "/photography/photo", destination: "/photography/scenery", permanent: false },
-      { source: "/photography/photo/:path*", destination: "/photography/scenery", permanent: false },
+      { source: "/shotbyCeline", destination: "/photography/portraits", permanent: false },
+      { source: "/shotbyCeline/:path*", destination: "/photography/portraits", permanent: false },
+      { source: "/shopbyCeline", destination: "/photography/portraits", permanent: false },
+      { source: "/shopbyCeline/:path*", destination: "/photography/portraits", permanent: false },
+      { source: "/photography/photo", destination: "/photography/portraits", permanent: false },
+      { source: "/photography/photo/:path*", destination: "/photography/portraits", permanent: false },
     ];
   },
   async rewrites() {

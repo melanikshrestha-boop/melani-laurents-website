@@ -50,32 +50,32 @@ export default async function PhotographyCollectionPage({ params }: PageProps) {
             className="portfolio-collection-header__pager"
             aria-label="Photography collections"
           >
-            {isScenery ? (
-              <h1 className="portfolio-collection-header__current">
-                <span aria-hidden>←</span> Scenery
-              </h1>
-            ) : (
-              <Link
-                href="/photography/scenery"
-                className="portfolio-collection-header__peer"
-              >
-                <span aria-hidden>←</span> Scenery
-              </Link>
-            )}
-            <div className="portfolio-collection-header__mid">
-              {isPortraits ? <PortraitBooker /> : null}
-              {isScenery ? <SceneryPrints /> : null}
-            </div>
             {isPortraits ? (
               <h1 className="portfolio-collection-header__current">
-                Portraits <span aria-hidden>→</span>
+                <span aria-hidden>←</span> Portraits
               </h1>
             ) : (
               <Link
                 href="/photography/portraits"
                 className="portfolio-collection-header__peer"
               >
-                Portraits <span aria-hidden>→</span>
+                <span aria-hidden>←</span> Portraits
+              </Link>
+            )}
+            <div className="portfolio-collection-header__mid">
+              {isPortraits ? <PortraitBooker /> : null}
+              {isScenery ? <SceneryPrints /> : null}
+            </div>
+            {isScenery ? (
+              <h1 className="portfolio-collection-header__current">
+                Scenery <span aria-hidden>→</span>
+              </h1>
+            ) : (
+              <Link
+                href="/photography/scenery"
+                className="portfolio-collection-header__peer"
+              >
+                Scenery <span aria-hidden>→</span>
               </Link>
             )}
           </nav>
