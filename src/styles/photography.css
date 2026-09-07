@@ -415,34 +415,36 @@
   right: 0;
   bottom: 0;
   z-index: 3;
-  width: auto;
+  width: 100%;
   margin: 0;
-  padding: 0 8vw calc(1rem + env(safe-area-inset-bottom, 0px));
+  padding: 0 12px calc(0.7rem + env(safe-area-inset-bottom, 0px));
+  box-sizing: border-box;
   pointer-events: none;
   text-align: center;
   background: transparent;
-  font-family: "Courier New", Courier, ui-monospace, monospace;
+  font-family: var(--font-instrument-serif), Georgia, "Times New Roman", serif;
   font-weight: 400;
   font-style: normal;
   font-synthesis: none;
 }
 
 .portfolio-art-subs__line {
-  margin: 0 auto;
-  max-width: min(46rem, calc(100vw - 2rem));
+  margin: 0;
+  max-width: none;
+  width: 100%;
   color: #fff;
   -webkit-text-fill-color: #fff;
-  font-family: "Courier New", Courier, ui-monospace, monospace;
-  font-size: clamp(11px, 1.05vw, 14px);
+  font-family: var(--font-instrument-serif), Georgia, "Times New Roman", serif;
+  /* Full-bleed: two lines on a laptop/desktop. */
+  font-size: clamp(11px, calc(100vw / 118), 15px);
   font-weight: 400;
   font-style: normal;
   font-synthesis: none;
   line-height: 1.28;
   letter-spacing: 0;
   text-align: center;
-  text-wrap: pretty;
   text-wrap: balance;
-  overflow-wrap: break-word;
+  overflow-wrap: normal;
 }
 
 .portfolio-art-subs__cap,
@@ -451,14 +453,12 @@
   color: #fff;
   -webkit-text-fill-color: #fff;
   background: none;
-  text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.9),
-    0 0 14px rgba(0, 0, 0, 0.75);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
 }
 
 .portfolio-art-subs__credit {
-  display: block;
-  margin-top: 0.4em;
+  display: inline;
+  margin-top: 0;
 }
 
 .portfolio-hover-item:hover .portfolio-hover-item-title,
@@ -1512,16 +1512,24 @@
   gap: 0 !important;
 }
 
-/* Lennon caption: even lines, tight leading. No centered rag / fake indent. */
+/* Lennon: edge-to-edge, two lines on a wide screen. */
+.portfolio-art-subs {
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+}
+
 .portfolio-art-subs__line {
+  max-width: none !important;
+  width: 100% !important;
+  font-family: var(--font-instrument-serif), Georgia, "Times New Roman", serif !important;
+  font-size: clamp(11px, calc(100vw / 118), 15px) !important;
   line-height: 1.28 !important;
-  text-wrap: pretty;
   text-wrap: balance !important;
 }
 
 .portfolio-art-subs__credit {
-  display: block !important;
-  margin-top: 0.4em !important;
+  display: inline !important;
+  margin-top: 0 !important;
 }
 
 /* ——— shotbyCeline photography ——— */
