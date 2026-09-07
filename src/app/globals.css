@@ -1977,7 +1977,7 @@ body {
 
 .hub-page__nav-item {
   display: inline;
-  animation: hub-nav-reveal 0.7s ease backwards;
+  animation: hub-hud-fade 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes hub-nav-reveal {
@@ -5950,7 +5950,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .hub-page--photo .hub-page__brand-loc,
 .hub-page--photo .hub-page__social-icons .social-icons__link {
   color: #ffffff !important;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
+  text-shadow: none;
 }
 
 .hub-page--photo .melani-signature--light {
@@ -5976,9 +5976,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
     #ffffff
   ) !important;
   font-weight: 500;
-  text-shadow:
-    0 1px 2px rgba(0, 0, 0, calc(0.75 * (1 - var(--nav-ink, 0)))),
-    0 2px 12px rgba(0, 0, 0, calc(0.4 * (1 - var(--nav-ink, 0))));
+  text-shadow: 0 1px 1px rgba(0, 0, 0, calc(0.28 * (1 - var(--nav-ink, 0))));
 }
 
 .hub-page--photo .hub-page__nav--locked a:hover,
@@ -6148,6 +6146,19 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   font-size: 21px;
 }
 
+@keyframes hub-hud-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hub-page__identity {
+  animation: hub-hud-fade 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 .hub-page__socials--locked .social-icons__link {
   display: inline-flex;
   align-items: center;
@@ -6156,37 +6167,9 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   height: 1.15em;
   color: rgba(232, 230, 227, 0.72);
   opacity: 0;
-  animation: hub-social-fade 1.15s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: hub-hud-fade 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
   transition: color 160ms ease, transform 160ms ease;
   line-height: 0;
-}
-
-.hub-page__socials--locked .social-icons__link:nth-child(1) {
-  animation-delay: 0.12s;
-}
-.hub-page__socials--locked .social-icons__link:nth-child(2) {
-  animation-delay: 0.24s;
-}
-.hub-page__socials--locked .social-icons__link:nth-child(3) {
-  animation-delay: 0.36s;
-}
-.hub-page__socials--locked .social-icons__link:nth-child(4) {
-  animation-delay: 0.48s;
-}
-.hub-page__socials--locked .social-icons__link:nth-child(5) {
-  animation-delay: 0.6s;
-}
-.hub-page__socials--locked .social-icons__link:nth-child(6) {
-  animation-delay: 0.72s;
-}
-
-@keyframes hub-social-fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -6309,7 +6292,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
  */
 .hub-page--locked .hub-page__nav-item {
   display: inline-block;
-  animation: hub-nav-reveal 0.7s ease backwards;
+  animation: hub-hud-fade 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .hub-page__nav--locked a {
@@ -7060,10 +7043,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   text-transform: none;
   color: #fff !important;
   -webkit-text-fill-color: #fff !important;
-  text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.95),
-    0 0 10px rgba(0, 0, 0, 0.85),
-    0 2px 18px rgba(0, 0, 0, 0.75);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
 }
 
 .hub-page--photo .hub-page__title-line,
@@ -7080,9 +7060,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   line-height: 1 !important;
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
-  text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.45),
-    0 4px 18px rgba(0, 0, 0, 0.3) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.22) !important;
 }
 
 /* Hang "." (0.256em = its advance) then optically nudge left. */
@@ -7347,19 +7325,54 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   opacity: 1 !important;
 }
 
-/* Last: identity on the still needs a dark halo or it washes out on stone. */
-.home-sections .hub-page--photo .hub-page__identity-name,
-.hub-page--photo .hub-page__identity-name {
-  color: #fff !important;
-  -webkit-text-fill-color: #fff !important;
-  font-weight: 500 !important;
-  text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.95),
-    0 0 10px rgba(0, 0, 0, 0.88),
-    0 2px 18px rgba(0, 0, 0, 0.8) !important;
+/* HUD fade: identity, socials, nav — same 0.8s, no stagger. */
+@keyframes hub-hud-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-/* White type: no gray halo while the cursor is on it. */
+.hub-page--photo .hub-page__identity,
+.hub-page--photo .hub-page__socials--locked .social-icons__link,
+.hub-page--photo .hub-page__nav-item,
+.home-sections .hub-page--photo .hub-page__identity,
+.home-sections .hub-page--photo .hub-page__socials--locked .social-icons__link,
+.home-sections .hub-page--photo .hub-page__nav-item {
+  animation: hub-hud-fade 0.8s cubic-bezier(0.22, 1, 0.36, 1) both !important;
+  animation-delay: 0s !important;
+}
+
+.hub-page--photo .hub-page__identity-name,
+.home-sections .hub-page--photo .hub-page__identity-name {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  font-weight: 400 !important;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.28) !important;
+}
+
+.hub-page--photo .hub-page__social-icons .social-icons__link,
+.home-sections .hub-page--photo .hub-page__social-icons .social-icons__link {
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+.hub-page--photo .hub-page__nav--locked a,
+.home-sections .hub-page--photo .hub-page__nav--locked a {
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.28) !important;
+}
+
+.hub-page--photo .hub-page__title-line,
+.hub-page--photo .hub-page__title,
+.hub-page--photo .title-char--hub,
+.home-sections .hub-page--photo .hub-page__title-line,
+.home-sections .hub-page--photo .hub-page__title,
+.home-sections .hub-page--photo .title-char--hub {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.22) !important;
+}
+
 .hub-page--photo .hub-page__nav--locked a:hover,
 .hub-page--photo .hub-page__nav--locked a:focus-visible,
 .home-sections .hub-page--photo .hub-page__nav--locked a:hover,
@@ -7367,4 +7380,16 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .hub-page--photo .hub-page__identity:hover .hub-page__identity-name,
 .home-sections .hub-page--photo .hub-page__identity:hover .hub-page__identity-name {
   text-shadow: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hub-page--photo .hub-page__identity,
+  .hub-page--photo .hub-page__socials--locked .social-icons__link,
+  .hub-page--photo .hub-page__nav-item,
+  .home-sections .hub-page--photo .hub-page__identity,
+  .home-sections .hub-page--photo .hub-page__socials--locked .social-icons__link,
+  .home-sections .hub-page--photo .hub-page__nav-item {
+    animation: none !important;
+    opacity: 1 !important;
+  }
 }

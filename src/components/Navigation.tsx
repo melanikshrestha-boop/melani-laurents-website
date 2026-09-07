@@ -156,7 +156,7 @@ export function Navigation() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/icon-eren.png" alt="" />
           </span>
-          <span className="cinema-nav__identity-name">Celine Nova.</span>
+          <span className="cinema-nav__identity-name">Celine Nova</span>
         </Link>
 
         <div

@@ -45,7 +45,7 @@ export function HomeHub() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/icon-eren.png" alt="" />
             </span>
-            <span className="hub-page__identity-name">Celine Nova.</span>
+            <span className="hub-page__identity-name">Celine Nova</span>
           </Link>
 
           <nav
@@ -82,7 +82,6 @@ export function HomeHub() {
                   ]
                     .filter(Boolean)
                     .join(" ")}
-                  style={{ animationDelay: `${1.15 + i * 0.18}s` }}
                 >
                   {i > 0 ? (
                     <span className="hub-page__sep" aria-hidden>
