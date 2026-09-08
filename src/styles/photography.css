@@ -457,8 +457,11 @@
 }
 
 .portfolio-art-subs__credit {
-  display: inline;
-  margin-top: 0;
+  display: block;
+  margin: 0.35em 0 0;
+  font-size: clamp(11px, calc(100vw / 118), 15px);
+  line-height: 1.28;
+  text-align: center;
 }
 
 .portfolio-hover-item:hover .portfolio-hover-item-title,
@@ -1528,6 +1531,7 @@
 }
 
 .portfolio-art-subs__credit {
-  display: inline !important;
-  margin-top: 0 !important;
+  display: block !important;
+  margin-top: 0.35em !important;
+  font-size: clamp(11px, calc(100vw / 118), 15px) !important;
 }

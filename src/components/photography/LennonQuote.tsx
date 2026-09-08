@@ -19,10 +19,10 @@ export function LennonQuote({
       >
         <p className="portfolio-art-subs__line">
           <span className="portfolio-art-subs__cap">
-            {LENNON_LEAD} {LENNON_BODY}{" "}
+            {LENNON_LEAD} {LENNON_BODY}
           </span>
-          <span className="portfolio-art-subs__credit">John Lennon, 1980.</span>
         </p>
+        <p className="portfolio-art-subs__credit">John Lennon, 1980.</p>
       </div>
     );
   }

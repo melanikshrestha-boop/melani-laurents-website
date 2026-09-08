@@ -8,7 +8,7 @@ const ART_CATEGORIES = [
     href: "/photography/portraits",
   },
   {
-    label: "Film",
+    label: "Media",
     href: "/photography/film",
   },
   {
@@ -16,7 +16,7 @@ const ART_CATEGORIES = [
     href: "/photography/poem",
   },
   {
-    label: "Sketches",
+    label: "Sketch",
     href: "/photography/sketches",
   },
 ] as const;
