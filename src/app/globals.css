@@ -5975,7 +5975,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
     #14120f calc(var(--nav-ink, 0) * 100%),
     #ffffff
   ) !important;
-  font-weight: 600;
+  font-weight: 400;
   text-shadow: 0 1px 1px rgba(0, 0, 0, calc(0.28 * (1 - var(--nav-ink, 0))));
 }
 
@@ -7120,7 +7120,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .home-sections .hub-page--photo .hub-page__nav--locked {
   position: relative;
   font-size: 12px !important;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.14em;
 }
 
@@ -7471,9 +7471,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 
 .hub-page--photo .hub-page__nav--locked a,
 .home-sections .hub-page--photo .hub-page__nav--locked a {
-  font-weight: 600 !important;
-  /* Share Tech Mono is 400-only; this is the actual tad thicker. */
-  -webkit-text-stroke: 0.45px currentColor !important;
+  font-weight: 400 !important;
+  -webkit-text-stroke: 0 !important;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.28) !important;
 }
 
