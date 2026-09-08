@@ -41,6 +41,20 @@ export const DEFAULT_CURRENT_READS: CurrentRead[] = [
   },
 ];
 
+/** Sibling line under current reads — daily paper, not a book cover. */
+export const DEFAULT_WSJ_SECTIONS: CurrentRead[] = [
+  {
+    title: "technology",
+    author: "",
+    href: "https://www.wsj.com/tech",
+  },
+  {
+    title: "economics",
+    author: "",
+    href: "https://www.wsj.com/economy",
+  },
+];
+
 /** Sibling line under current reads — not a drive, not current. */
 export const DEFAULT_NEXT_ON_THE_LIST: CurrentRead[] = [
   {

@@ -58,6 +58,7 @@ import {
   loadShelfEditor,
   saveShelfEditor,
   DEFAULT_NEXT_ON_THE_LIST,
+  DEFAULT_WSJ_SECTIONS,
   type ShelfEditorState,
 } from "./shelfEditorStore";
 import { MinimalIcon } from "./MinimalIcon";
@@ -1119,6 +1120,19 @@ export function PublicBookshelf() {
             </span>
           ))}
         </p>
+        <p className="pb-currently-reading">
+          Wall Street Journal everyday:{" "}
+          {DEFAULT_WSJ_SECTIONS.map((r, i) => (
+            <span key={`${r.title}-${i}`}>
+              {i > 0 ? (
+                <span className="pb-currently-reading__sep"> · </span>
+              ) : null}
+              <a href={r.href} target="_blank" rel="noopener noreferrer">
+                {r.title}
+              </a>
+            </span>
+          ))}
+        </p>
 
         {sHint ? (
           <div className="pb-s-popup" role="status" aria-live="polite">
@@ -1473,13 +1487,7 @@ export function PublicBookshelf() {
                         <strong>{group.author}</strong>
                         <small>
                           {group.items.length}{" "}
-                          {group.id === "wall-street-journal"
-                            ? group.items.length === 1
-                              ? "section"
-                              : "sections"
-                            : group.items.length === 1
-                              ? "essay"
-                              : "essays"}
+                          {group.items.length === 1 ? "essay" : "essays"}
                         </small>
                       </span>
                     </button>

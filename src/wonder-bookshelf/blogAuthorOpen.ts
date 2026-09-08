@@ -25,11 +25,6 @@ export function visibleBlogItems(
 }
 
 export const BLOG_AUTHOR_OPEN: Record<string, BlogAuthorOpen> = {
-  "wall-street-journal": {
-    note: "I read Wall Street Journal everyday specifically following the technology and economics section.",
-    linkFrom: 1,
-    linkTo: 2,
-  },
   "sam-altman": {
     note: "Sam Altman is one of the most polarizing tech titans of our new generation. Trying to ignore his influence and the importance of his work is extremely hard to do, and if he means what he says, he is going to be the moral leader of the AI race. Nonetheless, I've read and been updated with all of his blog posts, as they are written with brevity and a lot of great advice, as well as cliches that do need to be repeated. Here are my hand-picked favorite ones I've found useful to my life or occasionally go back to.",
     linkFrom: 23,
