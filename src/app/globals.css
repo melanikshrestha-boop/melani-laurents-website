@@ -7472,7 +7472,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .hub-page--photo .hub-page__nav--locked a,
 .home-sections .hub-page--photo .hub-page__nav--locked a {
   font-weight: 600 !important;
-  -webkit-text-stroke: 0.3px currentColor;
+  /* Share Tech Mono is 400-only; this is the actual tad thicker. */
+  -webkit-text-stroke: 0.45px currentColor !important;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.28) !important;
 }
 
