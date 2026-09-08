@@ -20,9 +20,8 @@
 .cinema-nav__identity-photo {
   display: block;
   flex: 0 0 auto;
-  /* 48px — same floor as the tab. 25px of this still reads as a cream C. */
-  width: 3rem;
-  height: 3rem;
+  width: 1.85rem;
+  height: 1.85rem;
 }
 .cinema-nav__identity-photo img {
   display: block;
@@ -38,9 +37,9 @@
   font-size: 13px;
   font-weight: 400;
   line-height: 1;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.1em;
   white-space: nowrap;
-  text-transform: none;
+  text-transform: uppercase;
 }
 .cinema-nav:not(.cinema-nav--paper):not(.cinema-nav--bookshelf) .cinema-nav__identity {
   color: #fff;
@@ -300,8 +299,8 @@
 
 @media (max-width: 760px) {
   .cinema-nav__identity-photo {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 1.7rem;
+    height: 1.7rem;
   }
 
   .cinema-nav--art .cinema-nav__inner--bookshelf {

@@ -6053,9 +6053,9 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   position: relative;
   display: block;
   flex: 0 0 auto;
-  /* 48px — same floor as the tab. 25px of this still reads as a cream C. */
-  width: 3rem;
-  height: 3rem;
+  /* Sits with the 13px name. 48px ate the whole header rail. */
+  width: 1.85rem;
+  height: 1.85rem;
 }
 
 .hub-page__identity-photo img {
@@ -6073,9 +6073,9 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   font-size: 13px;
   font-weight: 400;
   line-height: 1;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.1em;
   white-space: nowrap;
-  text-transform: none;
+  text-transform: uppercase;
 }
 
 .hub-page__brand--locked .melani-signature-link {
@@ -6480,8 +6480,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   }
 
   .hub-page__identity-photo {
-    width: 2.1rem;
-    height: 2.1rem;
+    width: 1.7rem;
+    height: 1.7rem;
   }
 
   .hub-page__brand--locked {
@@ -6685,8 +6685,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   }
 
   .hub-page__identity-photo {
-    width: 2.1rem;
-    height: 2.1rem;
+    width: 1.55rem;
+    height: 1.55rem;
   }
 
   .hub-page__identity-name {
@@ -7066,8 +7066,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .home-sections .hub-page--photo .hub-page__identity-name {
   font-size: 13px !important;
   font-weight: 400;
-  letter-spacing: 0.04em;
-  text-transform: none;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: #fff !important;
   -webkit-text-fill-color: #fff !important;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
@@ -7371,7 +7371,7 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 @keyframes hub-contact-pop {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(22px);
   }
   to {
     opacity: 1;
@@ -7388,13 +7388,13 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .hub-page--photo .hub-page__identity-name,
 .home-sections .hub-page--photo .hub-page__identity-photo,
 .home-sections .hub-page--photo .hub-page__identity-name {
-  animation: hub-hud-fade 0.5s cubic-bezier(0.22, 1, 0.36, 1) both !important;
+  animation: hub-hud-fade 0.9s cubic-bezier(0.22, 1, 0.36, 1) both !important;
 }
 
 .hub-page--photo .hub-page__identity-name,
 .home-sections .hub-page--photo .hub-page__identity-name {
   display: inline-block;
-  animation-delay: 0.12s !important;
+  animation-delay: 0.28s !important;
 }
 
 .hub-page--photo .hub-page__identity-photo,
@@ -7406,51 +7406,51 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
 .home-sections .hub-page--photo .hub-page__socials--locked .social-icons__link,
 .hub-page--photo .hub-page__nav-item:not(.hub-page__nav-item--contact),
 .home-sections .hub-page--photo .hub-page__nav-item:not(.hub-page__nav-item--contact) {
-  animation: hub-hud-fade 0.5s cubic-bezier(0.22, 1, 0.36, 1) both !important;
+  animation: hub-hud-fade 0.9s cubic-bezier(0.22, 1, 0.36, 1) both !important;
 }
 
 .hub-page--photo .hub-page__socials--locked .social-icons__link:nth-child(1),
 .hub-page--photo .hub-page__nav-item:nth-child(1),
 .home-sections .hub-page--photo .hub-page__socials--locked .social-icons__link:nth-child(1),
 .home-sections .hub-page--photo .hub-page__nav-item:nth-child(1) {
-  animation-delay: 0.32s !important;
+  animation-delay: 0.72s !important;
 }
 
 .hub-page--photo .hub-page__socials--locked .social-icons__link:nth-child(2),
 .hub-page--photo .hub-page__nav-item:nth-child(2),
 .home-sections .hub-page--photo .hub-page__socials--locked .social-icons__link:nth-child(2),
 .home-sections .hub-page--photo .hub-page__nav-item:nth-child(2) {
-  animation-delay: 0.44s !important;
+  animation-delay: 0.94s !important;
 }
 
 .hub-page--photo .hub-page__socials--locked .social-icons__link:nth-child(3),
 .hub-page--photo .hub-page__nav-item:nth-child(3),
 .home-sections .hub-page--photo .hub-page__socials--locked .social-icons__link:nth-child(3),
 .home-sections .hub-page--photo .hub-page__nav-item:nth-child(3) {
-  animation-delay: 0.56s !important;
+  animation-delay: 1.16s !important;
 }
 
 .hub-page--photo .hub-page__socials--locked .social-icons__link:nth-child(4),
 .hub-page--photo .hub-page__nav-item:nth-child(4),
 .home-sections .hub-page--photo .hub-page__socials--locked .social-icons__link:nth-child(4),
 .home-sections .hub-page--photo .hub-page__nav-item:nth-child(4) {
-  animation-delay: 0.68s !important;
+  animation-delay: 1.38s !important;
 }
 
 .hub-page--photo .hub-page__socials--locked .social-icons__link:nth-child(5),
 .home-sections .hub-page--photo .hub-page__socials--locked .social-icons__link:nth-child(5) {
-  animation-delay: 0.8s !important;
+  animation-delay: 1.6s !important;
 }
 
 .hub-page--photo .hub-page__socials--locked .social-icons__link:nth-child(6),
 .home-sections .hub-page--photo .hub-page__socials--locked .social-icons__link:nth-child(6) {
-  animation-delay: 0.92s !important;
+  animation-delay: 1.82s !important;
 }
 
 .hub-page--photo .hub-page__nav-item--contact,
 .home-sections .hub-page--photo .hub-page__nav-item--contact {
-  animation: hub-contact-pop 0.5s cubic-bezier(0.22, 1, 0.36, 1) both !important;
-  animation-delay: 0.8s !important;
+  animation: hub-contact-pop 0.85s cubic-bezier(0.22, 1, 0.36, 1) both !important;
+  animation-delay: 1.6s !important;
 }
 
 .hub-page--photo .hub-page__identity-name,
@@ -7458,6 +7458,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   color: #fff !important;
   -webkit-text-fill-color: #fff !important;
   font-weight: 400 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.28) !important;
 }
 
