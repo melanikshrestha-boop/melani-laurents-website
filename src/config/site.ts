@@ -48,7 +48,7 @@ export const siteConfig = {
       id: "x",
       label: "X",
       href: "https://x.com/melanilaurents",
-      hoverNote: "opinions are my own 🤓👆",
+      hoverNote: "opinions are my own 🤓👆. I treat this like my spam.",
     },
     {
       id: "youtube",
