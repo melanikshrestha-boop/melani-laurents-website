@@ -1,6 +1,9 @@
-/** Her ranking. Titles are her words. Covers do not link. */
-export const BEATLES_SNIPPET =
-  "I have loved the Beatles since my childhood. In every piece of work I do, I try to mimic the feeling I get when I listen to a Beatles song (or the list below, which is just awe and admiration). Here are my favorite ones:";
+/** Her ranking. Titles and copy are her words (grammar only). Covers do not link. */
+export const BEATLES_SNIPPET = [
+  "I'm currently at SFO. It's 6 a.m., and I've been here since 6 p.m. — twelve hours ago — because my flight got canceled and we fucking rescheduled it. I decided to stay and do some work, but I'm taking a break right now, so I'm going to list my favorite Beatles songs. I have loved the Beatles since I was a kid.",
+  "Everything I do, I try to mimic the feeling I get when I listen to a Beatles song — specifically the ones listed here. I have great awe and admiration for all of their songs, and I literally feel like I'm floating when I listen to them.",
+  "Here are my favorite Beatles songs. This was extremely hard to do and took more brainpower, which is not good, because I have an 8 a.m. exam tomorrow.",
+] as const;
 
 export const BEATLES_TOP_TEN = [
   {

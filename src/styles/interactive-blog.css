@@ -268,9 +268,13 @@
 }
 
 .beatles-rank__snippet {
-  margin: 0 0 1.35rem;
+  margin: 0 0 1em;
   font-size: 1.05rem;
   line-height: 1.55;
+}
+
+.beatles-rank__snippet:last-of-type {
+  margin-bottom: 1.35rem;
 }
 
 .beatles-rank__list {

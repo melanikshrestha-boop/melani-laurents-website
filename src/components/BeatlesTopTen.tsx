@@ -4,7 +4,11 @@ import { BEATLES_SNIPPET, BEATLES_TOP_TEN } from "@/data/beatles-top-ten";
 export function BeatlesTopTen() {
   return (
     <div className="beatles-rank">
-      <p className="beatles-rank__snippet">{BEATLES_SNIPPET}</p>
+      {BEATLES_SNIPPET.map((para) => (
+        <p key={para.slice(0, 40)} className="beatles-rank__snippet">
+          {para}
+        </p>
+      ))}
       <ol className="beatles-rank__list">
         {BEATLES_TOP_TEN.map((song) => (
           <li key={song.rank} className="beatles-rank__row">
