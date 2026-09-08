@@ -433,11 +433,12 @@
 }
 
 .sa-blog--index .sa-blog-item {
-  display: grid;
-  grid-template-columns: minmax(0, auto) auto;
-  justify-content: start;
+  display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
-  gap: 2rem;
+  gap: 0.35rem 0.85rem;
+  width: max-content;
+  max-width: 100%;
   margin: 0;
   line-height: 1.2;
 }
@@ -458,8 +459,8 @@
   }
 
   .sa-blog--index .sa-blog-item {
-    grid-template-columns: 1fr;
-    gap: 0.1rem;
+    display: flex;
+    gap: 0.35rem 0.85rem;
   }
 }
 
