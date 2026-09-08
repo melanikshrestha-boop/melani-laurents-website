@@ -311,12 +311,14 @@ export function PortfolioGallery({
                         type="button"
                         className="portfolio-gallery-print-order"
                         onClick={() => setPrintPhoto(photo)}
-                        aria-label={`Order a print of ${photo.print.title} for $45`}
+                        aria-label={`Order a print of ${photo.print.title} for $${photo.print.sizes[0].priceUsd}`}
                       >
                         <span className="portfolio-gallery-print-label">
                           Order Print
                         </span>
-                        <span className="portfolio-gallery-print-price">$45</span>
+                        <span className="portfolio-gallery-print-price">
+                          ${photo.print.sizes[0].priceUsd}
+                        </span>
                         <ArrowUpRight size={15} weight="bold" aria-hidden />
                         <span className="portfolio-gallery-print-meta">
                           {photo.print.catalogId} ·{" "}
