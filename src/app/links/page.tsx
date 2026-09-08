@@ -51,7 +51,7 @@ export default function LinksPage() {
             <p className="socials-label">contact me</p>
             <nav className="icons" aria-label="Contact">
               <a href="mailto:mshresth@usc.edu" aria-label="Email">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M1.5 5.25v13.5h4.2V9.9L12 14.55l6.3-4.65v8.85h4.2V5.25L12 12.45 1.5 5.25z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M1.5 6.75A2.25 2.25 0 0 1 3.75 4.5h16.5A2.25 2.25 0 0 1 22.5 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 17.25V6.75zm2.25.66 7.38 5.12a1.5 1.5 0 0 0 1.74 0l7.38-5.12V6.75H3.75v.66zm15.75 1.98-6.6 4.58a3 3 0 0 1-3.48 0L3.75 9.39v7.86h16.5V9.39z"/></svg>
               </a>
               <a href="https://t.me/melanilaurents" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.83 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 2.9 11.7c-1.05-.33-1.1-.98.23-1.48l18.98-6.35c.88-.33 1.68.2 1.37 1.48l-3.48 16.32c-.24 1.13-.87 1.4-1.77.88l-4.88-3.6-2.35 2.27c-.26.26-.48.48-.98.48z"/></svg>
