@@ -1,8 +1,8 @@
 /** Her ranking. Titles and copy are her words (grammar only). Covers do not link. */
 export const BEATLES_SNIPPET = [
-  "I'm currently at SFO. It's 6 a.m., and I've been here since 6 p.m. — twelve hours ago — because my flight got canceled and we fucking rescheduled it. I decided to stay and do some work, but I'm taking a break right now, so I'm going to list my favorite Beatles songs. I have loved the Beatles since I was a kid.",
-  "Everything I do, I try to mimic the feeling I get when I listen to a Beatles song — specifically the ones listed here. I have great awe and admiration for all of their songs, and I literally feel like I'm floating when I listen to them.",
-  "Here are my favorite Beatles songs. This was extremely hard to do and took more brainpower, which is not good, because I have an 8 a.m. exam tomorrow.",
+  "I'm currently at SFO. It's 6 a.m., and I've been here since 6 p.m. — 12 hours ago — because my flight got canceled. Yes, I decided to stay here and pull an all-nighter in hopes of finishing all of my work (progress was made).",
+  "I'm currently taking a break, so I'm going to list MY favorite top 10 Beatles songs. I have loved the Beatles since I was a kid. Now, I have rediscovered them and my love for their music has grown 100x.",
+  "So to settle the debate, because I believe I have superior ears, here are my top 10 Beatles songs:",
 ] as const;
 
 export const BEATLES_TOP_TEN = [
