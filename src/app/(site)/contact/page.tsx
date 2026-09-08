@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const EMAIL = "mshresth@usc.edu";
-const INSTAGRAM = "https://www.instagram.com/melanilaurents/";
+const INSTAGRAM = "https://www.instagram.com/celineenovaa/";
 
 export default function ContactPage() {
   return (

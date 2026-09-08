@@ -37,8 +37,8 @@ export interface DailyPost {
 /** Always-on outbound social */
 export const dailySocial = {
   x: {
-    handle: "@melanilaurents",
-    href: "https://x.com/melanilaurents",
+    handle: "@celinencooks",
+    href: "https://x.com/celinencooks",
     label: "X",
     note: "My posts live here in full.",
   },
@@ -48,8 +48,8 @@ export const dailySocial = {
     label: "YouTube",
   },
   instagram: {
-    handle: "@melanilaurents",
-    href: "https://www.instagram.com/melanilaurents/",
+    handle: "@celineenovaa",
+    href: "https://www.instagram.com/celineenovaa/",
     label: "Instagram",
   },
   tiktok: {

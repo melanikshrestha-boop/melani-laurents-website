@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export default function DailyPage() {
   const xUrl =
     siteConfig.socialLinks.find((link) => link.id === "x")?.href ??
-    "https://x.com/melanilaurents";
+    "https://x.com/celinencooks";
   const recent = listConsume(4);
   const posts = listBlogPosts().slice(0, 3);
 
@@ -38,7 +38,7 @@ export default function DailyPage() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          @melanilaurents
+          @celinencooks
         </a>
       </header>
 

@@ -13,7 +13,7 @@ declare global {
   }
 }
 
-const X_PROFILE_URL = "https://x.com/melanilaurents";
+const X_PROFILE_URL = "https://x.com/celinencooks";
 const LINKEDIN_URL = "https://www.linkedin.com/in/melanilaurents/";
 
 export function XRecentPosts() {
@@ -52,7 +52,7 @@ export function XRecentPosts() {
           data-tweet-limit="4"
           href={X_PROFILE_URL}
         >
-          View recent posts by @melanilaurents
+          View recent posts by @celinencooks
         </a>
       </div>
 

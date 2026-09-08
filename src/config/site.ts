@@ -47,7 +47,7 @@ export const siteConfig = {
     {
       id: "x",
       label: "X",
-      href: "https://x.com/melanilaurents",
+      href: "https://x.com/celinencooks",
       hoverNote: "opinions are my own 🤓👆. I treat this like my spam.",
     },
     {
@@ -67,7 +67,7 @@ export const siteConfig = {
     {
       id: "instagram",
       label: "Instagram",
-      href: "https://www.instagram.com/melanilaurents/",
+      href: "https://www.instagram.com/celineenovaa/",
     },
     {
       id: "tiktok",
