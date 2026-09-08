@@ -20,8 +20,9 @@
 .cinema-nav__identity-photo {
   display: block;
   flex: 0 0 auto;
-  width: 1.55rem;
-  height: 1.55rem;
+  /* 48px — same floor as the tab. 25px of this still reads as a cream C. */
+  width: 3rem;
+  height: 3rem;
 }
 .cinema-nav__identity-photo img {
   display: block;
@@ -298,6 +299,11 @@
 }
 
 @media (max-width: 760px) {
+  .cinema-nav__identity-photo {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
   .cinema-nav--art .cinema-nav__inner--bookshelf {
     min-height: 2.75rem;
     height: 2.75rem !important;

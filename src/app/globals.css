@@ -6053,8 +6053,9 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   position: relative;
   display: block;
   flex: 0 0 auto;
-  width: 1.55rem;
-  height: 1.55rem;
+  /* 48px — same floor as the tab. 25px of this still reads as a cream C. */
+  width: 3rem;
+  height: 3rem;
 }
 
 .hub-page__identity-photo img {
@@ -6457,6 +6458,11 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
     --hub-header-h: 2.1rem;
   }
 
+  .hub-page__identity-photo {
+    width: 2.1rem;
+    height: 2.1rem;
+  }
+
   .hub-page__brand--locked {
     gap: 0.25rem;
   }
@@ -6658,8 +6664,8 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   }
 
   .hub-page__identity-photo {
-    width: 1.3rem;
-    height: 1.3rem;
+    width: 2.1rem;
+    height: 2.1rem;
   }
 
   .hub-page__identity-name {
@@ -7044,6 +7050,12 @@ body :where(.border-t, .border-b, .border-l, .border-r) {
   color: #fff !important;
   -webkit-text-fill-color: #fff !important;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
+}
+
+/* White manga paper vanishes into Spring St sky at stamp size. Shadow only — never a ring. */
+.hub-page--photo .hub-page__identity-photo img,
+.home-sections .hub-page--photo .hub-page__identity-photo img {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.55));
 }
 
 .hub-page--photo .hub-page__title-line,
