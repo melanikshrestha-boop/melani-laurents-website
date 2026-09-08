@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   icons: erenTabIcons,
 };
 
-const STAGE_IDS = new Set(["wonder-os", "lensoss"]);
+const STAGE_IDS = new Set(["shotbyceline", "wonder-os", "quant-nova"]);
 
 const BUILD_PRESENTATION: Record<
   string,
@@ -23,22 +23,30 @@ const BUILD_PRESENTATION: Record<
     github?: string;
     readout: string;
     description: string;
+    priority: number;
   }
 > = {
+  shotbyceline: {
+    title: "01. Foto",
+    href: "/photography",
+    readout: "Foto",
+    description: "",
+    priority: 1,
+  },
   "wonder-os": {
-    title: "01. Wonder",
+    title: "02. Wonder",
     href: "https://github.com/melanikshrestha-boop/wonder",
     readout: "view Wonder",
     description:
       "One place for my books, finances, health, agents, and wardrobe.",
+    priority: 2,
   },
-  lensoss: {
-    title: "LensLab",
-    href: "https://lenslab.dev",
-    github: "https://github.com/melanikshrestha-boop/LensOSS",
-    readout: "GitHub",
-    description:
-      "sports photographers workflow system",
+  "quant-nova": {
+    title: "03. Nova Quant",
+    href: "https://github.com/melanikshrestha-boop/quant-nova",
+    readout: "Nova Quant",
+    description: "",
+    priority: 3,
   },
 };
 
