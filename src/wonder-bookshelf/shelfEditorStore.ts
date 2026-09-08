@@ -39,6 +39,11 @@ export const DEFAULT_CURRENT_READS: CurrentRead[] = [
     author: "viktor e. frankl",
     href: "https://www.amazon.com/dp/0807014273",
   },
+  {
+    title: "the infinity machine",
+    author: "sebastian mallaby",
+    href: "https://www.amazon.com/dp/0593831845",
+  },
 ];
 
 /** Sibling line under current reads — daily paper, not a book cover. */
