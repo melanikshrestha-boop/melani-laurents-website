@@ -44,7 +44,8 @@ const BUILD_PRESENTATION: Record<
   "quant-nova": {
     title: "03. Nova Quant",
     href: "https://github.com/melanikshrestha-boop/quant-nova",
-    readout: "Nova Quant",
+    github: "https://github.com/melanikshrestha-boop/quant-nova",
+    readout: "GitHub",
     description: "",
     priority: 3,
   },
