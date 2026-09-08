@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { BeatlesTopTen } from "@/components/BeatlesTopTen";
 import {
   formatBlogArchiveDate,
   getBlogPost,
@@ -45,9 +46,13 @@ export default async function BlogPostPage({ params }: Props) {
         </p>
 
         <div className="sa-post-body">
-          {post.body.map((para) => (
-            <p key={para.slice(0, 72)}>{para}</p>
-          ))}
+          {post.slug === "beatles-top-10" ? (
+            <BeatlesTopTen />
+          ) : (
+            post.body.map((para) => (
+              <p key={para.slice(0, 72)}>{para}</p>
+            ))
+          )}
         </div>
       </article>
     </div>

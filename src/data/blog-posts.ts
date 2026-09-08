@@ -11,6 +11,17 @@ import { listConsume } from "./consume-log";
  */
 export const blogPosts: BlogPost[] = [
   {
+    slug: "beatles-top-10",
+    title: "Top 10 Beatles Songs",
+    date: "2026-09-08",
+    draft: false,
+    lede: "",
+    stance: "curious",
+    thesis: "",
+    tags: [],
+    body: [],
+  },
+  {
     slug: "nineteen",
     title: "Nineteen",
     date: "2026-08-11",
