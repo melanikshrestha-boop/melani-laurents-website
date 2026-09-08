@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { siteConfig } from "@/config/site";
 import {
+  GITHUB_PROFILE_URL,
   githubDayTitle,
   type ContributionCalendar,
   type ContributionDay,
@@ -69,7 +69,7 @@ export function BuildsGithubCalendar({
       <header className="builds-github__head">
         <h2 id="builds-github-title" className="builds-github__title">
           <a
-            href={siteConfig.linkedinUrl}
+            href={GITHUB_PROFILE_URL}
             target="_blank"
             rel="noopener noreferrer"
           >
