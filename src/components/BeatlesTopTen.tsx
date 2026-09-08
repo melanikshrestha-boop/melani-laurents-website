@@ -21,7 +21,11 @@ export function BeatlesTopTen() {
               height={72}
               draggable={false}
             />
-            <span className="beatles-rank__title">{song.title}</span>
+            <span className="beatles-rank__copy">
+              <span className="beatles-rank__title">{song.title}</span>
+              <span className="beatles-rank__album">{song.album}</span>
+              <span className="beatles-rank__year">{song.year}</span>
+            </span>
           </li>
         ))}
       </ol>

@@ -310,10 +310,23 @@
   -webkit-user-drag: none;
 }
 
-.beatles-rank__title {
+.beatles-rank__copy {
+  display: flex;
+  flex-direction: column;
   min-width: 0;
+  gap: 0.12rem;
+}
+
+.beatles-rank__title {
   font-size: 1.05rem;
   line-height: 1.3;
+}
+
+.beatles-rank__album,
+.beatles-rank__year {
+  font-size: 0.82rem;
+  line-height: 1.3;
+  color: #5f6368;
 }
 
 .sa-blog-nav {
