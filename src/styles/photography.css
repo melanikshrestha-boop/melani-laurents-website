@@ -66,6 +66,13 @@
   object-position: center 82%;
 }
 
+/* Full-width desktop: crop a bit higher (less cobble, more facade). */
+@media (min-width: 1280px) {
+  .portfolio-hover-bg--scenery .portfolio-hover-bg-image {
+    object-position: center 74%;
+  }
+}
+
 .portfolio-hover-bg--spring .portfolio-hover-bg-image {
   object-position: center 42%;
 }
