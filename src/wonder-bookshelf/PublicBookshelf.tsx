@@ -1473,7 +1473,13 @@ export function PublicBookshelf() {
                         <strong>{group.author}</strong>
                         <small>
                           {group.items.length}{" "}
-                          {group.items.length === 1 ? "essay" : "essays"}
+                          {group.id === "wall-street-journal"
+                            ? group.items.length === 1
+                              ? "section"
+                              : "sections"
+                            : group.items.length === 1
+                              ? "essay"
+                              : "essays"}
                         </small>
                       </span>
                     </button>

@@ -1,5 +1,23 @@
 [
   {
+    "id": "wsj-technology",
+    "title": "Technology",
+    "url": "https://www.wsj.com/tech",
+    "author": "Wall Street Journal",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
+    "id": "wsj-economics",
+    "title": "Economics",
+    "url": "https://www.wsj.com/economy",
+    "author": "Wall Street Journal",
+    "highlight": "",
+    "take": "",
+    "visible": true
+  },
+  {
     "id": "sa-2279512",
     "title": "-",
     "url": "https://blog.samaltman.com/2279512",
