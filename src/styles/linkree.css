@@ -279,20 +279,24 @@
   width: var(--icon);
   height: var(--icon);
   color: #fff;
-  transition: transform 0.22s ease;
   animation: link-fade 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .linkree .icons a:hover,
 .linkree .icons a:focus-visible {
   color: #fff;
-  transform: translateY(-4px) scale(1.08);
 }
 
 .linkree .icons svg {
   display: block;
   width: 100%;
   height: 100%;
+  transition: transform 0.22s ease;
+}
+
+.linkree .icons a:hover svg,
+.linkree .icons a:focus-visible svg {
+  transform: translateY(-4px) scale(1.08);
 }
 
 .linkree .buttons {
@@ -597,9 +601,11 @@
 @keyframes link-fade {
   from {
     opacity: 0;
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -642,10 +648,11 @@
   .linkree .buttons a,
   .linkree .yt-latest {
     opacity: 1;
+    transform: none;
   }
 
-  .linkree .icons a:hover,
-  .linkree .icons a:focus-visible {
+  .linkree .icons a:hover svg,
+  .linkree .icons a:focus-visible svg {
     transform: none;
   }
 }

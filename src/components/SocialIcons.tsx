@@ -30,8 +30,9 @@ const socialIcons: Record<SocialId, React.ReactNode> = {
     </svg>
   ),
   gmail: (
+    /* 2020 Gmail M — even stems, not the solid envelope blob. */
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-      <path d="M24 5.372v13.256c0 .65-.547 1.186-1.186 1.186h-3.511V11.54L12 16.36 4.697 11.54v8.274H1.186C.536 19.814 0 19.278 0 18.628V5.372c0-1.63 1.76-2.62 3.13-1.753L12 11.4l8.87-7.781C22.24 2.752 24 3.742 24 5.372z" />
+      <path d="M1.5 5.25v13.5h4.2V9.9L12 14.55l6.3-4.65v8.85h4.2V5.25L12 12.45 1.5 5.25z" />
     </svg>
   ),
 };
