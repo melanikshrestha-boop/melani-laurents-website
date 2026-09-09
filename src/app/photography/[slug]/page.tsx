@@ -85,8 +85,9 @@ export default async function PhotographyCollectionPage({ params }: PageProps) {
               {collection.title}
             </h1>
             {slug === "poem" ? (
-              <p className="portfolio-collection-header__category">
-                Short Stories
+              <p className="portfolio-collection-header__lede">
+                I write all kind of things from short fictional stories to
+                journalistic works with ambigious thesis and songwriting.
               </p>
             ) : null}
           </div>

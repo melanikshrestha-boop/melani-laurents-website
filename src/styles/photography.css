@@ -245,6 +245,28 @@
   min-width: 0;
 }
 
+.portfolio-collection-header:has(.portfolio-collection-header__lede) {
+  align-items: flex-start;
+  padding-bottom: 1rem;
+}
+
+.portfolio-collection-header__copy:has(.portfolio-collection-header__lede) {
+  width: 100%;
+  gap: 0.7rem;
+}
+
+.portfolio-collection-header__lede {
+  margin: 0;
+  max-width: 40rem;
+  color: var(--photo-ink);
+  font-family: var(--font-instrument-serif), Georgia, "Times New Roman", serif;
+  font-size: clamp(1rem, 1.35vw, 1.15rem);
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
 .portfolio-collection-header__category {
   margin: 0;
   color: #4d287d;
