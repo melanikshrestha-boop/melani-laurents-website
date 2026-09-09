@@ -192,8 +192,8 @@
   font-family: var(--font-anton), sans-serif;
   font-size: clamp(2rem, 3vw, 3.45rem);
   font-weight: 400;
-  /* LOCK: double-spaced. Do not crush this. */
-  line-height: 2;
+  /* Tight on a small/half window. Double-space only when the MacBook is full width. */
+  line-height: 1.25;
   letter-spacing: normal;
   text-align: center;
   text-transform: none;
@@ -203,6 +203,12 @@
     0 1px 1px rgba(0, 0, 0, 0.4),
     0 0 18px rgba(0, 0, 0, 0.32);
   transition: opacity 0.25s ease;
+}
+
+@media (min-width: 1280px) {
+  .portfolio-hover-item-title {
+    line-height: 2;
+  }
 }
 
 .portfolio-collection-header {
@@ -1490,6 +1496,12 @@
 }
 
 .portfolio-hover-item-title {
-  line-height: 2 !important;
+  line-height: 1.25 !important;
   padding: 0 !important;
+}
+
+@media (min-width: 1280px) {
+  .portfolio-hover-item-title {
+    line-height: 2 !important;
+  }
 }
