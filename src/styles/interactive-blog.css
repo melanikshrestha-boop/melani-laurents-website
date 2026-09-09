@@ -190,7 +190,7 @@
 /* Single post — still full width */
 .sa-post-title {
   margin: 0 0 0.35rem;
-  font-size: clamp(1.6rem, 3vw, 2.25rem);
+  font-size: clamp(1.4rem, 2vw, 1.75rem);
   font-weight: 400;
   line-height: 1.2;
   color: var(--sa-ink);
@@ -349,9 +349,9 @@
 .sa-post-title {
   margin: 0 0 0.45rem;
   color: var(--sa-ink);
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(1.4rem, 2vw, 1.75rem);
   font-weight: 500;
-  line-height: 1.08;
+  line-height: 1.2;
   letter-spacing: 0;
 }
 
