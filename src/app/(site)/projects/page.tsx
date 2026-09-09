@@ -31,7 +31,8 @@ const BUILD_PRESENTATION: Record<
     href: "https://lenslab.dev",
     github: "https://github.com/melanikshrestha-boop/LensOSS",
     readout: "GitHub",
-    description: "sports photographers workflow system",
+    description:
+      "complete all-in 1 workflow for all types of photograhers. ditch the 50 different subscriptions and go enjoy the most expensive hobby.",
     priority: 1,
   },
   "wonder-os": {
