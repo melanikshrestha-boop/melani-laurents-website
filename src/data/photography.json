@@ -262,13 +262,6 @@
       "cover": "/photography/sketches/cover.jpeg",
       "photos": [
         {
-          "id": "song-1-appreciate-it-while-youre-here",
-          "src": "/writing/appreciate-it-while-youre-here-front.png",
-          "alt": "song #1: Appreciate it while you're here",
-          "place": "song #1: Appreciate it while you're here",
-          "href": "/writing/appreciate-it-while-youre-here.pdf"
-        },
-        {
           "id": "akira-creation-myth-9th",
           "src": "/writing/akira-front.png",
           "alt": "Akira",
