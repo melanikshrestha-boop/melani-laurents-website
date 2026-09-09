@@ -22,9 +22,6 @@ function ProjectRow({ project }: { project: Project; index: number }) {
               rel={isExternal ? "noopener noreferrer" : undefined}
             >
               {project.title}
-              <span className="bp-row__go" aria-hidden>
-                ↗
-              </span>
             </a>
           </h3>
           <a
@@ -45,11 +42,6 @@ function ProjectRow({ project }: { project: Project; index: number }) {
     <>
       <h3 className="bp-row__title">
         {project.title}
-        {isLink ? (
-          <span className="bp-row__go" aria-hidden>
-            ↗
-          </span>
-        ) : null}
       </h3>
       {description}
     </>

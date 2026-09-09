@@ -412,14 +412,6 @@
   text-decoration: none;
 }
 
-.bp-row__go {
-  display: inline-block;
-  margin-left: 0.28em;
-  font-size: 0.72em;
-  font-weight: 500;
-  transform: translateY(-0.08em);
-}
-
 .bp-row__desc {
   grid-column: 1;
   max-width: 37rem;
