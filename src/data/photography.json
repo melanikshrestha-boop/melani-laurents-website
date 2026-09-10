@@ -262,14 +262,6 @@
       "cover": "/photography/sketches/cover.jpeg",
       "photos": [
         {
-          "id": "make-it-beautiful",
-          "src": "/writing/make-it-beautiful-front.png",
-          "alt": "Make It Beautiful",
-          "place": "Make It Beautiful",
-          "note": "The last verse was inspired by the Strawberry Fields Forever song lyrics written by John Lennon. I tried to make a simple melody of it. I don't truly know what it means. Wrote it in USC Village around 12:00-12:40 am.",
-          "href": "/writing/make-it-beautiful.pdf?v=3"
-        },
-        {
           "id": "akira-creation-myth-9th",
           "src": "/writing/akira-front.png",
           "alt": "Akira",
